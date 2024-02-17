@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\Customers\CustomersController;
-use App\Http\Controllers\Events\EventsController;
-use App\Http\Controllers\Slideshow\SlideshowController;
-use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
-use App\Http\Controllers\Website\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Events\EventsController;
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\Settings\SettingsController;
+use App\Http\Controllers\Customers\CustomersController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Employees\EmployeesController;
+use App\Http\Controllers\Slideshow\SlideshowController;
 use App\Http\Controllers\Users\UsersAccounts\UsersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Roles\AccountRolesController;
+use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
 use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsController;
 
@@ -42,6 +43,9 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Administrators-Accounts', AdministratorsAccountsController::class);
         Route::RESOURCE('Users-Accounts', UsersAccountsController::class);
         Route::RESOURCE('Customers-Accounts', CustomersAccountsController::class);
+
+         // Employees Info
+        Route::  RESOURCE('Employees', EmployeesController::class);
     });
 });
 

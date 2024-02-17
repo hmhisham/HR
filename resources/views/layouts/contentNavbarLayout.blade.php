@@ -42,10 +42,12 @@
                         <div class="app-brand demo">
                             <a href="{{ url('/') }}" class="app-brand-link">
                                 <span class="app-brand-logo demo">
-                                    <img src="{{ asset('assets/img/logo/logowhite.png') }}" class="rounded img-fluid" style="width: 50px;">
+                                    <img src="{{ asset('assets/img/logo/logowhite.png') }}" class="rounded img-fluid"
+                                        style="width: 50px;">
                                     {{-- @include('_partials.macros', ['width' => 25, 'withbg' => '#666cff']) --}}
                                 </span>
-                                <span class="app-brand-text demo menu-text fw-bold ms-2 fs-5">{{ trans('sidebar.AppName') }}</span>
+                                <span
+                                    class="app-brand-text demo menu-text fw-bold ms-2 fs-5">{{ trans('sidebar.AppName') }}</span>
                             </a>
 
                             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -73,9 +75,19 @@
                                 </a>
                             </li>
 
+                            {{-- الموظفين --}}
+                            <li Class="menu-item {{ request()->Is('Employees') ? 'active' : '' }}">
+                                <a href = "{{ Route('Employees.index') }}" Class="menu-link">
+                                 <i Class='menu-icon tf-icons mdi mdi-account-outline'></i>
+                                 <Div>بيانات الموظفين</div>
+                               </a>
+                              </li>
+
+
                             {{-- المستخدمين --}}
                             @can('users')
-                                <li class="menu-item {{ request()->is('Administrators-Accounts') ? 'active open' : (request()->is('Customers-Accounts') ? 'active open' : '') }}">
+                                <li
+                                    class="menu-item {{ request()->is('Administrators-Accounts') ? 'active open' : (request()->is('Customers-Accounts') ? 'active open' : '') }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-account-outline'></i>
                                         <span class="menu-title">{{ trans('sidebar.Users accounts') }}</span>
@@ -101,23 +113,26 @@
 
                             {{-- التصاريح والأدوار --}}
                             @if (Auth::check())
-                                @can ('permissions-roles')
-                                    <li class="menu-item {{ request()->is('Permissions&Roles/Account-Permissions') ? 'active open' : (request()->is('Permissions&Roles/Account-Roles') ? 'active open' : '') }}">
+                                @can('permissions-roles')
+                                    <li
+                                        class="menu-item {{ request()->is('Permissions&Roles/Account-Permissions') ? 'active open' : (request()->is('Permissions&Roles/Account-Roles') ? 'active open' : '') }}">
                                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                                             <i class='menu-icon tf-icons mdi mdi-shield-account'></i>
                                             <span class="menu-title">{{ trans('sidebar.Permissions and roles') }}</span>
                                         </a>
                                         <ul class="menu-sub">
-                                            @can ('permissions')
-                                                <li class="menu-item {{ request()->is('Permissions&Roles/Account-Permissions') ? 'active' : '' }}">
+                                            @can('permissions')
+                                                <li
+                                                    class="menu-item {{ request()->is('Permissions&Roles/Account-Permissions') ? 'active' : '' }}">
                                                     <a href="{{ Route('Account-Permissions.index') }}" class="menu-link">
                                                         <i class=""></i>
                                                         <div>{{ trans('sidebar.Permissions') }}</div>
                                                     </a>
                                                 </li>
                                             @endcan
-                                            @can ('roles')
-                                                <li class="menu-item {{ request()->is('Permissions&Roles/Account-Roles') ? 'active' : '' }}">
+                                            @can('roles')
+                                                <li
+                                                    class="menu-item {{ request()->is('Permissions&Roles/Account-Roles') ? 'active' : '' }}">
                                                     <a href="{{ Route('Account-Roles.index') }}" class="menu-link">
                                                         <i class=""></i>
                                                         <div>{{ trans('sidebar.Roles') }}</div>
