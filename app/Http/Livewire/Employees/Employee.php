@@ -12,11 +12,11 @@ class Employee extends Component
 
     public function render()
     {
-        $EmployeeSearch = $this->EmployeeSearch.'%';
+        $EmployeeSearch = $this->EmployeeSearch . '%';
 
-        $Employees = Employees::where('FullName','LIKE', $EmployeeSearch)
-                                    ->orderBy('id','ASC')
-                                    ->paginate(10);
+        $Employees = Employees::where('FullName', 'LIKE', $EmployeeSearch)
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
 
 
 
@@ -28,8 +28,6 @@ class Employee extends Component
         return view('livewire.employees.employee', [
             'links' => $links
         ]);
-
-
     }
 
     public function AddEmployeeModalShow()

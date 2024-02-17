@@ -28,9 +28,11 @@ use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsCont
 */
 
 // Dashboard
-Route::GET('/', [DashboardController::class, 'index'])->name('Dashboard');
+
 
 Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group(function () {
+Route::GET('/', [DashboardController::class, 'index'])->name('Dashboard');
+
     // Middleware Owners
     Route::middleware(['role:OWNER|Administrator|Supervisor'])->group(function () {
         // Roles & Permission

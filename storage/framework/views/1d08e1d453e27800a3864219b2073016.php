@@ -62,4 +62,5 @@
         </div>
     </div>
 </div>
+</div>
 <?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/employees/employee.blade.php ENDPATH**/ ?>
