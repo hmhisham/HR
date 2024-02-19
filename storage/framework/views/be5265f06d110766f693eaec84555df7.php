@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Employees'); ?>
+<?php $__env->startSection('title', 'بيانات الموظفين'); ?>
 <?php $__env->startSection('vendor-style'); ?>
     <link rel="stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
     <link rel = "stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')); ?>">
@@ -9,25 +9,24 @@
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/animate-css/animate.css')); ?>" />
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
     <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
-        <?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
-<?php
+    <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('employees.employee')->html();
-} elseif ($_instance->childHasBeenRendered('BTDWQUd')) {
-    $componentId = $_instance->getRenderedChildComponentId('BTDWQUd');
-    $componentTag = $_instance->getRenderedChildComponentTagName('BTDWQUd');
+} elseif ($_instance->childHasBeenRendered('ck9AAaf')) {
+    $componentId = $_instance->getRenderedChildComponentId('ck9AAaf');
+    $componentTag = $_instance->getRenderedChildComponentTagName('ck9AAaf');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('BTDWQUd');
+    $_instance->preserveRenderedChild('ck9AAaf');
 } else {
     $response = \Livewire\Livewire::mount('employees.employee');
     $html = $response->html();
-    $_instance->logRenderedChild('BTDWQUd', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('ck9AAaf', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
-
-
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('vendor-script'); ?>
@@ -63,7 +62,7 @@ echo $html;
         window.addEventListener('EmployeeModalShow', event => {
             $('#modalEmployeeJobNumber').focus();
         })
-      
+
         window.addEventListener('success', event => {
             $('#editEmployeeModal').modal('hide');
             $('#RmoveUserModal').modal('hide');

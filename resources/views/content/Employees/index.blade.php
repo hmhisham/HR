@@ -1,6 +1,5 @@
-
 @extends('layouts/layoutMaster')
-@section('title', 'Employees')
+@section('title', 'بيانات الموظفين')
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel = "stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
@@ -11,11 +10,10 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
+@endsection
+
 @section('content')
-@livewire('employees.employee')
-
-
+    @livewire('employees.employee')
 @endsection
 
 @section('vendor-script')
@@ -51,7 +49,7 @@
         window.addEventListener('EmployeeModalShow', event => {
             $('#modalEmployeeJobNumber').focus();
         })
-      
+
         window.addEventListener('success', event => {
             $('#editEmployeeModal').modal('hide');
             $('#RmoveUserModal').modal('hide');

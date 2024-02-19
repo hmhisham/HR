@@ -1,7 +1,6 @@
 <div class="mt-n4">
     <h4 Class="mb-1fw-semiboyld">قائمة</h4>
     <Div Class="card">
-
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -45,22 +44,40 @@
                                 <td Class="text-center">{{ $Employee->FourthName }}</td>
                                 <td Class="text-center">{{ $Employee->LastName }}</td>
                                 <td Class="text-center">{{ $Employee->FullName }}</td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group" aria-label="First group">
+
+                                        @can('employee-edit')
+                                            <button wire:click="GetEmployee({{ $Employee->id }})"
+                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#editEmployeeModal">
+                                                <i class="tf-icons mdi mdi-pencil fs-3"></i>
+                                            </button>
+                                        @endcan
+                                        @can('employee-delete')
+                                            <button wire:click="GetEmployee({{ $Employee->id }})"
+                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Employee->active ? 'disabled' : '' }}"
+                                                data-bs-toggle="modal" data-bs-target="#removeEmployeeModal">
+                                                <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
+                                            </button>
+                                        @endcan
+                                    </div>
+                                </td>
+
+
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
 
-
-
                 <div class="mt-2 d-flex justify-content-center">
                     {{ $links->links() }}
                 </div>
 
-                {{-- <!-- Modal -->
-                @include('livewire.employees.modals.edit-employee')
-                @include('livewire.employees.modals.cog-employee')
-                @include('livewire.employees.modals.remove-employee')
-                <!-- Modal --> --}}
+                <!-- Modal -->
+                {{-- @include('livewire.employees.modals.edit-employees') --}}
+                {{-- @include('livewire.employees.modals.remove-employees') --}}
+                <!-- Modal -->
             @endcan
         </div>
     </div>
