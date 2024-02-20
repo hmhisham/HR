@@ -1,6 +1,7 @@
 <div class="mt-n4">
     <h4 Class="mb-1fw-semiboyld">قائمة</h4>
     <Div Class="card">
+
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -29,8 +30,7 @@
                             <th Class="text-center">الاسم الرابع</th>
                             <th Class="text-center">اللقب</th>
                             <th Class="text-center">الاسم الكامل</th>
-                            <th Class="text-center">العملية</th>
-                        </tr>
+                       </tr>
                     </thead>
                     <tbody>
                         <?php $__currentLoopData = $Employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -44,27 +44,19 @@
                                 <td Class="text-center"><?php echo e($Employee->FourthName); ?></td>
                                 <td Class="text-center"><?php echo e($Employee->LastName); ?></td>
                                 <td Class="text-center"><?php echo e($Employee->FullName); ?></td>
-                                <td class="text-center">
-                                    <div class="btn-group" role="group" aria-label="First group">
 
+                                <td Class="text-center">
+                                    <div class="btn-group" role="group" aria-label="First group">
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-edit')): ?>
-                                            <button wire:click="GetEmployee(<?php echo e($Employee->id); ?>)"
+                                            <button wire : click="GetEmployee(<?php echo e($Employee->id); ?>)"
                                                 class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editEmployeeModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         <?php endif; ?>
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-delete')): ?>
-                                            <button wire:click="GetEmployee(<?php echo e($Employee->id); ?>)"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect <?php echo e($Employee->active ? 'disabled' : ''); ?>"
-                                                data-bs-toggle="modal" data-bs-target="#removeEmployeeModal">
-                                                <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
-                                            </button>
-                                        <?php endif; ?>
+                                        
                                     </div>
                                 </td>
-
-
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
@@ -74,9 +66,8 @@
                     <?php echo e($links->links()); ?>
 
                 </div>
-
                 <!-- Modal -->
-                
+                <?php echo $__env->make('livewire.employees.modals.edit-employees', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 
                 <!-- Modal -->
             <?php endif; ?>
