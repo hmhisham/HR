@@ -128,6 +128,24 @@ class Employee extends Component
         ]);
     }
 
-
-    
+    public function GetEmployee($EmployeeId)
+    {
+        $this->resetValidation();
+        $this->Employee  = Employees::find($EmployeeId);
+        $this->EmployeeId = $this->Employee->id;
+        $this->JobNumber = $this->Employee->JobNumber;
+        $this->FileNumber = $this->Employee->FileNumber;
+        $this->FirstName = $this->Employee->FirstName;
+        $this->SecondName = $this->Employee->SecondName;
+        $this->ThirdName = $this->Employee->ThirdName;
+        $this->FourthName = $this->Employee->FourthName;
+        $this->LastName = $this->Employee->LastName;
+        $this->FullName = $this->Employee->FullName;
+        $this->MotherName = $this->Employee->MotherName;
+        $this->MotherFatherName = $this->Employee->MotherFatherName;
+        $this->MotherGrandName = $this->Employee->MotherGrandName;
+        $this->MotherLastName = $this->Employee->MotherLastName;
+        $this->FullMothersName = $this->Employee->FullMothersName;
+        $this->Status = $this->Employee->Status;
+    }
 }

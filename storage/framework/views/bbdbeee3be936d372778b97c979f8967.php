@@ -29,7 +29,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
+unset($__errorArgs, $__bag); ?>"   />
                                         <label for="modalEmployeeJobNumber">الرقم الوظيفي</label>
                                     </div>
                                     <?php $__errorArgs = ['JobNumber'];
@@ -46,7 +46,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='FileNumber' type="text" id="modalEmployeeJobNumber" placeholder="رقم الاضبارة"
+                                        <input wire:model.defer='FileNumber' type="text" id="modalEmployeeFileNumber" placeholder="رقم الاضبارة"
                                             class="form-control <?php $__errorArgs = ['FileNumber'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -55,7 +55,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">رقم الاضبارة</label>
+                                        <label for="modalEmployeeFileNumber">رقم الاضبارة</label>
                                     </div>
                                     <?php $__errorArgs = ['FileNumber'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -72,7 +72,7 @@ unset($__errorArgs, $__bag); ?>
                                         <Div Class="row">
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='FirstName' type="text" id="modalEmployeeJobNumber" placeholder="الاسم الأول"
+                                        <input wire:model.defer='FirstName' type="text" id="modalEmployeeFirstName" placeholder="الاسم الأول"
                                             class="form-control <?php $__errorArgs = ['FirstName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -81,7 +81,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">الاسم الأول</label>
+                                        <label for="modalEmployeeFirstName">الاسم الأول</label>
                                     </div>
                                     <?php $__errorArgs = ['FirstName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -97,7 +97,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='SecondName' type="text" id="modalEmployeeJobNumber" placeholder="الاسم الثاني"
+                                        <input wire:model.defer='SecondName' type="text" id="modalEmployeeSecondName" placeholder="الاسم الثاني"
                                             class="form-control <?php $__errorArgs = ['SecondName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -106,7 +106,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">الاسم الثاني</label>
+                                        <label for="modalEmployeeSecondName">الاسم الثاني</label>
                                     </div>
                                     <?php $__errorArgs = ['SecondName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -122,7 +122,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='ThirdName' type="text" id="modalEmployeeJobNumber" placeholder="الاسم الثالث"
+                                        <input wire:model.defer='ThirdName' type="text" id="modalEmployeeThirdName" placeholder="الاسم الثالث"
                                             class="form-control <?php $__errorArgs = ['ThirdName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -131,7 +131,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">الاسم الثالث</label>
+                                        <label for="modalEmployeeThirdName">الاسم الثالث</label>
                                     </div>
                                     <?php $__errorArgs = ['ThirdName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -148,7 +148,7 @@ unset($__errorArgs, $__bag); ?>
                                         <Div Class="row">
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='FourthName' type="text" id="modalEmployeeJobNumber" placeholder="الاسم الرابع"
+                                        <input wire:model.defer='FourthName' type="text" id="modalEmployeeFourthName" placeholder="الاسم الرابع"
                                             class="form-control <?php $__errorArgs = ['FourthName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -157,7 +157,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">الاسم الرابع</label>
+                                        <label for="modalEmployeeFourthName">الاسم الرابع</label>
                                     </div>
                                     <?php $__errorArgs = ['FourthName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -173,7 +173,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='LastName' type="text" id="modalEmployeeJobNumber" placeholder="اللقب"
+                                        <input wire:model.defer='LastName' type="text" id="modalEmployeeLastName" placeholder="اللقب"
                                             class="form-control <?php $__errorArgs = ['LastName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -182,7 +182,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">اللقب</label>
+                                        <label for="modalEmployeeLastName">اللقب</label>
                                     </div>
                                     <?php $__errorArgs = ['LastName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -198,7 +198,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='FullName' type="text" id="modalEmployeeJobNumber" placeholder="الاسم الكامل"
+                                        <input wire:model.defer='FullName' type="text" id="modalEmployeeFullName" placeholder="الاسم الكامل"
                                             class="form-control <?php $__errorArgs = ['FullName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -207,7 +207,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">الاسم الكامل</label>
+                                        <label for="modalEmployeeFullName">الاسم الكامل</label>
                                     </div>
                                     <?php $__errorArgs = ['FullName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -224,7 +224,7 @@ unset($__errorArgs, $__bag); ?>
                                         <Div Class="row">
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='MotherName' type="text" id="modalEmployeeJobNumber" placeholder="اسم الام"
+                                        <input wire:model.defer='MotherName' type="text" id="modalEmployeeMotherName" placeholder="اسم الام"
                                             class="form-control <?php $__errorArgs = ['MotherName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -233,7 +233,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">اسم الام</label>
+                                        <label for="modalEmployeeMotherName">اسم الام</label>
                                     </div>
                                     <?php $__errorArgs = ['MotherName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -249,7 +249,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='MotherFatherName' type="text" id="modalEmployeeJobNumber" placeholder="اسم والد الام"
+                                        <input wire:model.defer='MotherFatherName' type="text" id="modalEmployeeMotherFatherName" placeholder="اسم والد الام"
                                             class="form-control <?php $__errorArgs = ['MotherFatherName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -258,7 +258,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">اسم والد الام</label>
+                                        <label for="modalEmployeeMotherFatherName">اسم والد الام</label>
                                     </div>
                                     <?php $__errorArgs = ['MotherFatherName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -274,7 +274,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='MotherGrandName' type="text" id="modalEmployeeJobNumber" placeholder="اسم جد الام"
+                                        <input wire:model.defer='MotherGrandName' type="text" id="modalEmployeeMotherGrandName" placeholder="اسم جد الام"
                                             class="form-control <?php $__errorArgs = ['MotherGrandName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -283,7 +283,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">اسم جد الام</label>
+                                        <label for="modalEmployeeMotherGrandName">اسم جد الام</label>
                                     </div>
                                     <?php $__errorArgs = ['MotherGrandName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -300,7 +300,7 @@ unset($__errorArgs, $__bag); ?>
                                         <Div Class="row">
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='MotherLastName' type="text" id="modalEmployeeJobNumber" placeholder="لقب الام"
+                                        <input wire:model.defer='MotherLastName' type="text" id="modalEmployeeMotherLastName" placeholder="لقب الام"
                                             class="form-control <?php $__errorArgs = ['MotherLastName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -309,7 +309,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">لقب الام</label>
+                                        <label for="modalEmployeeMotherLastName">لقب الام</label>
                                     </div>
                                     <?php $__errorArgs = ['MotherLastName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -325,7 +325,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='FullMothersName' type="text" id="modalEmployeeJobNumber" placeholder="اسم الام الكامل"
+                                        <input wire:model.defer='FullMothersName' type="text" id="modalEmployeeFullMothersName" placeholder="اسم الام الكامل"
                                             class="form-control <?php $__errorArgs = ['FullMothersName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -334,7 +334,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">اسم الام الكامل</label>
+                                        <label for="modalEmployeeFullMothersName">اسم الام الكامل</label>
                                     </div>
                                     <?php $__errorArgs = ['FullMothersName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -350,7 +350,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='Status' type="text" id="modalEmployeeJobNumber" placeholder="الحالة"
+                                        <input wire:model.defer='Status' type="text" id="modalEmployeeStatus" placeholder="الحالة"
                                             class="form-control <?php $__errorArgs = ['Status'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -359,7 +359,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalEmployeeJobNumber">الحالة</label>
+                                        <label for="modalEmployeeStatus">الحالة</label>
                                     </div>
                                     <?php $__errorArgs = ['Status'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

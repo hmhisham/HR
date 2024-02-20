@@ -30,6 +30,7 @@
                             <th Class="text-center">الاسم الرابع</th>
                             <th Class="text-center">اللقب</th>
                             <th Class="text-center">الاسم الكامل</th>
+                            <th Class="text-center">الحالة</th>
                        </tr>
                     </thead>
                     <tbody>

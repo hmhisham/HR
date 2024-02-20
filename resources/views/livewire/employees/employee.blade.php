@@ -30,7 +30,8 @@
                             <th Class="text-center">الاسم الرابع</th>
                             <th Class="text-center">اللقب</th>
                             <th Class="text-center">الاسم الكامل</th>
-                       </tr>
+                            <th Class="text-center">الحالة</th>
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach ($Employees as $Employee)
