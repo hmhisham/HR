@@ -405,4 +405,4 @@ unset($__errorArgs, $__bag); ?>
     </div>
 </div>
 <!--/ Edite Employee Modal -->
-<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/employees/modals/edit-employees.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/employees/modals/edit-employee.blade.php ENDPATH**/ ?>

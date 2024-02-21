@@ -1,4 +1,3 @@
-
 <!-- Add Employee Modal -->
 <div wire:ignore.self class="modal fade" id="addemployeeModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -9,18 +8,15 @@
                     <h3 class="pb-1 mb-2">اضافة </h3>
                     <p>نافذة الأضافة </p>
                 </div>
-
                 <hr class="mt-n2">
-
-
                 <form id="addEmployeeForm" autocomplete="off">
                     <div class="row row-cols-1">
                         <div class="col mb-3">
-                        '<Div Class="row">
-
-                                       <div class="mb-3 col">
+                            '<Div Class="row">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='JobNumber' type="text" id="modalEmployeeJobNumber" placeholder="الرقم الوظيفي"
+                                        <input wire:model.defer='JobNumber' type="text" id="modalEmployeeJobNumber"
+                                            placeholder="الرقم الوظيفي"
                                             class="form-control @error('JobNumber') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">الرقم الوظيفي</label>
                                     </div>
@@ -29,9 +25,10 @@
                                     @enderror
                                 </div>
 
-                                       <div class="mb-3 col">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='FileNumber' type="text" id="modalEmployeeJobNumber" placeholder="رقم الاضبارة"
+                                        <input wire:model.defer='FileNumber' type="text" id="modalEmployeeJobNumber"
+                                            placeholder="رقم الاضبارة"
                                             class="form-control @error('FileNumber') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">رقم الاضبارة</label>
                                     </div>
@@ -39,11 +36,12 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                                  </div>
-                                        <Div Class="row">
-                                       <div class="mb-3 col">
+                            </div>
+                            <Div Class="row">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='FirstName' type="text" id="modalEmployeeJobNumber" placeholder="الاسم الأول"
+                                        <input wire:model.defer='FirstName' type="text" id="modalEmployeeJobNumber"
+                                            placeholder="الاسم الأول"
                                             class="form-control @error('FirstName') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">الاسم الأول</label>
                                     </div>
@@ -52,9 +50,10 @@
                                     @enderror
                                 </div>
 
-                                       <div class="mb-3 col">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='SecondName' type="text" id="modalEmployeeJobNumber" placeholder="الاسم الثاني"
+                                        <input wire:model.defer='SecondName' type="text" id="modalEmployeeJobNumber"
+                                            placeholder="الاسم الثاني"
                                             class="form-control @error('SecondName') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">الاسم الثاني</label>
                                     </div>
@@ -63,9 +62,10 @@
                                     @enderror
                                 </div>
 
-                                       <div class="mb-3 col">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='ThirdName' type="text" id="modalEmployeeJobNumber" placeholder="الاسم الثالث"
+                                        <input wire:model.defer='ThirdName' type="text" id="modalEmployeeJobNumber"
+                                            placeholder="الاسم الثالث"
                                             class="form-control @error('ThirdName') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">الاسم الثالث</label>
                                     </div>
@@ -73,11 +73,12 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                                  </div>
-                                        <Div Class="row">
-                                       <div class="mb-3 col">
+                            </div>
+                            <Div Class="row">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='FourthName' type="text" id="modalEmployeeJobNumber" placeholder="الاسم الرابع"
+                                        <input wire:model.defer='FourthName' type="text" id="modalEmployeeJobNumber"
+                                            placeholder="الاسم الرابع"
                                             class="form-control @error('FourthName') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">الاسم الرابع</label>
                                     </div>
@@ -86,9 +87,10 @@
                                     @enderror
                                 </div>
 
-                                       <div class="mb-3 col">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='LastName' type="text" id="modalEmployeeJobNumber" placeholder="اللقب"
+                                        <input wire:model.defer='LastName' type="text" id="modalEmployeeJobNumber"
+                                            placeholder="اللقب"
                                             class="form-control @error('LastName') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">اللقب</label>
                                     </div>
@@ -97,9 +99,10 @@
                                     @enderror
                                 </div>
 
-                                       <div class="mb-3 col">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='FullName' type="text" id="modalEmployeeJobNumber" placeholder="الاسم الكامل"
+                                        <input wire:model.defer='FullName' type="text" id="modalEmployeeJobNumber"
+                                            placeholder="الاسم الكامل"
                                             class="form-control @error('FullName') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">الاسم الكامل</label>
                                     </div>
@@ -107,11 +110,12 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                                  </div>
-                                        <Div Class="row">
-                                       <div class="mb-3 col">
+                            </div>
+                            <Div Class="row">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='MotherName' type="text" id="modalEmployeeJobNumber" placeholder="اسم الام"
+                                        <input wire:model.defer='MotherName' type="text" id="modalEmployeeJobNumber"
+                                            placeholder="اسم الام"
                                             class="form-control @error('MotherName') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">اسم الام</label>
                                     </div>
@@ -120,9 +124,10 @@
                                     @enderror
                                 </div>
 
-                                       <div class="mb-3 col">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='MotherFatherName' type="text" id="modalEmployeeJobNumber" placeholder="اسم والد الام"
+                                        <input wire:model.defer='MotherFatherName' type="text"
+                                            id="modalEmployeeJobNumber" placeholder="اسم والد الام"
                                             class="form-control @error('MotherFatherName') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">اسم والد الام</label>
                                     </div>
@@ -131,9 +136,10 @@
                                     @enderror
                                 </div>
 
-                                       <div class="mb-3 col">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='MotherGrandName' type="text" id="modalEmployeeJobNumber" placeholder="اسم جد الام"
+                                        <input wire:model.defer='MotherGrandName' type="text"
+                                            id="modalEmployeeJobNumber" placeholder="اسم جد الام"
                                             class="form-control @error('MotherGrandName') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">اسم جد الام</label>
                                     </div>
@@ -141,11 +147,12 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                                  </div>
-                                        <Div Class="row">
-                                       <div class="mb-3 col">
+                            </div>
+                            <Div Class="row">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='MotherLastName' type="text" id="modalEmployeeJobNumber" placeholder="لقب الام"
+                                        <input wire:model.defer='MotherLastName' type="text"
+                                            id="modalEmployeeJobNumber" placeholder="لقب الام"
                                             class="form-control @error('MotherLastName') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">لقب الام</label>
                                     </div>
@@ -154,9 +161,10 @@
                                     @enderror
                                 </div>
 
-                                       <div class="mb-3 col">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='FullMothersName' type="text" id="modalEmployeeJobNumber" placeholder="اسم الام الكامل"
+                                        <input wire:model.defer='FullMothersName' type="text"
+                                            id="modalEmployeeJobNumber" placeholder="اسم الام الكامل"
                                             class="form-control @error('FullMothersName') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">اسم الام الكامل</label>
                                     </div>
@@ -165,9 +173,10 @@
                                     @enderror
                                 </div>
 
-                                       <div class="mb-3 col">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='Status' type="text" id="modalEmployeeJobNumber" placeholder="الحالة"
+                                        <input wire:model.defer='Status' type="text" id="modalEmployeeJobNumber"
+                                            placeholder="الحالة"
                                             class="form-control @error('Status') is-invalid is-filled @enderror" />
                                         <label for="modalEmployeeJobNumber">الحالة</label>
                                     </div>
@@ -181,7 +190,8 @@
                     </div>
                     <hr class="my-0">
                     <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                        <button wire:click='store' wire:loading.attr="disabled" type="button" class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                        <button wire:click='store' wire:loading.attr="disabled" type="button"
+                            class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                             aria-label="Close">تجاهل</button>
                     </div>

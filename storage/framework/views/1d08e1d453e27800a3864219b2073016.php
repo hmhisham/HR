@@ -12,7 +12,7 @@
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-create')): ?>
                             <button wire:click='AddEmployeeModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                                 data-bs-toggle="modal" data-bs-target="#addemployeeModal">أضــافــة</button>
-                            <?php echo $__env->make('livewire.employees.modals.add-employees', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                            <?php echo $__env->make('livewire.employees.modals.add-employee', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                             <th Class="text-center">اللقب</th>
                             <th Class="text-center">الاسم الكامل</th>
                             <th Class="text-center">الحالة</th>
-                       </tr>
+                        </tr>
                     </thead>
                     <tbody>
                         <?php $__currentLoopData = $Employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -49,13 +49,19 @@
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-edit')): ?>
-                                            <button wire : click="GetEmployee(<?php echo e($Employee->id); ?>)"
+                                            <button wire:click="GetEmployee(<?php echo e($Employee->id); ?>)"
                                                 class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editEmployeeModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         <?php endif; ?>
-                                        
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-delete')): ?>
+                                            <button wire:click="GetEmployee(<?php echo e($Employee->id); ?>)"
+                                                class="p-0 px-1 btn btn-outline-danger waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#removeEmployeeModal">
+                                                <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
+                                            </button>
+                                        <?php endif; ?>
                                     </div>
                                 </td>
                             </tr>
@@ -68,12 +74,11 @@
 
                 </div>
                 <!-- Modal -->
-                <?php echo $__env->make('livewire.employees.modals.edit-employees', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                
+                <?php echo $__env->make('livewire.employees.modals.edit-employee', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make('livewire.employees.modals.remove-employee', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <!-- Modal -->
             <?php endif; ?>
         </div>
     </div>
-</div>
 </div>
 <?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/employees/employee.blade.php ENDPATH**/ ?>

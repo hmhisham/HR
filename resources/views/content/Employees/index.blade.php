@@ -46,26 +46,28 @@
             }
         })
 
-        window.addEventListener('EmployeeModalShow', event => {
+        window.addEventListener('addemployeeModal', event => {
             $('#modalEmployeeJobNumber').focus();
         })
 
         window.addEventListener('success', event => {
+             $('#addemployeeModal').modal('hide');
             $('#editEmployeeModal').modal('hide');
-            $('#RmoveUserModal').modal('hide');
-            Toast.fire({
+            $('#removeEmployeeModal').modal('hide');
+                Toast.fire({
                 icon: 'success',
                 title: event.detail.message
-            })
+             })
         })
         window.addEventListener('error', event => {
-            $('#RmoveUserModal').modal('hide');
+            $('#removeEmployeeModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.message,
                 timer: 5000,
             })
-            //$('#EditUserModal').modal('show');
         })
+
+
     </script>
 @endsection

@@ -111,7 +111,7 @@ class Employee extends Component
             'ThirdName' => $this->ThirdName,
             'FourthName' => $this->FourthName,
             'LastName' => $this->LastName,
-            'FullName' => $this->$fullName,
+            'FullName' =>  $fullName,
             'MotherName' => $this->MotherName,
             'MotherFatherName' => $this->MotherFatherName,
             'MotherGrandName' => $this->MotherGrandName,
@@ -121,7 +121,6 @@ class Employee extends Component
 
         ]);
         $this->reset();
-        $this->dispatchBrowserEvent('EmployeeModalShow');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -130,6 +129,7 @@ class Employee extends Component
 
     public function GetEmployee($EmployeeId)
     {
+
         $this->resetValidation();
         $this->Employee  = Employees::find($EmployeeId);
         $this->EmployeeId = $this->Employee->id;
@@ -147,5 +147,78 @@ class Employee extends Component
         $this->MotherLastName = $this->Employee->MotherLastName;
         $this->FullMothersName = $this->Employee->FullMothersName;
         $this->Status = $this->Employee->Status;
+    }
+
+
+    public function update()
+    {
+        $this->resetValidation();
+        $this->validate([
+            'JobNumber' => 'required:employees',
+            'FileNumber' => 'required:employees',
+            'FirstName' => 'required:employees',
+            'SecondName' => 'required:employees',
+            'ThirdName' => 'required:employees',
+            'FourthName' => 'required:employees',
+            'LastName' => 'required:employees',
+            'FullName' => 'required:employees',
+            'MotherName' => 'required:employees',
+            'MotherFatherName' => 'required:employees',
+            'MotherGrandName' => 'required:employees',
+            'MotherLastName' => 'required:employees',
+            'FullMothersName' => 'required:employees',
+            'Status' => 'required:employees',
+
+        ], [
+            'JobNumber.required' => 'حقل الاسم مطلوب',
+            'FileNumber.required' => 'حقل الاسم مطلوب',
+            'FirstName.required' => 'حقل الاسم مطلوب',
+            'SecondName.required' => 'حقل الاسم مطلوب',
+            'ThirdName.required' => 'حقل الاسم مطلوب',
+            'FourthName.required' => 'حقل الاسم مطلوب',
+            'LastName.required' => 'حقل الاسم مطلوب',
+            'FullName.required' => 'حقل الاسم مطلوب',
+            'MotherName.required' => 'حقل الاسم مطلوب',
+            'MotherFatherName.required' => 'حقل الاسم مطلوب',
+            'MotherGrandName.required' => 'حقل الاسم مطلوب',
+            'MotherLastName.required' => 'حقل الاسم مطلوب',
+            'FullMothersName.required' => 'حقل الاسم مطلوب',
+            'Status.required' => 'حقل الاسم مطلوب',
+        ]);
+
+        $Employees = Employees::find($this->EmployeeId);
+        $Employees->update([
+            'JobNumber' => $this->JobNumber,
+            'FileNumber' => $this->FileNumber,
+            'FirstName' => $this->FirstName,
+            'SecondName' => $this->SecondName,
+            'ThirdName' => $this->ThirdName,
+            'FourthName' => $this->FourthName,
+            'LastName' => $this->LastName,
+            'FullName' => $this->FullName,
+            'MotherName' => $this->MotherName,
+            'MotherFatherName' => $this->MotherFatherName,
+            'MotherGrandName' => $this->MotherGrandName,
+            'MotherLastName' => $this->MotherLastName,
+            'FullMothersName' => $this->FullMothersName,
+            'Status' => $this->Status,
+
+        ]);
+        $this->reset();
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'تم التعديل بنجاح',
+            'title' => 'تعديل'
+        ]);
+    }
+
+    public function destroy()
+    {
+        $Employees = Employees::find($this->EmployeeId);
+        $Employees->delete();
+        $this->reset();
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'تم حذف البيانات  بنجاح',
+            'title' => 'الحذف '
+        ]);
     }
 }

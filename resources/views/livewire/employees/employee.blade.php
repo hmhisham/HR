@@ -12,7 +12,7 @@
                         @can('employee-create')
                             <button wire:click='AddEmployeeModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                                 data-bs-toggle="modal" data-bs-target="#addemployeeModal">أضــافــة</button>
-                            @include('livewire.employees.modals.add-employees')
+                            @include('livewire.employees.modals.add-employee')
                         @endcan
                     </div>
                 </div>
@@ -49,19 +49,19 @@
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('employee-edit')
-                                            <button wire : click="GetEmployee({{ $Employee->id }})"
+                                            <button wire:click="GetEmployee({{ $Employee->id }})"
                                                 class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editEmployeeModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         @endcan
-                                        {{-- @can('employee-delete')
-                                            <button wire : click="GetEmployee({{ $Employee->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Employee->active ? 'disabled' : '' }}"
-                                                Data-bs - toggle = "modal" data-bs-target="#removeEmployeeModal">
+                                        @can('employee-delete')
+                                            <button wire:click="GetEmployee({{ $Employee->id }})"
+                                                class="p-0 px-1 btn btn-outline-danger waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#removeEmployeeModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>
-                                        @endcan --}}
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>
@@ -73,11 +73,10 @@
                     {{ $links->links() }}
                 </div>
                 <!-- Modal -->
-                @include('livewire.employees.modals.edit-employees')
-                {{-- @include('livewire.employees.modals.remove-employees') --}}
+                @include('livewire.employees.modals.edit-employee')
+                @include('livewire.employees.modals.remove-employee')
                 <!-- Modal -->
             @endcan
         </div>
     </div>
-</div>
 </div>

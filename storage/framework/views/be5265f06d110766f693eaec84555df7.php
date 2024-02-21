@@ -15,15 +15,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('employees.employee')->html();
-} elseif ($_instance->childHasBeenRendered('ck9AAaf')) {
-    $componentId = $_instance->getRenderedChildComponentId('ck9AAaf');
-    $componentTag = $_instance->getRenderedChildComponentTagName('ck9AAaf');
+} elseif ($_instance->childHasBeenRendered('cd8NKbh')) {
+    $componentId = $_instance->getRenderedChildComponentId('cd8NKbh');
+    $componentTag = $_instance->getRenderedChildComponentTagName('cd8NKbh');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('ck9AAaf');
+    $_instance->preserveRenderedChild('cd8NKbh');
 } else {
     $response = \Livewire\Livewire::mount('employees.employee');
     $html = $response->html();
-    $_instance->logRenderedChild('ck9AAaf', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('cd8NKbh', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -59,27 +59,29 @@ echo $html;
             }
         })
 
-        window.addEventListener('EmployeeModalShow', event => {
+        window.addEventListener('addemployeeModal', event => {
             $('#modalEmployeeJobNumber').focus();
         })
 
         window.addEventListener('success', event => {
+             $('#addemployeeModal').modal('hide');
             $('#editEmployeeModal').modal('hide');
-            $('#RmoveUserModal').modal('hide');
-            Toast.fire({
+            $('#removeEmployeeModal').modal('hide');
+                Toast.fire({
                 icon: 'success',
                 title: event.detail.message
-            })
+             })
         })
         window.addEventListener('error', event => {
-            $('#RmoveUserModal').modal('hide');
+            $('#removeEmployeeModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.message,
                 timer: 5000,
             })
-            //$('#EditUserModal').modal('show');
         })
+
+
     </script>
 <?php $__env->stopSection(); ?>
 

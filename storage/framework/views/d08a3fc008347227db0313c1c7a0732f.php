@@ -398,4 +398,4 @@ unset($__errorArgs, $__bag); ?>
     </div>
 </div>
 <!--/ Add Employee Modal -->
-<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/employees/modals/add-employees.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/employees/modals/add-employee.blade.php ENDPATH**/ ?>
