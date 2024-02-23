@@ -109,8 +109,8 @@
                                             </a>
                                         </li>
                                         
-                                        <li class="menu-item">
-                                            <a href="#" class="menu-link">
+                                        <li class="menu-item <?php echo e(request()->Is('areas') ? 'active' : ''); ?>">
+                                            <a href="<?php echo e(Route('Areas.index')); ?>" Class="menu-link">
                                                 <i Class='menu-icon tf-icons mdi mdi-map-marker-path'></i>
                                                 <div>النواحي</div>
                                             </a>

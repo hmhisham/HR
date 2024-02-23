@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Areas\AreasController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Events\EventsController;
 use App\Http\Controllers\language\LanguageController;
@@ -54,6 +55,8 @@ Route::GET('/', [DashboardController::class, 'index'])->name('Dashboard');
         Route::  RESOURCE('Governorates', GovernoratesController::class);
           // Districts I
         Route::  RESOURCE('Districts', DistrictsController::class);
+           // reas
+        Route::  RESOURCE('Areas', AreasController::class);
     });
 });
 
