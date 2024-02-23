@@ -15,15 +15,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('employees.employee')->html();
-} elseif ($_instance->childHasBeenRendered('cd8NKbh')) {
-    $componentId = $_instance->getRenderedChildComponentId('cd8NKbh');
-    $componentTag = $_instance->getRenderedChildComponentTagName('cd8NKbh');
+} elseif ($_instance->childHasBeenRendered('pMqoL5O')) {
+    $componentId = $_instance->getRenderedChildComponentId('pMqoL5O');
+    $componentTag = $_instance->getRenderedChildComponentTagName('pMqoL5O');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('cd8NKbh');
+    $_instance->preserveRenderedChild('pMqoL5O');
 } else {
     $response = \Livewire\Livewire::mount('employees.employee');
     $html = $response->html();
-    $_instance->logRenderedChild('cd8NKbh', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('pMqoL5O', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -59,18 +59,23 @@ echo $html;
             }
         })
 
-        window.addEventListener('addemployeeModal', event => {
-            $('#modalEmployeeJobNumber').focus();
+
+
+        window.addEventListener('EmployeeModalShow', event => {
+            setTimeout(() => {
+                $('#modalEmployeeJobNumber').focus();
+            }, 100);  
         })
 
+
         window.addEventListener('success', event => {
-             $('#addemployeeModal').modal('hide');
+            $('#addemployeeModal').modal('hide');
             $('#editEmployeeModal').modal('hide');
             $('#removeEmployeeModal').modal('hide');
-                Toast.fire({
+            Toast.fire({
                 icon: 'success',
                 title: event.detail.message
-             })
+            })
         })
         window.addEventListener('error', event => {
             $('#removeEmployeeModal').modal('hide');
@@ -80,8 +85,6 @@ echo $html;
                 timer: 5000,
             })
         })
-
-
     </script>
 <?php $__env->stopSection(); ?>
 

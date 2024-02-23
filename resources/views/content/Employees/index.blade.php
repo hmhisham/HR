@@ -46,18 +46,23 @@
             }
         })
 
-        window.addEventListener('addemployeeModal', event => {
-            $('#modalEmployeeJobNumber').focus();
+
+
+        window.addEventListener('EmployeeModalShow', event => {
+            setTimeout(() => {
+                $('#modalEmployeeJobNumber').focus();
+            }, 100);  
         })
 
+
         window.addEventListener('success', event => {
-             $('#addemployeeModal').modal('hide');
+            $('#addemployeeModal').modal('hide');
             $('#editEmployeeModal').modal('hide');
             $('#removeEmployeeModal').modal('hide');
-                Toast.fire({
+            Toast.fire({
                 icon: 'success',
                 title: event.detail.message
-             })
+            })
         })
         window.addEventListener('error', event => {
             $('#removeEmployeeModal').modal('hide');
@@ -67,7 +72,5 @@
                 timer: 5000,
             })
         })
-
-
     </script>
 @endsection

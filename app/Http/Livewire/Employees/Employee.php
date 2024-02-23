@@ -51,6 +51,43 @@ class Employee extends Component
         $this->dispatchBrowserEvent('EmployeeModalShow');
     }
 
+  
+
+
+    public function concatFullName($fil, $value)
+    {
+        switch ($fil) {
+            case 'FirstName':
+                $this->FullName = $value . ' ' . $this->SecondName . ' ' . $this->ThirdName . ' ' . $this->FourthName;
+                break;
+            case 'SecondName':
+                $this->FullName = $this->FirstName . ' ' . $value . ' ' . $this->ThirdName . ' ' . $this->FourthName;
+                break;
+            case 'ThirdName':
+                $this->FullName = $this->FirstName . ' ' . $this->SecondName . ' ' . $value . ' ' . $this->FourthName;
+                break;
+            case 'FourthName':
+                $this->FullName = $this->FirstName . ' ' . $this->SecondName . ' ' . $this->ThirdName . ' ' . $value;
+                break;
+            case 'MotherName':
+                $this->FullMothersName = $value . ' ' . $this->MotherFatherName . ' ' . $this->MotherGrandName . ' ' . $this->MotherLastName;
+                break;
+            case 'MotherFatherName':
+                $this->FullMothersName = $this->MotherName . ' ' . $value . ' ' . $this->MotherGrandName . ' ' . $this->MotherLastName;
+                break;
+            case 'MotherGrandName':
+                $this->FullMothersName = $this->MotherName . ' ' . $this->MotherFatherName . ' ' . $value . ' ' . $this->MotherLastName;
+                break;
+            case 'MotherLastName':
+                $this->FullMothersName = $this->MotherName . ' ' . $this->MotherFatherName . ' ' . $this->MotherGrandName . ' ' . $value;
+                break;
+            default:
+
+                break;
+        }
+    }
+
+
 
     public function store()
     {
@@ -102,7 +139,7 @@ class Employee extends Component
             'Status.unique' => 'الأسم موجود',
         ]);
 
-        $fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
+        // $fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Employees::create([
             'JobNumber' => $this->JobNumber,
             'FileNumber' => $this->FileNumber,
@@ -111,7 +148,7 @@ class Employee extends Component
             'ThirdName' => $this->ThirdName,
             'FourthName' => $this->FourthName,
             'LastName' => $this->LastName,
-            'FullName' =>  $fullName,
+            'FullName' =>   $this->FullName,
             'MotherName' => $this->MotherName,
             'MotherFatherName' => $this->MotherFatherName,
             'MotherGrandName' => $this->MotherGrandName,

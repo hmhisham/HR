@@ -16,14 +16,14 @@
 
                 <div wire:loading.remove>
                     <form id="editEmployeeModalForm" autocomplete="off">
-                        <div class="row row-cols-1">
+
+                        <div class="row row-cols-1  ">
                             <div class="col mb-3">
                                 '<Div Class="row">
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='JobNumber' type="text"
-                                                id="modalEmployeeJobNumber" placeholder="الرقم الوظيفي"
+                                            <input wire:model.defer='JobNumber' type="text" id="modalEmployeeJobNumber"
+                                                placeholder="الرقم الوظيفي"
                                                 class="form-control @error('JobNumber') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeJobNumber">الرقم الوظيفي</label>
                                         </div>
@@ -34,8 +34,8 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FileNumber' type="text"
-                                                id="modalEmployeeFileNumber" placeholder="رقم الاضبارة"
+                                            <input wire:model.defer='FileNumber' type="text" id="modalEmployeeFileNumber"
+                                                placeholder="رقم الاضبارة"
                                                 class="form-control @error('FileNumber') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeFileNumber">رقم الاضبارة</label>
                                         </div>
@@ -47,8 +47,8 @@
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FirstName' type="text"
-                                                id="modalEmployeeFirstName" placeholder="الاسم الأول"
+                                            <input wire:model.defer='FirstName' wire:keyup="concatFullName('FirstName', $event.target.value)" type="text" id="modalEmployeeFirstName"
+                                                placeholder="الاسم الأول"
                                                 class="form-control @error('FirstName') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeFirstName">الاسم الأول</label>
                                         </div>
@@ -59,8 +59,8 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='SecondName' type="text"
-                                                id="modalEmployeeSecondName" placeholder="الاسم الثاني"
+                                            <input wire:model.defer='SecondName' wire:keyup="concatFullName('SecondName', $event.target.value)" type="text" id="modalEmployeeSecondName"
+                                                placeholder="الاسم الثاني"
                                                 class="form-control @error('SecondName') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeSecondName">الاسم الثاني</label>
                                         </div>
@@ -71,8 +71,8 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='ThirdName' type="text"
-                                                id="modalEmployeeThirdName" placeholder="الاسم الثالث"
+                                            <input wire:model.defer='ThirdName' wire:keyup="concatFullName('ThirdName', $event.target.value)" type="text" id="modalEmployeeThirdName"
+                                                placeholder="الاسم الثالث"
                                                 class="form-control @error('ThirdName') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeThirdName">الاسم الثالث</label>
                                         </div>
@@ -84,8 +84,8 @@
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FourthName' type="text"
-                                                id="modalEmployeeFourthName" placeholder="الاسم الرابع"
+                                            <input wire:model.defer='FourthName' wire:keyup="concatFullName('FourthName', $event.target.value)" type="text" id="modalEmployeeFourthName"
+                                                placeholder="الاسم الرابع"
                                                 class="form-control @error('FourthName') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeFourthName">الاسم الرابع</label>
                                         </div>
@@ -96,7 +96,7 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='LastName' type="text" id="modalEmployeeLastName"
+                                            <input wire:model.defer='LastName' wire:keyup="concatFullName('LastName', $event.target.value)" type="text" id="modalEmployeeLastName"
                                                 placeholder="اللقب"
                                                 class="form-control @error('LastName') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeLastName">اللقب</label>
@@ -109,7 +109,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='FullName' type="text" id="modalEmployeeFullName"
-                                                placeholder="الاسم الكامل"
+                                                placeholder="الاسم الكامل" readonly
                                                 class="form-control @error('FullName') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeFullName">الاسم الكامل</label>
                                         </div>
@@ -121,8 +121,8 @@
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='MotherName' type="text"
-                                                id="modalEmployeeMotherName" placeholder="اسم الام"
+                                            <input wire:model.defer='MotherName' wire:keyup="concatFullName('MotherName', $event.target.value)" type="text" id="modalEmployeeMotherName"
+                                                placeholder="اسم الام"
                                                 class="form-control @error('MotherName') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeMotherName">اسم الام</label>
                                         </div>
@@ -134,7 +134,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='MotherFatherName' type="text"
-                                                id="modalEmployeeMotherFatherName" placeholder="اسم والد الام"
+                                            wire:keyup="concatFullName('MotherFatherName', $event.target.value)"  id="modalEmployeeMotherFatherName" placeholder="اسم والد الام"
                                                 class="form-control @error('MotherFatherName') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeMotherFatherName">اسم والد الام</label>
                                         </div>
@@ -146,9 +146,9 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='MotherGrandName' type="text"
-                                                id="modalEmployeeMotherGrandName" placeholder="اسم جد الام"
+                                            wire:keyup="concatFullName('MotherGrandName', $event.target.value)"  id="modalEmployeeMotherGrandName" placeholder="اسم جد الام"
                                                 class="form-control @error('MotherGrandName') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeeMotherGrandName">اسم جد الام</label>
+                                            <label for="modalEmployeeJMotherGrandName">اسم جد الام</label>
                                         </div>
                                         @error('MotherGrandName')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -159,7 +159,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='MotherLastName' type="text"
-                                                id="modalEmployeeMotherLastName" placeholder="لقب الام"
+                                            wire:keyup="concatFullName('MotherLastName', $event.target.value)"  id="modalEmployeeMotherLastName" placeholder="لقب الام"
                                                 class="form-control @error('MotherLastName') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeMotherLastName">لقب الام</label>
                                         </div>
@@ -171,7 +171,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='FullMothersName' type="text"
-                                                id="modalEmployeeFullMothersName" placeholder="اسم الام الكامل"
+                                                id="modalEmployeeFullMothersName" placeholder="اسم الام الكامل" readonly
                                                 class="form-control @error('FullMothersName') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeFullMothersName">اسم الام الكامل</label>
                                         </div>

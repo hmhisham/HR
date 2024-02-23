@@ -16,14 +16,14 @@
 
                 <div wire:loading.remove>
                     <form id="editEmployeeModalForm" autocomplete="off">
-                        <div class="row row-cols-1">
+
+                        <div class="row row-cols-1  ">
                             <div class="col mb-3">
                                 '<Div Class="row">
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='JobNumber' type="text"
-                                                id="modalEmployeeJobNumber" placeholder="الرقم الوظيفي"
+                                            <input wire:model.defer='JobNumber' type="text" id="modalEmployeeJobNumber"
+                                                placeholder="الرقم الوظيفي"
                                                 class="form-control <?php $__errorArgs = ['JobNumber'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -48,8 +48,8 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FileNumber' type="text"
-                                                id="modalEmployeeFileNumber" placeholder="رقم الاضبارة"
+                                            <input wire:model.defer='FileNumber' type="text" id="modalEmployeeFileNumber"
+                                                placeholder="رقم الاضبارة"
                                                 class="form-control <?php $__errorArgs = ['FileNumber'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -75,8 +75,8 @@ unset($__errorArgs, $__bag); ?>
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FirstName' type="text"
-                                                id="modalEmployeeFirstName" placeholder="الاسم الأول"
+                                            <input wire:model.defer='FirstName' wire:keyup="concatFullName('FirstName', $event.target.value)" type="text" id="modalEmployeeFirstName"
+                                                placeholder="الاسم الأول"
                                                 class="form-control <?php $__errorArgs = ['FirstName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -101,8 +101,8 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='SecondName' type="text"
-                                                id="modalEmployeeSecondName" placeholder="الاسم الثاني"
+                                            <input wire:model.defer='SecondName' wire:keyup="concatFullName('SecondName', $event.target.value)" type="text" id="modalEmployeeSecondName"
+                                                placeholder="الاسم الثاني"
                                                 class="form-control <?php $__errorArgs = ['SecondName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -127,8 +127,8 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='ThirdName' type="text"
-                                                id="modalEmployeeThirdName" placeholder="الاسم الثالث"
+                                            <input wire:model.defer='ThirdName' wire:keyup="concatFullName('ThirdName', $event.target.value)" type="text" id="modalEmployeeThirdName"
+                                                placeholder="الاسم الثالث"
                                                 class="form-control <?php $__errorArgs = ['ThirdName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -154,8 +154,8 @@ unset($__errorArgs, $__bag); ?>
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FourthName' type="text"
-                                                id="modalEmployeeFourthName" placeholder="الاسم الرابع"
+                                            <input wire:model.defer='FourthName' wire:keyup="concatFullName('FourthName', $event.target.value)" type="text" id="modalEmployeeFourthName"
+                                                placeholder="الاسم الرابع"
                                                 class="form-control <?php $__errorArgs = ['FourthName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -180,7 +180,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='LastName' type="text" id="modalEmployeeLastName"
+                                            <input wire:model.defer='LastName' wire:keyup="concatFullName('LastName', $event.target.value)" type="text" id="modalEmployeeLastName"
                                                 placeholder="اللقب"
                                                 class="form-control <?php $__errorArgs = ['LastName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -207,7 +207,7 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='FullName' type="text" id="modalEmployeeFullName"
-                                                placeholder="الاسم الكامل"
+                                                placeholder="الاسم الكامل" readonly
                                                 class="form-control <?php $__errorArgs = ['FullName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -233,8 +233,8 @@ unset($__errorArgs, $__bag); ?>
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='MotherName' type="text"
-                                                id="modalEmployeeMotherName" placeholder="اسم الام"
+                                            <input wire:model.defer='MotherName' wire:keyup="concatFullName('MotherName', $event.target.value)" type="text" id="modalEmployeeMotherName"
+                                                placeholder="اسم الام"
                                                 class="form-control <?php $__errorArgs = ['MotherName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -260,7 +260,7 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='MotherFatherName' type="text"
-                                                id="modalEmployeeMotherFatherName" placeholder="اسم والد الام"
+                                            wire:keyup="concatFullName('MotherFatherName', $event.target.value)"  id="modalEmployeeMotherFatherName" placeholder="اسم والد الام"
                                                 class="form-control <?php $__errorArgs = ['MotherFatherName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -286,7 +286,7 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='MotherGrandName' type="text"
-                                                id="modalEmployeeMotherGrandName" placeholder="اسم جد الام"
+                                            wire:keyup="concatFullName('MotherGrandName', $event.target.value)"  id="modalEmployeeMotherGrandName" placeholder="اسم جد الام"
                                                 class="form-control <?php $__errorArgs = ['MotherGrandName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -295,7 +295,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                            <label for="modalEmployeeMotherGrandName">اسم جد الام</label>
+                                            <label for="modalEmployeeJMotherGrandName">اسم جد الام</label>
                                         </div>
                                         <?php $__errorArgs = ['MotherGrandName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -313,7 +313,7 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='MotherLastName' type="text"
-                                                id="modalEmployeeMotherLastName" placeholder="لقب الام"
+                                            wire:keyup="concatFullName('MotherLastName', $event.target.value)"  id="modalEmployeeMotherLastName" placeholder="لقب الام"
                                                 class="form-control <?php $__errorArgs = ['MotherLastName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -339,7 +339,7 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='FullMothersName' type="text"
-                                                id="modalEmployeeFullMothersName" placeholder="اسم الام الكامل"
+                                                id="modalEmployeeFullMothersName" placeholder="اسم الام الكامل" readonly
                                                 class="form-control <?php $__errorArgs = ['FullMothersName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
