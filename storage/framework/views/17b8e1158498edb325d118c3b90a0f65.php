@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'بيانات الموظفين'); ?>
+<?php $__env->startSection('title', 'Governorates'); ?>
 <?php $__env->startSection('vendor-style'); ?>
     <link rel="stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
     <link rel = "stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')); ?>">
@@ -9,24 +9,25 @@
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/animate-css/animate.css')); ?>" />
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
     <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
-<?php $__env->stopSection(); ?>
-
+        <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <?php
+<?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('employees.employee')->html();
-} elseif ($_instance->childHasBeenRendered('xPBKXqN')) {
-    $componentId = $_instance->getRenderedChildComponentId('xPBKXqN');
-    $componentTag = $_instance->getRenderedChildComponentTagName('xPBKXqN');
+    $html = \Livewire\Livewire::mount('governorates.governorate')->html();
+} elseif ($_instance->childHasBeenRendered('uanVPV5')) {
+    $componentId = $_instance->getRenderedChildComponentId('uanVPV5');
+    $componentTag = $_instance->getRenderedChildComponentTagName('uanVPV5');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('xPBKXqN');
+    $_instance->preserveRenderedChild('uanVPV5');
 } else {
-    $response = \Livewire\Livewire::mount('employees.employee');
+    $response = \Livewire\Livewire::mount('governorates.governorate');
     $html = $response->html();
-    $_instance->logRenderedChild('xPBKXqN', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('uanVPV5', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
+
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('vendor-script'); ?>
@@ -59,33 +60,31 @@ echo $html;
             }
         })
 
-
-
-        window.addEventListener('EmployeeModalShow', event => {
+        window.addEventListener('GovernorateModalShow', event => {
             setTimeout(() => {
-                $('#modalEmployeeJobNumber').focus();
-            }, 100);
+             $('#modalGovernoratesgovernorate_number').focus();
+               }, 100);
         })
 
-
         window.addEventListener('success', event => {
-            $('#addemployeeModal').modal('hide');
-            $('#editEmployeeModal').modal('hide');
-            $('#removeEmployeeModal').modal('hide');
+            $('#addgovernorateModal').modal('hide');
+            $('#editgovernorateModal').modal('hide');
+            $('#removegovernorateModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.message
             })
         })
         window.addEventListener('error', event => {
-            $('#removeEmployeeModal').modal('hide');
+            $('#removegovernorateModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.message,
                 timer: 5000,
             })
+            //$('#EditUserModal').modal('show');
         })
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Employees/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Governorates/index.blade.php ENDPATH**/ ?>

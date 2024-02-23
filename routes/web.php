@@ -9,6 +9,7 @@ use App\Http\Controllers\Customers\CustomersController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Employees\EmployeesController;
 use App\Http\Controllers\Slideshow\SlideshowController;
+use App\Http\Controllers\Governorates\GovernoratesController;
 use App\Http\Controllers\Users\UsersAccounts\UsersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Roles\AccountRolesController;
 use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
@@ -48,6 +49,8 @@ Route::GET('/', [DashboardController::class, 'index'])->name('Dashboard');
 
          // Employees Info
         Route::  RESOURCE('Employees', EmployeesController::class);
+// Governorates I
+        Route::  RESOURCE('Governorates', GovernoratesController::class);
     });
 });
 

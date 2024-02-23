@@ -78,10 +78,45 @@
                             {{-- الموظفين --}}
                             <li Class="menu-item {{ request()->Is('Employees') ? 'active' : '' }}">
                                 <a href = "{{ Route('Employees.index') }}" Class="menu-link">
-                                 <i Class='menu-icon tf-icons mdi mdi-account-outline'></i>
-                                 <Div>بيانات الموظفين</div>
-                               </a>
-                              </li>
+                                    <i Class='menu-icon tf-icons mdi mdi-account-outline'></i>
+                                    <Div>بيانات الموظفين</div>
+                                </a>
+                            </li>
+
+                            {{-- الإعدادات --}}
+                            @can('users')
+                                <li
+                                    class="menu-item  ">
+                                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                        <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
+                                        <span class="menu-title">الاعدادات</span>
+
+                                    </a>
+                                    <ul class="menu-sub">
+                                        {{-- المحافظات --}}
+                                        <li class="menu-item {{ request()->Is('governorates') ? 'active' : '' }}">
+                                            <a href = "{{ Route('Governorates.index') }}" Class="menu-link">
+                                                <i Class='menu-icon tf-icons mdi  mdi-map-check-outline'></i>
+                                                <Div>المحافظات</div>
+                                            </a>
+                                        </li>
+                                        {{-- الأقضية --}}
+                                        <li class="menu-item">
+                                            <a href="#" class="menu-link">
+                                                <i Class='menu-icon tf-icons mdi mdi-map-marker-multiple-outline'></i>
+                                                <div>الأقضية</div>
+                                            </a>
+                                        </li>
+                                        {{-- النواحي --}}
+                                        <li class="menu-item">
+                                            <a href="#" class="menu-link">
+                                                <i Class='menu-icon tf-icons mdi mdi-map-marker-path'></i>
+                                                <div>النواحي</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endcan
 
 
                             {{-- المستخدمين --}}

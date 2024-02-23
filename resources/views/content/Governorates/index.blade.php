@@ -1,5 +1,6 @@
+
 @extends('layouts/layoutMaster')
-@section('title', 'بيانات الموظفين')
+@section('title', 'Governorates')
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel = "stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
@@ -10,10 +11,11 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-@endsection
-
+        @endsection
 @section('content')
-    @livewire('employees.employee')
+@livewire('governorates.governorate')
+
+
 @endsection
 
 @section('vendor-script')
@@ -46,31 +48,29 @@
             }
         })
 
-
-
-        window.addEventListener('EmployeeModalShow', event => {
+        window.addEventListener('GovernorateModalShow', event => {
             setTimeout(() => {
-                $('#modalEmployeeJobNumber').focus();
-            }, 100);
+             $('#modalGovernoratesgovernorate_number').focus();
+               }, 100);
         })
 
-
         window.addEventListener('success', event => {
-            $('#addemployeeModal').modal('hide');
-            $('#editEmployeeModal').modal('hide');
-            $('#removeEmployeeModal').modal('hide');
+            $('#addgovernorateModal').modal('hide');
+            $('#editgovernorateModal').modal('hide');
+            $('#removegovernorateModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.message
             })
         })
         window.addEventListener('error', event => {
-            $('#removeEmployeeModal').modal('hide');
+            $('#removegovernorateModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.message,
                 timer: 5000,
             })
+            //$('#EditUserModal').modal('show');
         })
     </script>
 @endsection
