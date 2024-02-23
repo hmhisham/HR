@@ -102,8 +102,8 @@
                                             </a>
                                         </li>
                                         
-                                        <li class="menu-item">
-                                            <a href="#" class="menu-link">
+                                        <li class="menu-item <?php echo e(request()->Is('districts') ? 'active' : ''); ?>">
+                                            <a href="<?php echo e(Route('Districts.index')); ?>" Class="menu-link">
                                                 <i Class='menu-icon tf-icons mdi mdi-map-marker-multiple-outline'></i>
                                                 <div>الأقضية</div>
                                             </a>

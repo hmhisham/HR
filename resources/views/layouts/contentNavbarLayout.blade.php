@@ -101,8 +101,8 @@
                                             </a>
                                         </li>
                                         {{-- الأقضية --}}
-                                        <li class="menu-item">
-                                            <a href="#" class="menu-link">
+                                        <li class="menu-item {{ request()->Is('districts') ? 'active' : '' }}">
+                                            <a href="{{ Route('Districts.index') }}" Class="menu-link">
                                                 <i Class='menu-icon tf-icons mdi mdi-map-marker-multiple-outline'></i>
                                                 <div>الأقضية</div>
                                             </a>

@@ -7,6 +7,7 @@ use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\Settings\SettingsController;
 use App\Http\Controllers\Customers\CustomersController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\Employees\EmployeesController;
 use App\Http\Controllers\Slideshow\SlideshowController;
 use App\Http\Controllers\Governorates\GovernoratesController;
@@ -49,8 +50,10 @@ Route::GET('/', [DashboardController::class, 'index'])->name('Dashboard');
 
          // Employees Info
         Route::  RESOURCE('Employees', EmployeesController::class);
-// Governorates I
+         // Governorates I
         Route::  RESOURCE('Governorates', GovernoratesController::class);
+          // Districts I
+        Route::  RESOURCE('Districts', DistrictsController::class);
     });
 });
 
