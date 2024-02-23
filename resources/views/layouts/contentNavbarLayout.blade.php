@@ -85,8 +85,7 @@
 
                             {{-- الإعدادات --}}
                             @can('users')
-                                <li
-                                    class="menu-item  ">
+                                <li class="menu-item  ">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                         <span class="menu-title">الاعدادات</span>
@@ -114,6 +113,14 @@
                                                 <div>النواحي</div>
                                             </a>
                                         </li>
+                                        {{-- مكتب معلومات بطاة السكن --}}
+                                        <li Class="menu-item {{ request()->Is('infooffice') ? 'active' : '' }}">
+                                            <a href = "{{ Route('Infooffice.index') }}" Class="menu-link">
+                                                <i Class='menu-icon tf-icons mdi mdi-account-outline'></i>
+                                                <div>مكتب معلومات بطاة السكن</div>
+                                            </a>
+                                        </li>
+
                                     </ul>
                                 </li>
                             @endcan

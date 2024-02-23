@@ -1,22 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Areas;
+namespace App\Http\Controllers\Infooffice;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AreasController extends Controller
+class InfoofficeController extends Controller
 {
-
-   
-
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        Return View('content.Areas.index');
+        Return View('content.Infooffice.index'); 
     }
 
     /**

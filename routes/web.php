@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\Employees\EmployeesController;
 use App\Http\Controllers\Slideshow\SlideshowController;
+use App\Http\Controllers\Infooffice\InfoofficeController;
 use App\Http\Controllers\Governorates\GovernoratesController;
 use App\Http\Controllers\Users\UsersAccounts\UsersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Roles\AccountRolesController;
@@ -57,6 +58,8 @@ Route::GET('/', [DashboardController::class, 'index'])->name('Dashboard');
         Route::  RESOURCE('Districts', DistrictsController::class);
            // reas
         Route::  RESOURCE('Areas', AreasController::class);
+         // Information office
+        Route::  RESOURCE('Infooffice', InfoofficeController::class);
     });
 });
 

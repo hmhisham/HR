@@ -86,8 +86,7 @@
 
                             
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('users')): ?>
-                                <li
-                                    class="menu-item  ">
+                                <li class="menu-item  ">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                         <span class="menu-title">الاعدادات</span>
@@ -115,6 +114,14 @@
                                                 <div>النواحي</div>
                                             </a>
                                         </li>
+                                        
+                                        <li Class="menu-item <?php echo e(request()->Is('infooffice') ? 'active' : ''); ?>">
+                                            <a href = "<?php echo e(Route('Infooffice.index')); ?>" Class="menu-link">
+                                                <i Class='menu-icon tf-icons mdi mdi-account-outline'></i>
+                                                <div>مكتب معلومات بطاة السكن</div>
+                                            </a>
+                                        </li>
+
                                     </ul>
                                 </li>
                             <?php endif; ?>
