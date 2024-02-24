@@ -14,15 +14,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('infooffice.info-offic')->html();
-} elseif ($_instance->childHasBeenRendered('stWPAG0')) {
-    $componentId = $_instance->getRenderedChildComponentId('stWPAG0');
-    $componentTag = $_instance->getRenderedChildComponentTagName('stWPAG0');
+} elseif ($_instance->childHasBeenRendered('NvfdUJF')) {
+    $componentId = $_instance->getRenderedChildComponentId('NvfdUJF');
+    $componentTag = $_instance->getRenderedChildComponentTagName('NvfdUJF');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('stWPAG0');
+    $_instance->preserveRenderedChild('NvfdUJF');
 } else {
     $response = \Livewire\Livewire::mount('infooffice.info-offic');
     $html = $response->html();
-    $_instance->logRenderedChild('stWPAG0', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('NvfdUJF', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -62,7 +62,7 @@ echo $html;
 
         window.addEventListener('InfoOfficModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
+             $('#modalInfoofficeInfooffice_id').focus();
                }, 100);
         })
 

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Districts;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Districts\Districts;
+use App\Models\Governorates\Governorates;
 
 class District extends Component
 {
@@ -13,7 +14,7 @@ class District extends Component
 
     public $Districts = [];
     public $DistrictSearch, $District, $DistrictId;
-    public $governorate_id, $district_number, $district_name;
+    public $governorate_id,   $district_number, $district_name;
 
 
     public function render()
@@ -22,13 +23,13 @@ class District extends Component
         $Districts = Districts::where('governorate_id', 'LIKE', $DistrictSearch)
             ->orWhere('district_number', 'LIKE', $DistrictSearch)
             ->orWhere('district_name', 'LIKE', $DistrictSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
         $links = $Districts;
-        $this->Districts = collect($Districts->items());
+       $this->Districts = collect($Districts->items());
+
         return view('livewire.districts.district', [
+            'governorates' => Governorates::get(),
             'links' => $links
         ]);
     }
@@ -45,17 +46,17 @@ class District extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'governorate_id' => 'required|unique:districts',
+            'governorate_id' => 'required',
             'district_number' => 'required|unique:districts',
-            'district_name' => 'required|unique:districts',
+            'district_name' => 'required',
 
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
-            'governorate_id.unique' => 'الأسم موجود',
+
             'district_number.required' => 'حقل الاسم مطلوب',
             'district_number.unique' => 'الأسم موجود',
             'district_name.required' => 'حقل الاسم مطلوب',
-            'district_name.unique' => 'الأسم موجود',
+        
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);

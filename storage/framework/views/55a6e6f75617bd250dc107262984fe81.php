@@ -117,8 +117,8 @@
                                         
                                         <li Class="menu-item <?php echo e(request()->Is('infooffice') ? 'active' : ''); ?>">
                                             <a href = "<?php echo e(Route('Infooffice.index')); ?>" Class="menu-link">
-                                                <i Class='menu-icon tf-icons mdi mdi-account-outline'></i>
-                                                <div>مكتب معلومات بطاة السكن</div>
+                                                <i Class='menu-icon tf-icons mdi mdi-card-account-details-outline'></i>
+                                                <div>مكتب المعلومات</div>
                                             </a>
                                         </li>
 

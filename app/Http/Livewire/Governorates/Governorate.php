@@ -15,6 +15,10 @@ class Governorate extends Component
     public $GovernorateSearch, $Governorate, $GovernorateId;
     public $governorate_number, $governorate_name;
 
+    // public function mount() {
+    //     $this->Governorates = Governorates::get();
+
+    // }
 
     public function render()
     {
@@ -39,7 +43,7 @@ class Governorate extends Component
         $this->dispatchBrowserEvent('GovernorateModalShow');
     }
 
-  
+
     public function store()
     {
         $this->resetValidation();
