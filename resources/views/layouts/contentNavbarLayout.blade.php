@@ -84,7 +84,7 @@
                             </li>
 
                             {{-- الإعدادات --}}
-                            @can('users')
+
                                 <li class="menu-item  ">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
@@ -123,7 +123,7 @@
 
                                     </ul>
                                 </li>
-                            @endcan
+
 
 
                             {{-- المستخدمين --}}

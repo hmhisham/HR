@@ -38,20 +38,19 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
-                            <div class="avatar">
-                                <div class="avatar-initial bg-label-info rounded">
-                                    <span class="mdi mdi-account-group-outline "></span>
+                            <a href="<?php echo e(route('Employees.index')); ?>" class="menu-link">
+                                <div class="avatar">
+                                    <div
+                                        class="avatar-initial bg-label-info rounded <?php echo e(request()->is('Employees') ? 'active' : ''); ?>">
+                                        <span class="mdi mdi-account-group-outline"></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <p class="mb-0 text-danger me-1">0%</p>
-                                <i class="mdi mdi-chevron-up text-danger"></i>
-                            </div>
+                            </a>
                         </div>
                         <div class="card-info mt-4 pt-1">
-                            <h5 class="mb-2">0</h5>
+                            <h5 class="mb-2"><?php echo e(App\Models\Employees\Employees::count()); ?></h5>
                             <p class="text-muted">عدد الموظفين</p>
-                            <div class="badge bg-label-secondary rounded-pill">بيانات الموظفين</div>
+                            <div class="badge bg-label-secondary rounded-pill">بيانات جميع الموظفين</div>
                         </div>
                     </div>
                 </div>
@@ -60,22 +59,22 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
-                          <div class="avatar">
-                            <div class="avatar-initial bg-label-warning rounded">
-                              <i class="mdi mdi-link mdi-24px"></i>
+                            <div class="avatar">
+                                <div class="avatar-initial bg-label-warning rounded">
+                                    <i class="mdi mdi-link mdi-24px"></i>
+                                </div>
                             </div>
-                          </div>
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-success me-1">+62%</p>
-                            <i class="mdi mdi-chevron-up text-success"></i>
-                          </div>
+                            <div class="d-flex align-items-center">
+                                <p class="mb-0 text-success me-1">+62%</p>
+                                <i class="mdi mdi-chevron-up text-success"></i>
+                            </div>
                         </div>
                         <div class="card-info mt-4 pt-1">
-                          <h5 class="mb-2">142.8k</h5>
-                          <p class="text-muted">Total Impression</p>
-                          <div class="badge bg-label-secondary rounded-pill">Last One Year</div>
+                            <h5 class="mb-2">142.8k</h5>
+                            <p class="text-muted">Total Impression</p>
+                            <div class="badge bg-label-secondary rounded-pill">Last One Year</div>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6">
@@ -167,7 +166,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="col-12 mb-4">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
@@ -319,7 +318,8 @@
                                                 style="font-family: Inter;">
                                                 <tspan id="SvgjsTspan1465">21/12</tspan>
                                                 <title>21/12</title>
-                                            </text></g>
+                                            </text>
+                                        </g>
                                     </g>
                                     <g id="SvgjsG1480" class="apexcharts-grid">
                                         <g id="SvgjsG1481" class="apexcharts-gridlines-horizontal">

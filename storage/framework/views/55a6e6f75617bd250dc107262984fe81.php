@@ -85,7 +85,7 @@
                             </li>
 
                             
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('users')): ?>
+
                                 <li class="menu-item  ">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
@@ -124,7 +124,7 @@
 
                                     </ul>
                                 </li>
-                            <?php endif; ?>
+
 
 
                             

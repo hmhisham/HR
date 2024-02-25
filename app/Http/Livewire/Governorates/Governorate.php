@@ -75,11 +75,22 @@ class Governorate extends Component
     {
         $this->resetValidation();
 
-        $this->Governorate  = Governorates::find($GovernorateId);
-        $this->GovernorateId = $this->Governorate->id;
-        $this->governorate_number = $this->Governorate->governorate_number;
-        $this->governorate_name = $this->Governorate->governorate_name;
+        $this->Governorate = Governorates::find($GovernorateId);
+
+        if ($this->Governorate !== null) {
+            $this->GovernorateId = $this->Governorate->id;
+            $this->governorate_number = $this->Governorate->governorate_number;
+            $this->governorate_name = $this->Governorate->governorate_name;
+        } else {
+            // إذا كانت قيمة المعرف غير صالحة أو لم يتم العثور على السجل
+            // يمكنك إطلاق استثناء أو اتخاذ إجراء آخر حسب متطلبات تطبيقك
+            // يمكنك أيضًا تعيين قيم افتراضية للخصائص
+            $this->GovernorateId = null;
+            $this->governorate_number = null;
+            $this->governorate_name = null;
+        }
     }
+
 
     public function update()
     {

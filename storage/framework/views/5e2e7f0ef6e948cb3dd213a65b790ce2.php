@@ -33,7 +33,8 @@
                         <?php $__currentLoopData = $Districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $District): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
                                 <td><?php echo e($loop->iteration); ?></td>
-                                <td Class="text-center"><?php echo e($District->governorate_id); ?></td>
+ 
+                                <td class="text-center"><?php echo e($District->GetKaratGold ? $District->GetKaratGold->karat : ''); ?></td>
                                 <td Class="text-center"><?php echo e($District->district_number); ?></td>
                                 <td Class="text-center"><?php echo e($District->district_name); ?></td>
 
