@@ -81,7 +81,6 @@ class Governorate extends Component
             $this->GovernorateId = $this->Governorate->id;
             $this->governorate_number = $this->Governorate->governorate_number;
             $this->governorate_name = $this->Governorate->governorate_name;
-
         }
     }
 
@@ -92,7 +91,6 @@ class Governorate extends Component
         $this->validate([
             'governorate_number' => 'required:governorates',
             'governorate_name' => 'required:governorates',
-
         ], [
             'governorate_number.required' => 'حقل الاسم مطلوب',
             'governorate_name.required' => 'حقل الاسم مطلوب',
@@ -102,7 +100,6 @@ class Governorate extends Component
         $Governorates->update([
             'governorate_number' => $this->governorate_number,
             'governorate_name' => $this->governorate_name,
-
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
