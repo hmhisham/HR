@@ -14,7 +14,7 @@ class Districts extends Model
 
     public function GetGovernorate()
     {
-        return $this->belongsTo(Governorates::class, 'governorate_number');
+        return $this->belongsTo(Governorates::class, 'governorate_id');
     }
 
 }
