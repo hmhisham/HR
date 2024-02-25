@@ -12,7 +12,7 @@ class Districts extends Model
     protected $guarded = [];
     protected $table = "districts";
 
-    public function Getgovernorate()
+    public function GetGovernorate()
     {
         return $this->belongsTo(Governorates::class, 'governorate_number');
     }

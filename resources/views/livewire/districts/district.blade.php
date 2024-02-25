@@ -33,8 +33,8 @@
                         @foreach ($Districts as $District)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
- 
-                                <td class="text-center">{{ $District->GetKaratGold ? $District->GetKaratGold->karat : '' }}</td>
+
+                                <td class="text-center">{{ $District->GetGovernorate ? $District->GetGovernorate->governorate_name : '' }}</td>
                                 <td Class="text-center">{{ $District->district_number }}</td>
                                 <td Class="text-center">{{ $District->district_name }}</td>
 
