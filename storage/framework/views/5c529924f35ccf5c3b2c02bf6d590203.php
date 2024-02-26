@@ -26,14 +26,12 @@
                             <th Class="text-center">رقم القضاء</th>
                             <th Class="text-center">اسم القضاء</th>
                             <th Class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <?php $__currentLoopData = $Districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $District): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
                                 <td><?php echo e($loop->iteration); ?></td>
-
                                 <td class="text-center"><?php echo e($District->GetGovernorate ? $District->GetGovernorate->governorate_name : ''); ?></td>
                                 <td Class="text-center"><?php echo e($District->district_number); ?></td>
                                 <td Class="text-center"><?php echo e($District->district_name); ?></td>
