@@ -27,7 +27,7 @@ class District extends Component
             ->orderBy('id', 'ASC')
             ->paginate(10);
         $links = $Districts;
-       $this->Districts = collect($Districts->items());
+        $this->Districts = collect($Districts->items());
 
         return view('livewire.districts.district', [
             'governorates' => Governorates::get(),
@@ -51,7 +51,6 @@ class District extends Component
             'district_name' => 'required',
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
-
             'district_number.required' => 'حقل الاسم مطلوب',
             'district_number.unique' => 'الأسم موجود',
             'district_name.required' => 'حقل الاسم مطلوب',

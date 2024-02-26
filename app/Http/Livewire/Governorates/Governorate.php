@@ -25,10 +25,9 @@ class Governorate extends Component
         $GovernorateSearch = $this->GovernorateSearch . '%';
         $Governorates = Governorates::where('governorate_number', 'LIKE', $GovernorateSearch)
             ->orWhere('governorate_name', 'LIKE', $GovernorateSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Governorates;
         $this->Governorates = collect($Governorates->items());
         return view('livewire.governorates.governorate', [
@@ -101,6 +100,7 @@ class Governorate extends Component
             'governorate_number' => $this->governorate_number,
             'governorate_name' => $this->governorate_name,
         ]);
+        
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
