@@ -26,14 +26,12 @@
                             <th Class="text-center">رقم القضاء</th>
                             <th Class="text-center">اسم القضاء</th>
                             <th Class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($Districts as $District)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-
                                 <td class="text-center">{{ $District->GetGovernorate ? $District->GetGovernorate->governorate_name : '' }}</td>
                                 <td Class="text-center">{{ $District->district_number }}</td>
                                 <td Class="text-center">{{ $District->district_name }}</td>
