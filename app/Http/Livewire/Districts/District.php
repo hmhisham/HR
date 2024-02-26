@@ -20,6 +20,7 @@ class District extends Component
     public function render()
     {
         $DistrictSearch = $this->DistrictSearch . '%';
+
         $Districts = Districts::where('governorate_id', 'LIKE', $DistrictSearch)
             ->orWhere('district_number', 'LIKE', $DistrictSearch)
             ->orWhere('district_name', 'LIKE', $DistrictSearch)
@@ -41,7 +42,6 @@ class District extends Component
         $this->dispatchBrowserEvent('DistrictModalShow');
     }
 
-
     public function store()
     {
         $this->resetValidation();
@@ -49,14 +49,12 @@ class District extends Component
             'governorate_id' => 'required',
             'district_number' => 'required|unique:districts',
             'district_name' => 'required',
-
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
 
             'district_number.required' => 'حقل الاسم مطلوب',
             'district_number.unique' => 'الأسم موجود',
             'district_name.required' => 'حقل الاسم مطلوب',
-        
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -64,7 +62,6 @@ class District extends Component
             'governorate_id' => $this->governorate_id,
             'district_number' => $this->district_number,
             'district_name' => $this->district_name,
-
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -91,7 +88,6 @@ class District extends Component
             'governorate_id' => 'required:districts',
             'district_number' => 'required:districts',
             'district_name' => 'required:districts',
-
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
             'district_number.required' => 'حقل الاسم مطلوب',
@@ -103,7 +99,6 @@ class District extends Component
             'governorate_id' => $this->governorate_id,
             'district_number' => $this->district_number,
             'district_name' => $this->district_name,
-
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
