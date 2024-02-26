@@ -42,14 +42,12 @@ class Governorate extends Component
         $this->dispatchBrowserEvent('GovernorateModalShow');
     }
 
-
     public function store()
     {
         $this->resetValidation();
         $this->validate([
             'governorate_number' => 'required|unique:governorates',
             'governorate_name' => 'required|unique:governorates',
-
         ], [
             'governorate_number.required' => 'حقل الاسم مطلوب',
             'governorate_number.unique' => 'الأسم موجود',
@@ -61,7 +59,6 @@ class Governorate extends Component
         Governorates::create([
             'governorate_number' => $this->governorate_number,
             'governorate_name' => $this->governorate_name,
-
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -83,7 +80,6 @@ class Governorate extends Component
         }
     }
 
-
     public function update()
     {
         $this->resetValidation();
@@ -100,7 +96,7 @@ class Governorate extends Component
             'governorate_number' => $this->governorate_number,
             'governorate_name' => $this->governorate_name,
         ]);
-        
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
