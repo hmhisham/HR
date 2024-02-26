@@ -13,9 +13,7 @@ return new class extends Migration
 {
     Schema::create('districts', function (Blueprint $table) {
         $table->id();
-        // $table->unsignedBigInteger('governorate_id'); // رقم المحافظة
-        // $table->foreign('governorate_id')->references('id')->on('governorates')->onDelete('cascade');
-        $table->string('governorate_id'); // رقم المحافظة
+             $table->string('governorate_id'); // رقم المحافظة
         $table->string('district_number'); // رقم القضاء
         $table->string('district_name'); // اسم القضاء
         $table->timestamps();

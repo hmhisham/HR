@@ -10,6 +10,7 @@
                 <hr class="mt-n2">
                 <form id="adddistrictModalForm" autocomplete="off">
                     <div class="row">
+                        
                         <div class="mb-3 col flex-fill {{ $governorates }}">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='governorate_id' id="modalDistrictsgovernorate_id" class="form-select @error('governorate_id') is-invalid is-filled @enderror">
