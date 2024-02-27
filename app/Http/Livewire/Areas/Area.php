@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Areas;
 use Livewire\Component;
 use App\Models\Areas\Areas;
 use Livewire\WithPagination;
+use App\Models\Districts\Districts;
+use App\Models\Governorates\Governorates;
 
 
 class Area extends Component
@@ -31,6 +33,8 @@ class Area extends Component
         $links = $Areas;
         $this->Areas = collect($Areas->items());
         return view('livewire.areas.area', [
+           'districts' => Districts::get(),
+           'governorates' => Governorates::get(),
             'links' => $links
         ]);
     }
@@ -47,20 +51,20 @@ class Area extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'governorate_id' => 'required|unique:areas',
-            'district_id' => 'required|unique:areas',
+            'governorate_id' => 'required',
+            'district_id' => 'required',
             'area_id' => 'required|unique:areas',
-            'area_name' => 'required|unique:areas',
+            'area_name' => 'required',
 
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
-            'governorate_id.unique' => 'الأسم موجود',
+
             'district_id.required' => 'حقل الاسم مطلوب',
-            'district_id.unique' => 'الأسم موجود',
+
             'area_id.required' => 'حقل الاسم مطلوب',
             'area_id.unique' => 'الأسم موجود',
             'area_name.required' => 'حقل الاسم مطلوب',
-            'area_name.unique' => 'الأسم موجود',
+
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -94,16 +98,20 @@ class Area extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'governorate_id' => 'required:areas',
-            'district_id' => 'required:areas',
-            'area_id' => 'required:areas',
-            'area_name' => 'required:areas',
+            'governorate_id' => 'required',
+            'district_id' => 'required',
+            'area_id' => 'required|unique:areas',
+            'area_name' => 'required',
 
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
+
             'district_id.required' => 'حقل الاسم مطلوب',
+
             'area_id.required' => 'حقل الاسم مطلوب',
+            'area_id.unique' => 'الأسم موجود',
             'area_name.required' => 'حقل الاسم مطلوب',
+
         ]);
 
         $Areas = Areas::find($this->AreaId);
