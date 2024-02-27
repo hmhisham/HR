@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Areas;
 
+use App\Http\Livewire\Districts\District;
 use Livewire\Component;
 use App\Models\Areas\Areas;
 use Livewire\WithPagination;
@@ -18,7 +19,6 @@ class Area extends Component
     public $AreaSearch, $Area, $AreaId;
     public $governorate_id, $district_id, $area_id, $area_name;
 
-
     public function render()
     {
         $AreaSearch = $this->AreaSearch . '%';
@@ -26,15 +26,13 @@ class Area extends Component
             ->orWhere('district_id', 'LIKE', $AreaSearch)
             ->orWhere('area_id', 'LIKE', $AreaSearch)
             ->orWhere('area_name', 'LIKE', $AreaSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
         $links = $Areas;
         $this->Areas = collect($Areas->items());
         return view('livewire.areas.area', [
-           'districts' => Districts::get(),
-           'governorates' => Governorates::get(),
+            'districts' => Districts::get(),
+            'governorates' => Governorates::get(),
             'links' => $links
         ]);
     }
@@ -45,7 +43,6 @@ class Area extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('AreaModalShow');
     }
-
 
     public function store()
     {
@@ -105,13 +102,10 @@ class Area extends Component
 
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
-
             'district_id.required' => 'حقل الاسم مطلوب',
-
             'area_id.required' => 'حقل الاسم مطلوب',
             'area_id.unique' => 'الأسم موجود',
             'area_name.required' => 'حقل الاسم مطلوب',
-
         ]);
 
         $Areas = Areas::find($this->AreaId);
@@ -120,7 +114,6 @@ class Area extends Component
             'district_id' => $this->district_id,
             'area_id' => $this->area_id,
             'area_name' => $this->area_name,
-
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [

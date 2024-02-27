@@ -22,7 +22,7 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th Class="text-center">رقم المحافظة</th>
+                            <th Class="text-center">اسم المحافظة</th>
                             <th Class="text-center">رقم القضاء</th>
                             <th Class="text-center">اسم القضاء</th>
                             <th Class="text-center">العملية</th>
