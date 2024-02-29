@@ -1,7 +1,6 @@
 <div class="mt-n4">
     <h4 Class="mb-1fw-semiboyld">قائمة</h4>
     <Div Class="card">
-
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -27,15 +26,16 @@
                             <th Class="text-center">رقم الناحية</th>
                             <th Class="text-center">اسم الناحية</th>
                             <th Class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($Areas as $Area)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td class="text-center">{{ $Area->GetGovernorate ? $Area->GetGovernorate->governorate_name : '' }}</td>
-                                <td class="text-center">{{ $Area->GetDistrict ? $Area->GetDistrict->district_name : '' }}</td>
+                                <td class="text-center">
+                                    {{ $Area->GetGovernorate ? $Area->GetGovernorate->governorate_name : '' }}</td>
+                                <td class="text-center">{{ $Area->GetDistrict ? $Area->GetDistrict->district_name : '' }}
+                                </td>
                                 <td Class="text-center">{{ $Area->area_id }}</td>
                                 <td Class="text-center">{{ $Area->area_name }}</td>
 

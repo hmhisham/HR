@@ -1,7 +1,6 @@
 <div class="mt-n4">
     <h4 Class="mb-1fw-semiboyld">قائمة</h4>
     <Div Class="card">
-
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -22,7 +21,7 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th Class="text-center">رقم المحافظة</th>
+                            <th Class="text-center">اسم المحافظة</th>
                             <th Class="text-center">رقم القضاء</th>
                             <th Class="text-center">اسم القضاء</th>
                             <th Class="text-center">العملية</th>

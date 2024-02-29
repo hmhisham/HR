@@ -47,7 +47,7 @@
                                     {{-- @include('_partials.macros', ['width' => 25, 'withbg' => '#666cff']) --}}
                                 </span>
                                 <span
-                                    class="app-brand-text demo menu-text fw-bold ms-2 fs-5">{{ trans('sidebar.AppName') }}</span>
+                                    class="app-brand-text demo menu-text fw-bold ms-2 fs-5">الموارد البشرية</span>
                             </a>
 
                             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
