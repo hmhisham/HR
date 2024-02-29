@@ -16,6 +16,7 @@ class Area extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Areas = [];
+    public $Districts = [];
     public $AreaSearch, $Area, $AreaId;
     public $governorate_id, $district_id, $area_id, $area_name;
 
@@ -42,6 +43,12 @@ class Area extends Component
         $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('AreaModalShow');
+    }
+
+    public function chooseGovernorate()
+    {
+        $Governorates = Governorates::find($this->governorate_id);
+        $this->Districts = $Governorates->GetDistrict;
     }
 
     public function store()
