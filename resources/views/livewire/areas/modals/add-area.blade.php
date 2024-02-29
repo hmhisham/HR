@@ -11,11 +11,11 @@
                 <hr class="mt-n2">
                 <form id="addareaModalForm" autocomplete="off">
                     <div class="row row-cols-1">
-                        <div class="col mb-3">
+                        <div class="mb-3 col">
                             <div class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='governorate_id' id="modalAreasgovernorate_id"
+                                        <select wire:model.defer='governorate_id' wire:change='chooseGovernorate' id="modalAreasgovernorate_id"
                                             class="form-select @error('governorate_id') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($governorates as $governorate)
@@ -33,8 +33,8 @@
                                         <select wire:model.defer='district_id' id="modalAreasdistrict_id"
                                             class="form-select @error('district_id') is-invalid is-filled @enderror">
                                             <option value=""></option>
-                                            @foreach ($districts as $district)
-                                                <option value="{{ $district->id }}">{{ $district->district_name }}</option>
+                                            @foreach ($Districts as $District)
+                                                <option value="{{ $District->id }}">{{ $District->district_name }}</option>
                                             @endforeach
                                         </select>
                                         <label for="modalAreasdistrict_id">القضاء</label>
