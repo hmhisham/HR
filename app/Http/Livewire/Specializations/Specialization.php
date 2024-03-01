@@ -6,6 +6,8 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Graduations\Graduations;
 use App\Models\Certificates\Certificates;
+
+use App\Http\Livewire\Certificates\Certificate;
 use App\Models\Specializations\Specializations;
 
 class Specialization extends Component
@@ -14,6 +16,7 @@ class Specialization extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Specializations = [];
+    public $Graduations = [];
     public $SpecializationSearch, $Specialization, $SpecializationId;
     public $certificates_id, $graduations_id, $specializations_name;
 
@@ -44,6 +47,14 @@ class Specialization extends Component
         $this->dispatchBrowserEvent('SpecializationModalShow');
     }
 
+    public function chooseCertificate()
+    {
+        $Certificates = Certificates::find($this->certificates_id);
+        $this->Graduations = $Certificates->Getgraduation;
+
+    }
+
+
 
     public function store()
     {
@@ -59,7 +70,7 @@ class Specialization extends Component
             'graduations_id.required' => 'حقل الاسم مطلوب',
 
             'specializations_name.required' => 'حقل الاسم مطلوب',
-            
+
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);

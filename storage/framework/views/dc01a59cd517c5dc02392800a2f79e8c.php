@@ -13,10 +13,10 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-
-                                <div class="mb-3 col flex-fill <?php echo e($certificates); ?>">
+                              
+                                <div class="mb-3 col ">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='certificates_id'
+                                        <select wire:model.defer='certificates_id' wire:change='chooseCertificate'
                                             id="modalSpecializationscertificates_id"
                                             class="form-select <?php $__errorArgs = ['certificates_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -29,7 +29,9 @@ unset($__errorArgs, $__bag); ?>">
                                             <option value=""></option>
                                             <?php $__currentLoopData = $certificates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($certificate->id); ?>">
-                                                    <?php echo e($certificate->certificates_name); ?></option>
+                                                    <?php echo e($certificate->certificates_name); ?>
+
+                                                </option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         <label for="modalSpecializationscertificates_id">الشهادة</label>
@@ -79,12 +81,12 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='specializations_name' type="text"
-                                                id="modalSpecializationsspecializations_name" placeholder="الاختصاص"
-                                                class="form-control <?php $__errorArgs = ['specializations_name'];
+                            <div Class="row">
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='specializations_name' type="text"
+                                            id="modalSpecializationsspecializations_name" placeholder="الاختصاص"
+                                            class="form-control <?php $__errorArgs = ['specializations_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -92,30 +94,30 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                            <label for="modalSpecializationsspecializations_name">الاختصاص</label>
-                                        </div>
-                                        <?php $__errorArgs = ['specializations_name'];
+                                        <label for="modalSpecializationsspecializations_name">الاختصاص</label>
+                                    </div>
+                                    <?php $__errorArgs = ['specializations_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                        <?php unset($message);
+                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                    <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                    </div>
-
                                 </div>
+
                             </div>
                         </div>
-                        <hr class="my-0">
-                        <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                            <button wire:click='store' wire:loading.attr="disabled" type="button"
-                                class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
-                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                aria-label="Close">تجاهل</button>
-                        </div>
+                    </div>
+                    <hr class="my-0">
+                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                        <button wire:click='store' wire:loading.attr="disabled" type="button"
+                            class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                            aria-label="Close">تجاهل</button>
+                    </div>
                 </form>
             </div>
         </div>

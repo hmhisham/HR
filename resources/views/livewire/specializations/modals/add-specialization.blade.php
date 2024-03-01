@@ -13,16 +13,17 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-
-                                <div class="mb-3 col flex-fill {{ $certificates }}">
+                              
+                                <div class="mb-3 col ">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='certificates_id'
+                                        <select wire:model.defer='certificates_id' wire:change='chooseCertificate'
                                             id="modalSpecializationscertificates_id"
                                             class="form-select @error('certificates_id') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($certificates as $certificate)
                                                 <option value="{{ $certificate->id }}">
-                                                    {{ $certificate->certificates_name }}</option>
+                                                    {{ $certificate->certificates_name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                         <label for="modalSpecializationscertificates_id">الشهادة</label>
@@ -51,29 +52,29 @@
                                     @enderror
                                 </div>
                             </div>
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='specializations_name' type="text"
-                                                id="modalSpecializationsspecializations_name" placeholder="الاختصاص"
-                                                class="form-control @error('specializations_name') is-invalid is-filled @enderror" />
-                                            <label for="modalSpecializationsspecializations_name">الاختصاص</label>
-                                        </div>
-                                        @error('specializations_name')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                            <div Class="row">
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='specializations_name' type="text"
+                                            id="modalSpecializationsspecializations_name" placeholder="الاختصاص"
+                                            class="form-control @error('specializations_name') is-invalid is-filled @enderror" />
+                                        <label for="modalSpecializationsspecializations_name">الاختصاص</label>
                                     </div>
-
+                                    @error('specializations_name')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
                                 </div>
+
                             </div>
                         </div>
-                        <hr class="my-0">
-                        <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                            <button wire:click='store' wire:loading.attr="disabled" type="button"
-                                class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
-                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                aria-label="Close">تجاهل</button>
-                        </div>
+                    </div>
+                    <hr class="my-0">
+                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                        <button wire:click='store' wire:loading.attr="disabled" type="button"
+                            class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                            aria-label="Close">تجاهل</button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Models\Specializations;
 use App\Models\Graduations\Graduations;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Certificates\Certificates;
+use App\Http\Livewire\Certificates\Certificate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Specializations extends Model
@@ -22,4 +23,7 @@ class Specializations extends Model
     {
         return $this->belongsTo(Graduations::class, 'graduations_id' );
     }
+
+ 
+
 }
