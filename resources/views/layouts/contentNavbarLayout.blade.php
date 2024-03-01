@@ -46,8 +46,7 @@
                                         style="width: 50px;">
                                     {{-- @include('_partials.macros', ['width' => 25, 'withbg' => '#666cff']) --}}
                                 </span>
-                                <span
-                                    class="app-brand-text demo menu-text fw-bold ms-2 fs-5">الموارد البشرية</span>
+                                <span class="app-brand-text demo menu-text fw-bold ms-2 fs-5">الموارد البشرية</span>
                             </a>
 
                             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -85,49 +84,78 @@
 
                             {{-- الإعدادات --}}
 
-                                <li class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice') ? 'open active' : '' }}">
-                                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                        <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
-                                        <span class="menu-title">الاعدادات</span>
-                                    </a>
-                                    <ul class="menu-sub">
-                                        {{-- المحافظات --}}
-                                        <li class="menu-item {{ request()->is('Governorates') ? 'active' : '' }}">
-                                            <a href = "{{ Route('Governorates.index') }}" Class="menu-link">
-                                                <i class=""></i>
-                                                <Div>المحافظات</div>
-                                            </a>
-                                        </li>
-                                        {{-- الأقضية --}}
-                                        <li class="menu-item {{ request()->Is('Districts') ? 'active' : '' }}">
-                                            <a href="{{ Route('Districts.index') }}" Class="menu-link">
-                                                <i class=""></i>
-                                                <div>الأقضية</div>
-                                            </a>
-                                        </li>
-                                        {{-- النواحي --}}
-                                        <li class="menu-item {{ request()->Is('Areas') ? 'active' : '' }}">
-                                            <a href="{{ Route('Areas.index') }}" Class="menu-link">
-                                                <i class=""></i>
-                                                <div>النواحي</div>
-                                            </a>
-                                        </li>
-                                        {{-- مكتب معلومات بطاة السكن --}}
-                                        <li Class="menu-item {{ request()->Is('Infooffice') ? 'active' : '' }}">
-                                            <a href = "{{ Route('Infooffice.index') }}" Class="menu-link">
-                                                <i class=""></i>
-                                                <div>مكتب المعلومات</div>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </li>
+                            <li
+                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch','Units') ? 'open active' : '' }}">
+                                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                    <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
+                                    <span class="menu-title">الاعدادات</span>
+                                </a>
+                                <ul class="menu-sub">
+                                    {{-- المحافظات --}}
+                                    <li class="menu-item {{ request()->is('Governorates') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Governorates.index') }}" Class="menu-link">
+                                            <i class=""></i>
+                                            <Div>المحافظات</div>
+                                        </a>
+                                    </li>
+                                    {{-- الأقضية --}}
+                                    <li class="menu-item {{ request()->Is('Districts') ? 'active' : '' }}">
+                                        <a href="{{ Route('Districts.index') }}" Class="menu-link">
+                                            <i class=""></i>
+                                            <div>الأقضية</div>
+                                        </a>
+                                    </li>
+                                    {{-- النواحي --}}
+                                    <li class="menu-item {{ request()->Is('Areas') ? 'active' : '' }}">
+                                        <a href="{{ Route('Areas.index') }}" Class="menu-link">
+                                            <i class=""></i>
+                                            <div>النواحي</div>
+                                        </a>
+                                    </li>
+                                    {{-- مكتب معلومات بطاة السكن --}}
+                                    <li Class="menu-item {{ request()->Is('Infooffice') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Infooffice.index') }}" Class="menu-link">
+                                            <i class=""></i>
+                                            <div>مكتب المعلومات</div>
+                                        </a>
+                                    </li>
+                                    {{-- الارتباط --}}
+                                    <li Class="menu-item {{ request()->Is('Links') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Links.index') }}" Class="menu-link">
+                                            <i class=""></i>
+                                            <div>الارتباط</div>
+                                        </a>
+                                    </li>
+                                    {{-- الاقسام --}}
+                                    <li Class="menu-item {{ request()->Is('Sections') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Sections.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>الاقسام</div>
+                                        </a>
+                                    </li>
+                                    {{-- الشعب --}}
+                                    <li Class="menu-item {{ request()->Is('Branch') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Branch.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>الشعب</div>
+                                        </a>
+                                    </li>
+                                    {{-- الوحدات --}}
+                                    <li Class="menu-item {{ request()->Is('Units') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Units.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>الوحدات</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
 
 
                             {{-- المستخدمين --}}
                             @can('users')
-                                <li class="menu-item {{ request()->is('Administrators-Accounts') ? 'active open' : (request()->is('Customers-Accounts') ? 'active open' : '') }}">
+                                <li
+                                    class="menu-item {{ request()->is('Administrators-Accounts') ? 'active open' : (request()->is('Customers-Accounts') ? 'active open' : '') }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-account-outline'></i>
                                         <span class="menu-title">{{ trans('sidebar.Users accounts') }}</span>

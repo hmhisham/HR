@@ -74,7 +74,8 @@
                 <!-- Modal -->
             <?php endif; ?>
         </div>
-    </div>
+    </Div>
 </div>
 </div>
+
 <?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/areas/area.blade.php ENDPATH**/ ?>

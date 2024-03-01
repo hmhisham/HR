@@ -11,11 +11,11 @@
                 <hr class="mt-n2">
                 <form id="addareaModalForm" autocomplete="off">
                     <div class="row row-cols-1">
-                        <div class="col mb-3">
+                        <div class="mb-3 col">
                             <div class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='governorate_id' id="modalAreasgovernorate_id"
+                                        <select wire:model.defer='governorate_id' wire:change='chooseGovernorate' id="modalAreasgovernorate_id"
                                             class="form-select <?php $__errorArgs = ['governorate_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -54,8 +54,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
                                             <option value=""></option>
-                                            <?php $__currentLoopData = $districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $district): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($district->id); ?>"><?php echo e($district->district_name); ?></option>
+                                            <?php $__currentLoopData = $Districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $District): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($District->id); ?>"><?php echo e($District->district_name); ?></option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         <label for="modalAreasdistrict_id">القضاء</label>

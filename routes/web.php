@@ -2,9 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Areas\AreasController;
+use App\Http\Controllers\Links\LinksController;
+use App\Http\Controllers\Units\UnitsController;
 use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Branch\BranchController;
 use App\Http\Controllers\Events\EventsController;
 use App\Http\Controllers\language\LanguageController;
+use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Settings\SettingsController;
 use App\Http\Controllers\Customers\CustomersController;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -60,6 +64,14 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::  RESOURCE('Areas', AreasController::class);
          // Information office
         Route::  RESOURCE('Infooffice', InfoofficeController::class);
+          //Links
+        Route::  RESOURCE('Links', LinksController::class);
+        //Sections
+        Route::  RESOURCE('Sections', SectionsController::class);
+        //Branch
+        Route::  RESOURCE('Branch', BranchController::class);
+
+        Route::  RESOURCE('Units', UnitsController::class);
     });
 });
 
