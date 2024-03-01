@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('certificates_id'); //الشهادة
             $table->string('graduations_id'); //الشهادة
-            $table->string('graduations_name'); //الشهادة
+            $table->string('specializations_name'); //الشهادة
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ use App\Http\Controllers\Infooffice\InfoofficeController;
 use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
+use App\Http\Controllers\Specializations\SpecializationsController;
 use App\Http\Controllers\Users\UsersAccounts\UsersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Roles\AccountRolesController;
 use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
@@ -80,6 +81,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Certificates', CertificatesController::class);
         //التخرج
         Route::RESOURCE('Graduations', GraduationsController::class);
+        //الاختصاص
+        Route::RESOURCE('Specializations', SpecializationsController::class);
     });
 });
 

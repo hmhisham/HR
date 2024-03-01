@@ -85,7 +85,7 @@
                             {{-- الإعدادات --}}
 
                             <li
-                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations') ? 'open active' : '' }}">
+                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations','Specializations') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -162,6 +162,14 @@
                                             <div>جهة التخرج</div>
                                         </a>
                                     </li>
+                                    {{-- الاختصاص --}}
+                                    <li Class="menu-item {{ request()->Is('Specializations') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Specializations.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>الاختصاص</div>
+                                        </a>
+                                    </li>
+
                                 </ul>
                             </li>
 

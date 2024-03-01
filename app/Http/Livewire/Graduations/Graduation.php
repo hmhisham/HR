@@ -46,14 +46,14 @@ class Graduation extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'certificates_id' => 'required|unique:graduations',
-            'graduations_name' => 'required|unique:graduations',
+            'certificates_id' => 'required',
+            'graduations_name' => 'required',
 
         ], [
             'certificates_id.required' => 'حقل الاسم مطلوب',
-            'certificates_id.unique' => 'الأسم موجود',
+
             'graduations_name.required' => 'حقل الاسم مطلوب',
-            'graduations_name.unique' => 'الأسم موجود',
+         
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
