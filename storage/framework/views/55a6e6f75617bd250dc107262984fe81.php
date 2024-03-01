@@ -86,7 +86,7 @@
                             
 
                             <li
-                                class="menu-item <?php echo e(request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch','Units') ? 'open active' : ''); ?>">
+                                class="menu-item <?php echo e(request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch','Units','Certificates') ? 'open active' : ''); ?>">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -120,6 +120,7 @@
                                             <div>مكتب المعلومات</div>
                                         </a>
                                     </li>
+
                                     
                                     <li Class="menu-item <?php echo e(request()->Is('Links') ? 'active' : ''); ?>">
                                         <a href = "<?php echo e(Route('Links.index')); ?>" Class="menu-link">
@@ -146,6 +147,13 @@
                                         <a href = "<?php echo e(Route('Units.index')); ?>" Class="menu-link">
                                             <i Class=''></i>
                                             <div>الوحدات</div>
+                                        </a>
+                                    </li>
+                                     
+                                     <li Class="menu-item <?php echo e(request()->Is('Certificates') ? 'active' : ''); ?>">
+                                        <a href = "<?php echo e(Route('Certificates.index')); ?>" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>الشهادة</div>
                                         </a>
                                     </li>
                                 </ul>

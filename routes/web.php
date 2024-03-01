@@ -4,24 +4,26 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Areas\AreasController;
 use App\Http\Controllers\Links\LinksController;
 use App\Http\Controllers\Units\UnitsController;
-use App\Http\Controllers\Website\HomeController;
+
 use App\Http\Controllers\Branch\BranchController;
-use App\Http\Controllers\Events\EventsController;
+
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\Sections\SectionsController;
-use App\Http\Controllers\Settings\SettingsController;
-use App\Http\Controllers\Customers\CustomersController;
+
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\Employees\EmployeesController;
-use App\Http\Controllers\Slideshow\SlideshowController;
+
 use App\Http\Controllers\Infooffice\InfoofficeController;
+
+use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
 use App\Http\Controllers\Users\UsersAccounts\UsersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Roles\AccountRolesController;
 use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
 use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsController;
+
 
 
 /*
@@ -72,6 +74,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::  RESOURCE('Branch', BranchController::class);
 
         Route::  RESOURCE('Units', UnitsController::class);
+        Route::  RESOURCE('Certificates', CertificatesController::class);
     });
 });
 
