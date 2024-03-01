@@ -86,7 +86,7 @@
                             
 
                             <li
-                                class="menu-item <?php echo e(request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations','Specializations') ? 'open active' : ''); ?>">
+                                class="menu-item <?php echo e(request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys') ? 'open active' : ''); ?>">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -170,7 +170,13 @@
                                             <div>الاختصاص</div>
                                         </a>
                                     </li>
-
+                                    
+                                    <li Class="menu-item <?php echo e(request()->Is('Specialtys') ? 'active' : ''); ?>">
+                                        <a href = "<?php echo e(Route('Specialtys.index')); ?>" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>التخصص العام</div>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 

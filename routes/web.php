@@ -17,6 +17,7 @@ use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\Employees\EmployeesController;
 
 use App\Http\Controllers\Infooffice\InfoofficeController;
+use App\Http\Controllers\Specialtys\SpecialtysController;
 use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
@@ -83,6 +84,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Graduations', GraduationsController::class);
         //الاختصاص
         Route::RESOURCE('Specializations', SpecializationsController::class);
+//التخصص العام
+        Route::  RESOURCE('Specialtys', SpecialtysController::class);
     });
 });
 
