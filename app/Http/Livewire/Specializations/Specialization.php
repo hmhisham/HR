@@ -51,7 +51,6 @@ class Specialization extends Component
     {
         $Certificates = Certificates::find($this->certificates_id);
         $this->Graduations = $Certificates->Getgraduation;
-
     }
 
 
