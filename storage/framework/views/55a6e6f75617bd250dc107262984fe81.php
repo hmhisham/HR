@@ -86,7 +86,7 @@
                             
 
                             <li
-                                class="menu-item <?php echo e(request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch','Units','Certificates') ? 'open active' : ''); ?>">
+                                class="menu-item <?php echo e(request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations') ? 'open active' : ''); ?>">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -149,11 +149,18 @@
                                             <div>الوحدات</div>
                                         </a>
                                     </li>
-                                     
-                                     <li Class="menu-item <?php echo e(request()->Is('Certificates') ? 'active' : ''); ?>">
+                                    
+                                    <li Class="menu-item <?php echo e(request()->Is('Certificates') ? 'active' : ''); ?>">
                                         <a href = "<?php echo e(Route('Certificates.index')); ?>" Class="menu-link">
                                             <i Class=''></i>
                                             <div>الشهادة</div>
+                                        </a>
+                                    </li>
+                                    
+                                    <li Class="menu-item <?php echo e(request()->Is('Graduations') ? 'active' : ''); ?>">
+                                        <a href = "<?php echo e(Route('Graduations.index')); ?>" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>جهة التخرج</div>
                                         </a>
                                     </li>
                                 </ul>
@@ -184,6 +191,8 @@
                                                 <div><?php echo e(trans('sidebar.Customer accounts')); ?></div>
                                             </a>
                                         </li>
+
+
                                     </ul>
                                 </li>
                             <?php endif; ?>

@@ -1,21 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Graduations\Graduations;
 use App\Http\Controllers\Areas\AreasController;
 use App\Http\Controllers\Links\LinksController;
+
 use App\Http\Controllers\Units\UnitsController;
 
 use App\Http\Controllers\Branch\BranchController;
-
 use App\Http\Controllers\language\LanguageController;
-use App\Http\Controllers\Sections\SectionsController;
 
+use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
+
 use App\Http\Controllers\Employees\EmployeesController;
 
 use App\Http\Controllers\Infooffice\InfoofficeController;
-
+use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
 use App\Http\Controllers\Users\UsersAccounts\UsersAccountsController;
@@ -56,25 +58,28 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Users-Accounts', UsersAccountsController::class);
         Route::RESOURCE('Customers-Accounts', CustomersAccountsController::class);
 
-         // Employees Info
-        Route::  RESOURCE('Employees', EmployeesController::class);
-         // Governorates I
-        Route::  RESOURCE('Governorates', GovernoratesController::class);
-          // Districts I
-        Route::  RESOURCE('Districts', DistrictsController::class);
-           // reas
-        Route::  RESOURCE('Areas', AreasController::class);
-         // Information office
-        Route::  RESOURCE('Infooffice', InfoofficeController::class);
-          //Links
-        Route::  RESOURCE('Links', LinksController::class);
-        //Sections
-        Route::  RESOURCE('Sections', SectionsController::class);
-        //Branch
-        Route::  RESOURCE('Branch', BranchController::class);
-
-        Route::  RESOURCE('Units', UnitsController::class);
-        Route::  RESOURCE('Certificates', CertificatesController::class);
+        // بيانات الموظف
+        Route::RESOURCE('Employees', EmployeesController::class);
+        // المحافظات I
+        Route::RESOURCE('Governorates', GovernoratesController::class);
+        // الاقضية I
+        Route::RESOURCE('Districts', DistrictsController::class);
+        // النواحي
+        Route::RESOURCE('Areas', AreasController::class);
+        // مكتب المعلومات
+        Route::RESOURCE('Infooffice', InfoofficeController::class);
+        //الارتباط
+        Route::RESOURCE('Links', LinksController::class);
+        //القسم
+        Route::RESOURCE('Sections', SectionsController::class);
+        //الشعبة
+        Route::RESOURCE('Branch', BranchController::class);
+        //الوحدات
+        Route::RESOURCE('Units', UnitsController::class);
+        //الشهادة
+        Route::RESOURCE('Certificates', CertificatesController::class);
+        //التخرج
+        Route::RESOURCE('Graduations', GraduationsController::class);
     });
 });
 
