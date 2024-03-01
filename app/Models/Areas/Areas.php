@@ -18,9 +18,6 @@ class Areas extends Model
         return $this->belongsTo(Governorates::class, 'governorate_id');
     }
 
-
-
-
     public function Getdistrict()
     {
         return $this->belongsTo(Districts::class, 'district_id' );

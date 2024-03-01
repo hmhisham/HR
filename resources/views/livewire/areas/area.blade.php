@@ -25,7 +25,6 @@
                         <th Class="text-center">رقم الناحية</th>
                         <th Class="text-center">اسم الناحية</th>
                         <th Class="text-center">العملية</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -36,8 +35,6 @@
                             <td class="text-center">{{ $Area->GetDistrict ? $Area->GetDistrict->district_name : '' }}</td>
                             <td Class="text-center">{{ $Area->area_id }}</td>
                             <td Class="text-center">{{ $Area->area_name }}</td>
-
-                            {{-- {{ dd($Area->GetDistrict) }} --}}
                             <td Class="text-center">
                                 <div class="btn-group" role="group" aria-label="First group">
                                     @can('area-edit')
