@@ -17,13 +17,15 @@
 
                                 <div class="mb-3 col flex-fill {{ $certificates }}">
                                     <div class="form-floating form-floating-outline">
-                                      <select wire:model.defer='certificates_id'   id="modalGraduationscertificates_id" class="form-select @error('certificates_id') is-invalid is-filled @enderror">
-                                      <option value=""></option>
-                                        @foreach ($certificates as $certificate)
-                                        <option value="{{ $certificate->id }}">{{ $certificate-> certificates_name }}</option>
-                                    @endforeach
-                                  </select>
-                                  <label for="modalGraduationscertificates_id">الشهادة</label>
+                                        <select wire:model.defer='certificates_id' id="modalGraduationscertificates_id"
+                                            class="form-select @error('certificates_id') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @foreach ($certificates as $certificate)
+                                                <option value="{{ $certificate->id }}">
+                                                    {{ $certificate->certificates_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="modalGraduationscertificates_id">الشهادة</label>
                                     </div>
                                     @error('certificates_id')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
@@ -33,12 +35,12 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='graduation_name' type="text"
-                                            id="modalGraduationsgraduation_name" placeholder="جهة التخرج"
-                                            class="form-control @error('graduation_name') is-invalid is-filled @enderror" />
-                                        <label for="modalGraduationsgraduation_name">جهة التخرج</label>
+                                        <input wire:model.defer='graduations_name' type="text"
+                                            id="modalGraduationsgraduations_name" placeholder="جهة التخرج"
+                                            class="form-control @error('graduations_name') is-invalid is-filled @enderror" />
+                                        <label for="modalGraduationsgraduations_name">جهة التخرج</label>
                                     </div>
-                                    @error('graduation_name')
+                                    @error('graduations_name')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>

@@ -17,7 +17,8 @@
 
                                 <div class="mb-3 col flex-fill <?php echo e($certificates); ?>">
                                     <div class="form-floating form-floating-outline">
-                                      <select wire:model.defer='certificates_id'   id="modalGraduationscertificates_id" class="form-select <?php $__errorArgs = ['certificates_id'];
+                                        <select wire:model.defer='certificates_id' id="modalGraduationscertificates_id"
+                                            class="form-select <?php $__errorArgs = ['certificates_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -25,12 +26,13 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                      <option value=""></option>
-                                        <?php $__currentLoopData = $certificates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($certificate->id); ?>"><?php echo e($certificate-> certificates_name); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                  </select>
-                                  <label for="modalGraduationscertificates_id">الشهادة</label>
+                                            <option value=""></option>
+                                            <?php $__currentLoopData = $certificates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($certificate->id); ?>">
+                                                    <?php echo e($certificate->certificates_name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                        <label for="modalGraduationscertificates_id">الشهادة</label>
                                     </div>
                                     <?php $__errorArgs = ['certificates_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -47,9 +49,9 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='graduation_name' type="text"
-                                            id="modalGraduationsgraduation_name" placeholder="جهة التخرج"
-                                            class="form-control <?php $__errorArgs = ['graduation_name'];
+                                        <input wire:model.defer='graduations_name' type="text"
+                                            id="modalGraduationsgraduations_name" placeholder="جهة التخرج"
+                                            class="form-control <?php $__errorArgs = ['graduations_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -57,9 +59,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalGraduationsgraduation_name">جهة التخرج</label>
+                                        <label for="modalGraduationsgraduations_name">جهة التخرج</label>
                                     </div>
-                                    <?php $__errorArgs = ['graduation_name'];
+                                    <?php $__errorArgs = ['graduations_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

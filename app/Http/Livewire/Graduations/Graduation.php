@@ -14,14 +14,14 @@ class Graduation extends Component
 
     public $Graduations = [];
     public $GraduationSearch, $Graduation, $GraduationId;
-    public $certificates_id, $graduation_name;
+    public $certificates_id, $graduations_name;
 
 
     public function render()
     {
         $GraduationSearch = '%' . $this->GraduationSearch . '%';
         $Graduations = Graduations::where('certificates_id', 'LIKE', $GraduationSearch)
-            ->orWhere('graduation_name', 'LIKE', $GraduationSearch)
+            ->orWhere('graduations_name', 'LIKE', $GraduationSearch)
 
 
             ->orderBy('id', 'ASC')
@@ -47,19 +47,19 @@ class Graduation extends Component
         $this->resetValidation();
         $this->validate([
             'certificates_id' => 'required|unique:graduations',
-            'graduation_name' => 'required|unique:graduations',
+            'graduations_name' => 'required|unique:graduations',
 
         ], [
             'certificates_id.required' => 'حقل الاسم مطلوب',
             'certificates_id.unique' => 'الأسم موجود',
-            'graduation_name.required' => 'حقل الاسم مطلوب',
-            'graduation_name.unique' => 'الأسم موجود',
+            'graduations_name.required' => 'حقل الاسم مطلوب',
+            'graduations_name.unique' => 'الأسم موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Graduations::create([
             'certificates_id' => $this->certificates_id,
-            'graduation_name' => $this->graduation_name,
+            'graduations_name' => $this->graduations_name,
 
         ]);
         $this->reset();
@@ -76,7 +76,7 @@ class Graduation extends Component
         $this->Graduation  = Graduations::find($GraduationId);
         $this->GraduationId = $this->Graduation->id;
         $this->certificates_id = $this->Graduation->certificates_id;
-        $this->graduation_name = $this->Graduation->graduation_name;
+        $this->graduations_name = $this->Graduation->graduations_name;
     }
 
     public function update()
@@ -84,17 +84,17 @@ class Graduation extends Component
         $this->resetValidation();
         $this->validate([
             'certificates_id' => 'required:graduations',
-            'graduation_name' => 'required:graduations',
+            'graduations_name' => 'required:graduations',
 
         ], [
             'certificates_id.required' => 'حقل الاسم مطلوب',
-            'graduation_name.required' => 'حقل الاسم مطلوب',
+            'graduations_name.required' => 'حقل الاسم مطلوب',
         ]);
 
         $Graduations = Graduations::find($this->GraduationId);
         $Graduations->update([
             'certificates_id' => $this->certificates_id,
-            'graduation_name' => $this->graduation_name,
+            'graduations_name' => $this->graduations_name,
 
         ]);
         $this->reset();

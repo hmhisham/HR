@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('graduations', function (Blueprint $table) {
             $table->id();
             $table->string('certificates_id'); //الشهادة
-            $table->string('graduations_اسم الجامعة'); //الشهادة
+            $table->string('graduations_name'); //الشهادة
             $table->timestamps();
         });
     }

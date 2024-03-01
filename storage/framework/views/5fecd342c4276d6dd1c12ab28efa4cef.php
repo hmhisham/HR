@@ -23,7 +23,7 @@
                         <tr>
                             <th>#</th>
                             <th Class="text-center">الشهادة</th>
-                            <th Class="text-center">اسم الجامعة</th>
+                            <th Class="text-center">جهة التخرج</th>
                             <th Class="text-center">العملية</th>
 
                         </tr>
@@ -35,7 +35,7 @@
                                 <?php $i++; ?>
                                 <td><?php echo e($i); ?></td>
                                 <td class="text-center"><?php echo e($Graduation->Getcertificate ? $Graduation->Getcertificate->certificates_name : ''); ?></td>
-                                <td Class="text-center"><?php echo e($Graduation->graduation_name); ?></td>
+                                <td Class="text-center"><?php echo e($Graduation->graduations_name); ?></td>
 
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
