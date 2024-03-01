@@ -10,12 +10,13 @@ use App\Http\Controllers\Units\UnitsController;
 use App\Http\Controllers\Branch\BranchController;
 use App\Http\Controllers\language\LanguageController;
 
+use App\Http\Controllers\Precises\PrecisesController;
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Dashboard\DashboardController;
+
 use App\Http\Controllers\Districts\DistrictsController;
 
 use App\Http\Controllers\Employees\EmployeesController;
-
 use App\Http\Controllers\Infooffice\InfoofficeController;
 use App\Http\Controllers\Specialtys\SpecialtysController;
 use App\Http\Controllers\Graduations\GraduationsController;
@@ -84,8 +85,11 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Graduations', GraduationsController::class);
         //الاختصاص
         Route::RESOURCE('Specializations', SpecializationsController::class);
-//التخصص العام
-        Route::  RESOURCE('Specialtys', SpecialtysController::class);
+        //التخصص العام
+        Route::RESOURCE('Specialtys', SpecialtysController::class);
+        //التخصص الدقيق
+
+        Route::RESOURCE('Precises', PrecisesController::class);
     });
 });
 

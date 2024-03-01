@@ -85,7 +85,7 @@
                             {{-- الإعدادات --}}
 
                             <li
-                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys') ? 'open active' : '' }}">
+                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -176,6 +176,14 @@
                                             <div>التخصص العام</div>
                                         </a>
                                     </li>
+                                    {{-- التخصص الدقيق --}}
+                                    <li Class="menu-item {{ request()->Is('Precises') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Precises.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>التخصص الدقيق</div>
+                                        </a>
+                                    </li>
+
                                 </ul>
                             </li>
 
