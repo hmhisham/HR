@@ -25,7 +25,6 @@
                         <th Class="text-center">رقم الناحية</th>
                         <th Class="text-center">اسم الناحية</th>
                         <th Class="text-center">العملية</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -36,8 +35,6 @@
                             <td class="text-center"><?php echo e($Area->GetDistrict ? $Area->GetDistrict->district_name : ''); ?></td>
                             <td Class="text-center"><?php echo e($Area->area_id); ?></td>
                             <td Class="text-center"><?php echo e($Area->area_name); ?></td>
-
-                            
                             <td Class="text-center">
                                 <div class="btn-group" role="group" aria-label="First group">
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('area-edit')): ?>
