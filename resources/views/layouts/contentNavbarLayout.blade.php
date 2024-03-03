@@ -85,7 +85,7 @@
                             {{-- الإعدادات --}}
 
                             <li
-                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades','Jobtitles') ? 'open active' : '' }}">
+                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scales') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -192,11 +192,16 @@
 
                                     <li Class="menu-item {{ request()->Is('Jobtitles') ? 'active' : '' }}">
                                         <a href = "{{ Route('Jobtitles.index') }}" Class="menu-link">
-                                         <i Class=''></i>
-                                         <div>العنوان الوظيفي</div>
-                                       </a>
-                                      </li>
-
+                                            <i Class=''></i>
+                                            <div>العنوان الوظيفي</div>
+                                        </a>
+                                    </li>
+                                    <li Class="menu-item {{ request()->Is('Scales') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Scales.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>التدرج الوظيفي</div>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 
