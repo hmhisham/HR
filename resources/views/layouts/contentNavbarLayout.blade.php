@@ -186,7 +186,7 @@
                                     <li Class="menu-item {{ request()->Is('Grades') ? 'active' : '' }}">
                                         <a href = "{{ Route('Grades.index') }}" Class="menu-link">
                                             <i Class=''></i>
-                                            <div>الدجات</div>
+                                            <div>الدرجات</div>
                                         </a>
                                     </li>
 
