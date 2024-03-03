@@ -16,5 +16,4 @@ class Graduations extends Model
     {
         return $this->belongsTo(Certificates::class, 'certificates_id' );
     }
-
 }

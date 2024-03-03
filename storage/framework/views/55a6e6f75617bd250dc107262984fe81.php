@@ -86,7 +86,7 @@
                             
 
                             <li
-                                class="menu-item <?php echo e(request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises') ? 'open active' : ''); ?>">
+                                class="menu-item <?php echo e(request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades') ? 'open active' : ''); ?>">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -184,7 +184,12 @@
                                             <div>التخصص الدقيق</div>
                                         </a>
                                     </li>
-
+                                    <li Class="menu-item <?php echo e(request()->Is('Grades') ? 'active' : ''); ?>">
+                                        <a href = "<?php echo e(Route('Grades.index')); ?>" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>الدجات</div>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 

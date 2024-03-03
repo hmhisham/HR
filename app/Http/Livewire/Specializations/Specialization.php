@@ -49,8 +49,8 @@ class Specialization extends Component
 
     public function chooseCertificate()
     {
-        $Certificates = Certificates::find($this->certificates_id);
-        $this->Graduations = $Certificates->Getgraduation;
+        $certificate = Certificates::where('id', $this->certificates_id)->get();
+        $this->Graduations = $certificate->Getcertificate;
 
     }
 

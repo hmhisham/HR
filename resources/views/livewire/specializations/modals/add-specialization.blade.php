@@ -13,8 +13,8 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-                              
-                                <div class="mb-3 col ">
+
+                                <div class="mb-3 col flex-fill {{ $certificates }}">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='certificates_id' wire:change='chooseCertificate'
                                             id="modalSpecializationscertificates_id"
@@ -22,8 +22,7 @@
                                             <option value=""></option>
                                             @foreach ($certificates as $certificate)
                                                 <option value="{{ $certificate->id }}">
-                                                    {{ $certificate->certificates_name }}
-                                                </option>
+                                                    {{ $certificate->certificates_name }}</option>
                                             @endforeach
                                         </select>
                                         <label for="modalSpecializationscertificates_id">الشهادة</label>
@@ -31,7 +30,9 @@
                                     @error('certificates_id')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
-                                </div>
+                            </div>
+
+
 
 
                                 <div class="mb-3 col flex-fill {{ $graduations }}">

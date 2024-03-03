@@ -13,8 +13,8 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-                              
-                                <div class="mb-3 col ">
+
+                                <div class="mb-3 col flex-fill <?php echo e($certificates); ?>">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='certificates_id' wire:change='chooseCertificate'
                                             id="modalSpecializationscertificates_id"
@@ -29,9 +29,7 @@ unset($__errorArgs, $__bag); ?>">
                                             <option value=""></option>
                                             <?php $__currentLoopData = $certificates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($certificate->id); ?>">
-                                                    <?php echo e($certificate->certificates_name); ?>
-
-                                                </option>
+                                                    <?php echo e($certificate->certificates_name); ?></option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         <label for="modalSpecializationscertificates_id">الشهادة</label>
@@ -46,7 +44,9 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                </div>
+                            </div>
+
+
 
 
                                 <div class="mb-3 col flex-fill <?php echo e($graduations); ?>">
