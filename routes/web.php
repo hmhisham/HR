@@ -18,6 +18,8 @@ use App\Http\Controllers\Dashboard\DashboardController;
 
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\Employees\EmployeesController;
+use App\Http\Controllers\JobTitles\JobTitlesController;
+
 use App\Http\Controllers\Infooffice\InfoofficeController;
 use App\Http\Controllers\Specialtys\SpecialtysController;
 use App\Http\Controllers\Graduations\GraduationsController;
@@ -92,6 +94,9 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Precises', PrecisesController::class);
         //الدرجة
         Route::RESOURCE('Grades', GradesController::class);
+        //العنوان الوظيفي
+        Route::  RESOURCE('Jobtitles', JobtitlesController::class);
+
     });
 });
 
