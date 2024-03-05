@@ -14,14 +14,14 @@
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
 
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="GetArea">
                     <form id="editAreaModalForm" autocomplete="off">
                         <div class="row row-cols-1">
-                            <div class="col mb-3">
+                            <div class="mb-3 col">
                                 <div class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='governorate_id' id="modalAreasgovernorate_id"
+                                            <select wire:model.defer='governorate_id' wire:change='chooseGovernorate' id="modalAreasgovernorate_id"
                                                 class="form-select @error('governorate_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($governorates as $governorate)
@@ -40,7 +40,7 @@
                                             <select wire:model.defer='district_id' id="modalAreasdistrict_id"
                                                 class="form-select @error('district_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
-                                                @foreach ($districts as $district)
+                                                @foreach ($Districts as $district)
                                                     <option value="{{ $district->id }}">
                                                         {{ $district->district_name }}
                                                     </option>

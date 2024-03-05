@@ -96,6 +96,9 @@ class Area extends Component
         $this->district_id = $this->Area->district_id;
         $this->area_id = $this->Area->area_id;
         $this->area_name = $this->Area->area_name;
+
+        $Governorates = Governorates::find($this->governorate_id);
+        $this->Districts = $Governorates->GetDistrict;
     }
 
     public function update()
@@ -104,7 +107,7 @@ class Area extends Component
         $this->validate([
             'governorate_id' => 'required',
             'district_id' => 'required',
-            'area_id' => 'required|unique:areas',
+            'area_id' => 'required|unique:areas,area_id,'.$this->AreaId,
             'area_name' => 'required',
 
         ], [
