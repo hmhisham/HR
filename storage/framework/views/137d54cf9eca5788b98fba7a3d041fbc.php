@@ -1,4 +1,6 @@
-<?php $__env->startSection('title', 'Graduations'); ?>
+
+
+<?php $__env->startSection('title', 'Scalems'); ?>
 <?php $__env->startSection('vendor-style'); ?>
     <link rel="stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
     <link rel = "stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')); ?>">
@@ -13,16 +15,16 @@
 <?php $__env->startSection('content'); ?> 
 <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('graduations.graduation')->html();
-} elseif ($_instance->childHasBeenRendered('UA3r1sM')) {
-    $componentId = $_instance->getRenderedChildComponentId('UA3r1sM');
-    $componentTag = $_instance->getRenderedChildComponentTagName('UA3r1sM');
+    $html = \Livewire\Livewire::mount('scalems.scalem')->html();
+} elseif ($_instance->childHasBeenRendered('qB7QQ3m')) {
+    $componentId = $_instance->getRenderedChildComponentId('qB7QQ3m');
+    $componentTag = $_instance->getRenderedChildComponentTagName('qB7QQ3m');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('UA3r1sM');
+    $_instance->preserveRenderedChild('qB7QQ3m');
 } else {
-    $response = \Livewire\Livewire::mount('graduations.graduation');
+    $response = \Livewire\Livewire::mount('scalems.scalem');
     $html = $response->html();
-    $_instance->logRenderedChild('UA3r1sM', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('qB7QQ3m', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -60,23 +62,23 @@ echo $html;
             }
         })
 
-        window.addEventListener('GraduationModalShow', event => {
+        window.addEventListener('ScalemModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
                }, 100);  
         })
       
         window.addEventListener('success', event => {
-            $('#addgraduationModal').modal('hide');
-            $('#editgraduationModal').modal('hide');
-            $('#removegraduationModal').modal('hide');
+            $('#addscalemModal').modal('hide');
+            $('#editscalemModal').modal('hide');
+            $('#removescalemModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.message
             })
         })
         window.addEventListener('error', event => {
-            $('#removegraduationModal').modal('hide');
+            $('#removescalemModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.message,
@@ -86,4 +88,4 @@ echo $html;
         })
     </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Graduations/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Scalems/index.blade.php ENDPATH**/ ?>

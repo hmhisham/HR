@@ -8,15 +8,22 @@ use App\Http\Controllers\Links\LinksController;
 use App\Http\Controllers\Units\UnitsController;
 
 use App\Http\Controllers\Branch\BranchController;
+use App\Http\Controllers\Grades\GradesController;
+
+use App\Http\Controllers\Scales\ScalesController;
+use App\Http\Controllers\Scalems\ScalemsController;
 use App\Http\Controllers\language\LanguageController;
+
+use App\Http\Controllers\Precises\PrecisesController;
 
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
 
 use App\Http\Controllers\Employees\EmployeesController;
-
+use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
+use App\Http\Controllers\Specialtys\SpecialtysController;
 use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
@@ -83,6 +90,16 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Graduations', GraduationsController::class);
         //الاختصاص
         Route::RESOURCE('Specializations', SpecializationsController::class);
+        //التخصص العام
+        Route::RESOURCE('Specialtys', SpecialtysController::class);
+        //التخصص الدقيق
+        Route::RESOURCE('Precises', PrecisesController::class);
+        //الدرجة
+        Route::RESOURCE('Grades', GradesController::class);
+        //العنوان الوظيفي
+        Route::RESOURCE('Jobtitles', JobtitlesController::class);
+        // الملاك السلم الوظيفي
+        Route::  RESOURCE('Scalems', ScalemsController::class);
     });
 });
 

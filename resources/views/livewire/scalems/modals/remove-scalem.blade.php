@@ -1,6 +1,6 @@
 
-<!-- Remove Scale Modal -->
-<div wire:ignore.self class="modal fade" id="removescaleModal" tabindex="-1" aria-hidden="true">
+<!-- Remove Scalem Modal -->
+<div wire:ignore.self class="modal fade" id="removescalemModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -10,22 +10,22 @@
                     <p>نافذة الحذف</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetScale" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="GetScalem" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">جار حذف البيانات...</h5>
 
                 <div wire:loading.remove>
-                <form id="removeScaleModalForm" onsubmit="return false" autocomplete="off">
+                <form id="removeScalemModalForm" onsubmit="return false" autocomplete="off">
                     <div class="row row-cols-1">
                         <div class="col mb-3">
                         '<Div Class="row">
 
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='scales_phase' type="text" id="modalScalescales_phase" placeholder="المرحلة"
-                                            class="form-control @error('scales_phase') is-invalid is-filled @enderror" disabled/>
-                                        <label for="modalScalescales_phase">المرحلة</label>
+                                        <input wire:model.defer='phase_emp' type="text" id="modalScalemphase_emp" placeholder="المرحلة الوظيفية"
+                                            class="form-control @error('phase_emp') is-invalid is-filled @enderror" disabled/>
+                                        <label for="modalScalemphase_emp">المرحلة الوظيفية</label>
                                     </div>
-                                    @error('scales_phase')
+                                    @error('phase_emp')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
@@ -45,4 +45,4 @@
     </div>
  </div>
 </div>
-<!--/ Delete Scale Modal -->
+<!--/ Delete Scalem Modal -->

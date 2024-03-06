@@ -85,7 +85,7 @@
                             {{-- الإعدادات --}}
 
                             <li
-                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations','Specializations') ? 'open active' : '' }}">
+                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -169,7 +169,39 @@
                                             <div>الاختصاص</div>
                                         </a>
                                     </li>
+                                    {{-- التخصص العام --}}
+                                    <li Class="menu-item {{ request()->Is('Specialtys') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Specialtys.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>التخصص العام</div>
+                                        </a>
+                                    </li>
+                                    {{-- التخصص الدقيق --}}
+                                    <li Class="menu-item {{ request()->Is('Precises') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Precises.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>التخصص الدقيق</div>
+                                        </a>
+                                    </li>
+                                    <li Class="menu-item {{ request()->Is('Grades') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Grades.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>الدرجات</div>
+                                        </a>
+                                    </li>
 
+                                    <li Class="menu-item {{ request()->Is('Jobtitles') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Jobtitles.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>العنوان الوظيفي</div>
+                                        </a>
+                                    </li>
+                                    <li Class="menu-item {{ request()->Is('Scalems') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Scalems.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>سلم الملاك</div>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 

@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title', 'Specializations'); ?>
 <?php $__env->startSection('vendor-style'); ?>
     <link rel="stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
@@ -16,15 +14,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('specializations.specialization')->html();
-} elseif ($_instance->childHasBeenRendered('f0kUfc2')) {
-    $componentId = $_instance->getRenderedChildComponentId('f0kUfc2');
-    $componentTag = $_instance->getRenderedChildComponentTagName('f0kUfc2');
+} elseif ($_instance->childHasBeenRendered('iKUlhJB')) {
+    $componentId = $_instance->getRenderedChildComponentId('iKUlhJB');
+    $componentTag = $_instance->getRenderedChildComponentTagName('iKUlhJB');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('f0kUfc2');
+    $_instance->preserveRenderedChild('iKUlhJB');
 } else {
     $response = \Livewire\Livewire::mount('specializations.specialization');
     $html = $response->html();
-    $_instance->logRenderedChild('f0kUfc2', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('iKUlhJB', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

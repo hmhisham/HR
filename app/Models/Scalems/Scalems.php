@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Models\Scales;
+namespace App\Models\Scalems;
 
 use App\Models\Grades\Grades;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Scales extends Model
+class Scalems extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = "scales";
+    protected $table = "scalems";
 
     Public function Getgrade()
     {

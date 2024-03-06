@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Scales;
+namespace App\Http\Controllers\Scalems;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ScalesController extends Controller
+class ScalemsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        Return View('content.Scales.index'); 
+        Return View('content.Scalems.index');
     }
 
     /**
