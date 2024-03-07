@@ -11,15 +11,16 @@ use App\Http\Controllers\Branch\BranchController;
 use App\Http\Controllers\Grades\GradesController;
 
 use App\Http\Controllers\Scales\ScalesController;
+use App\Http\Controllers\Scaleas\ScaleasController;
 use App\Http\Controllers\Scalems\ScalemsController;
+
 use App\Http\Controllers\language\LanguageController;
 
 use App\Http\Controllers\Precises\PrecisesController;
-
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Districts\DistrictsController;
 
+use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\Employees\EmployeesController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
@@ -99,7 +100,9 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         //العنوان الوظيفي
         Route::RESOURCE('Jobtitles', JobtitlesController::class);
         // الملاك السلم الوظيفي
-        Route::  RESOURCE('Scalems', ScalemsController::class);
+        Route::RESOURCE('Scalems', ScalemsController::class);
+        // العقود السلم الوظيفي
+        Route::RESOURCE('Scaleas', ScaleasController::class);
     });
 });
 

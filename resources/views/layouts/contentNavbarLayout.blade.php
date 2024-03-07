@@ -82,10 +82,25 @@
                                 </a>
                             </li>
 
+
+                            <li class="menu-item {{ request()->is('Governorates') ? 'open active' : '' }}">
+                                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                    <i class='menu-icon tf-icons mdi mdi-calculator'></i>
+                                    <span class="menu-title">قسم الحسابات</span>
+                                </a>
+                                <ul class="menu-sub">
+                                    <li class="menu-item {{ request()->is('Governorates') ? 'active' : '' }}">
+                                        <div class="menu-link">
+                                            <i class=""></i>
+                                            <Div>الرواتب</div>
+                                            </a>
+                                    </li>
+                                </ul>
+                            </li>
                             {{-- الإعدادات --}}
 
                             <li
-                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems') ? 'open active' : '' }}">
+                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -199,7 +214,13 @@
                                     <li Class="menu-item {{ request()->Is('Scalems') ? 'active' : '' }}">
                                         <a href = "{{ Route('Scalems.index') }}" Class="menu-link">
                                             <i Class=''></i>
-                                            <div>سلم الملاك</div>
+                                            <div>سلم رواتب الملاك</div>
+                                        </a>
+                                    </li>
+                                    <li Class="menu-item {{ request()->Is('Scaleas') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Scaleas.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>سلم رواتب العقود</div>
                                         </a>
                                     </li>
                                 </ul>

@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * جدول الملاك 
      */
     public function up(): void
     {
         Schema::create('scalems', function (Blueprint $table) {
             $table->id();
             $table->string('grades_id');
-                      $table->string('phase_emp');//المرحلة الوظيفية
+            $table->string('phase_emp');//المرحلة الوظيفية
             $table->string('scalems_salary_grade');//درجة الراتب
             $table->string('scalems_salary_stage');//مرحلة الراتب
             $table->string('scalems_amount');//مقدار العلاوة
