@@ -100,7 +100,7 @@
                             {{-- الإعدادات --}}
 
                             <li
-                                class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas' ,'Trainings') ? 'open active' : '' }}">
+                                class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas' ,'Trainings','Typeholidays') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -229,6 +229,14 @@
                                          <div>مجال التدريب</div>
                                        </a>
                                       </li>
+
+                                      <li Class="menu-item {{ request()->Is('Typeholidays') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Typeholidays.index') }}" Class="menu-link">
+                                         <i Class=''></i>
+                                         <div>نوع الاجازة</div>
+                                       </a>
+                                      </li>
+
                                 </ul>
                             </li>
 

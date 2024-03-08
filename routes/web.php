@@ -29,6 +29,7 @@ use App\Http\Controllers\Specialtys\SpecialtysController;
 use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
+use App\Http\Controllers\Typeholidays\TypeholidaysController;
 use App\Http\Controllers\Specializations\SpecializationsController;
 use App\Http\Controllers\Users\UsersAccounts\UsersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Roles\AccountRolesController;
@@ -104,8 +105,10 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Scalems', ScalemsController::class);
         // العقود السلم الوظيفي
         Route::RESOURCE('Scaleas', ScaleasController::class);
-//مجال التدريب
-        Route::  RESOURCE('Trainings', TrainingsController::class);
+        //مجال التدريب
+        Route::RESOURCE('Trainings', TrainingsController::class);
+        //نوع الاجازة
+        Route::RESOURCE('Typeholidays', TypeholidaysController::class);
     });
 });
 
