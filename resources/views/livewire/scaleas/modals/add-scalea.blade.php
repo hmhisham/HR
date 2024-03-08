@@ -33,7 +33,7 @@
                                         <select wire:model.defer='phase_emp' id="modalscaleasphase_emp"
                                             class="form-select @error('phase_emp') is-invalid is-filled @enderror">
                                             <option value=""></option>
-                                            @for ($i = 1; $i <= 11; $i++)
+                                            @for ($i = 1; $i <= 10; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                             @endfor
                                             <option value="">م</option>
@@ -64,7 +64,7 @@
                                             id="modalscaleasscaleas_salary_stage"
                                             class="form-select @error('scaleas_salary_stage') is-invalid is-filled @enderror">
                                             <option value=""></option>
-                                            @for ($i = 1; $i <= 30; $i++)
+                                            @for ($i = 1; $i <= 10; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                             @endfor
                                             <option value="">م</option>
@@ -82,13 +82,12 @@
                                         <select wire:model.defer='scaleas_amount' id="modalscaleasscaleas_amount"
                                             class="form-select @error('scaleas_amount') is-invalid is-filled @enderror">
                                             <option value=""></option>
-                                            <option value="3">3</option>
+                                            <option value="5">5</option>
                                             <option value="6">6</option>
+                                            <option value="7">7</option>
                                             <option value="8">8</option>
                                             <option value="10">10</option>
-                                            <option value="17">17</option>
-                                            <option value="20">20</option>
-                                            <option value="83">83</option>
+                                            <option value="12">12</option>
                                         </select>
                                         <label for="modalscaleasscaleas_amount">مقدار العلاوة</label>
                                     </div>
@@ -142,15 +141,15 @@
                                 </div>
 
                             </div>
-                            </div>
                         </div>
-                        <hr class="my-0">
-                        <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                            <button wire:click='store' wire:loading.attr="disabled" type="button"
-                                class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
-                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                aria-label="Close">تجاهل</button>
-                        </div>
+                    </div>
+                    <hr class="my-0">
+                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                        <button wire:click='store' wire:loading.attr="disabled" type="button"
+                            class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                            aria-label="Close">تجاهل</button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -101,7 +101,7 @@
                             
 
                             <li
-                                class="menu-item <?php echo e(request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas') ? 'open active' : ''); ?>">
+                                class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas' ,'Trainings') ? 'open active' : ''); ?>">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -224,6 +224,12 @@
                                             <div>سلم رواتب العقود</div>
                                         </a>
                                     </li>
+                                    <li Class="menu-item <?php echo e(request()->Is('Trainings') ? 'active' : ''); ?>">
+                                        <a href = "<?php echo e(Route('Trainings.index')); ?>" Class="menu-link">
+                                         <i Class=''></i>
+                                         <div>مجال التدريب</div>
+                                       </a>
+                                      </li>
                                 </ul>
                             </li>
 

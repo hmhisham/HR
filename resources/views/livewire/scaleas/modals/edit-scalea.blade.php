@@ -25,7 +25,8 @@
                                                 class="form-select @error('grades_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($grades as $grade)
-                                                    <option value="{{ $grade->id }}">{{ $grade->grades_name }}</option>
+                                                    <option value="{{ $grade->id }}">{{ $grade->grades_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             <label for="modalscaleasgrades_id">الدرجة الوظيفية</label>
@@ -39,7 +40,7 @@
                                             <select wire:model.defer='phase_emp' id="modalscaleasphase_emp"
                                                 class="form-select @error('phase_emp') is-invalid is-filled @enderror">
                                                 <option value=""></option>
-                                                @for ($i = 1; $i <= 11; $i++)
+                                                @for ($i = 1; $i <= 10; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
                                                 <option value="">م</option>
@@ -70,7 +71,7 @@
                                                 id="modalscaleasscaleas_salary_stage"
                                                 class="form-select @error('scaleas_salary_stage') is-invalid is-filled @enderror">
                                                 <option value=""></option>
-                                                @for ($i = 1; $i <= 30; $i++)
+                                                @for ($i = 1; $i <= 10; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
                                                 <option value="">م</option>
@@ -88,13 +89,12 @@
                                             <select wire:model.defer='scaleas_amount' id="modalscaleasscaleas_amount"
                                                 class="form-select @error('scaleas_amount') is-invalid is-filled @enderror">
                                                 <option value=""></option>
-                                                <option value="3">3</option>
+                                                <option value="5">5</option>
                                                 <option value="6">6</option>
+                                                <option value="7">7</option>
                                                 <option value="8">8</option>
                                                 <option value="10">10</option>
-                                                <option value="17">17</option>
-                                                <option value="20">20</option>
-                                                <option value="83">83</option>
+                                                <option value="12">12</option>
                                             </select>
                                             <label for="modalscaleasscaleas_amount">مقدار العلاوة</label>
                                         </div>
