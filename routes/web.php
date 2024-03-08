@@ -36,7 +36,8 @@ use App\Http\Controllers\PermissionsRoles\Roles\AccountRolesController;
 use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
 use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsController;
-
+use App\Http\Controllers\Specializationclassification\SpecializationclassificationController;
+use App\Http\Controllers\Typesservices\TypesservicesController;
 
 
 /*
@@ -109,6 +110,10 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Trainings', TrainingsController::class);
         //نوع الاجازة
         Route::RESOURCE('Typeholidays', TypeholidaysController::class);
+        //تصنيف التخصص
+        Route::  RESOURCE('Specializationclassification', SpecializationclassificationController::class);
+        //نوع الخدمة
+        Route::  RESOURCE('Typesservices', TypesservicesController::class);
     });
 });
 
