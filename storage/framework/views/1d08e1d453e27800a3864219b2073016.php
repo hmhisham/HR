@@ -10,9 +10,9 @@
                     </div>
                     <div>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-create')): ?>
-                            <button wire:click='AddEmployeeModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
-                                data-bs-toggle="modal" data-bs-target="#addemployeeModal">أضــافــة</button>
-                            <?php echo $__env->make('livewire.employees.modals.add-employee', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                            
+
+                            <a href="<?php echo e(route('Governorates.index')); ?>" class="mb-3 add-new btn btn-primary mb-md-0">أضــافــة</a>
                         <?php endif; ?>
                     </div>
                 </div>

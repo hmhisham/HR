@@ -46,7 +46,7 @@ $container = $container ?? 'container-xxl';
                             style="width: 50px;">
                         {{-- @include('_partials.macros', ['width' => 25, 'withbg' => '#666cff']) --}}
                     </span>
-                    <span class="app-brand-text demo menu-text fw-bold ms-2 fs-5">الموارد البشرية</span>
+                    <span class="app-brand-text demo menu-text fw-bold ms-2 fs-5">ادارة البيانات</span>
                 </a>
 
                 <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -73,15 +73,47 @@ $container = $container ?? 'container-xxl';
                     </a>
                 </li>
 
-                {{-- الموظفين --}}
-                <li Class="menu-item {{ request()->Is('Employees') ? 'active' : '' }}">
-                    <a href="{{ Route('Employees.index') }}" Class="menu-link">
-                        <i Class='menu-icon tf-icons mdi mdi-account-outline'></i>
-                        <Div>بيانات الموظفين</div>
+
+              <li class="menu-item {{ request()->is('Employees') ? 'open active' : '' }}">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
+                        <span class="menu-title">قسم الموارد البشرية</span>
                     </a>
+                    <ul class="menu-sub">
+                        <li Class="menu-item {{ request()->Is('Employees') ? 'active' : '' }}">
+                            <a href="{{ Route('Employees.index') }}" Class="menu-link">
+                                <i Class=''></i>
+                                <Div>بنك المعلومات</div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+                {{-- <li class="menu-item {{ request()->is('Employees') ? 'open active' : '' }}">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
+                        <span class="menu-title">قسم الموارد البشرية</span>
+                    </a>
+                    <ul class="menu-sub">
 
 
+
+                <li class="menu-item {{ request()->is('Employees') ? 'open active' : '' }}">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class=''></i>
+                        <span class="menu-title">بنك المعلومات</span>
+                    </a>
+                    <ul class="menu-sub">
+                                            <li class="menu-item {{ request()->is('Employees') ? 'active' : '' }}">
+                            <a href="{{ Route('Employees.index') }}" class="menu-link">
+                                <i class=''></i>
+                                <div>بيانات الموظفين</div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li> --}}
+            {{-- </ul>
+        </li> --}}
                 <li class="menu-item {{ request()->is('Governorates') ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-calculator'></i>
