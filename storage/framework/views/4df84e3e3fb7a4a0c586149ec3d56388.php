@@ -9,15 +9,13 @@
                         <input wire:model="EmployeeSearch" type="text" class="form-control" placeholder="بحث...">
                     </div>
                     <div>
-                        @can('employee-create')
-                            <button wire:click='AddEmployeeModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
-                                data-bs-toggle="modal" data-bs-target="#addemployeeModal">أضــافــة</button>
-                            @include('livewire.employees.modals.add-employee')
-                        @endcan
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-create')): ?>
+                            <a href="<?php echo e(Route('AddEmployee')); ?>" class="mb-3 add-new btn btn-primary mb-md-0">أضــافــة</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-            @can('employee-list')
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-list')): ?>
                 <table class="table">
                     <thead class="table-light">
                         <tr>
@@ -34,49 +32,47 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($Employees as $Employee)
+                        <?php $__currentLoopData = $Employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td Class="text-center">{{ $Employee->JobNumber }}</td>
-                                <td Class="text-center">{{ $Employee->FileNumber }}</td>
-                                <td Class="text-center">{{ $Employee->FirstName }}</td>
-                                <td Class="text-center">{{ $Employee->SecondName }}</td>
-                                <td Class="text-center">{{ $Employee->ThirdName }}</td>
-                                <td Class="text-center">{{ $Employee->FourthName }}</td>
-                                <td Class="text-center">{{ $Employee->LastName }}</td>
-                                <td Class="text-center">{{ $Employee->FullName }}</td>
+                                <td><?php echo e($loop->iteration); ?></td>
+                                <td Class="text-center"><?php echo e($Employee->JobNumber); ?></td>
+                                <td Class="text-center"><?php echo e($Employee->FileNumber); ?></td>
+                                <td Class="text-center"><?php echo e($Employee->FirstName); ?></td>
+                                <td Class="text-center"><?php echo e($Employee->SecondName); ?></td>
+                                <td Class="text-center"><?php echo e($Employee->ThirdName); ?></td>
+                                <td Class="text-center"><?php echo e($Employee->FourthName); ?></td>
+                                <td Class="text-center"><?php echo e($Employee->LastName); ?></td>
+                                <td Class="text-center"><?php echo e($Employee->FullName); ?></td>
 
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
-                                        @can('employee-edit')
-                                            <button wire:click="GetEmployee({{ $Employee->id }})"
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-edit')): ?>
+                                            <button wire:click="GetEmployee(<?php echo e($Employee->id); ?>)"
                                                 class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editEmployeeModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
-                                        @endcan
-                                        @can('employee-delete')
-                                            <button wire:click="GetEmployee({{ $Employee->id }})"
+                                        <?php endif; ?>
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-delete')): ?>
+                                            <button wire:click="GetEmployee(<?php echo e($Employee->id); ?>)"
                                                 class="p-0 px-1 btn btn-outline-danger waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#removeEmployeeModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>
-                                        @endcan
+                                        <?php endif; ?>
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
 
                 <div class="mt-2 d-flex justify-content-center">
-                    {{ $links->links() }}
+                    <?php echo e($links->links()); ?>
+
                 </div>
-                <!-- Modal -->
-                @include('livewire.employees.modals.edit-employee')
-                @include('livewire.employees.modals.remove-employee')
-                <!-- Modal -->
-            @endcan
+            <?php endif; ?>
         </div>
     </div>
 </div>
+<?php /**PATH F:\LaravelProjects\HR\resources\views/livewire/emp-info-bank/emp-info-bank.blade.php ENDPATH**/ ?>

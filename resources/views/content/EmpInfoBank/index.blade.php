@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    @livewire('employees.employee')
+    @livewire('emp-info-bank.emp-info-bank')
 @endsection
 
 @section('vendor-script')

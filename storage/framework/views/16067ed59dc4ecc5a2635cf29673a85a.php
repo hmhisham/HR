@@ -30,15 +30,12 @@
 
 <?php $__env->startSection('content'); ?>
     <div class="row gy-4">
-
-
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4">
-
             <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card text-center">
+                <div class="text-center card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
-                            <a href="<?php echo e(route('Employees.index')); ?>" class="menu-link">
+                        <div class="flex-wrap gap-2 d-flex justify-content-between align-items-start">
+                            <a href="<?php echo e(route('EmpInfoBank')); ?>" class="menu-link">
                                 <div class="avatar">
                                     <div
                                         class="avatar-initial bg-label-info rounded <?php echo e(request()->is('Employees') ? 'active' : ''); ?>">
@@ -47,7 +44,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="card-info mt-4 pt-1">
+                        <div class="pt-1 mt-4 card-info">
                             <h5 class="mb-2"><?php echo e(App\Models\Employees\Employees::count()); ?></h5>
                             <p class="text-muted">عدد الموظفين</p>
                             <div class="badge bg-label-secondary rounded-pill">بيانات جميع الموظفين</div>
@@ -56,11 +53,11 @@
                 </div>
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card text-center">
+                <div class="text-center card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                        <div class="flex-wrap gap-2 d-flex justify-content-between align-items-start">
                             <div class="avatar">
-                                <div class="avatar-initial bg-label-warning rounded">
+                                <div class="rounded avatar-initial bg-label-warning">
                                     <i class="mdi mdi-link mdi-24px"></i>
                                 </div>
                             </div>
@@ -69,7 +66,7 @@
                                 <i class="mdi mdi-chevron-up text-success"></i>
                             </div>
                         </div>
-                        <div class="card-info mt-4 pt-1">
+                        <div class="pt-1 mt-4 card-info">
                             <h5 class="mb-2">142.8k</h5>
                             <p class="text-muted">Total Impression</p>
                             <div class="badge bg-label-secondary rounded-pill">Last One Year</div>
@@ -78,11 +75,11 @@
                 </div>
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card text-center">
+                <div class="text-center card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                        <div class="flex-wrap gap-2 d-flex justify-content-between align-items-start">
                             <div class="avatar">
-                                <div class="avatar-initial bg-label-warning rounded">
+                                <div class="rounded avatar-initial bg-label-warning">
                                     <i class="mdi mdi-wallet-giftcard mdi-24px"></i>
                                 </div>
                             </div>
@@ -91,7 +88,7 @@
                                 <i class="mdi mdi-chevron-up text-danger"></i>
                             </div>
                         </div>
-                        <div class="card-info mt-4 pt-1">
+                        <div class="pt-1 mt-4 card-info">
                             <h5 class="mb-2">$89.34k</h5>
                             <p class="text-muted">Total Profit</p>
                             <div class="badge bg-label-secondary rounded-pill">Last One Year</div>
@@ -100,11 +97,11 @@
                 </div>
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card text-center">
+                <div class="text-center card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                        <div class="flex-wrap gap-2 d-flex justify-content-between align-items-start">
                             <div class="avatar">
-                                <div class="avatar-initial bg-label-warning rounded">
+                                <div class="rounded avatar-initial bg-label-warning">
                                     <i class="mdi mdi-wallet-giftcard mdi-24px"></i>
                                 </div>
                             </div>
@@ -113,7 +110,7 @@
                                 <i class="mdi mdi-chevron-up text-danger"></i>
                             </div>
                         </div>
-                        <div class="card-info mt-4 pt-1">
+                        <div class="pt-1 mt-4 card-info">
                             <h5 class="mb-2">$89.34k</h5>
                             <p class="text-muted">Total Profit</p>
                             <div class="badge bg-label-secondary rounded-pill">Last One Year</div>
@@ -122,11 +119,11 @@
                 </div>
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card text-center">
+                <div class="text-center card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                        <div class="flex-wrap gap-2 d-flex justify-content-between align-items-start">
                             <div class="avatar">
-                                <div class="avatar-initial bg-label-warning rounded">
+                                <div class="rounded avatar-initial bg-label-warning">
                                     <i class="mdi mdi-wallet-giftcard mdi-24px"></i>
                                 </div>
                             </div>
@@ -135,7 +132,7 @@
                                 <i class="mdi mdi-chevron-up text-danger"></i>
                             </div>
                         </div>
-                        <div class="card-info mt-4 pt-1">
+                        <div class="pt-1 mt-4 card-info">
                             <h5 class="mb-2">$89.34k</h5>
                             <p class="text-muted">Total Profit</p>
                             <div class="badge bg-label-secondary rounded-pill">Last One Year</div>
@@ -144,11 +141,11 @@
                 </div>
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card text-center">
+                <div class="text-center card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                        <div class="flex-wrap gap-2 d-flex justify-content-between align-items-start">
                             <div class="avatar">
-                                <div class="avatar-initial bg-label-warning rounded">
+                                <div class="rounded avatar-initial bg-label-warning">
                                     <i class="mdi mdi-wallet-giftcard mdi-24px"></i>
                                 </div>
                             </div>
@@ -157,7 +154,7 @@
                                 <i class="mdi mdi-chevron-up text-danger"></i>
                             </div>
                         </div>
-                        <div class="card-info mt-4 pt-1">
+                        <div class="pt-1 mt-4 card-info">
                             <h5 class="mb-2">$89.34k</h5>
                             <p class="text-muted">Total Profit</p>
                             <div class="badge bg-label-secondary rounded-pill">Last One Year</div>
@@ -167,11 +164,11 @@
             </div>
         </div>
         
-        <div class="col-12 mb-4">
+        <div class="mb-4 col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div>
-                        <h5 class="card-title mb-0">Balance</h5>
+                        <h5 class="mb-0 card-title">Balance</h5>
                         <small class="text-muted">Commercial networks &amp; enterprises</small>
                     </div>
                     <div class="d-sm-flex d-none align-items-center">
@@ -521,9 +518,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH F:\LaravelProjects\HR\resources\views/content/Owner/Dashboard/Dashboard.blade.php ENDPATH**/ ?>

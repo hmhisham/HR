@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Graduations\Graduations;
 use App\Http\Controllers\Areas\AreasController;
 use App\Http\Controllers\Links\LinksController;
 
@@ -10,7 +9,6 @@ use App\Http\Controllers\Units\UnitsController;
 use App\Http\Controllers\Branch\BranchController;
 use App\Http\Controllers\Grades\GradesController;
 
-use App\Http\Controllers\Scales\ScalesController;
 use App\Http\Controllers\Scaleas\ScaleasController;
 use App\Http\Controllers\Scalems\ScalemsController;
 
@@ -21,15 +19,16 @@ use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 
 use App\Http\Controllers\Districts\DistrictsController;
-use App\Http\Controllers\Employees\EmployeesController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Trainings\TrainingsController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
 use App\Http\Controllers\Specialtys\SpecialtysController;
+use App\Http\Controllers\EmpInfoBank\EmpInfoBankController;
 use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
 use App\Http\Controllers\Typeholidays\TypeholidaysController;
+use App\Http\Controllers\Typesservices\TypesservicesController;
 use App\Http\Controllers\Specializations\SpecializationsController;
 use App\Http\Controllers\Users\UsersAccounts\UsersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Roles\AccountRolesController;
@@ -37,8 +36,7 @@ use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
 use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsController;
 use App\Http\Controllers\Specializationclassification\SpecializationclassificationController;
-use App\Http\Controllers\Typesservices\TypesservicesController;
-
+use Faker\Guesser\Name;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +69,9 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Customers-Accounts', CustomersAccountsController::class);
 
         // بيانات الموظف
-        Route::RESOURCE('Employees', EmployeesController::class);
+        Route::GET('EmpInfoBank', [EmpInfoBankController::class, 'index'])->name('EmpInfoBank');
+        Route::GET('AddEmployee', [EmpInfoBankController::class, 'addEmployee'])->name('AddEmployee');
+
         // المحافظات I
         Route::RESOURCE('Governorates', GovernoratesController::class);
         // الاقضية I
