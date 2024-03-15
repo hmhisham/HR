@@ -587,7 +587,7 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='PlaceBirth' id="modalEmployeePlaceBirth"
-                                                placeholder="محل الولادة" placeholder="الحالةالاجتماعية"
+                                                placeholder="محل الولادة"
                                                 class="form-select <?php $__errorArgs = ['PlaceBirth'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -1107,7 +1107,7 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                                 <div Class="row">
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='DateIssueId' type="text" id="DateIssueId"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -1125,7 +1125,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='EndDateId' type="text" id="EndDateId"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -1143,7 +1143,23 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileId' type="file" class="form-control"
+                                                id="FileId"
+                                                class="form-control <?php $__errorArgs = ['FileId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeFileId">رفع البطاقة</label>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                         <hr>
@@ -1233,7 +1249,7 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                                 <div Class="row">
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='DateIssueCert' type="text" id="DateIssueCert"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -1251,7 +1267,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='EndDateCert' type="text" id="EndDateCert"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -1268,6 +1284,21 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileCert' type="file" class="form-control"
+                                                id="FileCert"
+                                                class="form-control <?php $__errorArgs = ['FileCert'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeFileCert">رفع الشهادة</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1359,7 +1390,7 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                                 <div Class="row">
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='DateIssueCard' type="text" id="DateIssueCard"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -1377,7 +1408,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='EndDateCard' type="text" id="EndDateCard"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -1394,6 +1425,21 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileCard' type="file" class="form-control"
+                                                id="FileCard"
+                                                class="form-control <?php $__errorArgs = ['FileCard'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeFileCard">رفع البطاقة </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1483,6 +1529,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
+                                </div>
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='CenterNoSupply' type="text"
@@ -1507,6 +1555,21 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileSupply' type="file" class="form-control"
+                                                id="FileSupply"
+                                                class="form-control <?php $__errorArgs = ['FileSupply'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeFileSupply">رفع التموينية</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1548,16 +1611,20 @@ unset($__errorArgs, $__bag); ?>
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='LicenseDriving' type="text"
-                                                id="modalEmployeeLicenseDriving" placeholder="اجازة السوق"
-                                                class="form-control <?php $__errorArgs = ['LicenseDriving'];
+                                            <select wire:model.defer='LicenseDriving' id="modalEmployeeLicenseDriving"
+                                                placeholder="اجازة السوق" placeholder="اجازة السوق"
+                                                class="form-select <?php $__errorArgs = ['LicenseDriving'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <option value="نعم">نعم</option>
+                                                <option value="لا">لا</option>
+                                            </select>
                                             <label for="modalEmployeeLicenseDriving">اجازة السوق</label>
                                         </div>
                                         <?php $__errorArgs = ['LicenseDriving'];
@@ -1589,6 +1656,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
+                                </div>
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='EndDateDriving' type="text" id="EndDateDriving"
@@ -1606,6 +1675,21 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileDriving' type="file" class="form-control"
+                                                id="FileDriving"
+                                                class="form-control <?php $__errorArgs = ['FileDriving'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeFileDriving">رفع الاجازة </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -384,7 +384,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='PlaceBirth' id="modalEmployeePlaceBirth"
-                                                placeholder="محل الولادة" placeholder="الحالةالاجتماعية"
+                                                placeholder="محل الولادة"
                                                 class="form-select @error('PlaceBirth') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 <option value="داخل العراق">داخل العراق</option>
@@ -680,7 +680,7 @@
                                     </div>
                                 </div>
                                 <div Class="row">
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='DateIssueId' type="text" id="DateIssueId"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -691,7 +691,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='EndDateId' type="text" id="EndDateId"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -702,7 +702,16 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileId' type="file" class="form-control"
+                                                id="FileId"
+                                                class="form-control @error('FileId') is-invalid is-filled @enderror" />
+                                            <label for="modalEmployeeFileId">رفع البطاقة</label>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                         <hr>
@@ -764,7 +773,7 @@
                                     </div>
                                 </div>
                                 <div Class="row">
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='DateIssueCert' type="text" id="DateIssueCert"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -775,7 +784,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='EndDateCert' type="text" id="EndDateCert"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -785,6 +794,14 @@
                                         @error('EndDateCert')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileCert' type="file" class="form-control"
+                                                id="FileCert"
+                                                class="form-control @error('FileCert') is-invalid is-filled @enderror" />
+                                            <label for="modalEmployeeFileCert">رفع الشهادة</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -848,7 +865,7 @@
                                     </div>
                                 </div>
                                 <div Class="row">
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='DateIssueCard' type="text" id="DateIssueCard"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -859,7 +876,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-                                    <div class="col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='EndDateCard' type="text" id="EndDateCard"
                                                 placeholder="YYYY-MM-DD" class="form-control flatpickr-input Flatpickr"
@@ -869,6 +886,14 @@
                                         @error('EndDateCard')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileCard' type="file" class="form-control"
+                                                id="FileCard"
+                                                class="form-control @error('FileCard') is-invalid is-filled @enderror" />
+                                            <label for="modalEmployeeFileCard">رفع البطاقة </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -930,6 +955,8 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
+                                </div>
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='CenterNoSupply' type="text"
@@ -940,6 +967,14 @@
                                         @error('CenterNoSupply')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileSupply' type="file" class="form-control"
+                                                id="FileSupply"
+                                                class="form-control @error('FileSupply') is-invalid is-filled @enderror" />
+                                            <label for="modalEmployeeFileSupply">رفع التموينية</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -981,9 +1016,13 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='LicenseDriving' type="text"
-                                                id="modalEmployeeLicenseDriving" placeholder="اجازة السوق"
-                                                class="form-control @error('LicenseDriving') is-invalid is-filled @enderror" />
+                                            <select wire:model.defer='LicenseDriving' id="modalEmployeeLicenseDriving"
+                                                placeholder="اجازة السوق" placeholder="اجازة السوق"
+                                                class="form-select @error('LicenseDriving') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                <option value="نعم">نعم</option>
+                                                <option value="لا">لا</option>
+                                            </select>
                                             <label for="modalEmployeeLicenseDriving">اجازة السوق</label>
                                         </div>
                                         @error('LicenseDriving')
@@ -1001,6 +1040,8 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
+                                </div>
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='EndDateDriving' type="text" id="EndDateDriving"
@@ -1011,6 +1052,14 @@
                                         @error('EndDateDriving')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileDriving' type="file" class="form-control"
+                                                id="FileDriving"
+                                                class="form-control @error('FileDriving') is-invalid is-filled @enderror" />
+                                            <label for="modalEmployeeFileDriving">رفع الاجازة </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
