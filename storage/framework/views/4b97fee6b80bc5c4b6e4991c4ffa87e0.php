@@ -3,11 +3,18 @@
         اضافة معلومات الموظف
     </h4>
 
+    <div>
+        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-create')): ?>
+            <a href="<?php echo e(Route('AddEmployee')); ?>" class=" sticky-button btn btn-primary">حفظ المعلومات كمسودة</a>
+        <?php endif; ?>
+    </div>
+
     <div class="mb-4 col-12">
         <div class="mt-2 bs-stepper wizard-vertical vertical wizard-numbered wizard-modern">
             <div class="bs-stepper-header gap-lg-2">
                 
-                <div class="step <?php echo e(1 == $currentStep ? $activatedStep:''); ?> <?php echo e(1 < $currentStep ? $crossedStep:''); ?>" data-target="#step-01">
+                <div class="step <?php echo e(1 == $currentStep ? $activatedStep : ''); ?> <?php echo e(1 < $currentStep ? $crossedStep : ''); ?>"
+                    data-target="#step-01">
                     <button  type="button" class="step-trigger">
                         <span class="bs-stepper-circle"><i class="mdi mdi-check"></i></span>
                         <span class="bs-stepper-label">
@@ -22,7 +29,8 @@
                 <div class="line"></div>
 
                 
-                <div class="step <?php echo e(2 == $currentStep ? $activatedStep:''); ?> <?php echo e(2 < $currentStep ? $crossedStep:''); ?>" data-target="#step-02">
+                <div class="step <?php echo e(2 == $currentStep ? $activatedStep : ''); ?> <?php echo e(2 < $currentStep ? $crossedStep : ''); ?>"
+                    data-target="#step-02">
                     <button  type="button" class="step-trigger">
                         <span class="bs-stepper-circle"><i class="mdi mdi-check"></i></span>
                         <span class="bs-stepper-label">
@@ -37,7 +45,8 @@
                 <div class="line"></div>
 
                 
-                <div class="step <?php echo e(3 == $currentStep ? $activatedStep:''); ?> <?php echo e(3 < $currentStep ? $crossedStep:''); ?>" data-target="#step-03">
+                <div class="step <?php echo e(3 == $currentStep ? $activatedStep : ''); ?> <?php echo e(3 < $currentStep ? $crossedStep : ''); ?>"
+                    data-target="#step-03">
                     <button  type="button" class="step-trigger">
                         <span class="bs-stepper-circle"><i class="mdi mdi-check"></i></span>
                         <span class="bs-stepper-label">
@@ -52,7 +61,8 @@
                 <div class="line"></div>
 
                 
-                <div class="step <?php echo e(4 == $currentStep ? $activatedStep:''); ?> <?php echo e(4 < $currentStep ? $crossedStep:''); ?>" data-target="#step-04">
+                <div class="step <?php echo e(4 == $currentStep ? $activatedStep : ''); ?> <?php echo e(4 < $currentStep ? $crossedStep : ''); ?>"
+                    data-target="#step-04">
                     <button  type="button" class="step-trigger">
                         <span class="bs-stepper-circle"><i class="mdi mdi-check"></i></span>
                         <span class="bs-stepper-label">
@@ -67,7 +77,8 @@
                 <div class="line"></div>
 
                 
-                <div class="step <?php echo e(5 == $currentStep ? $activatedStep:''); ?> <?php echo e(5 < $currentStep ? $crossedStep:''); ?>" data-target="#step-05">
+                <div class="step <?php echo e(5 == $currentStep ? $activatedStep : ''); ?> <?php echo e(5 < $currentStep ? $crossedStep : ''); ?>"
+                    data-target="#step-05">
                     <button  type="button" class="step-trigger">
                         <span class="bs-stepper-circle"><i class="mdi mdi-check"></i></span>
                         <span class="bs-stepper-label">
@@ -82,7 +93,8 @@
                 <div class="line"></div>
 
                 
-                <div class="step <?php echo e(6 == $currentStep ? $activatedStep:''); ?> <?php echo e(6 < $currentStep ? $crossedStep:''); ?>" data-target="#step-06">
+                <div class="step <?php echo e(6 == $currentStep ? $activatedStep : ''); ?> <?php echo e(6 < $currentStep ? $crossedStep : ''); ?>"
+                    data-target="#step-06">
                     <button  type="button" class="step-trigger">
                         <span class="bs-stepper-circle"><i class="mdi mdi-check"></i></span>
                         <span class="bs-stepper-label">
@@ -97,7 +109,8 @@
                 <div class="line"></div>
 
                 
-                <div class="step <?php echo e(7 == $currentStep ? $activatedStep:''); ?> <?php echo e(7 < $currentStep ? $crossedStep:''); ?>" data-target="#step-07">
+                <div class="step <?php echo e(7 == $currentStep ? $activatedStep : ''); ?> <?php echo e(7 < $currentStep ? $crossedStep : ''); ?>"
+                    data-target="#step-07">
                     <button  type="button" class="step-trigger">
                         <span class="bs-stepper-circle"><i class="mdi mdi-check"></i></span>
                         <span class="bs-stepper-label">
@@ -112,7 +125,8 @@
                 <div class="line"></div>
 
                 
-                <div class="step <?php echo e(8 == $currentStep ? $activatedStep:''); ?> <?php echo e(8 < $currentStep ? $crossedStep:''); ?>" data-target="#step-08">
+                <div class="step <?php echo e(8 == $currentStep ? $activatedStep : ''); ?> <?php echo e(8 < $currentStep ? $crossedStep : ''); ?>"
+                    data-target="#step-08">
                     <button  type="button" class="step-trigger">
                         <span class="bs-stepper-circle"><i class="mdi mdi-check"></i></span>
                         <span class="bs-stepper-label">
@@ -128,25 +142,27 @@
 
             <div class="bs-stepper-content">
                 <form onSubmit="return false">
-                    <div id="step-00" class="content <?php echo e(0 == $currentStep ? $activatedStep:''); ?>">
+                    <div id="step-00" class="content <?php echo e(0 == $currentStep ? $activatedStep : ''); ?>">
                         <h4 class="mb-3 fw-bolder">Tests Study step</h4>
                         <hr>
+
                         <h4 class="mb-3 text-center fw-bolder">Tests Study step</h4>
                         <h3 class="mb-3 text-center fw-bolder text-danger">Instep (STOP)</h3>
+
                         <hr>
                     </div>
 
-                    <div id="step-01" class="content <?php echo e(1 == $currentStep ? $activatedStep:''); ?>">
+                    <div id="step-01" class="content <?php echo e(1 == $currentStep ? $activatedStep : ''); ?>">
                         <h4 class="mb-3 fw-bolder">معلومات الاسم</h4>
                         <hr>
 
                         <div class="row mb-n4">
                             <div class="mb-3 col">
-                                <Div Class="row">
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='JobNumber' type="text" id="modalEmployeeJobNumber"
-                                                placeholder="الرقم الوظيفي"
+                                            <input wire:model.defer='JobNumber' type="text"
+                                                id="modalEmployeeJobNumber" placeholder="الرقم الوظيفي"
                                                 class="form-control <?php $__errorArgs = ['JobNumber'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -168,11 +184,10 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FileNumber' type="text" id="modalEmployeeFileNumber"
-                                                placeholder="رقم الاضبارة"
+                                            <input wire:model.defer='FileNumber' type="text"
+                                                id="modalEmployeeFileNumber" placeholder="رقم الاضبارة"
                                                 class="form-control <?php $__errorArgs = ['FileNumber'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -195,11 +210,12 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
-                                <Div Class="row">
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FirstName' wire:keyup="concatFullName('FirstName', $event.target.value)" type="text" id="modalEmployeeFirstName"
-                                                placeholder="الاسم الأول"
+                                            <input wire:model.defer='FirstName'
+                                                wire:keyup="concatFullName('FirstName', $event.target.value)"
+                                                type="text" id="modalEmployeeFirstName" placeholder="الاسم الأول"
                                                 class="form-control <?php $__errorArgs = ['FirstName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -224,7 +240,9 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='SecondName' wire:keyup="concatFullName('SecondName', $event.target.value)" type="text" id="modalEmployeeSecondName"
+                                            <input wire:model.defer='SecondName'
+                                                wire:keyup="concatFullName('SecondName', $event.target.value)"
+                                                type="text" id="modalEmployeeSecondName"
                                                 placeholder="الاسم الثاني"
                                                 class="form-control <?php $__errorArgs = ['SecondName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -250,8 +268,9 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='ThirdName' wire:keyup="concatFullName('ThirdName', $event.target.value)" type="text" id="modalEmployeeThirdName"
-                                                placeholder="الاسم الثالث"
+                                            <input wire:model.defer='ThirdName'
+                                                wire:keyup="concatFullName('ThirdName', $event.target.value)"
+                                                type="text" id="modalEmployeeThirdName" placeholder="الاسم الثالث"
                                                 class="form-control <?php $__errorArgs = ['ThirdName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -274,10 +293,12 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
-                                <Div Class="row">
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FourthName' wire:keyup="concatFullName('FourthName', $event.target.value)" type="text" id="modalEmployeeFourthName"
+                                            <input wire:model.defer='FourthName'
+                                                wire:keyup="concatFullName('FourthName', $event.target.value)"
+                                                type="text" id="modalEmployeeFourthName"
                                                 placeholder="الاسم الرابع"
                                                 class="form-control <?php $__errorArgs = ['FourthName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -303,8 +324,9 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='LastName' wire:keyup="concatFullName('LastName', $event.target.value)" type="text" id="modalEmployeeLastName"
-                                                placeholder="اللقب"
+                                            <input wire:model.defer='LastName'
+                                                wire:keyup="concatFullName('LastName', $event.target.value)"
+                                                type="text" id="modalEmployeeLastName" placeholder="اللقب"
                                                 class="form-control <?php $__errorArgs = ['LastName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -329,8 +351,8 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FullName' type="text" id="modalEmployeeFullName"
-                                                placeholder="الاسم الكامل" readonly
+                                            <input wire:model.defer='FullName' type="text"
+                                                id="modalEmployeeFullName" placeholder="الاسم الكامل" readonly
                                                 class="form-control <?php $__errorArgs = ['FullName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -353,11 +375,12 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
-                                <Div Class="row">
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='MotherName' wire:keyup="concatFullName('MotherName', $event.target.value)" type="text" id="modalEmployeeMotherName"
-                                                placeholder="اسم الام"
+                                            <input wire:model.defer='MotherName'
+                                                wire:keyup="concatFullName('MotherName', $event.target.value)"
+                                                type="text" id="modalEmployeeMotherName" placeholder="اسم الام"
                                                 class="form-control <?php $__errorArgs = ['MotherName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -383,7 +406,8 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='MotherFatherName' type="text"
-                                            wire:keyup="concatFullName('MotherFatherName', $event.target.value)"  id="modalEmployeeMotherFatherName" placeholder="اسم والد الام"
+                                                wire:keyup="concatFullName('MotherFatherName', $event.target.value)"
+                                                id="modalEmployeeMotherFatherName" placeholder="اسم والد الام"
                                                 class="form-control <?php $__errorArgs = ['MotherFatherName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -409,7 +433,8 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='MotherGrandName' type="text"
-                                            wire:keyup="concatFullName('MotherGrandName', $event.target.value)"  id="modalEmployeeMotherGrandName" placeholder="اسم جد الام"
+                                                wire:keyup="concatFullName('MotherGrandName', $event.target.value)"
+                                                id="modalEmployeeMotherGrandName" placeholder="اسم جد الام"
                                                 class="form-control <?php $__errorArgs = ['MotherGrandName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -432,11 +457,12 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
-                                <Div Class="row">
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='MotherLastName' type="text"
-                                            wire:keyup="concatFullName('MotherLastName', $event.target.value)"  id="modalEmployeeMotherLastName" placeholder="لقب الام"
+                                                wire:keyup="concatFullName('MotherLastName', $event.target.value)"
+                                                id="modalEmployeeMotherLastName" placeholder="لقب الام"
                                                 class="form-control <?php $__errorArgs = ['MotherLastName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -462,7 +488,8 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='FullMothersName' type="text"
-                                                id="modalEmployeeFullMothersName" placeholder="اسم الام الكامل" readonly
+                                                id="modalEmployeeFullMothersName" placeholder="اسم الام الكامل"
+                                                readonly
                                                 class="form-control <?php $__errorArgs = ['FullMothersName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -518,7 +545,8 @@ unset($__errorArgs, $__bag); ?>
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
-                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)" class="btn btn-outline-secondary ">
+                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)" disabled
+                                    class="btn btn-outline-secondary ">
                                     <div wire:loading.remove wire:target="ifPre">
                                         <span class="align-middle d-sm-inline-block d-none">السابق</span>
                                     </div>
@@ -528,7 +556,8 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                 </button>
-                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)" class="btn btn-primary ext" >
+                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-primary ext">
                                     <div wire:loading.remove wire:target="ifNext">
                                         <span class="align-middle d-sm-inline-block d-none me-sm-1">التالي</span>
                                     </div>
@@ -542,14 +571,234 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
 
-                    <div id="step-02" class="content <?php echo e(2 == $currentStep ? $activatedStep:''); ?>">
+                    <div id="step-02" class="content <?php echo e(2 == $currentStep ? $activatedStep : ''); ?>">
                         <h4 class="mb-3 fw-bolder">البيانات الشخصية</h4>
                         <hr>
 
+                        <div class="row mb-n4">
+                            <div class="mb-3 col">
+                                <div Class="row">
+                                    <div class="col-6">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='DateBirth' type="text" id="DateBirth"
+                                                placeholder="YYYY-MM-DD"
+                                                class="form-control flatpickr-input Flatpickr <?php $__errorArgs = ['DateBirth'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" readonly="readonly">
+                                            <label for="DateBirth">تاريخ التولد</label>
+                                        </div>
+                                        <?php $__errorArgs = ['DateBirth'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='PlaceBirth' id="modalEmployeePlaceBirth"
+                                                placeholder="محل الولادة"
+                                                class="form-select <?php $__errorArgs = ['PlaceBirth'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <option value="داخل العراق">داخل العراق</option>
+                                                <option value="خارج العراق">خارج العراق</option>
+                                            </select>
+                                            <label for="modalEmployeePlaceBirth">محل الولادة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['PlaceBirth'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                                <div Class="row">
+                                    <div class="mb-3 col ">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='BirthGovernorate' wire:change='GetDistricts($event.target.value)' id="BirthGovernorate"
+                                                class="form-select <?php $__errorArgs = ['BirthGovernorate'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <?php $__currentLoopData = $Governorates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Governorate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($Governorate->id); ?>"><?php echo e($Governorate->governorate_name); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                            <label for="BirthGovernorate">محافظة التولد</label>
+                                        </div>
+                                        <?php $__errorArgs = ['BirthGovernorate'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='BirthPlace'type="text" id="modalEmployeeBirthPlace" placeholder="مسقط الراس"
+                                                class="form-control <?php $__errorArgs = ['BirthPlace'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeBirthPlace">مسقط الراس</label>
+                                        </div>
+                                        <?php $__errorArgs = ['BirthPlace'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='MaritalStatus' id="modalEmployeeMaritalStatus"
+                                                placeholder="الحالةالاجتماعية"
+                                                class="form-select <?php $__errorArgs = ['MaritalStatus'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <option value="اعزب">اعزب</option>
+                                                <option value="باكر">باكر</option>
+                                                <option value="متزوج">متزوج</option>
+                                                <option value="متزوجة">متزوجة</option>
+                                                <option value="مطلق">مطلق</option>
+                                                <option value="مطلقة">مطلقة</option>
+                                                <option value="ارمل">ارمل</option>
+                                                <option value="ارملة">ارملة</option>
+                                            </select>
+                                            <label for="modalEmployeeMaritalStatus">الحالة الاجتماعية</label>
+                                        </div>
+                                        <?php $__errorArgs = ['MaritalStatus'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='Religion' id="modalEmployeeReligion"
+                                                placeholder="الديانة"
+                                                class="form-select <?php $__errorArgs = ['Religion'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <option value="مسلم">مسلم</option>
+                                                <option value="مسلمة">مسلمة</option>
+                                                <option value="مسيحي">مسيحي</option>
+                                                <option value="مسيحية">مسيحية</option>
+                                                <option value="صابئي">صابئي</option>
+                                                <option value="صابئية">صابئية</option>
+                                                <option value="ايزيدي">ايزيدي</option>
+                                                <option value="ايزيدية">ايزيدية</option>
+                                                <option value="اخرى">اخرى</option>
+                                            </select>
+                                            <label for="modalEmployeeReligion">الديانة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['Religion'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='Gender' id="modalEmployeeGender"
+                                                placeholder="الجنس"
+                                                class="form-select <?php $__errorArgs = ['Gender'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <option value="ذكر">ذكر</option>
+                                                <option value="انثى">انثى</option>
+                                            </select>
+                                            <label for="modalEmployeeGender">الجنس</label>
+                                        </div>
+                                        <?php $__errorArgs = ['Gender'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
-                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)" class="btn btn-outline-secondary ">
+                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-outline-secondary ">
                                     <div wire:loading.remove wire:target="ifPre">
                                         <span class="align-middle d-sm-inline-block d-none">السابق</span>
                                     </div>
@@ -559,7 +808,8 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                 </button>
-                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)" class="btn btn-primary ext" >
+                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-primary ext">
                                     <div wire:loading.remove wire:target="ifNext">
                                         <span class="align-middle d-sm-inline-block d-none me-sm-1">التالي</span>
                                     </div>
@@ -573,16 +823,158 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
 
-                    <div id="step-03" class="content <?php echo e(3 == $currentStep ? $activatedStep:''); ?>">
+                    <div id="step-03" class="content <?php echo e(3 == $currentStep ? $activatedStep : ''); ?>">
                         <h4 class="mb-3 fw-bolder">معلومات السكن</h4>
                         <hr>
-                        <h5 class="mb-3 fw-bolder">Age ≥ 40 years, at the time of signing the informed consent</h5>
-                        <h5 class="mb-3 fw-bolder text-primary">Enter Patient Date of Birth: (DD/MMM/YYYY)</h5>
 
+                        <div class="row mb-n4">
+                            <div class="mb-3 col">
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='district_id' wire:change='GetAreas($event.target.value)' id="modalEmployeedistrict_id"
+                                                class="form-select <?php $__errorArgs = ['district_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <?php $__currentLoopData = $Districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $District): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($District->id); ?>"><?php echo e($District->district_name); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                            <label for="modalEmployeedistrict_id">القضاء</label>
+                                        </div>
+                                        <?php $__errorArgs = ['district_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col ">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='area_id' id="modalEmployeearea_id"
+                                                class="form-select <?php $__errorArgs = ['area_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <?php $__currentLoopData = $Areas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Area): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($Area->id); ?>"><?php echo e($Area->area_name); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                            <label for="mmodalEmployeearea_id">الناحية</label>
+                                        </div>
+                                        <?php $__errorArgs = ['area_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='NearestPoint'
+                                                wire:keyup="concatFullName('NearestPoint', $event.target.value)"
+                                                type="text" id="modalEmployeeBirthPlace"
+                                                placeholder="اقرب نقطة دالة"
+                                                class="form-control <?php $__errorArgs = ['NearestPoint'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeNearestPoint">اقرب نقطة دالة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['NearestPoint'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='PhoneNumber1' type="text"
+                                                id="modalEmployeePhoneNumber1" placeholder="رقم الهاتف 1"
+                                                class="form-control <?php $__errorArgs = ['PhoneNumber1'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeePhoneNumber1">رقم الهاتف 1</label>
+                                        </div>
+                                        <?php $__errorArgs = ['PhoneNumber1'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='PhoneNumber2' type="text"
+                                                id="modalEmployeePhoneNumber2" placeholder="رقم الهاتف 2"
+                                                class="form-control <?php $__errorArgs = ['PhoneNumber1'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeePhoneNumber2">رقم الهاتف 2</label>
+                                        </div>
+                                        <?php $__errorArgs = ['PhoneNumber2'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
-                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)" class="btn btn-outline-secondary ">
+                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-outline-secondary ">
                                     <div wire:loading.remove wire:target="ifPre">
                                         <span class="align-middle d-sm-inline-block d-none">السابق</span>
                                     </div>
@@ -592,7 +984,8 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                 </button>
-                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)" class="btn btn-primary ext" >
+                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-primary ext">
                                     <div wire:loading.remove wire:target="ifNext">
                                         <span class="align-middle d-sm-inline-block d-none me-sm-1">التالي</span>
                                     </div>
@@ -606,16 +999,201 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
 
-                    <div id="step-04" class="content <?php echo e(4 == $currentStep ? $activatedStep:''); ?>">
+                    <div id="step-04" class="content <?php echo e(4 == $currentStep ? $activatedStep : ''); ?>">
                         <h4 class="mb-3 fw-bolder">البطاقة الوطنية</h4>
                         <hr>
-                        <h5 class="mb-3 fw-bolder">Body mass index (BMI) ≤ 40 (kg/m2) </h5>
-                        <h5 class="mb-3 fw-bolder text-primary">Enter Patient BMI: XX (Kg/M2)</h5>
+
+                        <div class="row mb-n4">
+                            <div class="mb-3 col">
+                                <div Class="row">
+                                    <div class="mb-3 col ">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='NationalCardGovernorate' id="NationalCardGovernorate"
+                                                class="form-select <?php $__errorArgs = ['NationalCardGovernorate'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <?php $__currentLoopData = $NationalCardGovernorate; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Governorate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($Governorate->id); ?>"><?php echo e($Governorate->governorate_name); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                            <label for="NationalCardGovernorate">المحافظة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['NationalCardGovernorate'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='OfficeId' type="text" id="OfficeId" placeholder="الدائرة"
+                                                class="form-control <?php $__errorArgs = ['OfficeId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="OfficeId">الدائرة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['OfficeId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='RecordId' type="text" id="RecordId" placeholder="السجل"
+                                                class="form-control <?php $__errorArgs = ['RecordId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="RecordId">السجل</label>
+                                        </div>
+                                        <?php $__errorArgs = ['RecordId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='PageId' type="text" id="PageId" placeholder="الصحيفة "
+                                                class="form-control <?php $__errorArgs = ['PageId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="PageId">الصحيفة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['PageId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='CertificateNoId' type="text" id="CertificateNoId" placeholder="رقم البطاقة"
+                                                class="form-control <?php $__errorArgs = ['CertificateNoId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="CertificateNoId">رقم البطاقة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['CertificateNoId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='DateIssueId' type="text" id="DateIssueId"
+                                                placeholder="YYYY-MM-DD"
+                                                class="form-control flatpickr-input Flatpickr" readonly="readonly">
+                                            <label for="modalEmployeeDateIssueId">تاريخ الاصدار</label>
+                                        </div>
+                                        <?php $__errorArgs = ['DateIssueId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='EndDateId' type="text" id="EndDateId"
+                                                placeholder="YYYY-MM-DD"
+                                                class="form-control flatpickr-input Flatpickr" readonly="readonly">
+                                            <label for="modalEmployeeEndDateId">تاريخ الانتهاء</label>
+                                        </div>
+                                        <?php $__errorArgs = ['EndDateId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileId' type="file" class="form-control" id="FileId"
+                                                class="form-control <?php $__errorArgs = ['FileId'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeFileId">صورة البطاقة</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
-                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)" class="btn btn-outline-secondary ">
+                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-outline-secondary ">
                                     <div wire:loading.remove wire:target="ifPre">
                                         <span class="align-middle d-sm-inline-block d-none">السابق</span>
                                     </div>
@@ -625,7 +1203,8 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                 </button>
-                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)" class="btn btn-primary ext" >
+                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-primary ext">
                                     <div wire:loading.remove wire:target="ifNext">
                                         <span class="align-middle d-sm-inline-block d-none me-sm-1">التالي</span>
                                     </div>
@@ -639,19 +1218,122 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
 
-                    <div id="step-05" class="content <?php echo e(5 == $currentStep ? $activatedStep:''); ?>">
+                    <div id="step-05" class="content <?php echo e(5 == $currentStep ? $activatedStep : ''); ?>">
                         <h4 class="mb-3 fw-bolder">شهادة الجنسية</h4>
                         <hr>
-                        <h5 class="mb-3 fw-bolder">Sex and Contraception/Barrier Requirements</h5>
-                        <h5 class="mb-3 fw-bolder">A) For biological female participants:</h5>
-                        <h5 class="mb-3 fw-bolder">A biological female participant is step to participate if she is not pregnant, not breastfeeding, and at least one of the following conditions applies:</h5>
-                        <h5 class="mb-3 fw-bolder">Participant of non-childbearing potential (PONCBP)</h5>
-                        <h5 class="mb-3 fw-bolder text-primary">Patient sex: MALE/FEMALE</h5>
+
+                        <div class="row mb-n4">
+                            <div class="mb-3 col">
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileNoCert' type="text" id="FileNoCert" placeholder="رقم المحفظة"
+                                                class="form-control <?php $__errorArgs = ['FileNoCert'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="FileNoCert">رقم المحفظة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['FileNoCert'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='CertificateNoCert' type="text" id="CertificateNoCert" placeholder="رقم الشهادة"
+                                                class="form-control <?php $__errorArgs = ['CertificateNoCert'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="CertificateNoCert">رقم الشهادة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['CertificateNoCert'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='DateIssueCert' type="text" id="DateIssueCert" placeholder="YYYY-MM-DD"
+                                                class="form-control flatpickr-input Flatpickr" readonly="readonly">
+                                            <label for="DateIssueCert">تاريخ الاصدار</label>
+                                        </div>
+                                        <?php $__errorArgs = ['DateIssueCert'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='EndDateCert' type="text" id="EndDateCert"
+                                                placeholder="YYYY-MM-DD"
+                                                class="form-control flatpickr-input Flatpickr" readonly="readonly">
+                                            <label for="modalEmployeeEndDateCert">تاريخ الانتهاء</label>
+                                        </div>
+                                        <?php $__errorArgs = ['EndDateCert'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileCert' type="file" class="form-control"
+                                                id="FileCert"
+                                                class="form-control <?php $__errorArgs = ['FileCert'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeFileCert">رفع الشهادة</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
-                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)" class="btn btn-outline-secondary ">
+                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-outline-secondary ">
                                     <div wire:loading.remove wire:target="ifPre">
                                         <span class="align-middle d-sm-inline-block d-none">السابق</span>
                                     </div>
@@ -661,7 +1343,8 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                 </button>
-                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)" class="btn btn-primary ext" >
+                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-primary ext">
                                     <div wire:loading.remove wire:target="ifNext">
                                         <span class="align-middle d-sm-inline-block d-none me-sm-1">التالي</span>
                                     </div>
@@ -675,19 +1358,125 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
 
-                    <div id="step-06" class="content <?php echo e(6 == $currentStep ? $activatedStep:''); ?>">
+                    <div id="step-06" class="content <?php echo e(6 == $currentStep ? $activatedStep : ''); ?>">
                         <h4 class="mb-3 fw-bolder">بطاقة السكن</h4>
                         <hr>
-                        <h5 class="mb-3 fw-bolder">Sex and Contraception/Barrier Requirements</h5>
-                        <h5 class="mb-3 fw-bolder">A) For biological female participants:</h5>
-                        <h5 class="mb-3 fw-bolder">A biological female participant is step to participate if she is not pregnant, not breastfeeding, and at least one of the following conditions applies:</h5>
-                        <h5 class="mb-3 fw-bolder">Participant of non-childbearing potential (PONCBP)</h5>
-                        <h5 class="mb-3 fw-bolder text-primary">Is subject pregnant or breast feeding?</h5>
+
+                        <div class="row mb-n4">
+                            <div class="mb-3 col">
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FormNoCard' type="text"
+                                                id="FormNoCard" placeholder="رقم الاستمارة"
+                                                class="form-control <?php $__errorArgs = ['FormNoCard'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="FormNoCard">رقم الاستمارة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['FormNoCard'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='CardNoCard' type="text"
+                                                id="modalEmployeeCardNoCard" placeholder="رقم البطاقة"
+                                                class="form-control <?php $__errorArgs = ['CardNoCard'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeCardNoCard">رقم البطاقة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['CardNoCard'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='DateIssueCard' type="text" id="DateIssueCard"
+                                                placeholder="YYYY-MM-DD"
+                                                class="form-control flatpickr-input Flatpickr" readonly="readonly">
+                                            <label for="DateIssueCard">تاريخ الاصدار</label>
+                                        </div>
+                                        <?php $__errorArgs = ['DateIssueCard'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='EndDateCard' type="text" id="EndDateCard"
+                                                placeholder="YYYY-MM-DD"
+                                                class="form-control flatpickr-input Flatpickr" readonly="readonly">
+                                            <label for="modalEmployeeEndDateCard">تاريخ الانتهاء</label>
+                                        </div>
+                                        <?php $__errorArgs = ['EndDateCard'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileCard' type="file" class="form-control"
+                                                id="FileCard"
+                                                class="form-control <?php $__errorArgs = ['FileCard'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeFileCard">رفع البطاقة </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
-                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)" class="btn btn-outline-secondary ">
+                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-outline-secondary ">
                                     <div wire:loading.remove wire:target="ifPre">
                                         <span class="align-middle d-sm-inline-block d-none">السابق</span>
                                     </div>
@@ -697,7 +1486,8 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                 </button>
-                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)" class="btn btn-primary ext" >
+                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-primary ext">
                                     <div wire:loading.remove wire:target="ifNext">
                                         <span class="align-middle d-sm-inline-block d-none me-sm-1">التالي</span>
                                     </div>
@@ -711,19 +1501,112 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
 
-                    <div id="step-07" class="content <?php echo e(7 == $currentStep ? $activatedStep:''); ?>">
+                    <div id="step-07" class="content <?php echo e(7 == $currentStep ? $activatedStep : ''); ?>">
                         <h4 class="mb-3 fw-bolder">البطاقة التموينية</h4>
                         <hr>
-                        <h5 class="mb-3 fw-bolder">Sex and Contraception/Barrier Requirements</h5>
-                        <h5 class="mb-3 fw-bolder">A) For biological female participants:</h5>
-                        <h5 class="mb-3 fw-bolder">A biological female participant is step to participate if she is not pregnant, not breastfeeding, and at least one of the following conditions applies:</h5>
-                        <h5 class="mb-3 fw-bolder">Participant of non-childbearing potential (PONCBP)</h5>
-                        <h5 class="mb-3 fw-bolder text-primary">Is participant of non-childbearing potential (PONCBP)?</h5>
+
+                        <div class="row mb-n4">
+                            <div class="mb-3 col">
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='CardNoSupply' type="text" id="CardNoSupply" placeholder="رقم البطاقة"
+                                                class="form-control <?php $__errorArgs = ['CardNoSupply'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="CardNoSupply">رقم البطاقة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['CardNoSupply'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='CenterNameSupply' type="text"
+                                                id="CenterNameSupply" placeholder="اسم مركز التموين"
+                                                class="form-control <?php $__errorArgs = ['CenterNameSupply'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="CenterNameSupply">اسم مركز التموين</label>
+                                        </div>
+                                        <?php $__errorArgs = ['CenterNameSupply'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='CenterNoSupply' type="text"
+                                                id="CenterNoSupply" placeholder="رقم مركز التموين"
+                                                class="form-control <?php $__errorArgs = ['CenterNoSupply'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="CenterNoSupply">رقم مركز التموين</label>
+                                        </div>
+                                        <?php $__errorArgs = ['CenterNoSupply'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileSupply' type="file" class="form-control" id="FileSupply"
+                                                class="form-control <?php $__errorArgs = ['FileSupply'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeFileSupply">رفع التموينية</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
-                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)" class="btn btn-outline-secondary ">
+                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-outline-secondary ">
                                     <div wire:loading.remove wire:target="ifPre">
                                         <span class="align-middle d-sm-inline-block d-none">السابق</span>
                                     </div>
@@ -733,7 +1616,8 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                 </button>
-                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)" class="btn btn-primary ext" >
+                                <button wire:click="ifNext(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-primary ext">
                                     <div wire:loading.remove wire:target="ifNext">
                                         <span class="align-middle d-sm-inline-block d-none me-sm-1">التالي</span>
                                     </div>
@@ -747,19 +1631,102 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
 
-                    <div id="step-08" class="content <?php echo e(8 == $currentStep ? $activatedStep:''); ?>">
+                    <div id="step-08" class="content <?php echo e(8 == $currentStep ? $activatedStep : ''); ?>">
                         <h4 class="mb-3 fw-bolder">اجازة السوق</h4>
                         <hr>
-                        <h5 class="mb-3 fw-bolder">Participant of childbearing potential (POCBP) who</h5>
-                        <h5 class="mb-3 fw-bolder">Have a negative pregnancy test (serum) at screening and a negative urine pregnancy test at Day 1 Visit?</h5>
-                        <h5 class="mb-3 fw-bolder">Agree to remain abstinent (refrain from heterosexual intercourse) or use of at least one highly effective contraceptive method that results in a failure rate of < 1% per year during the treatment period and for at least 12 weeks after the final dose of Study Drug.</h5>
-                        <h5 class="mb-3 fw-bolder text-danger">The participant of childbearing potential (POCBP):  </h5>
-                        <h5 class="mb-3 fw-bolder text-primary">pregnancy test (serum) at screening:</h5>
+
+                        <div class="row mb-n4">
+                            <div class="mb-3 col">
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='LicenseDriving' id="LicenseDriving"
+                                                placeholder="اجازة السوق" placeholder="اجازة السوق"
+                                                class="form-select <?php $__errorArgs = ['LicenseDriving'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <option value="نعم">نعم</option>
+                                                <option value="لا">لا</option>
+                                            </select>
+                                            <label for="LicenseDriving">اجازة السوق</label>
+                                        </div>
+                                        <?php $__errorArgs = ['LicenseDriving'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='DateIssueDriving' type="text" id="DateIssueDriving" placeholder="YYYY-MM-DD"
+                                                class="form-control flatpickr-input Flatpickr" readonly="readonly">
+                                            <label for="modalEmployeeDateIssueDriving">تاريخ الاصدار</label>
+                                        </div>
+                                        <?php $__errorArgs = ['DateIssueDriving'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='EndDateDriving' type="text" id="EndDateDriving" placeholder="YYYY-MM-DD"
+                                                class="form-control flatpickr-input Flatpickr" readonly="readonly">
+                                            <label for="EndDateDriving">تاريخ الانتهاء</label>
+                                        </div>
+                                        <?php $__errorArgs = ['EndDateDriving'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='FileDriving' type="file" class="form-control"
+                                                id="FileDriving"
+                                                class="form-control <?php $__errorArgs = ['FileDriving'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalEmployeeFileDriving">رفع الاجازة </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
-                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)" class="btn btn-outline-secondary ">
+                                <button wire:click="ifPre(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-outline-secondary ">
                                     <div wire:loading.remove wire:target="ifPre">
                                         <span class="align-middle d-sm-inline-block d-none">السابق</span>
                                     </div>
@@ -769,9 +1736,11 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                 </button>
-                                <button wire:click="ifSubmit(<?php echo e($currentStep); ?>)" class="btn btn-primary ext" >
+                                <button wire:click="ifSubmit(<?php echo e($currentStep); ?>)"
+                                    class="btn btn-primary ext">
                                     <div wire:loading.remove wire:target="ifSubmit">
-                                        <span class="align-middle d-sm-inline-block d-none me-sm-1">حفظ المعلومات</span>
+                                        <span class="align-middle d-sm-inline-block d-none me-sm-1">حفظ
+                                            المعلومات</span>
                                     </div>
                                     <div wire:loading wire:target="ifSubmit">
                                         <div class="spinner-border text-light" role="status">
@@ -786,5 +1755,6 @@ unset($__errorArgs, $__bag); ?>
             </div>
         </div>
     </div>
+</div>
 </div>
 <?php /**PATH F:\LaravelProjects\HR\resources\views/livewire/emp-info-bank/add-employee.blade.php ENDPATH**/ ?>

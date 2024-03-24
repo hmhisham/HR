@@ -3,24 +3,12 @@
         اضافة معلومات الموظف
     </h4>
 
-    <style>
-        .add-new {
-            position: fixed;
-            /* جعل الزر عائمًا */
-            top: 80px;
-            /* تعديل المسافة من الأعلى */
-            left: 25px;
-            /* تعديل المسافة من اليسار */
-            z-index: 999;
-            /* لضمان ظهوره فوق أي عناصر أخرى */
-        }
-    </style>
-
     <div>
         @can('employee-create')
-            <a href="{{ Route('AddEmployee') }}" class=" add-new btn btn-primary ">حفظ المعلومات</a>
+            <a href="{{ Route('AddEmployee') }}" class=" sticky-button btn btn-primary">حفظ المعلومات كمسودة</a>
         @endcan
     </div>
+
     <div class="mb-4 col-12">
         <div class="mt-2 bs-stepper wizard-vertical vertical wizard-numbered wizard-modern">
             <div class="bs-stepper-header gap-lg-2">
@@ -157,8 +145,10 @@
                     <div id="step-00" class="content {{ 0 == $currentStep ? $activatedStep : '' }}">
                         <h4 class="mb-3 fw-bolder">Tests Study step</h4>
                         <hr>
+
                         <h4 class="mb-3 text-center fw-bolder">Tests Study step</h4>
                         <h3 class="mb-3 text-center fw-bolder text-danger">Instep (STOP)</h3>
+
                         <hr>
                     </div>
 
@@ -359,7 +349,7 @@
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
-                                <button wire:click="ifPre({{ $currentStep }})"
+                                <button wire:click="ifPre({{ $currentStep }})" disabled
                                     class="btn btn-outline-secondary {{-- btn-prev --}}">
                                     <div wire:loading.remove wire:target="ifPre">
                                         <span class="align-middle d-sm-inline-block d-none">السابق</span>
@@ -388,6 +378,7 @@
                     <div id="step-02" class="content {{ 2 == $currentStep ? $activatedStep : '' }}">
                         <h4 class="mb-3 fw-bolder">البيانات الشخصية</h4>
                         <hr>
+
                         <div class="row mb-n4">
                             <div class="mb-3 col">
                                 <div Class="row">
@@ -395,8 +386,8 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='DateBirth' type="text" id="DateBirth"
                                                 placeholder="YYYY-MM-DD"
-                                                class="form-control flatpickr-input Flatpickr" readonly="readonly">
-                                            <label for="modalEmployeeDateBirth">تاريخ التولد</label>
+                                                class="form-control flatpickr-input Flatpickr @error('DateBirth') is-invalid is-filled @enderror" readonly="readonly">
+                                            <label for="DateBirth">تاريخ التولد</label>
                                         </div>
                                         @error('DateBirth')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -421,21 +412,22 @@
                                 <div Class="row">
                                     <div class="mb-3 col ">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='governorate_id' id="modalEmployeegovernorate_id"
-                                                class="form-select @error('governorate_id') is-invalid is-filled @enderror">
+                                            <select wire:model.defer='BirthGovernorate' wire:change='GetDistricts($event.target.value)' id="BirthGovernorate"
+                                                class="form-select @error('BirthGovernorate') is-invalid is-filled @enderror">
                                                 <option value=""></option>
+                                                @foreach ($Governorates as $Governorate)
+                                                    <option value="{{ $Governorate->id }}">{{ $Governorate->governorate_name }}</option>
+                                                @endforeach
                                             </select>
-                                            <label for="mmodalEmployeegovernorate_id">محافظة التولد</label>
+                                            <label for="BirthGovernorate">محافظة التولد</label>
                                         </div>
-                                        @error('governorate_id')
+                                        @error('BirthGovernorate')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='BirthPlace'
-                                                wire:keyup="concatFullName('BirthPlace', $event.target.value)"
-                                                type="text" id="modalEmployeeBirthPlace" placeholder="مسقط الراس"
+                                            <input wire:model.defer='BirthPlace'type="text" id="modalEmployeeBirthPlace" placeholder="مسقط الراس"
                                                 class="form-control @error('BirthPlace') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeBirthPlace">مسقط الراس</label>
                                         </div>
@@ -507,6 +499,7 @@
 
                             </div>
                         </div>
+
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
@@ -539,14 +532,18 @@
                     <div id="step-03" class="content {{ 3 == $currentStep ? $activatedStep : '' }}">
                         <h4 class="mb-3 fw-bolder">معلومات السكن</h4>
                         <hr>
+
                         <div class="row mb-n4">
                             <div class="mb-3 col">
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='district_id' id="modalEmployeedistrict_id"
+                                            <select wire:model.defer='district_id' wire:change='GetAreas($event.target.value)' id="modalEmployeedistrict_id"
                                                 class="form-select @error('district_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
+                                                @foreach ($Districts as $District)
+                                                    <option value="{{ $District->id }}">{{ $District->district_name }}</option>
+                                                @endforeach
                                             </select>
                                             <label for="modalEmployeedistrict_id">القضاء</label>
                                         </div>
@@ -559,6 +556,9 @@
                                             <select wire:model.defer='area_id' id="modalEmployeearea_id"
                                                 class="form-select @error('area_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
+                                                @foreach ($Areas as $Area)
+                                                    <option value="{{ $Area->id }}">{{ $Area->area_name }}</option>
+                                                @endforeach
                                             </select>
                                             <label for="mmodalEmployeearea_id">الناحية</label>
                                         </div>
@@ -638,28 +638,30 @@
                     <div id="step-04" class="content {{ 4 == $currentStep ? $activatedStep : '' }}">
                         <h4 class="mb-3 fw-bolder">البطاقة الوطنية</h4>
                         <hr>
+
                         <div class="row mb-n4">
                             <div class="mb-3 col">
                                 <div Class="row">
                                     <div class="mb-3 col ">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='governorate_id' id="modalEmployeegovernorate_id"
-                                                class="form-select @error('governorate_id') is-invalid is-filled @enderror">
+                                            <select wire:model.defer='NationalCardGovernorate' id="NationalCardGovernorate"
+                                                class="form-select @error('NationalCardGovernorate') is-invalid is-filled @enderror">
                                                 <option value=""></option>
+                                                @foreach ($NationalCardGovernorate as $Governorate)
+                                                    <option value="{{ $Governorate->id }}">{{ $Governorate->governorate_name }}</option>
+                                                @endforeach
                                             </select>
-                                            <label for="mmodalEmployeegovernorate_id">المحافظة</label>
+                                            <label for="NationalCardGovernorate">المحافظة</label>
                                         </div>
-                                        @error('governorate_id')
+                                        @error('NationalCardGovernorate')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='OfficeId'
-                                                wire:keyup="concatFullName('OfficeId', $event.target.value)"
-                                                type="text" id="modalEmployeeOffice" placeholder="الدائرة"
+                                            <input wire:model.defer='OfficeId' type="text" id="OfficeId" placeholder="الدائرة"
                                                 class="form-control @error('OfficeId') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeeOfficeId">الدائرة</label>
+                                            <label for="OfficeId">الدائرة</label>
                                         </div>
                                         @error('OfficeId')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -669,10 +671,9 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='RecordId' type="text"
-                                                id="modalEmployeeRecordId" placeholder="السجل"
+                                            <input wire:model.defer='RecordId' type="text" id="RecordId" placeholder="السجل"
                                                 class="form-control @error('RecordId') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeeRecordId">السجل</label>
+                                            <label for="RecordId">السجل</label>
                                         </div>
                                         @error('RecordId')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -680,10 +681,9 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='PageId' type="text" id="modalEmployeePageId"
-                                                placeholder="الصحيفة "
+                                            <input wire:model.defer='PageId' type="text" id="PageId" placeholder="الصحيفة "
                                                 class="form-control @error('PageId') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeePageId">الصحيفة</label>
+                                            <label for="PageId">الصحيفة</label>
                                         </div>
                                         @error('PageId')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -691,10 +691,9 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='CertificateNoId' type="text"
-                                                id="modalEmployeeCertificateNoId" placeholder="رقم البطاقة"
+                                            <input wire:model.defer='CertificateNoId' type="text" id="CertificateNoId" placeholder="رقم البطاقة"
                                                 class="form-control @error('CertificateNoId') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeeCertificateNoId">رقم البطاقة</label>
+                                            <label for="CertificateNoId">رقم البطاقة</label>
                                         </div>
                                         @error('CertificateNoId')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -726,16 +725,15 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FileId' type="file" class="form-control"
-                                                id="FileId"
+                                            <input wire:model.defer='FileId' type="file" class="form-control" id="FileId"
                                                 class="form-control @error('FileId') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeeFileId">رفع البطاقة</label>
+                                            <label for="modalEmployeeFileId">صورة البطاقة</label>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
+
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
@@ -768,15 +766,15 @@
                     <div id="step-05" class="content {{ 5 == $currentStep ? $activatedStep : '' }}">
                         <h4 class="mb-3 fw-bolder">شهادة الجنسية</h4>
                         <hr>
+
                         <div class="row mb-n4">
                             <div class="mb-3 col">
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FileNoCert' type="text"
-                                                id="modalEmployeeFileNoCert" placeholder="رقم المحفظة"
+                                            <input wire:model.defer='FileNoCert' type="text" id="FileNoCert" placeholder="رقم المحفظة"
                                                 class="form-control @error('FileNoCert') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeeFileNoCert">رقم المحفظة</label>
+                                            <label for="FileNoCert">رقم المحفظة</label>
                                         </div>
                                         @error('FileNoCert')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -784,10 +782,9 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='CertificateNoCert' type="text"
-                                                id="modalEmployeeCertificateNoCert" placeholder="رقم الشهادة"
+                                            <input wire:model.defer='CertificateNoCert' type="text" id="CertificateNoCert" placeholder="رقم الشهادة"
                                                 class="form-control @error('CertificateNoCert') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeeCertificateNoCert">رقم الشهادة</label>
+                                            <label for="CertificateNoCert">رقم الشهادة</label>
                                         </div>
                                         @error('CertificateNoCert')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -797,10 +794,9 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='DateIssueCert' type="text" id="DateIssueCert"
-                                                placeholder="YYYY-MM-DD"
+                                            <input wire:model.defer='DateIssueCert' type="text" id="DateIssueCert" placeholder="YYYY-MM-DD"
                                                 class="form-control flatpickr-input Flatpickr" readonly="readonly">
-                                            <label for="modalEmployeeDateIssueCert">تاريخ الاصدار</label>
+                                            <label for="DateIssueCert">تاريخ الاصدار</label>
                                         </div>
                                         @error('DateIssueCert')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -828,6 +824,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
@@ -860,15 +857,16 @@
                     <div id="step-06" class="content {{ 6 == $currentStep ? $activatedStep : '' }}">
                         <h4 class="mb-3 fw-bolder">بطاقة السكن</h4>
                         <hr>
+
                         <div class="row mb-n4">
                             <div class="mb-3 col">
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='FormNoCard' type="text"
-                                                id="modalEmployeeFormNoCard" placeholder="رقم الاستمارة"
+                                                id="FormNoCard" placeholder="رقم الاستمارة"
                                                 class="form-control @error('FormNoCard') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeeFormNoCard">رقم الاستمارة</label>
+                                            <label for="FormNoCard">رقم الاستمارة</label>
                                         </div>
                                         @error('FormNoCard')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -892,7 +890,7 @@
                                             <input wire:model.defer='DateIssueCard' type="text" id="DateIssueCard"
                                                 placeholder="YYYY-MM-DD"
                                                 class="form-control flatpickr-input Flatpickr" readonly="readonly">
-                                            <label for="modalEmployeeDateIssueCard">تاريخ الاصدار</label>
+                                            <label for="DateIssueCard">تاريخ الاصدار</label>
                                         </div>
                                         @error('DateIssueCard')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -920,6 +918,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
@@ -952,15 +951,15 @@
                     <div id="step-07" class="content {{ 7 == $currentStep ? $activatedStep : '' }}">
                         <h4 class="mb-3 fw-bolder">البطاقة التموينية</h4>
                         <hr>
+
                         <div class="row mb-n4">
                             <div class="mb-3 col">
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='CardNoSupply' type="text"
-                                                id="modalEmployeeCardNoSupply" placeholder="رقم البطاقة"
+                                            <input wire:model.defer='CardNoSupply' type="text" id="CardNoSupply" placeholder="رقم البطاقة"
                                                 class="form-control @error('CardNoSupply') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeeCardNoSupply">رقم البطاقة</label>
+                                            <label for="CardNoSupply">رقم البطاقة</label>
                                         </div>
                                         @error('CardNoSupply')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -969,9 +968,9 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='CenterNameSupply' type="text"
-                                                id="modalEmployeeCenterNameSupply" placeholder="اسم مركز التموين"
+                                                id="CenterNameSupply" placeholder="اسم مركز التموين"
                                                 class="form-control @error('CenterNameSupply') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeeCenterNameSupply">اسم مركز التموين</label>
+                                            <label for="CenterNameSupply">اسم مركز التموين</label>
                                         </div>
                                         @error('CenterNameSupply')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -982,9 +981,9 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='CenterNoSupply' type="text"
-                                                id="modalEmployeeCenterNoSupply" placeholder="رقم مركز التموين"
+                                                id="CenterNoSupply" placeholder="رقم مركز التموين"
                                                 class="form-control @error('CenterNoSupply') is-invalid is-filled @enderror" />
-                                            <label for="modalEmployeeCenterNoSupply">رقم مركز التموين</label>
+                                            <label for="CenterNoSupply">رقم مركز التموين</label>
                                         </div>
                                         @error('CenterNoSupply')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -992,8 +991,7 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='FileSupply' type="file" class="form-control"
-                                                id="FileSupply"
+                                            <input wire:model.defer='FileSupply' type="file" class="form-control" id="FileSupply"
                                                 class="form-control @error('FileSupply') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeFileSupply">رفع التموينية</label>
                                         </div>
@@ -1001,6 +999,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <hr>
                         <div class="row g-4">
                             <div class="col-12 d-flex justify-content-between">
@@ -1033,19 +1032,20 @@
                     <div id="step-08" class="content {{ 8 == $currentStep ? $activatedStep : '' }}">
                         <h4 class="mb-3 fw-bolder">اجازة السوق</h4>
                         <hr>
+
                         <div class="row mb-n4">
                             <div class="mb-3 col">
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='LicenseDriving' id="modalEmployeeLicenseDriving"
+                                            <select wire:model.defer='LicenseDriving' id="LicenseDriving"
                                                 placeholder="اجازة السوق" placeholder="اجازة السوق"
                                                 class="form-select @error('LicenseDriving') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 <option value="نعم">نعم</option>
                                                 <option value="لا">لا</option>
                                             </select>
-                                            <label for="modalEmployeeLicenseDriving">اجازة السوق</label>
+                                            <label for="LicenseDriving">اجازة السوق</label>
                                         </div>
                                         @error('LicenseDriving')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -1053,8 +1053,7 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='DateIssueDriving' type="text"
-                                                id="DateIssueDriving" placeholder="YYYY-MM-DD"
+                                            <input wire:model.defer='DateIssueDriving' type="text" id="DateIssueDriving" placeholder="YYYY-MM-DD"
                                                 class="form-control flatpickr-input Flatpickr" readonly="readonly">
                                             <label for="modalEmployeeDateIssueDriving">تاريخ الاصدار</label>
                                         </div>
@@ -1066,10 +1065,9 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='EndDateDriving' type="text"
-                                                id="EndDateDriving" placeholder="YYYY-MM-DD"
+                                            <input wire:model.defer='EndDateDriving' type="text" id="EndDateDriving" placeholder="YYYY-MM-DD"
                                                 class="form-control flatpickr-input Flatpickr" readonly="readonly">
-                                            <label for="modalEmployeeEndDateDriving">تاريخ الانتهاء</label>
+                                            <label for="EndDateDriving">تاريخ الانتهاء</label>
                                         </div>
                                         @error('EndDateDriving')
                                             <small class='text-danger inputerror'> {{ $message }} </small>

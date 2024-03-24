@@ -14,9 +14,23 @@
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/@form-validation/umd/styles/index.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/libs/flatpickr/flatpickr.css')}}" />
 
-   
-
+    <style>
+        .sticky-button {
+            text-decoration: none;
+            justify-content: center;
+            flex-direction: row-reverse;
+            box-shadow: none;
+            align-items: center;
+            text-align: center;
+            position: fixed;
+            top: 70px;
+            left: 134px;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -40,6 +54,7 @@
     <script src="{{asset('assets/vendor/libs/@form-validation/umd/bundle/popular.min.js')}}"></script>
     <script src="{{asset('assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js')}}"></script>
     <script src="{{asset('assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/libs/flatpickr/flatpickr.js')}}"></script>
 @endsection
 
 @section('page-script')
@@ -50,6 +65,142 @@
     <script src="{{asset('assets/js/form-wizard-validation.js')}}"></script>
 
     <script>
+        function onlyNumberKey(evt) {
+			// Only ASCII character in that range allowed
+			var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+			if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57) && (ASCIICode < 45 || ASCIICode > 47))
+				return false;
+			return true;
+		}
+
+        $(document).ready(function() {
+            window.initDateBirthDrop=()=>{
+                $('#DateBirth').flatpickr({
+                    placeholder: 'تاريخ التولد'
+                })
+            }
+            initDateBirthDrop();
+            $('#DateBirth').on('change', function (e) {
+                livewire.emit('DateBirth', e.target.value)
+            });
+            window.livewire.on('flatpickr',()=>{
+                initDateBirthDrop();
+            });
+        });
+
+        $(document).ready(function() {
+            window.initDateIssueIdDrop=()=>{
+                $('#DateIssueId').flatpickr({
+                    placeholder: 'تاريخ الاصدار'
+                })
+            }
+            initDateIssueIdDrop();
+            $('#DateIssueId').on('change', function (e) {
+                livewire.emit('DateIssueId', e.target.value)
+            });
+            window.livewire.on('flatpickr',()=>{
+                initDateIssueIdDrop();
+            });
+        });
+        $(document).ready(function() {
+            window.initEndDateIdDrop=()=>{
+                $('#EndDateId').flatpickr({
+                    placeholder: 'تاريخ الانتهاء'
+                })
+            }
+            initEndDateIdDrop();
+            $('#EndDateId').on('change', function (e) {
+                livewire.emit('EndDateId', e.target.value)
+            });
+            window.livewire.on('flatpickr',()=>{
+                initEndDateIdDrop();
+            });
+        });
+        $(document).ready(function() {
+            window.initDateIssueCertDrop=()=>{
+                $('#DateIssueCert').flatpickr({
+                    placeholder: 'تاريخ الاصدار'
+                })
+            }
+            initDateIssueCertDrop();
+            $('#DateIssueCert').on('change', function (e) {
+                livewire.emit('DateIssueCert', e.target.value)
+            });
+            window.livewire.on('flatpickr',()=>{
+                initDateIssueCertDrop();
+            });
+        });
+        $(document).ready(function() {
+            window.initEndDateCertDrop=()=>{
+                $('#EndDateCert').flatpickr({
+                    placeholder: 'تاريخ الاصدار'
+                })
+            }
+            initEndDateCertDrop();
+            $('#EndDateCert').on('change', function (e) {
+                livewire.emit('EndDateCert', e.target.value)
+            });
+            window.livewire.on('flatpickr',()=>{
+                initEndDateCertDrop();
+            });
+        });
+        $(document).ready(function() {
+            window.initDateIssueCardDrop=()=>{
+                $('#DateIssueCard').flatpickr({
+                    placeholder: 'تاريخ الاصدار'
+                })
+            }
+            initDateIssueCardDrop();
+            $('#DateIssueCard').on('change', function (e) {
+                livewire.emit('DateIssueCard', e.target.value)
+            });
+            window.livewire.on('flatpickr',()=>{
+                initDateIssueCardDrop();
+            });
+        });
+        $(document).ready(function() {
+            window.initEndDateCardDrop=()=>{
+                $('#EndDateCard').flatpickr({
+                    placeholder: 'تاريخ الاصدار'
+                })
+            }
+            initEndDateCardDrop();
+            $('#EndDateCard').on('change', function (e) {
+                livewire.emit('EndDateCard', e.target.value)
+            });
+            window.livewire.on('flatpickr',()=>{
+                initEndDateCardDrop();
+            });
+        });
+        $(document).ready(function() {
+            window.initDateIssueDrivingDrop=()=>{
+                $('#DateIssueDriving').flatpickr({
+                    placeholder: 'تاريخ الاصدار'
+                })
+            }
+            initDateIssueDrivingDrop();
+            $('#DateIssueDriving').on('change', function (e) {
+                livewire.emit('DateIssueDriving', e.target.value)
+            });
+            window.livewire.on('flatpickr',()=>{
+                initDateIssueDrivingDrop();
+            });
+        });
+        $(document).ready(function() {
+            window.initEndDateDrivingDrop=()=>{
+                $('#EndDateDriving').flatpickr({
+                    placeholder: 'تاريخ الاصدار'
+                })
+            }
+            initEndDateDrivingDrop();
+            $('#EndDateDriving').on('change', function (e) {
+                livewire.emit('EndDateDriving', e.target.value)
+            });
+            window.livewire.on('flatpickr',()=>{
+                initEndDateDrivingDrop();
+            });
+        });
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
