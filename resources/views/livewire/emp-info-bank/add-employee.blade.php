@@ -568,9 +568,7 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='NearestPoint'
-                                                wire:keyup="concatFullName('NearestPoint', $event.target.value)"
-                                                type="text" id="modalEmployeeBirthPlace"
+                                            <input wire:model.defer='NearestPoint' type="text" id="modalEmployeeBirthPlace"
                                                 placeholder="اقرب نقطة دالة"
                                                 class="form-control @error('NearestPoint') is-invalid is-filled @enderror" />
                                             <label for="modalEmployeeNearestPoint">اقرب نقطة دالة</label>

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\EmpInfoBank;
 use Livewire\Component;
 use App\Models\Areas\Areas;
 use App\Models\Districts\Districts;
+use App\Models\Employees\Employees;
 use App\Models\Governorates\Governorates;
 
 class AddEmployee extends Component
@@ -189,6 +190,109 @@ class AddEmployee extends Component
             'MaritalStatus.required' => 'مطلوب',
             'Religion.required' => 'مطلوب',
             'Gender.required' => 'مطلوب',
+        ]);
+        $this->currentStep = 2;
+
+        $this->resetValidation();
+        $this->validate([
+            'district_id' => 'required',
+            'area_id' => 'required',
+            'NearestPoint' => 'required',
+            'PhoneNumber1' => 'required',
+            'PhoneNumber2' => 'required',
+        ], [
+            'district_id.required' => 'مطلوب',
+            'area_id.required' => 'مطلوب',
+            'NearestPoint.required' => 'مطلوب',
+            'PhoneNumber1.required' => 'مطلوب',
+            'PhoneNumber2.required' => 'مطلوب',
+        ]);
+        $this->currentStep = 3;
+
+        $this->resetValidation();
+        $this->validate([
+            'NationalCardGovernorate' => 'required',
+            'OfficeId' => 'required',
+            'RecordId' => 'required',
+            'PageId' => 'required',
+            'CertificateNoId' => 'required',
+            'DateIssueId' => 'required',
+            'EndDateId' => 'required',
+            //'FileId' => 'required',
+        ], [
+            'NationalCardGovernorate.required' => 'مطلوب',
+            'OfficeId.required' => 'مطلوب',
+            'RecordId.required' => 'مطلوب',
+            'PageId.required' => 'مطلوب',
+            'CertificateNoId.required' => 'مطلوب',
+            'DateIssueId.required' => 'مطلوب',
+            'EndDateId.required' => 'مطلوب',
+            //'FileId.required' => 'مطلوب',
+        ]);
+        $this->currentStep = 4;
+
+        $this->resetValidation();
+        $this->validate([
+            'FileNoCert' => 'required',
+            'CertificateNoCert' => 'required',
+            'DateIssueCert' => 'required',
+            'EndDateCert' => 'required',
+            //'FileCert' => 'required',
+        ], [
+            'FileNoCert.required' => 'مطلوب',
+            'CertificateNoCert.required' => 'مطلوب',
+            'DateIssueCert.required' => 'مطلوب',
+            'EndDateCert.required' => 'مطلوب',
+            //'FileCert.required' => 'مطلوب',
+        ]);
+        $this->currentStep = 5;
+
+        $this->resetValidation();
+        $this->validate([
+            'FormNoCard' => 'required',
+            'CardNoCard' => 'required',
+            'DateIssueCard' => 'required',
+            'EndDateCard' => 'required',
+            //'FileCard' => 'required',
+        ], [
+            'FormNoCard.required' => 'مطلوب',
+            'CardNoCard.required' => 'مطلوب',
+            'DateIssueCard.required' => 'مطلوب',
+            'EndDateCard.required' => 'مطلوب',
+            //'FileCard.required' => 'مطلوب',
+        ]);
+        $this->currentStep = 6;
+
+        $this->resetValidation();
+        $this->validate([
+            'CardNoSupply' => 'required',
+            'CenterNameSupply' => 'required',
+            'CenterNoSupply' => 'required',
+            //'FileSupply' => 'required',
+        ], [
+            'CardNoSupply.required' => 'مطلوب',
+            'CenterNameSupply.required' => 'مطلوب',
+            'CenterNoSupply.required' => 'مطلوب',
+            //'FileSupply.required' => 'مطلوب',
+        ]);
+        $this->currentStep = 7;
+
+        $this->resetValidation();
+        $this->validate([
+            'LicenseDriving' => 'required',
+            'DateIssueDriving' => 'required',
+            'EndDateDriving' => 'required',
+            //'FileDriving' => 'required',
+        ], [
+            'LicenseDriving.required' => 'مطلوب',
+            'DateIssueDriving.required' => 'مطلوب',
+            'EndDateDriving.required' => 'مطلوب',
+            //'FileDriving.required' => 'مطلوب',
+        ]);
+        $this->currentStep = 8;
+
+        Employees::create([
+            'JobNumber' => $this->JobNumber
         ]);
     }
 }
