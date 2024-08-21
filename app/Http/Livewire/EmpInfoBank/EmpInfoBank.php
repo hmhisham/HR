@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Employees;
+namespace App\Http\Livewire\EmpInfoBank;
 
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Employees\Employees;
 
-class Employee extends Component
+class EmpInfoBank extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -33,13 +33,13 @@ class Employee extends Component
             ->orWhere('MotherLastName', 'LIKE', $EmployeeSearch)
             ->orWhere('FullMothersName', 'LIKE', $EmployeeSearch)
             ->orWhere('Status', 'LIKE', $EmployeeSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Employees;
         $this->Employees = collect($Employees->items());
-        return view('livewire.employees.employee', [
+        
+        return view('livewire.emp-info-bank.emp-info-bank', [
             'links' => $links
         ]);
     }

@@ -73,21 +73,23 @@ $container = $container ?? 'container-xxl';
                     </a>
                 </li>
 
+                @can('employees')
+                    <li class="menu-item {{ request()->is('EmpInfoBank') ? 'open active' : '' }}">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
+                            <span class="menu-title">قسم الموارد البشرية</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                                <a href="{{ Route('EmpInfoBank') }}" Class="menu-link">
+                                    <i Class=''></i>
+                                    <Div>بنك المعلومات</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
 
-              <li class="menu-item {{ request()->is('Employees') ? 'open active' : '' }}">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
-                        <span class="menu-title">قسم الموارد البشرية</span>
-                    </a>
-                    <ul class="menu-sub">
-                        <li Class="menu-item {{ request()->Is('Employees') ? 'active' : '' }}">
-                            <a href="{{ Route('Employees.index') }}" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>بنك المعلومات</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 {{-- <li class="menu-item {{ request()->is('Employees') ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>

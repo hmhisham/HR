@@ -47,7 +47,7 @@ $container = $container ?? 'container-xxl';
                             style="width: 50px;">
 
                     </span>
-                    <span class="app-brand-text demo menu-text fw-bold ms-2 fs-5">الموارد البشرية</span>
+                    <span class="app-brand-text demo menu-text fw-bold ms-2 fs-5">ادارة البيانات</span>
                 </a>
 
                 <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -74,6 +74,7 @@ $container = $container ?? 'container-xxl';
                     </a>
                 </li>
 
+<<<<<<< HEAD
 
                 <li Class="menu-item <?php echo e(request()->Is('Employees') ? 'active' : ''); ?>">
                     <a href="<?php echo e(Route('Employees.index')); ?>" Class="menu-link">
@@ -83,6 +84,27 @@ $container = $container ?? 'container-xxl';
                 </li>
 
 
+=======
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employees')): ?>
+                    <li class="menu-item <?php echo e(request()->is('EmpInfoBank') ? 'open active' : ''); ?>">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
+                            <span class="menu-title">قسم الموارد البشرية</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
+                                <a href="<?php echo e(Route('EmpInfoBank')); ?>" Class="menu-link">
+                                    <i Class=''></i>
+                                    <Div>بنك المعلومات</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+                
+            
+>>>>>>> 9440ca23328abeb83a29a0bacb38deb5cecd9f39
                 <li class="menu-item <?php echo e(request()->is('Governorates') ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-calculator'></i>
@@ -376,4 +398,9 @@ $container = $container ?? 'container-xxl';
     </div>
     <!-- / Layout wrapper -->
     <?php $__env->stopSection(); ?>
+<<<<<<< HEAD
 <?php echo $__env->make('layouts/commonMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laravel\HR\resources\views/layouts/contentNavbarLayout.blade.php ENDPATH**/ ?>
+=======
+
+<?php echo $__env->make('layouts/commonMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laravel\HR\resources\views/layouts/contentNavbarLayout.blade.php ENDPATH**/ ?>
+>>>>>>> 9440ca23328abeb83a29a0bacb38deb5cecd9f39
