@@ -2,7 +2,7 @@
 
 return [
 
-    'AppName' => 'شركة جاز',
+    'AppName' => 'ركة الموانيء العامة',
     'dashboard' => 'لوحة المتابعة',
     'customers' => 'العملاء',
     'events' => 'الاحداث',

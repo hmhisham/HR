@@ -12,18 +12,18 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <?php
+  <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('employees.employee')->html();
-} elseif ($_instance->childHasBeenRendered('iXiIJJc')) {
-    $componentId = $_instance->getRenderedChildComponentId('iXiIJJc');
-    $componentTag = $_instance->getRenderedChildComponentTagName('iXiIJJc');
+    $html = \Livewire\Livewire::mount('employees.addemployee')->html();
+} elseif ($_instance->childHasBeenRendered('l8nKiom')) {
+    $componentId = $_instance->getRenderedChildComponentId('l8nKiom');
+    $componentTag = $_instance->getRenderedChildComponentTagName('l8nKiom');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('iXiIJJc');
+    $_instance->preserveRenderedChild('l8nKiom');
 } else {
-    $response = \Livewire\Livewire::mount('employees.employee');
+    $response = \Livewire\Livewire::mount('employees.addemployee');
     $html = $response->html();
-    $_instance->logRenderedChild('iXiIJJc', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('l8nKiom', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -88,4 +88,4 @@ echo $html;
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Employees/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Employees/create.blade.php ENDPATH**/ ?>

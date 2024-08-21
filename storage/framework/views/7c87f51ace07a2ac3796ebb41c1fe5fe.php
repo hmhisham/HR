@@ -14,16 +14,31 @@
 <?php $__env->startSection('content'); ?>
     <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('employees.employee')->html();
-} elseif ($_instance->childHasBeenRendered('iXiIJJc')) {
-    $componentId = $_instance->getRenderedChildComponentId('iXiIJJc');
-    $componentTag = $_instance->getRenderedChildComponentTagName('iXiIJJc');
+    $html = \Livewire\Livewire::mount('employees.modals.addemployee')->html();
+} elseif ($_instance->childHasBeenRendered('wL2TckD')) {
+    $componentId = $_instance->getRenderedChildComponentId('wL2TckD');
+    $componentTag = $_instance->getRenderedChildComponentTagName('wL2TckD');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('iXiIJJc');
+    $_instance->preserveRenderedChild('wL2TckD');
+} else {
+    $response = \Livewire\Livewire::mount('employees.modals.addemployee');
+    $html = $response->html();
+    $_instance->logRenderedChild('wL2TckD', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+    <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('employees.employee')->html();
+} elseif ($_instance->childHasBeenRendered('ZiHnTAp')) {
+    $componentId = $_instance->getRenderedChildComponentId('ZiHnTAp');
+    $componentTag = $_instance->getRenderedChildComponentTagName('ZiHnTAp');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('ZiHnTAp');
 } else {
     $response = \Livewire\Livewire::mount('employees.employee');
     $html = $response->html();
-    $_instance->logRenderedChild('iXiIJJc', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('ZiHnTAp', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -88,4 +103,4 @@ echo $html;
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Employees/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Employees/add.blade.php ENDPATH**/ ?>

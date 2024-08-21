@@ -43,7 +43,7 @@ $container = $container ?? 'container-xxl';
             <div class="app-brand demo">
                 <a href="<?php echo e(url('/')); ?>" class="app-brand-link">
                     <span class="app-brand-logo demo">
-                        <img src="<?php echo e(asset('assets/img/logo/logowhite.png')); ?>" class="rounded img-fluid"
+                        <img src="<?php echo e(asset('assets/img/logo/GCPI.png')); ?>" class="rounded img-fluid"
                             style="width: 50px;">
                         
                     </span>

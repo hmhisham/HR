@@ -33,14 +33,14 @@
         <!-- Logo -->
         <a href="<?php echo e(url('/')); ?>" class="gap-2 auth-cover-brand d-flex align-items-center">
             <span class="app-brand-logo demo">
-                <img src="<?php echo e(asset('assets/img/logo/logowhite.png')); ?>" class="rounded img-fluid" style="width: 90px;">
+                <img src="<?php echo e(asset('assets/img/logo/GCPI.png')); ?>" class="rounded img-fluid" style="width: 90px;">
             </span>
             <span class="app-brand-text demo text-heading fw-bold fs-1">
                 <span class="feqrah">JAZ</span>
                 <h5 class="mb-2 fw-semibold text-center">ادارة المحتوى</h5>
             </span>
         </a>
-        
+
         <!-- /Logo -->
         <div class="m-0 authentication-inner row">
             <!-- Login -->
@@ -51,7 +51,7 @@
 
                     <form class="mb-3" id="formAuthentication" method="POST" action="<?php echo e(Route('login')); ?>">
                         <?php echo csrf_field(); ?>
-                        
+
                         <div class="mb-3 form-floating form-floating-outline">
                             <input type="text" class="form-control" id="email" name="email" value="<?php echo e(old('email')); ?>" autofocus autocomplete="username"
                                 placeholder="Enter your email or username" autofocus>
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
 
                         <button type="submit" class="btn btn-primary d-grid w-100">
                             تسجيل الدخول

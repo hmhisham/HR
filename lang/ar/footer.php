@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'jaz' => 'جاز',
-    'company' => 'شركة جاز للمعارض والمؤتمرات',
-    'DefinitionJazzCompany' => 'هي شركة رائدة في إدارة الفعاليات مقرها في العراق، وتقوم الشركة بتنظيم المعارض والمؤتمرات الناجحة في مختلف الصناعات مثل الرعاية الصحية والتعليم والتكنولوجيا وغيرها.',
-    'JOINT ANNUAL ZONE' => 'منطقة المشاركة السنوية',
-    'To your place' => 'الى مكانك',
-    'copywrite' => 'تم إنشاء هذا الموقع بإشراف هيئة الإعلام والاتصالات © ,',
+    'jaz' => 'الموانيء',
+    'company' => 'الشركة العامة لموانيء العراق',
+    'DefinitionJazzCompany' => '.....',
+    'JOINT ANNUAL ZONE' => '',
+    'To your place' => '',
+    'copywrite' => ' ,',
     'pages' => 'الصفحات',
-    'subscribe' => 'أشترك',
-    'Subscribe to newsletter' => 'اشترك في النشرة الإخبارية',
+    'subscribe' => '',
+    'Subscribe to newsletter' => '   ',
     'Your email' => 'بريدك الالكتروني',
 ];

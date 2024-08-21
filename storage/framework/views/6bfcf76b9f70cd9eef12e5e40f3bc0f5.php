@@ -37,15 +37,15 @@ $container = $container ?? 'container-xxl';
     <div class="layout-container">
 
         <?php if($isMenu): ?>
-        
+
         <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', ['OWNER', 'Administrator', 'Supervisor', 'Employee'])): ?>
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
                 <a href="<?php echo e(url('/')); ?>" class="app-brand-link">
                     <span class="app-brand-logo demo">
-                        <img src="<?php echo e(asset('assets/img/logo/logowhite.png')); ?>" class="rounded img-fluid"
+                        <img src="<?php echo e(asset('assets/img/logo/GCPI.png')); ?>" class="rounded img-fluid"
                             style="width: 50px;">
-                        
+
                     </span>
                     <span class="app-brand-text demo menu-text fw-bold ms-2 fs-5">الموارد البشرية</span>
                 </a>
@@ -66,7 +66,7 @@ $container = $container ?? 'container-xxl';
 
             <ul class="py-1 menu-inner">
 
-                
+
                 <li class="menu-item <?php echo e(request()->is('/') ? 'active' : ''); ?>">
                     <a href="<?php echo e(Route('Dashboard')); ?>" class="menu-link">
                         <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
@@ -74,7 +74,7 @@ $container = $container ?? 'container-xxl';
                     </a>
                 </li>
 
-                
+
                 <li Class="menu-item <?php echo e(request()->Is('Employees') ? 'active' : ''); ?>">
                     <a href="<?php echo e(Route('Employees.index')); ?>" Class="menu-link">
                         <i Class='menu-icon tf-icons mdi mdi-account-outline'></i>
@@ -97,7 +97,7 @@ $container = $container ?? 'container-xxl';
                         </li>
                     </ul>
                 </li>
-                
+
 
                 <li
                     class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices') ? 'open active' : ''); ?>">
@@ -106,28 +106,28 @@ $container = $container ?? 'container-xxl';
                         <span class="menu-title">الاعدادات</span>
                     </a>
                     <ul class="menu-sub">
-                        
+
                         <li class="menu-item <?php echo e(request()->is('Governorates') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Governorates.index')); ?>" Class="menu-link">
                                 <i class=""></i>
                                 <Div>المحافظات</div>
                             </a>
                         </li>
-                        
+
                         <li class="menu-item <?php echo e(request()->Is('Districts') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Districts.index')); ?>" Class="menu-link">
                                 <i class=""></i>
                                 <div>الأقضية</div>
                             </a>
                         </li>
-                        
+
                         <li class="menu-item <?php echo e(request()->Is('Areas') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Areas.index')); ?>" Class="menu-link">
                                 <i class=""></i>
                                 <div>النواحي</div>
                             </a>
                         </li>
-                        
+
                         <li Class="menu-item <?php echo e(request()->Is('Infooffice') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Infooffice.index')); ?>" Class="menu-link">
                                 <i class=""></i>
@@ -135,63 +135,63 @@ $container = $container ?? 'container-xxl';
                             </a>
                         </li>
 
-                        
+
                         <li Class="menu-item <?php echo e(request()->Is('Links') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Links.index')); ?>" Class="menu-link">
                                 <i class=""></i>
                                 <div>الارتباط</div>
                             </a>
                         </li>
-                        
+
                         <li Class="menu-item <?php echo e(request()->Is('Sections') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Sections.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>الاقسام</div>
                             </a>
                         </li>
-                        
+
                         <li Class="menu-item <?php echo e(request()->Is('Branch') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Branch.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>الشعب</div>
                             </a>
                         </li>
-                        
+
                         <li Class="menu-item <?php echo e(request()->Is('Units') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Units.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>الوحدات</div>
                             </a>
                         </li>
-                        
+
                         <li Class="menu-item <?php echo e(request()->Is('Certificates') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Certificates.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>الشهادة</div>
                             </a>
                         </li>
-                        
+
                         <li Class="menu-item <?php echo e(request()->Is('Graduations') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Graduations.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>جهة التخرج</div>
                             </a>
                         </li>
-                        
+
                         <li Class="menu-item <?php echo e(request()->Is('Specializations') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Specializations.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>الاختصاص</div>
                             </a>
                         </li>
-                        
+
                         <li Class="menu-item <?php echo e(request()->Is('Specialtys') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Specialtys.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>التخصص العام</div>
                             </a>
                         </li>
-                        
+
                         <li Class="menu-item <?php echo e(request()->Is('Precises') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Precises.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
@@ -256,7 +256,7 @@ $container = $container ?? 'container-xxl';
 
 
 
-                
+
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('users')): ?>
                 <li
                     class="menu-item <?php echo e(request()->is('Administrators-Accounts') ? 'active open' : (request()->is('Customers-Accounts') ? 'active open' : '')); ?>">
@@ -285,7 +285,7 @@ $container = $container ?? 'container-xxl';
                 </li>
                 <?php endif; ?>
 
-                
+
                 <?php if(Auth::check()): ?>
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('permissions-roles')): ?>
                 <li
@@ -325,8 +325,8 @@ $container = $container ?? 'container-xxl';
         <!-- Layout page -->
         <div class="layout-page">
 
-            
-            
+
+
 
             <!-- BEGIN: Navbar-->
             <?php if($isNavbar): ?>

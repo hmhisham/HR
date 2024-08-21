@@ -1,10 +1,10 @@
 <?php
 // Variables
 return [
-    "companyNameAR" => "جاز",
-    "companyNameEN" => "JAZ",
-    "creatorName" => "Pixinvent",
-    "creatorUrl" => "https://pixinvent.com",
+    "companyNameAR" => "الموانيء",
+    "companyNameEN" => "العراقية",
+    "creatorName" => "",
+    "creatorUrl" => "",
     "templateName" => "Materialize",
     "templateSuffix" => "Bootstrap Admin Template",
     "templateVersion" => "1.2.2",
@@ -22,9 +22,9 @@ return [
     "repository" => "https://github.com/pixinvent/materialize-html-laravel-admin-template",
     "gitRepo" => "materialize-html-laravel-admin-template",
     "gitRepoAccess" => "https://tools.pixinvent.com/github/github-access",
-    "facebookUrl" => "https://www.facebook.com/pixinvents/",
-    "twitterUrl" => "https://twitter.com/pixinvents",
+    "facebookUrl" => "https://www.facebook.com//",
+    "twitterUrl" => "https://twitter.com/",
     "githubUrl" => "https://github.com/pixinvent",
     "dribbbleUrl" => "https://dribbble.com/pixinvent",
-    "instagramUrl" => "https://www.instagram.com/pixinvents/"
+    "instagramUrl" => "https://www.instagram.com//"
 ];

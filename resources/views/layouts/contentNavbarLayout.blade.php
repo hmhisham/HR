@@ -42,7 +42,7 @@ $container = $container ?? 'container-xxl';
             <div class="app-brand demo">
                 <a href="{{ url('/') }}" class="app-brand-link">
                     <span class="app-brand-logo demo">
-                        <img src="{{ asset('assets/img/logo/logowhite.png') }}" class="rounded img-fluid"
+                        <img src="{{ asset('assets/img/logo/GCPI.png') }}" class="rounded img-fluid"
                             style="width: 50px;">
                         {{-- @include('_partials.macros', ['width' => 25, 'withbg' => '#666cff']) --}}
                     </span>

@@ -1,5 +1,5 @@
 <span>
-    <img src="{{ asset('assets/img/logos/logowhite.png') }}" class="position-absolute" width="{{ $width }}" height="50">
+    <img src="{{ asset('assets/img/logos/GCPI.png') }}" class="position-absolute" width="{{ $width }}" height="50">
 
     {{--<svg width="{{ $width }}" viewBox="0 0 38 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path

@@ -32,7 +32,9 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                                 <option value=""></option>
                                                 <?php $__currentLoopData = $grades; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grade): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <option value="<?php echo e($grade->id); ?>"><?php echo e($grade->grades_name); ?></option>
+                                                    <option value="<?php echo e($grade->id); ?>"><?php echo e($grade->grades_name); ?>
+
+                                                    </option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                             <label for="modalscaleasgrades_id">الدرجة الوظيفية</label>
@@ -60,7 +62,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
                                                 <option value=""></option>
-                                                <?php for($i = 1; $i <= 11; $i++): ?>
+                                                <?php for($i = 1; $i <= 10; $i++): ?>
                                                     <option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>
                                                 <?php endfor; ?>
                                                 <option value="">م</option>
@@ -119,7 +121,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
                                                 <option value=""></option>
-                                                <?php for($i = 1; $i <= 30; $i++): ?>
+                                                <?php for($i = 1; $i <= 10; $i++): ?>
                                                     <option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>
                                                 <?php endfor; ?>
                                                 <option value="">م</option>
@@ -151,13 +153,12 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
                                                 <option value=""></option>
-                                                <option value="3">3</option>
+                                                <option value="5">5</option>
                                                 <option value="6">6</option>
+                                                <option value="7">7</option>
                                                 <option value="8">8</option>
                                                 <option value="10">10</option>
-                                                <option value="17">17</option>
-                                                <option value="20">20</option>
-                                                <option value="83">83</option>
+                                                <option value="12">12</option>
                                             </select>
                                             <label for="modalscaleasscaleas_amount">مقدار العلاوة</label>
                                         </div>

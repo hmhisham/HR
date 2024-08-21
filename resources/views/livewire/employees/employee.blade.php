@@ -9,11 +9,16 @@
                         <input wire:model="EmployeeSearch" type="text" class="form-control" placeholder="بحث...">
                     </div>
                     <div>
-                        @can('employee-create')
+                        {{-- @can('employee-create')
                             <button wire:click='AddEmployeeModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                                 data-bs-toggle="modal" data-bs-target="#addemployeeModal">أضــافــة</button>
                             @include('livewire.employees.modals.add-employee')
-                        @endcan
+                        @endcan --}}
+
+                        @can('employee-create')
+                        <a href="{{ Route('Employees.index') }}" class="mb-3 add-new btn btn-primary mb-md-0">أضــافــة</a>
+                    @endcan
+
                     </div>
                 </div>
             </div>

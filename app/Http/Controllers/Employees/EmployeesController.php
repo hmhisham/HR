@@ -7,14 +7,8 @@ use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
 {
-
-
-
-
     public function index()
     {
         Return View('content.Employees.index');
     }
-
- 
 }

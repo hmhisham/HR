@@ -37,14 +37,14 @@
         <div class="layout-container">
 
             <?php if($isMenu): ?>
-                
+
                 <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', ['OWNER', 'Administrator', 'Supervisor', 'Employee'])): ?>
                     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                         <div class="app-brand demo">
                             <a href="<?php echo e(url('/')); ?>" class="app-brand-link">
                                 <span class="app-brand-logo demo">
-                                    <img src="<?php echo e(asset('assets/img/logo/logowhite.png')); ?>" class="rounded img-fluid" style="width: 50px;">
-                                    
+                                    <img src="<?php echo e(asset('assets/img/logo/GCPI.png')); ?>" class="rounded img-fluid" style="width: 50px;">
+
                                 </span>
                                 <span class="app-brand-text demo menu-text fw-bold ms-2 fs-5"><?php echo e(trans('sidebar.AppName')); ?></span>
                             </a>
@@ -66,7 +66,7 @@
 
                         <ul class="py-1 menu-inner">
 
-                            
+
                             <li class="menu-item <?php echo e(request()->is('Dashboard') ? 'active' : ''); ?>">
                                 <a href="<?php echo e(Route('Dashboard')); ?>" class="menu-link">
                                     <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
@@ -74,7 +74,7 @@
                                 </a>
                             </li>
 
-                            
+
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('customers')): ?>
                                 <li class="menu-item <?php echo e(request()->is('Customers') ? 'active' : ''); ?>">
                                     <a href="<?php echo e(Route('Customers')); ?>" class="menu-link">
@@ -84,17 +84,17 @@
                                 </li>
                             <?php endif; ?>
 
-                            
-                            
+
+
                                 <li class="menu-item <?php echo e(request()->is('Slideshow') ? 'active' : ''); ?>">
                                     <a href="<?php echo e(Route('Slideshow')); ?>" class="menu-link">
                                         <i class="menu-icon tf-icons mdi mdi-play-box-outline"></i>
                                         <div><?php echo e(trans('sidebar.slideshow')); ?></div>
                                     </a>
                                 </li>
-                            
 
-                            
+
+
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('events')): ?>
                                 <li class="menu-item <?php echo e(request()->is('EventsDashboard', 'Events', 'Events/create', 'Events/*/edit') ? 'active open' :  ''); ?>">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -142,9 +142,9 @@
                                 </li>
                             <?php endif; ?>
 
-                            
 
-                            
+
+
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('users')): ?>
                                 <li class="menu-item <?php echo e(request()->is('Administrators-Accounts') ? 'active open' : (request()->is('Customers-Accounts') ? 'active open' : '')); ?>">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -170,7 +170,7 @@
                                 </li>
                             <?php endif; ?>
 
-                            
+
                             <?php if(Auth::check()): ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('permissions-roles')): ?>
                                     <li class="menu-item <?php echo e(request()->is('Permissions&Roles/Account-Permissions') ? 'active open' : (request()->is('Permissions&Roles/Account-Roles') ? 'active open' : '')); ?>">
@@ -208,8 +208,8 @@
             <!-- Layout page -->
             <div class="layout-page">
 
-                
-                
+
+
 
                 <!-- BEGIN: Navbar-->
                 <?php if($isNavbar): ?>

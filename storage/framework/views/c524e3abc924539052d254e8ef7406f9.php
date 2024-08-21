@@ -3,13 +3,13 @@
 ?>
 <div>
     <div data-bs-spy="scroll" class="scrollspy-example">
-        
+
         <section class="" style="margin-top: 120px">
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3">
                     <div class="col text-center align-self-center">
-                        <img src="<?php echo e(asset('assetsWebsite/img/logos/logowhite.png')); ?>" class="d-none d-sm-none d-md-block d-lg-inline-block" style="height: 150px;">
-                        <img src="<?php echo e(asset('assetsWebsite/img/logos/logowhite.png')); ?>" class="d-lg-none d-md-none d-sm-inline-block mt-4" style="height: 75px">
+                        <img src="<?php echo e(asset('assetsWebsite/img/logos/GCPI.png')); ?>" class="d-none d-sm-none d-md-block d-lg-inline-block" style="height: 150px;">
+                        <img src="<?php echo e(asset('assetsWebsite/img/logos/GCPI.png')); ?>" class="d-lg-none d-md-none d-sm-inline-block mt-4" style="height: 75px">
                         <img src="<?php echo e(asset('assetsWebsite/img/logos/logojaz22.png')); ?>" class="d-lg-none d-md-none d-sm-inline-block mt-4" style="height: 75px">
                     </div>
                     <?php if(app()->getLocale() == 'ar'): ?>
@@ -78,7 +78,7 @@
         </section>
         <!-- Carousel: End -->
 
-        
+
         <section id="landingReviews" class="section-py landing-reviews bg-body">
             <div class="container">
                 <h3 class="text-center"><?php echo e(trans('home.UPCOMING EXHIBITIONS')); ?></h3>
@@ -112,7 +112,7 @@
             </div>
 
             <div class="row mx-2">
-                
+
                 <div class="col-3 d-none d-sm-none d-md-block d-lg-block py-3 rounded">
                     <div class="card h-100">
                         <img src="<?php echo e(asset('assetsWebsite/img/hot-sale-price-labels-template-designs-with-flame-png.webp')); ?>" class="position-absolute" width="50">
@@ -140,12 +140,12 @@
 
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
 
-                
+
                 <div class="col-9 my-3 <?php echo e(count($events) == 1 ? 'hidden' : ''); ?>">
                     <swiper-container class="mySwiper py-3 my-3" lazyLoading="true" loop="true" autoplay="true" pagination="true" pagination-clickable="true" slides-per-view="<?php echo e(count($events) <= 2 ? 2 : 3); ?>" space-between="30" free-mode="true">
                         <?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -176,7 +176,7 @@
 
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </swiper-slide>
@@ -186,7 +186,7 @@
             </div>
         </section>
 
-        
+
         <section id="landingFeatures" class="section-py">
             <div class="container mb-5">
                 <h3 class="text-center"><?php echo e(trans('home.JOINT ANNUAL ZONE')); ?></h3>
@@ -268,7 +268,7 @@
             </div>
         </section>
 
-        
+
         <section id="landingFeatures" class="section-py">
             <div class="container">
                 <h3 class="text-center"><?php echo e(trans('home.EXHIBITIONS GROUP')); ?></h3>
@@ -380,14 +380,14 @@
                             <img src="<?php echo e(asset('assetsWebsite/img/venues/najaf-International.png')); ?>" class="mx-auto rounded-10  img-fluid d-block" style="height: 100px; width: 100px">
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </section>
         <!-- Real customers reviews: End -->
 
         <!-- Contact Us: Start -->
-        
+
         <!-- Contact Us: End -->
     </div>
 </div>

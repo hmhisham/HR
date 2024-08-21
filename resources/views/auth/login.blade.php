@@ -33,11 +33,11 @@
         <!-- Logo -->
         <a href="{{url('/')}}" class="gap-2 auth-cover-brand d-flex align-items-center">
             <span class="app-brand-logo demo">
-                <img src="{{ asset('assets/img/logo/logowhite.png') }}" class="rounded img-fluid" style="width: 90px;">
+                <img src="{{ asset('assets/img/logo/GCPI.png') }}" class="rounded img-fluid" style="width: 90px;">
             </span>
             <span class="app-brand-text demo text-heading fw-bold fs-1">
-                <span class="feqrah">JAZ</span>
-                <h5 class="mb-2 fw-semibold text-center">ادارة المحتوى</h5>
+                <span class="feqrah">GCPI</span>
+                <h5 class="mb-2 fw-semibold text-center">موانيء العراق</h5>
             </span>
         </a>
         {{-- <a href="{{url('/')}}" class="gap-2 auth-cover-brand d-flex align-items-center">
@@ -96,18 +96,18 @@
             </div>
             <!-- /Login -->
 
-            <!-- /Left Section -->
-            <div class="p-3 pb-2 d-none d-lg-flex col-lg-7 col-xl-8 align-items-center justify-content-center">
-                <img src="{{asset('assets/img/illustrations/auth-login-illustration-'.$configData['style'].'.png') }}"
-                    class="auth-cover-illustration w-100" alt="auth-illustration"
-                    data-app-light-img="illustrations/auth-login-illustration-light.png"
-                    data-app-dark-img="illustrations/auth-login-illustration-dark.png" />
-                <img src="{{asset('assets/img/illustrations/auth-cover-login-mask-'.$configData['style'].'.png') }}"
-                    class="authentication-image" alt="mask" style="margin-right: 400px !important"
-                    data-app-light-img="illustrations/auth-cover-login-mask-light.png"
-                    data-app-dark-img="illustrations/auth-cover-login-mask-dark.png" />
-            </div>
-            <!-- /Left Section -->
+           <!-- /Left Section -->
+           <div class="p-3 pb-2 d-none d-lg-flex col-lg-7 col-xl-8 align-items-center justify-content-center">
+            <img src="{{asset('assets/img/illustrations/GCPI.png') }}"
+                class="auth-cover-illustration w-95" alt="auth-illustration"
+                data-app-light-img="illustrations/GCPI.png"
+                data-app-dark-img="illustrations/GCPI.png" />
+            {{-- <img src="{{asset('assets/img/illustrations/auth-cover-login-mask-'.$configData['style'].'.png') }}"
+                class="authentication-image" alt="mask" style="margin-right: 400px !important"
+                data-app-light-img="illustrations/GCPI.png"
+                data-app-dark-img="illustrations/GCPI.png" /> --}}
+        </div>
+        <!-- /Left Section -->
         </div>
     </div>
 @endsection

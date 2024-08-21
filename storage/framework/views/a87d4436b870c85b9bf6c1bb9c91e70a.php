@@ -15,15 +15,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('employees.employee')->html();
-} elseif ($_instance->childHasBeenRendered('iXiIJJc')) {
-    $componentId = $_instance->getRenderedChildComponentId('iXiIJJc');
-    $componentTag = $_instance->getRenderedChildComponentTagName('iXiIJJc');
+} elseif ($_instance->childHasBeenRendered('jwPdfV5')) {
+    $componentId = $_instance->getRenderedChildComponentId('jwPdfV5');
+    $componentTag = $_instance->getRenderedChildComponentTagName('jwPdfV5');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('iXiIJJc');
+    $_instance->preserveRenderedChild('jwPdfV5');
 } else {
     $response = \Livewire\Livewire::mount('employees.employee');
     $html = $response->html();
-    $_instance->logRenderedChild('iXiIJJc', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('jwPdfV5', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -88,4 +88,4 @@ echo $html;
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Employees/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Employees/info_employee.blade.php ENDPATH**/ ?>

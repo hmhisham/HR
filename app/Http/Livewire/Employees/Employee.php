@@ -51,7 +51,7 @@ class Employee extends Component
         $this->dispatchBrowserEvent('EmployeeModalShow');
     }
 
-  
+
 
 
     public function concatFullName($fil, $value)
