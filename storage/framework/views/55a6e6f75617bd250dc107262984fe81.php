@@ -74,21 +74,23 @@ $container = $container ?? 'container-xxl';
                     </a>
                 </li>
 
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employees')): ?>
+                    <li class="menu-item <?php echo e(request()->is('EmpInfoBank') ? 'open active' : ''); ?>">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
+                            <span class="menu-title">قسم الموارد البشرية</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
+                                <a href="<?php echo e(Route('EmpInfoBank')); ?>" Class="menu-link">
+                                    <i Class=''></i>
+                                    <Div>بنك المعلومات</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
 
-              <li class="menu-item <?php echo e(request()->is('Employees') ? 'open active' : ''); ?>">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
-                        <span class="menu-title">قسم الموارد البشرية</span>
-                    </a>
-                    <ul class="menu-sub">
-                        <li Class="menu-item <?php echo e(request()->Is('Employees') ? 'active' : ''); ?>">
-                            <a href="<?php echo e(Route('Employees.index')); ?>" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>بنك المعلومات</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 
             
                 <li class="menu-item <?php echo e(request()->is('Governorates') ? 'open active' : ''); ?>">

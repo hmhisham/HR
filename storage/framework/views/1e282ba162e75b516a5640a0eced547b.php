@@ -18,7 +18,7 @@
 	<!-- Canonical SEO -->
 	<link rel="canonical" href="<?php echo e(config('variables.productPage') ? config('variables.productPage') : ''); ?>">
 	<!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href="<?php echo e(asset('assets/img/favicon/favicon.ico')); ?>" />
+	<link rel="icon" type="image/x-icon" href="<?php echo e(asset('assets/img/favicon/GCPI.ico')); ?>" />
 
 	<!-- Include Styles -->
 	<?php echo $__env->make('layouts/sections/styles', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
