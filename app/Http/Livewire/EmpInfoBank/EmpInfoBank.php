@@ -13,32 +13,21 @@ class EmpInfoBank extends Component
 
     public $Employees = [];
     public $EmployeeSearch, $Employee, $EmployeeId;
-    public $JobNumber, $FileNumber, $FirstName, $SecondName, $ThirdName, $FourthName, $LastName, $FullName, $MotherName, $MotherFatherName, $MotherGrandName, $MotherLastName, $FullMothersName, $Status;
+    public $calculator_number, $FileNumber, $FirstName, $SecondName, $ThirdName, $FourthName, $LastName, $full_name, $MotherName, $MotherFatherName, $MotherGrandName, $MotherLastName, $FullMothersName, $Status;
 
 
     public function render()
     {
         $EmployeeSearch = $this->EmployeeSearch . '%';
-        $Employees = Employees::where('JobNumber', 'LIKE', $EmployeeSearch)
-            ->orWhere('FileNumber', 'LIKE', $EmployeeSearch)
-            ->orWhere('FirstName', 'LIKE', $EmployeeSearch)
-            ->orWhere('SecondName', 'LIKE', $EmployeeSearch)
-            ->orWhere('ThirdName', 'LIKE', $EmployeeSearch)
-            ->orWhere('FourthName', 'LIKE', $EmployeeSearch)
-            ->orWhere('LastName', 'LIKE', $EmployeeSearch)
-            ->orWhere('FullName', 'LIKE', $EmployeeSearch)
-            ->orWhere('MotherName', 'LIKE', $EmployeeSearch)
-            ->orWhere('MotherFatherName', 'LIKE', $EmployeeSearch)
-            ->orWhere('MotherGrandName', 'LIKE', $EmployeeSearch)
-            ->orWhere('MotherLastName', 'LIKE', $EmployeeSearch)
-            ->orWhere('FullMothersName', 'LIKE', $EmployeeSearch)
-            ->orWhere('Status', 'LIKE', $EmployeeSearch)
-            ->orderBy('id', 'ASC')
+        $Employees = Employees::where('calculator_number', 'LIKE', $EmployeeSearch)
+
+            ->orWhere('full_name', 'LIKE', $EmployeeSearch)
+
             ->paginate(10);
 
         $links = $Employees;
         $this->Employees = collect($Employees->items());
-        
+
         return view('livewire.emp-info-bank.emp-info-bank', [
             'links' => $links
         ]);
@@ -54,20 +43,20 @@ class EmpInfoBank extends Component
 
 
 
-    public function concatFullName($fil, $value)
+    public function concatfull_name($fil, $value)
     {
         switch ($fil) {
             case 'FirstName':
-                $this->FullName = $value . ' ' . $this->SecondName . ' ' . $this->ThirdName . ' ' . $this->FourthName;
+                $this->full_name = $value . ' ' . $this->SecondName . ' ' . $this->ThirdName . ' ' . $this->FourthName;
                 break;
             case 'SecondName':
-                $this->FullName = $this->FirstName . ' ' . $value . ' ' . $this->ThirdName . ' ' . $this->FourthName;
+                $this->full_name = $this->FirstName . ' ' . $value . ' ' . $this->ThirdName . ' ' . $this->FourthName;
                 break;
             case 'ThirdName':
-                $this->FullName = $this->FirstName . ' ' . $this->SecondName . ' ' . $value . ' ' . $this->FourthName;
+                $this->full_name = $this->FirstName . ' ' . $this->SecondName . ' ' . $value . ' ' . $this->FourthName;
                 break;
             case 'FourthName':
-                $this->FullName = $this->FirstName . ' ' . $this->SecondName . ' ' . $this->ThirdName . ' ' . $value;
+                $this->full_name = $this->FirstName . ' ' . $this->SecondName . ' ' . $this->ThirdName . ' ' . $value;
                 break;
             case 'MotherName':
                 $this->FullMothersName = $value . ' ' . $this->MotherFatherName . ' ' . $this->MotherGrandName . ' ' . $this->MotherLastName;
@@ -93,14 +82,14 @@ class EmpInfoBank extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'JobNumber' => 'required|unique:employees',
+            'calculator_number' => 'required|unique:employees',
             'FileNumber' => 'required|unique:employees',
             'FirstName' => 'required|unique:employees',
             'SecondName' => 'required|unique:employees',
             'ThirdName' => 'required|unique:employees',
             'FourthName' => 'required|unique:employees',
             'LastName' => 'required|unique:employees',
-            'FullName' => 'required|unique:employees',
+            'full_name' => 'required|unique:employees',
             'MotherName' => 'required|unique:employees',
             'MotherFatherName' => 'required|unique:employees',
             'MotherGrandName' => 'required|unique:employees',
@@ -109,8 +98,8 @@ class EmpInfoBank extends Component
             'Status' => 'required|unique:employees',
 
         ], [
-            'JobNumber.required' => 'حقل الاسم مطلوب',
-            'JobNumber.unique' => 'الأسم موجود',
+            'calculator_number.required' => 'حقل الاسم مطلوب',
+            'calculator_number.unique' => 'الأسم موجود',
             'FileNumber.required' => 'حقل الاسم مطلوب',
             'FileNumber.unique' => 'الأسم موجود',
             'FirstName.required' => 'حقل الاسم مطلوب',
@@ -123,38 +112,16 @@ class EmpInfoBank extends Component
             'FourthName.unique' => 'الأسم موجود',
             'LastName.required' => 'حقل الاسم مطلوب',
             'LastName.unique' => 'الأسم موجود',
-            'FullName.required' => 'حقل الاسم مطلوب',
-            'FullName.unique' => 'الأسم موجود',
-            'MotherName.required' => 'حقل الاسم مطلوب',
-            'MotherName.unique' => 'الأسم موجود',
-            'MotherFatherName.required' => 'حقل الاسم مطلوب',
-            'MotherFatherName.unique' => 'الأسم موجود',
-            'MotherGrandName.required' => 'حقل الاسم مطلوب',
-            'MotherGrandName.unique' => 'الأسم موجود',
-            'MotherLastName.required' => 'حقل الاسم مطلوب',
-            'MotherLastName.unique' => 'الأسم موجود',
-            'FullMothersName.required' => 'حقل الاسم مطلوب',
-            'FullMothersName.unique' => 'الأسم موجود',
-            'Status.required' => 'حقل الاسم مطلوب',
-            'Status.unique' => 'الأسم موجود',
+            'full_name.required' => 'حقل الاسم مطلوب',
+            'full_name.unique' => 'الأسم موجود',
+
         ]);
 
-        // $fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
+        // $full_name = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Employees::create([
-            'JobNumber' => $this->JobNumber,
+            'calculator_number' => $this->calculator_number,
             'FileNumber' => $this->FileNumber,
-            'FirstName' => $this->FirstName,
-            'SecondName' => $this->SecondName,
-            'ThirdName' => $this->ThirdName,
-            'FourthName' => $this->FourthName,
-            'LastName' => $this->LastName,
-            'FullName' =>   $this->FullName,
-            'MotherName' => $this->MotherName,
-            'MotherFatherName' => $this->MotherFatherName,
-            'MotherGrandName' => $this->MotherGrandName,
-            'MotherLastName' => $this->MotherLastName,
-            'FullMothersName' => $this->FullMothersName,
-            'Status' => $this->Status,
+                    'full_name' =>   $this->full_name,
 
         ]);
         $this->reset();
@@ -166,24 +133,10 @@ class EmpInfoBank extends Component
 
     public function GetEmployee($EmployeeId)
     {
-
         $this->resetValidation();
         $this->Employee  = Employees::find($EmployeeId);
-        $this->EmployeeId = $this->Employee->id;
-        $this->JobNumber = $this->Employee->JobNumber;
-        $this->FileNumber = $this->Employee->FileNumber;
-        $this->FirstName = $this->Employee->FirstName;
-        $this->SecondName = $this->Employee->SecondName;
-        $this->ThirdName = $this->Employee->ThirdName;
-        $this->FourthName = $this->Employee->FourthName;
-        $this->LastName = $this->Employee->LastName;
-        $this->FullName = $this->Employee->FullName;
-        $this->MotherName = $this->Employee->MotherName;
-        $this->MotherFatherName = $this->Employee->MotherFatherName;
-        $this->MotherGrandName = $this->Employee->MotherGrandName;
-        $this->MotherLastName = $this->Employee->MotherLastName;
-        $this->FullMothersName = $this->Employee->FullMothersName;
-        $this->Status = $this->Employee->Status;
+          $this->calculator_number = $this->Employee->calculator_number;
+          $this->full_name = $this->Employee->full_name;
     }
 
 
@@ -191,54 +144,19 @@ class EmpInfoBank extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'JobNumber' => 'required:employees',
-            'FileNumber' => 'required:employees',
-            'FirstName' => 'required:employees',
-            'SecondName' => 'required:employees',
-            'ThirdName' => 'required:employees',
-            'FourthName' => 'required:employees',
-            'LastName' => 'required:employees',
-            'FullName' => 'required:employees',
-            'MotherName' => 'required:employees',
-            'MotherFatherName' => 'required:employees',
-            'MotherGrandName' => 'required:employees',
-            'MotherLastName' => 'required:employees',
-            'FullMothersName' => 'required:employees',
-            'Status' => 'required:employees',
+            'calculator_number' => 'required:employees',
+                    'full_name' => 'required:employees',
 
         ], [
-            'JobNumber.required' => 'حقل الاسم مطلوب',
-            'FileNumber.required' => 'حقل الاسم مطلوب',
-            'FirstName.required' => 'حقل الاسم مطلوب',
-            'SecondName.required' => 'حقل الاسم مطلوب',
-            'ThirdName.required' => 'حقل الاسم مطلوب',
-            'FourthName.required' => 'حقل الاسم مطلوب',
-            'LastName.required' => 'حقل الاسم مطلوب',
-            'FullName.required' => 'حقل الاسم مطلوب',
-            'MotherName.required' => 'حقل الاسم مطلوب',
-            'MotherFatherName.required' => 'حقل الاسم مطلوب',
-            'MotherGrandName.required' => 'حقل الاسم مطلوب',
-            'MotherLastName.required' => 'حقل الاسم مطلوب',
-            'FullMothersName.required' => 'حقل الاسم مطلوب',
-            'Status.required' => 'حقل الاسم مطلوب',
-        ]);
+            'calculator_number.required' => 'حقل الاسم مطلوب',
+                       'full_name.required' => 'حقل الاسم مطلوب',
+                  ]);
 
         $Employees = Employees::find($this->EmployeeId);
         $Employees->update([
-            'JobNumber' => $this->JobNumber,
-            'FileNumber' => $this->FileNumber,
-            'FirstName' => $this->FirstName,
-            'SecondName' => $this->SecondName,
-            'ThirdName' => $this->ThirdName,
-            'FourthName' => $this->FourthName,
-            'LastName' => $this->LastName,
-            'FullName' => $this->FullName,
-            'MotherName' => $this->MotherName,
-            'MotherFatherName' => $this->MotherFatherName,
-            'MotherGrandName' => $this->MotherGrandName,
-            'MotherLastName' => $this->MotherLastName,
-            'FullMothersName' => $this->FullMothersName,
-            'Status' => $this->Status,
+            'calculator_number' => $this->calculator_number,
+            'full_name' => $this->full_name,
+
 
         ]);
         $this->reset();

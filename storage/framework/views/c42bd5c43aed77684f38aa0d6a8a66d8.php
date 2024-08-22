@@ -40,7 +40,7 @@
                         <?php $__currentLoopData = $Employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
                                 <td><?php echo e($loop->iteration); ?></td>
-                                <td Class="text-center"><?php echo e($Employee->JobNumber); ?></td>
+                                <td Class="text-center"><?php echo e($Employee->calculator_number); ?></td>
                                 <td Class="text-center"><?php echo e($Employee->FileNumber); ?></td>
                                 <td Class="text-center"><?php echo e($Employee->FirstName); ?></td>
                                 <td Class="text-center"><?php echo e($Employee->SecondName); ?></td>

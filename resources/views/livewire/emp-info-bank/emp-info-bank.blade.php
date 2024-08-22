@@ -44,7 +44,7 @@
                         @foreach ($Employees as $Employee)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td Class="text-center">{{ $Employee->JobNumber }}</td>
+                                <td Class="text-center">{{ $Employee->calculator_number }}</td>
                                 <td Class="text-center">{{ $Employee->FileNumber }}</td>
                                 <td Class="text-center">{{ $Employee->FirstName }}</td>
                                 <td Class="text-center">{{ $Employee->SecondName }}</td>
