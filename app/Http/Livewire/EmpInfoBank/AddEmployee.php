@@ -61,6 +61,8 @@ class AddEmployee extends Component
     {
         $this->GovernorateID = $GovernorateID;
         $this->Districts = Districts::where('governorate_id', $GovernorateID)->get();
+
+      
     }
     public function GetAreas($DistrictID)
     {

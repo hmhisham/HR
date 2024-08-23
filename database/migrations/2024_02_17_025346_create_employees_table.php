@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('maternal_surname', 15)->comment('لقب الام');
             $table->string('mother_full_name', 15)->comment('اسم الام الكامل');
             $table->string('wife_name', 15)->nullable()->comment('اسم الزوجة');
-            $table->string('district', 15)->comment('القضاء');
-            $table->string('sub_district', 15)->nullable()->comment('الناحية');
+            $table->integer('district_id')->comment('القضاء');
+            $table->integer('area_id')->nullable()->comment('الناحية');
             $table->string('locality', 15)->comment('المحلة');
             $table->string('phone_number', 15)->comment('رقم الهاتف');
             $table->string('employee_id_number', 15)->nullable()->comment('رقم هوية الموظف');
@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('email', 15)->nullable()->comment('الايميل');
             $table->date('birth_date')->comment('تاريخ التولد');
             $table->string('birth_place', 15)->comment('محل الولادة');
-            $table->string('governorate', 15)->comment('المحافظة');
+            $table->integer('governorate_id')->comment('المحافظة');
             $table->string('residence', 15)->comment('مسقط الراس');
             $table->string('marital_status', 15)->comment('الحالة الزوجية');
             $table->string('religion', 15)->comment('الديانة');

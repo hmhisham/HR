@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\EmpInfoBank;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Livewire\Districts\District;
 
 class EmpInfoBankController extends Controller
 {
@@ -16,4 +17,6 @@ class EmpInfoBankController extends Controller
     {
         Return View('content.EmpInfoBank.addEmployee');
     }
+
+ 
 }

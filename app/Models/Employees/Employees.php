@@ -2,8 +2,9 @@
 
 namespace App\Models\Employees;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Livewire\Districts\District;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Employees extends Model
 {
@@ -11,4 +12,6 @@ class Employees extends Model
     protected $guarded = [];
 
     protected $table = "employees";
+
+ 
 }
