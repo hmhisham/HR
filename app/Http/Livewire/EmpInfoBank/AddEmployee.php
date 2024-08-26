@@ -14,7 +14,7 @@ class AddEmployee extends Component
     public $activatedStep = 'active';
     public $crossedStep = 'crossed';
 
-    public $GovernorateID;
+    public $GovernorateID , $governorate_id;
     public $Governorates = [];
     public $Districts = [];
     public $Areas = [];
@@ -26,7 +26,7 @@ class AddEmployee extends Component
     public $FileNoCert, $CertificateNoCert, $DateIssueCert, $EndDateCert, $FileCert;
     public $FormNoCard, $CardNoCard, $DateIssueCard, $EndDateCard, $FileCard;
     public $CardNoSupply, $CenterNameSupply, $CenterNoSupply, $FileSupply;
-    public $LicenseDriving, $DateIssueDriving, $EndDateDriving, $FileDriving;
+    public $LicenseDriving, $DateIssueDriving, $EndDateDriving, $FileDriving ;
 
     protected $listeners = [
         'DateBirth',
@@ -59,11 +59,13 @@ class AddEmployee extends Component
 
     public function GetDistricts($GovernorateID)
     {
-        $this->GovernorateID = $GovernorateID;
+      $this->GovernorateID = $GovernorateID;
         $this->Districts = Districts::where('governorate_id', $GovernorateID)->get();
 
-      
     }
+
+
+
     public function GetAreas($DistrictID)
     {
         $this->Areas = Areas::where('governorate_id', $this->GovernorateID)

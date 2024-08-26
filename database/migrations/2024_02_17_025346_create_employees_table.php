@@ -39,7 +39,7 @@ return new class extends Migration
             $table->date('birth_date')->comment('تاريخ التولد');
             $table->string('birth_place', 15)->comment('محل الولادة');
             $table->integer('governorate_id')->comment('المحافظة');
-            $table->string('residence', 15)->comment('مسقط الراس');
+           
             $table->string('marital_status', 15)->comment('الحالة الزوجية');
             $table->string('religion', 15)->comment('الديانة');
             $table->string('gender', 15)->comment('الجنس');
