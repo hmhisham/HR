@@ -6,7 +6,10 @@ use Livewire\Component;
 use App\Models\Areas\Areas;
 use App\Models\Districts\Districts;
 use App\Models\Employees\Employees;
+use App\Models\Graduations\Graduations;
 use App\Models\Governorates\Governorates;
+use App\Http\Livewire\Graduations\Graduation;
+use App\Models\Specializations\Specializations;
 
 class AddEmployee extends Component
 {
@@ -14,10 +17,12 @@ class AddEmployee extends Component
     public $activatedStep = 'active';
     public $crossedStep = 'crossed';
 
-    public $GovernorateID , $governorate_id;
+    public $GovernorateID , $governorate_id ;
     public $Governorates = [];
     public $Districts = [];
     public $Areas = [];
+    public $graduations=[];
+    public $specializations=[];
 
     public $JobNumber, $FileNumber, $FirstName, $SecondName, $ThirdName, $FourthName, $LastName, $MotherName, $MotherFatherName, $MotherGrandName, $MotherLastName;
     public $DateBirth, $PlaceBirth, $BirthGovernorate, $BirthPlace, $MaritalStatus, $Religion, $Gender;
@@ -41,6 +46,9 @@ class AddEmployee extends Component
     {
         $this->Governorates = Governorates::all();
         $this->NationalCardGovernorate = Governorates::all();
+              $this->graduations =  Graduations::all();
+        $this->specializations = Specializations::all();
+
     }
 
     public function render()

@@ -595,7 +595,8 @@ unset($__errorArgs, $__bag); ?>
                         <div Class="row g-4">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='governorate_id' wire:change='GetDistricts($event.target.value)' id="governorate_id"
+                                    <select wire:model.defer='governorate_id'
+                                        wire:change='GetDistricts($event.target.value)' id="governorate_id"
                                         class="form-select <?php $__errorArgs = ['governorate_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -606,7 +607,9 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                         <option value=""></option>
                                         <?php $__currentLoopData = $Governorates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Governorate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($Governorate->id); ?>"><?php echo e($Governorate->governorate_name); ?></option>
+                                        <option value="<?php echo e($Governorate->id); ?>"><?php echo e($Governorate->governorate_name); ?>
+
+                                        </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                     <label for="governorate_id">المحافظة</label>
@@ -616,7 +619,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
                                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -625,7 +628,8 @@ unset($__errorArgs, $__bag); ?>
 
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='district_id' id="district_id"  wire:change='GetAreas($event.target.value)' id="district_id"
+                                    <select wire:model.defer='district_id' id="district_id"
+                                        wire:change='GetAreas($event.target.value)' id="district_id"
                                         class="form-select <?php $__errorArgs = ['district_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -636,7 +640,7 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                         <option value=""></option>
                                         <?php $__currentLoopData = $Districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $District): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($District->id); ?>"><?php echo e($District->district_name); ?></option>
+                                        <option value="<?php echo e($District->id); ?>"><?php echo e($District->district_name); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                     <label for="district_id">القضاء</label>
@@ -646,7 +650,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
                                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -666,7 +670,7 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                         <option value=""></option>
                                         <?php $__currentLoopData = $Areas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Area): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($Area->id); ?>"><?php echo e($Area->area_name); ?></option>
+                                        <option value="<?php echo e($Area->id); ?>"><?php echo e($Area->area_name); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                     <label for="mmodalEmployeearea_id">الناحية</label>
@@ -676,7 +680,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
                                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -789,7 +793,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
                                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -870,8 +874,7 @@ unset($__errorArgs, $__bag); ?>
 
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='religion' id="modalEmployeereligion"
-                                        placeholder="الديانة"
+                                    <select wire:model.defer='religion' id="modalEmployeereligion" placeholder="الديانة"
                                         class="form-select <?php $__errorArgs = ['religion'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -898,7 +901,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
                                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -907,8 +910,7 @@ unset($__errorArgs, $__bag); ?>
 
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='gender' id="modalEmployeegender"
-                                        placeholder="الجنس"
+                                    <select wire:model.defer='gender' id="modalEmployeegender" placeholder="الجنس"
                                         class="form-select <?php $__errorArgs = ['gender'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -928,7 +930,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
                                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -944,14 +946,14 @@ unset($__errorArgs, $__bag); ?>
                 <div class="tab-pane fade" id="form-tabs-3" role="tabpanel">
                     <form>
 
-                       <div Class="row g-4">
+                        <div Class="row g-4">
 
 
-                        <div class="mb-3 col">
-                            <div class="form-floating form-floating-outline">
-                                <select wire:model.defer='education_service' id="modalEmployeeeducation_service"
-                                    placeholder="التحصيل الدراسي الحالي"
-                                    class="form-select <?php $__errorArgs = ['education_service'];
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='education_service' id="modalEmployeeeducation_service"
+                                        placeholder="التحصيل الدراسي الحالي"
+                                        class="form-select <?php $__errorArgs = ['education_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -959,43 +961,43 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                    <option value=""></option>
-                                    <option value="امي">امي</option>
-                                    <option value="يقرا فقط">يقرا فقط</option>
-                                    <option value="يقرا ويكتب">يقرا ويكتب</option>
-                                    <option value="ابتدائية">ابتدائية</option>
-                                    <option value="متوسطة">متوسطة</option>
-                                    <option value="اعدادية">اعدادية</option>
-                                    <option value="دبلوم">دبلوم</option>
-                                    <option value="بكالوريوس">بكالوريوس</option>
-                                    <option value="دبلوم عالي">دبلوم عالي</option>
-                                    <option value="ماجستير">ماجستير</option>
-                                    <option value="دكتوراه">دكتوراه</option>
-                                    <option value="اعلى شهادة اختصاص">اعلى شهادة اختصاص</option>
-                                    <option value="غير مبين">غير مبين</option>
-                                    <option value="محو الامية">محو الامية</option>
-                                </select>
-                                <label for="modalEmployeeeducation_service">التحصيل الدراسي الحالي</label>
-                            </div>
-                            <?php $__errorArgs = ['education_service'];
+                                        <option value=""></option>
+                                        <option value="امي">امي</option>
+                                        <option value="يقرا فقط">يقرا فقط</option>
+                                        <option value="يقرا ويكتب">يقرا ويكتب</option>
+                                        <option value="ابتدائية">ابتدائية</option>
+                                        <option value="متوسطة">متوسطة</option>
+                                        <option value="اعدادية">اعدادية</option>
+                                        <option value="دبلوم">دبلوم</option>
+                                        <option value="بكالوريوس">بكالوريوس</option>
+                                        <option value="دبلوم عالي">دبلوم عالي</option>
+                                        <option value="ماجستير">ماجستير</option>
+                                        <option value="دكتوراه">دكتوراه</option>
+                                        <option value="اعلى شهادة اختصاص">اعلى شهادة اختصاص</option>
+                                        <option value="غير مبين">غير مبين</option>
+                                        <option value="محو الامية">محو الامية</option>
+                                    </select>
+                                    <label for="modalEmployeeeducation_service">التحصيل الدراسي الحالي</label>
+                                </div>
+                                <?php $__errorArgs = ['education_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
                                 <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                            <?php unset($message);
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                        </div>
+                            </div>
 
 
 
-                        <div class="mb-3 col">
-                            <div class="form-floating form-floating-outline">
-                                <select wire:model.defer='graduation_year_service' id="modalEmployeegraduation_year_service"
-                                    placeholder="سنة التخرج الحالية"
-                                    class="form-select <?php $__errorArgs = ['graduation_year_service'];
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='graduation_year_service'
+                                        id="modalEmployeegraduation_year_service" placeholder="سنة التخرج الحالية"
+                                        class="form-select <?php $__errorArgs = ['graduation_year_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -1003,230 +1005,258 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                    <option value=""></option>
-                                    <option value="1950-1951">1950-1951</option>
-                                    <option value="1951-1952">1951-1952</option>
-                                    <option value="1952-1953">1952-1953</option>
-                                    <option value="1953-1954">1953-1954</option>
-                                    <option value="1954-1955">1954-1955</option>
-                                    <option value="1955-1956">1955-1956</option>
-                                    <option value="1956-1957">1956-1957</option>
-                                    <option value="1957-1958">1957-1958</option>
-                                    <option value="1958-1959">1958-1959</option>
-                                    <option value="1959-1960">1959-1960</option>
-                                    <option value="1960-1961">1960-1961</option>
-                                    <option value="1961-1962">1961-1962</option>
-                                    <option value="1962-1963">1962-1963</option>
-                                    <option value="1963-1964">1963-1964</option>
-                                    <option value="1964-1965">1964-1965</option>
-                                    <option value="1965-1966">1965-1966</option>
-                                    <option value="1966-1967">1966-1967</option>
-                                    <option value="1967-1968">1967-1968</option>
-                                    <option value="1968-1969">1968-1969</option>
-                                    <option value="1969-1970">1969-1970</option>
-                                    <option value="1970-1971">1970-1971</option>
-                                    <option value="1971-1972">1971-1972</option>
-                                    <option value="1972-1973">1972-1973</option>
-                                    <option value="1973-1974">1973-1974</option>
-                                    <option value="1974-1975">1974-1975</option>
-                                    <option value="1975-1976">1975-1976</option>
-                                    <option value="1976-1977">1976-1977</option>
-                                    <option value="1977-1978">1977-1978</option>
-                                    <option value="1978-1979">1978-1979</option>
-                                    <option value="1979-1980">1979-1980</option>
-                                    <option value="1980-1981">1980-1981</option>
-                                    <option value="1981-1982">1981-1982</option>
-                                    <option value="1982-1983">1982-1983</option>
-                                    <option value="1983-1984">1983-1984</option>
-                                    <option value="1984-1985">1984-1985</option>
-                                    <option value="1985-1986">1985-1986</option>
-                                    <option value="1986-1987">1986-1987</option>
-                                    <option value="1987-1988">1987-1988</option>
-                                    <option value="1988-1989">1988-1989</option>
-                                    <option value="1989-1990">1989-1990</option>
-                                    <option value="1990-1991">1990-1991</option>
-                                    <option value="1991-1992">1991-1992</option>
-                                    <option value="1992-1993">1992-1993</option>
-                                    <option value="1993-1994">1993-1994</option>
-                                    <option value="1994-1995">1994-1995</option>
-                                    <option value="1995-1996">1995-1996</option>
-                                    <option value="1996-1997">1996-1997</option>
-                                    <option value="1997-1998">1997-1998</option>
-                                    <option value="1998-1999">1998-1999</option>
-                                    <option value="1999-2000">1999-2000</option>
-                                    <option value="2000-2001">2000-2001</option>
-                                    <option value="2001-2002">2001-2002</option>
-                                    <option value="2002-2003">2002-2003</option>
-                                    <option value="2003-2004">2003-2004</option>
-                                    <option value="2004-2005">2004-2005</option>
-                                    <option value="2005-2006">2005-2006</option>
-                                    <option value="2006-2007">2006-2007</option>
-                                    <option value="2007-2008">2007-2008</option>
-                                    <option value="2008-2009">2008-2009</option>
-                                    <option value="2009-2010">2009-2010</option>
-                                    <option value="2010-2011">2010-2011</option>
-                                    <option value="2011-2012">2011-2012</option>
-                                    <option value="2012-2013">2012-2013</option>
-                                    <option value="2013-2014">2013-2014</option>
-                                    <option value="2014-2015">2014-2015</option>
-                                    <option value="2015-2016">2015-2016</option>
-                                    <option value="2016-2017">2016-2017</option>
-                                    <option value="2017-2018">2017-2018</option>
-                                    <option value="2018-2019">2018-2019</option>
-                                    <option value="2019-2020">2019-2020</option>
-                                    <option value="2020-2021">2020-2021</option>
-                                    <option value="2021-2022">2021-2022</option>
-                                    <option value="2022-2023">2022-2023</option>
-                                    <option value="2023-2024">2023-2024</option>
-                                    <option value="2024-2025">2024-2025</option>
-                                    <option value="2025-2026">2025-2026</option>
-                                    <option value="2026-2027">2026-2027</option>
-                                    <option value="2027-2028">2027-2028</option>
-                                    <option value="2028-2029">2028-2029</option>
-                                    <option value="2029-2030">2029-2030</option>
-                                    <option value="2030-2031">2030-2031</option>
-                                    <option value="2031-2032">2031-2032</option>
-                                    <option value="2032-2033">2032-2033</option>
-                                    <option value="2033-2034">2033-2034</option>
-                                    <option value="2034-2035">2034-2035</option>
-                                    <option value="2035-2036">2035-2036</option>
-                                    <option value="2036-2037">2036-2037</option>
-                                    <option value="2037-2038">2037-2038</option>
-                                    <option value="2038-2039">2038-2039</option>
-                                    <option value="2039-2040">2039-2040</option>
-                                    <option value="2040-2041">2040-2041</option>
-                                    <option value="2041-2042">2041-2042</option>
-                                    <option value="2042-2043">2042-2043</option>
-                                    <option value="2043-2044">2043-2044</option>
-                                    <option value="2044-2045">2044-2045</option>
-                                    <option value="2045-2046">2045-2046</option>
-                                    <option value="2046-2047">2046-2047</option>
-                                    <option value="2047-2048">2047-2048</option>
-                                    <option value="2048-2049">2048-2049</option>
-                                    <option value="2049-2050">2049-2050</option>
-                                    <option value="2050-2051">2050-2051</option>
-                                    <option value="2051-2052">2051-2052</option>
-                                    <option value="2052-2053">2052-2053</option>
-                                    <option value="2053-2054">2053-2054</option>
-                                    <option value="2054-2055">2054-2055</option>
-                                    <option value="2055-2056">2055-2056</option>
-                                    <option value="2056-2057">2056-2057</option>
-                                    <option value="2057-2058">2057-2058</option>
-                                    <option value="2058-2059">2058-2059</option>
-                                    <option value="2059-2060">2059-2060</option>
-                                    <option value="2060-2061">2060-2061</option>
-                                    <option value="2061-2062">2061-2062</option>
-                                    <option value="2062-2063">2062-2063</option>
-                                    <option value="2063-2064">2063-2064</option>
-                                    <option value="2064-2065">2064-2065</option>
-                                    <option value="2065-2066">2065-2066</option>
-                                    <option value="2066-2067">2066-2067</option>
-                                    <option value="2067-2068">2067-2068</option>
-                                    <option value="2068-2069">2068-2069</option>
-                                    <option value="2069-2070">2069-2070</option>
-                                    <option value="2070-2071">2070-2071</option>
-                                    <option value="2071-2072">2071-2072</option>
-                                    <option value="2072-2073">2072-2073</option>
-                                    <option value="2073-2074">2073-2074</option>
-                                    <option value="2074-2075">2074-2075</option>
-                                    <option value="2075-2076">2075-2076</option>
-                                    <option value="2076-2077">2076-2077</option>
-                                    <option value="2077-2078">2077-2078</option>
-                                    <option value="2078-2079">2078-2079</option>
-                                    <option value="2079-2080">2079-2080</option>
-                                    <option value="2080-2081">2080-2081</option>
-                                    <option value="2081-2082">2081-2082</option>
-                                    <option value="2082-2083">2082-2083</option>
-                                    <option value="2083-2084">2083-2084</option>
-                                    <option value="2084-2085">2084-2085</option>
-                                    <option value="2085-2086">2085-2086</option>
-                                    <option value="2086-2087">2086-2087</option>
-                                    <option value="2087-2088">2087-2088</option>
-                                    <option value="2088-2089">2088-2089</option>
-                                    <option value="2089-2090">2089-2090</option>
-                                    <option value="2090-2091">2090-2091</option>
-                                    <option value="2091-2092">2091-2092</option>
-                                    <option value="2092-2093">2092-2093</option>
-                                    <option value="2093-2094">2093-2094</option>
-                                    <option value="2094-2095">2094-2095</option>
-                                    <option value="2095-2096">2095-2096</option>
-                                    <option value="2096-2097">2096-2097</option>
-                                    <option value="2097-2098">2097-2098</option>
-                                    <option value="2098-2099">2098-2099</option>
-                                    <option value="2099-2100">2099-2100</option>
-                                    <option value="2100-2101">2100-2101</option>
-                                </select>
-                                <label for="modalEmployeegraduation_year_service">سنة التخرج الحالية</label>
-                            </div>
-                            <?php $__errorArgs = ['graduation_year_service'];
+                                        <option value=""></option>
+                                        <option value="1950-1951">1950-1951</option>
+                                        <option value="1951-1952">1951-1952</option>
+                                        <option value="1952-1953">1952-1953</option>
+                                        <option value="1953-1954">1953-1954</option>
+                                        <option value="1954-1955">1954-1955</option>
+                                        <option value="1955-1956">1955-1956</option>
+                                        <option value="1956-1957">1956-1957</option>
+                                        <option value="1957-1958">1957-1958</option>
+                                        <option value="1958-1959">1958-1959</option>
+                                        <option value="1959-1960">1959-1960</option>
+                                        <option value="1960-1961">1960-1961</option>
+                                        <option value="1961-1962">1961-1962</option>
+                                        <option value="1962-1963">1962-1963</option>
+                                        <option value="1963-1964">1963-1964</option>
+                                        <option value="1964-1965">1964-1965</option>
+                                        <option value="1965-1966">1965-1966</option>
+                                        <option value="1966-1967">1966-1967</option>
+                                        <option value="1967-1968">1967-1968</option>
+                                        <option value="1968-1969">1968-1969</option>
+                                        <option value="1969-1970">1969-1970</option>
+                                        <option value="1970-1971">1970-1971</option>
+                                        <option value="1971-1972">1971-1972</option>
+                                        <option value="1972-1973">1972-1973</option>
+                                        <option value="1973-1974">1973-1974</option>
+                                        <option value="1974-1975">1974-1975</option>
+                                        <option value="1975-1976">1975-1976</option>
+                                        <option value="1976-1977">1976-1977</option>
+                                        <option value="1977-1978">1977-1978</option>
+                                        <option value="1978-1979">1978-1979</option>
+                                        <option value="1979-1980">1979-1980</option>
+                                        <option value="1980-1981">1980-1981</option>
+                                        <option value="1981-1982">1981-1982</option>
+                                        <option value="1982-1983">1982-1983</option>
+                                        <option value="1983-1984">1983-1984</option>
+                                        <option value="1984-1985">1984-1985</option>
+                                        <option value="1985-1986">1985-1986</option>
+                                        <option value="1986-1987">1986-1987</option>
+                                        <option value="1987-1988">1987-1988</option>
+                                        <option value="1988-1989">1988-1989</option>
+                                        <option value="1989-1990">1989-1990</option>
+                                        <option value="1990-1991">1990-1991</option>
+                                        <option value="1991-1992">1991-1992</option>
+                                        <option value="1992-1993">1992-1993</option>
+                                        <option value="1993-1994">1993-1994</option>
+                                        <option value="1994-1995">1994-1995</option>
+                                        <option value="1995-1996">1995-1996</option>
+                                        <option value="1996-1997">1996-1997</option>
+                                        <option value="1997-1998">1997-1998</option>
+                                        <option value="1998-1999">1998-1999</option>
+                                        <option value="1999-2000">1999-2000</option>
+                                        <option value="2000-2001">2000-2001</option>
+                                        <option value="2001-2002">2001-2002</option>
+                                        <option value="2002-2003">2002-2003</option>
+                                        <option value="2003-2004">2003-2004</option>
+                                        <option value="2004-2005">2004-2005</option>
+                                        <option value="2005-2006">2005-2006</option>
+                                        <option value="2006-2007">2006-2007</option>
+                                        <option value="2007-2008">2007-2008</option>
+                                        <option value="2008-2009">2008-2009</option>
+                                        <option value="2009-2010">2009-2010</option>
+                                        <option value="2010-2011">2010-2011</option>
+                                        <option value="2011-2012">2011-2012</option>
+                                        <option value="2012-2013">2012-2013</option>
+                                        <option value="2013-2014">2013-2014</option>
+                                        <option value="2014-2015">2014-2015</option>
+                                        <option value="2015-2016">2015-2016</option>
+                                        <option value="2016-2017">2016-2017</option>
+                                        <option value="2017-2018">2017-2018</option>
+                                        <option value="2018-2019">2018-2019</option>
+                                        <option value="2019-2020">2019-2020</option>
+                                        <option value="2020-2021">2020-2021</option>
+                                        <option value="2021-2022">2021-2022</option>
+                                        <option value="2022-2023">2022-2023</option>
+                                        <option value="2023-2024">2023-2024</option>
+                                        <option value="2024-2025">2024-2025</option>
+                                        <option value="2025-2026">2025-2026</option>
+                                        <option value="2026-2027">2026-2027</option>
+                                        <option value="2027-2028">2027-2028</option>
+                                        <option value="2028-2029">2028-2029</option>
+                                        <option value="2029-2030">2029-2030</option>
+                                        <option value="2030-2031">2030-2031</option>
+                                        <option value="2031-2032">2031-2032</option>
+                                        <option value="2032-2033">2032-2033</option>
+                                        <option value="2033-2034">2033-2034</option>
+                                        <option value="2034-2035">2034-2035</option>
+                                        <option value="2035-2036">2035-2036</option>
+                                        <option value="2036-2037">2036-2037</option>
+                                        <option value="2037-2038">2037-2038</option>
+                                        <option value="2038-2039">2038-2039</option>
+                                        <option value="2039-2040">2039-2040</option>
+                                        <option value="2040-2041">2040-2041</option>
+                                        <option value="2041-2042">2041-2042</option>
+                                        <option value="2042-2043">2042-2043</option>
+                                        <option value="2043-2044">2043-2044</option>
+                                        <option value="2044-2045">2044-2045</option>
+                                        <option value="2045-2046">2045-2046</option>
+                                        <option value="2046-2047">2046-2047</option>
+                                        <option value="2047-2048">2047-2048</option>
+                                        <option value="2048-2049">2048-2049</option>
+                                        <option value="2049-2050">2049-2050</option>
+                                        <option value="2050-2051">2050-2051</option>
+                                        <option value="2051-2052">2051-2052</option>
+                                        <option value="2052-2053">2052-2053</option>
+                                        <option value="2053-2054">2053-2054</option>
+                                        <option value="2054-2055">2054-2055</option>
+                                        <option value="2055-2056">2055-2056</option>
+                                        <option value="2056-2057">2056-2057</option>
+                                        <option value="2057-2058">2057-2058</option>
+                                        <option value="2058-2059">2058-2059</option>
+                                        <option value="2059-2060">2059-2060</option>
+                                        <option value="2060-2061">2060-2061</option>
+                                        <option value="2061-2062">2061-2062</option>
+                                        <option value="2062-2063">2062-2063</option>
+                                        <option value="2063-2064">2063-2064</option>
+                                        <option value="2064-2065">2064-2065</option>
+                                        <option value="2065-2066">2065-2066</option>
+                                        <option value="2066-2067">2066-2067</option>
+                                        <option value="2067-2068">2067-2068</option>
+                                        <option value="2068-2069">2068-2069</option>
+                                        <option value="2069-2070">2069-2070</option>
+                                        <option value="2070-2071">2070-2071</option>
+                                        <option value="2071-2072">2071-2072</option>
+                                        <option value="2072-2073">2072-2073</option>
+                                        <option value="2073-2074">2073-2074</option>
+                                        <option value="2074-2075">2074-2075</option>
+                                        <option value="2075-2076">2075-2076</option>
+                                        <option value="2076-2077">2076-2077</option>
+                                        <option value="2077-2078">2077-2078</option>
+                                        <option value="2078-2079">2078-2079</option>
+                                        <option value="2079-2080">2079-2080</option>
+                                        <option value="2080-2081">2080-2081</option>
+                                        <option value="2081-2082">2081-2082</option>
+                                        <option value="2082-2083">2082-2083</option>
+                                        <option value="2083-2084">2083-2084</option>
+                                        <option value="2084-2085">2084-2085</option>
+                                        <option value="2085-2086">2085-2086</option>
+                                        <option value="2086-2087">2086-2087</option>
+                                        <option value="2087-2088">2087-2088</option>
+                                        <option value="2088-2089">2088-2089</option>
+                                        <option value="2089-2090">2089-2090</option>
+                                        <option value="2090-2091">2090-2091</option>
+                                        <option value="2091-2092">2091-2092</option>
+                                        <option value="2092-2093">2092-2093</option>
+                                        <option value="2093-2094">2093-2094</option>
+                                        <option value="2094-2095">2094-2095</option>
+                                        <option value="2095-2096">2095-2096</option>
+                                        <option value="2096-2097">2096-2097</option>
+                                        <option value="2097-2098">2097-2098</option>
+                                        <option value="2098-2099">2098-2099</option>
+                                        <option value="2099-2100">2099-2100</option>
+                                        <option value="2100-2101">2100-2101</option>
+                                    </select>
+                                    <label for="modalEmployeegraduation_year_service">سنة التخرج الحالية</label>
+                                </div>
+                                <?php $__errorArgs = ['graduation_year_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
                                 <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                            <?php unset($message);
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                        </div>
+                            </div>
 
-                                   <div class="mb-3 col">
-                                       <div class="form-floating form-floating-outline">
-                                           <input wire:model.defer='graduation_institution_service' type="text" id="modalEmployeegraduation_institution_service"
-                                               placeholder="جهة التخرج اثناء الخدمة"
-                                               class="form-control <?php $__errorArgs = ['graduation_institution_service'];
+
+                            <div class="mb-3 col">
+                                <div class="input-group">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer="graduation_institution_service" id="modalEmployeesgraduation_institution_service"
+                                                class="form-select <?php $__errorArgs = ['graduation_institution_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
-                                           <label for="modalEmployeegraduation_institution_service">جهة التخرج اثناء الخدمة</label>
-                                       </div>
-                                       <?php $__errorArgs = ['graduation_institution_service'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                           <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                       <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                   </div>
-                                   <div class="mb-3 col">
-                                       <div class="form-floating form-floating-outline">
-                                           <input wire:model.defer='specialization_service' type="text" id="modalEmployeespecialization_service"
-                                               placeholder="الاختصاص اثناء الخدمة"
-                                               class="form-control <?php $__errorArgs = ['specialization_service'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" />
-                                           <label for="modalEmployeespecialization_service">الاختصاص اثناء الخدمة</label>
-                                       </div>
-                                       <?php $__errorArgs = ['specialization_service'];
+unset($__errorArgs, $__bag); ?>" aria-label="Specialization">
+                                            <option value=""></option>
+                                            <?php $__currentLoopData = $graduations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $graduation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($graduation->id); ?>"><?php echo e($graduation->graduations_name); ?>
+
+                                        </option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                        <label for="graduation_institution_service">جهة التخرج الحالي</label>
+                                    </div>
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addspecializationModal">
+                                        <i class="mdi mdi-playlist-plus"></i>
+                                    </button>
+                                </div>
+                                <?php $__errorArgs = ['specialization_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                           <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                       <?php unset($message);
+                                    <small class="text-danger inputerror"><?php echo e($message); ?></small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                   </div>
+                            </div>
+
+
+                            <div class="mb-3 col">
+                                <div class="input-group">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer="specialization_service" id="modalEmployeespecialization_service"
+                                                class="form-select <?php $__errorArgs = ['specialization_service'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" aria-label="Specialization">
+                                            <option value=""></option>
+                                            <?php $__currentLoopData = $specializations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $specialization): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($specialization->id); ?>"><?php echo e($specialization->specializations_name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                        <label for="specialization_service">الاختصاص الحالي</label>
+                                    </div>
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addspecializationModal">
+                                        <i class="mdi mdi-playlist-plus"></i>
+                                    </button>
+                                </div>
+                                <?php $__errorArgs = ['specialization_service'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="text-danger inputerror"><?php echo e($message); ?></small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+
+
+
+
+
                         </div>
-                       <div Class="row g-4">
-                                   <div class="mb-3 col">
-                                       <div class="form-floating form-floating-outline">
-                                           <input wire:model.defer='document_number' type="text" id="modalEmployeedocument_number"
-                                               placeholder="رقم الوثيقة"
-                                               class="form-control <?php $__errorArgs = ['document_number'];
+                        <div Class="row g-4">
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='document_number' type="text"
+                                        id="modalEmployeedocument_number" placeholder="رقم الوثيقة"
+                                        class="form-control <?php $__errorArgs = ['document_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -1234,24 +1264,24 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                           <label for="modalEmployeedocument_number">رقم الوثيقة</label>
-                                       </div>
-                                       <?php $__errorArgs = ['document_number'];
+                                    <label for="modalEmployeedocument_number">رقم الوثيقة</label>
+                                </div>
+                                <?php $__errorArgs = ['document_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                           <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                       <?php unset($message);
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                   </div>
-                                   <div class="mb-3 col">
-                                       <div class="form-floating form-floating-outline">
-                                           <input wire:model.defer='document_date' type="date" id="modalEmployeedocument_date"
-                                               placeholder="تاريخ الوثيقة"
-                                               class="form-control <?php $__errorArgs = ['document_date'];
+                            </div>
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='document_date' type="date" id="modalEmployeedocument_date"
+                                        placeholder="تاريخ الوثيقة"
+                                        class="form-control <?php $__errorArgs = ['document_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -1259,24 +1289,24 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                           <label for="modalEmployeedocument_date">تاريخ الوثيقة</label>
-                                       </div>
-                                       <?php $__errorArgs = ['document_date'];
+                                    <label for="modalEmployeedocument_date">تاريخ الوثيقة</label>
+                                </div>
+                                <?php $__errorArgs = ['document_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                           <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                       <?php unset($message);
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                   </div>
-                                   <div class="mb-3 col">
-                                       <div class="form-floating form-floating-outline">
-                                           <input wire:model.defer='document_verification_number' type="text" id="modalEmployeedocument_verification_number"
-                                               placeholder="رقم صحة الصدور"
-                                               class="form-control <?php $__errorArgs = ['document_verification_number'];
+                            </div>
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='document_verification_number' type="text"
+                                        id="modalEmployeedocument_verification_number" placeholder="رقم صحة الصدور"
+                                        class="form-control <?php $__errorArgs = ['document_verification_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -1284,24 +1314,24 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                           <label for="modalEmployeedocument_verification_number">رقم صحة الصدور</label>
-                                       </div>
-                                       <?php $__errorArgs = ['document_verification_number'];
+                                    <label for="modalEmployeedocument_verification_number">رقم صحة الصدور</label>
+                                </div>
+                                <?php $__errorArgs = ['document_verification_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                           <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                       <?php unset($message);
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                   </div>
-                                   <div class="mb-3 col">
-                                       <div class="form-floating form-floating-outline">
-                                           <input wire:model.defer='document_verification_date' type="date" id="modalEmployeedocument_verification_date"
-                                               placeholder="تاريخ صحة الصدور"
-                                               class="form-control <?php $__errorArgs = ['document_verification_date'];
+                            </div>
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='document_verification_date' type="date"
+                                        id="modalEmployeedocument_verification_date" placeholder="تاريخ صحة الصدور"
+                                        class="form-control <?php $__errorArgs = ['document_verification_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -1309,26 +1339,26 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                           <label for="modalEmployeedocument_verification_date">تاريخ صحة الصدور</label>
-                                       </div>
-                                       <?php $__errorArgs = ['document_verification_date'];
+                                    <label for="modalEmployeedocument_verification_date">تاريخ صحة الصدور</label>
+                                </div>
+                                <?php $__errorArgs = ['document_verification_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                           <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                       <?php unset($message);
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                   </div>
+                            </div>
                         </div>
-                       <div Class="row g-4">
-                                   <div class="mb-3 col">
-                                       <div class="form-floating form-floating-outline">
-                                           <input wire:model.defer='education_appointment' type="text" id="modalEmployeeeducation_appointment"
-                                               placeholder="التحصيل الدراسي التعيين"
-                                               class="form-control <?php $__errorArgs = ['education_appointment'];
+                        <div Class="row g-4">
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='education_appointment' type="text"
+                                        id="modalEmployeeeducation_appointment" placeholder="التحصيل الدراسي التعيين"
+                                        class="form-control <?php $__errorArgs = ['education_appointment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -1336,24 +1366,24 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                           <label for="modalEmployeeeducation_appointment">التحصيل الدراسي التعيين</label>
-                                       </div>
-                                       <?php $__errorArgs = ['education_appointment'];
+                                    <label for="modalEmployeeeducation_appointment">التحصيل الدراسي التعيين</label>
+                                </div>
+                                <?php $__errorArgs = ['education_appointment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                           <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                       <?php unset($message);
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                   </div>
-                                   <div class="mb-3 col">
-                                       <div class="form-floating form-floating-outline">
-                                           <input wire:model.defer='graduation_year_appointment' type="text" id="modalEmployeegraduation_year_appointment"
-                                               placeholder="سنة تخرج التعيين"
-                                               class="form-control <?php $__errorArgs = ['graduation_year_appointment'];
+                            </div>
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='graduation_year_appointment' type="text"
+                                        id="modalEmployeegraduation_year_appointment" placeholder="سنة تخرج التعيين"
+                                        class="form-control <?php $__errorArgs = ['graduation_year_appointment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -1361,24 +1391,25 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                           <label for="modalEmployeegraduation_year_appointment">سنة تخرج التعيين</label>
-                                       </div>
-                                       <?php $__errorArgs = ['graduation_year_appointment'];
+                                    <label for="modalEmployeegraduation_year_appointment">سنة تخرج التعيين</label>
+                                </div>
+                                <?php $__errorArgs = ['graduation_year_appointment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                           <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                       <?php unset($message);
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                   </div>
-                                   <div class="mb-3 col">
-                                       <div class="form-floating form-floating-outline">
-                                           <input wire:model.defer='graduation_institution_appointment' type="text" id="modalEmployeegraduation_institution_appointment"
-                                               placeholder="جهة تخرج التعيين"
-                                               class="form-control <?php $__errorArgs = ['graduation_institution_appointment'];
+                            </div>
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='graduation_institution_appointment' type="text"
+                                        id="modalEmployeegraduation_institution_appointment"
+                                        placeholder="جهة تخرج التعيين"
+                                        class="form-control <?php $__errorArgs = ['graduation_institution_appointment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -1386,24 +1417,25 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                           <label for="modalEmployeegraduation_institution_appointment">جهة تخرج التعيين</label>
-                                       </div>
-                                       <?php $__errorArgs = ['graduation_institution_appointment'];
+                                    <label for="modalEmployeegraduation_institution_appointment">جهة تخرج
+                                        التعيين</label>
+                                </div>
+                                <?php $__errorArgs = ['graduation_institution_appointment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                           <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                       <?php unset($message);
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                   </div>
-                                   <div class="mb-3 col">
-                                       <div class="form-floating form-floating-outline">
-                                           <input wire:model.defer='specialization_appointment' type="text" id="modalEmployeespecialization_appointment"
-                                               placeholder="الاختصاص التعيين"
-                                               class="form-control <?php $__errorArgs = ['specialization_appointment'];
+                            </div>
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='specialization_appointment' type="text"
+                                        id="modalEmployeespecialization_appointment" placeholder="الاختصاص التعيين"
+                                        class="form-control <?php $__errorArgs = ['specialization_appointment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -1411,19 +1443,20 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                           <label for="modalEmployeespecialization_appointment">الاختصاص التعيين</label>
-                                       </div>
-                                       <?php $__errorArgs = ['specialization_appointment'];
+                                    <label for="modalEmployeespecialization_appointment">الاختصاص التعيين</label>
+                                </div>
+                                <?php $__errorArgs = ['specialization_appointment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                           <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                       <?php unset($message);
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                   </div>   </div>
+                            </div>
+                        </div>
 
                     </form>
                 </div>
