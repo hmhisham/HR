@@ -39,19 +39,39 @@ return new class extends Migration
             $table->date('birth_date')->comment('تاريخ التولد');
             $table->string('birth_place', 15)->comment('محل الولادة');
             $table->integer('governorate_id')->comment('المحافظة');
-           
             $table->string('marital_status', 15)->comment('الحالة الزوجية');
             $table->string('religion', 15)->comment('الديانة');
             $table->string('gender', 15)->comment('الجنس');
             $table->integer('children_count')->comment('عدد الاطفال');
-            $table->string('id_card_number', 15)->nullable()->comment('رقم البطاقة');
-            $table->date('issue_date')->nullable()->comment('تاريخ الاصدار');
-            $table->string('form_number', 15)->nullable()->comment('رقم الاستمارة');
-            $table->string('information_office', 15)->nullable()->comment('مكتب المعلومات');
-            $table->string('center_name', 15)->nullable()->comment('اسم المركز');
-            $table->integer('center_number')->nullable()->comment('رقم المركز');
-            $table->string('driving_license', 15)->nullable()->comment('اجازة السوق');
-            $table->date('license_expiry_date')->nullable()->comment('تاريخ الانتهاء');
+
+            // Identity Information
+            $table->string('civil_status_identity_number', 20)->nullable()->comment('رقم هوية الاحوال');
+            $table->string('registration_number', 20)->nullable()->comment('رقم السجل');
+            $table->string('record_number', 20)->nullable()->comment('رقم الصحيفة');
+            $table->date('issue_date_civil_status')->nullable()->comment('تاريخ الاصدار');
+            $table->string('issuing_authority_civil_status', 100)->nullable()->comment('جهة الاصدار');
+
+            // Nationality Certificate Information
+            $table->string('nationality_certificate_number', 20)->nullable()->comment('رقم شهادة الجنسية');
+            $table->string('wallet_number', 20)->nullable()->comment('رقم المحفظة');
+            $table->date('issue_date_nationality_certificate')->nullable()->comment('تاريخ الاصدار');
+            $table->string('issuing_authority_nationality_certificate', 100)->nullable()->comment('جهة الاصدار');
+
+            // Residence Card Information
+            $table->string('residence_card_number', 20)->nullable()->comment('رقم بطاقة السكن');
+            $table->string('information_office', 100)->nullable()->comment('مكتب المعلومات');
+            $table->date('organization_date')->nullable()->comment('تاريخ التنظيم');
+
+            // Ration Card Information
+            $table->string('ration_card_number', 20)->nullable()->comment('رقم البطاقة التموينية');
+            $table->date('ration_card_date')->nullable()->comment('تاريخها');
+
+            // National Card Information
+            $table->string('national_card_number', 20)->nullable()->comment('رقم البطاقة الوطنية');
+            $table->date('national_card_date')->nullable()->comment('تاريخها');
+
+            // $table->string('driving_license', 15)->nullable()->comment('اجازة السوق');
+            // $table->date('license_expiry_date')->nullable()->comment('تاريخ الانتهاء');
             $table->string('education_service', 15)->nullable()->comment('التحصيل الدراسي اثناء الخدمة');
             $table->string('graduation_year_service', 15)->nullable()->comment('سنة التخرج اثناء الخدمة');
             $table->string('graduation_institution_service', 15)->nullable()->comment('جهة التخرج اثناء الخدمة');
@@ -118,9 +138,8 @@ return new class extends Migration
             $table->integer('total_college_days')->nullable()->comment('مجموع الكلية يوم');
             $table->integer('total_college_months')->nullable()->comment('مجموع الكلية شهر');
             $table->integer('total_college_years')->nullable()->comment('مجموع الكلية سنة');
-             $table->string('mypassword', 15)->nullable()->comment('كلمة السر');
+            $table->string('mypassword', 15)->nullable()->comment('كلمة السر');
             $table->timestamps();
-
         });
     }
 

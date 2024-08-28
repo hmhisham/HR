@@ -83,7 +83,63 @@ $container = $container ?? 'container-xxl';
                             <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
                                 <a href="{{ Route('EmpInfoBank') }}" Class="menu-link">
                                     <i Class=''></i>
-                                    <Div>بنك المعلومات</div>
+                                    <Div>المعلومات الوظيفية</div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="menu-sub">
+                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                                <a href="{{ Route('EmpInfoBank') }}" Class="menu-link">
+                                    <i Class=''></i>
+                                    <Div>العقوبات</div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="menu-sub">
+                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                                <a href="{{ Route('EmpInfoBank') }}" Class="menu-link">
+                                    <i Class=''></i>
+                                    <Div>التشكرات</div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="menu-sub">
+                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                                <a href="{{ Route('EmpInfoBank') }}" Class="menu-link">
+                                    <i Class=''></i>
+                                    <Div>تاركي العمل</div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="menu-sub">
+                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                                <a href="{{ Route('EmpInfoBank') }}" Class="menu-link">
+                                    <i Class=''></i>
+                                    <Div>الدورات</div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="menu-sub">
+                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                                <a href="{{ Route('EmpInfoBank') }}" Class="menu-link">
+                                    <i Class=''></i>
+                                    <Div>الايفادات</div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="menu-sub">
+                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                                <a href="{{ Route('EmpInfoBank') }}" Class="menu-link">
+                                    <i Class=''></i>
+                                    <Div>المكافئات</div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="menu-sub">
+                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                                <a href="{{ Route('EmpInfoBank') }}" Class="menu-link">
+                                    <i Class=''></i>
+                                    <Div>الشهادات</div>
                                 </a>
                             </li>
                         </ul>
