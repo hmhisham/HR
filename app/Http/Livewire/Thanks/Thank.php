@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Thanks\Thanks;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Workers\Workers;
 
 class Thank extends Component
 {
@@ -16,6 +17,56 @@ class Thank extends Component
     public $ThankSearch, $Thank, $ThankId;
     public $user_id, $grantor, $ministerial_order_number, $ministerial_order_date, $reason, $notes;
     public $months_of_service = 1;
+
+
+    public $search = '';
+public $workers = [];
+public $selectedWorker = null;
+
+
+public function mount()
+{
+    $this->workers = Workers::all();
+    dd($this->workers); // استخدم dd لعرض البيانات
+}
+
+public function searchWorkers()
+{
+    $this->workers = Workers::where('calculator_number', 'like', '%' . $this->search . '%')->get();
+    dd($this->workers); // استخدم dd لعرض البيانات
+}
+
+
+public function selectWorker($id)
+{
+    $worker = Workers::find($id);
+    if ($worker) {
+        $this->selectedWorker = $worker;
+        $this->grantor = $worker->calculator_number;
+        $this->reason = $worker->full_name;
+    }
+}
+
+
+// public function searchWorkers()
+// {
+//     $this->workers = Workers::where('calculator_number', 'like', '%' . $this->search . '%')->get();
+// }
+
+// public function selectWorker($id)
+// {
+//     $this->selectedWorker = Workers::find($id);
+//     if ($this->selectedWorker)
+//     {
+//         $this->grantor = $this->selectedWorker->calculator_number;
+//         $this->reason = $this->selectedWorker->full_name;
+//     }
+// }
+
+
+
+
+
 
 
     public function render()

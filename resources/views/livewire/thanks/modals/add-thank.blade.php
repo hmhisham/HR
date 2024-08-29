@@ -14,6 +14,21 @@
                         <div class="col mb-3">
                             <div Class="row">
 
+                                <div class="col-md-6 mb-6">
+                                    <div class="form-floating form-floating-outline form-floating-select2">
+                                        <div class="position-relative">
+                                            <select id="select2Basic" wire:model="selectedWorker" wire:change="selectWorker($event.target.value)" class="select2 form-select form-select-lg" data-allow-clear="true">
+                                                <option value="" selected>اختر موظفاً</option>
+
+                                                @foreach($workers as $worker)
+                                                    <option value="{{ $worker->id }}">{{ $worker->calculator_number }}</option>
+                                                @endforeach
+                                            </select>
+                                            {{-- <label for="select2Basic">بحث عن الموظف باستخدام رقم الحاسبة</label> --}}
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='grantor' type="text" id="modalThanksgrantor"
@@ -78,7 +93,7 @@
                                             <option value="1">1</option>
                                             <option value="6">6</option>
                                                                                 </select>
-                                        <label for="modalEmployeeblood_type">عدد الاشهر </label>
+                                        <label for="modalEmployeemonths_of_service">عدد الاشهر </label>
                                     </div>
                                     @error('months_of_service')
                                     <small class="text-danger inputerror">{{ $message }}</small>

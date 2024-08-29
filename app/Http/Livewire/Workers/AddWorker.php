@@ -14,7 +14,7 @@ class AddWorker extends Component
 
 
     public $currentTap = 1;
-    public $GovernorateID   ,$governorate_id , $district_id , $area_id;
+    public $GovernorateID   ,$governorate_id , $district_id , $area_id   ;
     public $Governorates = [];
     public $Districts = [];
     public $Areas = [];
@@ -76,6 +76,7 @@ class AddWorker extends Component
         $this->currentTap = 8;
     }
     }
+
 
 
 
