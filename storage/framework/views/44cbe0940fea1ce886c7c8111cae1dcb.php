@@ -1,15 +1,11 @@
-<div>
-    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-create')): ?>
-    <a href="<?php echo e(Route('AddEmployee')); ?>" class=" sticky-button btn btn-primary">حفظ المعلومات</a>
-    <?php endif; ?>
-</div>
+
 <button wire:click="test">Button 1</button>
 <div class="row">
     <div class="col">
         <h4 class="py-3">
             اضافة معلومات الموظف
         </h4>
-        <button wire:click="buttonStep(1)">Step 1</button>
+
         <div class="card mb-3">
             <div class="card-header">
                 <ul class="nav nav-tabs" role="tablist">
@@ -1896,4 +1892,4 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/emp-info-bank/add-employee.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/workers/add-worker.blade.php ENDPATH**/ ?>

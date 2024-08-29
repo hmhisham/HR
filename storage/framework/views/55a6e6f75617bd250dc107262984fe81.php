@@ -75,38 +75,39 @@ $container = $container ?? 'container-xxl';
                 </li>
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employees')): ?>
-                    <li class="menu-item <?php echo e(request()->is('EmpInfoBank') ? 'open active' : ''); ?>">
+                    <li class="menu-item <?php echo e(request()->is('Workers') ? 'open active' : ''); ?>">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                             <span class="menu-title">قسم الموارد البشرية</span>
                         </a>
                         <ul class="menu-sub">
-                            <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(Route('EmpInfoBank')); ?>" Class="menu-link">
+                            <li Class="menu-item <?php echo e(request()->Is('Workers') ? 'active' : ''); ?>">
+                                <a href="<?php echo e(Route('Workers')); ?>" Class="menu-link">
                                     <i Class=''></i>
                                     <Div>المعلومات الوظيفية</div>
                                 </a>
                             </li>
                         </ul>
                         <ul class="menu-sub">
-                            <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(Route('EmpInfoBank')); ?>" Class="menu-link">
+                            <li Class="menu-item ">
+                                <a href="" Class="menu-link">
                                     <i Class=''></i>
                                     <Div>العقوبات</div>
                                 </a>
                             </li>
                         </ul>
+
                         <ul class="menu-sub">
-                            <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(Route('EmpInfoBank')); ?>" Class="menu-link">
-                                    <i Class=''></i>
-                                    <Div>التشكرات</div>
-                                </a>
-                            </li>
+                        <li Class="menu-item <?php echo e(request()->Is('Thanks') ? 'active' : ''); ?>">
+                            <a href = "<?php echo e(Route('Thanks.index')); ?>" Class="menu-link">
+                                                  <div>الشكر و التقدير</div>
+                           </a>
+                          </li>
                         </ul>
+
                         <ul class="menu-sub">
                             <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(Route('EmpInfoBank')); ?>" Class="menu-link">
+                                <a href="" Class="menu-link">
                                     <i Class=''></i>
                                     <Div>تاركي العمل</div>
                                 </a>
@@ -114,7 +115,7 @@ $container = $container ?? 'container-xxl';
                         </ul>
                         <ul class="menu-sub">
                             <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(Route('EmpInfoBank')); ?>" Class="menu-link">
+                                <a href="" Class="menu-link">
                                     <i Class=''></i>
                                     <Div>الدورات</div>
                                 </a>
@@ -122,7 +123,7 @@ $container = $container ?? 'container-xxl';
                         </ul>
                         <ul class="menu-sub">
                             <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(Route('EmpInfoBank')); ?>" Class="menu-link">
+                                <a href="" Class="menu-link">
                                     <i Class=''></i>
                                     <Div>الايفادات</div>
                                 </a>
@@ -130,7 +131,7 @@ $container = $container ?? 'container-xxl';
                         </ul>
                         <ul class="menu-sub">
                             <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(Route('EmpInfoBank')); ?>" Class="menu-link">
+                                <a href="" Class="menu-link">
                                     <i Class=''></i>
                                     <Div>المكافئات</div>
                                 </a>
@@ -138,7 +139,7 @@ $container = $container ?? 'container-xxl';
                         </ul>
                         <ul class="menu-sub">
                             <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(Route('EmpInfoBank')); ?>" Class="menu-link">
+                                <a href="" Class="menu-link">
                                     <i Class=''></i>
                                     <Div>الشهادات</div>
                                 </a>

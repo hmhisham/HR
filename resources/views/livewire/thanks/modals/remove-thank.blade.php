@@ -1,31 +1,31 @@
 
-<!-- Remove Employee Modal -->
-<div wire:ignore.self class="modal fade" id="removeEmployeeModal" tabindex="-1" aria-hidden="true">
+<!-- Remove Thank Modal -->
+<div wire:ignore.self class="modal fade" id="removethankModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2 ">حذف</h3>
+                    <h3 class="pb-1 mb-2">حذف</h3>
                     <p>نافذة الحذف</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetEmployee" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="GetThank" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">جار حذف البيانات...</h5>
 
                 <div wire:loading.remove>
-                <form id="removeEmployeeModalForm" onsubmit="return false" autocomplete="off">
+                <form id="removeThankModalForm" onsubmit="return false" autocomplete="off">
                     <div class="row row-cols-1">
                         <div class="col mb-3">
-                        '<Div Class="row">
+                         <Div Class="row">
 
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='FullName' type="text" id="modalEmployeeFullName" placeholder="الاسم الكامل"
-                                            class="form-control @error('FullName') is-invalid is-filled @enderror" disabled />
-                                        <label for="modalEmployeeFullName">الاسم الكامل</label>
+                                        <input wire:model.defer='grantor' type="text" id="modalThankgrantor" placeholder="الجهة المانحة للشكر"
+                                            class="form-control @error('grantor') is-invalid is-filled @enderror" disabled/>
+                                        <label for="modalThankgrantor">الجهة المانحة للشكر</label>
                                     </div>
-                                    @error('FullName')
+                                    @error('grantor')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
@@ -45,4 +45,4 @@
     </div>
  </div>
 </div>
-<!--/ Delete Employee Modal -->
+<!--/ Delete Thank Modal -->

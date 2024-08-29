@@ -1,32 +1,27 @@
-<div>
-    @can('employee-create')
-    <a href="{{ Route('AddEmployee') }}" class=" sticky-button btn btn-primary">حفظ المعلومات</a>
+{{-- <div>
+    @can('worker-create')
+    <a href="{{ Route('AddWorker') }}" class=" sticky-button btn btn-primary">حفظ المعلومات</a>
     @endcan
-</div>
-
+</div> --}}
+ 
 <div class="row">
     <div class="col">
         <h4 class="py-3">
             اضافة معلومات الموظف
         </h4>
 
-
         <div class="card mb-3">
             <div class="card-header">
                 <ul class="nav nav-tabs" role="tablist">
 
-                    {{-- 01 --}}
-                    <li class="nav-item">
-                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#form-tabs-1" role="tab"
+                    <li class="nav-item ">
+                        <button wire:click="buttonStep(1)" class="nav-link  {{ $currentTap == 1 ? 'active' : '' }}" type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-1" role="tab"
                             aria-selected="True">بيانات الأسم</button>
                     </li>
 
-
-
-                    {{-- 02 --}}
                     <li class="nav-item">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-2" role="tab"
-                            aria-selected="True"> البيانات الشحصية </button>
+                        <button wire:click="buttonStep(2)" class="nav-link {{ $currentTap == 2 ? 'active' : '' }}" type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-2" role="tab"
+                            aria-selected="True"> البيانات الشخصية </button>
                     </li>
 
 
@@ -91,11 +86,9 @@
             </div>
 
             <div class="tab-content">
-                <div class="tab-pane fade active show" id="form-tabs-1" role="tabpanel">
+                <div class="tab-pane fade {{ $currentTap == 1 ? 'active show' : '' }} " id="form-tabs-1" role="tabpanel">
                     <form>
-
                         <div Class="row g-4">
-
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='calculator_number' type="text"
@@ -329,10 +322,8 @@
                     </form>
                 </div>
 
-                <div class="tab-pane fade" id="form-tabs-2" role="tabpanel">
+                <div class="tab-pane fade {{ $currentTap == 2 ? 'active show' : '' }}" id="form-tabs-2" role="tabpanel">
                     <form>
-
-
                         <div Class="row g-4">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">

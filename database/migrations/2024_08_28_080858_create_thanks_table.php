@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('thanks', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->nullable()->comment('رقم المستخدم');
+            $table->string('grantor')->comment('الجهة المانحة للشكر');
+            $table->string('ministerial_order_number')->comment('رقم الامر الوزاري');
+            $table->date('ministerial_order_date')->comment('تاريخ الامر الوزاري');
+            $table->text('reason')->nullable()->comment('السبب من الشكر');
+            $table->integer('months_of_service')->nullable()->comment('عدد اشهر القدم');
+            $table->text('notes')->nullable()->comment('الملاحظات');
             $table->timestamps();
         });
     }

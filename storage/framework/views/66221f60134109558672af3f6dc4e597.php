@@ -35,16 +35,16 @@
 
     <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('emp-info-bank.add-employee')->html();
-} elseif ($_instance->childHasBeenRendered('fRHvMoQ')) {
-    $componentId = $_instance->getRenderedChildComponentId('fRHvMoQ');
-    $componentTag = $_instance->getRenderedChildComponentTagName('fRHvMoQ');
+    $html = \Livewire\Livewire::mount('Workers.AddWorker')->html();
+} elseif ($_instance->childHasBeenRendered('kWUibou')) {
+    $componentId = $_instance->getRenderedChildComponentId('kWUibou');
+    $componentTag = $_instance->getRenderedChildComponentTagName('kWUibou');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('fRHvMoQ');
+    $_instance->preserveRenderedChild('kWUibou');
 } else {
-    $response = \Livewire\Livewire::mount('emp-info-bank.add-employee');
+    $response = \Livewire\Livewire::mount('Workers.AddWorker');
     $html = $response->html();
-    $_instance->logRenderedChild('fRHvMoQ', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('kWUibou', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

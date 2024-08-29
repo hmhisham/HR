@@ -1,29 +1,33 @@
 <?php
 
+use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Areas\AreasController;
-use App\Http\Controllers\Links\LinksController;
+use App\Http\Controllers\EMP\EMPController;
 
+use App\Http\Controllers\Areas\AreasController;
+
+use App\Http\Controllers\Links\LinksController;
 use App\Http\Controllers\Units\UnitsController;
 
 use App\Http\Controllers\Branch\BranchController;
 use App\Http\Controllers\Grades\GradesController;
 
+use App\Http\Controllers\Thanks\ThanksController;
+
 use App\Http\Controllers\Scaleas\ScaleasController;
 use App\Http\Controllers\Scalems\ScalemsController;
+use App\Http\Controllers\Workers\WorkersController;
 
 use App\Http\Controllers\language\LanguageController;
-
 use App\Http\Controllers\Precises\PrecisesController;
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Dashboard\DashboardController;
-
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Trainings\TrainingsController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
 use App\Http\Controllers\Specialtys\SpecialtysController;
-use App\Http\Controllers\EmpInfoBank\EmpInfoBankController;
+
 use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
@@ -36,7 +40,6 @@ use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
 use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsController;
 use App\Http\Controllers\Specializationclassification\SpecializationclassificationController;
-use Faker\Guesser\Name;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,9 +71,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Users-Accounts', UsersAccountsController::class);
         Route::RESOURCE('Customers-Accounts', CustomersAccountsController::class);
 
-        // بيانات الموظف
-        Route::GET('EmpInfoBank', [EmpInfoBankController::class, 'index'])->name('EmpInfoBank');
-        Route::GET('AddEmployee', [EmpInfoBankController::class, 'addEmployee'])->name('AddEmployee');
+
 
         // المحافظات I
         Route::RESOURCE('Governorates', GovernoratesController::class);
@@ -114,6 +115,14 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::  RESOURCE('Specializationclassification', SpecializationclassificationController::class);
         //نوع الخدمة
         Route::  RESOURCE('Typesservices', TypesservicesController::class);
+        // Route::  RESOURCE('Workers', WorkersController::class);
+
+         // بيانات الموظف
+      Route::GET('Workers', [WorkersController::class, 'index'])->name('Workers');
+     Route::GET('AddWorker', [WorkersController::class, 'AddWorker'])->name('AddWorker');
+
+ // التشكرات
+        Route::  RESOURCE('Thanks', ThanksController::class);
     });
 });
 

@@ -1,31 +1,23 @@
-<div>
-    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-create')): ?>
-    <a href="<?php echo e(Route('AddEmployee')); ?>" class=" sticky-button btn btn-primary">حفظ المعلومات</a>
-    <?php endif; ?>
-</div>
-<button wire:click="test">Button 1</button>
+
+ 
 <div class="row">
     <div class="col">
         <h4 class="py-3">
             اضافة معلومات الموظف
         </h4>
-        <button wire:click="buttonStep(1)">Step 1</button>
+
         <div class="card mb-3">
             <div class="card-header">
                 <ul class="nav nav-tabs" role="tablist">
 
-                    
                     <li class="nav-item ">
                         <button wire:click="buttonStep(1)" class="nav-link  <?php echo e($currentTap == 1 ? 'active' : ''); ?>" type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-1" role="tab"
                             aria-selected="True">بيانات الأسم</button>
                     </li>
 
-
-
-                    
                     <li class="nav-item">
                         <button wire:click="buttonStep(2)" class="nav-link <?php echo e($currentTap == 2 ? 'active' : ''); ?>" type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-2" role="tab"
-                            aria-selected="True"> البيانات الشحصية </button>
+                            aria-selected="True"> البيانات الشخصية </button>
                     </li>
 
 
@@ -1896,4 +1888,4 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/emp-info-bank/add-employee.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/Workers/AddWorker.blade.php ENDPATH**/ ?>

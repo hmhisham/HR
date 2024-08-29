@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('workers', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->nullable();
             $table->string('calculator_number', 15)->nullable()->comment('رقم الحاسبة');
             $table->string('employee_number', 15)->nullable()->comment('الرقم الوظيفي');
             $table->string('paper_folder_number', 15)->nullable()->comment('رقم الاضبارة الورقية');
@@ -148,6 +149,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('workers');
     }
 };
