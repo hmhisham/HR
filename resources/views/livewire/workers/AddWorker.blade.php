@@ -3,7 +3,7 @@
     <a href="{{ Route('AddWorker') }}" class=" sticky-button btn btn-primary">حفظ المعلومات</a>
     @endcan
 </div> --}}
- 
+
 <div class="row">
     <div class="col">
         <h4 class="py-3">

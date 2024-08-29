@@ -16,15 +16,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('thanks.thank')->html();
-} elseif ($_instance->childHasBeenRendered('73AQ495')) {
-    $componentId = $_instance->getRenderedChildComponentId('73AQ495');
-    $componentTag = $_instance->getRenderedChildComponentTagName('73AQ495');
+} elseif ($_instance->childHasBeenRendered('oz9DYPf')) {
+    $componentId = $_instance->getRenderedChildComponentId('oz9DYPf');
+    $componentTag = $_instance->getRenderedChildComponentTagName('oz9DYPf');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('73AQ495');
+    $_instance->preserveRenderedChild('oz9DYPf');
 } else {
     $response = \Livewire\Livewire::mount('thanks.thank');
     $html = $response->html();
-    $_instance->logRenderedChild('73AQ495', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('oz9DYPf', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -101,6 +101,20 @@ echo $html;
             });
         });
     </script>
+
+<?php echo \Livewire\Livewire::styles(); ?>
+
+<?php echo \Livewire\Livewire::scripts(); ?>
+
+<script src="<?php echo e(asset('path-to-select2.js')); ?>"></script>
+<script>
+    $(document).ready(function() {
+        $('#select2').select2();
+    });
+</script>
+
+
+
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Thanks/index.blade.php ENDPATH**/ ?>

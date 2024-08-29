@@ -12,22 +12,66 @@
                 <form id="addthankModalForm" autocomplete="off">
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
+
                             <div Class="row">
 
-                                <div class="col-md-6 mb-6">
+
+                             <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline form-floating-select2">
                                         <div class="position-relative">
-                                            <select id="select2Basic" wire:model="selectedWorker" wire:change="selectWorker($event.target.value)" class="select2 form-select form-select-lg" data-allow-clear="true">
+                                            <select id="select2" wire:model="selectedWorker"
+                                                wire:change="selectWorker($event.target.value)"
+                                                class="select2 form-select form-select-lg" data-allow-clear="true">
                                                 <option value="" selected>اختر موظفاً</option>
 
                                                 <?php $__currentLoopData = $workers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $worker): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <option value="<?php echo e($worker->id); ?>"><?php echo e($worker->calculator_number); ?></option>
+                                                <option value="<?php echo e($worker->id); ?>"><?php echo e($worker->calculator_number); ?>
+
+                                                </option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
-                                            
                                         </div>
                                     </div>
                                 </div>
+
+                            </div>
+
+
+
+                            <div Class="row">
+
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='calculator_number' type="text"
+                                            id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
+                                            class="form-control <?php $__errorArgs = ['calculator_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                            readonly />
+                                        <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
+                                    </div>
+                                    <?php $__errorArgs = ['calculator_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                            </div>
+
+
+                            <div Class="row">
+
+
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
@@ -155,7 +199,7 @@ unset($__errorArgs, $__bag); ?>">
                                             <option value="" disabled selected>عدد الاشهر</option>
                                             <option value="1">1</option>
                                             <option value="6">6</option>
-                                                                                </select>
+                                        </select>
                                         <label for="modalEmployeemonths_of_service">عدد الاشهر </label>
                                     </div>
                                     <?php $__errorArgs = ['months_of_service'];

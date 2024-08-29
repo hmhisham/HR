@@ -12,22 +12,51 @@
                 <form id="addthankModalForm" autocomplete="off">
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
+
                             <div Class="row">
 
-                                <div class="col-md-6 mb-6">
+
+                             <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline form-floating-select2">
                                         <div class="position-relative">
-                                            <select id="select2Basic" wire:model="selectedWorker" wire:change="selectWorker($event.target.value)" class="select2 form-select form-select-lg" data-allow-clear="true">
+                                            <select id="select2" wire:model="selectedWorker"
+                                                wire:change="selectWorker($event.target.value)"
+                                                class="select2 form-select form-select-lg" data-allow-clear="true">
                                                 <option value="" selected>اختر موظفاً</option>
 
                                                 @foreach($workers as $worker)
-                                                    <option value="{{ $worker->id }}">{{ $worker->calculator_number }}</option>
+                                                <option value="{{ $worker->id }}">{{ $worker->calculator_number }}
+                                                </option>
                                                 @endforeach
                                             </select>
-                                            {{-- <label for="select2Basic">بحث عن الموظف باستخدام رقم الحاسبة</label> --}}
                                         </div>
                                     </div>
                                 </div>
+
+                            </div>
+
+
+
+                            <div Class="row">
+
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='calculator_number' type="text"
+                                            id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
+                                            class="form-control @error('calculator_number') is-invalid is-filled @enderror"
+                                            readonly />
+                                        <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
+                                    </div>
+                                    @error('calculator_number')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div Class="row">
+
+
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
@@ -92,7 +121,7 @@
                                             <option value="" disabled selected>عدد الاشهر</option>
                                             <option value="1">1</option>
                                             <option value="6">6</option>
-                                                                                </select>
+                                        </select>
                                         <label for="modalEmployeemonths_of_service">عدد الاشهر </label>
                                     </div>
                                     @error('months_of_service')

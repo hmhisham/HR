@@ -88,4 +88,16 @@
             });
         });
     </script>
+
+@livewireStyles
+@livewireScripts
+<script src="{{ asset('path-to-select2.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#select2').select2();
+    });
+</script>
+
+
+
 @endsection
