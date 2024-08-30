@@ -14,7 +14,9 @@
 @endsection
 
 @section('content')
+
     @livewire('thanks.thank')
+
 @endsection
 
 @section('vendor-script')
@@ -35,6 +37,32 @@
     <script src="{{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src="{{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        //	لجعل الـ text يقبل ارقام فقط
+		function onlyNumberKey(evt) {
+			 // Only ASCII character in that range allowed
+			 var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+			 if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57) && (ASCIICode < 45 || ASCIICode > 47))
+				 return false;
+			 return true;
+		 }
+
+        /* الموظفين */
+		$(document).ready(function() {
+            window.initWorkerDrop=()=>{
+                $('#worker').select2({
+					placeholder: 'حدد الموظف',
+                    dropdownParent: $('#addthankModal')
+				})
+            }
+            initWorkerDrop();
+            $('#worker').on('change', function (e) {
+                livewire.emit('SelectWorker', e.target.value)
+            });
+            window.livewire.on('select2',()=>{
+                initWorkerDrop();
+            });
+        });
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -88,16 +116,4 @@
             });
         });
     </script>
-
-@livewireStyles
-@livewireScripts
-<script src="{{ asset('path-to-select2.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $('#select2').select2();
-    });
-</script>
-
-
-
 @endsection

@@ -20,19 +20,22 @@ class Thank extends Component
 
     public $search = '';
     public $workers = [];
+    public $worker, $calculator_number;
     public $selectedWorker = null;
+
+    protected $listeners = [
+        'SelectWorker',
+    ];
+
+    public function hydrate()
+    {
+        $this->emit('select2');
+    }
 
     public function mount()
     {
         $this->workers = Workers::all();
     }
-
-    public function searchWorkers()
-    {
-        $this->workers = Workers::where('calculator_number', 'like', '%' . $this->search . '%')->get();
-    }
-
-
 
     public function render()
     {
@@ -44,41 +47,40 @@ class Thank extends Component
             ->orWhere('reason', 'LIKE', $ThankSearch)
             ->orWhere('months_of_service', 'LIKE', $ThankSearch)
             ->orWhere('notes', 'LIKE', $ThankSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
         $links = $Thanks;
         $this->Thanks = collect($Thanks->items());
+
         return view('livewire.thanks.thank', [
             'links' => $links
         ]);
     }
 
+    public function SelectWorker($workerID)
+    {
+        $this->worker = $workerID;
+        $this->calculator_number = Workers::find($workerID)->first()->calculator_number;
+    }
 
     public function AddThankModalShow()
     {
-        $this->reset();
+        //$this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('ThankModalShow');
     }
 
-
     public function store()
     {
-
         $this->resetValidation();
         $this->validate([
-
             'grantor' => 'required',
             'ministerial_order_number' => 'required',
             'ministerial_order_date' => 'required',
             'reason' => 'required',
             'months_of_service' => 'required',
             'notes' => 'required',
-
         ], [
-
             'grantor.required' => 'حقل الاسم مطلوب',
             'ministerial_order_number.required' => 'حقل الاسم مطلوب',
             'ministerial_order_date.required' => 'حقل الاسم مطلوب',
@@ -151,7 +153,6 @@ class Thank extends Component
             'reason' => $this->reason,
             'months_of_service' => $this->months_of_service,
             'notes' => $this->notes,
-
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
