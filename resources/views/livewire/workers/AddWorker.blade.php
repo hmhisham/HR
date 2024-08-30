@@ -15,12 +15,14 @@
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li class="nav-item ">
-                        <button wire:click="buttonStep(1)" class="nav-link  {{ $currentTap == 1 ? 'active' : '' }}" type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-1" role="tab"
+                        <button wire:click="buttonStep(1)" class="nav-link  {{ $currentTap == 1 ? 'active' : '' }}"
+                            type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-1" role="tab"
                             aria-selected="True">بيانات الأسم</button>
                     </li>
 
                     <li class="nav-item">
-                        <button wire:click="buttonStep(2)" class="nav-link {{ $currentTap == 2 ? 'active' : '' }}" type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-2" role="tab"
+                        <button wire:click="buttonStep(2)" class="nav-link {{ $currentTap == 2 ? 'active' : '' }}"
+                            type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-2" role="tab"
                             aria-selected="True"> البيانات الشخصية </button>
                     </li>
 
@@ -86,7 +88,8 @@
             </div>
 
             <div class="tab-content">
-                <div class="tab-pane fade {{ $currentTap == 1 ? 'active show' : '' }} " id="form-tabs-1" role="tabpanel">
+                <div class="tab-pane fade {{ $currentTap == 1 ? 'active show' : '' }} " id="form-tabs-1"
+                    role="tabpanel">
                     <form>
                         <div Class="row g-4">
                             <div class="mb-3 col">
@@ -325,14 +328,16 @@
                 <div class="tab-pane fade {{ $currentTap == 2 ? 'active show' : '' }}" id="form-tabs-2" role="tabpanel">
                     <form>
                         <div Class="row g-4">
+
+
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='governorate_id'
                                         wire:change='GetDistricts($event.target.value)' id="governorate_id"
                                         class="form-select @error('governorate_id') is-invalid is-filled @enderror">
                                         <option value=""></option>
-                                        @foreach ($Governorates as $Governorate)
-                                        <option value="{{ $Governorate->id }}">{{ $Governorate->governorate_name }}
+                                        @foreach ($Governorates as $governorate)
+                                        <option value="{{ $governorate->id}}">{{$governorate->governorate_name}}
                                         </option>
                                         @endforeach
                                     </select>
@@ -342,6 +347,7 @@
                                 <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>
+
 
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">

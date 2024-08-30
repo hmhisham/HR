@@ -1,6 +1,11 @@
 @extends('layouts/layoutMaster')
 @section('title', 'Thanks')
 
+
+
+
+
+
 @section('vendor-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
@@ -11,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+    <!-- CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -18,6 +25,8 @@
 @endsection
 
 @section('vendor-script')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <script src="{{ asset('assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
@@ -28,6 +37,9 @@
     <script src="{{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 @endsection
 
 @section('page-script')
@@ -72,31 +84,8 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            // Initialize Select2
-            $('#workerSelect').select2({
-                placeholder: 'اختر موظفاً',
-                allowClear: true
-            });
-
-            // Reinitialize Select2 after Livewire updates
-            Livewire.hook('message.processed', (message, component) => {
-                $('#workerSelect').select2({
-                    placeholder: 'اختر موظفاً',
-                    allowClear: true
-                });
-            });
-        });
+      
     </script>
-
-@livewireStyles
-@livewireScripts
-<script src="{{ asset('path-to-select2.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $('#select2').select2();
-    });
-</script>
 
 
 

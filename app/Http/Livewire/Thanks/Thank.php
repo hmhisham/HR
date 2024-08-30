@@ -22,6 +22,7 @@ class Thank extends Component
     public $workers = [];
     public $selectedWorker = null;
 
+
     public function mount()
     {
         $this->workers = Workers::all();
