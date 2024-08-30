@@ -38,55 +38,34 @@ class Thank extends Component
     {
         $this->workers = Workers::all();
     }
-    // public function SelectWorker($workerID)
-    // {
-    //     $this->worker = $workerID;
-    //     $this->calculator_number = Workers::find($workerID)->first()->calculator_number;
-    // }
 
     public function SelectWorker($workerID)
     {
-        // استرداد العامل بناءً على workerID
+
         $worker = Workers::find($workerID);
 
-        // تحقق مما إذا تم العثور على العامل
+
         if ($worker) {
             $this->worker = $workerID;
             $this->calculator_number = $worker->calculator_number;
             $this->department = $worker->department;
-            // $this->division = $worker->division;
         } else {
-            // التعامل مع الحالة إذا لم يتم العثور على العامل
-            // يمكنك إضافة معالجة للأخطاء هنا إذا لزم الأمر
             $this->worker = null;
             $this->calculator_number = null;
             $this->department = null;
-            // $this->division = null;
         }
     }
-
-
-
 
     public function render()
     {
         $ThankSearch = '%' . $this->ThankSearch . '%';
-
-        // استخدام join للبحث في الجدولين
         $Thanks = Thanks::join('workers', 'thanks.calculator_number', '=', 'workers.calculator_number')
             ->where(function ($query) use ($ThankSearch) {
                 $query->where('thanks.calculator_number', 'LIKE', $ThankSearch)
-                    // ->orWhere('thanks.grantor', 'LIKE', $ThankSearch)
-                    // ->orWhere('thanks.calculator_number', 'LIKE', $ThankSearch)
-                    // ->orWhere('thanks.ministerial_order_number', 'LIKE', $ThankSearch)
-                    // ->orWhere('thanks.ministerial_order_date', 'LIKE', $ThankSearch)
-                    // ->orWhere('thanks.reason', 'LIKE', $ThankSearch)
-                    // ->orWhere('thanks.months_of_service', 'LIKE', $ThankSearch)
-                    // ->orWhere('thanks.notes', 'LIKE', $ThankSearch)
                     ->orWhere('workers.full_name', 'LIKE', $ThankSearch);
             })
             ->orderBy('thanks.id', 'ASC')
-            ->select('thanks.*') // اختيار الأعمدة من جدول thanks فقط
+            ->select('thanks.*')
             ->paginate(10);
 
         $links = $Thanks;
@@ -162,13 +141,10 @@ class Thank extends Component
         $this->reason = $this->Thank->reason;
         $this->months_of_service = $this->Thank->months_of_service;
         $this->calculator_number = $this->Thank->calculator_number;
-
-        // التأكد من وجود العامل قبل محاولة الوصول إلى بياناته
         if ($worker) {
             $this->full_name = $worker->full_name;
             $this->department = $worker->department;
         } else {
-            // إذا لم يتم العثور على العامل، قم بإعداد قيم افتراضية أو تركها فارغة
             $this->full_name = 'N/A';
             $this->department = 'N/A';
         }
