@@ -20,21 +20,23 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
+
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('thanks.thank')->html();
-} elseif ($_instance->childHasBeenRendered('6x40Ft4')) {
-    $componentId = $_instance->getRenderedChildComponentId('6x40Ft4');
-    $componentTag = $_instance->getRenderedChildComponentTagName('6x40Ft4');
+} elseif ($_instance->childHasBeenRendered('NAoC34m')) {
+    $componentId = $_instance->getRenderedChildComponentId('NAoC34m');
+    $componentTag = $_instance->getRenderedChildComponentTagName('NAoC34m');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('6x40Ft4');
+    $_instance->preserveRenderedChild('NAoC34m');
 } else {
     $response = \Livewire\Livewire::mount('thanks.thank');
     $html = $response->html();
-    $_instance->logRenderedChild('6x40Ft4', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('NAoC34m', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('vendor-script'); ?>
@@ -60,6 +62,32 @@ echo $html;
     <script src="<?php echo e(asset('assets/js/extended-ui-sweetalert2.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/js/form-basic-inputs.js')); ?>"></script>
     <script>
+        //	لجعل الـ text يقبل ارقام فقط
+		function onlyNumberKey(evt) {
+			 // Only ASCII character in that range allowed
+			 var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+			 if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57) && (ASCIICode < 45 || ASCIICode > 47))
+				 return false;
+			 return true;
+		 }
+
+        /* الموظفين */
+		$(document).ready(function() {
+            window.initWorkerDrop=()=>{
+                $('#worker').select2({
+					placeholder: 'حدد الموظف',
+                    dropdownParent: $('#addthankModal')
+				})
+            }
+            initWorkerDrop();
+            $('#worker').on('change', function (e) {
+                livewire.emit('SelectWorker', e.target.value)
+            });
+            window.livewire.on('select2',()=>{
+                initWorkerDrop();
+            });
+        });
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -99,9 +127,12 @@ echo $html;
 
       
     </script>
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 60f1817e0d5f85c2c8d0e798760d2cc377818523
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Thanks/index.blade.php ENDPATH**/ ?>

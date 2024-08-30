@@ -20,11 +20,10 @@ class Thank extends Component
 
     public $search = '';
     public $workers = [];
-    public $worker, $calculator_number;
+    public $worker, $calculator_number, $department, $full_name;
     public $selectedWorker = null;
 
-<<<<<<< HEAD
-=======
+
     protected $listeners = [
         'SelectWorker',
     ];
@@ -33,25 +32,63 @@ class Thank extends Component
     {
         $this->emit('select2');
     }
->>>>>>> 60f1817e0d5f85c2c8d0e798760d2cc377818523
+
 
     public function mount()
     {
         $this->workers = Workers::all();
     }
+    // public function SelectWorker($workerID)
+    // {
+    //     $this->worker = $workerID;
+    //     $this->calculator_number = Workers::find($workerID)->first()->calculator_number;
+    // }
+
+    public function SelectWorker($workerID)
+    {
+        // استرداد العامل بناءً على workerID
+        $worker = Workers::find($workerID);
+
+        // تحقق مما إذا تم العثور على العامل
+        if ($worker) {
+            $this->worker = $workerID;
+            $this->calculator_number = $worker->calculator_number;
+            $this->department = $worker->department;
+            // $this->division = $worker->division;
+        } else {
+            // التعامل مع الحالة إذا لم يتم العثور على العامل
+            // يمكنك إضافة معالجة للأخطاء هنا إذا لزم الأمر
+            $this->worker = null;
+            $this->calculator_number = null;
+            $this->department = null;
+            // $this->division = null;
+        }
+    }
+
+
+
 
     public function render()
     {
         $ThankSearch = '%' . $this->ThankSearch . '%';
-        $Thanks = Thanks::where('user_id', 'LIKE', $ThankSearch)
-            ->orWhere('grantor', 'LIKE', $ThankSearch)
-            ->orWhere('ministerial_order_number', 'LIKE', $ThankSearch)
-            ->orWhere('ministerial_order_date', 'LIKE', $ThankSearch)
-            ->orWhere('reason', 'LIKE', $ThankSearch)
-            ->orWhere('months_of_service', 'LIKE', $ThankSearch)
-            ->orWhere('notes', 'LIKE', $ThankSearch)
-            ->orderBy('id', 'ASC')
+
+        // استخدام join للبحث في الجدولين
+        $Thanks = Thanks::join('workers', 'thanks.calculator_number', '=', 'workers.calculator_number')
+            ->where(function ($query) use ($ThankSearch) {
+                $query->where('thanks.calculator_number', 'LIKE', $ThankSearch)
+                    // ->orWhere('thanks.grantor', 'LIKE', $ThankSearch)
+                    // ->orWhere('thanks.calculator_number', 'LIKE', $ThankSearch)
+                    // ->orWhere('thanks.ministerial_order_number', 'LIKE', $ThankSearch)
+                    // ->orWhere('thanks.ministerial_order_date', 'LIKE', $ThankSearch)
+                    // ->orWhere('thanks.reason', 'LIKE', $ThankSearch)
+                    // ->orWhere('thanks.months_of_service', 'LIKE', $ThankSearch)
+                    // ->orWhere('thanks.notes', 'LIKE', $ThankSearch)
+                    ->orWhere('workers.full_name', 'LIKE', $ThankSearch);
+            })
+            ->orderBy('thanks.id', 'ASC')
+            ->select('thanks.*') // اختيار الأعمدة من جدول thanks فقط
             ->paginate(10);
+
         $links = $Thanks;
         $this->Thanks = collect($Thanks->items());
 
@@ -60,15 +97,10 @@ class Thank extends Component
         ]);
     }
 
-    public function SelectWorker($workerID)
-    {
-        $this->worker = $workerID;
-        $this->calculator_number = Workers::find($workerID)->first()->calculator_number;
-    }
 
     public function AddThankModalShow()
     {
-        //$this->reset();
+        //  $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('ThankModalShow');
     }
@@ -82,19 +114,20 @@ class Thank extends Component
             'ministerial_order_date' => 'required',
             'reason' => 'required',
             'months_of_service' => 'required',
-            'notes' => 'required',
+
         ], [
             'grantor.required' => 'حقل الاسم مطلوب',
             'ministerial_order_number.required' => 'حقل الاسم مطلوب',
             'ministerial_order_date.required' => 'حقل الاسم مطلوب',
             'reason.required' => 'حقل الاسم مطلوب',
             'months_of_service.required' => 'حقل الاسم مطلوب',
-            'notes.required' => 'حقل الاسم مطلوب',
+
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Thanks::create([
             'user_id' => Auth::id(),
+            'calculator_number' => $this->calculator_number,
             'grantor' => $this->grantor,
             'ministerial_order_number' => $this->ministerial_order_number,
             'ministerial_order_date' => $this->ministerial_order_date,
@@ -114,16 +147,33 @@ class Thank extends Component
     {
         $this->resetValidation();
 
+        // جلب بيانات الـ Thank باستخدام الـ ThankId
         $this->Thank  = Thanks::find($ThankId);
         $this->ThankId = $this->Thank->id;
         $this->user_id = $this->Thank->user_id;
+
+        // جلب بيانات العمالة باستخدام العلاقة بين Thanks و Workers
+        $worker = $this->Thank->worker;
+
+        // تعيين القيم في المتغيرات الخاصة بك
         $this->grantor = $this->Thank->grantor;
         $this->ministerial_order_number = $this->Thank->ministerial_order_number;
         $this->ministerial_order_date = $this->Thank->ministerial_order_date;
         $this->reason = $this->Thank->reason;
         $this->months_of_service = $this->Thank->months_of_service;
-        $this->notes = $this->Thank->notes;
+        $this->calculator_number = $this->Thank->calculator_number;
+
+        // التأكد من وجود العامل قبل محاولة الوصول إلى بياناته
+        if ($worker) {
+            $this->full_name = $worker->full_name;
+            $this->department = $worker->department;
+        } else {
+            // إذا لم يتم العثور على العامل، قم بإعداد قيم افتراضية أو تركها فارغة
+            $this->full_name = 'N/A';
+            $this->department = 'N/A';
+        }
     }
+
 
     public function update()
     {
@@ -135,7 +185,7 @@ class Thank extends Component
             'ministerial_order_date' => 'required:thanks',
             'reason' => 'required:thanks',
             'months_of_service' => 'required:thanks',
-            'notes' => 'required:thanks',
+
 
         ], [
             'user_id.required' => 'حقل الاسم مطلوب',
@@ -144,12 +194,13 @@ class Thank extends Component
             'ministerial_order_date.required' => 'حقل الاسم مطلوب',
             'reason.required' => 'حقل الاسم مطلوب',
             'months_of_service.required' => 'حقل الاسم مطلوب',
-            'notes.required' => 'حقل الاسم مطلوب',
+
         ]);
 
         $Thanks = Thanks::find($this->ThankId);
         $Thanks->update([
             'user_id' => $this->user_id,
+            'calculator_number' => $this->calculator_number,
             'grantor' => $this->grantor,
             'ministerial_order_number' => $this->ministerial_order_number,
             'ministerial_order_date' => $this->ministerial_order_date,

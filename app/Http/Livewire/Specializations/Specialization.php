@@ -42,7 +42,7 @@ class Specialization extends Component
 
     public function AddSpecializationModalShow()
     {
-        $this->reset();
+       $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('SpecializationModalShow');
     }

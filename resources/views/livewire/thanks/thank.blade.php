@@ -20,6 +20,9 @@
             <thead class="table-light">
                 <tr>
                     <th>#</th>
+                    <th Class="text-center">الاسم الكامل</th>
+                    <th Class="text-center">القسم</th>
+                    <th Class="text-center">رقم الحاسبة</th>
                     <th Class="text-center">الجهة المانحة للشكر</th>
                     <th Class="text-center">رقم الامر الوزاري</th>
                     <th Class="text-center">تاريخ الامر الوزاري</th>
@@ -36,7 +39,11 @@
                 <tr>
                     <?php $i++; ?>
                     <td>{{ $i }}</td>
-                    <td Class="text-center">{{ $Thank->grantor}}</td>
+                    <td class="text-center">{{ $Thank->worker ? $Thank->worker->full_name : 'N/A' }}</td>
+                    <td class="text-center">{{ $Thank->worker ? $Thank->worker->department : 'N/A' }}</td>
+
+                    <td class="text-center">{{ $Thank->calculator_number }}</td>
+                   <td Class="text-center">{{ $Thank->grantor}}</td>
                     <td Class="text-center">{{ $Thank->ministerial_order_number}}</td>
                     <td Class="text-center">{{ $Thank->ministerial_order_date}}</td>
                     <td Class="text-center">{{ $Thank->reason}}</td>
