@@ -9,10 +9,25 @@
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
-                <form id="addthankModalForm" autocomplete="off">
-                    <div class="row row-cols-1  ">
-                        <div class="col mb-3">
 
+                <form id="addthankModalForm" autocomplete="off">
+                    <div class="row row-cols-1">
+                        <div class="col mb-3">
+                            <div class="form-floating form-floating-outline @error('worker') is-invalid is-filled @enderror" style="width: 100%">
+                                <select wire:model='worker' id="worker" class="form-select" placeholder='حدد العملية'>
+                                    <option value=""></option>
+                                    @foreach ($workers as $worker)
+                                        <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="worker">حدد الموظف</label>
+                            </div>
+                            @error('worker')
+                                <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
+                        </div>
+
+<<<<<<< HEAD
 
 
 
@@ -20,12 +35,16 @@
 
 
 
+=======
+                        <div class="col mb-3">
+                            <div Class="row">
+>>>>>>> 60f1817e0d5f85c2c8d0e798760d2cc377818523
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='calculator_number' type="text"
                                             id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
                                             class="form-control @error('calculator_number') is-invalid is-filled @enderror"
-                                            readonly />
+                                            disabled />
                                         <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
                                     </div>
                                     @error('calculator_number')
@@ -33,12 +52,7 @@
                                     @enderror
                                 </div>
                             </div>
-
-
                             <div Class="row">
-
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='grantor' type="text" id="modalThanksgrantor"
@@ -50,8 +64,6 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='reason' type="text" id="modalThanksreason"
@@ -63,15 +75,8 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
-
-
-
                             </div>
                             <div Class="row">
-
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='ministerial_order_date' type="date"
@@ -83,7 +88,6 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='ministerial_order_number' type="text"
@@ -109,15 +113,8 @@
                                     <small class="text-danger inputerror">{{ $message }}</small>
                                     @enderror
                                 </div>
-
                             </div>
                             <div Class="row">
-
-
-
-
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='notes' type="text" id="modalThanksnotes"
@@ -129,7 +126,6 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                             </div>
                         </div>
                     </div>
