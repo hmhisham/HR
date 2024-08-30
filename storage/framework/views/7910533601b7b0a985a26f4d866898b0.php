@@ -15,23 +15,33 @@
 
                             <div Class="row">
 
-
-                             <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline form-floating-select2">
-                                        <div class="position-relative">
-                                            <select id="select2" wire:model="selectedWorker"
-                                                wire:change="selectWorker($event.target.value)"
-                                                class="select2 form-select form-select-lg" data-allow-clear="true">
-                                                <option value="" selected>اختر موظفاً</option>
-
-                                                <?php $__currentLoopData = $workers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $worker): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($worker->id); ?>"><?php echo e($worker->calculator_number); ?>
-
-                                                </option>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </select>
-                                        </div>
+                                <div class="mb-3 col flex-fill <?php echo e($workers); ?>">
+                                    <div class="form-floating form-floating-outline">
+                                      <select wire:model.defer='workers'   id="modalGrantorworkers" class="form-select <?php $__errorArgs = ['workers'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                      <option value=""></option>
+                                        <?php $__currentLoopData = $thanks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $thank): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($thank->id); ?>"><?php echo e($thank-> full_name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                  </select>
+                                  <label for="modalGrantorworkers">thanks</label>
                                     </div>
+                                    <?php $__errorArgs = ['workers'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
 
                             </div>

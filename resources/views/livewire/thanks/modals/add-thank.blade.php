@@ -13,28 +13,7 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
 
-                            <div Class="row">
-
-
-                             <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline form-floating-select2">
-                                        <div class="position-relative">
-                                            <select id="select2" wire:model="selectedWorker"
-                                                wire:change="selectWorker($event.target.value)"
-                                                class="select2 form-select form-select-lg" data-allow-clear="true">
-                                                <option value="" selected>اختر موظفاً</option>
-
-                                                @foreach($workers as $worker)
-                                                <option value="{{ $worker->id }}">{{ $worker->calculator_number }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
+                      
 
 
                             <div Class="row">
