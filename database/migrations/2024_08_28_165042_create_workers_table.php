@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
-            $table->string('calculator_number', 15)->nullable()->comment('رقم الحاسبة');
+            $table->integer('calculator_number')->nullable()->comment('رقم الحاسبة');
             $table->string('employee_number', 15)->nullable()->comment('الرقم الوظيفي');
             $table->string('paper_folder_number', 15)->nullable()->comment('رقم الاضبارة الورقية');
             $table->string('first_name', 15)->comment('الاسم الاول');
