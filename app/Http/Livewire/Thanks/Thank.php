@@ -79,7 +79,7 @@ class Thank extends Component
 
     public function AddThankModalShow()
     {
-        $this->reset(['user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
+        $this->reset(['department','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('ThankModalShow');
     }

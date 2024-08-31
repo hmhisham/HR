@@ -28,6 +28,7 @@ use App\Http\Controllers\Penalties\PenaltiesController;
 use App\Http\Controllers\Trainings\TrainingsController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
 
+use App\Http\Controllers\Jobleavers\JobleaversController;
 use App\Http\Controllers\Specialtys\SpecialtysController;
 use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Certificates\CertificatesController;
@@ -113,19 +114,21 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         //نوع الاجازة
         Route::RESOURCE('Typeholidays', TypeholidaysController::class);
         //تصنيف التخصص
-        Route::  RESOURCE('Specializationclassification', SpecializationclassificationController::class);
+        Route::RESOURCE('Specializationclassification', SpecializationclassificationController::class);
         //نوع الخدمة
-        Route::  RESOURCE('Typesservices', TypesservicesController::class);
+        Route::RESOURCE('Typesservices', TypesservicesController::class);
         // Route::  RESOURCE('Workers', WorkersController::class);
 
-         // بيانات الموظف
-      Route::GET('Workers', [WorkersController::class, 'index'])->name('Workers');
-     Route::GET('AddWorker', [WorkersController::class, 'AddWorker'])->name('AddWorker');
+        // بيانات الموظف
+        Route::GET('Workers', [WorkersController::class, 'index'])->name('Workers');
+        Route::GET('AddWorker', [WorkersController::class, 'AddWorker'])->name('AddWorker');
 
- // التشكرات
-        Route::  RESOURCE('Thanks', ThanksController::class);
-// عقوبات
-        Route::  RESOURCE('Penalties', PenaltiesController::class);
+        // التشكرات
+        Route::RESOURCE('Thanks', ThanksController::class);
+        // عقوبات
+        Route::RESOURCE('Penalties', PenaltiesController::class);
+        // تاركي العمل
+        Route::RESOURCE('Jobleavers', JobleaversController::class);
     });
 });
 
