@@ -81,7 +81,7 @@ class Penaltie extends Component
 
     public function AddPenaltieModalShow()
     {
-        // $this->reset();
+        $this->reset(['department','user_id','calculator_number','p_reason','p_issuing_authority','p_ministerial_order_number','p_ministerial_order_date','p_penalty_type','p_notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('PenaltieModalShow');
     }
