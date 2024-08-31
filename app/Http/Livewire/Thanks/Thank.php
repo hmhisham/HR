@@ -175,7 +175,7 @@ class Thank extends Component
 
         $Thanks = Thanks::find($this->ThankId);
         $Thanks->update([
-            'user_id' => $this->user_id,
+            'user_id' => Auth::id(),
             'calculator_number' => $this->calculator_number,
             'grantor' => $this->grantor,
             'ministerial_order_number' => $this->ministerial_order_number,

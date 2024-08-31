@@ -24,10 +24,11 @@ use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
+use App\Http\Controllers\Penalties\PenaltiesController;
 use App\Http\Controllers\Trainings\TrainingsController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
-use App\Http\Controllers\Specialtys\SpecialtysController;
 
+use App\Http\Controllers\Specialtys\SpecialtysController;
 use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
@@ -123,6 +124,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
 
  // التشكرات
         Route::  RESOURCE('Thanks', ThanksController::class);
+// عقوبات
+        Route::  RESOURCE('Penalties', PenaltiesController::class);
     });
 });
 

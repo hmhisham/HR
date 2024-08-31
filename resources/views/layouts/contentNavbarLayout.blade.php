@@ -74,105 +74,81 @@ $container = $container ?? 'container-xxl';
                 </li>
 
                 @can('employees')
-                    <li class="menu-item {{ request()->is('Workers') ? 'open active' : '' }}">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
-                            <span class="menu-title">قسم الموارد البشرية</span>
-                        </a>
-                        <ul class="menu-sub">
-                            <li Class="menu-item {{ request()->Is('Workers') ? 'active' : '' }}">
-                                <a href="{{ Route('Workers') }}" Class="menu-link">
-                                    <i Class=''></i>
-                                    <Div>المعلومات الوظيفية</div>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="menu-sub">
-                            <li Class="menu-item ">
-                                <a href="" Class="menu-link">
-                                    <i Class=''></i>
-                                    <Div>العقوبات</div>
-                                </a>
-                            </li>
-                        </ul>
-
-                        <ul class="menu-sub">
-                        <li Class="menu-item {{ request()->Is('Thanks') ? 'active' : '' }}">
-                            <a href = "{{ Route('Thanks.index') }}" Class="menu-link">
-                                                  <div>الشكر و التقدير</div>
-                           </a>
-                          </li>
-                        </ul>
-
-                        <ul class="menu-sub">
-                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-                                <a href="" Class="menu-link">
-                                    <i Class=''></i>
-                                    <Div>تاركي العمل</div>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="menu-sub">
-                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-                                <a href="" Class="menu-link">
-                                    <i Class=''></i>
-                                    <Div>الدورات</div>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="menu-sub">
-                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-                                <a href="" Class="menu-link">
-                                    <i Class=''></i>
-                                    <Div>الايفادات</div>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="menu-sub">
-                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-                                <a href="" Class="menu-link">
-                                    <i Class=''></i>
-                                    <Div>المكافئات</div>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="menu-sub">
-                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-                                <a href="" Class="menu-link">
-                                    <i Class=''></i>
-                                    <Div>الشهادات</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                @endcan
-
-                {{-- <li class="menu-item {{ request()->is('Employees') ? 'open active' : '' }}">
+                <li class="menu-item {{ request()->is('Workers','Thanks','Penalties') ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                         <span class="menu-title">قسم الموارد البشرية</span>
                     </a>
+
                     <ul class="menu-sub">
-
-
-
-                <li class="menu-item {{ request()->is('Employees') ? 'open active' : '' }}">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class=''></i>
-                        <span class="menu-title">بنك المعلومات</span>
-                    </a>
-                    <ul class="menu-sub">
-                                            <li class="menu-item {{ request()->is('Employees') ? 'active' : '' }}">
-                            <a href="{{ Route('Employees.index') }}" class="menu-link">
-                                <i class=''></i>
-                                <div>بيانات الموظفين</div>
+                        <li Class="menu-item ">
+                            <a href="" Class="menu-link">
+                                <i Class=''></i>
+                                <Div>عرض جميع البيانات</div>
                             </a>
                         </li>
-
                     </ul>
-                </li> --}}
-            {{-- </ul>
-        </li> --}}
+
+                    <ul class="menu-sub">
+                        <li Class="menu-item {{ request()->Is('Workers') ? 'active' : '' }}">
+                            <a href="{{ Route('Workers') }}" Class="menu-link">
+                                <i Class=''></i>
+                                <Div>المعلومات الوظيفية</div>
+                            </a>
+                        </li>
+                    </ul>
+
+
+                    <ul class="menu-sub">
+                        <li Class="menu-item {{ request()->Is('Thanks') ? 'active' : '' }}">
+                            <a href="{{ Route('Thanks.index') }}" Class="menu-link">
+                                <div>الشكر و التقدير</div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="menu-sub">
+                    <li Class="menu-item {{ request()->Is('Penalties') ? 'active' : '' }}">
+                        <a href = "{{ Route('Penalties.index') }}" Class="menu-link">
+                        <div>العقوبات</div>
+                       </a>
+                      </li>
+                    </ul>
+                    <ul class="menu-sub">
+                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                            <a href="" Class="menu-link">
+                                <i Class=''></i>
+                                <Div>تاركي العمل</div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="menu-sub">
+                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                            <a href="" Class="menu-link">
+                                <i Class=''></i>
+                                <Div>الدورات</div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="menu-sub">
+                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                            <a href="" Class="menu-link">
+                                <i Class=''></i>
+                                <Div>الايفادات</div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="menu-sub">
+                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                            <a href="" Class="menu-link">
+                                <i Class=''></i>
+                                <Div>الشهادات</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endcan
+
                 <li class="menu-item {{ request()->is('Governorates') ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-calculator'></i>
@@ -416,9 +392,9 @@ $container = $container ?? 'container-xxl';
         <div class="layout-page">
 
             {{-- Below commented code read by artisan command while installing jetstream. !! Do not remove if you want
-			to use jetstream. --}}
+            to use jetstream. --}}
             {{--
-			<x-banner /> --}}
+            <x-banner /> --}}
 
             <!-- BEGIN: Navbar-->
             @if ($isNavbar)

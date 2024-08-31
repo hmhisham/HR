@@ -23,12 +23,10 @@
                     <th Class="text-center">الاسم الكامل</th>
                     <th Class="text-center">القسم</th>
                     <th Class="text-center">رقم الحاسبة</th>
-                    <th Class="text-center">الجهة المانحة للشكر</th>
+
                     <th Class="text-center">رقم الامر الوزاري</th>
                     <th Class="text-center">تاريخ الامر الوزاري</th>
-                    <th Class="text-center">السبب من الشكر</th>
                     <th Class="text-center">عدد اشهر القدم</th>
-                    <th Class="text-center">الملاحظات</th>
                     <th Class="text-center">العملية</th>
 
                 </tr>
@@ -41,14 +39,11 @@
                     <td><?php echo e($i); ?></td>
                     <td class="text-center"><?php echo e($Thank->worker ? $Thank->worker->full_name : 'N/A'); ?></td>
                     <td class="text-center"><?php echo e($Thank->worker ? $Thank->worker->department : 'N/A'); ?></td>
-
                     <td class="text-center"><?php echo e($Thank->calculator_number); ?></td>
-                   <td Class="text-center"><?php echo e($Thank->grantor); ?></td>
                     <td Class="text-center"><?php echo e($Thank->ministerial_order_number); ?></td>
                     <td Class="text-center"><?php echo e($Thank->ministerial_order_date); ?></td>
-                    <td Class="text-center"><?php echo e($Thank->reason); ?></td>
                     <td Class="text-center"><?php echo e($Thank->months_of_service); ?></td>
-                    <td Class="text-center"><?php echo e($Thank->notes); ?></td>
+
 
                     <td Class="text-center">
                         <div class="btn-group" role="group" aria-label="First group">

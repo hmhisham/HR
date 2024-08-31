@@ -1,5 +1,5 @@
-<!-- Edite Thank Modal -->
-<div wire:ignore.self class="modal fade" id="editthankModal" tabindex="-1" aria-hidden="true">
+<!-- Edite Penaltie Modal -->
+<div wire:ignore.self class="modal fade" id="editpenaltieModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -9,14 +9,13 @@
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
-                {{-- <h5 wire:loading wire:target="GetThank"
-                    wire:loading.class="d-flex justify-content-center text-primary">
-                    جار معالجة البيانات...</h5>
+                {{-- <h5 wire:loading wire:target="GetPenaltie"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5> --}}
 
                 <div wire:loading.remove>
-                    <form id="editThankModalForm" autocomplete="off">
+                    <form id="editPenaltieModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div class="mb-3">
@@ -62,15 +61,40 @@
                                 </div>
 
                                 <Div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='p_reason' type="text" id="modalPenaltiep_reason"
+                                                placeholder="سبب العقوبة"
+                                                class="form-control @error('p_reason') is-invalid is-filled @enderror" />
+                                            <label for="modalPenaltiep_reason">سبب العقوبة</label>
+                                        </div>
+                                        @error('p_reason')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @enderror
+                                    </div>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='grantor' type="text" id="modalThankgrantor"
-                                                placeholder="الجهة المانحة للشكر"
-                                                class="form-control @error('grantor') is-invalid is-filled @enderror" />
-                                            <label for="modalThankgrantor">الجهة المانحة للشكر</label>
+                                            <input wire:model.defer='p_issuing_authority' type="text"
+                                                id="modalPenaltiep_issuing_authority" placeholder="جهة الاصدار"
+                                                class="form-control @error('p_issuing_authority') is-invalid is-filled @enderror" />
+                                            <label for="modalPenaltiep_issuing_authority">جهة الاصدار</label>
                                         </div>
-                                        @error('grantor')
+                                        @error('p_issuing_authority')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='p_ministerial_order_number' type="text"
+                                                id="modalPenaltiep_ministerial_order_number"
+                                                placeholder="رقم الامر الوزاري"
+                                                class="form-control @error('p_ministerial_order_number') is-invalid is-filled @enderror" />
+                                            <label for="modalPenaltiep_ministerial_order_number">رقم الامر
+                                                الوزاري</label>
+                                        </div>
+                                        @error('p_ministerial_order_number')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
@@ -78,61 +102,49 @@
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='ministerial_order_number' type="text"
-                                                id="modalThankministerial_order_number" placeholder="رقم الامر الوزاري"
-                                                class="form-control @error('ministerial_order_number') is-invalid is-filled @enderror" />
-                                            <label for="modalThankministerial_order_number">رقم الامر الوزاري</label>
+                                            <input wire:model.defer='p_ministerial_order_date' type="text"
+                                                id="modalPenaltiep_ministerial_order_date"
+                                                placeholder="تاريخ الامر الوزاري"
+                                                class="form-control @error('p_ministerial_order_date') is-invalid is-filled @enderror" />
+                                            <label for="modalPenaltiep_ministerial_order_date">تاريخ الامر
+                                                الوزاري</label>
                                         </div>
-                                        @error('ministerial_order_number')
+                                        @error('p_ministerial_order_date')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='ministerial_order_date' type="text"
-                                                id="modalThankministerial_order_date" placeholder="تاريخ الامر الوزاري"
-                                                class="form-control @error('ministerial_order_date') is-invalid is-filled @enderror" />
-                                            <label for="modalThankministerial_order_date">تاريخ الامر الوزاري</label>
+                                            <select wire:model.defer='p_penalty_type' id="modalPenaltiesp_penalty_type"
+                                                class="form-select @error('p_penalty_type') is-invalid is-filled @enderror">
+                                                <option value="" disabled selected>اختر نوع العقوبة</option>
+                                                <option value="لفت نظر">لفت نظر</option>
+                                                <option value="انذار">انذار</option>
+                                                <option value="توبيخ">توبيخ</option>
+                                                <option value="سحب يد">سحب يد</option>
+                                                <option value="فصل">فصل</option>
+                                                <option value="عزل">عزل</option>
+                                                <option value="قطع راتب">قطع راتب</option>
+                                                <option value="انزال درجة وظيفية">انزال درجة وظيفية</option>
+                                                <option value="انقاص راتب">انقاص راتب</option>
+                                            </select>
+                                            <label for="modalPenaltiesp_penalty_type">نوع العقوبة</label>
                                         </div>
-                                        @error('ministerial_order_date')
+                                        @error('p_penalty_type')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='reason' type="text" id="modalThankreason"
-                                                placeholder="السبب من الشكر"
-                                                class="form-control @error('reason') is-invalid is-filled @enderror" />
-                                            <label for="modalThankreason">السبب من الشكر</label>
-                                        </div>
-                                        @error('reason')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <Div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='months_of_service' type="text"
-                                                id="modalThankmonths_of_service" placeholder="عدد اشهر القدم"
-                                                class="form-control @error('months_of_service') is-invalid is-filled @enderror" />
-                                            <label for="modalThankmonths_of_service">عدد اشهر القدم</label>
-                                        </div>
-                                        @error('months_of_service')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='notes' type="text" id="modalThanknotes"
-                                                placeholder="الملاحظات"
-                                                class="form-control @error('notes') is-invalid is-filled @enderror" />
-                                            <label for="modalThanknotes">الملاحظات</label>
+                                            <input wire:model.defer='p_notes' type="text" id="modalPenaltiep_notes"
+                                                placeholder="ملاحظات"
+                                                class="form-control @error('p_notes') is-invalid is-filled @enderror" />
+                                            <label for="modalPenaltiep_notes">ملاحظات</label>
                                         </div>
-                                        @error('notes')
+                                        @error('p_notes')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
@@ -153,4 +165,4 @@
         </div>
     </div>
 </div>
-<!--/ Edite Thank Modal -->
+<!--/ Edite Penaltie Modal -->

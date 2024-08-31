@@ -24,15 +24,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('thanks.thank')->html();
-} elseif ($_instance->childHasBeenRendered('NAoC34m')) {
-    $componentId = $_instance->getRenderedChildComponentId('NAoC34m');
-    $componentTag = $_instance->getRenderedChildComponentTagName('NAoC34m');
+} elseif ($_instance->childHasBeenRendered('7LGdCNW')) {
+    $componentId = $_instance->getRenderedChildComponentId('7LGdCNW');
+    $componentTag = $_instance->getRenderedChildComponentTagName('7LGdCNW');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('NAoC34m');
+    $_instance->preserveRenderedChild('7LGdCNW');
 } else {
     $response = \Livewire\Livewire::mount('thanks.thank');
     $html = $response->html();
-    $_instance->logRenderedChild('NAoC34m', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('7LGdCNW', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -125,14 +125,9 @@ echo $html;
             });
         });
 
-      
+
     </script>
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 60f1817e0d5f85c2c8d0e798760d2cc377818523
+ 
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Thanks/index.blade.php ENDPATH**/ ?>
