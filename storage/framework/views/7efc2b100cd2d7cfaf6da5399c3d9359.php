@@ -104,6 +104,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
                                             <option value="" disabled selected>اختر نوع ترك العمل</option>
+                                            <option value=""></option>
                                             <option value="استقالة">استقالة</option>
                                             <option value="انهاء خدمة">انهاء خدمة</option>
                                             <option value="مفصول سياسي">مفصول سياسي</option>
@@ -124,7 +125,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
 
-                                
+
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
@@ -367,10 +368,11 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
 
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='added_service' id="modalJobleaversadded_service"
-                                                class="form-select <?php $__errorArgs = ['added_service'];
+                                        <select wire:model.defer='added_service' type="text" id="modalJobleaversadded_service" placeholder="الخدمة مضافه"
+                                             class="form-select <?php $__errorArgs = ['added_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -378,24 +380,24 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value="" disabled selected>اختر الحالة</option>
-                                            <option value="مضافة">مضافة</option>
-                                            <option value="غير مضافة">غير مضافة</option>
-                                        </select>
-                                        <label for="modalJobleaversadded_service">الحالة</label>
+                                             <option value="" disabled selected>اختر الحالة</option>
+                                             <option value=""></option>
+                                             <option value="مضافة">مضافة</option>
+                                             <option value="غير مضافة">غير مضافة</option>
+                                         </select>
+                                        <label for="modalJobleaversadded_service">الخدمة مضافه</label>
                                     </div>
                                     <?php $__errorArgs = ['added_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
                                     <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='notes' type="text" id="modalJobleaversnotes"

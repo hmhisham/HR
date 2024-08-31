@@ -67,6 +67,7 @@
                                             <select wire:model.defer='job_leaving_type' id="modalJobleaversjob_leaving_type"
                                                     class="form-select @error('job_leaving_type') is-invalid is-filled @enderror">
                                                 <option value="" disabled selected>اختر نوع ترك العمل</option>
+                                                <option value=""></option>
                                                 <option value="استقالة">استقالة</option>
                                                 <option value="انهاء خدمة">انهاء خدمة</option>
                                                 <option value="مفصول سياسي">مفصول سياسي</option>
@@ -202,6 +203,7 @@
                                             <select wire:model.defer='added_service' id="modalJobleaversadded_service"
                                                     class="form-select @error('added_service') is-invalid is-filled @enderror">
                                                 <option value="" disabled selected>اختر الحالة</option>
+                                                <option value=""></option>
                                                 <option value="مضافة">مضافة</option>
                                                 <option value="غير مضافة">غير مضافة</option>
                                             </select>

@@ -125,7 +125,7 @@ class Penaltie extends Component
             'p_penalty_type' => $this->p_penalty_type,
             'p_notes' => $this->p_notes,
         ]);
-        $this->reset();
+        $this->reset(['department','user_id','calculator_number','p_reason','p_issuing_authority','p_ministerial_order_number','p_ministerial_order_date','p_penalty_type','p_notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -187,7 +187,7 @@ class Penaltie extends Component
             'p_penalty_type' => $this->p_penalty_type,
             'p_notes' => $this->p_notes,
         ]);
-        $this->reset();
+        $this->reset(['department','user_id','calculator_number','p_reason','p_issuing_authority','p_ministerial_order_number','p_ministerial_order_date','p_penalty_type','p_notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'

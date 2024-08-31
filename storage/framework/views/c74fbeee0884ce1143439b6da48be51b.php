@@ -116,6 +116,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
                                                 <option value="" disabled selected>اختر نوع ترك العمل</option>
+                                                <option value=""></option>
                                                 <option value="استقالة">استقالة</option>
                                                 <option value="انهاء خدمة">انهاء خدمة</option>
                                                 <option value="مفصول سياسي">مفصول سياسي</option>
@@ -391,6 +392,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
                                                 <option value="" disabled selected>اختر الحالة</option>
+                                                <option value=""></option>
                                                 <option value="مضافة">مضافة</option>
                                                 <option value="غير مضافة">غير مضافة</option>
                                             </select>

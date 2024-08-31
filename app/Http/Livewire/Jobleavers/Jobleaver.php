@@ -66,7 +66,6 @@ class Jobleaver extends Component
                 $query->where('jobleavers.calculator_number', 'LIKE', $JobleaverSearch)
                     ->orWhere('workers.full_name', 'LIKE', $JobleaverSearch);
             })
-
             ->orderBy('jobleavers.id', 'ASC')
             ->select('jobleavers.*')
             ->paginate(10);
@@ -87,6 +86,7 @@ class Jobleaver extends Component
 
     public function store()
     {
+
         $this->resetValidation();
         $this->validate([
 
@@ -101,7 +101,7 @@ class Jobleaver extends Component
             'ministerial_order_date' => 'required',
             'added_service_letter_number' => 'required',
             'added_service_letter_date' => 'required',
-            'added_service' => 'required',
+           'added_service' => 'required',
 
         ], [
 
@@ -116,7 +116,7 @@ class Jobleaver extends Component
             'ministerial_order_date.required' => 'حقل الاسم مطلوب',
             'added_service_letter_number.required' => 'حقل الاسم مطلوب',
             'added_service_letter_date.required' => 'حقل الاسم مطلوب',
-            'added_service' => 'حقل الاسم مطلوب',
+           'added_service' => 'حقل الاسم مطلوب',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -137,7 +137,7 @@ class Jobleaver extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset();
+        $this->reset(['department', 'user_id', 'added_service', 'calculator_number', 'job_leaving_type', 'issuing_authority', 'appointment_date', 'disconnection_date', 'return_date', 'disconnection_duration', 'ministerial_order_number', 'ministerial_order_date', 'added_service_letter_number', 'added_service_letter_date', 'notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -175,7 +175,7 @@ class Jobleaver extends Component
             $this->full_name = 'N/A';
             $this->department = 'N/A';
         }
-     
+
     }
 
 
@@ -231,7 +231,7 @@ class Jobleaver extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset();
+        $this->reset(['department', 'user_id', 'added_service', 'calculator_number', 'job_leaving_type', 'issuing_authority', 'appointment_date', 'disconnection_date', 'return_date', 'disconnection_duration', 'ministerial_order_number', 'ministerial_order_date', 'added_service_letter_number', 'added_service_letter_date', 'notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'

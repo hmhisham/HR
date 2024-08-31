@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('appointment_date')->comment('تاريخ التعيين');
             $table->date('disconnection_date')->comment('تاريخ الانقطاع');
             $table->date('return_date')->comment('تاريخ العودة');
-            $table->integer('disconnection_duration')->comment('مدة الانقطاع');
+            $table->string('disconnection_duration')->comment('مدة الانقطاع');
             $table->string('ministerial_order_number')->comment('رقم الامر الوزاري');
             $table->date('ministerial_order_date')->comment('تاريخ الامر الوزاري');
             $table->string('added_service')->comment('الخدمة مضافه');

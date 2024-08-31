@@ -55,6 +55,7 @@
                                         <select wire:model.defer='job_leaving_type' id="modalJobleaversjob_leaving_type"
                                                 class="form-select @error('job_leaving_type') is-invalid is-filled @enderror">
                                             <option value="" disabled selected>اختر نوع ترك العمل</option>
+                                            <option value=""></option>
                                             <option value="استقالة">استقالة</option>
                                             <option value="انهاء خدمة">انهاء خدمة</option>
                                             <option value="مفصول سياسي">مفصول سياسي</option>
@@ -68,7 +69,7 @@
                                     @enderror
                                 </div>
 
-                                
+
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
@@ -185,21 +186,22 @@
                                     @enderror
                                 </div>
 
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='added_service' id="modalJobleaversadded_service"
-                                                class="form-select @error('added_service') is-invalid is-filled @enderror">
-                                            <option value="" disabled selected>اختر الحالة</option>
-                                            <option value="مضافة">مضافة</option>
-                                            <option value="غير مضافة">غير مضافة</option>
-                                        </select>
-                                        <label for="modalJobleaversadded_service">الحالة</label>
+                                        <select wire:model.defer='added_service' type="text" id="modalJobleaversadded_service" placeholder="الخدمة مضافه"
+                                             class="form-select @error('added_service') is-invalid is-filled @enderror">
+                                             <option value="" disabled selected>اختر الحالة</option>
+                                             <option value=""></option>
+                                             <option value="مضافة">مضافة</option>
+                                             <option value="غير مضافة">غير مضافة</option>
+                                         </select>
+                                        <label for="modalJobleaversadded_service">الخدمة مضافه</label>
                                     </div>
                                     @error('added_service')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='notes' type="text" id="modalJobleaversnotes"

@@ -115,7 +115,7 @@ class Thank extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset();
+        $this->reset(['department','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -184,7 +184,7 @@ class Thank extends Component
             'months_of_service' => $this->months_of_service,
             'notes' => $this->notes,
         ]);
-        $this->reset();
+        $this->reset(['department','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
