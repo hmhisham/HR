@@ -81,8 +81,6 @@
                                         @enderror
                                     </div>
 
-
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='issuing_authority' type="text"
@@ -214,16 +212,17 @@
                                         @enderror
                                     </div>
 
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='notes' type="text" id="modalJobleaversnotes"
-                                            placeholder="الملاحظات"
-                                            class="form-control @error('notes') is-invalid is-filled @enderror" />
-                                        <label for="modalJobleaversnotes">الملاحظات</label>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='notes' type="text" id="modalJobleaversnotes"
+                                                placeholder="الملاحظات"
+                                                class="form-control @error('notes') is-invalid is-filled @enderror" />
+                                            <label for="modalJobleaversnotes">الملاحظات</label>
+                                        </div>
+                                        @error('notes')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @enderror
                                     </div>
-                                    @error('notes')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
                                 </div>
                             </div>
                         </div>

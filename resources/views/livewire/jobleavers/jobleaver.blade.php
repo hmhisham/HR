@@ -1,23 +1,21 @@
 <div class="mt-n4">
     <h4 Class="mb-1fw-semiboyld">قائمة</h4>
-    <div Class="card">
-
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <input wire:model="JobleaverSearch" type="text" class="form-control" placeholder="بحث...">
-                    </div>
-                    <div>
-                        @can('jobleaver-create')
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <input wire:model="JobleaverSearch" type="text" class="form-control" placeholder="بحث...">
+                </div>
+                <div>
+                    @can('jobleaver-create')
                         <button wire:click='AddJobleaverModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                             data-bs-toggle="modal" data-bs-target="#addjobleaverModal">أضــافــة</button>
                         @include('livewire.jobleavers.modals.add-jobleaver')
-                        @endcan
-                    </div>
+                    @endcan
                 </div>
             </div>
-            @can('jobleaver-list')
+        </div>
+        @can('jobleaver-list')
             <table class="table">
                 <thead class="table-light">
                     <tr>
@@ -34,35 +32,34 @@
                 <tbody>
                     <?php $i = 0; ?>
                     @foreach ($Jobleavers as $Jobleaver)
-                    <tr>
-                        <?php $i++; ?>
-                        <td>{{ $i }}</td>
-
-                        <td class="text-center">{{ $Jobleaver->worker ? $Jobleaver->worker->full_name : 'N/A' }}</td>
-                        <td class="text-center">{{ $Jobleaver->worker ? $Jobleaver->worker->department : 'N/A' }}</td>
-                        <td Class="text-center">{{ $Jobleaver->calculator_number}}</td>
-                        <td Class="text-center">{{ $Jobleaver->job_leaving_type}}</td>
-                        <td Class="text-center">{{ $Jobleaver->appointment_date}}</td>
-                        <td Class="text-center">{{ $Jobleaver->disconnection_date}}</td>
-                        <td Class="text-center">
-                            <div class="btn-group" role="group" aria-label="First group">
-                                @can('jobleaver-edit')
-                                <button wire:click="GetJobleaver({{ $Jobleaver->id }})"
-                                    class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
-                                    data-bs-target="#editjobleaverModal">
-                                    <i class="tf-icons mdi mdi-pencil fs-3"></i>
-                                </button>
-                                @endcan
-                                @can('jobleaver-delete')
-                                <button wire:click="GetJobleaver({{ $Jobleaver->id }})"
-                                    class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Jobleaver->active ? 'disabled' : '' }}"
-                                    data-bs-toggle="modal" data-bs-target="#removejobleaverModal">
-                                    <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
-                                </button>
-                                @endcan
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <?php $i++; ?>
+                            <td>{{ $i }}</td>
+                            <td class="text-center">{{ $Jobleaver->worker ? $Jobleaver->worker->full_name : 'N/A' }}</td>
+                            <td class="text-center">{{ $Jobleaver->worker ? $Jobleaver->worker->department : 'N/A' }}</td>
+                            <td Class="text-center">{{ $Jobleaver->calculator_number}}</td>
+                            <td Class="text-center">{{ $Jobleaver->job_leaving_type}}</td>
+                            <td Class="text-center">{{ $Jobleaver->appointment_date}}</td>
+                            <td Class="text-center">{{ $Jobleaver->disconnection_date}}</td>
+                            <td Class="text-center">
+                                <div class="btn-group" role="group" aria-label="First group">
+                                    @can('jobleaver-edit')
+                                        <button wire:click="GetJobleaver({{ $Jobleaver->id }})"
+                                            class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                            data-bs-target="#editjobleaverModal">
+                                            <i class="tf-icons mdi mdi-pencil fs-3"></i>
+                                        </button>
+                                    @endcan
+                                    @can('jobleaver-delete')
+                                        <button wire:click="GetJobleaver({{ $Jobleaver->id }})"
+                                            class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Jobleaver->active ? 'disabled' : '' }}"
+                                            data-bs-toggle="modal" data-bs-target="#removejobleaverModal">
+                                            <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
+                                        </button>
+                                    @endcan
+                                </div>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -73,9 +70,6 @@
             @include('livewire.jobleavers.modals.edit-jobleaver')
             @include('livewire.jobleavers.modals.remove-jobleaver')
             <!-- Modal -->
-            @endcan
-        </div>
+        @endcan
     </div>
-</div>
-</div>
 </div>

@@ -1,28 +1,28 @@
 @extends('layouts/layoutMaster')
-@section('title', 'Jobleavers')
-@section('vendor-style')
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-<!-- CSS -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+@section('title', 'Jobleavers')
+
+@section('vendor-style')
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 @section('content')
-@livewire('jobleavers.jobleaver')
 
+    @livewire('jobleavers.jobleaver')
 
 @endsection
 
 @section('vendor-script')
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="{{ asset('assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
@@ -33,8 +33,7 @@
     <script src="{{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
-<!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 @endsection
 
@@ -59,8 +58,6 @@
                 initWorkerDrop();
             });
         });
-
-
 
         const Toast = Swal.mixin({
             toast: true,
@@ -98,7 +95,5 @@
             })
 
         })
-
-
-</script>
+    </script>
 @endsection
