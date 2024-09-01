@@ -67,14 +67,16 @@ class Jobleaver extends Component
                     ->orWhere('workers.full_name', 'LIKE', $JobleaverSearch);
             })
             ->orderBy('jobleavers.id', 'ASC')
-            ->select('jobleavers.*')
-            ->paginate(10);
+           ->select('jobleavers.*')
+           ->paginate(10);
         $links = $Jobleavers;
         $this->Jobleavers = collect($Jobleavers->items());
         return view('livewire.jobleavers.jobleaver', [
             'links' => $links
         ]);
     }
+
+
 
     public function AddJobleaverModalShow()
     {
@@ -148,10 +150,12 @@ class Jobleaver extends Component
         $this->resetValidation();
 
         $this->Jobleaver  = Jobleavers::find($JobleaverId);
+
+          $this->JobleaverId = $this->Jobleaver->id;
+        $this->user_id = $this->Jobleaver->user_id;
         $worker = $this->Jobleaver->worker;
 
-        $this->JobleaverId = $this->Jobleaver->id;
-        $this->user_id = $this->Jobleaver->user_id;
+
         $this->calculator_number = $this->Jobleaver->calculator_number;
         $this->job_leaving_type = $this->Jobleaver->job_leaving_type;
         $this->issuing_authority = $this->Jobleaver->issuing_authority;
@@ -178,7 +182,7 @@ class Jobleaver extends Component
 
     }
 
-
+ 
     public function update()
     {
         $this->resetValidation();

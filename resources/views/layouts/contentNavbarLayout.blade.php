@@ -142,10 +142,20 @@ $container = $container ?? 'container-xxl';
                         <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
                             <a href="" Class="menu-link">
                                 <i Class=''></i>
-                                <Div>الشهادات</div>
+                                <div>الشهادات</div>
                             </a>
                         </li>
                     </ul>
+
+                    <ul class="menu-sub">
+                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                            <a href="" Class="menu-link">
+                                <i Class=''></i>
+                                <Div>العلاوات و الترفيعات</div>
+                            </a>
+                        </li>
+                    </ul>
+
                 </li>
                 @endcan
 

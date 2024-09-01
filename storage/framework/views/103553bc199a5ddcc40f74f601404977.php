@@ -1,6 +1,6 @@
 <div class="mt-n4">
     <h4 Class="mb-1fw-semiboyld">قائمة</h4>
-    <Div Class="card">
+    <div Class="card">
 
         <div class="card">
             <div class="card-header">
@@ -22,7 +22,6 @@
                 <thead class="table-light">
                     <tr>
                         <th>#</th>
-
                         <th Class="text-center">الاسم الكامل</th>
                         <th Class="text-center">القسم</th>
                         <th Class="text-center">رقم الحاسبة</th>
@@ -78,6 +77,7 @@
             <?php endif; ?>
         </div>
     </div>
+</div>
 </div>
 </div>
 <?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/jobleavers/jobleaver.blade.php ENDPATH**/ ?>

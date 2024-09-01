@@ -24,15 +24,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('thanks.thank')->html();
-} elseif ($_instance->childHasBeenRendered('7LGdCNW')) {
-    $componentId = $_instance->getRenderedChildComponentId('7LGdCNW');
-    $componentTag = $_instance->getRenderedChildComponentTagName('7LGdCNW');
+} elseif ($_instance->childHasBeenRendered('bc5as2H')) {
+    $componentId = $_instance->getRenderedChildComponentId('bc5as2H');
+    $componentTag = $_instance->getRenderedChildComponentTagName('bc5as2H');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('7LGdCNW');
+    $_instance->preserveRenderedChild('bc5as2H');
 } else {
     $response = \Livewire\Livewire::mount('thanks.thank');
     $html = $response->html();
-    $_instance->logRenderedChild('7LGdCNW', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('bc5as2H', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -127,7 +127,7 @@ echo $html;
 
 
     </script>
- 
+
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Thanks/index.blade.php ENDPATH**/ ?>

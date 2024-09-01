@@ -11,12 +11,14 @@
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li class="nav-item ">
-                        <button wire:click="buttonStep(1)" class="nav-link  <?php echo e($currentTap == 1 ? 'active' : ''); ?>" type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-1" role="tab"
+                        <button wire:click="buttonStep(1)" class="nav-link  <?php echo e($currentTap == 1 ? 'active' : ''); ?>"
+                            type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-1" role="tab"
                             aria-selected="True">بيانات الأسم</button>
                     </li>
 
                     <li class="nav-item">
-                        <button wire:click="buttonStep(2)" class="nav-link <?php echo e($currentTap == 2 ? 'active' : ''); ?>" type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-2" role="tab"
+                        <button wire:click="buttonStep(2)" class="nav-link <?php echo e($currentTap == 2 ? 'active' : ''); ?>"
+                            type="button" data-bs-toggle="tab" data-bs-target="#form-tabs-2" role="tab"
                             aria-selected="True"> البيانات الشخصية </button>
                     </li>
 
@@ -82,7 +84,8 @@
             </div>
 
             <div class="tab-content">
-                <div class="tab-pane fade <?php echo e($currentTap == 1 ? 'active show' : ''); ?> " id="form-tabs-1" role="tabpanel">
+                <div class="tab-pane fade <?php echo e($currentTap == 1 ? 'active show' : ''); ?> " id="form-tabs-1"
+                    role="tabpanel">
                     <form>
                         <div Class="row g-4">
                             <div class="mb-3 col">
@@ -587,12 +590,13 @@ unset($__errorArgs, $__bag); ?>
                 <div class="tab-pane fade <?php echo e($currentTap == 2 ? 'active show' : ''); ?>" id="form-tabs-2" role="tabpanel">
                     <form>
                         <div Class="row g-4">
-                            
 
 
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                  <select wire:model.defer='governorate_id'    wire:change='GetDistricts($event.target.value)'  id="governorate_id" class="form-select <?php $__errorArgs = ['governorate_id'];
+                                    <select wire:model.defer='governorate_id'
+                                        wire:change='GetDistricts($event.target.value)' id="governorate_id"
+                                        class="form-select <?php $__errorArgs = ['governorate_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -600,37 +604,26 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                  <option value=""></option>
-                                    <?php $__currentLoopData = $Governorates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $governorate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($governorate->id); ?>"><?php echo e($governorate->governorate_name); ?></option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                              </select>
-                              <label for="governorate_id">المحافظة</label>
+                                        <option value=""></option>
+                                        <?php $__currentLoopData = $Governorates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $governorate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($governorate->id); ?>"><?php echo e($governorate->governorate_name); ?>
+
+                                        </option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                    <label for="governorate_id">المحافظة</label>
                                 </div>
                                 <?php $__errorArgs = ['governorate_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
                                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                             <div class="mb-3 col">
