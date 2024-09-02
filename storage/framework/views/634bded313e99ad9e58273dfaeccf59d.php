@@ -1,41 +1,40 @@
 <?php $__env->startSection('title', 'Jobleavers'); ?>
-<?php $__env->startSection('vendor-style'); ?>
-<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/select2/select2.css')); ?>" />
-<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')); ?>" />
-<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/animate-css/animate.css')); ?>" />
-<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
-<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
-<!-- CSS -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+<?php $__env->startSection('vendor-style'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/select2/select2.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/animate-css/animate.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-<?php
+
+    <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('jobleavers.jobleaver')->html();
-} elseif ($_instance->childHasBeenRendered('Jrn4AsV')) {
-    $componentId = $_instance->getRenderedChildComponentId('Jrn4AsV');
-    $componentTag = $_instance->getRenderedChildComponentTagName('Jrn4AsV');
+} elseif ($_instance->childHasBeenRendered('ANRBQb0')) {
+    $componentId = $_instance->getRenderedChildComponentId('ANRBQb0');
+    $componentTag = $_instance->getRenderedChildComponentTagName('ANRBQb0');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('Jrn4AsV');
+    $_instance->preserveRenderedChild('ANRBQb0');
 } else {
     $response = \Livewire\Livewire::mount('jobleavers.jobleaver');
     $html = $response->html();
-    $_instance->logRenderedChild('Jrn4AsV', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('ANRBQb0', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
 
-
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('vendor-script'); ?>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="<?php echo e(asset('assets/vendor/libs/moment/moment.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/vendor/libs/select2/select2.js')); ?>"></script>
@@ -46,8 +45,7 @@ echo $html;
     <script src="<?php echo e(asset('assets/vendor/libs/cleavejs/cleave-phone.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js')); ?>"></script>
-<!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <?php $__env->stopSection(); ?>
 
@@ -72,8 +70,6 @@ echo $html;
                 initWorkerDrop();
             });
         });
-
-
 
         const Toast = Swal.mixin({
             toast: true,
@@ -111,9 +107,7 @@ echo $html;
             })
 
         })
-
-
-</script>
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Jobleavers/index.blade.php ENDPATH**/ ?>

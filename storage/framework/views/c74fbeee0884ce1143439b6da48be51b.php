@@ -21,7 +21,7 @@
                                 <div class="mb-3">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='full_name' type="text" id="modalEmployeefull_name"
-                                            placeholder="رقم الحاسبة"
+                                            placeholder="اسم الموظف "
                                             class="form-control <?php $__errorArgs = ['full_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -136,8 +136,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-
-
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
@@ -410,11 +408,11 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
 
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='notes' type="text" id="modalJobleaversnotes"
-                                            placeholder="الملاحظات"
-                                            class="form-control <?php $__errorArgs = ['notes'];
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='notes' type="text" id="modalJobleaversnotes"
+                                                placeholder="الملاحظات"
+                                                class="form-control <?php $__errorArgs = ['notes'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -422,18 +420,19 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalJobleaversnotes">الملاحظات</label>
-                                    </div>
-                                    <?php $__errorArgs = ['notes'];
+                                            <label for="modalJobleaversnotes">الملاحظات</label>
+                                        </div>
+                                        <?php $__errorArgs = ['notes'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
+                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

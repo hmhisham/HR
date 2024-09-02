@@ -115,13 +115,16 @@
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='months_of_service' type="text"
-                                                id="modalThankmonths_of_service" placeholder="عدد اشهر القدم"
-                                                class="form-control @error('months_of_service') is-invalid is-filled @enderror" />
-                                            <label for="modalThankmonths_of_service">عدد اشهر القدم</label>
+                                            <select wire:model.defer="months_of_service" id="months_of_service"
+                                                class="form-select @error('months_of_service') is-invalid is-filled @enderror">
+                                                <option value="" disabled selected>عدد الاشهر</option>
+                                                <option value="1">1</option>
+                                                <option value="6">6</option>
+                                            </select>
+                                            <label for="modalEmployeemonths_of_service">عدد الاشهر </label>
                                         </div>
                                         @error('months_of_service')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class="text-danger inputerror">{{ $message }}</small>
                                         @enderror
                                     </div>
 

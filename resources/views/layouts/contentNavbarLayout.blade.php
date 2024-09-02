@@ -74,7 +74,7 @@ $container = $container ?? 'container-xxl';
                 </li>
 
                 @can('employees')
-                <li class="menu-item {{ request()->is('Workers','Thanks','Penalties','Jobleavers') ? 'open active' : '' }}">
+                <li class="menu-item {{ request()->is('Workers','Thanks','Penalties','Jobleavers','Dispatch') ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                         <span class="menu-title">قسم الموارد البشرية</span>
@@ -129,15 +129,14 @@ $container = $container ?? 'container-xxl';
                             </a>
                         </li>
                     </ul>
-                    <ul class="menu-sub">
-                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-                            <a href="" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>الايفادات</div>
-                            </a>
-                        </li>
-                    </ul>
 
+                    <ul class="menu-sub">
+                    <li Class="menu-item {{ request()->Is('Dispatch') ? 'active' : '' }}">
+                        <a href = "{{ Route('Dispatch.index') }}" Class="menu-link">
+                         <div>الأيفادات</div>
+                       </a>
+                      </li>
+                    </ul>
                     <ul class="menu-sub">
                         <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
                             <a href="" Class="menu-link">
@@ -151,10 +150,20 @@ $container = $container ?? 'container-xxl';
                         <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
                             <a href="" Class="menu-link">
                                 <i Class=''></i>
-                                <Div>العلاوات و الترفيعات</div>
+                                <Div>العلاوات</div>
                             </a>
                         </li>
                     </ul>
+
+                    <ul class="menu-sub">
+                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                            <a href="" Class="menu-link">
+                                <i Class=''></i>
+                                <div>الترفيعات</div>
+                            </a>
+                        </li>
+                    </ul>
+
 
                 </li>
                 @endcan

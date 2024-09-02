@@ -32,7 +32,18 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='full_name' type="text" id="modalEmployeefull_name"
+                                                placeholder="اسم الموظف "
+                                                class="form-control @error('full_name') is-invalid is-filled @enderror"
+                                                disabled />
+                                            <label for="modalEmployeefull_name">اسم الموظف</label>
+                                        </div>
+                                        @error('full_name')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                             <hr class="my-0">

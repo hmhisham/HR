@@ -209,24 +209,27 @@ unset($__errorArgs, $__bag); ?>
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='months_of_service' type="text"
-                                                id="modalThankmonths_of_service" placeholder="عدد اشهر القدم"
-                                                class="form-control <?php $__errorArgs = ['months_of_service'];
+                                            <select wire:model.defer="months_of_service" id="months_of_service"
+                                                class="form-select <?php $__errorArgs = ['months_of_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
-                                            <label for="modalThankmonths_of_service">عدد اشهر القدم</label>
+unset($__errorArgs, $__bag); ?>">
+                                                <option value="" disabled selected>عدد الاشهر</option>
+                                                <option value="1">1</option>
+                                                <option value="6">6</option>
+                                            </select>
+                                            <label for="modalEmployeemonths_of_service">عدد الاشهر </label>
                                         </div>
                                         <?php $__errorArgs = ['months_of_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <small class="text-danger inputerror"><?php echo e($message); ?></small>
                                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
