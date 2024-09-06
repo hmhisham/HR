@@ -74,7 +74,7 @@ $container = $container ?? 'container-xxl';
                 </li>
 
                 @can('employees')
-                <li class="menu-item {{ request()->is('Workers','Thanks','Penalties','Jobleavers','Dispatch') ? 'open active' : '' }}">
+                <li class="menu-item {{ request()->is('Workers','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays') ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                         <span class="menu-title">قسم الموارد البشرية</span>
@@ -138,14 +138,20 @@ $container = $container ?? 'container-xxl';
                       </li>
                     </ul>
                     <ul class="menu-sub">
-                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-                            <a href="" Class="menu-link">
-                                <i Class=''></i>
-                                <div>الشهادات</div>
-                            </a>
-                        </li>
-                    </ul>
+                        <li Class="menu-item {{ request()->Is('Certific') ? 'active' : '' }}">
+                            <a href = "{{ Route('Certific.index') }}" Class="menu-link">
 
+                             <div>الشهادات</div>
+                           </a>
+                          </li>
+                    </ul>
+                    <ul class="menu-sub">
+                    <li Class="menu-item {{ request()->Is('Holidays') ? 'active' : '' }}">
+                        <a href = "{{ Route('Holidays.index') }}" Class="menu-link">
+                         <div>الاجازات</div>
+                       </a>
+                      </li>
+                    </ul>
                     <ul class="menu-sub">
                         <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
                             <a href="" Class="menu-link">

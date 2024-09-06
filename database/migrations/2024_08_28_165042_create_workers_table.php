@@ -43,7 +43,7 @@ return new class extends Migration
             $table->string('marital_status', 15)->nullable()->comment('الحالة الزوجية');
             $table->string('religion', 15)->nullable()->comment('الديانة');
             $table->string('gender', 15)->nullable()->comment('الجنس');
-            $table->integer('children_count')->comment('عدد الاطفال');
+            $table->integer('children_count')->nullable()->comment('عدد الاطفال');
 
             // Identity Information
             $table->string('civil_status_identity_number', 20)->nullable()->comment('رقم هوية الاحوال');
@@ -107,7 +107,7 @@ return new class extends Migration
             $table->date('transfer_date')->nullable()->comment('تاريخ النقل الينا');
             $table->date('resumption_date')->nullable()->comment('المباشرة');
             $table->string('binding_authority', 15)->nullable()->comment('الارتباط');
-            $table->string('department', 20)->nullable()->comment('القسم');
+            $table->string('department', 50)->nullable()->comment('القسم');
             $table->string('division', 15)->nullable()->comment('الشعبة');
             $table->string('unit', 15)->nullable()->comment('الوحدة');
             $table->string('secondment_authority', 15)->nullable()->comment('جهة التنسيب');

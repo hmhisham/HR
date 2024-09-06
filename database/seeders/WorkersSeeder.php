@@ -18,7 +18,7 @@ class WorkersSeeder extends Seeder
         $arabicNames = ['أحمد', 'محمد', 'علي', 'فاطمة', 'عائشة', 'خديجة']; // Example Arabic names
         $departments = ['إدارة الموارد البشرية', 'التسويق', 'المالية', 'التكنولوجيا']; // Example departments
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             Workers::create([
                 'user_id' => $faker->randomNumber(),
                 'calculator_number' => $faker->randomNumber(),
