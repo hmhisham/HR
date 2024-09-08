@@ -3,23 +3,63 @@
 namespace App\Http\Livewire\Holidays;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 
-use Livewire\WithPagination;
+use App\Models\Workers\Workers;
 use App\Models\Holidays\Holidays;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class Holiday extends Component
 {
     use WithPagination;
+     use WithPagination, WithFileUploads;
     protected $paginationTheme = 'bootstrap';
 
     public $Holidays = [];
     public $HolidaySearch, $Holiday, $HolidayId;
-    public $calculator_number, $order_number, $order_date, $holiday_type, $holiday_purpose, $days_count, $separation_date, $resumption_date, $cut_off_holiday, $file_path, $notes;
-    use WithPagination, WithFileUploads;
-    public function mount()
+    public $user_id, $calculator_number, $order_number, $order_date, $holiday_type, $holiday_purpose, $days_count, $separation_date, $resumption_date, $cut_off_holiday, $file_path, $notes;
+
+
+    public $search = '';
+    public $workers = [];
+    public $worker,   $department, $full_name;
+    public $selectedWorker = null;
+
+
+
+    protected $listeners = [
+        'SelectWorker',
+    ];
+
+    public function hydrate()
+    {
+        $this->emit('select2');
+    }
+
+
+ public function mount()
     {
         $this->file_path = 'uploads/your-stored-file.jpg';
+        $this->workers = Workers::all();
+    }
+
+    public function SelectWorker($workerID)
+    {
+
+        $worker = Workers::find($workerID);
+
+
+        if ($worker) {
+            $this->worker = $workerID;
+            $this->calculator_number = $worker->calculator_number;
+            $this->department = $worker->department;
+        } else {
+            $this->worker = null;
+            $this->calculator_number = null;
+            $this->department = null;
+        }
     }
 
 
@@ -27,20 +67,12 @@ class Holiday extends Component
     public function render()
     {
         $HolidaySearch = '%' . $this->HolidaySearch . '%';
-        $Holidays = Holidays::where('calculator_number', 'LIKE', $HolidaySearch)
-            ->orWhere('order_number', 'LIKE', $HolidaySearch)
-            ->orWhere('order_date', 'LIKE', $HolidaySearch)
-            ->orWhere('holiday_type', 'LIKE', $HolidaySearch)
-            ->orWhere('holiday_purpose', 'LIKE', $HolidaySearch)
-            ->orWhere('days_count', 'LIKE', $HolidaySearch)
-            ->orWhere('separation_date', 'LIKE', $HolidaySearch)
-            ->orWhere('resumption_date', 'LIKE', $HolidaySearch)
-            ->orWhere('cut_off_holiday', 'LIKE', $HolidaySearch)
-            ->orWhere('file_path', 'LIKE', $HolidaySearch)
-            ->orWhere('notes', 'LIKE', $HolidaySearch)
-
-
-            ->orderBy('id', 'ASC')
+        $Holidays = Holidays::join('workers', 'holidays.calculator_number', '=', 'workers.calculator_number')
+        ->where(function ($query) use ($HolidaySearch) {
+                   $query->where('holidays.calculator_number', 'LIKE', $HolidaySearch)
+                  ->orWhere('workers.full_name', 'LIKE', $HolidaySearch);
+        })
+            ->orderBy('holidays.id', 'ASC')
             ->paginate(10);
         $links = $Holidays;
         $this->Holidays = collect($Holidays->items());
@@ -51,7 +83,7 @@ class Holiday extends Component
 
     public function AddHolidayModalShow()
     {
-        $this->reset();
+       $this->reset(['department','calculator_number','order_number','order_date','holiday_type','holiday_purpose','days_count','separation_date','resumption_date','cut_off_holiday','file_path','notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('HolidayModalShow');
     }
@@ -61,6 +93,7 @@ class Holiday extends Component
     {
         $this->resetValidation();
         $this->validate([
+
             'calculator_number' => 'required',
             'order_number' => 'required',
             'order_date' => 'required',
@@ -72,9 +105,10 @@ class Holiday extends Component
             'cut_off_holiday' => 'required',
             'file_path' => 'required',
             'file_path' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240',
-            'notes' => 'required',
+
 
         ], [
+
             'calculator_number.required' => 'حقل الاسم مطلوب',
             'order_number.required' => 'حقل الاسم مطلوب',
             'order_date.required' => 'حقل الاسم مطلوب',
@@ -85,7 +119,7 @@ class Holiday extends Component
             'resumption_date.required' => 'حقل الاسم مطلوب',
             'cut_off_holiday.required' => 'حقل الاسم مطلوب',
             'file_path.required' => 'حقل الاسم مطلوب',
-            'notes.required' => 'حقل الاسم مطلوب',
+
         ]);
         if ($this->file_path instanceof \Livewire\TemporaryUploadedFile) {
             $file_path = $this->file_path->store('uploads', 'public');
@@ -94,6 +128,7 @@ class Holiday extends Component
 
 
         Holidays::create([
+            'user_id' =>  Auth::id(),
             'calculator_number' => $this->calculator_number,
             'order_number' => $this->order_number,
             'order_date' => $this->order_date,
@@ -107,7 +142,7 @@ class Holiday extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset();
+        $this->reset(['department','calculator_number','order_number','order_date','holiday_type','holiday_purpose','days_count','separation_date','resumption_date','cut_off_holiday','file_path','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -116,10 +151,12 @@ class Holiday extends Component
 
     public function GetHoliday($HolidayId)
     {
-        $this->resetValidation();
-
-        $this->Holiday  = Holidays::find($HolidayId);
+       $this->resetValidation();
+        $this->Holiday = Holidays::find($HolidayId);
+        dd($this->Holiday);
         $this->HolidayId = $this->Holiday->id;
+        $this->user_id = $this->Holiday->user_id;
+        $worker = $this->Holiday->worker;
         $this->calculator_number = $this->Holiday->calculator_number;
         $this->order_number = $this->Holiday->order_number;
         $this->order_date = $this->Holiday->order_date;
@@ -131,12 +168,20 @@ class Holiday extends Component
         $this->cut_off_holiday = $this->Holiday->cut_off_holiday;
         $this->file_path = $this->Holiday->file_path;
         $this->notes = $this->Holiday->notes;
+         if ($worker) {
+            $this->full_name = $worker->full_name ?? 'N/A';
+            $this->department = $worker->department ?? 'N/A';
+        } else {
+            $this->full_name = 'N/A';
+            $this->department = 'N/A';
+        }
     }
 
     public function update()
     {
         $this->resetValidation();
         $this->validate([
+
             'calculator_number' => 'required:holidays',
             'order_number' => 'required:holidays',
             'order_date' => 'required:holidays',
@@ -147,9 +192,10 @@ class Holiday extends Component
             'resumption_date' => 'required:holidays',
             'cut_off_holiday' => 'required:holidays',
             'file_path' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240',
-            'notes' => 'required:holidays',
+
 
         ], [
+
             'calculator_number.required' => 'حقل الاسم مطلوب',
             'order_number.required' => 'حقل الاسم مطلوب',
             'order_date.required' => 'حقل الاسم مطلوب',
@@ -160,7 +206,7 @@ class Holiday extends Component
             'resumption_date.required' => 'حقل الاسم مطلوب',
             'cut_off_holiday.required' => 'حقل الاسم مطلوب',
             'file_path.required' => 'حقل الاسم مطلوب',
-            'notes.required' => 'حقل الاسم مطلوب',
+
         ]);
 
         $Holidays = Holidays::find($this->HolidayId);
@@ -170,6 +216,7 @@ class Holiday extends Component
             $file_path = $this->file_path;
         }
         $Holidays->update([
+            'user_id' => Auth::id(),
             'calculator_number' => $this->calculator_number,
             'order_number' => $this->order_number,
             'order_date' => $this->order_date,
@@ -183,7 +230,7 @@ class Holiday extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset();
+        $this->reset(['department','calculator_number','order_number','order_date','holiday_type','holiday_purpose','days_count','separation_date','resumption_date','cut_off_holiday','file_path','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -193,11 +240,22 @@ class Holiday extends Component
     public function destroy()
     {
         $Holidays = Holidays::find($this->HolidayId);
-        $Holidays->delete();
-        $this->reset();
-        $this->dispatchBrowserEvent('success', [
-            'message' => 'تم حذف البيانات  بنجاح',
-            'title' => 'الحذف '
-        ]);
+
+        if ($Holidays) {
+
+            if ($Holidays->file_path) {
+                $filePath = 'public/' . $Holidays->file_path;
+                if (Storage::exists($Holidays)) {
+                    Storage::delete($Holidays);
+                }
+            }
+
+            $Holidays->delete();
+            $this->reset(['department','calculator_number','order_number','order_date','holiday_type','holiday_purpose','days_count','separation_date','resumption_date','cut_off_holiday','file_path','notes']);
+            $this->dispatchBrowserEvent('success', [
+                'message' => 'تم حذف البيانات بنجاح',
+                'title' => 'الحذف'
+            ]);
+        }
     }
 }

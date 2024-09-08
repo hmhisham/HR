@@ -12,7 +12,7 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
         @endsection
-@section('content') 
+@section('content')
 @livewire('holidays.holiday')
 
 
@@ -51,9 +51,9 @@
         window.addEventListener('HolidayModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addholidayModal').modal('hide');
             $('#editholidayModal').modal('hide');
@@ -63,6 +63,26 @@
                 title: event.detail.message
             })
         })
+
+        
+		$(document).ready(function() {
+            window.initWorkerDrop=()=>{
+                $('#worker').select2({
+					placeholder: 'حدد الموظف',
+                    dropdownParent: $('#addholidayModal')
+				})
+            }
+            initWorkerDrop();
+            $('#worker').on('change', function (e) {
+                livewire.emit('SelectWorker', e.target.value)
+            });
+            window.livewire.on('select2',()=>{
+                initWorkerDrop();
+            });
+        });
+
+
+
         window.addEventListener('error', event => {
             $('#removeholidayModal').modal('hide');
             Toast.fire({
@@ -70,7 +90,7 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

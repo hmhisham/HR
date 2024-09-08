@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title', 'Holidays'); ?>
 <?php $__env->startSection('vendor-style'); ?>
     <link rel="stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
@@ -12,19 +10,19 @@
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
     <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
         <?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?> 
+<?php $__env->startSection('content'); ?>
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('holidays.holiday')->html();
-} elseif ($_instance->childHasBeenRendered('nyUDhtM')) {
-    $componentId = $_instance->getRenderedChildComponentId('nyUDhtM');
-    $componentTag = $_instance->getRenderedChildComponentTagName('nyUDhtM');
+} elseif ($_instance->childHasBeenRendered('wigLS0K')) {
+    $componentId = $_instance->getRenderedChildComponentId('wigLS0K');
+    $componentTag = $_instance->getRenderedChildComponentTagName('wigLS0K');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('nyUDhtM');
+    $_instance->preserveRenderedChild('wigLS0K');
 } else {
     $response = \Livewire\Livewire::mount('holidays.holiday');
     $html = $response->html();
-    $_instance->logRenderedChild('nyUDhtM', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('wigLS0K', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -65,9 +63,9 @@ echo $html;
         window.addEventListener('HolidayModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addholidayModal').modal('hide');
             $('#editholidayModal').modal('hide');
@@ -77,6 +75,26 @@ echo $html;
                 title: event.detail.message
             })
         })
+
+        
+		$(document).ready(function() {
+            window.initWorkerDrop=()=>{
+                $('#worker').select2({
+					placeholder: 'حدد الموظف',
+                    dropdownParent: $('#addholidayModal')
+				})
+            }
+            initWorkerDrop();
+            $('#worker').on('change', function (e) {
+                livewire.emit('SelectWorker', e.target.value)
+            });
+            window.livewire.on('select2',()=>{
+                initWorkerDrop();
+            });
+        });
+
+
+
         window.addEventListener('error', event => {
             $('#removeholidayModal').modal('hide');
             Toast.fire({
@@ -84,8 +102,9 @@ echo $html;
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Holidays/index.blade.php ENDPATH**/ ?>
