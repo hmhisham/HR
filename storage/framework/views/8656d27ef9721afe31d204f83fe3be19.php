@@ -76,7 +76,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" disabled />
-                                        <label for="modalEmployeedepartment">اسم القسم  </label>
+                                        <label for="modalEmployeedepartment">اسم القسم </label>
                                     </div>
                                     <?php $__errorArgs = ['department'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -94,9 +94,7 @@ unset($__errorArgs, $__bag); ?>
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='document_number' type="text"
-                                            id="modalCertificdocument_number" placeholder="رقم الوثيقة"
-                                            class="form-control <?php $__errorArgs = ['document_number'];
+                                        <input wire:model.defer='document_number' type="text" id="modalCertificdocument_number" placeholder="رقم الوثيقة" class="form-control <?php $__errorArgs = ['document_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -120,9 +118,7 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='document_date' type="date"
-                                            id="modalCertificdocument_date" placeholder="تاريخ الوثيقة"
-                                            class="form-control <?php $__errorArgs = ['document_date'];
+                                        <input wire:model.defer='document_date' type="date" id="modalCertificdocument_date" placeholder="تاريخ الوثيقة" class="form-control <?php $__errorArgs = ['document_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -144,38 +140,10 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
 
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='certificate_name' type="text"
-                                            id="modalCertificcertificate_name" placeholder="الشهادة"
-                                            class="form-control <?php $__errorArgs = ['certificate_name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalCertificcertificate_name">الشهادة</label>
-                                    </div>
-                                    <?php $__errorArgs = ['certificate_name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                </div>
-                            </div>
-                            <div Class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='authenticity_number' type="text"
-                                            id="modalCertificauthenticity_number" placeholder="رقم صحة الصدور"
-                                            class="form-control <?php $__errorArgs = ['authenticity_number'];
+                                        <input wire:model.defer='authenticity_number' type="text" id="modalCertificauthenticity_number" placeholder="رقم صحة الصدور" class="form-control <?php $__errorArgs = ['authenticity_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -199,9 +167,7 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='authenticity_date' type="date"
-                                            id="modalCertificauthenticity_date" placeholder="تاريخ صحة الصدور"
-                                            class="form-control <?php $__errorArgs = ['authenticity_date'];
+                                        <input wire:model.defer='authenticity_date' type="date" id="modalCertificauthenticity_date" placeholder="تاريخ صحة الصدور" class="form-control <?php $__errorArgs = ['authenticity_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -223,11 +189,15 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
 
+
+
+                            </div>
+                            <div Class="row">
+
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='educational_attainment'
-                                            id="modalCertificeducational_attainment"
-                                            class="form-select <?php $__errorArgs = ['educational_attainment'];
+                                        <select wire:model.defer='educational_attainment' id="modalCertificeducational_attainment" class="form-select <?php $__errorArgs = ['educational_attainment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -264,40 +234,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
-                            </div>
-                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='college_name' type="text"
-                                            id="modalCertificcollege_name" placeholder="اسم الكلية"
-                                            class="form-control <?php $__errorArgs = ['college_name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalCertificcollege_name">اسم الكلية</label>
-                                    </div>
-                                    <?php $__errorArgs = ['college_name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                </div>
-
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='department_name' type="text"
-                                            id="modalCertificdepartment_name" placeholder="القسم الدراسي"
-                                            class="form-control <?php $__errorArgs = ['department_name'];
+                                        <input wire:model.defer='department_name' type="text" id="modalCertificdepartment_name" placeholder="القسم الدراسي" class="form-control <?php $__errorArgs = ['department_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -318,118 +257,124 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='specialization' type="text"
-                                            id="modalCertificspecialization" placeholder="التخصص"
-                                            class="form-control <?php $__errorArgs = ['specialization'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalCertificspecialization">التخصص</label>
-                                    </div>
-                                    <?php $__errorArgs = ['specialization'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                </div>
                             </div>
                             <div Class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='graduation_year' type="text"
-                                            id="modalCertificgraduation_year" placeholder="سنة التخرج"
-                                            class="form-control <?php $__errorArgs = ['graduation_year'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalCertificgraduation_year">سنة التخرج</label>
-                                    </div>
-                                    <?php $__errorArgs = ['graduation_year'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                </div>
+                                
 
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='grade' type="text" id="modalCertificgrade"
-                                            placeholder="التقدير والدرجة"
-                                            class="form-control <?php $__errorArgs = ['grade'];
+                            <!-- حقل الشهادة -->
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model='certificate_name' wire:change='loadGraduations' id="modalCertificcertificate_name" class="form-select <?php $__errorArgs = ['certificate_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalCertificgrade">التقدير والدرجة</label>
-                                    </div>
-                                    <?php $__errorArgs = ['grade'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                </div>
+unset($__errorArgs, $__bag); ?>">
+                                        <option value="">اختر الشهادة</option>
+                                        <?php if($Certificates && count($Certificates) > 0): ?>
+                                        <?php $__currentLoopData = $Certificates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($certificate->id); ?>">
+                                            <?php echo e($certificate->certificates_name); ?>
 
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='issuing_country' type="text"
-                                            id="modalCertificissuing_country" placeholder="البلد المانح للشهادة"
-                                            class="form-control <?php $__errorArgs = ['issuing_country'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalCertificissuing_country">البلد المانح للشهادة</label>
-                                    </div>
-                                    <?php $__errorArgs = ['issuing_country'];
+                                        </option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php else: ?>
+                                        <option value="">لا توجد شهادات متاحة</option>
+                                        <?php endif; ?>
+                                    </select>
+                                    <label for="modalCertificcertificate_name">الشهادة</label>
+                                </div>
+                                <?php $__errorArgs = ['certificate_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                </div>
                             </div>
-                            <div Class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='notes' type="text" id="modalCertificnotes"
-                                            placeholder="الملاحظات"
-                                            class="form-control <?php $__errorArgs = ['notes'];
+
+                            <!-- حقل جهة التخرج -->
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model='college_name' id="modalCertificgraduation_name" wire:change='loadSpecializations' class="form-select <?php $__errorArgs = ['college_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                        <option value="">اختر جهة التخرج</option>
+                                        <?php if($Graduations && count($Graduations) > 0): ?>
+                                        <?php $__currentLoopData = $Graduations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $graduation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($graduation->id); ?>">
+                                            <?php echo e($graduation->graduations_name); ?>
+
+                                        </option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php else: ?>
+                                        <option value="">لا توجد جهات تخرج متاحة</option>
+                                        <?php endif; ?>
+                                    </select>
+                                    <label for="modalCertificgraduation_name">جهة التخرج</label>
+                                </div>
+                                <?php $__errorArgs = ['college_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+
+                            <!-- حقل التخصص -->
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='specialization' id="modalCertificspecialization" class="form-select <?php $__errorArgs = ['specialization'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                        <option value="">اختر التخصص</option>
+                                        <?php if($Specializations && count($Specializations) > 0): ?>
+                                        <?php $__currentLoopData = $Specializations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $specialization): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($specialization->id); ?>">
+                                            <?php echo e($specialization->specializations_name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php else: ?>
+                                        <option value="">لا توجد تخصصات متاحة</option>
+                                        <?php endif; ?>
+                                    </select>
+                                    <label for="modalCertificspecialization">التخصص</label>
+                                </div>
+                                <?php $__errorArgs = ['specialization'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+
+                        </div>
+                        <div Class="row">
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='graduation_year' type="text" id="modalCertificgraduation_year" placeholder="سنة التخرج" class="form-control <?php $__errorArgs = ['graduation_year'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -437,27 +382,98 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalCertificnotes">الملاحظات</label>
-                                    </div>
-                                    <?php $__errorArgs = ['notes'];
+                                    <label for="modalCertificgraduation_year">سنة التخرج</label>
+                                </div>
+                                <?php $__errorArgs = ['graduation_year'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                            </div>
+
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='grade' type="text" id="modalCertificgrade" placeholder="التقدير والدرجة" class="form-control <?php $__errorArgs = ['grade'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                    <label for="modalCertificgrade">التقدير والدرجة</label>
                                 </div>
+                                <?php $__errorArgs = ['grade'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='issuing_country' type="text" id="modalCertificissuing_country" placeholder="البلد المانح للشهادة" class="form-control <?php $__errorArgs = ['issuing_country'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                    <label for="modalCertificissuing_country">البلد المانح للشهادة</label>
+                                </div>
+                                <?php $__errorArgs = ['issuing_country'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                        </div>
+                        <div Class="row">
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='notes' type="text" id="modalCertificnotes" placeholder="الملاحظات" class="form-control <?php $__errorArgs = ['notes'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                    <label for="modalCertificnotes">الملاحظات</label>
+                                </div>
+                                <?php $__errorArgs = ['notes'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
 
 
 
-                                <div class="mb-3 col">
-                                    <div class="form-check">
-                                        <input wire:model.defer='status' type="checkbox"
-                                            id="modalHolidaystatus" placeholder="الحالة"
-                                            class="form-check-input <?php $__errorArgs = ['status'];
+                            <div class="mb-3 col">
+                                <div class="form-check">
+                                    <input wire:model.defer='status' type="checkbox" id="modalHolidaystatus" placeholder="الحالة" class="form-check-input <?php $__errorArgs = ['status'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -465,38 +481,36 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label class="form-check-label" for="modalHolidaystatus">
-                                            الحالة
-                                        </label>
-                                    </div>
-                                    <?php $__errorArgs = ['status'];
+                                    <label class="form-check-label" for="modalHolidaystatus">
+                                        الحالة
+                                    </label>
+                                </div>
+                                <?php $__errorArgs = ['status'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger'><?php echo e($message); ?></small>
-                                    <?php unset($message);
+                                <small class='text-danger'><?php echo e($message); ?></small>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                </div>
-
-
-
                             </div>
+
+
+
                         </div>
                     </div>
-                    <hr class="my-0">
-                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                        <button wire:click='store' wire:loading.attr="disabled" type="button"
-                            class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
-                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                            aria-label="Close">تجاهل</button>
-                    </div>
-                </form>
             </div>
+            <hr class="my-0">
+            <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                <button wire:click='store' wire:loading.attr="disabled" type="button" class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
+            </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 <!--/ Add Certifi Modal -->
 <?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/certific/modals/add-certifi.blade.php ENDPATH**/ ?>

@@ -7,6 +7,9 @@ use Livewire\WithPagination;
 use App\Models\Workers\Workers;
 use App\Models\Certific\Certific;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Graduations\Graduations;
+use App\Models\Certificates\Certificates;
+use App\Models\Specializations\Specializations;
 
 class Certifi extends Component
 {
@@ -16,13 +19,17 @@ class Certifi extends Component
     public $Certific = [];
     public $CertifiSearch, $Certifi, $CertifiId;
     public $user_id, $calculator_number, $document_number, $document_date, $certificate_name, $authenticity_number, $authenticity_date, $educational_attainment, $college_name, $department_name, $specialization, $graduation_year, $grade, $issuing_country, $notes, $status;
-
-
+    public $Graduations = [];
+    public $Certificates = [];
+    public $Specializations = [];
 
     public $search = '';
     public $workers = [];
     public $worker, $department, $full_name;
     public $selectedWorker = null;
+    public $selectedCertificate;
+
+    public $graduation_id;
 
 
     protected $listeners = [
@@ -38,6 +45,7 @@ class Certifi extends Component
     public function mount()
     {
         $this->workers = Workers::all();
+        $this->Certificates = Certificates::all();
     }
 
     public function SelectWorker($workerID)
@@ -63,8 +71,8 @@ class Certifi extends Component
                     ->orWhere('workers.full_name', 'LIKE', $CertifiSearch);
             })
             ->orderBy('certific.id', 'ASC')
-           ->select('certific.*')
-           ->paginate(10);
+            ->select('certific.*')
+            ->paginate(10);
         $links = $Certific;
         $this->Certific = collect($Certific->items());
         return view('livewire.certific.certifi', [
@@ -72,9 +80,23 @@ class Certifi extends Component
         ]);
     }
 
+    public function loadGraduations()
+    {
+
+        if ($this->certificate_name) {
+            $this->Graduations = Graduations::where('certificates_id', $this->certificate_name)->get();
+        }
+    }
+    public function loadSpecializations()
+    {
+        // تحميل التخصصات بناءً على جهة التخرج المختارة
+        if ($this->college_name) {
+            $this->Specializations = Specializations::where('graduations_id', $this->college_name)->get();
+        }
+    }
     public function AddCertifiModalShow()
     {
-        $this->reset(['department','calculator_number','document_number','document_date','certificate_name','authenticity_number','authenticity_date','educational_attainment','college_name','department_name','specialization','graduation_year','grade','issuing_country','notes','status']);
+        $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date', 'educational_attainment', 'college_name', 'department_name', 'specialization', 'graduation_year', 'grade', 'issuing_country', 'notes', 'status']);
 
         $this->resetValidation();
         $this->dispatchBrowserEvent('CertifiModalShow');
@@ -140,7 +162,7 @@ class Certifi extends Component
             'status' => $this->status,
 
         ]);
-        $this->reset(['department','calculator_number','order_number','order_date','holiday_type','holiday_purpose','days_count','separation_date','resumption_date','cut_off_holiday','file_path','notes']);
+        $this->reset(['department', 'calculator_number', 'order_number', 'order_date', 'holiday_type', 'holiday_purpose', 'days_count', 'separation_date', 'resumption_date', 'cut_off_holiday', 'file_path', 'notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -153,7 +175,7 @@ class Certifi extends Component
 
 
         $this->Certifi  = Certific::find($CertifiId);
-         $worker = $this->Certifi->worker;
+        $worker = $this->Certifi->worker;
 
         $this->CertifiId = $this->Certifi->id;
         $this->user_id = $this->Certifi->user_id;
@@ -241,7 +263,7 @@ class Certifi extends Component
             'status' => $this->status,
 
         ]);
-        $this->reset(['department','calculator_number','document_number','document_date','certificate_name','authenticity_number','authenticity_date','educational_attainment','college_name','department_name','specialization','graduation_year','grade','issuing_country','notes','status']);
+        $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date', 'educational_attainment', 'college_name', 'department_name', 'specialization', 'graduation_year', 'grade', 'issuing_country', 'notes', 'status']);
 
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
@@ -253,8 +275,8 @@ class Certifi extends Component
     {
         $Certific = Certific::find($this->CertifiId);
         $Certific->delete();
-        $this->reset(['department','calculator_number','document_number','document_date','certificate_name','authenticity_number','authenticity_date','educational_attainment','college_name','department_name','specialization','graduation_year','grade','issuing_country','notes','status']);
-                $this->dispatchBrowserEvent('success', [
+        $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date', 'educational_attainment', 'college_name', 'department_name', 'specialization', 'graduation_year', 'grade', 'issuing_country', 'notes', 'status']);
+        $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '
         ]);
