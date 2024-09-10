@@ -9,34 +9,31 @@
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
-                {{-- <h5 wire:loading wire:target="GetHoliday"
+                <h5 wire:loading wire:target="GetHoliday"
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار حفظ البيانات...</h5> --}}
+                    جار حفظ البيانات...</h5>
 
                 <div wire:loading.remove>
                     <form id="editHolidayModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
-                                 <div class="row">
-                                    <div class="mb-3 col-12">
-                                        <div class="form-floating form-floating-outline @error('worker') is-invalid is-filled @enderror"
-                                            style="width: 100%">
-                                            <select wire:model='worker' id="worker" class="form-select"
-                                                placeholder='حدد العملية'>
-                                                <option value=""></option>
-                                                @foreach ($workers as $worker)
-                                                <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <label for="worker">حدد الموظف</label>
-                                        </div>
-                                        @error('worker')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                                <div class="mb-3">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='full_name' type="text" id="modalEmployeefull_name"
+                                            placeholder="اسم الموظف "
+                                            class="form-control @error('full_name') is-invalid is-filled @enderror"
+                                            disabled />
+                                        <label for="modalEmployeefull_name">اسم الموظف</label>
                                     </div>
+                                    @error('full_name')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                                <div class="row">
 
-                                    <div class="mb-4 col-6">
+
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='calculator_number' type="text"
                                                 id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
@@ -49,7 +46,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='department' type="text"
                                                 id="modalEmployeedepartment" placeholder="اسم القسم"
@@ -67,13 +64,14 @@
                                         <div class="form-floating form-floating-outline">
 
                                             <select wire:model.defer='order_number' type="select"
-                                                id="modalHolidayorder_number" placeholder="رقم الامر الاداري"
+                                                id="modalHolidayorder_number" placeholder="رقم امر التكليف "
                                                 class="form-select @error('order_number') is-invalid is-filled @enderror" />
                                             <option value=" " disabled selected>اختيار</option>
                                             <option value="تجريبي">تجريبي</option>
                                             <option value="تجريبي1">تجريبي1</option>
                                             <option value="تجريبي2">تجريبي2</option>
                                             </select>
+                                            <label for="modalHolidayorder_number"> رقم امر التكليف</label>
                                         </div>
                                         @error('order_number')
                                         <small class='text-danger inputerror'> {{ $message }} </small>

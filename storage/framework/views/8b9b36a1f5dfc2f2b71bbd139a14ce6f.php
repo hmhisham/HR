@@ -18,7 +18,7 @@
                                 <div class="mb-3">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='full_name' type="text" id="modalEmployeefull_name"
-                                            placeholder="رقم الحاسبة"
+                                            placeholder=" اسم الموظف"
                                             class="form-control <?php $__errorArgs = ['full_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

@@ -19,22 +19,46 @@
                         <div class="row row-cols-1">
                             <div class="col mb-3">
 
-                                <div Class="row">
-                                  
+                                <div class="mb-3">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='full_name' type="text" id="modalEmployeefull_name"
+                                            placeholder=" اسم الموظف"
+                                            class="form-control @error('full_name') is-invalid is-filled @enderror"
+                                            disabled />
+                                        <label for="modalEmployeefull_name">اسم الموظف</label>
+                                    </div>
+                                    @error('full_name')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                                <div class="row">
+
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='calculator_number' type="text"
-                                                id="modalCertificalculator_number" placeholder="رقم الحاسبة"
+                                                id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
                                                 class="form-control @error('calculator_number') is-invalid is-filled @enderror"
                                                 disabled />
-                                            <label for="modalCertificalculator_number">رقم الحاسبة</label>
+                                            <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
                                         </div>
                                         @error('calculator_number')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='department' type="text"
+                                                id="modalEmployeedepartment" placeholder="اسم القسم"
+                                                class="form-control @error('department') is-invalid is-filled @enderror"
+                                                disabled />
+                                            <label for="modalEmployeedepartment">اسم القسم </label>
+                                        </div>
+                                        @error('department')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                             <hr class="my-0">

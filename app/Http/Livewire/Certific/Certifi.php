@@ -42,10 +42,7 @@ class Certifi extends Component
 
     public function SelectWorker($workerID)
     {
-
         $worker = Workers::find($workerID);
-
-
         if ($worker) {
             $this->worker = $workerID;
             $this->calculator_number = $worker->calculator_number;
@@ -56,9 +53,6 @@ class Certifi extends Component
             $this->department = null;
         }
     }
-
-
-
 
     public function render()
     {
@@ -78,14 +72,13 @@ class Certifi extends Component
         ]);
     }
 
-
     public function AddCertifiModalShow()
     {
+        $this->reset(['department','calculator_number','document_number','document_date','certificate_name','authenticity_number','authenticity_date','educational_attainment','college_name','department_name','specialization','graduation_year','grade','issuing_country','notes','status']);
 
         $this->resetValidation();
         $this->dispatchBrowserEvent('CertifiModalShow');
     }
-
 
     public function store()
     {
@@ -147,7 +140,7 @@ class Certifi extends Component
             'status' => $this->status,
 
         ]);
-        $this->reset();
+        $this->reset(['department','calculator_number','order_number','order_date','holiday_type','holiday_purpose','days_count','separation_date','resumption_date','cut_off_holiday','file_path','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -160,8 +153,8 @@ class Certifi extends Component
 
 
         $this->Certifi  = Certific::find($CertifiId);
+         $worker = $this->Certifi->worker;
 
-           $worker = $this->Certifi->worker;
         $this->CertifiId = $this->Certifi->id;
         $this->user_id = $this->Certifi->user_id;
         $this->calculator_number = $this->Certifi->calculator_number;
@@ -248,7 +241,8 @@ class Certifi extends Component
             'status' => $this->status,
 
         ]);
-        $this->reset();
+        $this->reset(['department','calculator_number','document_number','document_date','certificate_name','authenticity_number','authenticity_date','educational_attainment','college_name','department_name','specialization','graduation_year','grade','issuing_country','notes','status']);
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -259,8 +253,8 @@ class Certifi extends Component
     {
         $Certific = Certific::find($this->CertifiId);
         $Certific->delete();
-        $this->reset();
-        $this->dispatchBrowserEvent('success', [
+        $this->reset(['department','calculator_number','document_number','document_date','certificate_name','authenticity_number','authenticity_date','educational_attainment','college_name','department_name','specialization','graduation_year','grade','issuing_country','notes','status']);
+                $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '
         ]);

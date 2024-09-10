@@ -27,7 +27,6 @@
                         <th class="text-center">رقم الحاسبة</th>
                         <th class="text-center">رقم الامر الاداري</th>
                         <th class="text-center">نوع الاجازه</th>
-                        <th class="text-center">عدد الايام</th>
                         <th class="text-center">تاريخ الانفكاك</th>
                         <th class="text-center">العملية</th>
 
@@ -44,7 +43,6 @@
                         <td class="text-center">{{ $Holiday->calculator_number}}</td>
                         <td class="text-center">{{ $Holiday->order_number}}</td>
                         <td class="text-center">{{ $Holiday->holiday_type}}</td>
-                        <td class="text-center">{{ $Holiday->days_count}}</td>
                         <td class="text-center">{{ $Holiday->separation_date}}</td>
 
                         <td class="text-center">

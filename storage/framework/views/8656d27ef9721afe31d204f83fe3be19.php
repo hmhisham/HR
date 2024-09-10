@@ -225,16 +225,32 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='educational_attainment' type="text"
-                                            id="modalCertificeducational_attainment" placeholder="تحصيل الدراسي"
-                                            class="form-control <?php $__errorArgs = ['educational_attainment'];
+                                        <select wire:model.defer='educational_attainment'
+                                            id="modalCertificeducational_attainment"
+                                            class="form-select <?php $__errorArgs = ['educational_attainment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
+unset($__errorArgs, $__bag); ?>">
+                                            <option value="" disabled selected>اختر التحصيل الدراسي</option>
+                                            <option value="امي">امي</option>
+                                            <option value="يقرا فقط">يقرا فقط</option>
+                                            <option value="يقرا ويكتب">يقرا ويكتب</option>
+                                            <option value="ابتدائية">ابتدائية</option>
+                                            <option value="متوسطة">متوسطة</option>
+                                            <option value="اعدادية">اعدادية</option>
+                                            <option value="دبلوم">دبلوم</option>
+                                            <option value="بكالوريوس">بكالوريوس</option>
+                                            <option value="دبلوم عالي">دبلوم عالي</option>
+                                            <option value="ماجستير">ماجستير</option>
+                                            <option value="دكتوراه">دكتوراه</option>
+                                            <option value="اعلى شهادة اختصاص">اعلى شهادة اختصاص</option>
+                                            <option value="غير مبين">غير مبين</option>
+                                            <option value="محو الامية">محو الامية</option>
+                                        </select>
                                         <label for="modalCertificeducational_attainment">تحصيل الدراسي</label>
                                     </div>
                                     <?php $__errorArgs = ['educational_attainment'];
@@ -242,12 +258,13 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                    <small class='text-danger'><?php echo e($message); ?></small>
                                     <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
+
                             </div>
                             <div Class="row">
                                 <div class="mb-3 col">
@@ -434,31 +451,37 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
 
+
+
                                 <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='status' type="text" id="modalCertificstatus"
-                                            placeholder="الحالة"
-                                            class="form-control <?php $__errorArgs = ['status'];
+                                    <div class="form-check">
+                                        <input wire:model.defer='status' type="checkbox"
+                                            id="modalHolidaystatus" placeholder="الحالة"
+                                            class="form-check-input <?php $__errorArgs = ['status'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalCertificstatus">الحالة</label>
+                                        <label class="form-check-label" for="modalHolidaystatus">
+                                            الحالة
+                                        </label>
                                     </div>
                                     <?php $__errorArgs = ['status'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                    <small class='text-danger'><?php echo e($message); ?></small>
                                     <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
+
+
 
                             </div>
                         </div>

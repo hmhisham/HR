@@ -18,28 +18,43 @@
                     <form id="editCertifiModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
-                                <div Class="row">
+                                <div class="mb-3">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='full_name' type="text" id="modalEmployeefull_name"
+                                            placeholder=" اسم الموظف"
+                                            class="form-control @error('full_name') is-invalid is-filled @enderror"
+                                            disabled />
+                                        <label for="modalEmployeefull_name">اسم الموظف</label>
+                                    </div>
+                                    @error('full_name')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                                <div class="row">
+
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='user_id' type="text" id="modalCertifiuser_id"
-                                                placeholder="رقم المستخدم"
-                                                class="form-control @error('user_id') is-invalid is-filled @enderror" />
-                                            <label for="modalCertifiuser_id">رقم المستخدم</label>
+                                            <input wire:model.defer='calculator_number' type="text"
+                                                id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
+                                                class="form-control @error('calculator_number') is-invalid is-filled @enderror"
+                                                disabled />
+                                            <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
                                         </div>
-                                        @error('user_id')
+                                        @error('calculator_number')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='calculator_number' type="text"
-                                                id="modalCertificalculator_number" placeholder="رقم الحاسبة"
-                                                class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
-                                            <label for="modalCertificalculator_number">رقم الحاسبة</label>
+                                            <input wire:model.defer='department' type="text"
+                                                id="modalEmployeedepartment" placeholder="اسم القسم"
+                                                class="form-control @error('department') is-invalid is-filled @enderror"
+                                                disabled />
+                                            <label for="modalEmployeedepartment">اسم القسم </label>
                                         </div>
-                                        @error('calculator_number')
+                                        @error('department')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
@@ -108,15 +123,32 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='educational_attainment' type="text"
-                                                id="modalCertifieducational_attainment" placeholder="تحصيل الدراسي"
-                                                class="form-control @error('educational_attainment') is-invalid is-filled @enderror" />
-                                            <label for="modalCertifieducational_attainment">تحصيل الدراسي</label>
+                                            <select wire:model.defer='educational_attainment'
+                                                id="modalCertificeducational_attainment"
+                                                class="form-select @error('educational_attainment') is-invalid @enderror">
+                                                <option value="" disabled selected>اختر التحصيل الدراسي</option>
+                                                <option value="امي">امي</option>
+                                                <option value="يقرا فقط">يقرا فقط</option>
+                                                <option value="يقرا ويكتب">يقرا ويكتب</option>
+                                                <option value="ابتدائية">ابتدائية</option>
+                                                <option value="متوسطة">متوسطة</option>
+                                                <option value="اعدادية">اعدادية</option>
+                                                <option value="دبلوم">دبلوم</option>
+                                                <option value="بكالوريوس">بكالوريوس</option>
+                                                <option value="دبلوم عالي">دبلوم عالي</option>
+                                                <option value="ماجستير">ماجستير</option>
+                                                <option value="دكتوراه">دكتوراه</option>
+                                                <option value="اعلى شهادة اختصاص">اعلى شهادة اختصاص</option>
+                                                <option value="غير مبين">غير مبين</option>
+                                                <option value="محو الامية">محو الامية</option>
+                                            </select>
+                                            <label for="modalCertificeducational_attainment">تحصيل الدراسي</label>
                                         </div>
                                         @error('educational_attainment')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger'>{{ $message }}</small>
                                         @enderror
                                     </div>
+
                                 </div>
                                 <div Class="row">
                                     <div class="mb-3 col">
@@ -206,14 +238,16 @@
                                     </div>
 
                                     <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='status' type="text" id="modalCertifistatus"
+                                        <div class="form-check">
+                                            <input wire:model.defer='status' type="checkbox" id="modalHolidaystatus"
                                                 placeholder="الحالة"
-                                                class="form-control @error('status') is-invalid is-filled @enderror" />
-                                            <label for="modalCertifistatus">الحالة</label>
+                                                class="form-check-input @error('status') is-invalid @enderror" />
+                                            <label class="form-check-label" for="modalHolidaystatus">
+                                                الحالة
+                                            </label>
                                         </div>
                                         @error('status')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger'>{{ $message }}</small>
                                         @enderror
                                     </div>
 
