@@ -121,7 +121,7 @@ $container = $container ?? 'container-xxl';
                             </a>
                         </li>
                     </ul>
-                    
+
 
                     <ul class="menu-sub">
                     <li Class="menu-item {{ request()->Is('Dispatch') ? 'active' : '' }}">
@@ -182,7 +182,7 @@ $container = $container ?? 'container-xxl';
                     </ul>
                 </li>
 
-                <li class="menu-item {{ request()->is('Coaches') ? 'open active' : '' }}">
+                <li class="menu-item {{ request()->is('Coaches','Courses') ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-tie-voice-outline'></i>
                         <span class="menu-title">التدريب و التطوير</span>
@@ -195,8 +195,14 @@ $container = $container ?? 'container-xxl';
                            </a>
                           </li>
                     </ul>
+                    <ul class="menu-sub">
+                    <li Class="menu-item {{ request()->Is('Courses') ? 'active' : '' }}">
+                        <a href = "{{ Route('Courses.index') }}" Class="menu-link">
 
-
+                         <div>الدورات</div>
+                       </a>
+                      </li>
+                    </ul>
 
 
                 </li>
