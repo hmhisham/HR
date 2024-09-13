@@ -14,10 +14,11 @@ use App\Http\Controllers\Grades\GradesController;
 
 use App\Http\Controllers\Thanks\ThanksController;
 
+use App\Http\Controllers\Coaches\CoachesController;
 use App\Http\Controllers\Scaleas\ScaleasController;
 use App\Http\Controllers\Scalems\ScalemsController;
-use App\Http\Controllers\Workers\WorkersController;
 
+use App\Http\Controllers\Workers\WorkersController;
 use App\Http\Controllers\Certific\CertificController;
 use App\Http\Controllers\Dispatch\DispatchController;
 use App\Http\Controllers\Holidays\HolidaysController;
@@ -26,8 +27,8 @@ use App\Http\Controllers\Precises\PrecisesController;
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
-use App\Http\Controllers\JobTitles\JobTitlesController;
 
+use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Penalties\PenaltiesController;
 use App\Http\Controllers\Trainings\TrainingsController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
@@ -132,12 +133,14 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Penalties', PenaltiesController::class);
         // تاركي العمل
         Route::RESOURCE('Jobleavers', JobleaversController::class);
-    // الايفادات
-        Route::  RESOURCE('Dispatch', DispatchController::class);
-    // الشهادات
-        Route::  RESOURCE('Certific', CertificController::class);
-
-        Route::  RESOURCE('Holidays', HolidaysController::class);
+        // الايفادات
+        Route::RESOURCE('Dispatch', DispatchController::class);
+        // الشهادات
+        Route::RESOURCE('Certific', CertificController::class);
+        // الاجازات
+        Route::RESOURCE('Holidays', HolidaysController::class);
+        // المدربين
+        Route::RESOURCE('Coaches', CoachesController::class);
     });
 });
 

@@ -234,29 +234,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='department_name' type="text" id="modalCertificdepartment_name" placeholder="القسم الدراسي" class="form-control <?php $__errorArgs = ['department_name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalCertificdepartment_name">القسم الدراسي</label>
-                                    </div>
-                                    <?php $__errorArgs = ['department_name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                </div>
+                                
                             </div>
                             <div Class="row">
                                 

@@ -121,14 +121,7 @@ $container = $container ?? 'container-xxl';
                             </a>
                         </li>
                     </ul>
-                    <ul class="menu-sub">
-                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-                            <a href="" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>الدورات</div>
-                            </a>
-                        </li>
-                    </ul>
+                    
 
                     <ul class="menu-sub">
                     <li Class="menu-item {{ request()->Is('Dispatch') ? 'active' : '' }}">
@@ -188,6 +181,27 @@ $container = $container ?? 'container-xxl';
                         </li>
                     </ul>
                 </li>
+
+                <li class="menu-item {{ request()->is('Coaches') ? 'open active' : '' }}">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class='menu-icon tf-icons mdi mdi-account-tie-voice-outline'></i>
+                        <span class="menu-title">التدريب و التطوير</span>
+                    </a>
+                    <ul class="menu-sub">
+                        <li Class="menu-item {{ request()->Is('Coaches') ? 'active' : '' }}">
+                            <a href = "{{ Route('Coaches.index') }}" Class="menu-link">
+
+                             <div>المدربين</div>
+                           </a>
+                          </li>
+                    </ul>
+
+
+
+
+                </li>
+
+
                 {{-- الإعدادات --}}
 
                 <li

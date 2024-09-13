@@ -122,15 +122,7 @@
                                     <small class='text-danger'>{{ $message }}</small>
                                     @enderror
                                 </div>
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='department_name' type="text" id="modalCertificdepartment_name" placeholder="القسم الدراسي" class="form-control @error('department_name') is-invalid is-filled @enderror" />
-                                        <label for="modalCertificdepartment_name">القسم الدراسي</label>
-                                    </div>
-                                    @error('department_name')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
+                                
                             </div>
                             <div Class="row">
                                 {{-- <div class="mb-3 col">

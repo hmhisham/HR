@@ -84,7 +84,7 @@ class Holiday extends Component
 
     public function AddHolidayModalShow()
     {
-        $this->reset();
+        // $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('HolidayModalShow');
     }
@@ -143,7 +143,7 @@ class Holiday extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset();
+        $this->reset(['department','calculator_number','order_number','order_date','holiday_type','holiday_purpose','days_count','separation_date','resumption_date','cut_off_holiday','file_path','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -233,7 +233,7 @@ class Holiday extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset();
+        $this->reset(['department','calculator_number','order_number','order_date','holiday_type','holiday_purpose','days_count','separation_date','resumption_date','cut_off_holiday','file_path','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -254,7 +254,7 @@ class Holiday extends Component
             }
 
             $Holidays->delete();
-            $this->reset();
+            $this->reset(['department','calculator_number','order_number','order_date','holiday_type','holiday_purpose','days_count','separation_date','resumption_date','cut_off_holiday','file_path','notes']);
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم حذف البيانات بنجاح',
                 'title' => 'الحذف'

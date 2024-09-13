@@ -122,14 +122,7 @@ $container = $container ?? 'container-xxl';
                             </a>
                         </li>
                     </ul>
-                    <ul class="menu-sub">
-                        <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
-                            <a href="" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>الدورات</div>
-                            </a>
-                        </li>
-                    </ul>
+                    
 
                     <ul class="menu-sub">
                     <li Class="menu-item <?php echo e(request()->Is('Dispatch') ? 'active' : ''); ?>">
@@ -189,6 +182,27 @@ $container = $container ?? 'container-xxl';
                         </li>
                     </ul>
                 </li>
+
+                <li class="menu-item <?php echo e(request()->is('Coaches') ? 'open active' : ''); ?>">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class='menu-icon tf-icons mdi mdi-account-tie-voice-outline'></i>
+                        <span class="menu-title">التدريب و التطوير</span>
+                    </a>
+                    <ul class="menu-sub">
+                        <li Class="menu-item <?php echo e(request()->Is('Coaches') ? 'active' : ''); ?>">
+                            <a href = "<?php echo e(Route('Coaches.index')); ?>" Class="menu-link">
+
+                             <div>المدربين</div>
+                           </a>
+                          </li>
+                    </ul>
+
+
+
+
+                </li>
+
+
                 
 
                 <li

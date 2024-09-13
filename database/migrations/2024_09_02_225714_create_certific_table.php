@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('authenticity_date')->nullable()->comment('تاريخ صحة الصدور');
             $table->string('educational_attainment')->nullable()->comment('تحصيل الدراسي');
             $table->string('college_name')->nullable()->comment('اسم الكلية');
-            $table->string('department_name')->nullable()->comment('القسم الدراسي');
+            // $table->string('department_name')->nullable()->comment('القسم الدراسي');
             $table->string('specialization')->nullable()->comment('التخصص');
             $table->string('graduation_year')->nullable()->comment('سنة التخرج');
             $table->string('grade')->nullable()->comment('التقدير والدرجة');
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->boolean('status')->nullable()->comment('الحالة');
             $table->timestamps();
 
-         
+
         });
     }
 
