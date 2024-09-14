@@ -535,8 +535,6 @@
                     <form>
 
                         <div Class="row g-4">
-
-
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='education_service' id="modalEmployeeeducation_service"
@@ -749,7 +747,7 @@
                                         <label for="graduation_institution_service">جهة التخرج الحالي</label>
                                     </div>
                                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                                        data-bs-target="#addspecializationModal">
+                                        data-bs-target="#addtakhroj">
                                         <i class="mdi mdi-playlist-plus"></i>
                                     </button>
                                 </div>
@@ -789,6 +787,7 @@
 
 
                         </div>
+
                         <div Class="row g-4">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
@@ -801,6 +800,7 @@
                                 <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>
+
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='document_date' type="date" id="modalEmployeedocument_date"
@@ -809,9 +809,10 @@
                                     <label for="modalEmployeedocument_date">تاريخ الوثيقة</label>
                                 </div>
                                 @error('document_date')
-                                <small class='text-danger inputerror'> {{ $message }} </small>
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>
+
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='document_verification_number' type="text"
@@ -1085,7 +1086,7 @@
                         </div>
                     </form>
                 </div>
-
+                @include('livewire.workers.modals.add-takhroj')
             </div>
         </div>
     </div>

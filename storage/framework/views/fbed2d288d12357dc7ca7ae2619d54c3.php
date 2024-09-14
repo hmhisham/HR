@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Workers'); ?>
+<?php $__env->startSection('title', 'Sections'); ?>
 <?php $__env->startSection('vendor-style'); ?>
     <link rel="stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
     <link rel = "stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')); ?>">
@@ -9,25 +9,25 @@
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/animate-css/animate.css')); ?>" />
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
     <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?>
-
-
+        <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?> 
 <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('workers.add-worker')->html();
-} elseif ($_instance->childHasBeenRendered('92iopSG')) {
-    $componentId = $_instance->getRenderedChildComponentId('92iopSG');
-    $componentTag = $_instance->getRenderedChildComponentTagName('92iopSG');
+    $html = \Livewire\Livewire::mount('sections.section')->html();
+} elseif ($_instance->childHasBeenRendered('ntjOe2B')) {
+    $componentId = $_instance->getRenderedChildComponentId('ntjOe2B');
+    $componentTag = $_instance->getRenderedChildComponentTagName('ntjOe2B');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('92iopSG');
+    $_instance->preserveRenderedChild('ntjOe2B');
 } else {
-    $response = \Livewire\Livewire::mount('workers.add-worker');
+    $response = \Livewire\Livewire::mount('sections.section');
     $html = $response->html();
-    $_instance->logRenderedChild('92iopSG', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('ntjOe2B', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
+
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('vendor-script'); ?>
@@ -60,31 +60,30 @@ echo $html;
             }
         })
 
-        window.addEventListener('WorkerModalShow', event => {
+        window.addEventListener('SectionModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);
+               }, 100);  
         })
-
+      
         window.addEventListener('success', event => {
-            $('#addworkerModal').modal('hide');
-            $('#editworkerModal').modal('hide');
-            $('#removeworkerModal').modal('hide');
+            $('#addsectionModal').modal('hide');
+            $('#editsectionModal').modal('hide');
+            $('#removesectionModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.message
             })
         })
         window.addEventListener('error', event => {
-            $('#removeworkerModal').modal('hide');
+            $('#removesectionModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.message,
                 timer: 5000,
             })
-
+           
         })
     </script>
 <?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Workers/addWorker.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Laravel 2024\HR\HR\resources\views/content/Sections/index.blade.php ENDPATH**/ ?>

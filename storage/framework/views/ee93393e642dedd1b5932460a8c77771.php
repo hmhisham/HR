@@ -947,8 +947,6 @@ unset($__errorArgs, $__bag); ?>
                     <form>
 
                         <div Class="row g-4">
-
-
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='education_service' id="modalEmployeeeducation_service"
@@ -1197,7 +1195,7 @@ unset($__errorArgs, $__bag); ?>"
                                         <label for="graduation_institution_service">جهة التخرج الحالي</label>
                                     </div>
                                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                                        data-bs-target="#addspecializationModal">
+                                        data-bs-target="#addtakhroj">
                                         <i class="mdi mdi-playlist-plus"></i>
                                     </button>
                                 </div>
@@ -1257,6 +1255,7 @@ unset($__errorArgs, $__bag); ?>
 
 
                         </div>
+
                         <div Class="row g-4">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
@@ -1283,6 +1282,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
+
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='document_date' type="date" id="modalEmployeedocument_date"
@@ -1302,12 +1302,13 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
                                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
+
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='document_verification_number' type="text"
@@ -1889,7 +1890,7 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </form>
                 </div>
-
+                <?php echo $__env->make('livewire.workers.modals.add-takhroj', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </div>
         </div>
     </div>

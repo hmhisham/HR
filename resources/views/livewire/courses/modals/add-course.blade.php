@@ -64,10 +64,12 @@
                                 </div>
                             </div>
                             <div Class="row">
+                              
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='course_book_date' type="date"
-                                            id="modalCoursecourse_book_date" placeholder="تاريخ كتاب الدورة"
+                                        <input wire:model.defer='course_book_date' type="date" id="modalCoursecourse_book_date"
+                                            placeholder="تاريخ كتاب الدورة"
                                             class="form-control @error('course_book_date') is-invalid is-filled @enderror" />
                                         <label for="modalCoursecourse_book_date">تاريخ كتاب الدورة</label>
                                     </div>
@@ -75,6 +77,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">

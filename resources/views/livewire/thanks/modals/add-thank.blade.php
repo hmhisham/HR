@@ -78,17 +78,6 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='ministerial_order_date' type="date"
-                                            id="modalThanksministerial_order_date" placeholder="تاريخ الامر الوزاري"
-                                            class="form-control @error('ministerial_order_date') is-invalid is-filled @enderror" />
-                                        <label for="modalThanksministerial_order_date">تاريخ الامر الوزاري</label>
-                                    </div>
-                                    @error('ministerial_order_date')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='ministerial_order_number' type="text"
                                             id="modalThanksministerial_order_number" placeholder="رقم الامر الوزاري"
                                             class="form-control @error('ministerial_order_number') is-invalid is-filled @enderror" />
@@ -98,6 +87,18 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='ministerial_order_date' type="date"
+                                            id="modalThanksministerial_order_date" placeholder="تاريخ الامر الوزاري"
+                                            class="form-control @error('ministerial_order_date') is-invalid is-filled @enderror" />
+                                        <label for="modalThanksministerial_order_date">تاريخ الامر الوزاري</label>
+                                    </div>
+                                    @error('ministerial_order_date')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer="months_of_service" id="months_of_service"
