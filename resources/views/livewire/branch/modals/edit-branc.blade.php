@@ -18,24 +18,20 @@
                     <form id="editBrancModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
-                                '<Div Class="row">
-
-                                    <div class="mb-3 col flex-fill {{ $sections }}">
+                                <Div Class="row">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='section_id' id="modalBranchsection_id"
-                                                class="form-select @error('section_id') is-invalid is-filled @enderror">
-                                                <option value=""></option>
-                                                @foreach ($sections as $section)
-                                                    <option value="{{ $section->id }}">{{ $section->section_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            <label for="modalBranchsection_id">القسم</label>
+                                            <input wire:model.defer='branch_name' type="text"
+                                                id="modalBranchName" placeholder="اسم الشعبة"
+                                                class="form-control @error('branch_name') is-invalid is-filled @enderror" />
+                                            <label for="modalBranchName">اسم الشعبة</label>
                                         </div>
-                                        @error('section_id')
+                                        @error('branch_name')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
+
+
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='branch_name' type="text"

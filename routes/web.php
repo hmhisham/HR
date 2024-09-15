@@ -6,7 +6,7 @@ use App\Http\Controllers\EMP\EMPController;
 
 use App\Http\Controllers\Areas\AreasController;
 
-use App\Http\Controllers\Links\LinksController;
+
 use App\Http\Controllers\Units\UnitsController;
 
 use App\Http\Controllers\Branch\BranchController;
@@ -24,10 +24,11 @@ use App\Http\Controllers\Certific\CertificController;
 use App\Http\Controllers\Dispatch\DispatchController;
 use App\Http\Controllers\Holidays\HolidaysController;
 use App\Http\Controllers\language\LanguageController;
+use App\Http\Controllers\Linkages\LinkagesController;
 use App\Http\Controllers\Precises\PrecisesController;
 use App\Http\Controllers\Sections\SectionsController;
-use App\Http\Controllers\Dashboard\DashboardController;
 
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Penalties\PenaltiesController;
@@ -89,7 +90,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         // مكتب المعلومات
         Route::RESOURCE('Infooffice', InfoofficeController::class);
         //الارتباط
-        Route::RESOURCE('Links', LinksController::class);
+        Route::  RESOURCE('Linkages', LinkagesController::class);
         //القسم
         Route::RESOURCE('Sections', SectionsController::class);
         //الشعبة

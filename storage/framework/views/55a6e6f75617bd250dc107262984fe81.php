@@ -81,14 +81,6 @@ $container = $container ?? 'container-xxl';
                         <span class="menu-title">قسم الموارد البشرية</span>
                     </a>
 
-                    <ul class="menu-sub">
-                        <li Class="menu-item ">
-                            <a href="" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>عرض جميع البيانات</div>
-                            </a>
-                        </li>
-                    </ul>
 
                     <ul class="menu-sub">
                         <li Class="menu-item <?php echo e(request()->Is('Workers') ? 'active' : ''); ?>">
@@ -212,7 +204,7 @@ $container = $container ?? 'container-xxl';
                 
 
                 <li
-                    class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices') ? 'open active' : ''); ?>">
+                    class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices') ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                         <span class="menu-title">الاعدادات</span>
@@ -248,8 +240,8 @@ $container = $container ?? 'container-xxl';
                         </li>
 
                         
-                        <li Class="menu-item <?php echo e(request()->Is('Links') ? 'active' : ''); ?>">
-                            <a href="<?php echo e(Route('Links.index')); ?>" Class="menu-link">
+                        <li Class="menu-item <?php echo e(request()->Is('Linkages') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Linkages.index')); ?>" Class="menu-link">
                                 <i class=""></i>
                                 <div>الارتباط</div>
                             </a>

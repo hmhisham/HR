@@ -18,12 +18,26 @@
                                     <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='link_name' type="text" id="modalLinkslink_name" placeholder="اسم الارتباط"
-                                            class="form-control @error('link_name') is-invalid is-filled @enderror" />
+                                            class="form-control <?php $__errorArgs = ['link_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
                                         <label for="modalLinkslink_name">اسم الارتباط</label>
                                     </div>
-                                    @error('link_name')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
+                                    <?php $__errorArgs = ['link_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
 
                             </div>
@@ -41,3 +55,4 @@
     </div>
 </div>
 <!--/ Add Link Modal -->
+<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/links/modals/add-link.blade.php ENDPATH**/ ?>

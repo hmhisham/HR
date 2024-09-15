@@ -1,6 +1,6 @@
 <div class="mt-n4">
     <h4 Class="mb-1fw-semiboyld">قائمة</h4>
-    <Div Class="card">
+
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -32,8 +32,8 @@
                         <?php $__currentLoopData = $Areas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Area): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
                                 <td><?php echo e($loop->iteration); ?></td>
-                                <td class="text-center">
-                                    <?php echo e($Area->GetGovernorate ? $Area->GetGovernorate->governorate_name : ''); ?></td>
+                                <td class="text-center"> <?php echo e($Area->GetGovernorate ? $Area->GetGovernorate->governorate_name : ''); ?></td>
+
                                 <td class="text-center"><?php echo e($Area->GetDistrict ? $Area->GetDistrict->district_name : ''); ?>
 
                                 </td>
@@ -76,6 +76,6 @@
         </div>
     </Div>
 </div>
-</div>
+
 
 <?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/areas/area.blade.php ENDPATH**/ ?>

@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('links', function (Blueprint $table) {
+        Schema::create('linkages', function (Blueprint $table) {
             $table->id();
-          
-            $table->string('link_name');
+            $table->string('Linkages_name');
             $table->timestamps();
-        });
+    });
     }
 
     /**
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('linkages');
     }
 };

@@ -1,13 +1,11 @@
 <?php
-
-namespace App\Models\Links;
-
+namespace App\Models\Linkages;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Links extends Model
+class Linkages extends Model
 {
-    use HasFactory;
+     use HasFactory;
     protected $guarded = [];
-    protected $table = "links";
+    protected $table = "linkages";
 }

@@ -60,9 +60,9 @@
                     </tbody>
                 </table>
 
-                <div class="mt-2 d-flex justify-content-center">
+                {{-- <div class="mt-2 d-flex justify-content-center">
                     {{ $links->links() }}
-                </div>
+                </div> --}}
                 <!-- Modal -->
                 @include('livewire.branch.modals.edit-branc')
                 @include('livewire.branch.modals.remove-branc')

@@ -1,6 +1,6 @@
 
-<!-- Remove Link Modal -->
-<div wire:ignore.self class="modal fade" id="removelinkModal" tabindex="-1" aria-hidden="true">
+<!-- Remove Linkage Modal -->
+<div wire:ignore.self class="modal fade" id="removelinkageModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -10,26 +10,26 @@
                     <p>نافذة الحذف</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetLink" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="GetLinkage" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">جار حذف البيانات...</h5>
 
                 <div wire:loading.remove>
-                <form id="removeLinkModalForm" onsubmit="return false" autocomplete="off">
+                <form id="removeLinkageModalForm" onsubmit="return false" autocomplete="off">
                     <div class="row row-cols-1">
-                        <div class="col mb-3">
-                        '<Div Class="row">
+                        <div class="col mb-3"> 
+                         <div Class="row">
 
-                                    <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='link_name' type="text" id="modalLinklink_name" placeholder="اسم الارتباط"
-                                            class="form-control @error('link_name') is-invalid is-filled @enderror" disabled/>
-                                        <label for="modalLinklink_name">اسم الارتباط</label>
-                                    </div>
-                                    @error('link_name')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-
+                <div class="mb-3 col">
+                <div class="form-floating form-floating-outline">
+                    <input wire:model.defer='Linkages_name' type="text" id="modalLinkageLinkages_name" placeholder=""
+                        class="form-control @error('Linkages_name') is-invalid is-filled @enderror" />
+                    <label for="modalLinkageLinkages_name"></label>
+                </div>
+                @error('Linkages_name')
+                    <small class='text-danger inputerror'> {{ $message }} </small>
+                @enderror
+            </div>
+            
                          </div>
                     </div>
                     <hr class="my-0">
@@ -45,4 +45,4 @@
     </div>
  </div>
 </div>
-<!--/ Delete Link Modal -->
+<!--/ Delete Linkage Modal -->

@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\Areas;
 
-use App\Http\Livewire\Districts\District;
 use Livewire\Component;
 use App\Models\Areas\Areas;
+use App\Models\Links\Links;
 use Livewire\WithPagination;
 use App\Models\Districts\Districts;
+use App\Http\Livewire\Districts\District;
 use App\Models\Governorates\Governorates;
 
 
@@ -14,11 +15,21 @@ class Area extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-
+    public $Links = [];
     public $Areas = [];
     public $Districts = [];
     public $AreaSearch, $Area, $AreaId;
     public $governorate_id, $district_id, $area_id, $area_name;
+    public $Governorates = [];
+
+    public function mount()
+    {
+        $this->Governorates = Governorates::all();
+        $this->Areas = Areas::all();
+        $this->Districts = Districts::all();
+  
+    }
+
 
     public function render()
     {
@@ -32,7 +43,7 @@ class Area extends Component
         $links = $Areas;
         $this->Areas = collect($Areas->items());
         return view('livewire.areas.area', [
-            'districts' => Districts::get(),
+
             'governorates' => Governorates::get(),
             'links' => $links
         ]);

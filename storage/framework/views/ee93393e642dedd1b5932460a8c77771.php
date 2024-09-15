@@ -590,12 +590,12 @@ unset($__errorArgs, $__bag); ?>
                 <div class="tab-pane fade <?php echo e($currentTap == 2 ? 'active show' : ''); ?>" id="form-tabs-2" role="tabpanel">
                     <form>
                         <div Class="row g-4">
-
+  
 
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='governorate_id'
-                                        wire:change='GetDistricts($event.target.value)' id="governorate_id"
+                                       id="governorate_id"
                                         class="form-select <?php $__errorArgs = ['governorate_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

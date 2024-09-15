@@ -5,7 +5,9 @@ namespace App\Http\Livewire\Branch;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Branch\Branch;
+use App\Models\Linkages\Linkages;
 use App\Models\Sections\Sections;
+use App\Http\Livewire\Linkages\Linkage;
 
 class Branc extends Component
 {
@@ -16,21 +18,30 @@ class Branc extends Component
     public $BrancSearch, $Branc, $BrancId;
     public $section_id, $branch_name;
 
+    public $linkages = [];
+
+    public function mount()
+    {
+
+        $this->linkages = Linkages::all();
+   
+    }
 
     public function render()
     {
         $BrancSearch = $this->BrancSearch . '%';
+
+        // البحث عن البيانات في جدول الفروع Branch
         $Branch = Branch::where('section_id', 'LIKE', $BrancSearch)
             ->orWhere('branch_name', 'LIKE', $BrancSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
-        $links = $Branch;
+
         $this->Branch = collect($Branch->items());
+
         return view('livewire.branch.branc', [
             'sections' => Sections::get(),
-            'links' => $links
+            'links' => $Branch,
         ]);
     }
 

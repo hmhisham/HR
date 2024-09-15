@@ -151,11 +151,7 @@ class dispatc extends Component
     public function Getdispatc($dispatcId)
     {
         $this->resetValidation();
-
         $this->dispatc  = Dispatch::find($dispatcId);
-
-        $worker = $this->dispatc->worker;
-
         $this->dispatcId = $this->dispatc->id;
         $this->user_id = $this->dispatc->user_id;
         $this->calculator_number = $this->dispatc->calculator_number;
@@ -171,6 +167,8 @@ class dispatc extends Component
         $this->ministerial_order_number = $this->dispatc->ministerial_order_number;
         $this->ministerial_order_date = $this->dispatc->ministerial_order_date;
         $this->notes = $this->dispatc->notes;
+
+         $worker = $this->dispatc->worker;
         if ($worker) {
             $this->full_name = $worker->full_name;
             $this->department = $worker->department;

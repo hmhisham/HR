@@ -60,10 +60,7 @@
                     </tbody>
                 </table>
 
-                <div class="mt-2 d-flex justify-content-center">
-                    <?php echo e($links->links()); ?>
-
-                </div>
+                
                 <!-- Modal -->
                 <?php echo $__env->make('livewire.branch.modals.edit-branc', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <?php echo $__env->make('livewire.branch.modals.remove-branc', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

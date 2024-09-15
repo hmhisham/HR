@@ -22,7 +22,6 @@ class Holiday extends Component
     use WithPagination, WithFileUploads;
     public function mount()
     {
-
         $this->workers = Workers::all();
         $this->file_path = 'uploads/your-stored-file.jpg';
     }

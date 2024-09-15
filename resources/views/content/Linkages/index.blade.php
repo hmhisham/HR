@@ -1,6 +1,6 @@
 
 @extends('layouts/layoutMaster')
-@section('title', 'Links')
+@section('title', 'Linkages')
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel = "stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
@@ -13,7 +13,7 @@
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
         @endsection
 @section('content') 
-@livewire('links.link')
+@livewire('linkages.linkage')
 
 
 @endsection
@@ -48,23 +48,27 @@
             }
         })
 
-        window.addEventListener('LinkModalShow', event => {
+        window.addEventListener('LinkageModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
                }, 100);  
         })
       
         window.addEventListener('success', event => {
-            $('#addlinkModal').modal('hide');
-            $('#editlinkModal').modal('hide');
-            $('#removelinkModal').modal('hide');
+            $('#addlinkageModal').modal('hide');
+            $('#editlinkageModal').modal('hide');
+            $('#removelinkageModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.message
             })
         })
+           
+
+            
+
         window.addEventListener('error', event => {
-            $('#removelinkModal').modal('hide');
+            $('#removelinkageModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.message,

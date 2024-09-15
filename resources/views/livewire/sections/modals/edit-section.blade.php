@@ -20,22 +20,20 @@
                             <div class="col mb-3">
                                 '<Div Class="row">
 
-
-                                <div class="mb-3 col flex-fill {{ $links }}">
-                                    <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='link_id' id="modalSectionslink_id"
-                                            class="form-select @error('link_id') is-invalid is-filled @enderror">
-                                            <option value=""></option>
-                                            @foreach ($links as $link)
-                                                <option value="{{ $link->id }}">{{ $link->link_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="modalSectionslink_id">اسم الارتباط</label>
-                                    </div>
-                                    @error('link_id')
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='linkage_id' id="modalSectionslinkage_id" class="form-select @error('linkage_id') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                @foreach ($linkages as $linkage)
+                                                <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="modalSectionslinkage_id">اسم الارتباط</label>
+                                        </div>
+                                        @error('linkage_id')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
+                                        @enderror
+                                    </div>
 
 
 

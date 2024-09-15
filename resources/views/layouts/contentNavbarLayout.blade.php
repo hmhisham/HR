@@ -80,14 +80,6 @@ $container = $container ?? 'container-xxl';
                         <span class="menu-title">قسم الموارد البشرية</span>
                     </a>
 
-                    <ul class="menu-sub">
-                        <li Class="menu-item ">
-                            <a href="" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>عرض جميع البيانات</div>
-                            </a>
-                        </li>
-                    </ul>
 
                     <ul class="menu-sub">
                         <li Class="menu-item {{ request()->Is('Workers') ? 'active' : '' }}">
@@ -211,7 +203,7 @@ $container = $container ?? 'container-xxl';
                 {{-- الإعدادات --}}
 
                 <li
-                    class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Links', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices') ? 'open active' : '' }}">
+                    class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices') ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                         <span class="menu-title">الاعدادات</span>
@@ -247,8 +239,8 @@ $container = $container ?? 'container-xxl';
                         </li>
 
                         {{-- الارتباط --}}
-                        <li Class="menu-item {{ request()->Is('Links') ? 'active' : '' }}">
-                            <a href="{{ Route('Links.index') }}" Class="menu-link">
+                        <li Class="menu-item {{ request()->Is('Linkages') ? 'active' : '' }}">
+                            <a href="{{ Route('Linkages.index') }}" Class="menu-link">
                                 <i class=""></i>
                                 <div>الارتباط</div>
                             </a>

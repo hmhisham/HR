@@ -2,6 +2,7 @@
 
 namespace App\Models\Areas;
 
+
 use App\Models\Districts\Districts;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Governorates\Governorates;
@@ -22,5 +23,7 @@ class Areas extends Model
     {
         return $this->belongsTo(Districts::class, 'district_id' );
     }
+
+
 
 }
