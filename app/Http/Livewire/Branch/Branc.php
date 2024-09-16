@@ -7,7 +7,6 @@ use Livewire\WithPagination;
 use App\Models\Branch\Branch;
 use App\Models\Linkages\Linkages;
 use App\Models\Sections\Sections;
-use App\Http\Livewire\Linkages\Linkage;
 
 class Branc extends Component
 {
@@ -15,24 +14,22 @@ class Branc extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Branch = [];
-    public $BrancSearch, $Branc, $BrancId;
-    public $section_id, $branch_name;
+    public $BranchSearch, $Branc, $BrancId;
+    public $linkage_id, $section_id, $branch_name;
+    public $linkages = [];
 
-    // public $linkages = [];
-
-    // public function mount()
-    // {
-
-    //     $this->linkages = Linkages::all();
-    // }
+    public function mount()
+    {
+        $this->linkages = Linkages::all();
+    }
 
     public function render()
     {
-        $BrancSearch = $this->BrancSearch . '%';
+        $BranchSearch = $this->BranchSearch . '%';
 
         // البحث عن البيانات في جدول الفروع Branch
-        $Branch = Branch::where('section_id', 'LIKE', $BrancSearch)
-            ->orWhere('branch_name', 'LIKE', $BrancSearch)
+        $Branch = Branch::where('section_id', 'LIKE', $BranchSearch)
+            ->orWhere('branch_name', 'LIKE', $BranchSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
@@ -40,14 +37,13 @@ class Branc extends Component
 
         return view('livewire.branch.branc', [
             'sections' => Sections::get(),
-            'linkages' => Linkages::get(),
             'links' => $Branch,
         ]);
     }
 
     public function AddBrancModalShow()
     {
-        $this->reset();
+        //$this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('BrancModalShow');
     }
