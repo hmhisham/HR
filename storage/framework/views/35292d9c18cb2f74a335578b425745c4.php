@@ -26,7 +26,7 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                             <option value=""></option>
                                             <?php $__currentLoopData = $linkages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linkage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($linkage->id); ?>"><?php echo e($linkage->Linkages_name); ?></option>
+                                                <option value="<?php echo e($linkage->id); ?>"><?php echo e($linkage->Linkages_name); ?></option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         <label for="modalBranchlinkage_id">الارتباطات</label>
@@ -36,13 +36,12 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <small class='text-danger inputerror'><?php echo e($message); ?></small>
                                     <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
 
 
 

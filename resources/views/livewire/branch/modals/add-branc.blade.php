@@ -19,16 +19,15 @@
                                         <select wire:model.defer='linkage_id' id="modalBranchlinkage_id" class="form-select @error('linkage_id') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($linkages as $linkage)
-                                            <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}</option>
+                                                <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}</option>
                                             @endforeach
                                         </select>
                                         <label for="modalBranchlinkage_id">الارتباطات</label>
                                     </div>
                                     @error('linkage_id')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
 
 
 

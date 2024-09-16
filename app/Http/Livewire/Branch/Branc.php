@@ -18,19 +18,18 @@ class Branc extends Component
     public $BrancSearch, $Branc, $BrancId;
     public $section_id, $branch_name;
 
-    // public $linkages = [];
+     public $linkages = [];
 
-    // public function mount()
-    // {
-
-    //     $this->linkages = Linkages::all();
-    // }
+    public function mount()
+    {
+        $this->linkages = Linkages::all();
+    }
 
     public function render()
     {
         $BrancSearch = $this->BrancSearch . '%';
 
-        // البحث عن البيانات في جدول الفروع Branch
+
         $Branch = Branch::where('section_id', 'LIKE', $BrancSearch)
             ->orWhere('branch_name', 'LIKE', $BrancSearch)
             ->orderBy('id', 'ASC')
@@ -40,14 +39,13 @@ class Branc extends Component
 
         return view('livewire.branch.branc', [
             'sections' => Sections::get(),
-            'linkages' => Linkages::get(),
-            'links' => $Branch,
+                      'links' => $Branch,
         ]);
     }
 
     public function AddBrancModalShow()
     {
-        $this->reset();
+    //  $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('BrancModalShow');
     }
