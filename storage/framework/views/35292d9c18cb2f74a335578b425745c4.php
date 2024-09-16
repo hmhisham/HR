@@ -14,9 +14,10 @@
                         <div class="col mb-3">
                             <div Class="row">
 
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='linkage_id' id="modalBranchlinkage_id" class="form-select <?php $__errorArgs = ['linkage_id'];
+                                
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <select wire:model.defer='linkage_id' wire:change='LinkageId($event.target.value)' id="linkage_id" class="form-select <?php $__errorArgs = ['linkage_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -24,30 +25,30 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value=""></option>
-                                            <?php $__currentLoopData = $linkages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linkage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($linkage->id); ?>"><?php echo e($linkage->Linkages_name); ?></option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </select>
-                                        <label for="modalBranchlinkage_id">الارتباطات</label>
-                                    </div>
-                                    <?php $__errorArgs = ['linkage_id'];
+                                    <option value=""></option>
+                                    <?php $__currentLoopData = $linkages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linkage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($linkage->id); ?>"><?php echo e($linkage->Linkages_name); ?></option>
+                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                </select>
+                                <label for="linkage_id">المحافظة</label>
+                            </div>
+                            <?php $__errorArgs = ['linkage_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                        <small class='text-danger inputerror'><?php echo e($message); ?></small>
-                                    <?php unset($message);
+                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                            <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                </div>
+                        </div>
 
 
-
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='section_id' id="modalBranchsection_id" class="form-select <?php $__errorArgs = ['section_id'];
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <select wire:model.defer='section_id' id="modalBranchsection_id" class="form-select <?php $__errorArgs = ['section_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -55,31 +56,29 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value=""></option>
-                                            <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($section->id); ?>"><?php echo e($section->section_name); ?>
-
-                                            </option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </select>
-                                        <label for="modalBranchsection_id">القسم</label>
-                                    </div>
-                                    <?php $__errorArgs = ['section_id'];
+                                    <option value="">اختر قسمًا</option>
+                                    <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($section->id); ?>"><?php echo e($section->section_name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                                <label for="modalBranchsection_id">القسم</label>
+                            </div>
+                            <?php $__errorArgs = ['section_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
+                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                            <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                </div>
+                        </div>
 
 
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='branch_name' type="text" id="modalBranchbranch_name" placeholder="اسم الشعبة" class="form-control <?php $__errorArgs = ['branch_name'];
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <input wire:model.defer='branch_name' type="text" id="modalBranchbranch_name" placeholder="اسم الشعبة" class="form-control <?php $__errorArgs = ['branch_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -87,32 +86,32 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalBranchbranch_name">اسم الشعبة</label>
-                                    </div>
-                                    <?php $__errorArgs = ['branch_name'];
+                                <label for="modalBranchbranch_name">اسم الشعبة</label>
+                            </div>
+                            <?php $__errorArgs = ['branch_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
+                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                            <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                </div>
-
-                            </div>
                         </div>
+
                     </div>
-                    <hr class="my-0">
-                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                        <button wire:click='store' wire:loading.attr="disabled" type="button" class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
-                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
-                    </div>
-                </form>
             </div>
         </div>
+        <hr class="my-0">
+        <div class="text-center col-12 demo-vertical-spacing mb-n4">
+            <button wire:click='store' wire:loading.attr="disabled" type="button" class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
+        </div>
+        </form>
     </div>
+</div>
+</div>
 </div>
 <!--/ Add Branc Modal -->
 <?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/branch/modals/add-branc.blade.php ENDPATH**/ ?>

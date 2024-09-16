@@ -14,61 +14,61 @@
                         <div class="col mb-3">
                             <div Class="row">
 
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='linkage_id' id="modalBranchlinkage_id" class="form-select @error('linkage_id') is-invalid is-filled @enderror">
-                                            <option value=""></option>
-                                            @foreach ($linkages as $linkage)
-                                                <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="modalBranchlinkage_id">الارتباطات</label>
-                                    </div>
-                                    @error('linkage_id')
-                                        <small class='text-danger inputerror'>{{ $message }}</small>
-                                    @enderror
-                                </div>
+                              
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <select wire:model.defer='linkage_id' wire:change='LinkageId($event.target.value)' id="linkage_id" class="form-select @error('linkage_id') is-invalid is-filled @enderror">
+                                    <option value=""></option>
+                                    @foreach ($linkages as $linkage)
+                                    <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}</option>
+                                       @endforeach
 
-
-
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='section_id' id="modalBranchsection_id" class="form-select @error('section_id') is-invalid is-filled @enderror">
-                                            <option value=""></option>
-                                            @foreach ($sections as $section)
-                                            <option value="{{ $section->id }}">{{ $section->section_name }}
-                                            </option>
-                                            @endforeach
-                                        </select>
-                                        <label for="modalBranchsection_id">القسم</label>
-                                    </div>
-                                    @error('section_id')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-
-
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='branch_name' type="text" id="modalBranchbranch_name" placeholder="اسم الشعبة" class="form-control @error('branch_name') is-invalid is-filled @enderror" />
-                                        <label for="modalBranchbranch_name">اسم الشعبة</label>
-                                    </div>
-                                    @error('branch_name')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-
+                                </select>
+                                <label for="linkage_id">المحافظة</label>
                             </div>
+                            @error('linkage_id')
+                            <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
                         </div>
+
+
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <select wire:model.defer='section_id' id="modalBranchsection_id" class="form-select @error('section_id') is-invalid is-filled @enderror">
+                                    <option value="">اختر قسمًا</option>
+                                    @foreach ($sections as $section)
+                                    <option value="{{ $section->id }}">{{ $section->section_name }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="modalBranchsection_id">القسم</label>
+                            </div>
+                            @error('section_id')
+                            <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
+                        </div>
+
+
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <input wire:model.defer='branch_name' type="text" id="modalBranchbranch_name" placeholder="اسم الشعبة" class="form-control @error('branch_name') is-invalid is-filled @enderror" />
+                                <label for="modalBranchbranch_name">اسم الشعبة</label>
+                            </div>
+                            @error('branch_name')
+                            <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
+                        </div>
+
                     </div>
-                    <hr class="my-0">
-                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                        <button wire:click='store' wire:loading.attr="disabled" type="button" class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
-                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
-                    </div>
-                </form>
             </div>
         </div>
+        <hr class="my-0">
+        <div class="text-center col-12 demo-vertical-spacing mb-n4">
+            <button wire:click='store' wire:loading.attr="disabled" type="button" class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
+        </div>
+        </form>
     </div>
+</div>
+</div>
 </div>
 <!--/ Add Branc Modal -->
