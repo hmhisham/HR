@@ -132,7 +132,6 @@ class Thank extends Component
         $this->user_id = $this->Thank->user_id;
 
         // جلب بيانات العمالة باستخدام العلاقة بين Thanks و Workers
-        $worker = $this->Thank->worker;
 
         // تعيين القيم في المتغيرات الخاصة بك
         $this->grantor = $this->Thank->grantor;
@@ -141,6 +140,8 @@ class Thank extends Component
         $this->reason = $this->Thank->reason;
         $this->months_of_service = $this->Thank->months_of_service;
         $this->calculator_number = $this->Thank->calculator_number;
+        $worker = $this->Thank->worker;
+
         if ($worker) {
             $this->full_name = $worker->full_name;
             $this->department = $worker->department;

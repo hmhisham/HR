@@ -16,10 +16,10 @@ class Branc extends Component
 
     public $Branch = [];
     public $BrancSearch, $Branc, $BrancId;
-    public $section_id, $branch_name,$linkage_id;
+    public $section_id, $branch_name, $linkage_id;
 
-     public $linkages = [];
-     public $sections = [];
+    public $linkages = [];
+    public $sections = [];
 
     public function mount()
     {
@@ -36,12 +36,12 @@ class Branc extends Component
             ->paginate(10);
         $this->Branch = collect($Branch->items());
         return view('livewire.branch.branc', [
-         'links' => $Branch,
+            'links' => $Branch,
         ]);
     }
 
 
-  
+
 
     public function LinkageId($linkage_id)
     {
@@ -51,7 +51,7 @@ class Branc extends Component
 
     public function AddBrancModalShow()
     {
-        $this->reset(['linkage_id','section_id','branch_name']);
+        $this->reset(['linkage_id', 'section_id', 'branch_name']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('BrancModalShow');
     }
@@ -68,10 +68,11 @@ class Branc extends Component
         ]);
 
         Branch::create([
+            'linkage_id' => $this->linkage_id,
             'section_id' => $this->section_id,
             'branch_name' => $this->branch_name,
         ]);
-        $this->reset(['linkage_id','section_id','branch_name']);
+        $this->reset(['linkage_id', 'section_id', 'branch_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -84,6 +85,7 @@ class Branc extends Component
         $this->Branc  = Branch::find($BrancId);
         $this->BrancId = $this->Branc->id;
         $this->section_id = $this->Branc->section_id;
+        $this->linkage_id = $this->Branc->linkage_id;
         $this->branch_name = $this->Branc->branch_name;
     }
 
@@ -91,6 +93,7 @@ class Branc extends Component
     {
         $this->resetValidation();
         $this->validate([
+
             'section_id' => 'required:branch',
             'branch_name' => 'required:branch',
         ], [
@@ -100,10 +103,11 @@ class Branc extends Component
 
         $Branch = Branch::find($this->BrancId);
         $Branch->update([
+            'linkage_id' => $this->linkage_id,
             'section_id' => $this->section_id,
             'branch_name' => $this->branch_name,
         ]);
-        $this->reset(['linkage_id','section_id','branch_name']);
+        $this->reset(['linkage_id', 'section_id', 'branch_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -114,7 +118,7 @@ class Branc extends Component
     {
         $Branch = Branch::find($this->BrancId);
         $Branch->delete();
-        $this->reset(['linkage_id','section_id','branch_name']);
+        $this->reset(['linkage_id', 'section_id', 'branch_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

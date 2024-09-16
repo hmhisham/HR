@@ -14,17 +14,17 @@
                         <div class="col mb-3">
                             <div Class="row">
 
-                              
+
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='linkage_id' wire:change='LinkageId($event.target.value)' id="linkage_id" class="form-select @error('linkage_id') is-invalid is-filled @enderror">
-                                    <option value=""></option>
+                                    <option value="">اختر الارتباط</option>
                                     @foreach ($linkages as $linkage)
                                     <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}</option>
                                        @endforeach
 
                                 </select>
-                                <label for="linkage_id">المحافظة</label>
+                                <label for="linkage_id">الارتباط</label>
                             </div>
                             @error('linkage_id')
                             <small class='text-danger inputerror'> {{ $message }} </small>

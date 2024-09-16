@@ -14,7 +14,7 @@
                         <div class="col mb-3">
                             <div Class="row">
 
-                                
+
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='linkage_id' wire:change='LinkageId($event.target.value)' id="linkage_id" class="form-select <?php $__errorArgs = ['linkage_id'];
@@ -25,13 +25,13 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                    <option value=""></option>
+                                    <option value="">اختر الارتباط</option>
                                     <?php $__currentLoopData = $linkages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linkage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($linkage->id); ?>"><?php echo e($linkage->Linkages_name); ?></option>
                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                 </select>
-                                <label for="linkage_id">المحافظة</label>
+                                <label for="linkage_id">الارتباط</label>
                             </div>
                             <?php $__errorArgs = ['linkage_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

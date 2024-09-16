@@ -13,6 +13,13 @@ class Branch extends Model
     protected $guarded = [];
     protected $table = "branch";
 
-  
+    Public function Getlinkage()
+    {
+        return $this->belongsTo(Linkages::class, 'linkage_id' );
+    }
 
+    Public function Getsection()
+    {
+        return $this->belongsTo(Sections::class, 'section_id' );
+    }
 }

@@ -67,8 +67,8 @@ class Jobleaver extends Component
                     ->orWhere('workers.full_name', 'LIKE', $JobleaverSearch);
             })
             ->orderBy('jobleavers.id', 'ASC')
-           ->select('jobleavers.*')
-           ->paginate(10);
+            ->select('jobleavers.*')
+            ->paginate(10);
         $links = $Jobleavers;
         $this->Jobleavers = collect($Jobleavers->items());
         return view('livewire.jobleavers.jobleaver', [
@@ -103,7 +103,7 @@ class Jobleaver extends Component
             'ministerial_order_date' => 'required',
             'added_service_letter_number' => 'required',
             'added_service_letter_date' => 'required',
-           'added_service' => 'required',
+            'added_service' => 'required',
 
         ], [
 
@@ -118,7 +118,7 @@ class Jobleaver extends Component
             'ministerial_order_date.required' => 'حقل الاسم مطلوب',
             'added_service_letter_number.required' => 'حقل الاسم مطلوب',
             'added_service_letter_date.required' => 'حقل الاسم مطلوب',
-           'added_service' => 'حقل الاسم مطلوب',
+            'added_service' => 'حقل الاسم مطلوب',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -148,14 +148,9 @@ class Jobleaver extends Component
     public function GetJobleaver($JobleaverId)
     {
         $this->resetValidation();
-
         $this->Jobleaver  = Jobleavers::find($JobleaverId);
-
-          $this->JobleaverId = $this->Jobleaver->id;
+        $this->JobleaverId = $this->Jobleaver->id;
         $this->user_id = $this->Jobleaver->user_id;
-        $worker = $this->Jobleaver->worker;
-
-
         $this->calculator_number = $this->Jobleaver->calculator_number;
         $this->job_leaving_type = $this->Jobleaver->job_leaving_type;
         $this->issuing_authority = $this->Jobleaver->issuing_authority;
@@ -170,8 +165,7 @@ class Jobleaver extends Component
         $this->notes = $this->Jobleaver->notes;
         $this->added_service = $this->Jobleaver->added_service;
 
-        // جلب معلومات الموظف باستخدام الـ user_id
-
+        $worker = $this->Jobleaver->worker;
         if ($worker) {
             $this->full_name = $worker->full_name;
             $this->department = $worker->department;
@@ -179,10 +173,9 @@ class Jobleaver extends Component
             $this->full_name = 'N/A';
             $this->department = 'N/A';
         }
-
     }
 
- 
+
     public function update()
     {
         $this->resetValidation();

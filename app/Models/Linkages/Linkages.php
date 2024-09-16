@@ -8,4 +8,8 @@ class Linkages extends Model
      use HasFactory;
     protected $guarded = [];
     protected $table = "linkages";
+
+
+
+ 
 }
