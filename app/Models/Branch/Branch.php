@@ -19,10 +19,10 @@ class Branch extends Model
     }
 
 
-    // public function Getlinkage()
-    // {
-    //     return $this->belongsTo(Linkages::class, 'linkage_id');
-    // }
+    Public function Getlinkage()
+    {
+        return $this->belongsTo(Linkages::class, 'linkage_id' );
+    }
 
 
 }

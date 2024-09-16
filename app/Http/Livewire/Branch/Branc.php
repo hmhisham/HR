@@ -18,14 +18,13 @@ class Branc extends Component
     public $BrancSearch, $Branc, $BrancId;
     public $section_id, $branch_name;
 
-    public $linkages = [];
+    // public $linkages = [];
 
-    public function mount()
-    {
+    // public function mount()
+    // {
 
-        $this->linkages = Linkages::all();
-   
-    }
+    //     $this->linkages = Linkages::all();
+    // }
 
     public function render()
     {
@@ -41,6 +40,7 @@ class Branc extends Component
 
         return view('livewire.branch.branc', [
             'sections' => Sections::get(),
+            'linkages' => Linkages::get(),
             'links' => $Branch,
         ]);
     }
