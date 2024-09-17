@@ -1325,4 +1325,4 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/Workers/AddWorker.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/workers/AddWorker.blade.php ENDPATH**/ ?>

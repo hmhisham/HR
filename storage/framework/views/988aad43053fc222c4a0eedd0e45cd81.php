@@ -34,8 +34,8 @@
                     <tr>
                         <?php $i++; ?>
                         <td><?php echo e($i); ?></td>
-
-                        <td class="text-center"><?php echo e($Branc->Getlinkage ? $Branc->Getlinkage->Linkages_name : 'N/A'); ?></td>
+                        
+                        <td class="text-center"><?php echo e($Branc->Getlinkage ? $Branc->Getlinkage->Linkages_name : ''); ?></td>
                         <td class="text-center"><?php echo e($Branc->Getsection ? $Branc->Getsection->section_name : ''); ?></td>
                         <td Class="text-center"><?php echo e($Branc->branch_name); ?></td>
 

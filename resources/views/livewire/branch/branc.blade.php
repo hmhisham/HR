@@ -34,8 +34,8 @@
                     <tr>
                         <?php $i++; ?>
                         <td>{{ $i }}</td>
-
-                        <td class="text-center">{{ $Branc->Getlinkage ? $Branc->Getlinkage->Linkages_name : 'N/A' }}</td>
+                        
+                        <td class="text-center">{{ $Branc->Getlinkage ? $Branc->Getlinkage->Linkages_name : '' }}</td>
                         <td class="text-center">{{ $Branc->Getsection ? $Branc->Getsection->section_name : '' }}</td>
                         <td Class="text-center">{{ $Branc->branch_name }}</td>
 
