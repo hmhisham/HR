@@ -203,7 +203,7 @@ $container = $container ?? 'container-xxl';
                 {{-- الإعدادات --}}
 
                 <li
-                    class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices') ? 'open active' : '' }}">
+                    class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices') ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                         <span class="menu-title">الاعدادات</span>
@@ -326,6 +326,13 @@ $container = $container ?? 'container-xxl';
                                 <div>سلم رواتب العقود</div>
                             </a>
                         </li>
+                        <li Class="menu-item {{ request()->Is('Technicians') ? 'active' : '' }}">
+                            <a href="{{ Route('Technicians.index') }}" Class="menu-link">
+                                <i Class=''></i>
+                                <div>سلم رواتب الفنيين</div>
+                            </a>
+                        </li>
+
                         <li Class="menu-item {{ request()->Is('Trainings') ? 'active' : '' }}">
                             <a href="{{ Route('Trainings.index') }}" Class="menu-link">
                                 <i Class=''></i>
