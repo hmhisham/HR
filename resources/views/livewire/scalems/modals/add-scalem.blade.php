@@ -49,16 +49,21 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='scalems_salary_grade' type="text"
-                                            id="modalScalemsscalems_salary_grade" placeholder="درجة الراتب"
-                                            class="form-control @error('scalems_salary_grade') is-invalid is-filled @enderror" />
+                                        <select wire:model.defer='scalems_salary_grade'
+                                            id="modalScalemsscalems_salary_grade"
+                                            class="form-select @error('scalems_salary_grade') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @for ($i = 1; $i <= 10; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                            <option value="">م</option>
+                                        </select>
                                         <label for="modalScalemsscalems_salary_grade">درجة الراتب</label>
                                     </div>
                                     @error('scalems_salary_grade')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='scalems_salary_stage'
