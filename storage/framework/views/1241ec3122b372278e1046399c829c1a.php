@@ -84,17 +84,22 @@ unset($__errorArgs, $__bag); ?>
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='scaleas_salary_grade' type="text"
-                                                id="modalscaleasscaleas_salary_grade" placeholder="درجة الراتب"
-                                                class="form-control <?php $__errorArgs = ['scaleas_salary_grade'];
+                                            <select wire:model.defer='scaleas_salary_grade'
+                                                id="modalscaleasscaleas_salary_grade"
+                                                class="form-select <?php $__errorArgs = ['scaleas_salary_grade'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
-                                            <label for="modalscaleasscaleas_salary_grade">درجة الراتب</label>
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <?php for($i = 1; $i <= 6; $i++): ?>
+                                                    <option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>
+                                                <?php endfor; ?>
+                                            </select>
+                                            <label for="modalscaleasscaleas_salary_grade">مرحلة الراتب</label>
                                         </div>
                                         <?php $__errorArgs = ['scaleas_salary_grade'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
