@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Units\Units;
 use Livewire\WithPagination;
 use App\Models\Branch\Branch;
+use App\Models\Sections\Sections;
 
 class Unit extends Component
 {
@@ -15,7 +16,24 @@ class Unit extends Component
     public $Units = [];
     public $UnitSearch, $Unit, $UnitId;
     public $branch_id, $units_name;
+    public $section_id, $branch_name,$units_id;
 
+    public $branch = [];
+    public $sections = [];
+
+    public function mount()
+    {
+        $this->branch = Branch::all();
+        $this->sections = Sections::all();
+    }
+
+    public function sectionid($section_id)
+    {
+        $this->section_id = $section_id;
+        $this->branch = Branch::where('section_id', $section_id)->get();
+    }
+
+   
 
     public function render()
     {
@@ -29,14 +47,14 @@ class Unit extends Component
         $links = $Units;
         $this->Units = collect($Units->items());
         return view('livewire.units.unit', [
-            'branch' => Branch::get(),
+
             'links' => $links
         ]);
     }
 
     public function AddUnitModalShow()
     {
-        $this->reset();
+        // $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('UnitModalShow');
     }

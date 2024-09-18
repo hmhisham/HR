@@ -22,6 +22,7 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
+                            <th Class="text-center">اسم القسم</th>
                             <th Class="text-center">اسم الشعبة</th>
                             <th Class="text-center">اسم الوحدة</th>
                             <th Class="text-center">العملية</th>
@@ -34,6 +35,7 @@
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
+                                <td class="text-center">{{ $Unit->Getsection ? $Unit->Getsection->section_name : '' }}</td>
                                 <td class="text-center">{{ $Unit->Getbranc ? $Unit->Getbranc->branch_name : '' }}</td>
                                 <td Class="text-center">{{ $Unit->units_name }}</td>
 
