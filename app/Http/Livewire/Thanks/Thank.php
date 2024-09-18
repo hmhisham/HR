@@ -5,8 +5,9 @@ namespace App\Http\Livewire\Thanks;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Thanks\Thanks;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Workers\Workers;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Department\Department;
 
 class Thank extends Component
 {
@@ -20,13 +21,17 @@ class Thank extends Component
 
     public $search = '';
     public $workers = [];
-    public $worker, $calculator_number, $department, $full_name;
+    public $department= [];
+    public $worker,$thank, $calculator_number, $get_departmen, $full_name;
     public $selectedWorker = null;
 
 
     protected $listeners = [
         'SelectWorker',
+        // 'SelectGrantor',
     ];
+
+
 
     public function hydrate()
     {
@@ -37,7 +42,10 @@ class Thank extends Component
     public function mount()
     {
         $this->workers = Workers::all();
+        $this->department = Department::all();
     }
+
+
 
     public function SelectWorker($workerID)
     {
@@ -48,11 +56,11 @@ class Thank extends Component
         if ($worker) {
             $this->worker = $workerID;
             $this->calculator_number = $worker->calculator_number;
-            $this->department = $worker->department;
+            $this->get_departmen = $worker->department;
         } else {
             $this->worker = null;
             $this->calculator_number = null;
-            $this->department = null;
+            $this->get_departmen = null;
         }
     }
 
@@ -79,7 +87,7 @@ class Thank extends Component
 
     public function AddThankModalShow()
     {
-        $this->reset(['department','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
+        $this->reset(['get_departmen','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('ThankModalShow');
     }
@@ -103,7 +111,7 @@ class Thank extends Component
 
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
+
         Thanks::create([
             'user_id' => Auth::id(),
             'calculator_number' => $this->calculator_number,
@@ -115,7 +123,7 @@ class Thank extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset(['department','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
+        $this->reset(['get_departmen','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -144,10 +152,10 @@ class Thank extends Component
 
         if ($worker) {
             $this->full_name = $worker->full_name;
-            $this->department = $worker->department;
+            $this->get_departmen = $worker->get_departmen;
         } else {
             $this->full_name = 'N/A';
-            $this->department = 'N/A';
+            $this->get_departmen = 'N/A';
         }
     }
 
@@ -185,7 +193,7 @@ class Thank extends Component
             'months_of_service' => $this->months_of_service,
             'notes' => $this->notes,
         ]);
-        $this->reset(['department','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
+        $this->reset(['get_departmen','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -196,7 +204,7 @@ class Thank extends Component
     {
         $Thanks = Thanks::find($this->ThankId);
         $Thanks->delete();
-        $this->reset();
+        $this->reset(['user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

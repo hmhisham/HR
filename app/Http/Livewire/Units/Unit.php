@@ -33,7 +33,7 @@ class Unit extends Component
         $this->branch = Branch::where('section_id', $section_id)->get();
     }
 
-   
+
 
     public function render()
     {
@@ -54,7 +54,7 @@ class Unit extends Component
 
     public function AddUnitModalShow()
     {
-        // $this->reset();
+        $this->reset(['section_id','branch_id','units_name']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('UnitModalShow');
     }
@@ -80,7 +80,7 @@ class Unit extends Component
             'units_name' => $this->units_name,
 
         ]);
-        $this->reset();
+        $this->reset(['section_id','branch_id','units_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -115,7 +115,7 @@ class Unit extends Component
             'units_name' => $this->units_name,
 
         ]);
-        $this->reset();
+        $this->reset(['section_id','branch_id','units_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -126,7 +126,7 @@ class Unit extends Component
     {
         $Units = Units::find($this->UnitId);
         $Units->delete();
-        $this->reset();
+        $this->reset(['section_id','branch_id','units_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '
