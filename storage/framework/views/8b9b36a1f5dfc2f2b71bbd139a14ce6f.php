@@ -101,31 +101,37 @@ unset($__errorArgs, $__bag); ?>
 
                                 <Div Class="row">
 
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='grantor' type="text" id="modalThankgrantor"
-                                                placeholder="الجهة المانحة للشكر"
-                                                class="form-control <?php $__errorArgs = ['grantor'];
+
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='grantor' id="modalThanksgrantor" class="form-select <?php $__errorArgs = ['grantor'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
-                                            <label for="modalThankgrantor">الجهة المانحة للشكر</label>
-                                        </div>
-                                        <?php $__errorArgs = ['grantor'];
+unset($__errorArgs, $__bag); ?>">
+                                            <option value=""></option>
+                                            <?php $__currentLoopData = $department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $departmen): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($departmen->id); ?>"><?php echo e($departmen->department_name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                        <label for="modalThanksgrantor">الجهة المانحة للشكر</label>
+                                    </div>
+                                    <?php $__errorArgs = ['grantor'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
                                         <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                        <?php unset($message);
+                                    <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                    </div>
+                                </div>
+
+
                                 </div>
                                 <Div Class="row">
                                     <div class="mb-3 col">

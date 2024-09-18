@@ -78,27 +78,27 @@
     /* الجهات  */
 
     $(document).ready(function() {
-    // Initialize select2 for the grantor field
-    window.initDepartmentDrop = () => {
-        $('#modalThanksgrantor').select2({
-            placeholder: 'حدد الموظف', // Set placeholder text
-            dropdownParent: $('#addthankModal') // Parent modal for dropdown
-        });
-    }
+        // Initialize select2 for the grantor field
+        window.initDepartmentDrop = () => {
+            $('#modalThanksgrantor').select2({
+                placeholder: 'حدد الموظف', // Set placeholder text
+                dropdownParent: $('#addthankModal') // Parent modal for dropdown
+            });
+        }
 
-    // Call initialization function
-    initDepartmentDrop();
-
-    // Emit change event to Livewire on selection change
-    $('#modalThanksgrantor').on('change', function(e) {
-        livewire.emit('SelectGrantor', e.target.value); // Adjust event if needed
-    });
-
-    // Reinitialize select2 when Livewire triggers 'select2' event
-    window.livewire.on('select2', () => {
+        // Call initialization function
         initDepartmentDrop();
+
+        // Emit change event to Livewire on selection change
+        $('#modalThanksgrantor').on('change', function(e) {
+            livewire.emit('SelectGrantor', e.target.value); // Adjust event if needed
+        });
+
+        // Reinitialize select2 when Livewire triggers 'select2' event
+        window.livewire.on('select2', () => {
+            initDepartmentDrop();
+        });
     });
-});
 
 
     const Toast = Swal.mixin({

@@ -63,17 +63,23 @@
 
                                 <Div Class="row">
 
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='grantor' type="text" id="modalThankgrantor"
-                                                placeholder="الجهة المانحة للشكر"
-                                                class="form-control @error('grantor') is-invalid is-filled @enderror" />
-                                            <label for="modalThankgrantor">الجهة المانحة للشكر</label>
-                                        </div>
-                                        @error('grantor')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='grantor' id="modalThanksgrantor" class="form-select @error('grantor') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @foreach ($department as $departmen)
+                                                <option value="{{ $departmen->id }}">{{ $departmen->department_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="modalThanksgrantor">الجهة المانحة للشكر</label>
                                     </div>
+                                    @error('grantor')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+
+
                                 </div>
                                 <Div Class="row">
                                     <div class="mb-3 col">

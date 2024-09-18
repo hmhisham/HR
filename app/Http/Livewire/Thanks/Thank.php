@@ -22,13 +22,13 @@ class Thank extends Component
     public $search = '';
     public $workers = [];
     public $department= [];
-    public $worker,$thank, $calculator_number, $get_departmen, $full_name;
+    public $worker,$thank, $calculator_number, $get_departmen, $full_name  ;
     public $selectedWorker = null;
 
 
     protected $listeners = [
         'SelectWorker',
-        // 'SelectGrantor',
+        'SelectGrantor',
     ];
 
 
@@ -43,6 +43,17 @@ class Thank extends Component
     {
         $this->workers = Workers::all();
         $this->department = Department::all();
+    }
+
+
+    public function SelectGrantor($GrantorID)
+    {
+        $grantor = Department::find($GrantorID);
+         if ($grantor) {
+            $this->grantor = $GrantorID;
+              } else {
+            $this->grantor = null;
+        }
     }
 
 
@@ -204,7 +215,7 @@ class Thank extends Component
     {
         $Thanks = Thanks::find($this->ThankId);
         $Thanks->delete();
-        $this->reset(['user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
+        $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

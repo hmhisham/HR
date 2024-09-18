@@ -24,15 +24,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('thanks.thank')->html();
-} elseif ($_instance->childHasBeenRendered('puP5znR')) {
-    $componentId = $_instance->getRenderedChildComponentId('puP5znR');
-    $componentTag = $_instance->getRenderedChildComponentTagName('puP5znR');
+} elseif ($_instance->childHasBeenRendered('5hDqqnz')) {
+    $componentId = $_instance->getRenderedChildComponentId('5hDqqnz');
+    $componentTag = $_instance->getRenderedChildComponentTagName('5hDqqnz');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('puP5znR');
+    $_instance->preserveRenderedChild('5hDqqnz');
 } else {
     $response = \Livewire\Livewire::mount('thanks.thank');
     $html = $response->html();
-    $_instance->logRenderedChild('puP5znR', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('5hDqqnz', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -91,27 +91,27 @@ echo $html;
     /* الجهات  */
 
     $(document).ready(function() {
-    // Initialize select2 for the grantor field
-    window.initDepartmentDrop = () => {
-        $('#modalThanksgrantor').select2({
-            placeholder: 'حدد الموظف', // Set placeholder text
-            dropdownParent: $('#addthankModal') // Parent modal for dropdown
-        });
-    }
+        // Initialize select2 for the grantor field
+        window.initDepartmentDrop = () => {
+            $('#modalThanksgrantor').select2({
+                placeholder: 'حدد الموظف', // Set placeholder text
+                dropdownParent: $('#addthankModal') // Parent modal for dropdown
+            });
+        }
 
-    // Call initialization function
-    initDepartmentDrop();
-
-    // Emit change event to Livewire on selection change
-    $('#modalThanksgrantor').on('change', function(e) {
-        livewire.emit('SelectGrantor', e.target.value); // Adjust event if needed
-    });
-
-    // Reinitialize select2 when Livewire triggers 'select2' event
-    window.livewire.on('select2', () => {
+        // Call initialization function
         initDepartmentDrop();
+
+        // Emit change event to Livewire on selection change
+        $('#modalThanksgrantor').on('change', function(e) {
+            livewire.emit('SelectGrantor', e.target.value); // Adjust event if needed
+        });
+
+        // Reinitialize select2 when Livewire triggers 'select2' event
+        window.livewire.on('select2', () => {
+            initDepartmentDrop();
+        });
     });
-});
 
 
     const Toast = Swal.mixin({
