@@ -33,6 +33,7 @@ use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Penalties\PenaltiesController;
 use App\Http\Controllers\Trainings\TrainingsController;
+use App\Http\Controllers\Department\DepartmentController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
 use App\Http\Controllers\Jobleavers\JobleaversController;
 use App\Http\Controllers\Specialtys\SpecialtysController;
@@ -91,7 +92,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         // مكتب المعلومات
         Route::RESOURCE('Infooffice', InfoofficeController::class);
         //الارتباط
-        Route::  RESOURCE('Linkages', LinkagesController::class);
+        Route::RESOURCE('Linkages', LinkagesController::class);
         //القسم
         Route::RESOURCE('Sections', SectionsController::class);
         //الشعبة
@@ -117,7 +118,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         // العقود السلم الوظيفي
         Route::RESOURCE('Scaleas', ScaleasController::class);
         // سلم عقود الفنيين
-        Route::  RESOURCE('Technicians', TechniciansController::class);
+        Route::RESOURCE('Technicians', TechniciansController::class);
         //مجال التدريب
         Route::RESOURCE('Trainings', TrainingsController::class);
         //نوع الاجازة
@@ -127,7 +128,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         //نوع الخدمة
         Route::RESOURCE('Typesservices', TypesservicesController::class);
         // Route::  RESOURCE('Workers', WorkersController::class);
-
+        // الدوائر
+        Route::RESOURCE('Department', DepartmentController::class);
         // بيانات الموظف
         Route::GET('Workers', [WorkersController::class, 'index'])->name('Workers');
         Route::GET('AddWorker', [WorkersController::class, 'AddWorker'])->name('AddWorker');
@@ -147,7 +149,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         // المدربين
         Route::RESOURCE('Coaches', CoachesController::class);
         // الدورات
-        Route::  RESOURCE('Courses', CoursesController::class);
+        Route::RESOURCE('Courses', CoursesController::class);
     });
 });
 

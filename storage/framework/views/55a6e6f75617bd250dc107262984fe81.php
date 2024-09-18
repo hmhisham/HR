@@ -204,7 +204,7 @@ $container = $container ?? 'container-xxl';
                 
 
                 <li
-                    class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices') ? 'open active' : ''); ?>">
+                    class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department') ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                         <span class="menu-title">الاعدادات</span>
@@ -265,6 +265,13 @@ $container = $container ?? 'container-xxl';
                             <a href="<?php echo e(Route('Units.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>الوحدات</div>
+                            </a>
+                        </li>
+                            
+                        <li Class="menu-item <?php echo e(request()->Is('Department') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Department.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>الدوائر</div>
                             </a>
                         </li>
                         
