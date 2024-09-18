@@ -71,11 +71,11 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
 
-                                    <div class="mb-3 col">
+                                    <div class="mb-3 col-6">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='department' type="text"
-                                                id="modalEmployeedepartment" placeholder="اسم القسم"
-                                                class="form-control <?php $__errorArgs = ['department'];
+                                            <input wire:model.defer='get_departmen' type="text" id="get_departmen"
+                                                   placeholder="اسم القسم"
+                                                   class="form-control <?php $__errorArgs = ['get_departmen'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -83,20 +83,22 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                                disabled />
-                                            <label for="modalEmployeedepartment">اسم القسم </label>
+                                                   disabled />
+                                            <label for="get_departmen">اسم القسم</label>
                                         </div>
-                                        <?php $__errorArgs = ['department'];
+                                        <?php $__errorArgs = ['get_departmen'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                            <small class='text-danger inputerror'><?php echo e($message); ?></small>
                                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
+
+
                                 </div>
 
                                 <Div Class="row">

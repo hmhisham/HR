@@ -24,15 +24,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('thanks.thank')->html();
-} elseif ($_instance->childHasBeenRendered('5hDqqnz')) {
-    $componentId = $_instance->getRenderedChildComponentId('5hDqqnz');
-    $componentTag = $_instance->getRenderedChildComponentTagName('5hDqqnz');
+} elseif ($_instance->childHasBeenRendered('eQNLkav')) {
+    $componentId = $_instance->getRenderedChildComponentId('eQNLkav');
+    $componentTag = $_instance->getRenderedChildComponentTagName('eQNLkav');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('5hDqqnz');
+    $_instance->preserveRenderedChild('eQNLkav');
 } else {
     $response = \Livewire\Livewire::mount('thanks.thank');
     $html = $response->html();
-    $_instance->logRenderedChild('5hDqqnz', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('eQNLkav', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -73,20 +73,24 @@ echo $html;
 
     /* الموظفين */
     $(document).ready(function() {
-        window.initWorkerDrop = () => {
-            $('#worker').select2({
-                placeholder: 'حدد الموظف'
-                , dropdownParent: $('#addthankModal')
-            })
-        }
-        initWorkerDrop();
-        $('#worker').on('change', function(e) {
-            livewire.emit('SelectWorker', e.target.value)
+    window.initWorkerDrop = () => {
+        $('#worker').select2({
+            placeholder: 'حدد الموظف',
+            dropdownParent: $('#addthankModal')
         });
-        window.livewire.on('select2', () => {
-            initWorkerDrop();
-        });
+    };
+
+    initWorkerDrop();
+
+    $('#worker').on('change', function(e) {
+        livewire.emit('SelectWorker', e.target.value);
     });
+
+    window.livewire.on('select2', () => {
+        initWorkerDrop();
+    });
+});
+
 
     /* الجهات  */
 

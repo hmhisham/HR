@@ -47,18 +47,20 @@
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3 col">
+                                    <div class="mb-3 col-6">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='department' type="text"
-                                                id="modalEmployeedepartment" placeholder="اسم القسم"
-                                                class="form-control @error('department') is-invalid is-filled @enderror"
-                                                disabled />
-                                            <label for="modalEmployeedepartment">اسم القسم </label>
+                                            <input wire:model.defer='get_departmen' type="text" id="get_departmen"
+                                                   placeholder="اسم القسم"
+                                                   class="form-control @error('get_departmen') is-invalid is-filled @enderror"
+                                                   disabled />
+                                            <label for="get_departmen">اسم القسم</label>
                                         </div>
-                                        @error('department')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @error('get_departmen')
+                                            <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
+
+
                                 </div>
 
                                 <Div Class="row">

@@ -22,7 +22,7 @@ class Thank extends Component
     public $search = '';
     public $workers = [];
     public $department= [];
-    public $worker,$thank, $calculator_number, $get_departmen, $full_name  ;
+    public $worker,$thank, $calculator_number, $get_departmen, $full_name   ;
     public $selectedWorker = null;
 
 
@@ -57,23 +57,25 @@ class Thank extends Component
     }
 
 
-
     public function SelectWorker($workerID)
     {
-
         $worker = Workers::find($workerID);
-
 
         if ($worker) {
             $this->worker = $workerID;
             $this->calculator_number = $worker->calculator_number;
             $this->get_departmen = $worker->department;
+
+
         } else {
             $this->worker = null;
             $this->calculator_number = null;
             $this->get_departmen = null;
         }
     }
+
+
+
 
     public function render()
     {
@@ -98,7 +100,7 @@ class Thank extends Component
 
     public function AddThankModalShow()
     {
-        $this->reset(['get_departmen','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
+       $this->reset(['get_departmen','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('ThankModalShow');
     }
@@ -150,9 +152,6 @@ class Thank extends Component
         $this->ThankId = $this->Thank->id;
         $this->user_id = $this->Thank->user_id;
 
-        // جلب بيانات العمالة باستخدام العلاقة بين Thanks و Workers
-
-        // تعيين القيم في المتغيرات الخاصة بك
         $this->grantor = $this->Thank->grantor;
         $this->ministerial_order_number = $this->Thank->ministerial_order_number;
         $this->ministerial_order_date = $this->Thank->ministerial_order_date;
@@ -165,8 +164,8 @@ class Thank extends Component
             $this->full_name = $worker->full_name;
             $this->get_departmen = $worker->get_departmen;
         } else {
-            $this->full_name = 'N/A';
-            $this->get_departmen = 'N/A';
+            $this->full_name = '';
+            $this->get_departmen = '';
         }
     }
 
@@ -181,8 +180,6 @@ class Thank extends Component
             'ministerial_order_date' => 'required:thanks',
             'reason' => 'required:thanks',
             'months_of_service' => 'required:thanks',
-
-
         ], [
             'user_id.required' => 'حقل الاسم مطلوب',
             'grantor.required' => 'حقل الاسم مطلوب',
@@ -190,7 +187,6 @@ class Thank extends Component
             'ministerial_order_date.required' => 'حقل الاسم مطلوب',
             'reason.required' => 'حقل الاسم مطلوب',
             'months_of_service.required' => 'حقل الاسم مطلوب',
-
         ]);
 
         $Thanks = Thanks::find($this->ThankId);

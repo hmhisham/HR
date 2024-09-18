@@ -43,13 +43,17 @@
 
                                 <div class="mb-3 col-6">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='get_departmen' type="text" id="modalEmployeeget_departmen" placeholder="اسم القسم" class="form-control @error('department') is-invalid is-filled @enderror" disabled />
-                                        <label for="modalEmployeeget_departmen">اسم القسم  </label>
+                                        <input wire:model.defer='get_departmen' type="text" id="modalEmployeeget_departmen"
+                                            placeholder="اسم القسم"
+                                            class="form-control @error('get_departmen') is-invalid is-filled @enderror"
+                                            disabled />
+                                        <label for="modalEmployeeget_departmen">اسم القسم </label>
                                     </div>
                                     @error('get_departmen')
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+
                             </div>
                             <div Class="row">
 

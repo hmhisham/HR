@@ -60,20 +60,24 @@
 
     /* الموظفين */
     $(document).ready(function() {
-        window.initWorkerDrop = () => {
-            $('#worker').select2({
-                placeholder: 'حدد الموظف'
-                , dropdownParent: $('#addthankModal')
-            })
-        }
-        initWorkerDrop();
-        $('#worker').on('change', function(e) {
-            livewire.emit('SelectWorker', e.target.value)
+    window.initWorkerDrop = () => {
+        $('#worker').select2({
+            placeholder: 'حدد الموظف',
+            dropdownParent: $('#addthankModal')
         });
-        window.livewire.on('select2', () => {
-            initWorkerDrop();
-        });
+    };
+
+    initWorkerDrop();
+
+    $('#worker').on('change', function(e) {
+        livewire.emit('SelectWorker', e.target.value);
     });
+
+    window.livewire.on('select2', () => {
+        initWorkerDrop();
+    });
+});
+
 
     /* الجهات  */
 

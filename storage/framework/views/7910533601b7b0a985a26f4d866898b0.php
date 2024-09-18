@@ -71,15 +71,18 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="mb-3 col-6">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='get_departmen' type="text" id="modalEmployeeget_departmen" placeholder="اسم القسم" class="form-control <?php $__errorArgs = ['department'];
+                                        <input wire:model.defer='get_departmen' type="text" id="modalEmployeeget_departmen"
+                                            placeholder="اسم القسم"
+                                            class="form-control <?php $__errorArgs = ['get_departmen'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" disabled />
-                                        <label for="modalEmployeeget_departmen">اسم القسم  </label>
+unset($__errorArgs, $__bag); ?>"
+                                            disabled />
+                                        <label for="modalEmployeeget_departmen">اسم القسم </label>
                                     </div>
                                     <?php $__errorArgs = ['get_departmen'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -92,6 +95,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
+
                             </div>
                             <div Class="row">
 

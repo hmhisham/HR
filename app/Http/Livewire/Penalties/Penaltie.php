@@ -7,6 +7,7 @@ use Livewire\WithPagination;
 use App\Models\Workers\Workers;
 use App\Models\Penalties\Penalties;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Department\Department;
 
 class Penaltie extends Component
 {
@@ -17,15 +18,16 @@ class Penaltie extends Component
     public $PenaltieSearch, $Penaltie, $PenaltieId;
     public $user_id, $p_reason, $p_issuing_authority, $p_ministerial_order_number, $p_ministerial_order_date, $p_penalty_type, $p_notes;
 
-
+    public $department= [];
     public $search = '';
     public $workers = [];
-    public $worker, $calculator_number, $department, $full_name;
+    public $worker, $calculator_number, $get_departmen, $full_name;
     public $selectedWorker = null;
 
 
     protected $listeners = [
         'SelectWorker',
+        'Selectauthority',
     ];
 
     public function hydrate()
@@ -37,7 +39,19 @@ class Penaltie extends Component
     public function mount()
     {
         $this->workers = Workers::all();
+        $this->department = Department::all();
     }
+
+    public function Selectauthority($p_issuing_authorityID)
+    {
+        $p_issuing_authority = Department::find($p_issuing_authorityID);
+         if ($p_issuing_authority) {
+            $this->p_issuing_authority = $p_issuing_authorityID;
+              } else {
+            $this->p_issuing_authority = null;
+        }
+    }
+
 
     public function SelectWorker($workerID)
     {
@@ -48,13 +62,14 @@ class Penaltie extends Component
         if ($worker) {
             $this->worker = $workerID;
             $this->calculator_number = $worker->calculator_number;
-            $this->department = $worker->department;
+            $this->get_departmen = $worker->department;
         } else {
             $this->worker = null;
             $this->calculator_number = null;
-            $this->department = null;
+            $this->get_departmen = null;
         }
     }
+    
 
 
     public function render()
@@ -81,7 +96,7 @@ class Penaltie extends Component
 
     public function AddPenaltieModalShow()
     {
-        $this->reset(['department','user_id','calculator_number','p_reason','p_issuing_authority','p_ministerial_order_number','p_ministerial_order_date','p_penalty_type','p_notes']);
+        $this->reset(['get_departmen','user_id','calculator_number','p_reason','p_issuing_authority','p_ministerial_order_number','p_ministerial_order_date','p_penalty_type','p_notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('PenaltieModalShow');
     }
@@ -125,7 +140,7 @@ class Penaltie extends Component
             'p_penalty_type' => $this->p_penalty_type,
             'p_notes' => $this->p_notes,
         ]);
-        $this->reset(['department','user_id','calculator_number','p_reason','p_issuing_authority','p_ministerial_order_number','p_ministerial_order_date','p_penalty_type','p_notes']);
+        $this->reset(['get_departmen','user_id','calculator_number','p_reason','p_issuing_authority','p_ministerial_order_number','p_ministerial_order_date','p_penalty_type','p_notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -148,11 +163,11 @@ class Penaltie extends Component
         $this->p_notes = $this->Penaltie->p_notes;
         if ($worker) {
             $this->full_name = $worker->full_name;
-            $this->department = $worker->department;
+            $this->get_departmen = $worker->get_departmen;
         } else {
 
             $this->full_name = 'N/A';
-            $this->department = 'N/A';
+            $this->get_departmen = 'N/A';
         }
     }
 
@@ -187,7 +202,7 @@ class Penaltie extends Component
             'p_penalty_type' => $this->p_penalty_type,
             'p_notes' => $this->p_notes,
         ]);
-        $this->reset(['department','user_id','calculator_number','p_reason','p_issuing_authority','p_ministerial_order_number','p_ministerial_order_date','p_penalty_type','p_notes']);
+        $this->reset(['get_departmen','user_id','calculator_number','p_reason','p_issuing_authority','p_ministerial_order_number','p_ministerial_order_date','p_penalty_type','p_notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
