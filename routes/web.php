@@ -9,15 +9,16 @@ use App\Http\Controllers\Areas\AreasController;
 
 use App\Http\Controllers\Units\UnitsController;
 
+use App\Http\Controllers\Wives\WivesController;
 use App\Http\Controllers\Branch\BranchController;
+
 use App\Http\Controllers\Grades\GradesController;
 
 use App\Http\Controllers\Thanks\ThanksController;
-
 use App\Http\Controllers\Coaches\CoachesController;
 use App\Http\Controllers\Courses\CoursesController;
-use App\Http\Controllers\Scaleas\ScaleasController;
 
+use App\Http\Controllers\Scaleas\ScaleasController;
 use App\Http\Controllers\Scalems\ScalemsController;
 use App\Http\Controllers\Workers\WorkersController;
 use App\Http\Controllers\Certific\CertificController;
@@ -26,8 +27,8 @@ use App\Http\Controllers\Holidays\HolidaysController;
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\Linkages\LinkagesController;
 use App\Http\Controllers\Precises\PrecisesController;
-use App\Http\Controllers\Sections\SectionsController;
 
+use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
@@ -150,6 +151,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Coaches', CoachesController::class);
         // الدورات
         Route::RESOURCE('Courses', CoursesController::class);
+        // الزوجة
+        Route::RESOURCE('Wives', WivesController::class);
     });
 });
 

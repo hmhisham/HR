@@ -204,7 +204,7 @@ $container = $container ?? 'container-xxl';
                 
 
                 <li
-                    class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department') ? 'open active' : ''); ?>">
+                    class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department',) ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                         <span class="menu-title">الاعدادات</span>
@@ -345,6 +345,12 @@ $container = $container ?? 'container-xxl';
                             <a href="<?php echo e(Route('Trainings.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>مجال التدريب</div>
+                            </a>
+                        </li>
+                        <li Class="menu-item <?php echo e(request()->Is('Wives') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Wives.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>بيانات الزوجة</div>
                             </a>
                         </li>
 

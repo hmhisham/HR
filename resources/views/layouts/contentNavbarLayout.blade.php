@@ -203,7 +203,7 @@ $container = $container ?? 'container-xxl';
                 {{-- الإعدادات --}}
 
                 <li
-                    class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department') ? 'open active' : '' }}">
+                    class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department',) ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                         <span class="menu-title">الاعدادات</span>
@@ -344,6 +344,12 @@ $container = $container ?? 'container-xxl';
                             <a href="{{ Route('Trainings.index') }}" Class="menu-link">
                                 <i Class=''></i>
                                 <div>مجال التدريب</div>
+                            </a>
+                        </li>
+                        <li Class="menu-item {{ request()->Is('Wives') ? 'active' : '' }}">
+                            <a href="{{ Route('Wives.index') }}" Class="menu-link">
+                                <i Class=''></i>
+                                <div>بيانات الزوجة</div>
                             </a>
                         </li>
 
