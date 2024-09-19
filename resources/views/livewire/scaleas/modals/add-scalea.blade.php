@@ -47,7 +47,7 @@
                             </div>
                             <div Class="row">
                                 <div class="mb-3 col">
-                                   <div class="form-floating form-floating-outline">
+                                    <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='scaleas_salary_grade'
                                             id="modalscaleasscaleas_salary_grade"
                                             class="form-select @error('scaleas_salary_grade') is-invalid is-filled @enderror">

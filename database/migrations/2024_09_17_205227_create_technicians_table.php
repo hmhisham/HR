@@ -21,13 +21,13 @@ return new class extends Migration
                   ->comment('درجة الراتب'); // درجة الراتب
             $table->unsignedTinyInteger('technicians_salary_stage')
                   ->comment('مرحلة الراتب'); // مرحلة الراتب
-            $table->decimal('technicians_amount')
+            $table->integer('technicians_amount')
                   ->comment('مقدار العلاوة'); // مقدار العلاوة
-            $table->decimal('technicians_salary')
+            $table->integer('technicians_salary')
                   ->comment('الراتب'); // الراتب
             $table->unsignedInteger('technicians_minimum_period')
                   ->comment('المدة الأصغرية بالأشهر'); // المدة الأصغرية بالأشهر
-            $table->decimal('technicians_previous_salary')
+            $table->integer('technicians_previous_salary')
                   ->comment('الراتب السابق'); // الراتب السابق
 
             $table->timestamps();

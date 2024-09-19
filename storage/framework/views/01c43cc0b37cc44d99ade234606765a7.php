@@ -207,7 +207,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-                                    
                                 </div>
                                 <div Class="row">
                                     <div class="mb-3 col">
@@ -312,4 +311,4 @@ unset($__errorArgs, $__bag); ?>
     </div>
 </div>
 <!--/ Edite Technician Modal -->
-<?php /**PATH D:\Laravel 2024\HR\HR\resources\views/livewire/technicians/modals/edit-technician.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/technicians/modals/edit-technician.blade.php ENDPATH**/ ?>
