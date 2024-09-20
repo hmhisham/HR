@@ -16,7 +16,7 @@ class Wive extends Component
     public $Wives = [];
     public $WiveSearch, $Wive, $WiveId;
     public $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name, $marital_status, $occupational_status, $organization_name, $is_married, $national_id;
-
+    public $EmpStatus ;
     protected $listeners = [
         'SelectOrganizationName',
     ];
@@ -30,9 +30,6 @@ class Wive extends Component
     {
         $this->department = Department::all();
     }
-
-
-  
 
     public function SelectOrganizationName($OrganizationNameID)
     {
@@ -81,6 +78,17 @@ class Wive extends Component
         // $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('WiveModalShow');
+    }
+
+    public function getEmpStatus($Emp)
+    {
+        if($Emp == 'موظفة' )
+        {
+            $this->EmpStatus = '';
+        }else{
+            $this->EmpStatus = 'disabled';
+        }
+
     }
 
 
