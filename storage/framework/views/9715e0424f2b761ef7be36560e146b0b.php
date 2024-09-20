@@ -17,23 +17,51 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='governorate_number' type="text"
                                             id="modalGovernoratesgovernorate_number" placeholder="رقم المحافظة"
-                                            class="form-control @error('governorate_number') is-invalid is-filled @enderror" onkeypress="return restrictAlphabets(event)"/>
+                                            class="form-control <?php $__errorArgs = ['governorate_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" onkeypress="return restrictAlphabets(event)"/>
                                         <label for="modalGovernoratesgovernorate_number">رقم المحافظة</label>
                                     </div>
-                                    @error('governorate_number')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
+                                    <?php $__errorArgs = ['governorate_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='governorate_name' type="text"
                                             id="modalGovernoratesgovernorate_name" placeholder="اسم المحافظة"
-                                            class="form-control @error('governorate_name') is-invalid is-filled @enderror" />
+                                            class="form-control <?php $__errorArgs = ['governorate_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
                                         <label for="modalGovernoratesgovernorate_name">اسم المحافظة</label>
                                     </div>
-                                    @error('governorate_name')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
+                                    <?php $__errorArgs = ['governorate_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
 
                             </div>
@@ -61,3 +89,4 @@
     }
 </script>
 <!--/ Add Governorate Modal -->
+<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/governorates/modals/add-governorate.blade.php ENDPATH**/ ?>

@@ -75,79 +75,66 @@ $container = $container ?? 'container-xxl';
                 </li>
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employees')): ?>
-                <li class="menu-item <?php echo e(request()->is('Workers','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays') ? 'open active' : ''); ?>">
+                <li class="menu-item <?php echo e(request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays') ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                         <span class="menu-title">قسم الموارد البشرية</span>
                     </a>
 
-
                     <ul class="menu-sub">
                         <li Class="menu-item <?php echo e(request()->Is('Workers') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Workers')); ?>" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>المعلومات الوظيفية</div>
+                                <div>المعلومات الوظيفية</div>
                             </a>
                         </li>
-                    </ul>
+                        <li Class="menu-item <?php echo e(request()->Is('AddWorker') ? 'active' : 'hidden'); ?>">
+                            <a href="<?php echo e(Route('AddWorker')); ?>" Class="menu-link">
+                                <div>إضافة موظف</div>
+                            </a>
+                        </li>
 
-
-                    <ul class="menu-sub">
                         <li Class="menu-item <?php echo e(request()->Is('Thanks') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Thanks.index')); ?>" Class="menu-link">
                                 <div>الشكر و التقدير</div>
                             </a>
                         </li>
-                    </ul>
-                    <ul class="menu-sub">
-                    <li Class="menu-item <?php echo e(request()->Is('Penalties') ? 'active' : ''); ?>">
-                        <a href = "<?php echo e(Route('Penalties.index')); ?>" Class="menu-link">
-                        <div>العقوبات</div>
-                       </a>
-                      </li>
-                    </ul>
-                    <ul class="menu-sub">
+
+                        <li Class="menu-item <?php echo e(request()->Is('Penalties') ? 'active' : ''); ?>">
+                            <a href = "<?php echo e(Route('Penalties.index')); ?>" Class="menu-link">
+                                <div>العقوبات</div>
+                            </a>
+                        </li>
+
                         <li Class="menu-item <?php echo e(request()->Is('Jobleavers') ? 'active' : ''); ?>">
                             <a href = "<?php echo e(Route('Jobleavers.index')); ?>" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>تاركي العمل</div>
+                                <div>تاركي العمل</div>
                             </a>
                         </li>
-                    </ul>
 
+                        <li Class="menu-item <?php echo e(request()->Is('Dispatch') ? 'active' : ''); ?>">
+                            <a href = "<?php echo e(Route('Dispatch.index')); ?>" Class="menu-link">
+                                <div>الأيفادات</div>
+                            </a>
+                        </li>
 
-                    <ul class="menu-sub">
-                    <li Class="menu-item <?php echo e(request()->Is('Dispatch') ? 'active' : ''); ?>">
-                        <a href = "<?php echo e(Route('Dispatch.index')); ?>" Class="menu-link">
-                         <div>الأيفادات</div>
-                       </a>
-                      </li>
-                    </ul>
-                    <ul class="menu-sub">
                         <li Class="menu-item <?php echo e(request()->Is('Certific') ? 'active' : ''); ?>">
                             <a href = "<?php echo e(Route('Certific.index')); ?>" Class="menu-link">
-
-                             <div>الشهادات</div>
-                           </a>
-                          </li>
-                    </ul>
-                    <ul class="menu-sub">
-                    <li Class="menu-item <?php echo e(request()->Is('Holidays') ? 'active' : ''); ?>">
-                        <a href = "<?php echo e(Route('Holidays.index')); ?>" Class="menu-link">
-                         <div>الاجازات</div>
-                       </a>
-                      </li>
-                    </ul>
-                    <ul class="menu-sub">
-                        <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
-                            <a href="" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>العلاوات</div>
+                                <div>الشهادات</div>
                             </a>
                         </li>
-                    </ul>
 
-                    <ul class="menu-sub">
+                        <li Class="menu-item <?php echo e(request()->Is('Holidays') ? 'active' : ''); ?>">
+                            <a href = "<?php echo e(Route('Holidays.index')); ?>" Class="menu-link">
+                                <div>الاجازات</div>
+                            </a>
+                        </li>
+
+                        <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
+                            <a href="" Class="menu-link">
+                                <div>العلاوات</div>
+                            </a>
+                        </li>
+
                         <li Class="menu-item <?php echo e(request()->Is('EmpInfoBank') ? 'active' : ''); ?>">
                             <a href="" Class="menu-link">
                                 <i Class=''></i>
@@ -155,8 +142,6 @@ $container = $container ?? 'container-xxl';
                             </a>
                         </li>
                     </ul>
-
-
                 </li>
                 <?php endif; ?>
 

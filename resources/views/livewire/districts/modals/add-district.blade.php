@@ -4,15 +4,12 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">إضافة منطقة جديدة</h3>
+                    <h3 class="pb-1 mb-2">إضافة قضاء جديد</h3>
                     <p>نافذة الإضافة</p>
                 </div>
                 <hr class="mt-n2">
                 <form id="adddistrictModalForm" autocomplete="off">
                     <div class="row">
-
-
-
                         <div class="mb-3 col flex-fill {{ $governorates }}">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='governorate_id' id="modalDistrictsgovernorate_id"
@@ -23,17 +20,12 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                <label for="modalGovernoratesgovernorate_id">رقم المحافظة</label>
+                                <label for="modalGovernoratesgovernorate_id">اسم المحافظة</label>
                             </div>
                             @error('governorate_id')
                                 <small class='text-danger inputerror'> {{ $message }} </small>
                             @enderror
                         </div>
-
-
-
-
-
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="mb-3 col">
@@ -41,12 +33,13 @@
                                         القضاء</label>
                                     <input wire:model.defer='district_number' type="text"
                                         id="modalDistrictsdistrict_number" placeholder="رقم القضاء"
-                                        class="form-control @error('district_number') is-invalid is-filled @enderror" />
+                                        class="form-control @error('district_number') is-invalid is-filled @enderror"
+                                        onkeypress="return restrictAlphabets(event)" />
                                     @error('district_number')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                                
+
                                 <div class="mb-3 col">
                                     <label for="modalDistrictsdistrict_name" class="form-label">اسم
                                         القضاء</label>
@@ -72,3 +65,12 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>

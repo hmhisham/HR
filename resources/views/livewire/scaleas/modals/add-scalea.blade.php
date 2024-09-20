@@ -107,7 +107,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='scaleas_salary' type="text"
                                             id="modalscaleasscaleas_salary" placeholder="الراتب"
-                                            class="form-control @error('scaleas_salary') is-invalid is-filled @enderror" />
+                                            class="form-control @error('scaleas_salary') is-invalid is-filled @enderror"
+                                            onkeypress="return restrictAlphabets(event)" />
                                         <label for="modalscaleasscaleas_salary">الراتب</label>
                                     </div>
                                     @error('scaleas_salary')
@@ -137,7 +138,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='scaleas_previous_salary' type="text"
                                             id="modalscaleasscaleas_previous_salary" placeholder="الراتب السابق"
-                                            class="form-control @error('scaleas_previous_salary') is-invalid is-filled @enderror" />
+                                            class="form-control @error('scaleas_previous_salary') is-invalid is-filled @enderror"
+                                            onkeypress="return restrictAlphabets(event)" />
                                         <label for="modalscaleasscaleas_previous_salary">الراتب السابق</label>
                                     </div>
                                     @error('scaleas_previous_salary')
@@ -160,4 +162,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
 <!--/ Add Scalea Modal -->

@@ -1,30 +1,28 @@
-<!-- Edite Grade Modal -->
-<div wire:ignore.self class="modal fade" id="editgradeModal" tabindex="-1" aria-hidden="true">
+<!-- Edite Governorate Modal -->
+<div wire:ignore.self class="modal fade" id="editgovernorateModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل</h3>
+                    <h3 class="pb-1 mb-2">تعديل المحافظة</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetGrade" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="GetGovernorate"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-
                 <div wire:loading.remove>
-                    <form id="editGradeModalForm" autocomplete="off">
+                    <form id="editGovernorateModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
-                                '<Div Class="row">
-
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='grades_name' type="text"
-                                                id="modalGradegrades_name" placeholder="الدرجة"
-                                                class="form-control <?php $__errorArgs = ['grades_name'];
+                                            <input wire:model.defer='governorate_number' type="text"
+                                                id="modalGovernorategovernorate_number" placeholder="رقم المحافظة"
+                                                class="form-control <?php $__errorArgs = ['governorate_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -33,9 +31,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                                                 onkeypress="return restrictAlphabets(event)" />
-                                            <label for="modalGradegrades_name">الدرجة</label>
+                                            <label for="modalGovernorategovernorate_number">رقم المحافظة</label>
                                         </div>
-                                        <?php $__errorArgs = ['grades_name'];
+                                        <?php $__errorArgs = ['governorate_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -46,7 +44,31 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='governorate_name' type="text"
+                                                id="modalGovernorategovernorate_name" placeholder="اسم المحافظة"
+                                                class="form-control <?php $__errorArgs = ['governorate_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalGovernorategovernorate_name">اسم المحافظة</label>
+                                        </div>
+                                        <?php $__errorArgs = ['governorate_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -72,5 +94,5 @@ unset($__errorArgs, $__bag); ?>
             return false;
     }
 </script>
-<!--/ Edite Grade Modal -->
-<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/grades/modals/edit-grade.blade.php ENDPATH**/ ?>
+<!--/ Edite Governorate Modal -->
+<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/governorates/modals/edit-governorate.blade.php ENDPATH**/ ?>

@@ -17,9 +17,10 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='grades_name' type="text" id="modalGradesgrades_name"
-                                            placeholder="اسم الدرجة"
-                                            class="form-control @error('grades_name') is-invalid is-filled @enderror" />
-                                        <label for="modalGradesgrades_name">اسم الدرجة</label>
+                                            placeholder="الدرجة"
+                                            class="form-control @error('grades_name') is-invalid is-filled @enderror"
+                                            onkeypress="return restrictAlphabets(event)" />
+                                        <label for="modalGradesgrades_name">الدرجة</label>
                                     </div>
                                     @error('grades_name')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
@@ -41,4 +42,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
 <!--/ Add Grade Modal -->

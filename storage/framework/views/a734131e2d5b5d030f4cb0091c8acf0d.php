@@ -17,7 +17,7 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='grades_name' type="text" id="modalGradesgrades_name"
-                                            placeholder="اسم الدرجة"
+                                            placeholder="الدرجة"
                                             class="form-control <?php $__errorArgs = ['grades_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -25,8 +25,9 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalGradesgrades_name">اسم الدرجة</label>
+unset($__errorArgs, $__bag); ?>"
+                                            onkeypress="return restrictAlphabets(event)" />
+                                        <label for="modalGradesgrades_name">الدرجة</label>
                                     </div>
                                     <?php $__errorArgs = ['grades_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -55,5 +56,14 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
 <!--/ Add Grade Modal -->
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/grades/modals/add-grade.blade.php ENDPATH**/ ?>

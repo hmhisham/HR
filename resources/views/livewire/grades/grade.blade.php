@@ -22,7 +22,7 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th Class="text-center">اسم الدرجة</th>
+                            <th Class="text-center">الدرجة</th>
                             <th Class="text-center">العملية</th>
 
                         </tr>

@@ -192,7 +192,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
+unset($__errorArgs, $__bag); ?>"
+                                                onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalscaleasscaleas_salary">الراتب</label>
                                         </div>
                                         <?php $__errorArgs = ['scaleas_salary'];
@@ -250,7 +251,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
+unset($__errorArgs, $__bag); ?>"
+                                                onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalscaleasscaleas_previous_salary">الراتب السابق</label>
                                         </div>
                                         <?php $__errorArgs = ['scaleas_previous_salary'];
@@ -281,5 +283,14 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
 <!--/ Edite Scalea Modal -->
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/scaleas/modals/edit-scalea.blade.php ENDPATH**/ ?>
