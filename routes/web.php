@@ -1,23 +1,14 @@
 <?php
 
-use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EMP\EMPController;
-
 use App\Http\Controllers\Areas\AreasController;
-
-
 use App\Http\Controllers\Units\UnitsController;
-
 use App\Http\Controllers\Branch\BranchController;
 use App\Http\Controllers\Grades\GradesController;
-
 use App\Http\Controllers\Thanks\ThanksController;
-
 use App\Http\Controllers\Coaches\CoachesController;
 use App\Http\Controllers\Courses\CoursesController;
 use App\Http\Controllers\Scaleas\ScaleasController;
-
 use App\Http\Controllers\Scalems\ScalemsController;
 use App\Http\Controllers\Workers\WorkersController;
 use App\Http\Controllers\Certific\CertificController;
@@ -27,7 +18,6 @@ use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\Linkages\LinkagesController;
 use App\Http\Controllers\Precises\PrecisesController;
 use App\Http\Controllers\Sections\SectionsController;
-
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
@@ -60,10 +50,8 @@ use App\Http\Controllers\Specializationclassification\Specializationclassificati
 |
 */
 
-// Dashboard
-
-
 Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group(function () {
+    // Dashboard
     Route::GET('/', [DashboardController::class, 'index'])->name('Dashboard');
 
     // Middleware Owners
@@ -78,74 +66,72 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Administrators-Accounts', AdministratorsAccountsController::class);
         Route::RESOURCE('Users-Accounts', UsersAccountsController::class);
         Route::RESOURCE('Customers-Accounts', CustomersAccountsController::class);
-
-
-
-        // المحافظات I
-        Route::RESOURCE('Governorates', GovernoratesController::class);
-        // الاقضية I
-        Route::RESOURCE('Districts', DistrictsController::class);
-        // النواحي
-        Route::RESOURCE('Areas', AreasController::class);
-        // مكتب المعلومات
-        Route::RESOURCE('Infooffice', InfoofficeController::class);
-        //الارتباط
-        Route::  RESOURCE('Linkages', LinkagesController::class);
-        //القسم
-        Route::RESOURCE('Sections', SectionsController::class);
-        //الشعبة
-        Route::RESOURCE('Branch', BranchController::class);
-        //الوحدات
-        Route::RESOURCE('Units', UnitsController::class);
-        //الشهادة
-        Route::RESOURCE('Certificates', CertificatesController::class);
-        //التخرج
-        Route::RESOURCE('Graduations', GraduationsController::class);
-        //الاختصاص
-        Route::RESOURCE('Specializations', SpecializationsController::class);
-        //التخصص العام
-        Route::RESOURCE('Specialtys', SpecialtysController::class);
-        //التخصص الدقيق
-        Route::RESOURCE('Precises', PrecisesController::class);
-        //الدرجة
-        Route::RESOURCE('Grades', GradesController::class);
-        //العنوان الوظيفي
-        Route::RESOURCE('Jobtitles', JobtitlesController::class);
-        // الملاك السلم الوظيفي
-        Route::RESOURCE('Scalems', ScalemsController::class);
-        // العقود السلم الوظيفي
-        Route::RESOURCE('Scaleas', ScaleasController::class);
-        //مجال التدريب
-        Route::RESOURCE('Trainings', TrainingsController::class);
-        //نوع الاجازة
-        Route::RESOURCE('Typeholidays', TypeholidaysController::class);
-        //تصنيف التخصص
-        Route::RESOURCE('Specializationclassification', SpecializationclassificationController::class);
-        //نوع الخدمة
-        Route::RESOURCE('Typesservices', TypesservicesController::class);
-        // Route::  RESOURCE('Workers', WorkersController::class);
-
-        // بيانات الموظف
-        Route::GET('Workers', [WorkersController::class, 'index'])->name('Workers');
-        Route::GET('AddWorker', [WorkersController::class, 'AddWorker'])->name('AddWorker');
-
-        // التشكرات
-        Route::RESOURCE('Thanks', ThanksController::class);
-        // عقوبات
-        Route::RESOURCE('Penalties', PenaltiesController::class);
-        // تاركي العمل
-        Route::RESOURCE('Jobleavers', JobleaversController::class);
-        // الايفادات
-        Route::RESOURCE('Dispatch', DispatchController::class);
-        // الشهادات
-        Route::RESOURCE('Certific', CertificController::class);
-        // الاجازات
-        Route::RESOURCE('Holidays', HolidaysController::class);
-        // المدربين
-        Route::RESOURCE('Coaches', CoachesController::class);
-        // الدورات
-        Route::  RESOURCE('Courses', CoursesController::class);
     });
+
+    // المحافظات I
+    Route::RESOURCE('Governorates', GovernoratesController::class);
+    // الاقضية I
+    Route::RESOURCE('Districts', DistrictsController::class);
+    // النواحي
+    Route::RESOURCE('Areas', AreasController::class);
+    // مكتب المعلومات
+    Route::RESOURCE('Infooffice', InfoofficeController::class);
+    //الارتباط
+    Route::  RESOURCE('Linkages', LinkagesController::class);
+    //القسم
+    Route::RESOURCE('Sections', SectionsController::class);
+    //الشعبة
+    Route::RESOURCE('Branch', BranchController::class);
+    //الوحدات
+    Route::RESOURCE('Units', UnitsController::class);
+    //الشهادة
+    Route::RESOURCE('Certificates', CertificatesController::class);
+    //التخرج
+    Route::RESOURCE('Graduations', GraduationsController::class);
+    //الاختصاص
+    Route::RESOURCE('Specializations', SpecializationsController::class);
+    //التخصص العام
+    Route::RESOURCE('Specialtys', SpecialtysController::class);
+    //التخصص الدقيق
+    Route::RESOURCE('Precises', PrecisesController::class);
+    //الدرجة
+    Route::RESOURCE('Grades', GradesController::class);
+    //العنوان الوظيفي
+    Route::RESOURCE('Jobtitles', JobtitlesController::class);
+    // الملاك السلم الوظيفي
+    Route::RESOURCE('Scalems', ScalemsController::class);
+    // العقود السلم الوظيفي
+    Route::RESOURCE('Scaleas', ScaleasController::class);
+    //مجال التدريب
+    Route::RESOURCE('Trainings', TrainingsController::class);
+    //نوع الاجازة
+    Route::RESOURCE('Typeholidays', TypeholidaysController::class);
+    //تصنيف التخصص
+    Route::RESOURCE('Specializationclassification', SpecializationclassificationController::class);
+    //نوع الخدمة
+    Route::RESOURCE('Typesservices', TypesservicesController::class);
+    // Route::  RESOURCE('Workers', WorkersController::class);
+
+    // بيانات الموظف
+    Route::GET('Workers', [WorkersController::class, 'index'])->name('Workers');
+    Route::GET('AddWorker', [WorkersController::class, 'AddWorker'])->name('AddWorker');
+
+    // التشكرات
+    Route::RESOURCE('Thanks', ThanksController::class);
+    // عقوبات
+    Route::RESOURCE('Penalties', PenaltiesController::class);
+    // تاركي العمل
+    Route::RESOURCE('Jobleavers', JobleaversController::class);
+    // الايفادات
+    Route::RESOURCE('Dispatch', DispatchController::class);
+    // الشهادات
+    Route::RESOURCE('Certific', CertificController::class);
+    // الاجازات
+    Route::RESOURCE('Holidays', HolidaysController::class);
+    // المدربين
+    Route::RESOURCE('Coaches', CoachesController::class);
+    // الدورات
+    Route::  RESOURCE('Courses', CoursesController::class);
 });
 
 // locale
