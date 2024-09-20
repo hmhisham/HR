@@ -55,10 +55,15 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='scaleas_salary_grade' type="text"
-                                                id="modalscaleasscaleas_salary_grade" placeholder="درجة الراتب"
-                                                class="form-control @error('scaleas_salary_grade') is-invalid is-filled @enderror" />
-                                            <label for="modalscaleasscaleas_salary_grade">درجة الراتب</label>
+                                            <select wire:model.defer='scaleas_salary_grade'
+                                                id="modalscaleasscaleas_salary_grade"
+                                                class="form-select @error('scaleas_salary_grade') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                @for ($i = 1; $i <= 6; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                            <label for="modalscaleasscaleas_salary_grade">مرحلة الراتب</label>
                                         </div>
                                         @error('scaleas_salary_grade')
                                             <small class='text-danger inputerror'> {{ $message }} </small>

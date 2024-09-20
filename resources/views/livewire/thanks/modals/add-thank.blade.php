@@ -43,26 +43,39 @@
 
                                 <div class="mb-3 col-6">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='department' type="text" id="modalEmployeedepartment" placeholder="اسم القسم" class="form-control @error('department') is-invalid is-filled @enderror" disabled />
-                                        <label for="modalEmployeedepartment">اسم القسم  </label>
+                                        <input wire:model.defer='get_departmen' type="text" id="modalEmployeeget_departmen"
+                                            placeholder="اسم القسم"
+                                            class="form-control @error('get_departmen') is-invalid is-filled @enderror"
+                                            disabled />
+                                        <label for="modalEmployeeget_departmen">اسم القسم </label>
                                     </div>
-                                    @error('department')
+                                    @error('get_departmen')
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+
                             </div>
                             <div Class="row">
+
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='grantor' type="text" id="modalThanksgrantor"
-                                            placeholder="الجهة المانحة للشكر"
-                                            class="form-control @error('grantor') is-invalid is-filled @enderror" />
+                                        <select wire:model.defer='grantor' id="modalThanksgrantor" class="form-select @error('grantor') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @foreach ($department as $departmen)
+                                                <option value="{{ $departmen->id }}">{{ $departmen->department_name }}</option>
+                                            @endforeach
+                                        </select>
                                         <label for="modalThanksgrantor">الجهة المانحة للشكر</label>
                                     </div>
                                     @error('grantor')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+
+
+
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='reason' type="text" id="modalThanksreason"

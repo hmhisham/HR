@@ -3,6 +3,7 @@
 namespace App\Models\Units;
 
 use App\Models\Branch\Branch;
+use App\Models\Sections\Sections;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -16,5 +17,11 @@ class Units extends Model
     {
         return $this->belongsTo(Branch::class, 'branch_id' );
     }
+
+    Public function Getsection()
+    {
+        return $this->belongsTo(Sections::class, 'sections_id' );
+    }
+
 
 }

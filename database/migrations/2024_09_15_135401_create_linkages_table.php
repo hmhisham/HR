@@ -9,13 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // public function up(): void
+    // {
+    //     Schema::create('linkages', function (Blueprint $table) {
+    //         $table->id();
+    //         $table->string('Linkages_name');
+    //         $table->timestamps();
+    // });
+    // }
     public function up(): void
     {
-        Schema::create('linkages', function (Blueprint $table) {
-            $table->id();
-            $table->string('Linkages_name');
-            $table->timestamps();
-    });
+        if (!Schema::hasTable('linkages')) {
+            Schema::create('linkages', function (Blueprint $table) {
+                $table->id();
+                $table->string('Linkages_name');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

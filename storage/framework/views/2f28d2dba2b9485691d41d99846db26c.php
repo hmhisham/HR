@@ -74,9 +74,9 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="mb-3 col-6">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='department' type="text" id="modalEmployeedepartment"
+                                        <input wire:model.defer='get_departmen' type="text" id="modalEmployeeget_departmen"
                                             placeholder="اسم القسم"
-                                            class="form-control <?php $__errorArgs = ['department'];
+                                            class="form-control <?php $__errorArgs = ['get_departmen'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -85,9 +85,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                                             disabled />
-                                        <label for="modalEmployeedepartment">اسم القسم </label>
+                                        <label for="modalEmployeeget_departmen">اسم القسم </label>
                                     </div>
-                                    <?php $__errorArgs = ['department'];
+                                    <?php $__errorArgs = ['get_departmen'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -130,29 +130,33 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='p_issuing_authority' type="text"
-                                            id="modalPenaltiesp_issuing_authority" placeholder="جهة الاصدار"
-                                            class="form-control <?php $__errorArgs = ['p_issuing_authority'];
+                                        <select wire:model.defer='p_issuing_authority' id="modalPenaltiep_issuing_authority" class="form-select <?php $__errorArgs = ['p_issuing_authority'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalPenaltiesp_issuing_authority">جهة الاصدار</label>
+unset($__errorArgs, $__bag); ?>">
+                                            <option value=""></option>
+                                            <?php $__currentLoopData = $department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $departmen): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($departmen->id); ?>"><?php echo e($departmen->department_name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                        <label for="modalPenaltiep_issuing_authority">الجهة المانحة للشكر</label>
                                     </div>
                                     <?php $__errorArgs = ['p_issuing_authority'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
                                     <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
+
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
