@@ -17,6 +17,7 @@ class WorkersController extends Controller
 
     public function addWorker()
     {
+        //Return View('content.Workers.forms-pickers');
         Return View('content.Workers.addWorker');
     }
 

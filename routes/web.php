@@ -135,7 +135,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::GET('Workers', [WorkersController::class, 'index'])->name('Workers');
         Route::GET('AddWorker', [WorkersController::class, 'AddWorker'])->name('AddWorker');
 
-        // التشكرات
+        // التشكراتj
         Route::RESOURCE('Thanks', ThanksController::class);
         // عقوبات
         Route::RESOURCE('Penalties', PenaltiesController::class);

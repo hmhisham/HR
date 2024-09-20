@@ -1,41 +1,109 @@
-
 @extends('layouts/layoutMaster')
-@section('title', 'Workers')
+@section('title', 'Add Workers')
 @section('vendor-style')
-    <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
-    <link rel = "stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
-    <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
-    <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-    <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/select2/select2.css') }}" />
-    <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
-    <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
-    <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
-    <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
+@endsection
+@section('page-style')
+    <style>
+        .sticky-button {
+            position: fixed;
+            top: 100px;
+            left: 40px;
+            z-index: 1;
+        }
+    </style>
 @endsection
 @section('content')
 
+    @livewire('workers.add-worker')
 
-@livewire('workers.add-worker')
 @endsection
-
 @section('vendor-script')
-    <script src=" {{ asset('assets/vendor/libs/moment/moment.js') }}"></script>
-    <script src=" {{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-    <script src=" {{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
-    <script src=" {{ asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js') }}"></script>
-    <script src=" {{ asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js') }}"></script>
-    <script src=" {{ asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js') }}"></script>
-    <script src=" {{ asset('assets/vendor/libs/cleavejs/cleave.js') }}"></script>
-    <script src=" {{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
-    <script src=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
-    <script src=" {{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+    <script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
 @endsection
-
 @section('page-script')
-    <script src=" {{ asset('assets/js/app-user-list.js') }}"></script>
-    <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
-    <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
+    <script src="{{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
+
     <script>
+        /* المحافظة */
+        $(document).ready(function() {
+            window.initGovernorateDrop=()=>{
+                $('#governorate_id').select2({
+                    placeholder: 'حدد المحافظة',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initGovernorateDrop();
+            $('#governorate_id').on('change', function (e) {
+                livewire.emit('GetDistricts', e.target.value)
+            });
+            window.livewire.on('select2',()=>{
+                initGovernorateDrop();
+            });
+        });
+        /* القضاء */
+        $(document).ready(function() {
+            window.initDistrictDrop=()=>{
+                $('#district_id').select2({
+                    placeholder: 'حدد القضاء',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initDistrictDrop();
+            $('#district_id').on('change', function (e) {
+                livewire.emit('GetAreas', e.target.value)
+            });
+            window.livewire.on('select2',()=>{
+                initDistrictDrop();
+            });
+        });
+        /* الناحية */
+        $(document).ready(function() {
+            window.initAreaDrop=()=>{
+                $('#modalEmployeearea_id').select2({
+                    placeholder: 'حدد الناحية',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initAreaDrop();
+            $('#modalEmployeearea_id').on('change', function (e) {
+                livewire.emit('SelectArea', e.target.value)
+            });
+            window.livewire.on('select2',()=>{
+                initAreaDrop();
+            });
+        });
+
+        /* تاريخ التولد */
+        $(document).ready(function() {
+            window.initBirthDateDrop=()=>{
+                $('#birth_date').flatpickr({
+                    placeholder: 'تاريخ التولد',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initBirthDateDrop();
+            $('#birth_date').on('change', function (e) {
+                livewire.emit('employeeBirthDate', e.target.value)
+            });
+            window.livewire.on('flatpickr',()=>{
+                initBirthDateDrop();
+            });
+        });
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -48,23 +116,13 @@
             }
         })
 
-        window.addEventListener('WorkerModalShow', event => {
-            setTimeout(() => {
-             $('#id').focus();
-               }, 100);
-        })
-
         window.addEventListener('success', event => {
-            $('#addworkerModal').modal('hide');
-            $('#editworkerModal').modal('hide');
-            $('#removeworkerModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.message
             })
         })
         window.addEventListener('error', event => {
-            $('#removeworkerModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.message,

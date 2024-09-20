@@ -74,79 +74,66 @@ $container = $container ?? 'container-xxl';
                 </li>
 
                 @can('employees')
-                <li class="menu-item {{ request()->is('Workers','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays') ? 'open active' : '' }}">
+                <li class="menu-item {{ request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays') ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                         <span class="menu-title">قسم الموارد البشرية</span>
                     </a>
 
-
                     <ul class="menu-sub">
                         <li Class="menu-item {{ request()->Is('Workers') ? 'active' : '' }}">
                             <a href="{{ Route('Workers') }}" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>المعلومات الوظيفية</div>
+                                <div>المعلومات الوظيفية</div>
                             </a>
                         </li>
-                    </ul>
+                        <li Class="menu-item {{ request()->Is('AddWorker') ? 'active' : 'hidden' }}">
+                            <a href="{{ Route('AddWorker') }}" Class="menu-link">
+                                <div>إضافة موظف</div>
+                            </a>
+                        </li>
 
-
-                    <ul class="menu-sub">
                         <li Class="menu-item {{ request()->Is('Thanks') ? 'active' : '' }}">
                             <a href="{{ Route('Thanks.index') }}" Class="menu-link">
                                 <div>الشكر و التقدير</div>
                             </a>
                         </li>
-                    </ul>
-                    <ul class="menu-sub">
-                    <li Class="menu-item {{ request()->Is('Penalties') ? 'active' : '' }}">
-                        <a href = "{{ Route('Penalties.index') }}" Class="menu-link">
-                        <div>العقوبات</div>
-                       </a>
-                      </li>
-                    </ul>
-                    <ul class="menu-sub">
+
+                        <li Class="menu-item {{ request()->Is('Penalties') ? 'active' : '' }}">
+                            <a href = "{{ Route('Penalties.index') }}" Class="menu-link">
+                                <div>العقوبات</div>
+                            </a>
+                        </li>
+
                         <li Class="menu-item {{ request()->Is('Jobleavers') ? 'active' : '' }}">
                             <a href = "{{ Route('Jobleavers.index') }}" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>تاركي العمل</div>
+                                <div>تاركي العمل</div>
                             </a>
                         </li>
-                    </ul>
 
+                        <li Class="menu-item {{ request()->Is('Dispatch') ? 'active' : '' }}">
+                            <a href = "{{ Route('Dispatch.index') }}" Class="menu-link">
+                                <div>الأيفادات</div>
+                            </a>
+                        </li>
 
-                    <ul class="menu-sub">
-                    <li Class="menu-item {{ request()->Is('Dispatch') ? 'active' : '' }}">
-                        <a href = "{{ Route('Dispatch.index') }}" Class="menu-link">
-                         <div>الأيفادات</div>
-                       </a>
-                      </li>
-                    </ul>
-                    <ul class="menu-sub">
                         <li Class="menu-item {{ request()->Is('Certific') ? 'active' : '' }}">
                             <a href = "{{ Route('Certific.index') }}" Class="menu-link">
-
-                             <div>الشهادات</div>
-                           </a>
-                          </li>
-                    </ul>
-                    <ul class="menu-sub">
-                    <li Class="menu-item {{ request()->Is('Holidays') ? 'active' : '' }}">
-                        <a href = "{{ Route('Holidays.index') }}" Class="menu-link">
-                         <div>الاجازات</div>
-                       </a>
-                      </li>
-                    </ul>
-                    <ul class="menu-sub">
-                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-                            <a href="" Class="menu-link">
-                                <i Class=''></i>
-                                <Div>العلاوات</div>
+                                <div>الشهادات</div>
                             </a>
                         </li>
-                    </ul>
 
-                    <ul class="menu-sub">
+                        <li Class="menu-item {{ request()->Is('Holidays') ? 'active' : '' }}">
+                            <a href = "{{ Route('Holidays.index') }}" Class="menu-link">
+                                <div>الاجازات</div>
+                            </a>
+                        </li>
+
+                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                            <a href="" Class="menu-link">
+                                <div>العلاوات</div>
+                            </a>
+                        </li>
+
                         <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
                             <a href="" Class="menu-link">
                                 <i Class=''></i>
@@ -154,8 +141,6 @@ $container = $container ?? 'container-xxl';
                             </a>
                         </li>
                     </ul>
-
-
                 </li>
                 @endcan
 

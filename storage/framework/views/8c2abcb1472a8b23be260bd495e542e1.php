@@ -1,53 +1,122 @@
-<?php $__env->startSection('title', 'Workers'); ?>
+<?php $__env->startSection('title', 'Add Workers'); ?>
 <?php $__env->startSection('vendor-style'); ?>
-    <link rel="stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
-    <link rel = "stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')); ?>">
-    <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css')); ?>">
-    <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css')); ?>">
-    <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/select2/select2.css')); ?>" />
-    <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')); ?>" />
-    <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/animate-css/animate.css')); ?>" />
-    <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
-    <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
-        <?php $__env->stopSection(); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/flatpickr/flatpickr.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/animate-css/animate.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/select2/select2.css')); ?>" />
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-style'); ?>
+    <style>
+        .sticky-button {
+            position: fixed;
+            top: 100px;
+            left: 40px;
+            z-index: 1;
+        }
+    </style>
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
-
-<?php
+    <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('workers.add-worker')->html();
-} elseif ($_instance->childHasBeenRendered('pu855jJ')) {
-    $componentId = $_instance->getRenderedChildComponentId('pu855jJ');
-    $componentTag = $_instance->getRenderedChildComponentTagName('pu855jJ');
+} elseif ($_instance->childHasBeenRendered('awTKICA')) {
+    $componentId = $_instance->getRenderedChildComponentId('awTKICA');
+    $componentTag = $_instance->getRenderedChildComponentTagName('awTKICA');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('pu855jJ');
+    $_instance->preserveRenderedChild('awTKICA');
 } else {
     $response = \Livewire\Livewire::mount('workers.add-worker');
     $html = $response->html();
-    $_instance->logRenderedChild('pu855jJ', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('awTKICA', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
-<?php $__env->stopSection(); ?>
 
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('vendor-script'); ?>
-    <script src=" <?php echo e(asset('assets/vendor/libs/moment/moment.js')); ?>"></script>
-    <script src=" <?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')); ?>"></script>
-    <script src=" <?php echo e(asset('assets/vendor/libs/select2/select2.js')); ?>"></script>
-    <script src=" <?php echo e(asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')); ?>"></script>
-    <script src=" <?php echo e(asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')); ?>"></script>
-    <script src=" <?php echo e(asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')); ?>"></script>
-    <script src=" <?php echo e(asset('assets/vendor/libs/cleavejs/cleave.js')); ?>"></script>
-    <script src=" <?php echo e(asset('assets/vendor/libs/cleavejs/cleave-phone.js')); ?>"></script>
-    <script src=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.js')); ?>"></script>
-    <script src=" <?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/vendor/libs/moment/moment.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/vendor/libs/flatpickr/flatpickr.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/vendor/libs/pickr/pickr.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/vendor/libs/select2/select2.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('page-script'); ?>
-    <script src=" <?php echo e(asset('assets/js/app-user-list.js')); ?>"></script>
-    <script src=" <?php echo e(asset('assets/js/extended-ui-sweetalert2.js')); ?>"></script>
-    <script src=" <?php echo e(asset('assets/js/form-basic-inputs.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/extended-ui-sweetalert2.js')); ?>"></script>
+
     <script>
+        /* المحافظة */
+        $(document).ready(function() {
+            window.initGovernorateDrop=()=>{
+                $('#governorate_id').select2({
+                    placeholder: 'حدد المحافظة',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initGovernorateDrop();
+            $('#governorate_id').on('change', function (e) {
+                livewire.emit('GetDistricts', e.target.value)
+            });
+            window.livewire.on('select2',()=>{
+                initGovernorateDrop();
+            });
+        });
+        /* القضاء */
+        $(document).ready(function() {
+            window.initDistrictDrop=()=>{
+                $('#district_id').select2({
+                    placeholder: 'حدد القضاء',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initDistrictDrop();
+            $('#district_id').on('change', function (e) {
+                livewire.emit('GetAreas', e.target.value)
+            });
+            window.livewire.on('select2',()=>{
+                initDistrictDrop();
+            });
+        });
+        /* الناحية */
+        $(document).ready(function() {
+            window.initAreaDrop=()=>{
+                $('#modalEmployeearea_id').select2({
+                    placeholder: 'حدد الناحية',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initAreaDrop();
+            $('#modalEmployeearea_id').on('change', function (e) {
+                livewire.emit('SelectArea', e.target.value)
+            });
+            window.livewire.on('select2',()=>{
+                initAreaDrop();
+            });
+        });
+
+        /* تاريخ التولد */
+        $(document).ready(function() {
+            window.initBirthDateDrop=()=>{
+                $('#birth_date').flatpickr({
+                    placeholder: 'تاريخ التولد',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initBirthDateDrop();
+            $('#birth_date').on('change', function (e) {
+                livewire.emit('employeeBirthDate', e.target.value)
+            });
+            window.livewire.on('flatpickr',()=>{
+                initBirthDateDrop();
+            });
+        });
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -60,23 +129,13 @@ echo $html;
             }
         })
 
-        window.addEventListener('WorkerModalShow', event => {
-            setTimeout(() => {
-             $('#id').focus();
-               }, 100);
-        })
-
         window.addEventListener('success', event => {
-            $('#addworkerModal').modal('hide');
-            $('#editworkerModal').modal('hide');
-            $('#removeworkerModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.message
             })
         })
         window.addEventListener('error', event => {
-            $('#removeworkerModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.message,
