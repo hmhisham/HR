@@ -15,5 +15,7 @@ class Wives extends Model
         return $this->belongsTo(Department::class, 'organization_name' );
     }
 
+ 
+
 
 }

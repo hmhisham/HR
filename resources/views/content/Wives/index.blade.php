@@ -62,42 +62,21 @@
             , title: event.detail.message
         })
     })
-
-    /* الجهات  */
-
     $(document).ready(function() {
-    // Initialize the select2 dropdown for selecting the organization name
-    window.initDepartmentDrop = () => {
-        $('#modalThanksgrantor').select2({
-            placeholder: 'حدد الموظف',
-            dropdownParent: $('#addthankModal')
+             window.initDepartmentDrop = () => {
+            $('#modalWiveorganization_name').select2({
+                placeholder: 'اختيار',
+                dropdownParent: $('#addwiveModal')
+            });
+        }
+            initDepartmentDrop();
+        $('#modalWiveorganization_name').on('change', function(e) {
+            livewire.emit('SelectOrganizationName', e.target.value);
         });
-    };
-
-    // Call the initialization function
-    initDepartmentDrop();
-
-    // Emit the Livewire event when a new organization is selected
-    $('#modalThanksgrantor').on('change', function(e) {
-        livewire.emit('SelectGrantor', e.target.value);
-    });
-
-    // Re-initialize select2 when necessary (e.g., after Livewire updates)
-    window.livewire.on('select2', () => {
-        initDepartmentDrop();
-    });
-
-    // Listen for error events and display a Toast message
-    window.addEventListener('error', event => {
-        $('#removewiveModal').modal('hide'); // Hide the modal on error
-        Toast.fire({
-            icon: 'error',
-            title: event.detail.message,
-            timer: 5000
+        window.livewire.on('select2', () => {
+            initDepartmentDrop();
         });
     });
-});
-
 
 </script>
 @endsection

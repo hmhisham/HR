@@ -111,20 +111,20 @@
 
                             </div>
                             <div Class="row">
-                              
+
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='organization_name' id="modalWiveorganization_name" class="form-select @error('organization_name') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($department as $departmen)
-                                                <option value="{{ $departmen->id }}">{{ $departmen->department_name }}</option>
+                                            <option value="{{ $departmen->id }}">{{ $departmen->department_name }}</option>
                                             @endforeach
                                         </select>
-                                        <label for="modalWiveorganization_name">الجهة المانحة للشكر</label>
+                                        <label for="modalWiveorganization_name">الدارة</label>
                                     </div>
                                     @error('organization_name')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 

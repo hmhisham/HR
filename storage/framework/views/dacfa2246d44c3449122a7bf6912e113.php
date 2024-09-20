@@ -24,15 +24,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('thanks.thank')->html();
-} elseif ($_instance->childHasBeenRendered('eQNLkav')) {
-    $componentId = $_instance->getRenderedChildComponentId('eQNLkav');
-    $componentTag = $_instance->getRenderedChildComponentTagName('eQNLkav');
+} elseif ($_instance->childHasBeenRendered('DeDxl7z')) {
+    $componentId = $_instance->getRenderedChildComponentId('DeDxl7z');
+    $componentTag = $_instance->getRenderedChildComponentTagName('DeDxl7z');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('eQNLkav');
+    $_instance->preserveRenderedChild('DeDxl7z');
 } else {
     $response = \Livewire\Livewire::mount('thanks.thank');
     $html = $response->html();
-    $_instance->logRenderedChild('eQNLkav', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('DeDxl7z', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -73,50 +73,66 @@ echo $html;
 
     /* الموظفين */
     $(document).ready(function() {
-    window.initWorkerDrop = () => {
-        $('#worker').select2({
-            placeholder: 'حدد الموظف',
-            dropdownParent: $('#addthankModal')
-        });
-    };
+        window.initWorkerDrop = () => {
+            $('#worker').select2({
+                placeholder: 'حدد الموظف'
+                , dropdownParent: $('#addthankModal')
+            });
+        };
 
-    initWorkerDrop();
-
-    $('#worker').on('change', function(e) {
-        livewire.emit('SelectWorker', e.target.value);
-    });
-
-    window.livewire.on('select2', () => {
         initWorkerDrop();
+
+        $('#worker').on('change', function(e) {
+            livewire.emit('SelectWorker', e.target.value);
+        });
+
+        window.livewire.on('select2', () => {
+            initWorkerDrop();
+        });
     });
-});
 
 
     /* الجهات  */
 
+    // $(document).ready(function() {
+    //     // Initialize select2 for the grantor field
+    //     window.initDepartmentDrop = () => {
+    //         $('#modalThanksgrantor').select2({
+    //             placeholder: 'حدد الموظف', // Set placeholder text
+    //             dropdownParent: $('#addthankModal') // Parent modal for dropdown
+    //         });
+    //     }
+
+    //     // Call initialization function
+    //     initDepartmentDrop();
+
+    //     // Emit change event to Livewire on selection change
+    //     $('#modalThanksgrantor').on('change', function(e) {
+    //         livewire.emit('SelectGrantor', e.target.value); // Adjust event if needed
+    //     });
+
+    //     // Reinitialize select2 when Livewire triggers 'select2' event
+    //     window.livewire.on('select2', () => {
+    //         initDepartmentDrop();
+    //     });
+    // });
+
+
     $(document).ready(function() {
-        // Initialize select2 for the grantor field
         window.initDepartmentDrop = () => {
             $('#modalThanksgrantor').select2({
-                placeholder: 'حدد الموظف', // Set placeholder text
-                dropdownParent: $('#addthankModal') // Parent modal for dropdown
+                placeholder: 'اختيار'
+                , dropdownParent: $('#addthankModal')
             });
         }
-
-        // Call initialization function
         initDepartmentDrop();
-
-        // Emit change event to Livewire on selection change
         $('#modalThanksgrantor').on('change', function(e) {
-            livewire.emit('SelectGrantor', e.target.value); // Adjust event if needed
+            livewire.emit('SelectGrantor', e.target.value);
         });
-
-        // Reinitialize select2 when Livewire triggers 'select2' event
         window.livewire.on('select2', () => {
             initDepartmentDrop();
         });
     });
-
 
     const Toast = Swal.mixin({
         toast: true

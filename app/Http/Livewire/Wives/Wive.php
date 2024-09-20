@@ -19,7 +19,7 @@ class Wive extends Component
 
 
     protected $listeners = [
-      'SelectGrantor',
+      'SelectOrganizationName',
     ];
 
 
@@ -37,27 +37,17 @@ class Wive extends Component
     }
 
 
-    public function SelectGrantor($organization_nameID)
+    public function SelectOrganizationName($GrantorID)
     {
-        $organization_name = Department::find($organization_nameID);
+        dd();
+        $organization_name = Department::find($GrantorID);
          if ($organization_name) {
-            $this->organization_name = $organization_nameID;
+            $this->organization_name = $GrantorID;
               } else {
             $this->organization_name = null;
         }
     }
 
-    // public function SelectGrantor($organizationID)
-    // {
-    //     $organization = Department::where('organization_name', $organizationID)->first();
-
-    //     if ($organization) {
-    //         $this->organization_name = $organization->organization_name;
-    //     } else {
-    //         $this->organization_name = null;
-    //         $this->dispatchBrowserEvent('error', ['message' => 'Organization not found']);
-    //     }
-    // }
 
 
 
