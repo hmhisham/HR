@@ -185,7 +185,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
+unset($__errorArgs, $__bag); ?>"
+                                                onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalTechniciantechnicians_salary">الراتب</label>
                                         </div>
                                         <?php $__errorArgs = ['technicians_salary'];
@@ -244,7 +245,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
+unset($__errorArgs, $__bag); ?>"
+                                                onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalTechniciantechnicians_previous_salary">الراتب
                                                 السابق</label>
                                         </div>
@@ -275,5 +277,14 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
 <!--/ Add Technician Modal -->
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/technicians/modals/add-technician.blade.php ENDPATH**/ ?>
