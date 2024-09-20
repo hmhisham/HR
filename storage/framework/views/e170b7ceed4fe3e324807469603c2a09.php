@@ -22,25 +22,53 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='Infooffice_id' type="text"
                                                 id="modalInfoOfficInfooffice_id" placeholder="رقم"
-                                                class="form-control @error('Infooffice_id') is-invalid is-filled @enderror"
+                                                class="form-control <?php $__errorArgs = ['Infooffice_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                                 onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalInfoOfficInfooffice_id">رقم</label>
                                         </div>
-                                        @error('Infooffice_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                                        <?php $__errorArgs = ['Infooffice_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='Infooffice_name' type="text"
                                                 id="modalInfoOfficInfooffice_name"
                                                 placeholder="مكتب معلومات بطاقة السكن"
-                                                class="form-control @error('Infooffice_name') is-invalid is-filled @enderror" />
+                                                class="form-control <?php $__errorArgs = ['Infooffice_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
                                             <label for="modalInfoOfficInfooffice_name">مكتب معلومات بطاقة السكن</label>
                                         </div>
-                                        @error('Infooffice_name')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                                        <?php $__errorArgs = ['Infooffice_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                             </div>
@@ -68,3 +96,4 @@
     }
 </script>
 <!--/ Edite InfoOffic Modal -->
+<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/infooffice/modals/edit-infooffic.blade.php ENDPATH**/ ?>

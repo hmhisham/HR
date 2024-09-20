@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Units'); ?>
+<?php $__env->startSection('title', 'Infooffice'); ?>
 <?php $__env->startSection('vendor-style'); ?>
     <link rel="stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
     <link rel = "stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')); ?>">
@@ -13,16 +13,16 @@
 <?php $__env->startSection('content'); ?>
 <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('units.unit')->html();
-} elseif ($_instance->childHasBeenRendered('r90WvhJ')) {
-    $componentId = $_instance->getRenderedChildComponentId('r90WvhJ');
-    $componentTag = $_instance->getRenderedChildComponentTagName('r90WvhJ');
+    $html = \Livewire\Livewire::mount('infooffice.info-offic')->html();
+} elseif ($_instance->childHasBeenRendered('4ZShcDG')) {
+    $componentId = $_instance->getRenderedChildComponentId('4ZShcDG');
+    $componentTag = $_instance->getRenderedChildComponentTagName('4ZShcDG');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('r90WvhJ');
+    $_instance->preserveRenderedChild('4ZShcDG');
 } else {
-    $response = \Livewire\Livewire::mount('units.unit');
+    $response = \Livewire\Livewire::mount('infooffice.info-offic');
     $html = $response->html();
-    $_instance->logRenderedChild('r90WvhJ', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('4ZShcDG', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -60,23 +60,23 @@ echo $html;
             }
         })
 
-        window.addEventListener('UnitModalShow', event => {
+        window.addEventListener('InfoOfficModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
+             $('#modalInfoofficeInfooffice_id').focus();
                }, 100);
         })
 
         window.addEventListener('success', event => {
-            $('#addunitModal').modal('hide');
-            $('#editunitModal').modal('hide');
-            $('#removeunitModal').modal('hide');
+            $('#addinfoofficModal').modal('hide');
+            $('#editinfoofficModal').modal('hide');
+            $('#removeinfoofficModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.message
             })
         })
         window.addEventListener('error', event => {
-            $('#removeunitModal').modal('hide');
+            $('#removeinfoofficModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.message,
@@ -87,4 +87,4 @@ echo $html;
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\11\Desktop\HR\resources\views/content/Units/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\11\Desktop\HR\resources\views/content/Infooffice/index.blade.php ENDPATH**/ ?>

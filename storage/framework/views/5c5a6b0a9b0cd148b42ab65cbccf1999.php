@@ -8,15 +8,15 @@
                         <input wire:model="InfoOfficSearch" type="text" class="form-control" placeholder="بحث...">
                     </div>
                     <div>
-                        @can('infooffic-create')
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('infooffic-create')): ?>
                             <button wire:click='AddInfoOfficModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                                 data-bs-toggle="modal" data-bs-target="#addinfoofficModal">أضــافــة</button>
-                            @include('livewire.infooffice.modals.add-infooffic')
-                        @endcan
+                            <?php echo $__env->make('livewire.infooffice.modals.add-infooffic', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-            @can('infooffic-list')
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('infooffic-list')): ?>
                 <table class="table">
                     <thead class="table-light">
                         <tr>
@@ -27,43 +27,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($Infooffice as $InfoOffic)
+                        <?php $__currentLoopData = $Infooffice; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $InfoOffic): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td Class="text-center">{{ $InfoOffic->Infooffice_id }}</td>
-                                <td Class="text-center">{{ $InfoOffic->Infooffice_name }}</td>
+                                <td><?php echo e($loop->iteration); ?></td>
+                                <td Class="text-center"><?php echo e($InfoOffic->Infooffice_id); ?></td>
+                                <td Class="text-center"><?php echo e($InfoOffic->Infooffice_name); ?></td>
 
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
-                                        @can('infooffic-edit')
-                                            <button wire:click="GetInfoOffic({{ $InfoOffic->id }})"
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('infooffic-edit')): ?>
+                                            <button wire:click="GetInfoOffic(<?php echo e($InfoOffic->id); ?>)"
                                                 class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editinfoofficModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
-                                        @endcan
-                                        @can('infooffic-delete')
-                                            <button wire:click="GetInfoOffic({{ $InfoOffic->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $InfoOffic->active ? 'disabled' : '' }}"
+                                        <?php endif; ?>
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('infooffic-delete')): ?>
+                                            <button wire:click="GetInfoOffic(<?php echo e($InfoOffic->id); ?>)"
+                                                class="p-0 px-1 btn btn-outline-danger waves-effect <?php echo e($InfoOffic->active ? 'disabled' : ''); ?>"
                                                 data-bs-toggle = "modal" data-bs-target="#removeinfoofficModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>
-                                        @endcan
+                                        <?php endif; ?>
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
                 <div class="mt-2 d-flex justify-content-center">
-                    {{ $links->links() }}
+                    <?php echo e($links->links()); ?>
+
                 </div>
                 <!-- Modal -->
-                @include('livewire.infooffice.modals.edit-infooffic')
-                @include('livewire.infooffice.modals.remove-infooffic')
+                <?php echo $__env->make('livewire.infooffice.modals.edit-infooffic', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make('livewire.infooffice.modals.remove-infooffic', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <!-- Modal -->
-            @endcan
+            <?php endif; ?>
         </div>
     </div>
 </div>
 </div>
+<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/infooffice/infooffic.blade.php ENDPATH**/ ?>

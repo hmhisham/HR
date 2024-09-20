@@ -8,15 +8,15 @@
                         <input wire:model="LinkageSearch" type="text" class="form-control" placeholder="بحث...">
                     </div>
                     <div>
-                        @can('linkage-create')
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('linkage-create')): ?>
                             <button wire:click='AddLinkageModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                                 data-bs-toggle="modal" data-bs-target="#addlinkageModal">أضــافــة</button>
-                            @include('livewire.linkages.modals.add-linkage')
-                        @endcan
+                            <?php echo $__env->make('livewire.linkages.modals.add-linkage', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-            @can('linkage-list')
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('linkage-list')): ?>
                 <table class="table">
                     <thead class="table-light">
                         <tr>
@@ -27,42 +27,44 @@
                     </thead>
                     <tbody>
                         <?php $i = 0; ?>
-                        @foreach ($Linkages as $Linkage)
+                        <?php $__currentLoopData = $Linkages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Linkage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
                                 <?php $i++; ?>
-                                <td>{{ $i }}</td>
-                                <td class="text-center">{{ $Linkage->Linkages_name }}</td>
+                                <td><?php echo e($i); ?></td>
+                                <td class="text-center"><?php echo e($Linkage->Linkages_name); ?></td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
-                                        @can('linkage-edit')
-                                            <button wire:click="GetLinkage({{ $Linkage->id }})"
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('linkage-edit')): ?>
+                                            <button wire:click="GetLinkage(<?php echo e($Linkage->id); ?>)"
                                                 class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editlinkageModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
-                                        @endcan
-                                        @can('linkage-delete')
-                                            <button wire:click="GetLinkage({{ $Linkage->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Linkage->active ? 'disabled' : '' }}"
+                                        <?php endif; ?>
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('linkage-delete')): ?>
+                                            <button wire:click="GetLinkage(<?php echo e($Linkage->id); ?>)"
+                                                class="p-0 px-1 btn btn-outline-danger waves-effect <?php echo e($Linkage->active ? 'disabled' : ''); ?>"
                                                 data-bs-toggle = "modal" data-bs-target="#removelinkageModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>
-                                        @endcan
+                                        <?php endif; ?>
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
                 <div class="mt-2 d-flex justify-content-center">
-                    {{ $links->links() }}
+                    <?php echo e($links->links()); ?>
+
                 </div>
                 <!-- Modal -->
-                @include('livewire.linkages.modals.edit-linkage')
-                @include('livewire.linkages.modals.remove-linkage')
+                <?php echo $__env->make('livewire.linkages.modals.edit-linkage', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make('livewire.linkages.modals.remove-linkage', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <!-- Modal -->
-            @endcan
+            <?php endif; ?>
         </div>
     </div>
 </div>
 </div>
+<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/linkages/linkage.blade.php ENDPATH**/ ?>

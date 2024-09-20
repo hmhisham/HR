@@ -1,33 +1,47 @@
-<!-- Edite Departmen Modal -->
-<div wire:ignore.self class="modal fade" id="editdepartmenModal" tabindex="-1" aria-hidden="true">
+<!-- Edite Linkage Modal -->
+<div wire:ignore.self class="modal fade" id="editlinkageModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل اسم الدائرة</h3>
+                    <h3 class="pb-1 mb-2">تعديل الارتباط</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetDepartmen"
+                <h5 wire:loading wire:target="GetLinkage"
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
                 <div wire:loading.remove>
-                    <form id="editDepartmenModalForm" autocomplete="off">
+                    <form id="editLinkageModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='department_name' type="text"
-                                                id="modalDepartmendepartment_name" placeholder="اسم الدائرة"
-                                                class="form-control @error('department_name') is-invalid is-filled @enderror" />
-                                            <label for="modalDepartmendepartment_name">اسم الدائرة</label>
+                                            <input wire:model.defer='Linkages_name' type="text"
+                                                id="modalLinkageLinkages_name" placeholder=""
+                                                class="form-control <?php $__errorArgs = ['Linkages_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalLinkageLinkages_name"></label>
                                         </div>
-                                        @error('department_name')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                                        <?php $__errorArgs = ['Linkages_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                             </div>
@@ -45,4 +59,5 @@
         </div>
     </div>
 </div>
-<!--/ Edite Departmen Modal -->
+<!--/ Edite Linkage Modal -->
+<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/linkages/modals/edit-linkage.blade.php ENDPATH**/ ?>

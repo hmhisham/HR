@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل</h3>
+                    <h3 class="pb-1 mb-2">تعديل ناحية</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
@@ -13,7 +13,6 @@
                     جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-
                 <div wire:loading.remove wire:target="GetArea">
                     <form id="editAreaModalForm" autocomplete="off">
                         <div class="row row-cols-1">
@@ -21,7 +20,8 @@
                                 <div class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='governorate_id' wire:change='chooseGovernorate' id="modalAreasgovernorate_id"
+                                            <select wire:model.defer='governorate_id' wire:change='chooseGovernorate'
+                                                id="modalAreasgovernorate_id"
                                                 class="form-select @error('governorate_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($governorates as $governorate)
@@ -58,7 +58,8 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='area_id' type="text" id="modalAreaarea_id"
                                                 placeholder="رقم الناحية"
-                                                class="form-control @error('area_id') is-invalid is-filled @enderror" />
+                                                class="form-control @error('area_id') is-invalid is-filled @enderror"
+                                                onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalAreaarea_id">رقم الناحية</label>
                                         </div>
                                         @error('area_id')
@@ -92,4 +93,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
 <!--/ Edit Area Modal -->

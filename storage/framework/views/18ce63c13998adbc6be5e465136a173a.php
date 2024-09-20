@@ -8,15 +8,15 @@
                         <input wire:model="DepartmenSearch" type="text" class="form-control" placeholder="بحث...">
                     </div>
                     <div>
-                        @can('departmen-create')
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('departmen-create')): ?>
                             <button wire:click='AddDepartmenModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                                 data-bs-toggle="modal" data-bs-target="#adddepartmenModal">أضــافــة</button>
-                            @include('livewire.department.modals.add-departmen')
-                        @endcan
+                            <?php echo $__env->make('livewire.department.modals.add-departmen', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-            @can('departmen-list')
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('departmen-list')): ?>
                 <table class="table">
                     <thead class="table-light">
                         <tr>
@@ -27,41 +27,43 @@
                     </thead>
                     <tbody>
                         <?php $i = 0; ?>
-                        @foreach ($Department as $Departmen)
+                        <?php $__currentLoopData = $Department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Departmen): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
                                 <?php $i++; ?>
-                                <td>{{ $i }}</td>
-                                <td class="text-center">{{ $Departmen->department_name }}</td>
+                                <td><?php echo e($i); ?></td>
+                                <td class="text-center"><?php echo e($Departmen->department_name); ?></td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
-                                        @can('departmen-edit')
-                                            <button wire:click="GetDepartmen({{ $Departmen->id }})"
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('departmen-edit')): ?>
+                                            <button wire:click="GetDepartmen(<?php echo e($Departmen->id); ?>)"
                                                 class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editdepartmenModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
-                                        @endcan
-                                        @can('departmen-delete')
-                                            <button wire:click="GetDepartmen({{ $Departmen->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Departmen->active ? 'disabled' : '' }}"
+                                        <?php endif; ?>
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('departmen-delete')): ?>
+                                            <button wire:click="GetDepartmen(<?php echo e($Departmen->id); ?>)"
+                                                class="p-0 px-1 btn btn-outline-danger waves-effect <?php echo e($Departmen->active ? 'disabled' : ''); ?>"
                                                 data-bs-toggle = "modal" data-bs-target="#removedepartmenModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>
-                                        @endcan
+                                        <?php endif; ?>
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
                 <div class="mt-2 d-flex justify-content-center">
-                    {{ $links->links() }}
+                    <?php echo e($links->links()); ?>
+
                 </div>
                 <!-- Modal -->
-                @include('livewire.department.modals.edit-departmen')
-                @include('livewire.department.modals.remove-departmen')
+                <?php echo $__env->make('livewire.department.modals.edit-departmen', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make('livewire.department.modals.remove-departmen', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <!-- Modal -->
-            @endcan
+            <?php endif; ?>
         </div>
     </div>
 </div>
+<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/department/departmen.blade.php ENDPATH**/ ?>

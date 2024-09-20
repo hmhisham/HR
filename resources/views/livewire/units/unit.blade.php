@@ -1,7 +1,6 @@
 <div class="mt-n4">
     <h4 Class="mb-1fw-semiboyld">قائمة</h4>
-    <Div Class="card">
-
+    <div Class="card">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -26,7 +25,6 @@
                             <th Class="text-center">اسم الشعبة</th>
                             <th Class="text-center">اسم الوحدة</th>
                             <th Class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -38,7 +36,6 @@
                                 <td class="text-center">{{ $Unit->Getsection ? $Unit->Getsection->section_name : '' }}</td>
                                 <td class="text-center">{{ $Unit->Getbranc ? $Unit->Getbranc->branch_name : '' }}</td>
                                 <td Class="text-center">{{ $Unit->units_name }}</td>
-
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('unit-edit')
@@ -61,7 +58,6 @@
                         @endforeach
                     </tbody>
                 </table>
-
                 <div class="mt-2 d-flex justify-content-center">
                     {{ $links->links() }}
                 </div>
@@ -72,5 +68,4 @@
             @endcan
         </div>
     </div>
-</div>
 </div>
