@@ -98,16 +98,15 @@
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='occupational_status' id="modalWiveoccupational_status" class="form-select @error('occupational_status') is-invalid is-filled @enderror">
                                             <option value="">اختر الحالة المهنية</option>
-                                            <option value="ربت بيت">ربة بيت</option>
+                                            <option value="ربة بيت">ربة بيت</option>
                                             <option value="موظفة">موظفة</option>
                                         </select>
                                         <label for="modalWiveoccupational_status">الحالة المهنية</label>
                                     </div>
                                     @error('occupational_status')
-                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
 
                             </div>
                             <div Class="row">
@@ -118,15 +117,17 @@
                                         <select wire:model.defer='organization_name' id="modalWiveorganization_name" class="form-select @error('organization_name') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($department as $departmen)
-                                            <option value="{{ $departmen->id }}">{{ $departmen->department_name }}</option>
+                                                <option value="{{ $departmen->id }}">{{ $departmen->department_name }}</option>
                                             @endforeach
                                         </select>
-                                        <label for="modalWiveorganization_name">الدارة</label>
+                                        <label for="modalWiveorganization_name">الدوائر</label>
                                     </div>
                                     @error('organization_name')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
+
+
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">

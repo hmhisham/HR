@@ -14,15 +14,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('wives.wive')->html();
-} elseif ($_instance->childHasBeenRendered('jC7F02y')) {
-    $componentId = $_instance->getRenderedChildComponentId('jC7F02y');
-    $componentTag = $_instance->getRenderedChildComponentTagName('jC7F02y');
+} elseif ($_instance->childHasBeenRendered('DWV9q69')) {
+    $componentId = $_instance->getRenderedChildComponentId('DWV9q69');
+    $componentTag = $_instance->getRenderedChildComponentTagName('DWV9q69');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('jC7F02y');
+    $_instance->preserveRenderedChild('DWV9q69');
 } else {
     $response = \Livewire\Livewire::mount('wives.wive');
     $html = $response->html();
-    $_instance->logRenderedChild('jC7F02y', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('DWV9q69', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -90,6 +90,8 @@ echo $html;
             initDepartmentDrop();
         });
     });
+
+ 
 
 </script>
 <?php $__env->stopSection(); ?>

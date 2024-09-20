@@ -17,15 +17,14 @@ class Wive extends Component
     public $WiveSearch, $Wive, $WiveId;
     public $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name, $marital_status, $occupational_status, $organization_name, $is_married, $national_id;
 
-
     protected $listeners = [
         'SelectOrganizationName',
     ];
-
     public function hydrate()
     {
         $this->emit('select2');
     }
+
 
     public function mount()
     {
@@ -33,12 +32,13 @@ class Wive extends Component
     }
 
 
-    public function SelectOrganizationName($GrantorID)
-    {
+  
 
-        $organization_name = Department::find($GrantorID);
+    public function SelectOrganizationName($OrganizationNameID)
+    {
+        $organization_name = Department::find($OrganizationNameID);
         if ($organization_name) {
-            $this->organization_name = $GrantorID;
+            $this->organization_name = $OrganizationNameID;
         } else {
             $this->organization_name = null;
         }
@@ -67,6 +67,9 @@ class Wive extends Component
             ->paginate(10);
         $links = $Wives;
         $this->Wives = collect($Wives->items());
+
+
+
         return view('livewire.wives.wive', [
             'links' => $links
         ]);

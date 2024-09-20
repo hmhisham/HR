@@ -203,7 +203,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
                                             <option value="">اختر الحالة المهنية</option>
-                                            <option value="ربت بيت">ربة بيت</option>
+                                            <option value="ربة بيت">ربة بيت</option>
                                             <option value="موظفة">موظفة</option>
                                         </select>
                                         <label for="modalWiveoccupational_status">الحالة المهنية</label>
@@ -213,13 +213,12 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'><?php echo e($message); ?></small>
+                                        <small class='text-danger inputerror'><?php echo e($message); ?></small>
                                     <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
 
                             </div>
                             <div Class="row">
@@ -237,22 +236,24 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                             <option value=""></option>
                                             <?php $__currentLoopData = $department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $departmen): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($departmen->id); ?>"><?php echo e($departmen->department_name); ?></option>
+                                                <option value="<?php echo e($departmen->id); ?>"><?php echo e($departmen->department_name); ?></option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
-                                        <label for="modalWiveorganization_name">الدارة</label>
+                                        <label for="modalWiveorganization_name">الدوائر</label>
                                     </div>
                                     <?php $__errorArgs = ['organization_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <small class='text-danger inputerror'><?php echo e($message); ?></small>
                                     <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
+
+
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">

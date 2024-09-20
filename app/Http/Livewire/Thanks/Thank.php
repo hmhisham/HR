@@ -60,13 +60,10 @@ class Thank extends Component
     public function SelectWorker($workerID)
     {
         $worker = Workers::find($workerID);
-
         if ($worker) {
             $this->worker = $workerID;
             $this->calculator_number = $worker->calculator_number;
             $this->get_departmen = $worker->department;
-
-
         } else {
             $this->worker = null;
             $this->calculator_number = null;
@@ -158,8 +155,9 @@ class Thank extends Component
         $this->reason = $this->Thank->reason;
         $this->months_of_service = $this->Thank->months_of_service;
         $this->calculator_number = $this->Thank->calculator_number;
-        $worker = $this->Thank->worker;
 
+
+        $worker = $this->Thank->worker;
         if ($worker) {
             $this->full_name = $worker->full_name;
             $this->get_departmen = $worker->get_departmen;
@@ -167,6 +165,7 @@ class Thank extends Component
             $this->full_name = '';
             $this->get_departmen = '';
         }
+
     }
 
 
