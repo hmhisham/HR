@@ -188,7 +188,7 @@ $container = $container ?? 'container-xxl';
                 {{-- الإعدادات --}}
 
                 <li
-                    class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department','Wives',) ? 'open active' : '' }}">
+                    class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department','Wives','Childrens',) ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                         <span class="menu-title">الاعدادات</span>
@@ -331,10 +331,19 @@ $container = $container ?? 'container-xxl';
                                 <div>مجال التدريب</div>
                             </a>
                         </li>
+
+
                         <li Class="menu-item {{ request()->Is('Wives') ? 'active' : '' }}">
                             <a href="{{ Route('Wives.index') }}" Class="menu-link">
                                 <i Class=''></i>
                                 <div>بيانات الزوجة</div>
+                            </a>
+                        </li>
+
+                        <li Class="menu-item {{ request()->Is('Childrens') ? 'active' : '' }}">
+                            <a href="{{ Route('Childrens.index') }}" Class="menu-link">
+                                <i Class=''></i>
+                                <div>بيانات الاطفال</div>
                             </a>
                         </li>
 

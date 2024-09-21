@@ -16,7 +16,7 @@ class Wive extends Component
     public $Wives = [];
     public $WiveSearch, $Wive, $WiveId;
     public $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name, $marital_status, $occupational_status, $organization_name, $is_married, $national_id;
-
+    public $EmpStatus ;
     protected $listeners = [
         'SelectOrganizationName',
     ];
@@ -30,9 +30,6 @@ class Wive extends Component
     {
         $this->department = Department::all();
     }
-
-
-  
 
     public function SelectOrganizationName($OrganizationNameID)
     {
@@ -78,9 +75,20 @@ class Wive extends Component
     public function AddWiveModalShow()
     {
 
-        // $this->reset();
+        $this->reset(['first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('WiveModalShow');
+    }
+
+    public function getEmpStatus($Emp)
+    {
+        if($Emp == 'موظفة' )
+        {
+            $this->EmpStatus = '';
+        }else{
+            $this->EmpStatus = 'disabled';
+        }
+
     }
 
 
@@ -133,7 +141,7 @@ class Wive extends Component
             'national_id' => $this->national_id,
 
         ]);
-        $this->reset();
+        $this->reset(['first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -157,6 +165,8 @@ class Wive extends Component
         $this->organization_name = $this->Wive->organization_name;
         $this->is_married = $this->Wive->is_married;
         $this->national_id = $this->Wive->national_id;
+
+        $this->getEmpStatus($this->occupational_status);
     }
 
     public function update()
@@ -204,7 +214,7 @@ class Wive extends Component
             'national_id' => $this->national_id,
 
         ]);
-        $this->reset();
+        $this->reset(['first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'

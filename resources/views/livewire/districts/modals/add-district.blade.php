@@ -59,6 +59,7 @@
                             class="btn btn-primary me-sm-3 me-1">إضافة</button>
                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                             aria-label="Close">تجاهل</button>
+
                     </div>
                 </form>
             </div>

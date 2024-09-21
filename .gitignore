@@ -22,3 +22,5 @@ yarn.lock
 /public/assets/js
 /public/assets/css
 /public/assets/vendor
+storage/framework/views/
+storage/framework/cache/data/

@@ -1,5 +1,5 @@
-<!-- Edite Wive Modal -->
-<div wire:ignore.self class="modal fade" id="editwiveModal" tabindex="-1" aria-hidden="true">
+<!-- Edite Children Modal -->
+<div wire:ignore.self class="modal fade" id="editchildrenModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -9,15 +9,43 @@
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetWive" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="GetChildren"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
 
                 <div wire:loading.remove>
-                    <form id="editWiveModalForm" autocomplete="off">
-                        <div class="row row-cols-1  ">
+                    <form id="editChildrenModalForm" autocomplete="off">
+                        <div class="row row-cols-1">
                             <div class="col mb-3">
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='wives_id' id="modalChildrenwives_id"
+                                                class="form-select @error('wives_id') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                @foreach ($wives as $wive)
+                                                    <option value="{{ $wive->id }}">{{ $wive->full_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="modalChildrenwives_id">اسم الام الكامل</label>
+                                        </div>
+                                        @error('wives_id')
+                                            <small class='text-danger inputerror'>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='full_name' type="text"
+                                                id="modalChildrenfull_name" placeholder="الاسم الكامل" disabled
+                                                class="form-control @error('full_name') is-invalid is-filled @enderror" />
+                                            <label for="modalChildrenfull_name">الاسم الكامل</label>
+                                        </div>
+                                        @error('full_name')
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <!-- الاسم الأول -->
                                     <div class="mb-3 col">
@@ -80,69 +108,65 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='full_name' type="text" id="modalWivefull_name"
-                                                placeholder="الاسم الكامل"
-                                                class="form-control @error('full_name') is-invalid is-filled @enderror"
-                                                disabled />
-                                            <label for="modalWivefull_name">الاسم الكامل</label>
+                                            <input wire:model.defer='birth_date' type="date"
+                                                id="modalChildrenbirth_date" placeholder="تاريخ الميلاد"
+                                                class="form-control @error('birth_date') is-invalid is-filled @enderror" />
+                                            <label for="modalChildrenbirth_date">تاريخ الميلاد</label>
                                         </div>
-                                        @error('full_name')
+                                        @error('birth_date')
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='gender' id="modalChildrengender"
+                                                class="form-control @error('gender') is-invalid is-filled @enderror">
+                                                <option value="" disabled selected>اختر الجنس</option>
+                                                <option value="ذكر">ذكر</option>
+                                                <option value="أنثى">أنثى</option>
+                                            </select>
+                                            <label for="modalChildrengender">الجنس</label>
+                                        </div>
+                                        @error('gender')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='marital_status' id="modalWivemarital_status"
-                                                class="form-select @error('marital_status') is-invalid is-filled @enderror">
-                                                <option value="">الحالة</option>
-                                                <option value="حية">حية</option>
-                                                <option value="متوفى">متوفى</option>
+                                            <select wire:model.defer='marital_status' id="modalChildrenmarital_status"
+                                                class="form-control @error('marital_status') is-invalid is-filled @enderror">
+                                                <option value="" disabled selected>اختر الحالة الزوجية</option>
+                                                <option value="أعزب">أعزب</option>
+                                                <option value="متزوج">متزوج</option>
                                             </select>
-                                            <label for="modalWivemarital_status">الحالة</label>
+                                            <label for="modalChildrenmarital_status">الحالة الزوجية</label>
                                         </div>
                                         @error('marital_status')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
+
+                                </div>
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='occupational_status'
-                                                wire:change="getEmpStatus($event.target.value)"
-                                                id="modalWiveoccupational_status"
-                                                class="form-select @error('occupational_status') is-invalid is-filled @enderror">
-                                                <option value="">اختر الحالة المهنية</option>
-                                                <option value="ربة بيت">ربة بيت</option>
-                                                <option value="موظفة">موظفة</option>
+                                                id="modalChildrenoccupational_status"
+                                                class="form-control @error('occupational_status') is-invalid is-filled @enderror">
+                                                <option value="" disabled selected>اختر الحالة الدراسية</option>
+                                                <option value="طالب">طالب</option>
+                                                <option value="موظف">موظف</option>
+                                                <option value="عاطل عن العمل">عاطل عن العمل</option>
                                             </select>
-                                            <label for="modalWiveoccupational_status">الحالة المهنية</label>
+                                            <label for="modalChildrenoccupational_status">الحالة الدراسية</label>
                                         </div>
                                         @error('occupational_status')
-                                            <small class='text-danger inputerror'>{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div Class="row">
-
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='organization_name'
-                                                id="modalWiveorganization_name"
-                                                class="form-select @error('organization_name') is-invalid is-filled @enderror"
-                                                {{ $EmpStatus }}>
-                                                <option value=""></option>
-                                                @foreach ($department as $departmen)
-                                                    <option value="{{ $departmen->id }}">
-                                                        {{ $departmen->department_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            <label for="modalWiveorganization_name">الدوائر</label>
-                                        </div>
-                                        @error('organization_name')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
@@ -150,29 +174,27 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='national_id' type="text"
-                                                id="modalWivenational_id" placeholder="رقم البطاقة الوطنية"
+                                                id="modalChildrennational_id" placeholder="رقم البطاقة الوطنية"
                                                 class="form-control @error('national_id') is-invalid is-filled @enderror" />
-                                            <label for="modalWivenational_id">رقم البطاقة الوطنية</label>
+                                            <label for="modalChildrennational_id">رقم البطاقة الوطنية</label>
                                         </div>
                                         @error('national_id')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <div class="form-check">
-                                                <input wire:model.defer='is_married' type="checkbox"
-                                                    id="modalWiveis_married" placeholder="الحالة الزوجية"
-                                                    class="form-check-input @error('is_married') is-invalid is-filled @enderror" />
-                                                <label class="form-check-label"
-                                                    for="modalWiveis_married">الحالةالزوجية</label>
-                                            </div>
+                                        <div class="form-check form-check-outline">
+                                            <input wire:model.defer='is_counted' type="checkbox"
+                                                id="modalChildrenis_counted"
+                                                class="form-check-input @error('is_counted') is-invalid @enderror">
+                                            <label class="form-check-label" for="modalChildrenis_counted">هل يتم
+                                                احتسابه</label>
                                         </div>
-                                        @error('is_married')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @error('is_counted')
+                                            <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -189,4 +211,4 @@
         </div>
     </div>
 </div>
-<!--/ Edite Wive Modal -->
+<!--/ Edite Children Modal -->
