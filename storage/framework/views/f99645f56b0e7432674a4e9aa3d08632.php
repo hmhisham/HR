@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل</h3>
+                    <h3 class="pb-1 mb-2">تعديل بيانات الزوجية</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
@@ -13,7 +13,6 @@
                     جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-
                 <div wire:loading.remove>
                     <form id="editWiveModalForm" autocomplete="off">
                         <div class="row row-cols-1  ">
@@ -189,9 +188,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                                <option value="">الحالة</option>
-                                                <option value="حية">حية</option>
-                                                <option value="متوفى">متوفى</option>
+                                                <option value="">حالة الزوج/ـة</option>
+                                                <option value="على قيد الحياة">على قيد الحياة</option>
+                                                <option value="متوفى/ية">متوفى/ية</option>
                                             </select>
                                             <label for="modalWivemarital_status">الحالة</label>
                                         </div>
@@ -220,8 +219,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
                                                 <option value="">اختر الحالة المهنية</option>
-                                                <option value="ربة بيت">ربة بيت</option>
-                                                <option value="موظفة">موظفة</option>
+                                                <option value="كاسب/ربة بيت">كاسب/ربة بيت</option>
+                                                <option value="موظف/ـة">موظف/ـة</option>
                                             </select>
                                             <label for="modalWiveoccupational_status">الحالة المهنية</label>
                                         </div>
@@ -252,7 +251,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                                                 <?php echo e($EmpStatus); ?>>
-                                                <option value=""></option>
+                                                <option value="">اختر الدائرة</option>
                                                 <?php $__currentLoopData = $department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $departmen): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($departmen->id); ?>">
                                                         <?php echo e($departmen->department_name); ?>
@@ -273,7 +272,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='national_id' type="text"
@@ -304,7 +302,7 @@ unset($__errorArgs, $__bag); ?>
                                         <div class="form-floating form-floating-outline">
                                             <div class="form-check">
                                                 <input wire:model.defer='is_married' type="checkbox"
-                                                    id="modalWiveis_married" placeholder="الحالة الزوجية"
+                                                    id="modalWiveis_married" placeholder="اختيار مخصصات الزوجية"
                                                     class="form-check-input <?php $__errorArgs = ['is_married'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -313,8 +311,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                                <label class="form-check-label"
-                                                    for="modalWiveis_married">الحالةالزوجية</label>
+                                                <label class="form-check-label" for="modalWiveis_married">اختيار
+                                                    مخصصات الزوجية</label>
                                             </div>
                                         </div>
                                         <?php $__errorArgs = ['is_married'];

@@ -87,12 +87,11 @@
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='marital_status' id="modalWivemarital_status"
                                             class="form-select @error('marital_status') is-invalid is-filled @enderror">
-                                            <option value="">حالة الزوج/ـة</option>
+                                            <option value="">اختر حالة الزوج/ـة</option>
                                             <option value="على قيد الحياة">على قيد الحياة</option>
                                             <option value="متوفى/ية">متوفى/ية</option>
                                         </select>
@@ -125,7 +124,7 @@
                                         <select wire:model.defer='organization_name' id="modalWiveorganization_name"
                                             class="form-select @error('organization_name') is-invalid is-filled @enderror"
                                             {{ $EmpStatus }}>
-                                            <option value=""></option>
+                                            <option value="">اختر الدائرة</option>
                                             @foreach ($department as $departmen)
                                                 <option value="{{ $departmen->id }}">{{ $departmen->department_name }}
                                                 </option>
@@ -137,7 +136,6 @@
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='national_id' type="text"
@@ -149,7 +147,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <div class="form-check">

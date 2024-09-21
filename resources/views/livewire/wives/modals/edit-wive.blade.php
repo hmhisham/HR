@@ -132,7 +132,7 @@
                                                 id="modalWiveorganization_name"
                                                 class="form-select @error('organization_name') is-invalid is-filled @enderror"
                                                 {{ $EmpStatus }}>
-                                                <option value=""></option>
+                                                <option value="">اختر الدائرة</option>
                                                 @foreach ($department as $departmen)
                                                     <option value="{{ $departmen->id }}">
                                                         {{ $departmen->department_name }}

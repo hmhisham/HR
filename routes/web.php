@@ -83,8 +83,6 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Users-Accounts', UsersAccountsController::class);
         Route::RESOURCE('Customers-Accounts', CustomersAccountsController::class);
 
-
-
         // المحافظات I
         Route::RESOURCE('Governorates', GovernoratesController::class);
         // الاقضية I
