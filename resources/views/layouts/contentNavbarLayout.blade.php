@@ -91,7 +91,18 @@ $container = $container ?? 'container-xxl';
                                 <div>إضافة موظف</div>
                             </a>
                         </li>
-
+                        <li Class="menu-item {{ request()->Is('Wives') ? 'active' : '' }}">
+                            <a href="{{ Route('Wives.index') }}" Class="menu-link">
+                                <i Class=''></i>
+                                <div>بيانات الزوجة</div>
+                            </a>
+                        </li>
+                        <li Class="menu-item {{ request()->Is('Childrens') ? 'active' : '' }}">
+                            <a href="{{ Route('Childrens.index') }}" Class="menu-link">
+                                <i Class=''></i>
+                                <div>بيانات الاطفال</div>
+                            </a>
+                        </li>
                         <li Class="menu-item {{ request()->Is('Thanks') ? 'active' : '' }}">
                             <a href="{{ Route('Thanks.index') }}" Class="menu-link">
                                 <div>الشكر و التقدير</div>
@@ -329,21 +340,6 @@ $container = $container ?? 'container-xxl';
                             <a href="{{ Route('Trainings.index') }}" Class="menu-link">
                                 <i Class=''></i>
                                 <div>مجال التدريب</div>
-                            </a>
-                        </li>
-
-
-                        <li Class="menu-item {{ request()->Is('Wives') ? 'active' : '' }}">
-                            <a href="{{ Route('Wives.index') }}" Class="menu-link">
-                                <i Class=''></i>
-                                <div>بيانات الزوجة</div>
-                            </a>
-                        </li>
-
-                        <li Class="menu-item {{ request()->Is('Childrens') ? 'active' : '' }}">
-                            <a href="{{ Route('Childrens.index') }}" Class="menu-link">
-                                <i Class=''></i>
-                                <div>بيانات الاطفال</div>
                             </a>
                         </li>
 

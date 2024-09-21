@@ -136,7 +136,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::GET('Workers', [WorkersController::class, 'index'])->name('Workers');
         Route::GET('AddWorker', [WorkersController::class, 'AddWorker'])->name('AddWorker');
 
-        // التشكراتj
+        // التشكرات
         Route::RESOURCE('Thanks', ThanksController::class);
         // عقوبات
         Route::RESOURCE('Penalties', PenaltiesController::class);
@@ -152,10 +152,10 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Coaches', CoachesController::class);
         // الدورات
         Route::RESOURCE('Courses', CoursesController::class);
-        // الزوجة
+        // الزوجية
         Route::RESOURCE('Wives', WivesController::class);
-// الاطفال
-        Route::  RESOURCE('Childrens', ChildrensController::class);
+        // الاطفال
+        Route::RESOURCE('Childrens', ChildrensController::class);
     });
 });
 

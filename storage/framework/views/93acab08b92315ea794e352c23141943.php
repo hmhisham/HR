@@ -189,7 +189,7 @@ $container = $container ?? 'container-xxl';
                 
 
                 <li
-                    class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department','Wives',) ? 'open active' : ''); ?>">
+                    class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department','Wives','Childrens',) ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                         <span class="menu-title">الاعدادات</span>
@@ -332,10 +332,19 @@ $container = $container ?? 'container-xxl';
                                 <div>مجال التدريب</div>
                             </a>
                         </li>
+
+
                         <li Class="menu-item <?php echo e(request()->Is('Wives') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Wives.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>بيانات الزوجة</div>
+                            </a>
+                        </li>
+
+                        <li Class="menu-item <?php echo e(request()->Is('Childrens') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Childrens.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>بيانات الاطفال</div>
                             </a>
                         </li>
 
