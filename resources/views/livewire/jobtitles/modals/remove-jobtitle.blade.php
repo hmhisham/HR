@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">حذف</h3>
+                    <h3 class="pb-1 mb-2">حذف الدرجة الوظيفية</h3>
                     <p>نافذة الحذف</p>
                 </div>
                 <hr class="mt-n2">
@@ -13,13 +13,11 @@
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حذف البيانات...</h5>
-
                 <div wire:loading.remove>
                     <form id="removeJobtitleModalForm" onsubmit="return false" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
-                                '<Div Class="row">
-
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='jobtitles_name' type="text"
@@ -32,7 +30,6 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                 </div>
                             </div>
                             <hr class="my-0">

@@ -1,7 +1,6 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">قائمة</h4>
+    <h4 Class="mb-1fw-semiboyld">نافذة الدرجات الوظيفية</h4>
     <Div Class="card">
-
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -24,7 +23,6 @@
                             <th>#</th>
                             <th Class="text-center">الدرجة</th>
                             <th Class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +32,6 @@
                                 <?php $i++; ?>
                                 <td><?php echo e($i); ?></td>
                                 <td Class="text-center"><?php echo e($Grade->grades_name); ?></td>
-
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grade-edit')): ?>
@@ -57,7 +54,6 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
-
                 <div class="mt-2 d-flex justify-content-center">
                     <?php echo e($links->links()); ?>
 
@@ -69,6 +65,5 @@
             <?php endif; ?>
         </div>
     </div>
-</div>
 </div>
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/grades/grade.blade.php ENDPATH**/ ?>

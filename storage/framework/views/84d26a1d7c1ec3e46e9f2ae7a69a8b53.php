@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة عنوان وظيفي جديد</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -13,10 +13,10 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-
                                 <div class="mb-3 col flex-fill <?php echo e($grades); ?>">
                                     <div class="form-floating form-floating-outline">
-                                      <select wire:model.defer='grades_id'   id="modalJobtitlesgrades_id" class="form-select <?php $__errorArgs = ['grades_id'];
+                                        <select wire:model.defer='grades_id' id="modalJobtitlesgrades_id"
+                                            class="form-select <?php $__errorArgs = ['grades_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -24,12 +24,12 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                      <option value=""></option>
-                                        <?php $__currentLoopData = $grades; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grade): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($grade->id); ?>"><?php echo e($grade-> grades_name); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                  </select>
-                                  <label for="modalJobtitlesgrades_id">الدرجة</label>
+                                            <option value="">اختر الدرجة</option>
+                                            <?php $__currentLoopData = $grades; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grade): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($grade->id); ?>"><?php echo e($grade->grades_name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                        <label for="modalJobtitlesgrades_id">الدرجة</label>
                                     </div>
                                     <?php $__errorArgs = ['grades_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -42,8 +42,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='jobtitles_name' type="text"
@@ -69,7 +67,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                             </div>
                         </div>
                     </div>

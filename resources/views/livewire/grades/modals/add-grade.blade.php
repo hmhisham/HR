@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة درجة جديدة</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -13,20 +13,17 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='grades_name' type="text" id="modalGradesgrades_name"
                                             placeholder="الدرجة"
-                                            class="form-control @error('grades_name') is-invalid is-filled @enderror"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            class="form-control @error('grades_name') is-invalid is-filled @enderror" />
                                         <label for="modalGradesgrades_name">الدرجة</label>
                                     </div>
                                     @error('grades_name')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -42,13 +39,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Add Grade Modal -->

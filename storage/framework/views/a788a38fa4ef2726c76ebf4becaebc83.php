@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل</h3>
+                    <h3 class="pb-1 mb-2">تعديل الدرجة</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
@@ -13,7 +13,6 @@
                     جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-
                 <div wire:loading.remove>
                     <form id="editGradeModalForm" autocomplete="off">
                         <div class="row row-cols-1">
@@ -31,8 +30,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"
-                                                onkeypress="return restrictAlphabets(event)" />
+unset($__errorArgs, $__bag); ?>" />
                                             <label for="modalGradegrades_name">الدرجة</label>
                                         </div>
                                         <?php $__errorArgs = ['grades_name'];
@@ -63,14 +61,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Edite Grade Modal -->
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/grades/modals/edit-grade.blade.php ENDPATH**/ ?>

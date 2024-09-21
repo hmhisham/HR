@@ -1,7 +1,6 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">قائمة</h4>
-    <Div Class="card">
-
+    <h4 Class="mb-1fw-semiboyld">نافذة التخصص الدقيق</h4>
+    <div Class="card">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -27,7 +26,6 @@
                             <th Class="text-center">الرمز</th>
                             <th Class="text-center">التخصص الدقيق</th>
                             <th Class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +38,6 @@
                                 <td class="text-center">{{ $Precise->Getspecialty ? $Precise->Getspecialty->specialtys_name : '' }}</td>
                                 <td Class="text-center">{{ $Precise->precises_code }}</td>
                                 <td Class="text-center">{{ $Precise->precises_name }}</td>
-
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('precise-edit')
@@ -63,7 +60,6 @@
                         @endforeach
                     </tbody>
                 </table>
-
                 <div class="mt-2 d-flex justify-content-center">
                     {{ $links->links() }}
                 </div>
@@ -74,5 +70,4 @@
             @endcan
         </div>
     </div>
-</div>
 </div>

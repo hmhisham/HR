@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل</h3>
+                    <h3 class="pb-1 mb-2">تعديل الدرجة</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
@@ -13,7 +13,6 @@
                     جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-
                 <div wire:loading.remove>
                     <form id="editGradeModalForm" autocomplete="off">
                         <div class="row row-cols-1">
@@ -24,8 +23,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='grades_name' type="text"
                                                 id="modalGradegrades_name" placeholder="الدرجة"
-                                                class="form-control @error('grades_name') is-invalid is-filled @enderror"
-                                                onkeypress="return restrictAlphabets(event)" />
+                                                class="form-control @error('grades_name') is-invalid is-filled @enderror" />
                                             <label for="modalGradegrades_name">الدرجة</label>
                                         </div>
                                         @error('grades_name')
@@ -49,13 +47,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Edite Grade Modal -->

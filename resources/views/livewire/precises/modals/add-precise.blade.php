@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة تخصص دقيق جديد</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -13,29 +13,28 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-
-
                                 <div class="mb-3 col flex-fill {{ $specialtys }}">
                                     <div class="form-floating form-floating-outline">
-                                      <select wire:model.defer='specialtys_code'   id="modalPrecisesspecialtys_code" class="form-select @error('specialtys_code') is-invalid is-filled @enderror">
-                                      <option value=""></option>
-                                        @foreach ($specialtys as $specialty)
-                                        <option value="{{ $specialty->id }}">{{ $specialty-> specialtys_name }}</option>
-                                    @endforeach
-                                  </select>
-                                  <label for="modalPrecisesspecialtys_code">التخصص العام</label>
+                                        <select wire:model.defer='specialtys_code' id="modalPrecisesspecialtys_code"
+                                            class="form-select @error('specialtys_code') is-invalid is-filled @enderror">
+                                            <option value="">اختر التخصص العام</option>
+                                            @foreach ($specialtys as $specialty)
+                                                <option value="{{ $specialty->id }}">{{ $specialty->specialtys_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <label for="modalPrecisesspecialtys_code">التخصص العام</label>
                                     </div>
                                     @error('specialtys_code')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='precises_code' type="text"
                                             id="modalPrecisesprecises_code" placeholder="الرمز"
-                                            class="form-control @error('precises_code') is-invalid is-filled @enderror" />
+                                            class="form-control @error('precises_code') is-invalid is-filled @enderror"
+                                            onkeypress="return restrictAlphabets(event)" />
                                         <label for="modalPrecisesprecises_code">الرمز</label>
                                     </div>
                                     @error('precises_code')
@@ -71,4 +70,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
 <!--/ Add Precise Modal -->

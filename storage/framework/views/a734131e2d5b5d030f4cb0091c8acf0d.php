@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة درجة جديدة</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -13,7 +13,6 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='grades_name' type="text" id="modalGradesgrades_name"
@@ -25,8 +24,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"
-                                            onkeypress="return restrictAlphabets(event)" />
+unset($__errorArgs, $__bag); ?>" />
                                         <label for="modalGradesgrades_name">الدرجة</label>
                                     </div>
                                     <?php $__errorArgs = ['grades_name'];
@@ -40,7 +38,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -56,14 +53,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Add Grade Modal -->
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/grades/modals/add-grade.blade.php ENDPATH**/ ?>
