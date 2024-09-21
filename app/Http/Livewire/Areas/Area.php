@@ -27,7 +27,7 @@ class Area extends Component
         $this->Governorates = Governorates::all();
         $this->Areas = Areas::all();
         $this->Districts = Districts::all();
-  
+
     }
 
 
@@ -69,16 +69,15 @@ class Area extends Component
             'governorate_id' => 'required',
             'district_id' => 'required',
             'area_id' => 'required|unique:areas',
-            'area_name' => 'required',
+            'area_name' => 'required|unique:areas',
 
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
-
             'district_id.required' => 'حقل الاسم مطلوب',
-
-            'area_id.required' => 'حقل الاسم مطلوب',
-            'area_id.unique' => 'الأسم موجود',
+            'area_id.required' => 'حقل الرقم مطلوب',
+            'area_id.unique' => 'الرقم موجود',
             'area_name.required' => 'حقل الاسم مطلوب',
+            'area_name.unique' => 'الاسم موجود',
 
         ]);
 
@@ -124,9 +123,9 @@ class Area extends Component
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
             'district_id.required' => 'حقل الاسم مطلوب',
-            'area_id.required' => 'حقل الاسم مطلوب',
-            'area_id.unique' => 'الأسم موجود',
+            'area_id.required' => 'حقل الرقم مطلوب',
             'area_name.required' => 'حقل الاسم مطلوب',
+            'area_name.unique' => 'الاسم موجود',
         ]);
 
         $Areas = Areas::find($this->AreaId);

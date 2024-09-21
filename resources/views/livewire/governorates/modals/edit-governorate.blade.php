@@ -22,7 +22,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='governorate_number' type="text"
                                                 id="modalGovernorategovernorate_number" placeholder="رقم المحافظة"
-                                                class="form-control @error('governorate_number') is-invalid is-filled @enderror"
+                                                class="form-control @error('governorate_number') is-invalid is-filled @enderror" disabled
                                                 onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalGovernorategovernorate_number">رقم المحافظة</label>
                                         </div>

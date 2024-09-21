@@ -23,7 +23,7 @@
                                             <input wire:model.defer='Infooffice_id' type="text"
                                                 id="modalInfoOfficInfooffice_id" placeholder="رقم"
                                                 class="form-control @error('Infooffice_id') is-invalid is-filled @enderror"
-                                                onkeypress="return restrictAlphabets(event)" />
+                                                disabled onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalInfoOfficInfooffice_id">رقم</label>
                                         </div>
                                         @error('Infooffice_id')

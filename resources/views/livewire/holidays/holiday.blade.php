@@ -1,7 +1,6 @@
 <div class="mt-n4">
     <h4 class="mb-1 fw-semiboyld">قائمة</h4>
     <div class="card">
-
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -77,5 +76,4 @@
             @endcan
         </div>
     </div>
-</div>
 </div>

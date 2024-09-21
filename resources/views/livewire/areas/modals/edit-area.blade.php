@@ -22,7 +22,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='governorate_id' wire:change='chooseGovernorate'
                                                 id="modalAreasgovernorate_id"
-                                                class="form-select @error('governorate_id') is-invalid is-filled @enderror">
+                                                class="form-select @error('governorate_id') is-invalid is-filled @enderror" disabled>
                                                 <option value=""></option>
                                                 @foreach ($governorates as $governorate)
                                                     <option value="{{ $governorate->id }}">
@@ -38,7 +38,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='district_id' id="modalAreasdistrict_id"
-                                                class="form-select @error('district_id') is-invalid is-filled @enderror">
+                                                class="form-select @error('district_id') is-invalid is-filled @enderror" disabled>
                                                 <option value=""></option>
                                                 @foreach ($Districts as $district)
                                                     <option value="{{ $district->id }}">
@@ -59,7 +59,7 @@
                                             <input wire:model.defer='area_id' type="text" id="modalAreaarea_id"
                                                 placeholder="رقم الناحية"
                                                 class="form-control @error('area_id') is-invalid is-filled @enderror"
-                                                onkeypress="return restrictAlphabets(event)" />
+                                                disabled onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalAreaarea_id">رقم الناحية</label>
                                         </div>
                                         @error('area_id')

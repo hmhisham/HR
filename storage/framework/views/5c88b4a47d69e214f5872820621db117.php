@@ -29,7 +29,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"
+unset($__errorArgs, $__bag); ?>" disabled
                                                 onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalGovernorategovernorate_number">رقم المحافظة</label>
                                         </div>

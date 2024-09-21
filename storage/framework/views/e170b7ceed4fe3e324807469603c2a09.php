@@ -30,7 +30,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                                onkeypress="return restrictAlphabets(event)" />
+                                                disabled onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalInfoOfficInfooffice_id">رقم</label>
                                         </div>
                                         <?php $__errorArgs = ['Infooffice_id'];

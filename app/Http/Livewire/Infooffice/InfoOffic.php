@@ -1,27 +1,30 @@
 <?php
+
 namespace App\Http\Livewire\Infooffice;
+
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Infooffice\Infooffice;
+
 class InfoOffic extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
     public $Infooffice = [];
-     public $InfoOfficSearch, $InfoOffic, $InfoOfficId;
-    public $Infooffice_id,$Infooffice_name;
+    public $InfoOfficSearch, $InfoOffic, $InfoOfficId;
+    public $Infooffice_id, $Infooffice_name;
 
 
-    Public function render()
+    public function render()
     {
         $InfoOfficSearch = $this->InfoOfficSearch . '%';
         $Infooffice = Infooffice::where('Infooffice_id', 'LIKE', $InfoOfficSearch)
-->orWhere('Infooffice_name', 'LIKE', $InfoOfficSearch)
+            ->orWhere('Infooffice_name', 'LIKE', $InfoOfficSearch)
 
 
-         ->orderBy('id', 'ASC')
-         ->paginate(10);
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
         $links = $Infooffice;
         $this->Infooffice = collect($Infooffice->items());
         return view('livewire.infooffice.infooffic', [
@@ -40,72 +43,73 @@ class InfoOffic extends Component
     public function store()
     {
         $this->resetValidation();
-         $this->validate(['Infooffice_id' => 'required|unique:infooffice' ,
-'Infooffice_name' => 'required|unique:infooffice' ,
+        $this->validate([
+            'Infooffice_id' => 'required|unique:infooffice',
+            'Infooffice_name' => 'required|unique:infooffice',
 
-                 ], [
-                'Infooffice_id.required' => 'حقل الاسم مطلوب',
-                'Infooffice_id.unique' => 'الأسم موجود',
-                'Infooffice_name.required' => 'حقل الاسم مطلوب',
-                'Infooffice_name.unique' => 'الأسم موجود',  ]);
+        ], [
+            'Infooffice_id.required' => 'حقل الرقم مطلوب',
+            'Infooffice_id.unique' => 'الرقم موجود',
+            'Infooffice_name.required' => 'حقل الاسم مطلوب',
+            'Infooffice_name.unique' => 'الأسم موجود',
+        ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Infooffice::create([
-'Infooffice_id'=> $this->Infooffice_id,
-'Infooffice_name'=> $this->Infooffice_name,
+            'Infooffice_id' => $this->Infooffice_id,
+            'Infooffice_name' => $this->Infooffice_name,
 
-]);
+        ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
-        'message' => 'تم الاضافه بنجاح',
+            'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
     }
 
- public function GetInfoOffic($InfoOfficId)
+    public function GetInfoOffic($InfoOfficId)
     {
         $this->resetValidation();
 
-        $this-> InfoOffic  = Infooffice::find($InfoOfficId);
-        $this-> InfoOfficId = $this->InfoOffic->id;
-             $this->Infooffice_id= $this->InfoOffic->Infooffice_id;
-      $this->Infooffice_name= $this->InfoOffic->Infooffice_name;
-
+        $this->InfoOffic  = Infooffice::find($InfoOfficId);
+        $this->InfoOfficId = $this->InfoOffic->id;
+        $this->Infooffice_id = $this->InfoOffic->Infooffice_id;
+        $this->Infooffice_name = $this->InfoOffic->Infooffice_name;
     }
 
- public function update()
+    public function update()
     {
         $this->resetValidation();
-         $this->validate(['Infooffice_id' => 'required:infooffice' ,
-'Infooffice_name' => 'required:infooffice' ,
+        $this->validate([
+            'Infooffice_id' => 'required:infooffice',
+            'Infooffice_name' => 'required|unique:infooffice',
 
-                 ], [
-                'Infooffice_id.required' => 'حقل الاسم مطلوب',
-                'Infooffice_name.required' => 'حقل الاسم مطلوب', ]);
+        ], [
+            'Infooffice_name.required' => 'حقل الاسم مطلوب',
+            'Infooffice_name.unique' => 'الأسم موجود',
+        ]);
 
-             $Infooffice = Infooffice::find($this->InfoOfficId);
-             $Infooffice->update([
-'Infooffice_id'=> $this->Infooffice_id,
-'Infooffice_name'=> $this->Infooffice_name,
+        $Infooffice = Infooffice::find($this->InfoOfficId);
+        $Infooffice->update([
+            'Infooffice_id' => $this->Infooffice_id,
+            'Infooffice_name' => $this->Infooffice_name,
 
-]);
+        ]);
         $this->reset();
-         $this->dispatchBrowserEvent('success', [
+        $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
-     }
-
-  public function destroy()
-    {
-      $Infooffice = Infooffice::find($this->InfoOfficId);
-        $Infooffice->delete();
-         $this->reset();
-       $this->dispatchBrowserEvent('success', [
-      'message' => 'تم حذف البيانات  بنجاح',
-      'title' => 'الحذف '
-    ]);
     }
 
- }
-   
+    public function destroy()
+    {
+        $Infooffice = Infooffice::find($this->InfoOfficId);
+        $Infooffice->delete();
+        $this->reset();
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'تم حذف البيانات  بنجاح',
+            'title' => 'الحذف '
+        ]);
+    }
+}

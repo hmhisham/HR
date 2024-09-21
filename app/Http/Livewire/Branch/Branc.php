@@ -60,11 +60,14 @@ class Branc extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'section_id' => 'required',
+            'linkage_id' => 'required:branch',
+            'section_id' => 'required:branch',
             'branch_name' => 'required|unique:branch',
         ], [
+            'linkage_id.required' => 'حقل الاسم مطلوب',
             'section_id.required' => 'حقل الاسم مطلوب',
             'branch_name.required' => 'حقل الاسم مطلوب',
+            'branch_name.unique' => 'الأسم موجود',
         ]);
 
         Branch::create([
@@ -93,12 +96,14 @@ class Branc extends Component
     {
         $this->resetValidation();
         $this->validate([
-
+            'linkage_id' => 'required:branch',
             'section_id' => 'required:branch',
-            'branch_name' => 'required:branch',
+            'branch_name' => 'required|unique:branch',
         ], [
+            'linkage_id.required' => 'حقل الاسم مطلوب',
             'section_id.required' => 'حقل الاسم مطلوب',
             'branch_name.required' => 'حقل الاسم مطلوب',
+            'branch_name.unique' => 'الأسم موجود',
         ]);
 
         $Branch = Branch::find($this->BrancId);

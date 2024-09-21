@@ -53,12 +53,13 @@ class District extends Component
         $this->validate([
             'governorate_id' => 'required',
             'district_number' => 'required|unique:districts',
-            'district_name' => 'required',
+            'district_name' => 'required|unique:districts',
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
-            'district_number.required' => 'حقل الاسم مطلوب',
-            'district_number.unique' => 'الأسم موجود',
+            'district_number.required' => 'حقل الرقم مطلوب',
+            'district_number.unique' => 'الرقم موجود',
             'district_name.required' => 'حقل الاسم مطلوب',
+            'district_name.unique' => 'الأسم موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -91,11 +92,12 @@ class District extends Component
         $this->validate([
             'governorate_id' => 'required:districts',
             'district_number' => 'required:districts',
-            'district_name' => 'required:districts',
+            'district_name' => 'required|unique:districts',
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
-            'district_number.required' => 'حقل الاسم مطلوب',
+            'district_number.required' => 'حقل الرقم مطلوب',
             'district_name.required' => 'حقل الاسم مطلوب',
+            'district_name.unique' => 'الأسم موجود',
         ]);
 
         $Districts = Districts::find($this->DistrictId);

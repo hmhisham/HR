@@ -45,12 +45,11 @@ class Section extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'linkage_id' => 'required',
+            'linkage_id' => 'required:sections',
             'section_name' => 'required|unique:sections',
 
         ], [
             'linkage_id.required' => 'حقل الاسم مطلوب',
-            'linkage_id.unique' => 'الأسم موجود',
             'section_name.required' => 'حقل الاسم مطلوب',
             'section_name.unique' => 'الأسم موجود',
         ]);
@@ -83,11 +82,12 @@ class Section extends Component
         $this->resetValidation();
         $this->validate([
             'linkage_id' => 'required:sections',
-            'section_name' => 'required:sections',
+            'section_name' => 'required|unique:sections',
 
         ], [
             'linkage_id.required' => 'حقل الاسم مطلوب',
             'section_name.required' => 'حقل الاسم مطلوب',
+            'section_name.unique' => 'الأسم موجود',
         ]);
 
         $Sections = Sections::find($this->SectionId);

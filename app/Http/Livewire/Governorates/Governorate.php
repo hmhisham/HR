@@ -42,9 +42,9 @@ class Governorate extends Component
         $this->resetValidation();
         $this->validate([
             'governorate_number' => 'required|unique:governorates',
-            'governorate_name' => 'required:governorates',
+            'governorate_name' => 'required|unique:governorates',
         ], [
-            'governorate_number.required' => 'حقل الاسم مطلوب',
+            'governorate_number.required' => 'حقل الرقم مطلوب',
             'governorate_number.unique' => 'الرقم موجود',
             'governorate_name.required' => 'حقل الاسم مطلوب',
             'governorate_name.unique' => 'الأسم موجود',
@@ -79,11 +79,9 @@ class Governorate extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'governorate_number' => 'required|unique:governorates',
-            'governorate_name' => 'required:governorates',
+            'governorate_number' => 'required:governorates',
+            'governorate_name' => 'required|unique:governorates',
         ], [
-            'governorate_number.required' => 'حقل الاسم مطلوب',
-            'governorate_number.unique' => 'الرقم موجود',
             'governorate_name.required' => 'حقل الاسم مطلوب',
             'governorate_name.unique' => 'الأسم موجود',
         ]);
