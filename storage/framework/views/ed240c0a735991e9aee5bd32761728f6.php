@@ -6,7 +6,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">حذف</h3>
+                    <h3 class="pb-1 mb-2">حذف الدائرة</h3>
                     <p>نافذة الحذف</p>
                 </div>
                 <hr class="mt-n2">
@@ -16,7 +16,7 @@
                 <div wire:loading.remove>
                 <form id="removeDepartmenModalForm" onsubmit="return false" autocomplete="off">
                     <div class="row row-cols-1">
-                        <div class="col mb-3"> 
+                        <div class="col mb-3">
                          <div Class="row">
 
                 <div class="mb-3 col">
@@ -43,7 +43,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
             </div>
-            
+
                          </div>
                     </div>
                     <hr class="my-0">

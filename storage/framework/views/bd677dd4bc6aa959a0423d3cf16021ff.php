@@ -1,5 +1,5 @@
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semiboyld">قائمة</h4>
+    <h4 class="mb-1 fw-semiboyld">نافذة الارتباط</h4>
     <div class="card">
         <div class="card">
             <div class="card-header">
@@ -21,7 +21,7 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th class="text-center"></th>
+                            <th class="text-center">اسم الارتباط</th>
                             <th class="text-center">العملية</th>
                         </tr>
                     </thead>
@@ -65,6 +65,5 @@
             <?php endif; ?>
         </div>
     </div>
-</div>
 </div>
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/linkages/linkage.blade.php ENDPATH**/ ?>

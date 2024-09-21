@@ -21,9 +21,9 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='Linkages_name' type="text"
-                                                id="modalLinkageLinkages_name" placeholder=""
+                                                id="modalLinkageLinkages_name" placeholder="اسم الارتباط"
                                                 class="form-control @error('Linkages_name') is-invalid is-filled @enderror" />
-                                            <label for="modalLinkageLinkages_name"></label>
+                                            <label for="modalLinkageLinkages_name">اسم الارتباط</label>
                                         </div>
                                         @error('Linkages_name')
                                             <small class='text-danger inputerror'> {{ $message }} </small>

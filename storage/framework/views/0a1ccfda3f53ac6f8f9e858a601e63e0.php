@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة جهة تخرج جديدة</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -13,8 +13,6 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-
-
                                 <div class="mb-3 col flex-fill <?php echo e($certificates); ?>">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='certificates_id' id="modalGraduationscertificates_id"
@@ -26,7 +24,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value=""></option>
+                                            <option value="">اختر الشهادة</option>
                                             <?php $__currentLoopData = $certificates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($certificate->id); ?>">
                                                     <?php echo e($certificate->certificates_name); ?></option>
@@ -45,8 +43,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='graduations_name' type="text"
@@ -72,16 +68,15 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <hr class="my-0">
-                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                        <button wire:click='store' wire:loading.attr="disabled" type="button"
-                            class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
-                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                            aria-label="Close">تجاهل</button>
+                        <hr class="my-0">
+                        <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                            <button wire:click='store' wire:loading.attr="disabled" type="button"
+                                class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                aria-label="Close">تجاهل</button>
+                        </div>
                     </div>
                 </form>
             </div>

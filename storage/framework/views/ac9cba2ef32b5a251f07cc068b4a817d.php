@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة اختصاص جديد</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -23,7 +23,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                    <option value=""></option>
+                                    <option value="">اختر الشهادة</option>
                                     <?php $__currentLoopData = $certificates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <option value="<?php echo e($certificate->id); ?>">
                                             <?php echo e($certificate->certificates_name); ?>
@@ -44,11 +44,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
-
                         <div class="mb-3 col <?php echo e($graduations); ?>">
                             <div class="form-floating form-floating-outline">
-                                <select wire:model.defer='graduations_id'
-                                    id="modalSpecializationsgraduations_id"
+                                <select wire:model.defer='graduations_id' id="modalSpecializationsgraduations_id"
                                     class="form-select <?php $__errorArgs = ['graduations_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -57,7 +55,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                    <option value=""></option>
+                                    <option value="">اختر جهة التخرج</option>
                                     <?php $__currentLoopData = $Graduations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Graduation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <option value="<?php echo e($Graduation->id); ?>">
                                             <?php echo e($Graduation->graduations_name); ?></option>
@@ -76,7 +74,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
-
                         <div class="mb-3 col flex-fill">
                             <div class="form-floating form-floating-outline">
                                 <input wire:model.defer='specializations_name' type="text"

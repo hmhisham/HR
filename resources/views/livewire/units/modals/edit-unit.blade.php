@@ -29,7 +29,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <label for="section_id">القسم</label>
+                                            <label for="section_id">اسم القسم</label>
                                         </div>
                                         @error('section_id')
                                             <small class='text-danger inputerror'> {{ $message }} </small>

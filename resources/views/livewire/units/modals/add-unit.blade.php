@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة ةحدة جديدة</h3>
+                    <h3 class="pb-1 mb-2">اضافة وحدة جديدة</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -18,13 +18,13 @@
                                         <select wire:model.defer='section_id'
                                             wire:change='sectionid($event.target.value)' id="section_id"
                                             class="form-select @error('section_id') is-invalid is-filled @enderror">
-                                            <option value="">اختر قسماً</option>
+                                            <option value="">اختر القسم</option>
                                             @foreach ($sections as $section)
                                                 <option value="{{ $section->id }}">{{ $section->section_name }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <label for="section_id">القسم</label>
+                                        <label for="section_id">اسم القسم</label>
                                     </div>
                                     @error('section_id')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
@@ -34,7 +34,7 @@
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='branch_id' id="modalUnitsbranch_id"
                                             class="form-select @error('branch_id') is-invalid is-filled @enderror">
-                                            <option value=""></option>
+                                            <option value="">اختر الشعبة</option>
                                             @foreach ($branch as $branc)
                                                 <option value="{{ $branc->id }}">{{ $branc->branch_name }}</option>
                                             @endforeach

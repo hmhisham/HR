@@ -29,7 +29,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <label for="linkage_id">الارتباط</label>
+                                            <label for="linkage_id">اسم الارتباط</label>
                                         </div>
                                         @error('linkage_id')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -39,13 +39,13 @@
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='section_id' id="modalBranchsection_id"
                                                 class="form-select @error('section_id') is-invalid is-filled @enderror">
-                                                <option value="">اختر قسمًا</option>
+                                                <option value="">اختر القسم</option>
                                                 @foreach ($sections as $section)
                                                     <option value="{{ $section->id }}">{{ $section->section_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <label for="modalBranchsection_id">القسم</label>
+                                            <label for="modalBranchsection_id">اسم القسم</label>
                                         </div>
                                         @error('section_id')
                                             <small class='text-danger inputerror'> {{ $message }} </small>

@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل</h3>
+                    <h3 class="pb-1 mb-2">تعديل الاختصاص</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
@@ -13,13 +13,11 @@
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-
                 <div wire:loading.remove>
                     <form id="editSpecializationModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
-                                '<Div Class="row">
-
+                                <div Class="row">
                                     <div class="mb-3 col flex-fill <?php echo e($certificates); ?>">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='certificates_id'
@@ -32,7 +30,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                                <option value=""></option>
+                                                <option value="">اختر الشهادة</option>
                                                 <?php $__currentLoopData = $certificates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($certificate->id); ?>">
                                                         <?php echo e($certificate->certificates_name); ?></option>
@@ -51,10 +49,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-
-
-
-
                                     <div class="mb-3 col flex-fill <?php echo e($graduations); ?>">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='graduations_id'
@@ -67,7 +61,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                                <option value=""></option>
+                                                <option value="">اختر جهة التخرج</option>
                                                 <?php $__currentLoopData = $graduations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $graduation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($graduation->id); ?>">
                                                         <?php echo e($graduation->graduations_name); ?></option>
@@ -113,7 +107,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

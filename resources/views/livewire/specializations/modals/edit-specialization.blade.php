@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل</h3>
+                    <h3 class="pb-1 mb-2">تعديل الاختصاص</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
@@ -13,19 +13,17 @@
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-
                 <div wire:loading.remove>
                     <form id="editSpecializationModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
-                                '<Div Class="row">
-
+                                <div Class="row">
                                     <div class="mb-3 col flex-fill {{ $certificates }}">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='certificates_id'
                                                 id="modalSpecializationscertificates_id"
                                                 class="form-select @error('certificates_id') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر الشهادة</option>
                                                 @foreach ($certificates as $certificate)
                                                     <option value="{{ $certificate->id }}">
                                                         {{ $certificate->certificates_name }}</option>
@@ -37,16 +35,12 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
-
-
-
                                     <div class="mb-3 col flex-fill {{ $graduations }}">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='graduations_id'
                                                 id="modalSpecializationsgraduations_id"
                                                 class="form-select @error('graduations_id') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر جهة التخرج</option>
                                                 @foreach ($graduations as $graduation)
                                                     <option value="{{ $graduation->id }}">
                                                         {{ $graduation->graduations_name }}</option>
@@ -71,7 +65,6 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                 </div>
                             </div>
                         </div>
