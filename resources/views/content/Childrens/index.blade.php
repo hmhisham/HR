@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Childrens')
 @section('vendor-style')
@@ -11,10 +10,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
-@section('content') 
-@livewire('childrens.children')
-
+@endsection
+@section('content')
+    @livewire('childrens.children')
 
 @endsection
 
@@ -50,10 +48,10 @@
 
         window.addEventListener('ChildrenModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);  
+                $('#id').focus();
+            }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addchildrenModal').modal('hide');
             $('#editchildrenModal').modal('hide');
@@ -63,9 +61,9 @@
                 title: event.detail.message
             })
         })
-           
 
-            
+
+
 
         window.addEventListener('error', event => {
             $('#removechildrenModal').modal('hide');
@@ -74,7 +72,24 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
+
+        $(document).ready(function() {
+             window.initWivesDrop = () => {
+            $('#modalChildrenwives_id').select2({
+                placeholder: 'اختيار',
+                dropdownParent: $('#addchildrenModal')
+            });
+        }
+            initWivesDrop();
+        $('#modalChildrenwives_id').on('change', function(e) {
+            livewire.emit('SelectWivesId', e.target.value);
+        });
+        window.livewire.on('select2', () => {
+            initWivesDrop();
+        });
+    });
+    
     </script>
 @endsection
