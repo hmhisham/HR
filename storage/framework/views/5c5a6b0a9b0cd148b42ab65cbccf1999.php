@@ -1,6 +1,6 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">قائمة</h4>
-    <Div Class="card">
+    <h4 Class="mb-1fw-semiboyld">نافذة مكاتب المعلومات</h4>
+    <div Class="card">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -32,7 +32,6 @@
                                 <td><?php echo e($loop->iteration); ?></td>
                                 <td Class="text-center"><?php echo e($InfoOffic->Infooffice_id); ?></td>
                                 <td Class="text-center"><?php echo e($InfoOffic->Infooffice_name); ?></td>
-
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('infooffic-edit')): ?>
@@ -66,6 +65,5 @@
             <?php endif; ?>
         </div>
     </div>
-</div>
 </div>
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/infooffice/infooffic.blade.php ENDPATH**/ ?>

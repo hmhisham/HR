@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة ناحية جديدة</h3>
+                    <h3 class="pb-1 mb-2">اضافة اسم ناحية جديدة</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -18,13 +18,13 @@
                                         <select wire:model.defer='governorate_id' wire:change='chooseGovernorate'
                                             id="modalAreasgovernorate_id"
                                             class="form-select @error('governorate_id') is-invalid is-filled @enderror">
-                                            <option value=""></option>
+                                            <option value="">اختر اسم المحافظة</option>
                                             @foreach ($governorates as $governorate)
                                                 <option value="{{ $governorate->id }}">
                                                     {{ $governorate->governorate_name }}</option>
                                             @endforeach
                                         </select>
-                                        <label for="modalGovernoratesgovernorate_id">المحافظة</label>
+                                        <label for="modalGovernoratesgovernorate_id">اسم المحافظة</label>
                                     </div>
                                     @error('governorate_id')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
@@ -34,13 +34,13 @@
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='district_id' id="modalAreasdistrict_id"
                                             class="form-select @error('district_id') is-invalid is-filled @enderror">
-                                            <option value=""></option>
+                                            <option value="">اختر اسم القضاء</option>
                                             @foreach ($Districts as $District)
                                                 <option value="{{ $District->id }}">{{ $District->district_name }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <label for="modalAreasdistrict_id">القضاء</label>
+                                        <label for="modalAreasdistrict_id">اسم القضاء</label>
                                     </div>
                                     @error('district_id')
                                         <small class='text-danger inputerror'> {{ $message }} </small>

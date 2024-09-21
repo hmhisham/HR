@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة معلومات الموظف</h3>
+                    <h3 class="pb-1 mb-2">تعديل</h3>
                     <p>نافذة اضافة جهة التخرج</p>
                 </div>
                 <hr class="mt-n2">
@@ -19,12 +19,26 @@
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='calculator_number' type="text" id="modalWorkercalculator_number" placeholder="رقم الحاسبة" class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
+                                            <input wire:model.defer='calculator_number' type="text" id="modalWorkercalculator_number" placeholder="رقم الحاسبة" class="form-control <?php $__errorArgs = ['calculator_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
                                             <label for="modalWorkercalculator_number">رقم الحاسبة</label>
                                         </div>
-                                        @error('calculator_number')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                                        <?php $__errorArgs = ['calculator_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                             </div>
@@ -37,3 +51,4 @@
 </div>
 <!--/ Edite Worker Modal -->
 
+<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/workers/modals/add-takhroj.blade.php ENDPATH**/ ?>

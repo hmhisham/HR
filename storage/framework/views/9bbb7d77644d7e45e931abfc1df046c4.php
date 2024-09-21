@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة ناحية جديدة</h3>
+                    <h3 class="pb-1 mb-2">اضافة اسم ناحية جديدة</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -25,13 +25,13 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value=""></option>
+                                            <option value="">اختر اسم المحافظة</option>
                                             <?php $__currentLoopData = $governorates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $governorate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($governorate->id); ?>">
                                                     <?php echo e($governorate->governorate_name); ?></option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
-                                        <label for="modalGovernoratesgovernorate_id">المحافظة</label>
+                                        <label for="modalGovernoratesgovernorate_id">اسم المحافظة</label>
                                     </div>
                                     <?php $__errorArgs = ['governorate_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -55,14 +55,14 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value=""></option>
+                                            <option value="">اختر اسم القضاء</option>
                                             <?php $__currentLoopData = $Districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $District): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($District->id); ?>"><?php echo e($District->district_name); ?>
 
                                                 </option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
-                                        <label for="modalAreasdistrict_id">القضاء</label>
+                                        <label for="modalAreasdistrict_id">اسم القضاء</label>
                                     </div>
                                     <?php $__errorArgs = ['district_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

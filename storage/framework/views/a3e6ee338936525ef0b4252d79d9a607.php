@@ -4,7 +4,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">إضافة منطقة جديدة</h3>
+                    <h3 class="pb-1 mb-2">إضافة اسم قضاء جديد</h3>
                     <p>نافذة الإضافة</p>
                 </div>
                 <hr class="mt-n2">
@@ -21,7 +21,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                    <option value=""></option>
+                                    <option value="">اختر المحافظة</option>
                                     <?php $__currentLoopData = $governorates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $governorate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <option value="<?php echo e($governorate->id); ?>"><?php echo e($governorate->governorate_name); ?>
 

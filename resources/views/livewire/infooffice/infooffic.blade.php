@@ -1,6 +1,6 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">قائمة</h4>
-    <Div Class="card">
+    <h4 Class="mb-1fw-semiboyld">نافذة مكاتب المعلومات</h4>
+    <div Class="card">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -32,7 +32,6 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td Class="text-center">{{ $InfoOffic->Infooffice_id }}</td>
                                 <td Class="text-center">{{ $InfoOffic->Infooffice_name }}</td>
-
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('infooffic-edit')
@@ -65,5 +64,4 @@
             @endcan
         </div>
     </div>
-</div>
 </div>

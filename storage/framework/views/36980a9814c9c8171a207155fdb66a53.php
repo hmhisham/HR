@@ -1,6 +1,6 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">قائمة</h4>
-    <Div Class="card">
+    <h4 Class="mb-1fw-semiboyld">نافذة المحافظات</h4>
+    <div Class="card">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -56,7 +56,6 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
-
                 <div class="mt-2 d-flex justify-content-center">
                     <?php echo e($links->links()); ?>
 
@@ -68,6 +67,5 @@
             <?php endif; ?>
         </div>
     </div>
-</div>
 </div>
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/governorates/governorate.blade.php ENDPATH**/ ?>
