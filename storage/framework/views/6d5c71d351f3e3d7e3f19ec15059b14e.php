@@ -1,22 +1,78 @@
-<!-- Edite Wive Modal -->
-<div wire:ignore.self class="modal fade" id="editwiveModal" tabindex="-1" aria-hidden="true">
+<!-- Edite Children Modal -->
+<div wire:ignore.self class="modal fade" id="editchildrenModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل بيانات الزوج/ية</h3>
+                    <h3 class="pb-1 mb-2">تعديل بيانات الاطفال</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetWive" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="GetChildren"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
                 <div wire:loading.remove>
-                    <form id="editWiveModalForm" autocomplete="off">
-                        <div class="row row-cols-1  ">
+                    <form id="editChildrenModalForm" autocomplete="off">
+                        <div class="row row-cols-1">
                             <div class="col mb-3">
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='wives_id' id="modalChildrenwives_id"
+                                                class="form-select <?php $__errorArgs = ['wives_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
+                                                <?php $__currentLoopData = $wives; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $wive): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($wive->id); ?>"><?php echo e($wive->full_name); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                            <label for="modalChildrenwives_id">اسم الام الكامل</label>
+                                        </div>
+                                        <?php $__errorArgs = ['wives_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'><?php echo e($message); ?></small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='full_name' type="text"
+                                                id="modalChildrenfull_name" placeholder="الاسم الكامل" disabled
+                                                class="form-control <?php $__errorArgs = ['full_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalChildrenfull_name">الاسم الكامل</label>
+                                        </div>
+                                        <?php $__errorArgs = ['full_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <!-- الاسم الأول -->
                                     <div class="mb-3 col">
@@ -152,20 +208,47 @@ unset($__errorArgs, $__bag); ?>
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='full_name' type="text" id="modalWivefull_name"
-                                                placeholder="الاسم الكامل"
-                                                class="form-control <?php $__errorArgs = ['full_name'];
+                                            <input wire:model.defer='birth_date' type="date"
+                                                id="modalChildrenbirth_date" placeholder="تاريخ التولد"
+                                                class="form-control <?php $__errorArgs = ['birth_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"
-                                                disabled />
-                                            <label for="modalWivefull_name">الاسم الكامل</label>
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalChildrenbirth_date">تاريخ التولد</label>
                                         </div>
-                                        <?php $__errorArgs = ['full_name'];
+                                        <?php $__errorArgs = ['birth_date'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='gender' id="modalChildrengender"
+                                                class="form-control <?php $__errorArgs = ['gender'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                <option value="">اختر الجنس</option>
+                                                <option value="ذكر">ذكر</option>
+                                                <option value="أنثى">أنثى</option>
+                                            </select>
+                                            <label for="modalChildrengender">الجنس</label>
+                                        </div>
+                                        <?php $__errorArgs = ['gender'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -176,11 +259,10 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='marital_status' id="modalWivemarital_status"
-                                                class="form-select <?php $__errorArgs = ['marital_status'];
+                                            <select wire:model.defer='marital_status' id="modalChildrenmarital_status"
+                                                class="form-control <?php $__errorArgs = ['marital_status'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -188,11 +270,11 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                                <option value="">حالة الزوج/ـة</option>
-                                                <option value="على قيد الحياة">على قيد الحياة</option>
-                                                <option value="متوفى/ية">متوفى/ية</option>
+                                                <option value="">اختر الحالة الزوجية</option>
+                                                <option value="اعزب/باكر">اعزب/باكر</option>
+                                                <option value="متزوج/ـة">متزوج/ـة</option>
                                             </select>
-                                            <label for="modalWivemarital_status">الحالة</label>
+                                            <label for="modalChildrenmarital_status">الحالة الزوجية</label>
                                         </div>
                                         <?php $__errorArgs = ['marital_status'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -205,12 +287,13 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
+                                </div>
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='occupational_status'
-                                                wire:change="getEmpStatus($event.target.value)"
-                                                id="modalWiveoccupational_status"
-                                                class="form-select <?php $__errorArgs = ['occupational_status'];
+                                                id="modalChildrenoccupational_status"
+                                                class="form-control <?php $__errorArgs = ['occupational_status'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -218,50 +301,14 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                                <option value="">اختر الحالة المهنية</option>
-                                                <option value="كاسب/ربة بيت">كاسب/ربة بيت</option>
+                                                <option value="">اختر الحالة الدراسية</option>
+                                                <option value="طالب/ـة">طالب/ـة</option>
                                                 <option value="موظف/ـة">موظف/ـة</option>
+                                                <option value="كاسب/ربة بيت">كاسب/ربة بيت</option>
                                             </select>
-                                            <label for="modalWiveoccupational_status">الحالة المهنية</label>
+                                            <label for="modalChildrenoccupational_status">الحالة الدراسية</label>
                                         </div>
                                         <?php $__errorArgs = ['occupational_status'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                            <small class='text-danger inputerror'><?php echo e($message); ?></small>
-                                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                    </div>
-                                </div>
-                                <div Class="row">
-
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='organization_name'
-                                                id="modalWiveorganization_name"
-                                                class="form-select <?php $__errorArgs = ['organization_name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
-                                                <?php echo e($EmpStatus); ?>>
-                                                <option value="">اختر الدائرة</option>
-                                                <?php $__currentLoopData = $department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $departmen): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <option value="<?php echo e($departmen->id); ?>">
-                                                        <?php echo e($departmen->department_name); ?>
-
-                                                    </option>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </select>
-                                            <label for="modalWiveorganization_name">الدوائر</label>
-                                        </div>
-                                        <?php $__errorArgs = ['organization_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -275,7 +322,7 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='national_id' type="text"
-                                                id="modalWivenational_id" placeholder="رقم البطاقة الوطنية"
+                                                id="modalChildrennational_id" placeholder="رقم البطاقة الوطنية"
                                                 class="form-control <?php $__errorArgs = ['national_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -285,7 +332,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                                                 onkeypress="return restrictAlphabets(event)" />
-                                            <label for="modalWivenational_id">رقم البطاقة الوطنية</label>
+                                            <label for="modalChildrennational_id">رقم البطاقة الوطنية</label>
                                         </div>
                                         <?php $__errorArgs = ['national_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -298,35 +345,33 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-
                                     <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <div class="form-check">
-                                                <input wire:model.defer='is_married' type="checkbox"
-                                                    id="modalWiveis_married" placeholder="اختيار مخصصات الزوجية"
-                                                    class="form-check-input <?php $__errorArgs = ['is_married'];
+                                        <div class="form-check form-check-outline">
+                                            <input wire:model.defer='is_counted' type="checkbox"
+                                                id="modalChildrenis_counted"
+                                                class="form-check-input <?php $__errorArgs = ['is_counted'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
-                                                <label class="form-check-label" for="modalWiveis_married">اختيار
-                                                    مخصصات الزوجية</label>
-                                            </div>
+unset($__errorArgs, $__bag); ?>">
+                                            <label class="form-check-label" for="modalChildrenis_counted">هل يتم
+                                                احتسابه</label>
                                         </div>
-                                        <?php $__errorArgs = ['is_married'];
+                                        <?php $__errorArgs = ['is_counted'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                            <small class='text-danger inputerror'><?php echo e($message); ?></small>
                                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -352,5 +397,5 @@ unset($__errorArgs, $__bag); ?>
             return false;
     }
 </script>
-<!--/ Edite Wive Modal -->
-<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/wives/modals/edit-wive.blade.php ENDPATH**/ ?>
+<!--/ Edite Children Modal -->
+<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/childrens/modals/edit-children.blade.php ENDPATH**/ ?>

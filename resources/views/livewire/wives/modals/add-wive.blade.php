@@ -140,7 +140,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='national_id' type="text"
                                             id="modalWivenational_id" placeholder="رقم البطاقة الوطنية"
-                                            class="form-control @error('national_id') is-invalid is-filled @enderror" />
+                                            class="form-control @error('national_id') is-invalid is-filled @enderror"
+                                            onkeypress="return restrictAlphabets(event)" />
                                         <label for="modalWivenational_id">رقم البطاقة الوطنية</label>
                                     </div>
                                     @error('national_id')
@@ -177,4 +178,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
 <!--/ Add Wive Modal -->

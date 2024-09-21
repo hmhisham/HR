@@ -1,20 +1,20 @@
-<!-- Remove Wive Modal -->
-<div wire:ignore.self class="modal fade" id="removewiveModal" tabindex="-1" aria-hidden="true">
+<!-- Remove Children Modal -->
+<div wire:ignore.self class="modal fade" id="removechildrenModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">حذف بيانات الزوج/ية</h3>
+                    <h3 class="pb-1 mb-2">حذف بيانات الاطفال</h3>
                     <p>نافذة الحذف</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetWive" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="GetChildren"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حذف البيانات...</h5>
                 <div wire:loading.remove>
-                    <form id="removeWiveModalForm" onsubmit="return false" autocomplete="off">
+                    <form id="removeChildrenModalForm" onsubmit="return false" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div Class="row">
@@ -22,8 +22,8 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='full_name' type="text" id="modalWivefull_name"
-                                                placeholder="الاسم الكامل"
+                                            <input wire:model.defer='full_name' type="text"
+                                                id="modalChildrenfull_name" placeholder="الاسم الكامل" disabled
                                                 class="form-control <?php $__errorArgs = ['full_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -31,9 +31,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"
-                                                disabled />
-                                            <label for="modalWivefull_name">الاسم الكامل</label>
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalChildrenfull_name">الاسم الكامل</label>
                                         </div>
                                         <?php $__errorArgs = ['full_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -62,5 +61,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<!--/ Delete Wive Modal -->
-<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/wives/modals/remove-wive.blade.php ENDPATH**/ ?>
+<!--/ Delete Children Modal -->
+<?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/childrens/modals/remove-children.blade.php ENDPATH**/ ?>

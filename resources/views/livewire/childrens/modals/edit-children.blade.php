@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل</h3>
+                    <h3 class="pb-1 mb-2">تعديل بيانات الاطفال</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
@@ -107,7 +107,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
@@ -120,12 +119,11 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='gender' id="modalChildrengender"
                                                 class="form-control @error('gender') is-invalid is-filled @enderror">
-                                                <option value="" disabled selected>اختر الجنس</option>
+                                                <option value="">اختر الجنس</option>
                                                 <option value="ذكر">ذكر</option>
                                                 <option value="أنثى">أنثى</option>
                                             </select>
@@ -135,12 +133,11 @@
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='marital_status' id="modalChildrenmarital_status"
                                                 class="form-control @error('marital_status') is-invalid is-filled @enderror">
-                                                <option value="" disabled selected>اختر الحالة الزوجية</option>
+                                                <option value="">اختر الحالة الزوجية</option>
                                                 <option value="اعزب/باكر">اعزب/باكر</option>
                                                 <option value="متزوج/ـة">متزوج/ـة</option>
                                             </select>
@@ -150,7 +147,6 @@
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
-
                                 </div>
                                 <div Class="row">
                                     <div class="mb-3 col">
@@ -158,7 +154,7 @@
                                             <select wire:model.defer='occupational_status'
                                                 id="modalChildrenoccupational_status"
                                                 class="form-control @error('occupational_status') is-invalid is-filled @enderror">
-                                                <option value="" disabled selected>اختر الحالة الدراسية</option>
+                                                <option value="">اختر الحالة الدراسية</option>
                                                 <option value="طالب/ـة">طالب/ـة</option>
                                                 <option value="موظف/ـة">موظف/ـة</option>
                                                 <option value="كاسب/ربة بيت">كاسب/ربة بيت</option>
@@ -169,12 +165,12 @@
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='national_id' type="text"
                                                 id="modalChildrennational_id" placeholder="رقم البطاقة الوطنية"
-                                                class="form-control @error('national_id') is-invalid is-filled @enderror" />
+                                                class="form-control @error('national_id') is-invalid is-filled @enderror"
+                                                onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalChildrennational_id">رقم البطاقة الوطنية</label>
                                         </div>
                                         @error('national_id')
@@ -197,17 +193,26 @@
                                 </div>
                             </div>
                         </div>
+                        <hr class="my-0">
+                        <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                            <button wire:click='update' wire:loading.attr="disabled" type="button"
+                                class="btn btn-success me-sm-3 me-1">تعديل</button>
+                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                aria-label="Close">تجاهل</button>
+                        </div>
+                    </form>
                 </div>
-                <hr class="my-0">
-                <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                    <button wire:click='update' wire:loading.attr="disabled" type="button"
-                        class="btn btn-success me-sm-3 me-1">تعديل</button>
-                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                        aria-label="Close">تجاهل</button>
-                </div>
-                </form>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
 <!--/ Edite Children Modal -->

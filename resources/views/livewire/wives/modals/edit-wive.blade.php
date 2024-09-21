@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل بيانات الزوجية</h3>
+                    <h3 class="pb-1 mb-2">تعديل بيانات الزوج/ية</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
@@ -149,7 +149,8 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='national_id' type="text"
                                                 id="modalWivenational_id" placeholder="رقم البطاقة الوطنية"
-                                                class="form-control @error('national_id') is-invalid is-filled @enderror" />
+                                                class="form-control @error('national_id') is-invalid is-filled @enderror"
+                                                onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalWivenational_id">رقم البطاقة الوطنية</label>
                                         </div>
                                         @error('national_id')
@@ -174,17 +175,26 @@
                                 </div>
                             </div>
                         </div>
+                        <hr class="my-0">
+                        <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                            <button wire:click='update' wire:loading.attr="disabled" type="button"
+                                class="btn btn-success me-sm-3 me-1">تعديل</button>
+                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                aria-label="Close">تجاهل</button>
+                        </div>
+                    </form>
                 </div>
-                <hr class="my-0">
-                <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                    <button wire:click='update' wire:loading.attr="disabled" type="button"
-                        class="btn btn-success me-sm-3 me-1">تعديل</button>
-                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                        aria-label="Close">تجاهل</button>
-                </div>
-                </form>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
 <!--/ Edite Wive Modal -->

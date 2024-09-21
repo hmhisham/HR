@@ -1,5 +1,5 @@
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semiboyld">قائمة</h4>
+    <h4 class="mb-1 fw-semiboyld">نافذة بيانات الاطفال</h4>
     <div class="card">
         <div class="card">
             <div class="card-header">

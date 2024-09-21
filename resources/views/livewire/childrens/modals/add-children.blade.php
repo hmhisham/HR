@@ -102,7 +102,6 @@
                                     @enderror
                                 </div>
                             </div>
-
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
@@ -115,12 +114,11 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='gender' id="modalChildrengender"
                                             class="form-control @error('gender') is-invalid is-filled @enderror">
-                                            <option value="" disabled selected>اختر الجنس</option>
+                                            <option value="">اختر الجنس</option>
                                             <option value="ذكر">ذكر</option>
                                             <option value="أنثى">أنثى</option>
                                         </select>
@@ -130,12 +128,11 @@
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='marital_status' id="modalChildrenmarital_status"
                                             class="form-control @error('marital_status') is-invalid is-filled @enderror">
-                                            <option value="" disabled selected>اختر الحالة الزوجية</option>
+                                            <option value="">اختر الحالة الزوجية</option>
                                             <option value="اعزب/باكر">اعزب/باكر</option>
                                             <option value="متزوج/ـة">متزوج/ـة</option>
                                         </select>
@@ -145,7 +142,6 @@
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
                             </div>
                             <div Class="row">
                                 <div class="mb-3 col">
@@ -153,7 +149,7 @@
                                         <select wire:model.defer='occupational_status'
                                             id="modalChildrenoccupational_status"
                                             class="form-control @error('occupational_status') is-invalid is-filled @enderror">
-                                            <option value="" disabled selected>اختر الحالة الدراسية</option>
+                                            <option value="">اختر الحالة الدراسية</option>
                                             <option value="طالب/ـة">طالب/ـة</option>
                                             <option value="موظف/ـة">موظف/ـة</option>
                                             <option value="كاسب/ربة بيت">كاسب/ربة بيت</option>
@@ -168,7 +164,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='national_id' type="text"
                                             id="modalChildrennational_id" placeholder="رقم البطاقة الوطنية"
-                                            class="form-control @error('national_id') is-invalid is-filled @enderror" />
+                                            class="form-control @error('national_id') is-invalid is-filled @enderror"
+                                            onkeypress="return restrictAlphabets(event)" />
                                         <label for="modalChildrennational_id">رقم البطاقة الوطنية</label>
                                     </div>
                                     @error('national_id')
@@ -203,4 +200,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
 <!--/ Add Children Modal -->
