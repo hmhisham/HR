@@ -13,7 +13,6 @@
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-
                 <div wire:loading.remove>
                     <form id="editChildrenModalForm" autocomplete="off">
                         <div class="row row-cols-1">
@@ -113,9 +112,9 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='birth_date' type="date"
-                                                id="modalChildrenbirth_date" placeholder="تاريخ الميلاد"
+                                                id="modalChildrenbirth_date" placeholder="تاريخ التولد"
                                                 class="form-control @error('birth_date') is-invalid is-filled @enderror" />
-                                            <label for="modalChildrenbirth_date">تاريخ الميلاد</label>
+                                            <label for="modalChildrenbirth_date">تاريخ التولد</label>
                                         </div>
                                         @error('birth_date')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -142,8 +141,8 @@
                                             <select wire:model.defer='marital_status' id="modalChildrenmarital_status"
                                                 class="form-control @error('marital_status') is-invalid is-filled @enderror">
                                                 <option value="" disabled selected>اختر الحالة الزوجية</option>
-                                                <option value="أعزب">أعزب</option>
-                                                <option value="متزوج">متزوج</option>
+                                                <option value="اعزب/باكر">اعزب/باكر</option>
+                                                <option value="متزوج/ـة">متزوج/ـة</option>
                                             </select>
                                             <label for="modalChildrenmarital_status">الحالة الزوجية</label>
                                         </div>
@@ -160,9 +159,9 @@
                                                 id="modalChildrenoccupational_status"
                                                 class="form-control @error('occupational_status') is-invalid is-filled @enderror">
                                                 <option value="" disabled selected>اختر الحالة الدراسية</option>
-                                                <option value="طالب">طالب</option>
-                                                <option value="موظف">موظف</option>
-                                                <option value="عاطل عن العمل">عاطل عن العمل</option>
+                                                <option value="طالب/ـة">طالب/ـة</option>
+                                                <option value="موظف/ـة">موظف/ـة</option>
+                                                <option value="كاسب/ربة بيت">كاسب/ربة بيت</option>
                                             </select>
                                             <label for="modalChildrenoccupational_status">الحالة الدراسية</label>
                                         </div>

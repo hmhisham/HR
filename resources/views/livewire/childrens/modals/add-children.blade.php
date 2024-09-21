@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة بيانات الاطفال</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -15,7 +15,8 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='wives_id' id="modalChildrenwives_id" class="form-select @error('wives_id') is-invalid is-filled @enderror">
+                                        <select wire:model.defer='wives_id' id="modalChildrenwives_id"
+                                            class="form-select @error('wives_id') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($wives as $wive)
                                                 <option value="{{ $wive->id }}">{{ $wive->full_name }}</option>
@@ -106,9 +107,9 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='birth_date' type="date" id="modalChildrenbirth_date"
-                                            placeholder="تاريخ الميلاد"
+                                            placeholder="تاريخ التولد"
                                             class="form-control @error('birth_date') is-invalid is-filled @enderror" />
-                                        <label for="modalChildrenbirth_date">تاريخ الميلاد</label>
+                                        <label for="modalChildrenbirth_date">تاريخ التولد</label>
                                     </div>
                                     @error('birth_date')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
@@ -135,8 +136,8 @@
                                         <select wire:model.defer='marital_status' id="modalChildrenmarital_status"
                                             class="form-control @error('marital_status') is-invalid is-filled @enderror">
                                             <option value="" disabled selected>اختر الحالة الزوجية</option>
-                                            <option value="أعزب">أعزب</option>
-                                            <option value="متزوج">متزوج</option>
+                                            <option value="اعزب/باكر">اعزب/باكر</option>
+                                            <option value="متزوج/ـة">متزوج/ـة</option>
                                         </select>
                                         <label for="modalChildrenmarital_status">الحالة الزوجية</label>
                                     </div>
@@ -153,9 +154,9 @@
                                             id="modalChildrenoccupational_status"
                                             class="form-control @error('occupational_status') is-invalid is-filled @enderror">
                                             <option value="" disabled selected>اختر الحالة الدراسية</option>
-                                            <option value="طالب">طالب</option>
-                                            <option value="موظف">موظف</option>
-                                            <option value="عاطل عن العمل">عاطل عن العمل</option>
+                                            <option value="طالب/ـة">طالب/ـة</option>
+                                            <option value="موظف/ـة">موظف/ـة</option>
+                                            <option value="كاسب/ربة بيت">كاسب/ربة بيت</option>
                                         </select>
                                         <label for="modalChildrenoccupational_status">الحالة الدراسية</label>
                                     </div>
@@ -163,7 +164,6 @@
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='national_id' type="text"

@@ -1,7 +1,6 @@
 <div class="mt-n4">
     <h4 class="mb-1 fw-semiboyld">قائمة</h4>
     <div class="card">
-
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -27,7 +26,6 @@
                             <th class="text-center">الجنس</th>
                             <th class="text-center">الحالة الدراسية</th>
                             <th class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +38,6 @@
                                 <td class="text-center">{{ $Children->full_name }}</td>
                                 <td class="text-center">{{ $Children->gender }}</td>
                                 <td class="text-center">{{ $Children->occupational_status }}</td>
-
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('children-edit')
@@ -73,5 +70,4 @@
             @endcan
         </div>
     </div>
-</div>
 </div>
