@@ -31,7 +31,7 @@ class District extends Component
 
         return view('livewire.districts.district', [
             'governorates' => Governorates::get(),
-          'links' => $links
+            'links' => $links
         ]);
     }
 

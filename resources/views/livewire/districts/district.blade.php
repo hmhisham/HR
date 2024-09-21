@@ -31,7 +31,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td class="text-center">
-                                {{ $District->GetGovernorate ? $District->GetGovernorate->governorate_name : '' }}</td>
+                                {{ $District->Getgovernorate ? $District->Getgovernorate->governorate_name : '' }}</td>
                             <td Class="text-center">{{ $District->district_number }}</td>
                             <td Class="text-center">{{ $District->district_name }}</td>
 
