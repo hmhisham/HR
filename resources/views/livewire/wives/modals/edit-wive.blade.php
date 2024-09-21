@@ -129,12 +129,14 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='organization_name' id="modalWiveorganization_name"
+                                            <select wire:model.defer='organization_name'
+                                                id="modalWiveorganization_name"
                                                 class="form-select @error('organization_name') is-invalid is-filled @enderror"
                                                 {{ $EmpStatus }}>
                                                 <option value=""></option>
                                                 @foreach ($department as $departmen)
-                                                    <option value="{{ $departmen->id }}">{{ $departmen->department_name }}
+                                                    <option value="{{ $departmen->id }}">
+                                                        {{ $departmen->department_name }}
                                                     </option>
                                                 @endforeach
                                             </select>

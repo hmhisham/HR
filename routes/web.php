@@ -29,6 +29,7 @@ use App\Http\Controllers\Linkages\LinkagesController;
 use App\Http\Controllers\Precises\PrecisesController;
 
 use App\Http\Controllers\Sections\SectionsController;
+use App\Http\Controllers\Childrens\ChildrensController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
@@ -153,6 +154,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Courses', CoursesController::class);
         // الزوجة
         Route::RESOURCE('Wives', WivesController::class);
+// الاطفال
+        Route::  RESOURCE('Childrens', ChildrensController::class);
     });
 });
 

@@ -25,7 +25,8 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='full_name' type="text" id="modalWivefull_name"
                                                 placeholder="الاسم الكامل"
-                                                class="form-control @error('full_name') is-invalid is-filled @enderror" disabled/>
+                                                class="form-control @error('full_name') is-invalid is-filled @enderror"
+                                                disabled />
                                             <label for="modalWivefull_name">الاسم الكامل</label>
                                         </div>
                                         @error('full_name')
