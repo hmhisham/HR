@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل</h3>
+                    <h3 class="pb-1 mb-2">تعديل الراتب</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
@@ -13,7 +13,6 @@
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-
                 <div wire:loading.remove>
                     <form id="editScaleaModalForm" autocomplete="off">
                         <div class="row row-cols-1">
@@ -23,7 +22,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='grades_id' id="modalscaleasgrades_id"
                                                 class="form-select @error('grades_id') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر الدرجة الوظيفية</option>
                                                 @foreach ($grades as $grade)
                                                     <option value="{{ $grade->id }}">{{ $grade->grades_name }}
                                                     </option>
@@ -39,7 +38,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='phase_emp' id="modalscaleasphase_emp"
                                                 class="form-select @error('phase_emp') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر المرحلة الوظيفية</option>
                                                 @for ($i = 1; $i <= 10; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
@@ -58,24 +57,23 @@
                                             <select wire:model.defer='scaleas_salary_grade'
                                                 id="modalscaleasscaleas_salary_grade"
                                                 class="form-select @error('scaleas_salary_grade') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر درجة الراتب</option>
                                                 @for ($i = 1; $i <= 6; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
                                             </select>
-                                            <label for="modalscaleasscaleas_salary_grade">مرحلة الراتب</label>
+                                            <label for="modalscaleasscaleas_salary_grade">درجة الراتب</label>
                                         </div>
                                         @error('scaleas_salary_grade')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='scaleas_salary_stage'
                                                 id="modalscaleasscaleas_salary_stage"
                                                 class="form-select @error('scaleas_salary_stage') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر مرحلة الراتب</option>
                                                 @for ($i = 1; $i <= 10; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
@@ -87,13 +85,11 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='scaleas_amount' id="modalscaleasscaleas_amount"
                                                 class="form-select @error('scaleas_amount') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر مقدار العلاوة</option>
                                                 <option value="5">5</option>
                                                 <option value="6">6</option>
                                                 <option value="7">7</option>
@@ -107,7 +103,6 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                 </div>
                                 <div Class="row">
                                     <div class="mb-3 col">
@@ -122,13 +117,12 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='scaleas_minimum_period'
                                                 id="modalscaleasscaleas_minimum_period"
                                                 class="form-select @error('scaleas_minimum_period') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر المدة الاصغرية</option>
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
                                                 <option value="5">5</option>
@@ -139,8 +133,6 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='scaleas_previous_salary' type="text"
@@ -153,7 +145,6 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                 </div>
                             </div>
                         </div>

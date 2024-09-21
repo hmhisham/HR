@@ -75,10 +75,11 @@ class Grade extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'grades_name' => 'required:grades',
+            'grades_name' => 'required|unique:grades',
 
         ], [
             'grades_name.required' => 'حقل الاسم مطلوب',
+            'grades_name.unique' => 'الأسم موجود',
         ]);
 
         $Grades = Grades::find($this->GradeId);

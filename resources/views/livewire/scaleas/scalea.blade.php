@@ -1,7 +1,6 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">قائمة</h4>
+    <h4 Class="mb-1fw-semiboyld">نافذة سلم رواتب العقود الاداريين</h4>
     <Div Class="card">
-
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -31,7 +30,6 @@
                             <th Class="text-center">المدة الاصغرية</th>
                             <th Class="text-center">الراتب السابق</th>
                             <th Class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +46,6 @@
                                 <td Class="text-center">{{ $Scalea->scaleas_salary }}</td>
                                 <td Class="text-center">{{ $Scalea->scaleas_minimum_period }}</td>
                                 <td Class="text-center">{{ $Scalea->scaleas_previous_salary }}</td>
-
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('scalea-edit')
@@ -71,7 +68,6 @@
                         @endforeach
                     </tbody>
                 </table>
-
                 <div class="mt-2 d-flex justify-content-center">
                     {{ $links->links() }}
                 </div>
@@ -82,5 +78,4 @@
             @endcan
         </div>
     </div>
-</div>
 </div>
