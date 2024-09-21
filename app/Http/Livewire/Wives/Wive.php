@@ -82,7 +82,7 @@ class Wive extends Component
 
     public function getEmpStatus($Emp)
     {
-        if($Emp == 'موظفة' )
+        if($Emp == 'موظف/ـة' )
         {
             $this->EmpStatus = '';
         }else{

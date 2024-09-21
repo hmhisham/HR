@@ -171,7 +171,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='marital_status' id="modalWivemarital_status"
@@ -183,11 +182,11 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value="">الحالة</option>
+                                            <option value="">اختر حالة الزوج/ـة</option>
                                             <option value="على قيد الحياة">على قيد الحياة</option>
                                             <option value="متوفى/ية">متوفى/ية</option>
                                         </select>
-                                        <label for="modalWivemarital_status">الحالة</label>
+                                        <label for="modalWivemarital_status">حالة الزوج/ـة</label>
                                     </div>
                                     <?php $__errorArgs = ['marital_status'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -244,7 +243,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                                             <?php echo e($EmpStatus); ?>>
-                                            <option value=""></option>
+                                            <option value="">اختر الدائرة</option>
                                             <?php $__currentLoopData = $department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $departmen): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($departmen->id); ?>"><?php echo e($departmen->department_name); ?>
 
@@ -264,7 +263,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='national_id' type="text"
@@ -290,12 +288,11 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <div class="form-check">
                                             <input wire:model.defer='is_married' type="checkbox"
-                                                id="modalWiveis_married" placeholder="الحالة الزوجية"
+                                                id="modalWiveis_married" placeholder="اختيار مخصصات الزوجية"
                                                 class="form-check-input <?php $__errorArgs = ['is_married'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -304,8 +301,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                            <label class="form-check-label"
-                                                for="modalWiveis_married">الحالةالزوجية</label>
+                                            <label class="form-check-label" for="modalWiveis_married">اختيار مخصصات
+                                                الزوجية</label>
                                         </div>
                                     </div>
                                     <?php $__errorArgs = ['is_married'];
