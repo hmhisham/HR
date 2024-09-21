@@ -16,20 +16,41 @@
                 <div wire:loading.remove>
                     <form id="removeScaleaModalForm" onsubmit="return false" autocomplete="off">
                         <div class="row row-cols-1">
-                            <div class="col mb-3">
-                                <Div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='phase_emp' type="text" id="modalScaleaphase_emp"
-                                                placeholder="المرحلة الوظيفية"
-                                                class="form-control @error('phase_emp') is-invalid is-filled @enderror"
-                                                disabled />
-                                            <label for="modalScaleaphase_emp">المرحلة الوظيفية</label>
-                                        </div>
-                                        @error('phase_emp')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                            <div Class="row">
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='scaleas_salary_grade' type="text" disabled
+                                            id="modalscaleasscaleas_salary_grade" placeholder="درجة الراتب"
+                                            class="form-control @error('scaleas_salary_grade') is-invalid is-filled @enderror" />
+                                        <label for="modalscaleasscaleas_salary_grade">درجة الراتب</label>
                                     </div>
+                                    @error('scaleas_salary_grade')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='technicians_salary_stage' type="text" disabled
+                                            id="modalTechniciantechnicians_salary_stage" placeholder="مرحلة الراتب"
+                                            class="form-control @error('technicians_salary_stage') is-invalid is-filled @enderror" />
+                                        <label for="modalTechniciantechnicians_salary_stage">مرحلة الراتب</label>
+                                    </div>
+                                    @error('technicians_salary_stage')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div Class="row">
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='scaleas_salary' type="text" disabled
+                                            id="modalscaleasscaleas_salary" placeholder="الراتب"
+                                            class="form-control @error('scaleas_salary') is-invalid is-filled @enderror" />
+                                        <label for="modalscaleasscaleas_salary">الراتب</label>
+                                    </div>
+                                    @error('scaleas_salary')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
                                 </div>
                             </div>
                             <hr class="my-0">

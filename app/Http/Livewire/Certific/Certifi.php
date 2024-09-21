@@ -114,11 +114,10 @@ class Certifi extends Component
             'authenticity_date' => 'required',
             'educational_attainment' => 'required',
             'college_name' => 'required',
-                       'specialization' => 'required',
+            'specialization' => 'required',
             'graduation_year' => 'required',
             'grade' => 'required',
             'issuing_country' => 'required',
-
             'status' => 'required',
 
         ], [
@@ -131,7 +130,7 @@ class Certifi extends Component
             'authenticity_date.required' => 'حقل الاسم مطلوب',
             'educational_attainment.required' => 'حقل الاسم مطلوب',
             'college_name.required' => 'حقل الاسم مطلوب',
-                      'specialization.required' => 'حقل الاسم مطلوب',
+            'specialization.required' => 'حقل الاسم مطلوب',
             'graduation_year.required' => 'حقل الاسم مطلوب',
             'grade.required' => 'حقل الاسم مطلوب',
             'issuing_country.required' => 'حقل الاسم مطلوب',
@@ -150,7 +149,7 @@ class Certifi extends Component
             'authenticity_date' => $this->authenticity_date,
             'educational_attainment' => $this->educational_attainment,
             'college_name' => $this->college_name,
-                     'specialization' => $this->specialization,
+            'specialization' => $this->specialization,
             'graduation_year' => $this->graduation_year,
             'grade' => $this->grade,
             'issuing_country' => $this->issuing_country,

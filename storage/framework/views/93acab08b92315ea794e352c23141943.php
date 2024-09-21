@@ -305,6 +305,13 @@ $container = $container ?? 'container-xxl';
                                 <div>التخصص الدقيق</div>
                             </a>
                         </li>
+                        
+                        <li Class="menu-item <?php echo e(request()->Is('Specializationclassification') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Specializationclassification.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>تصنيف التخصص</div>
+                            </a>
+                        </li>
                         <li Class="menu-item <?php echo e(request()->Is('Grades') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Grades.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
@@ -348,13 +355,6 @@ $container = $container ?? 'container-xxl';
                             <a href="<?php echo e(Route('Typeholidays.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>نوع الاجازة</div>
-                            </a>
-                        </li>
-
-                        <li Class="menu-item <?php echo e(request()->Is('Specializationclassification') ? 'active' : ''); ?>">
-                            <a href="<?php echo e(Route('Specializationclassification.index')); ?>" Class="menu-link">
-                                <i Class=''></i>
-                                <div>تصنيف التخصص</div>
                             </a>
                         </li>
 

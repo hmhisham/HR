@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة راتب جديد</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -24,7 +24,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value=""></option>
+                                            <option value="">اختر الدرجة الوظيفية</option>
                                             <?php $__currentLoopData = $grades; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grade): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($grade->id); ?>"><?php echo e($grade->grades_name); ?></option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -53,7 +53,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value=""></option>
+                                            <option value="">اختر المرحلة الوظيفية</option>
                                             <?php for($i = 1; $i <= 10; $i++): ?>
                                                 <option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>
                                             <?php endfor; ?>
@@ -86,7 +86,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value=""></option>
+                                            <option value="">اختر درجة الراتب</option>
                                             <?php for($i = 1; $i <= 6; $i++): ?>
                                                 <option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>
                                             <?php endfor; ?>
@@ -104,7 +104,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='scaleas_salary_stage'
@@ -117,7 +116,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value=""></option>
+                                            <option value="">اختر مرحلة الراتب</option>
                                             <?php for($i = 1; $i <= 10; $i++): ?>
                                                 <option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>
                                             <?php endfor; ?>
@@ -136,8 +135,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='scaleas_amount' id="modalscaleasscaleas_amount"
@@ -149,7 +146,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value=""></option>
+                                            <option value="">اختر مقدار العلاوة</option>
                                             <option value="5">5</option>
                                             <option value="6">6</option>
                                             <option value="7">7</option>
@@ -170,7 +167,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                             </div>
                             <div Class="row">
                                 <div class="mb-3 col">
@@ -199,7 +195,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='scaleas_minimum_period'
@@ -212,7 +207,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value=""></option>
+                                            <option value="">اختر المدة الاصغرية</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                             <option value="5">5</option>
@@ -230,8 +225,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='scaleas_previous_salary' type="text"
@@ -258,7 +251,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                             </div>
                         </div>
                     </div>

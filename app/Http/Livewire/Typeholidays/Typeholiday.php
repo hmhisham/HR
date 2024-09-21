@@ -43,10 +43,12 @@ class Typeholiday extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'typeholidays_name' => 'required',
+            'typeholidays_name' => 'required|unique:typeholidays',
+
 
         ], [
             'typeholidays_name.required' => 'حقل الاسم مطلوب',
+            'typeholidays_name.unique' => 'الأسم موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -74,10 +76,11 @@ class Typeholiday extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'typeholidays_name' => 'required:typeholidays',
+            'typeholidays_name' => 'required|unique:typeholidays',
 
         ], [
             'typeholidays_name.required' => 'حقل الاسم مطلوب',
+            'typeholidays_name.unique' => 'الأسم موجود',
         ]);
 
         $Typeholidays = Typeholidays::find($this->TypeholidayId);

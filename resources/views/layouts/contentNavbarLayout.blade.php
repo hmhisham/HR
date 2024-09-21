@@ -304,6 +304,13 @@ $container = $container ?? 'container-xxl';
                                 <div>التخصص الدقيق</div>
                             </a>
                         </li>
+                        {{-- تصنيف التخصص --}}
+                        <li Class="menu-item {{ request()->Is('Specializationclassification') ? 'active' : '' }}">
+                            <a href="{{ Route('Specializationclassification.index') }}" Class="menu-link">
+                                <i Class=''></i>
+                                <div>تصنيف التخصص</div>
+                            </a>
+                        </li>
                         <li Class="menu-item {{ request()->Is('Grades') ? 'active' : '' }}">
                             <a href="{{ Route('Grades.index') }}" Class="menu-link">
                                 <i Class=''></i>
@@ -347,13 +354,6 @@ $container = $container ?? 'container-xxl';
                             <a href="{{ Route('Typeholidays.index') }}" Class="menu-link">
                                 <i Class=''></i>
                                 <div>نوع الاجازة</div>
-                            </a>
-                        </li>
-
-                        <li Class="menu-item {{ request()->Is('Specializationclassification') ? 'active' : '' }}">
-                            <a href="{{ Route('Specializationclassification.index') }}" Class="menu-link">
-                                <i Class=''></i>
-                                <div>تصنيف التخصص</div>
                             </a>
                         </li>
 

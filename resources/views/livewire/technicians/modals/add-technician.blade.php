@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة راتب جديد </h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -18,7 +18,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='grades_id' id="modalTechniciangrades_id"
                                                 class="form-select @error('grades_id') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر الدرجة الوظيفية</option>
                                                 @foreach ($grades as $grade)
                                                     <option value="{{ $grade->id }}">{{ $grade->grades_name }}
                                                     </option>
@@ -34,7 +34,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='phase_emp' id="modalTechnicianphase_emp"
                                                 class="form-select @error('phase_emp') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر المرحلة الوظيفية</option>
                                                 @for ($i = 1; $i <= 10; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
@@ -53,7 +53,7 @@
                                             <select wire:model.defer='technicians_salary_grade'
                                                 id="modalTechniciantechnicians_salary_grade"
                                                 class="form-select @error('technicians_salary_grade') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر درجة الراتب</option>
                                                 @for ($i = 1; $i <= 6; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
@@ -69,7 +69,7 @@
                                             <select wire:model.defer='technicians_salary_stage'
                                                 id="modalTechniciantechnicians_salary_stage"
                                                 class="form-select @error('technicians_salary_stage') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر مرحلة الراتب</option>
                                                 @for ($i = 1; $i <= 10; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
@@ -81,13 +81,12 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='technicians_amount'
                                                 id="modalTechniciantechnicians_amount"
                                                 class="form-select @error('technicians_amount') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر مقدار العلاوة</option>
                                                 <option value="5">5</option>
                                                 <option value="6">6</option>
                                                 <option value="7">7</option>
@@ -115,13 +114,12 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='technicians_minimum_period'
                                                 id="modalTechniciantechnicians_minimum_period"
                                                 class="form-select @error('technicians_minimum_period') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر المدة الاصغرية</option>
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
                                                 <option value="5">5</option>
@@ -133,7 +131,6 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='technicians_previous_salary' type="text"
@@ -148,17 +145,17 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                 </div>
                             </div>
+                            <hr class="my-0">
+                            <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                                <button wire:click='store' wire:loading.attr="disabled" type="button"
+                                    class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                    aria-label="Close">تجاهل</button>
+                            </div>
                         </div>
-                        <hr class="my-0">
-                        <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                            <button wire:click='store' wire:loading.attr="disabled" type="button"
-                                class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
-                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                aria-label="Close">تجاهل</button>
-                        </div>
+                    </div>
                 </form>
             </div>
         </div>

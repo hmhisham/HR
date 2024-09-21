@@ -1,7 +1,6 @@
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semiboyld">قائمة</h4>
+    <h4 class="mb-1 fw-semiboyld">نافذة سلم رواتب العقود الفنيين</h4>
     <div class="card">
-
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -31,7 +30,6 @@
                             <th class="text-center">المدة الأصغرية بالأشهر</th>
                             <th class="text-center">الراتب السابق</th>
                             <th class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +46,6 @@
                                 <td class="text-center"><?php echo e($Technician->technicians_salary); ?></td>
                                 <td class="text-center"><?php echo e($Technician->technicians_minimum_period); ?></td>
                                 <td class="text-center"><?php echo e($Technician->technicians_previous_salary); ?></td>
-
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('technician-edit')): ?>
@@ -82,6 +79,5 @@
             <?php endif; ?>
         </div>
     </div>
-</div>
 </div>
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/technicians/technician.blade.php ENDPATH**/ ?>

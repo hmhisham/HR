@@ -31,7 +31,7 @@
                         <tr>
                             <td><?php echo e($loop->iteration); ?></td>
                             <td class="text-center">
-                                <?php echo e($District->GetGovernorate ? $District->GetGovernorate->governorate_name : ''); ?></td>
+                                <?php echo e($District->Getgovernorate ? $District->Getgovernorate->governorate_name : ''); ?></td>
                             <td Class="text-center"><?php echo e($District->district_number); ?></td>
                             <td Class="text-center"><?php echo e($District->district_name); ?></td>
 

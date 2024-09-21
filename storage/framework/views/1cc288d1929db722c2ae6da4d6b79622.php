@@ -17,23 +17,24 @@
                     <form id="removeScalemModalForm" onsubmit="return false" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
-                                <Div Class="row">
+                                <div Class="row">
+                                </div>
+                                <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='phase_emp' type="text" id="modalScalemphase_emp"
-                                                placeholder="المرحلة الوظيفية"
-                                                class="form-control <?php $__errorArgs = ['phase_emp'];
+                                            <input wire:model.defer='scalems_salary_grade' type="text"
+                                                id="modalScalemscalems_salary_grade" placeholder="درجة الراتب"
+                                              disabled  class="form-control <?php $__errorArgs = ['scalems_salary_grade'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"
-                                                disabled />
-                                            <label for="modalScalemphase_emp">المرحلة الوظيفية</label>
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalScalemscalems_salary_grade">درجة الراتب</label>
                                         </div>
-                                        <?php $__errorArgs = ['phase_emp'];
+                                        <?php $__errorArgs = ['scalems_salary_grade'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -44,6 +45,59 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='scalems_salary_stage' type="text"
+                                            disabled  id="modalScalemscalems_salary_stage" placeholder="مرحلة الراتب"
+                                                class="form-control <?php $__errorArgs = ['scalems_salary_stage'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalScalemscalems_salary_stage">مرحلة الراتب</label>
+                                        </div>
+                                        <?php $__errorArgs = ['scalems_salary_stage'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='scalems_salary' type="text"
+                                            disabled  id="modalScalemscalems_salary" placeholder="الراتب"
+                                                class="form-control <?php $__errorArgs = ['scalems_salary'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalScalemscalems_salary">الراتب</label>
+                                        </div>
+                                        <?php $__errorArgs = ['scalems_salary'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+
                                 </div>
                             </div>
                             <hr class="my-0">

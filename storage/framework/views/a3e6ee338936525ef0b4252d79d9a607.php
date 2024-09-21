@@ -21,7 +21,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                    <option value="">اختر المحافظة</option>
+                                    <option value="">اختر اسم المحافظة</option>
                                     <?php $__currentLoopData = $governorates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $governorate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <option value="<?php echo e($governorate->id); ?>"><?php echo e($governorate->governorate_name); ?>
 
@@ -102,6 +102,7 @@ unset($__errorArgs, $__bag); ?>
                             class="btn btn-primary me-sm-3 me-1">إضافة</button>
                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                             aria-label="Close">تجاهل</button>
+
                     </div>
                 </form>
             </div>
