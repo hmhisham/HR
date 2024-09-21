@@ -92,7 +92,18 @@ $container = $container ?? 'container-xxl';
                                 <div>إضافة موظف</div>
                             </a>
                         </li>
-
+                        <li Class="menu-item <?php echo e(request()->Is('Wives') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Wives.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>بيانات الزوجة</div>
+                            </a>
+                        </li>
+                        <li Class="menu-item <?php echo e(request()->Is('Childrens') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Childrens.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>بيانات الاطفال</div>
+                            </a>
+                        </li>
                         <li Class="menu-item <?php echo e(request()->Is('Thanks') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Thanks.index')); ?>" Class="menu-link">
                                 <div>الشكر و التقدير</div>
@@ -330,21 +341,6 @@ $container = $container ?? 'container-xxl';
                             <a href="<?php echo e(Route('Trainings.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>مجال التدريب</div>
-                            </a>
-                        </li>
-
-
-                        <li Class="menu-item <?php echo e(request()->Is('Wives') ? 'active' : ''); ?>">
-                            <a href="<?php echo e(Route('Wives.index')); ?>" Class="menu-link">
-                                <i Class=''></i>
-                                <div>بيانات الزوجة</div>
-                            </a>
-                        </li>
-
-                        <li Class="menu-item <?php echo e(request()->Is('Childrens') ? 'active' : ''); ?>">
-                            <a href="<?php echo e(Route('Childrens.index')); ?>" Class="menu-link">
-                                <i Class=''></i>
-                                <div>بيانات الاطفال</div>
                             </a>
                         </li>
 

@@ -5,8 +5,8 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
-                    <p>اضافة بيانات الزوجة </p>
+                    <h3 class="pb-1 mb-2">اضافة بيانات الزوج/ية </h3>
+                    <p>نافذة الاضافة</p>
                 </div>
                 <hr class="mt-n2">
                 <form id="addwiveModalForm" autocomplete="off">
@@ -184,8 +184,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
                                             <option value="">الحالة</option>
-                                            <option value="حية">حية</option>
-                                            <option value="متوفى">متوفى</option>
+                                            <option value="على قيد الحياة">على قيد الحياة</option>
+                                            <option value="متوفى/ية">متوفى/ية</option>
                                         </select>
                                         <label for="modalWivemarital_status">الحالة</label>
                                     </div>
@@ -214,8 +214,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
                                             <option value="">اختر الحالة المهنية</option>
-                                            <option value="ربة بيت">ربة بيت</option>
-                                            <option value="موظفة">موظفة</option>
+                                            <option value="كاسب/ربة بيت">كاسب/ربة بيت</option>
+                                            <option value="موظف/ـة">موظف/ـة</option>
                                         </select>
                                         <label for="modalWiveoccupational_status">الحالة المهنية</label>
                                     </div>
@@ -232,7 +232,6 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                             <div Class="row">
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='organization_name' id="modalWiveorganization_name"
