@@ -103,6 +103,11 @@ $container = $container ?? 'container-xxl';
                                 <div>بيانات الاطفال</div>
                             </a>
                         </li>
+                        <li Class="menu-item {{ request()->Is('Certific') ? 'active' : '' }}">
+                            <a href = "{{ Route('Certific.index') }}" Class="menu-link">
+                                <div>الشهادات</div>
+                            </a>
+                        </li>
                         <li Class="menu-item {{ request()->Is('Thanks') ? 'active' : '' }}">
                             <a href="{{ Route('Thanks.index') }}" Class="menu-link">
                                 <div>الشكر و التقدير</div>
@@ -124,12 +129,6 @@ $container = $container ?? 'container-xxl';
                         <li Class="menu-item {{ request()->Is('Dispatch') ? 'active' : '' }}">
                             <a href = "{{ Route('Dispatch.index') }}" Class="menu-link">
                                 <div>الأيفادات</div>
-                            </a>
-                        </li>
-
-                        <li Class="menu-item {{ request()->Is('Certific') ? 'active' : '' }}">
-                            <a href = "{{ Route('Certific.index') }}" Class="menu-link">
-                                <div>الشهادات</div>
                             </a>
                         </li>
 

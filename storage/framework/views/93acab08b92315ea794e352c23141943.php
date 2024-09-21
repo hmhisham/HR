@@ -104,6 +104,11 @@ $container = $container ?? 'container-xxl';
                                 <div>بيانات الاطفال</div>
                             </a>
                         </li>
+                        <li Class="menu-item <?php echo e(request()->Is('Certific') ? 'active' : ''); ?>">
+                            <a href = "<?php echo e(Route('Certific.index')); ?>" Class="menu-link">
+                                <div>الشهادات</div>
+                            </a>
+                        </li>
                         <li Class="menu-item <?php echo e(request()->Is('Thanks') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Thanks.index')); ?>" Class="menu-link">
                                 <div>الشكر و التقدير</div>
@@ -125,12 +130,6 @@ $container = $container ?? 'container-xxl';
                         <li Class="menu-item <?php echo e(request()->Is('Dispatch') ? 'active' : ''); ?>">
                             <a href = "<?php echo e(Route('Dispatch.index')); ?>" Class="menu-link">
                                 <div>الأيفادات</div>
-                            </a>
-                        </li>
-
-                        <li Class="menu-item <?php echo e(request()->Is('Certific') ? 'active' : ''); ?>">
-                            <a href = "<?php echo e(Route('Certific.index')); ?>" Class="menu-link">
-                                <div>الشهادات</div>
                             </a>
                         </li>
 
