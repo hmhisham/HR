@@ -74,7 +74,7 @@ $container = $container ?? 'container-xxl';
                 </li>
 
                 @can('employees')
-                <li class="menu-item {{ request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays') ? 'open active' : '' }}">
+                <li class="menu-item {{ request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays','Wives','Childrens',) ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                         <span class="menu-title">قسم الموارد البشرية</span>
@@ -199,7 +199,7 @@ $container = $container ?? 'container-xxl';
                 {{-- الإعدادات --}}
 
                 <li
-                    class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department','Wives','Childrens',) ? 'open active' : '' }}">
+                    class="menu-item {{ request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department',) ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                         <span class="menu-title">الاعدادات</span>
