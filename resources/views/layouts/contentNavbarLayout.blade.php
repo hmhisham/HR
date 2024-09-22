@@ -94,7 +94,7 @@ $container = $container ?? 'container-xxl';
                         <li Class="menu-item {{ request()->Is('Wives') ? 'active' : '' }}">
                             <a href="{{ Route('Wives.index') }}" Class="menu-link">
                                 <i Class=''></i>
-                                <div>بيانات الزوجة</div>
+                                <div>بيانات الزوج/ـة</div>
                             </a>
                         </li>
                         <li Class="menu-item {{ request()->Is('Childrens') ? 'active' : '' }}">

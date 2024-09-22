@@ -119,13 +119,44 @@ class AddWorker extends Component
             'father_name' => 'required',
             'grandfather_name' => 'required',
             'great_grandfather_name' => 'required',
-            'surname' => 'required',
         ],[
             'first_name.required' => 'حقل الاسم الاول مطلوب',
             'father_name.required' => 'حقل اسم الاب مطلوب',
             'grandfather_name.required' => 'حقل اسم الجد مطلوب',
             'great_grandfather_name.required' => 'حقل اسم والد الجد مطلوب',
-            'surname.required' => 'حقل اللقب مطلوب',
+        ]);
+    }
+
+    public function changeNameMother()
+    {
+        $this->mother_name = trim($this->mother_name);
+        $this->maternal_grandfather_name = trim($this->maternal_grandfather_name);
+        $this->maternal_great_grandfather_name = trim($this->maternal_great_grandfather_name);
+        $this->maternal_surname = trim($this->maternal_surname);
+
+        $this->mother_full_name = $this->mother_name;
+        if($this->maternal_grandfather_name != ''){
+            $this->mother_full_name .= ' ';
+            $this->mother_full_name .= $this->maternal_grandfather_name;
+        }
+        if($this->maternal_great_grandfather_name != ''){
+            $this->mother_full_name .= ' ';
+            $this->mother_full_name .= $this->maternal_great_grandfather_name;
+        }
+        if($this->maternal_surname != ''){
+            $this->mother_full_name .= ' ';
+            $this->mother_full_name .= $this->maternal_surname;
+        }
+
+        $this->resetValidation();
+        $this->validate([
+            'mother_name' => 'required',
+            'maternal_grandfather_name' => 'required',
+            'maternal_great_grandfather_name' => 'required',
+        ],[
+            'mother_name.required' => 'حقل اسم الام مطلوب',
+            'maternal_grandfather_name.required' => 'حقل اسم والد الام مطلوب',
+            'maternal_great_grandfather_name.required' => 'حقل اسم جد الام مطلوب',
         ]);
     }
 
@@ -168,28 +199,36 @@ class AddWorker extends Component
         $this->resetValidation();
         $this->validate([
             'calculator_number' => 'required|unique:workers,calculator_number',
-            'employee_number' => 'required|unique:workers,employee_number',
-            'paper_folder_number' => 'required|unique:workers,paper_folder_number',
+            //'employee_number' => 'required|unique:workers,employee_number',
+            //'paper_folder_number' => 'required|unique:workers,paper_folder_number',
             'first_name' => 'required',
             'father_name' => 'required',
             'grandfather_name' => 'required',
             'great_grandfather_name' => 'required',
-            'surname' => 'required',
+            //'surname' => 'required',
             'full_name' => 'required|unique:workers,full_name',
+            'mother_name' => 'required',
+            'maternal_grandfather_name' => 'required',
+            'maternal_great_grandfather_name' => 'required',
+            'mother_full_name' => 'required:workers,mother_full_name',
         ],[
             'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'calculator_number.unique' => 'لقد تم أخذ رقم الحاسبة بالفعل',
-            'employee_number.required' => 'حقل الرقم الوظيفي مطلوب',
-            'employee_number.unique' => 'لقد تم أخذ الرقم الوظيفي بالفعل',
-            'paper_folder_number.required' => 'حقل رقم الاضبارة الورقية مطلوب',
-            'paper_folder_number.unique' => 'لقد تم أخذ رقم الاضبارة الورقية بالفعل',
+            //'employee_number.required' => 'حقل الرقم الوظيفي مطلوب',
+            //'employee_number.unique' => 'لقد تم أخذ الرقم الوظيفي بالفعل',
+            //'paper_folder_number.required' => 'حقل رقم الاضبارة الورقية مطلوب',
+            //'paper_folder_number.unique' => 'لقد تم أخذ رقم الاضبارة الورقية بالفعل',
             'first_name.required' => 'حقل الاسم الاول مطلوب',
             'father_name.required' => 'حقل اسم الاب مطلوب',
             'grandfather_name.required' => 'حقل اسم الجد مطلوب',
             'great_grandfather_name.required' => 'حقل اسم والد الجد مطلوب',
-            'surname.required' => 'حقل اللقب مطلوب',
+            //'surname.required' => 'حقل اللقب مطلوب',
             'full_name.required' => 'حقل الاسم الكامل مطلوب',
             'full_name.unique' => 'لقد تم أخذ أسم الموظف بالفعل',
+            'mother_name.required' => 'حقل اسم الام مطلوب',
+            'maternal_grandfather_name.required' => 'حقل اسم والد الام مطلوب',
+            'maternal_great_grandfather_name.required' => 'حقل اسم جد الام مطلوب',
+            'mother_full_name.required' => 'حقل الاسم الكامل مطلوب',
         ]);
 
         Workers::create([
