@@ -18,6 +18,7 @@ class Units extends Model
         return $this->belongsTo(Branch::class, 'branch_id' );
     }
 
+ 
     Public function Getsection()
     {
         return $this->belongsTo(Sections::class, 'sections_id' );
