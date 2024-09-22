@@ -180,13 +180,13 @@ class AddWorker extends Component
 
     public function getWifeNameStatus($MaritalStatus)
     {
+
         if($MaritalStatus == 'اعزب' or $MaritalStatus == 'باكر')
         {
-            $this->isMaritalStatus = 'disabled';
-        }else{
             $this->isMaritalStatus = '';
+            $this->isMaritalStatus = 'disabled';
         }
-        if($MaritalStatus == 'متزوجة' or $MaritalStatus == 'مطلقة' or $MaritalStatus == 'ارملة')
+        elseif($MaritalStatus == 'متزوجة' or $MaritalStatus == 'مطلقة' or $MaritalStatus == 'ارملة')
         {
             $this->HusbandName = 'اسم الزوج';
         }else{

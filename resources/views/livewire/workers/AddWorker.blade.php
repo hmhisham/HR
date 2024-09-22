@@ -719,10 +719,15 @@
                                 wire:change='getWifeNameStatus($event.target.value)' id="modalEmployeemarital_status"
                                 placeholder="الحالةالاجتماعية"
                                 class="form-select @error('marital_status') is-invalid is-filled @enderror">
-                                <option value="اعزب/باكر">اعزب/باكر</option>
-                                <option value="متزوج/متزوجة">متزوج/متزوجة</option>
-                                <option value="مطلق/مطلقة">مطلق/مطلقة</option>
-                                <option value="ارمل/ارملة">ارمل/ارملة</option>
+                                <option value="">اختر الحالة الاجتماعية</option>
+                                <option value="اعزب">اعزب</option>
+                                <option value="باكر">باكر</option>
+                                <option value="متزوج">متزوج</option>
+                                <option value="متزوجة">متزوجة</option>
+                                <option value="مطلق">مطلق</option>
+                                <option value="مطلقة">مطلقة</option>
+                                <option value="ارمل">ارمل</option>
+                                <option value="ارملة">ارملة</option>
                             </select>
                             <label for="modalEmployeemarital_status">الحالة الاجتماعية</label>
                         </div>
@@ -734,7 +739,7 @@
                         <div class="form-floating form-floating-outline">
                             <input wire:model.defer='wife_name' type="text" id="modalEmployeewife_name"
                                 placeholder="{{ $HusbandName }}" {{ $isMaritalStatus }}
-                                class="form-control @error('wife_name') is-invalid is-filled @enderror" />
+                                class="form-control @error('wife_name') is-invalid is-filled @enderror"/>
                             <label for="modalEmployeewife_name">{{ $HusbandName }}</label>
                         </div>
                         @error('wife_name')

@@ -774,10 +774,15 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                <option value="اعزب/باكر">اعزب/باكر</option>
-                                <option value="متزوج/متزوجة">متزوج/متزوجة</option>
-                                <option value="مطلق/مطلقة">مطلق/مطلقة</option>
-                                <option value="ارمل/ارملة">ارمل/ارملة</option>
+                                <option value="">اختر الحالة الاجتماعية</option>
+                                <option value="اعزب">اعزب</option>
+                                <option value="باكر">باكر</option>
+                                <option value="متزوج">متزوج</option>
+                                <option value="متزوجة">متزوجة</option>
+                                <option value="مطلق">مطلق</option>
+                                <option value="مطلقة">مطلقة</option>
+                                <option value="ارمل">ارمل</option>
+                                <option value="ارملة">ارملة</option>
                             </select>
                             <label for="modalEmployeemarital_status">الحالة الاجتماعية</label>
                         </div>
@@ -804,7 +809,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
+unset($__errorArgs, $__bag); ?>"/>
                             <label for="modalEmployeewife_name"><?php echo e($HusbandName); ?></label>
                         </div>
                         <?php $__errorArgs = ['wife_name'];
