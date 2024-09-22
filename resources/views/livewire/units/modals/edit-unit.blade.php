@@ -22,7 +22,8 @@
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='section_id'
                                                 wire:change='sectionid($event.target.value)' id="section_id"
-                                                class="form-select @error('section_id') is-invalid is-filled @enderror">
+                                                class="form-select @error('section_id') is-invalid is-filled @enderror"
+                                                disabled>
                                                 <option value="">اختر القسم</option>
                                                 @foreach ($sections as $section)
                                                     <option value="{{ $section->id }}">{{ $section->section_name }}
@@ -38,7 +39,8 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='branch_id' id="modalUnitsbranch_id"
-                                                class="form-select @error('branch_id') is-invalid is-filled @enderror">
+                                                class="form-select @error('branch_id') is-invalid is-filled @enderror"
+                                                disabled>
                                                 <option value="">اختر الشعبة</option>
                                                 @foreach ($branch as $branc)
                                                     <option value="{{ $branc->id }}">{{ $branc->branch_name }}

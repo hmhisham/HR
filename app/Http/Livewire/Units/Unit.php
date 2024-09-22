@@ -16,7 +16,7 @@ class Unit extends Component
     public $Units = [];
     public $UnitSearch, $Unit, $UnitId;
     public $branch_id, $units_name;
-    public $section_id, $branch_name,$units_id ;
+    public $section_id, $branch_name, $units_id;
 
     public $branch = [];
     public $sections = [];
@@ -54,7 +54,7 @@ class Unit extends Component
 
     public function AddUnitModalShow()
     {
-        $this->reset(['section_id','branch_id','units_name']);
+        $this->reset(['section_id', 'branch_id', 'units_name']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('UnitModalShow');
     }
@@ -64,24 +64,24 @@ class Unit extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'branch_id' => 'required|unique:units',
-            'units_name' => 'required|unique:units',
+            'section_id' => 'required:branch',
+            'branch_id' => 'required:units',
+            'units_name' => 'required:units',
 
         ], [
+            'section_id.required' => 'حقل الاسم مطلوب',
             'branch_id.required' => 'حقل الاسم مطلوب',
-            'branch_id.unique' => 'الأسم موجود',
             'units_name.required' => 'حقل الاسم مطلوب',
-            'units_name.unique' => 'الأسم موجود',
         ]);
 
 
         Units::create([
-            'sections_id'=> $this->section_id,
+            'sections_id' => $this->section_id,
             'branch_id' => $this->branch_id,
             'units_name' => $this->units_name,
 
         ]);
-        $this->reset(['section_id','branch_id','units_name']);
+        $this->reset(['section_id', 'branch_id', 'units_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -97,29 +97,26 @@ class Unit extends Component
         $this->branch_id = $this->Unit->branch_id;
         $this->units_name = $this->Unit->units_name;
         $this->section_id = $this->Unit->sections_id;
-
     }
 
     public function update()
     {
         $this->resetValidation();
         $this->validate([
-            'branch_id' => 'required:units',
             'units_name' => 'required:units',
 
         ], [
-            'branch_id.required' => 'حقل الاسم مطلوب',
             'units_name.required' => 'حقل الاسم مطلوب',
         ]);
 
         $Units = Units::find($this->UnitId);
         $Units->update([
-            'sections_id'=> $this->section_id,
+            'sections_id' => $this->section_id,
             'branch_id' => $this->branch_id,
             'units_name' => $this->units_name,
 
         ]);
-        $this->reset(['section_id','branch_id','units_name']);
+        $this->reset(['section_id', 'branch_id', 'units_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -130,7 +127,7 @@ class Unit extends Component
     {
         $Units = Units::find($this->UnitId);
         $Units->delete();
-        $this->reset(['section_id','branch_id','units_name']);
+        $this->reset(['section_id', 'branch_id', 'units_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

@@ -28,7 +28,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>">
+unset($__errorArgs, $__bag); ?>"
+                                                disabled>
                                                 <option value="">اختر الارتباط</option>
                                                 <?php $__currentLoopData = $linkages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linkage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($linkage->id); ?>"><?php echo e($linkage->Linkages_name); ?>

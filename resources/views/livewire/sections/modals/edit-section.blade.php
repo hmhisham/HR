@@ -21,7 +21,8 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='linkage_id' id="modalSectionslinkage_id"
-                                                class="form-select @error('linkage_id') is-invalid is-filled @enderror">
+                                                class="form-select @error('linkage_id') is-invalid is-filled @enderror"
+                                                disabled>
                                                 <option value="">اختر الارتباط</option>
                                                 @foreach ($linkages as $linkage)
                                                     <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}
