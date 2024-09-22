@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('calculator_number')->nullable()->comment('رقم الحاسبة');
             $table->string('employee_number', 15)->nullable()->comment('الرقم الوظيفي');
             $table->string('paper_folder_number', 15)->nullable()->comment('رقم الاضبارة الورقية');
-            $table->string('first_name', 15)->nullable()->comment('الاسم الاول');
+            $table->string('first_name', 50)->nullable()->comment('الاسم الاول');
             $table->string('father_name', 15)->nullable()->comment('اسم الاب');
             $table->string('grandfather_name', 15)->nullable()->comment('اسم الجد');
             $table->string('great_grandfather_name', 15)->nullable()->comment('اسم والد الجد');

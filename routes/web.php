@@ -38,6 +38,7 @@ use App\Http\Controllers\Trainings\TrainingsController;
 use App\Http\Controllers\Department\DepartmentController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
 use App\Http\Controllers\Jobleavers\JobleaversController;
+use App\Http\Controllers\Placements\PlacementsController;
 use App\Http\Controllers\Specialtys\SpecialtysController;
 use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Technicians\TechniciansController;
@@ -154,6 +155,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Wives', WivesController::class);
         // الاطفال
         Route::RESOURCE('Childrens', ChildrensController::class);
+// التنمسيب
+        Route::  RESOURCE('Placements', PlacementsController::class);
     });
 });
 
