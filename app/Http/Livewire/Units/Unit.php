@@ -96,7 +96,7 @@ class Unit extends Component
         $this->UnitId = $this->Unit->id;
         $this->branch_id = $this->Unit->branch_id;
         $this->units_name = $this->Unit->units_name;
-        $this->sections_id = $this->Unit->sections_id;
+        $this->section_id = $this->Unit->sections_id;
 
     }
 
