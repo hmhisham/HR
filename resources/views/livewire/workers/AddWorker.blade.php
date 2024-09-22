@@ -784,10 +784,10 @@
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='national_card_date' type="date"
-                                id="modalEmployeenational_card_date" placeholder="تاريخ البطاقة الوطنية"
+                            <input wire:model.defer='national_card_date' type="text" id="national_card_date" autocomplete="off"
+                                readonly placeholder="يوم-شهر-سنة"
                                 class="form-control @error('national_card_date') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeenational_card_date">تاريخ البطاقة الوطنية</label>
+                            <label for="flatpickr-date">تاريخ البطاقة الوطنية</label>
                         </div>
                         @error('national_card_date')
                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -806,10 +806,10 @@
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='ration_card_date' type="date"
-                                id="modalEmployeeration_card_date" placeholder="تاريخ البطاقة التموينية"
+                            <input wire:model.defer='ration_card_date' type="text" id="ration_card_date" autocomplete="off"
+                                readonly placeholder="يوم-شهر-سنة"
                                 class="form-control @error('ration_card_date') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeeration_card_date">تاريخ البطاقة التموينية</label>
+                            <label for="flatpickr-date">تاريخ البطاقة التموينية</label>
                         </div>
                         @error('ration_card_date')
                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -844,10 +844,10 @@
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='organization_date' type="date"
-                                id="modalEmployeeorganization_date" placeholder="تاريخ التنظيم"
+                            <input wire:model.defer='organization_date' type="text" id="organization_date" autocomplete="off"
+                                readonly placeholder="يوم-شهر-سنة"
                                 class="form-control @error('organization_date') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeeorganization_date">تاريخ التنظيم</label>
+                            <label for="flatpickr-date">تاريخ التنظيم</label>
                         </div>
                         @error('organization_date')
                             <small class='text-danger inputerror'> {{ $message }} </small>

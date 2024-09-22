@@ -23,15 +23,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('workers.add-worker')->html();
-} elseif ($_instance->childHasBeenRendered('v2QsxXe')) {
-    $componentId = $_instance->getRenderedChildComponentId('v2QsxXe');
-    $componentTag = $_instance->getRenderedChildComponentTagName('v2QsxXe');
+} elseif ($_instance->childHasBeenRendered('TXzem2s')) {
+    $componentId = $_instance->getRenderedChildComponentId('TXzem2s');
+    $componentTag = $_instance->getRenderedChildComponentTagName('TXzem2s');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('v2QsxXe');
+    $_instance->preserveRenderedChild('TXzem2s');
 } else {
     $response = \Livewire\Livewire::mount('workers.add-worker');
     $html = $response->html();
-    $_instance->logRenderedChild('v2QsxXe', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('TXzem2s', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -53,67 +53,117 @@ echo $html;
     <script>
         /* المحافظة */
         $(document).ready(function() {
-            window.initGovernorateDrop=()=>{
+            window.initGovernorateDrop = () => {
                 $('#governorate_id').select2({
                     placeholder: 'حدد المحافظة',
                     //dropdownParent: $('#addPatientModal')
                 })
             }
             initGovernorateDrop();
-            $('#governorate_id').on('change', function (e) {
+            $('#governorate_id').on('change', function(e) {
                 livewire.emit('GetDistricts', e.target.value)
             });
-            window.livewire.on('select2',()=>{
+            window.livewire.on('select2', () => {
                 initGovernorateDrop();
             });
         });
         /* القضاء */
         $(document).ready(function() {
-            window.initDistrictDrop=()=>{
+            window.initDistrictDrop = () => {
                 $('#district_id').select2({
                     placeholder: 'حدد القضاء',
                     //dropdownParent: $('#addPatientModal')
                 })
             }
             initDistrictDrop();
-            $('#district_id').on('change', function (e) {
+            $('#district_id').on('change', function(e) {
                 livewire.emit('GetAreas', e.target.value)
             });
-            window.livewire.on('select2',()=>{
+            window.livewire.on('select2', () => {
                 initDistrictDrop();
             });
         });
         /* الناحية */
         $(document).ready(function() {
-            window.initAreaDrop=()=>{
+            window.initAreaDrop = () => {
                 $('#modalEmployeearea_id').select2({
                     placeholder: 'حدد الناحية',
                     //dropdownParent: $('#addPatientModal')
                 })
             }
             initAreaDrop();
-            $('#modalEmployeearea_id').on('change', function (e) {
+            $('#modalEmployeearea_id').on('change', function(e) {
                 livewire.emit('SelectArea', e.target.value)
             });
-            window.livewire.on('select2',()=>{
+            window.livewire.on('select2', () => {
                 initAreaDrop();
             });
         });
 
         /* تاريخ التولد */
         $(document).ready(function() {
-            window.initBirthDateDrop=()=>{
+            window.initBirthDateDrop = () => {
                 $('#birth_date').flatpickr({
                     placeholder: 'تاريخ التولد',
                     //dropdownParent: $('#addPatientModal')
                 })
             }
             initBirthDateDrop();
-            $('#birth_date').on('change', function (e) {
+            $('#birth_date').on('change', function(e) {
                 livewire.emit('employeeBirthDate', e.target.value)
             });
-            window.livewire.on('flatpickr',()=>{
+            window.livewire.on('flatpickr', () => {
                 initBirthDateDrop();
+            });
+        });
+        /*  تاريخ البطاقة الوطنية */
+        $(document).ready(function() {
+            window.initNationalCardDateDrop = () => {
+                $('#national_card_date').flatpickr({
+                    placeholder: 'تاريخ البطاقة الوطنية',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initNationalCardDateDrop();
+            $('#national_card_date').on('change', function(e) {
+                livewire.emit('employeeNationalCardDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initNationalCardDateDrop();
+            });
+        });
+
+        /*  تاريخ البطاقة التموينية */
+        $(document).ready(function() {
+            window.initRationCardDateDrop = () => {
+                $('#ration_card_date').flatpickr({
+                    placeholder: 'تاريخ البطاقة التموينية',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initRationCardDateDrop();
+            $('#ration_card_date').on('change', function(e) {
+                livewire.emit('employeeRationCardDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initRationCardDateDrop();
+            });
+        });
+
+        /*  تاريخ التنظيم */
+        $(document).ready(function() {
+            window.initOrganizationDateDrop = () => {
+                $('#organization_date').flatpickr({
+                    placeholder: 'تاريخ التموينية',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initOrganizationDateDrop();
+            $('#organization_date').on('change', function(e) {
+                livewire.emit('employeeOrganizationDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initOrganizationDateDrop();
             });
         });
 

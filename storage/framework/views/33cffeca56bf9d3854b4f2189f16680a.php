@@ -890,8 +890,8 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='national_card_date' type="date"
-                                id="modalEmployeenational_card_date" placeholder="تاريخ البطاقة الوطنية"
+                            <input wire:model.defer='national_card_date' type="text" id="national_card_date" autocomplete="off"
+                                readonly placeholder="يوم-شهر-سنة"
                                 class="form-control <?php $__errorArgs = ['national_card_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -900,7 +900,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                            <label for="modalEmployeenational_card_date">تاريخ البطاقة الوطنية</label>
+                            <label for="flatpickr-date">تاريخ البطاقة الوطنية</label>
                         </div>
                         <?php $__errorArgs = ['national_card_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -940,8 +940,8 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='ration_card_date' type="date"
-                                id="modalEmployeeration_card_date" placeholder="تاريخ البطاقة التموينية"
+                            <input wire:model.defer='ration_card_date' type="text" id="ration_card_date" autocomplete="off"
+                                readonly placeholder="يوم-شهر-سنة"
                                 class="form-control <?php $__errorArgs = ['ration_card_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -950,7 +950,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                            <label for="modalEmployeeration_card_date">تاريخ البطاقة التموينية</label>
+                            <label for="flatpickr-date">تاريخ البطاقة التموينية</label>
                         </div>
                         <?php $__errorArgs = ['ration_card_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -1020,8 +1020,8 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='organization_date' type="date"
-                                id="modalEmployeeorganization_date" placeholder="تاريخ التنظيم"
+                            <input wire:model.defer='organization_date' type="text" id="organization_date" autocomplete="off"
+                                readonly placeholder="يوم-شهر-سنة"
                                 class="form-control <?php $__errorArgs = ['organization_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -1030,7 +1030,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                            <label for="modalEmployeeorganization_date">تاريخ التنظيم</label>
+                            <label for="flatpickr-date">تاريخ التنظيم</label>
                         </div>
                         <?php $__errorArgs = ['organization_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

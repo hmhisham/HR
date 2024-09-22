@@ -25,7 +25,7 @@ class AddWorker extends Component
     public $WorkerSearch = '';
     public $calculator_number, $employee_number, $paper_folder_number, $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name;
     public $mother_name, $maternal_grandfather_name, $maternal_great_grandfather_name, $maternal_surname, $mother_full_name;
-    public$phone_number, $employee_id_number, $department_name, $blood_type, $email;
+    public $phone_number, $employee_id_number, $department_name, $blood_type, $email;
     public $governorate_id, $district_id, $area_id, $locality, $birth_date, $birth_place, $marital_status, $wife_name, $children_count, $religion, $gender;
     public $civil_status_identity_number, $registration_number, $record_number, $issue_date_civil_status, $issuing_authority_civil_status;
     public $nationality_certificate_number, $wallet_number, $issue_date_nationality_certificate, $issuing_authority_nationality_certificate;
@@ -37,7 +37,6 @@ class AddWorker extends Component
 		'GetDistricts',
 		'GetAreas',
 		'SelectArea',
-        'GetInfooffice',
 	];
 
 	public function hydrate()
