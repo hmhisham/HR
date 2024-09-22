@@ -1,5 +1,5 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">نفاذة تصنيف التخصص</h4>
+    <h4 Class="mb-1fw-semiboyld">نافذة تصنيف التخصص</h4>
     <Div Class="card">
         <div class="card">
             <div class="card-header">

@@ -47,7 +47,7 @@ class Jobtitle extends Component
         $this->resetValidation();
         $this->validate([
             'grades_id' => 'required',
-            'jobtitles_name' => 'required',
+            'jobtitles_name' => 'required|unique:jobtitles',
 
         ], [
             'grades_id.required' => 'حقل الاسم مطلوب',
@@ -84,11 +84,11 @@ class Jobtitle extends Component
         $this->resetValidation();
         $this->validate([
             'grades_id' => 'required:jobtitles',
-            'jobtitles_name' => 'required:jobtitles',
+            'jobtitles_name' => 'required|unique:jobtitles',
 
         ], [
-            'grades_id.required' => 'حقل الاسم مطلوب',
             'jobtitles_name.required' => 'حقل الاسم مطلوب',
+            'jobtitles_name.unique' => 'الأسم موجود',
         ]);
 
         $Jobtitles = Jobtitles::find($this->JobtitleId);

@@ -97,7 +97,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-
                                 </div>
                             </div>
                             <hr class="my-0">

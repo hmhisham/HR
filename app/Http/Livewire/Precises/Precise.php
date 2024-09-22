@@ -47,7 +47,7 @@ class Precise extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'specialtys_code' => 'required|unique:precises',
+            'specialtys_code' => 'required:precises',
             'precises_code' => 'required|unique:precises',
             'precises_name' => 'required|unique:precises',
 
@@ -91,12 +91,13 @@ class Precise extends Component
         $this->validate([
             'specialtys_code' => 'required:precises',
             'precises_code' => 'required:precises',
-            'precises_name' => 'required:precises',
+            'precises_name' => 'required|unique:precises',
 
         ], [
             'specialtys_code.required' => 'حقل الاسم مطلوب',
             'precises_code.required' => 'حقل الاسم مطلوب',
             'precises_name.required' => 'حقل الاسم مطلوب',
+            'precises_name.unique' => 'الأسم موجود',
         ]);
 
         $Precises = Precises::find($this->PreciseId);

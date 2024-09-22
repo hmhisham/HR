@@ -23,7 +23,7 @@
                                             <input wire:model.defer='specialtys_code' type="text"
                                                 id="modalSpecialtyspecialtys_code" placeholder="الرمز"
                                                 class="form-control @error('specialtys_code') is-invalid is-filled @enderror"
-                                                onkeypress="return restrictAlphabets(event)" />
+                                                disabled onkeypress="return restrictAlphabets(event)" />
                                             <label for="modalSpecialtyspecialtys_code">الرمز</label>
                                         </div>
                                         @error('specialtys_code')

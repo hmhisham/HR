@@ -132,7 +132,7 @@ class Scalem extends Component
 
         ]);
 
-        
+
 
         $Scalems = Scalems::find($this->ScalemId);
         $Scalems->update([

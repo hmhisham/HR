@@ -124,14 +124,14 @@ class Technician extends Component
             'technicians_previous_salary' => 'required:technicians',
 
         ], [
-            'grades_id.required' => 'حقل الاسم مطلوب',
-            'phase_emp.required' => 'حقل الاسم مطلوب',
-            'technicians_salary_grade.required' => 'حقل الاسم مطلوب',
-            'technicians_salary_stage.required' => 'حقل الاسم مطلوب',
-            'technicians_amount.required' => 'حقل الاسم مطلوب',
-            'technicians_salary.required' => 'حقل الاسم مطلوب',
-            'technicians_minimum_period.required' => 'حقل الاسم مطلوب',
-            'technicians_previous_salary.required' => 'حقل الاسم مطلوب',
+            'grades_id.required' => 'حقل معرّف درجة الموظف مطلوب',
+            'phase_emp.required' => 'حقل المرحلة الوظيفية مطلوب',
+            'technicians_salary_grade.required' => 'حقل درجة الراتب مطلوب',
+            'technicians_salary_stage.required' => 'حقل مرحلة الراتب مطلوب',
+            'technicians_amount.required' => 'حقل مقدار العلاوة مطلوب',
+            'technicians_salary.required' => 'حقل الراتب مطلوب',
+            'technicians_minimum_period.required' => 'حقل المدة الأصغرية بالأشهر مطلوب',
+            'technicians_previous_salary.required' => 'حقل الراتب السابق مطلوب',
         ]);
 
         $Technicians = Technicians::find($this->TechnicianId);

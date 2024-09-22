@@ -21,7 +21,7 @@
                                     <div class="mb-3 col flex-fill {{ $grades }}">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='grades_id' id="modalJobtitlesgrades_id"
-                                                class="form-select @error('grades_id') is-invalid is-filled @enderror">
+                                                class="form-select @error('grades_id') is-invalid is-filled @enderror" disabled>
                                                 <option value="">اختر الدرجة</option>
                                                 @foreach ($grades as $grade)
                                                     <option value="{{ $grade->id }}">{{ $grade->grades_name }}

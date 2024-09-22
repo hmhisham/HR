@@ -1,27 +1,30 @@
 <?php
+
 namespace App\Http\Livewire\Specialtys;
+
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Specialtys\Specialtys;
+
 class Specialty extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
     public $Specialtys = [];
-     public $SpecialtySearch, $Specialty, $SpecialtyId;
-    public $specialtys_code,$specialtys_name;
+    public $SpecialtySearch, $Specialty, $SpecialtyId;
+    public $specialtys_code, $specialtys_name;
 
 
-    Public function render()
+    public function render()
     {
-        $SpecialtySearch ='%' . $this->SpecialtySearch . '%';
+        $SpecialtySearch = '%' . $this->SpecialtySearch . '%';
         $Specialtys = Specialtys::where('specialtys_code', 'LIKE', $SpecialtySearch)
-->orWhere('specialtys_name', 'LIKE', $SpecialtySearch)
+            ->orWhere('specialtys_name', 'LIKE', $SpecialtySearch)
 
 
-         ->orderBy('id', 'ASC')
-         ->paginate(10);
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
         $links = $Specialtys;
         $this->Specialtys = collect($Specialtys->items());
         return view('livewire.specialtys.specialty', [
@@ -40,72 +43,74 @@ class Specialty extends Component
     public function store()
     {
         $this->resetValidation();
-         $this->validate(['specialtys_code' => 'required|unique:specialtys' ,
-'specialtys_name' => 'required|unique:specialtys' ,
+        $this->validate([
+            'specialtys_code' => 'required|unique:specialtys',
+            'specialtys_name' => 'required|unique:specialtys',
 
-                 ], [
-                'specialtys_code.required' => 'حقل الاسم مطلوب',
-                'specialtys_code.unique' => 'الأسم موجود',
-                'specialtys_name.required' => 'حقل الاسم مطلوب',
-                'specialtys_name.unique' => 'الأسم موجود',  ]);
+        ], [
+            'specialtys_code.required' => 'حقل الاسم مطلوب',
+            'specialtys_code.unique' => 'الأسم موجود',
+            'specialtys_name.required' => 'حقل الاسم مطلوب',
+            'specialtys_name.unique' => 'الأسم موجود',
+        ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Specialtys::create([
-'specialtys_code'=> $this->specialtys_code,
-'specialtys_name'=> $this->specialtys_name,
+            'specialtys_code' => $this->specialtys_code,
+            'specialtys_name' => $this->specialtys_name,
 
-]);
+        ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
-        'message' => 'تم الاضافه بنجاح',
+            'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
     }
 
- public function GetSpecialty($SpecialtyId)
+    public function GetSpecialty($SpecialtyId)
     {
         $this->resetValidation();
 
-        $this-> Specialty  = Specialtys::find($SpecialtyId);
-        $this-> SpecialtyId = $this->Specialty->id;
-             $this->specialtys_code= $this->Specialty->specialtys_code;
-      $this->specialtys_name= $this->Specialty->specialtys_name;
-
+        $this->Specialty  = Specialtys::find($SpecialtyId);
+        $this->SpecialtyId = $this->Specialty->id;
+        $this->specialtys_code = $this->Specialty->specialtys_code;
+        $this->specialtys_name = $this->Specialty->specialtys_name;
     }
 
- public function update()
+    public function update()
     {
         $this->resetValidation();
-         $this->validate(['specialtys_code' => 'required:specialtys' ,
-'specialtys_name' => 'required:specialtys' ,
+        $this->validate([
+            'specialtys_code' => 'required:specialtys',
+            'specialtys_name' => 'required|unique:specialtys',
 
-                 ], [
-                'specialtys_code.required' => 'حقل الاسم مطلوب',
-                'specialtys_name.required' => 'حقل الاسم مطلوب', ]);
+        ], [
+            'specialtys_code.required' => 'حقل الاسم مطلوب',
+            'specialtys_name.required' => 'حقل الاسم مطلوب',
+            'specialtys_name.unique' => 'الأسم موجود',
+        ]);
 
-             $Specialtys = Specialtys::find($this->SpecialtyId);
-             $Specialtys->update([
-'specialtys_code'=> $this->specialtys_code,
-'specialtys_name'=> $this->specialtys_name,
+        $Specialtys = Specialtys::find($this->SpecialtyId);
+        $Specialtys->update([
+            'specialtys_code' => $this->specialtys_code,
+            'specialtys_name' => $this->specialtys_name,
 
-]);
+        ]);
         $this->reset();
-         $this->dispatchBrowserEvent('success', [
+        $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
-     }
-
-  public function destroy()
-    {
-      $Specialtys = Specialtys::find($this->SpecialtyId);
-        $Specialtys->delete();
-         $this->reset();
-       $this->dispatchBrowserEvent('success', [
-      'message' => 'تم حذف البيانات  بنجاح',
-      'title' => 'الحذف '
-    ]);
     }
 
- }
-   
+    public function destroy()
+    {
+        $Specialtys = Specialtys::find($this->SpecialtyId);
+        $Specialtys->delete();
+        $this->reset();
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'تم حذف البيانات  بنجاح',
+            'title' => 'الحذف '
+        ]);
+    }
+}

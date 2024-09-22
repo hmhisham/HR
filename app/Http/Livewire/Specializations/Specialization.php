@@ -42,7 +42,7 @@ class Specialization extends Component
 
     public function AddSpecializationModalShow()
     {
-       $this->reset();
+        $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('SpecializationModalShow');
     }
@@ -61,15 +61,12 @@ class Specialization extends Component
         $this->validate([
             'certificates_id' => 'required',
             'graduations_id' => 'required',
-            'specializations_name' => 'required',
-
+            'specializations_name' => 'required|unique:specializations',
         ], [
             'certificates_id.required' => 'حقل الاسم مطلوب',
-
             'graduations_id.required' => 'حقل الاسم مطلوب',
-
             'specializations_name.required' => 'حقل الاسم مطلوب',
-
+            'specializations_name.unique' => 'الاسم موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -103,12 +100,13 @@ class Specialization extends Component
         $this->validate([
             'certificates_id' => 'required:specializations',
             'graduations_id' => 'required:specializations',
-            'specializations_name' => 'required:specializations',
+            'specializations_name' => 'required|unique:specializations',
 
         ], [
             'certificates_id.required' => 'حقل الاسم مطلوب',
             'graduations_id.required' => 'حقل الاسم مطلوب',
             'specializations_name.required' => 'حقل الاسم مطلوب',
+            'specializations_name.unique' => 'الاسم موجود',
         ]);
 
         $Specializations = Specializations::find($this->SpecializationId);
