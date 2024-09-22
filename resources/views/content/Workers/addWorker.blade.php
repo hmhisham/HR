@@ -141,7 +141,7 @@
         $(document).ready(function() {
             window.initOrganizationDateDrop = () => {
                 $('#organization_date').flatpickr({
-                    placeholder: 'تاريخ التموينية',
+                    placeholder: 'تاريخ التنظيم',
                     //dropdownParent: $('#addPatientModal')
                 })
             }

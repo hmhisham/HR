@@ -134,7 +134,6 @@ class Certifi extends Component
             'graduation_year.required' => 'حقل الاسم مطلوب',
             'grade.required' => 'حقل الاسم مطلوب',
             'issuing_country.required' => 'حقل الاسم مطلوب',
-
             'status.required' => 'حقل الاسم مطلوب',
         ]);
 
@@ -157,7 +156,7 @@ class Certifi extends Component
             'status' => $this->status,
 
         ]);
-        $this->reset(['department', 'calculator_number', 'order_number', 'order_date', 'holiday_type', 'holiday_purpose', 'days_count', 'separation_date', 'resumption_date', 'cut_off_holiday', 'file_path', 'notes']);
+        $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date', 'educational_attainment', 'college_name', 'specialization', 'graduation_year', 'grade', 'issuing_country', 'notes', 'status']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -258,7 +257,7 @@ class Certifi extends Component
             'status' => $this->status,
 
         ]);
-        $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date', 'educational_attainment', 'college_name',  'specialization', 'graduation_year', 'grade', 'issuing_country', 'notes', 'status']);
+        $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date', 'educational_attainment', 'college_name', 'specialization', 'graduation_year', 'grade', 'issuing_country', 'notes', 'status']);
 
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
