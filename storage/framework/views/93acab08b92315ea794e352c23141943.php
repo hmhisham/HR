@@ -95,7 +95,7 @@ $container = $container ?? 'container-xxl';
                         <li Class="menu-item <?php echo e(request()->Is('Wives') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Wives.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
-                                <div>بيانات الزوج/ـة</div>
+                                <div>بيانات الزوجة</div>
                             </a>
                         </li>
                         <li Class="menu-item <?php echo e(request()->Is('Childrens') ? 'active' : ''); ?>">

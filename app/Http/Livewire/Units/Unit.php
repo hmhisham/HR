@@ -16,7 +16,7 @@ class Unit extends Component
     public $Units = [];
     public $UnitSearch, $Unit, $UnitId;
     public $branch_id, $units_name;
-    public $section_id, $branch_name,$units_id;
+    public $section_id, $branch_name,$units_id ;
 
     public $branch = [];
     public $sections = [];
@@ -74,8 +74,9 @@ class Unit extends Component
             'units_name.unique' => 'الأسم موجود',
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
+
         Units::create([
+            'sections_id'=> $this->section_id,
             'branch_id' => $this->branch_id,
             'units_name' => $this->units_name,
 
@@ -95,6 +96,8 @@ class Unit extends Component
         $this->UnitId = $this->Unit->id;
         $this->branch_id = $this->Unit->branch_id;
         $this->units_name = $this->Unit->units_name;
+        $this->sections_id = $this->Unit->sections_id;
+
     }
 
     public function update()
@@ -111,6 +114,7 @@ class Unit extends Component
 
         $Units = Units::find($this->UnitId);
         $Units->update([
+            'sections_id'=> $this->section_id,
             'branch_id' => $this->branch_id,
             'units_name' => $this->units_name,
 
