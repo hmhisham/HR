@@ -761,10 +761,9 @@
                     </div>
                 </div>
             </div>
-
             <div class="tab-pane fade {{ $currentTap == 3 ? 'active show' : '' }}" id="form-tabs-3" role="tabpanel">
                 <div class="divider text-start mt-n3">
-                    <div class="divider-text">البطاقة الوطنية|البطاقة التموينية</div>
+                    <div class="divider-text">البطاقة الوطنية / البطاقة التموينية</div>
                 </div>
                 <div Class="row g-4">
                     <div class="mb-3 col">
