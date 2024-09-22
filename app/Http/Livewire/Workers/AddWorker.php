@@ -211,6 +211,8 @@ class AddWorker extends Component
             'maternal_grandfather_name' => 'required',
             'maternal_great_grandfather_name' => 'required',
             'mother_full_name' => 'required:workers,mother_full_name',
+            'phone_number' => 'required',
+
         ],[
             'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'calculator_number.unique' => 'لقد تم أخذ رقم الحاسبة بالفعل',
@@ -229,6 +231,7 @@ class AddWorker extends Component
             'maternal_grandfather_name.required' => 'حقل اسم والد الام مطلوب',
             'maternal_great_grandfather_name.required' => 'حقل اسم جد الام مطلوب',
             'mother_full_name.required' => 'حقل الاسم الكامل مطلوب',
+            'phone_number.required' => 'حقل رقم الهاتف مطلوب',
         ]);
 
         Workers::create([

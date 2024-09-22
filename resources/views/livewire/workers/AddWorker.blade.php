@@ -666,9 +666,9 @@
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <input wire:model.defer='birth_place' type="text" id="modalEmployeebirth_place"
-                                placeholder="محل الولادة"
+                                placeholder="مسقط الراس"
                                 class="form-control @error('birth_place') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeebirth_place">محل الولادة</label>
+                            <label for="modalEmployeebirth_place">مسقط الراس</label>
                         </div>
                         @error('birth_place')
                             <small class='text-danger inputerror'> {{ $message }} </small>
