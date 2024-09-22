@@ -470,7 +470,7 @@
                         <div class="form-floating form-floating-outline">
                             <input wire:model.defer='full_name' type="text" id="modalEmployeefull_name"
                                 placeholder="الاسم الكامل"
-                                class="form-control @error('full_name') is-invalid is-filled @enderror" disabled/>
+                                class="form-control @error('full_name') is-invalid is-filled @enderror" disabled />
                             <label for="modalEmployeefull_name">الاسم الكامل</label>
                         </div>
                         @error('full_name')
@@ -481,8 +481,8 @@
                 <div Class="row g-4">
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='mother_name' wire:keyup='changeNameMother' type="text" id="modalEmployeemother_name"
-                                placeholder="اسم الام"
+                            <input wire:model.defer='mother_name' wire:keyup='changeNameMother' type="text"
+                                id="modalEmployeemother_name" placeholder="اسم الام"
                                 class="form-control @error('mother_name') is-invalid is-filled @enderror" />
                             <label for="modalEmployeemother_name">اسم الام</label>
                         </div>
@@ -492,8 +492,9 @@
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='maternal_grandfather_name' wire:keyup='changeNameMother' type="text"
-                                id="modalEmployeematernal_grandfather_name" placeholder="اسم والد الام"
+                            <input wire:model.defer='maternal_grandfather_name' wire:keyup='changeNameMother'
+                                type="text" id="modalEmployeematernal_grandfather_name"
+                                placeholder="اسم والد الام"
                                 class="form-control @error('maternal_grandfather_name') is-invalid is-filled @enderror" />
                             <label for="modalEmployeematernal_grandfather_name">اسم والد الام</label>
                         </div>
@@ -503,8 +504,9 @@
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='maternal_great_grandfather_name' wire:keyup='changeNameMother' type="text"
-                                id="modalEmployeematernal_great_grandfather_name" placeholder="اسم جد الام"
+                            <input wire:model.defer='maternal_great_grandfather_name' wire:keyup='changeNameMother'
+                                type="text" id="modalEmployeematernal_great_grandfather_name"
+                                placeholder="اسم جد الام"
                                 class="form-control @error('maternal_great_grandfather_name') is-invalid is-filled @enderror" />
                             <label for="modalEmployeematernal_great_grandfather_name">اسم جد الام</label>
                         </div>
@@ -527,7 +529,8 @@
                         <div class="form-floating form-floating-outline">
                             <input wire:model.defer='mother_full_name' type="text"
                                 id="modalEmployeemother_full_name" placeholder="اسم الام الكامل"
-                                class="form-control @error('mother_full_name') is-invalid is-filled @enderror" disabled/>
+                                class="form-control @error('mother_full_name') is-invalid is-filled @enderror"
+                                disabled />
                             <label for="modalEmployeemother_full_name">اسم الام الكامل</label>
                         </div>
                         @error('mother_full_name')
@@ -695,14 +698,10 @@
                             <select wire:model.defer='religion' id="modalEmployeereligion" placeholder="الديانة"
                                 class="form-select @error('religion') is-invalid is-filled @enderror">
                                 <option value=""></option>
-                                <option value="مسلم">مسلم</option>
-                                <option value="مسلمة">مسلمة</option>
-                                <option value="مسيحي">مسيحي</option>
-                                <option value="مسيحية">مسيحية</option>
-                                <option value="صابئي">صابئي</option>
-                                <option value="صابئية">صابئية</option>
-                                <option value="ايزيدي">ايزيدي</option>
-                                <option value="ايزيدية">ايزيدية</option>
+                                <option value="مسلم/مسلمة">مسلم/مسلمة</option>
+                                <option value="مسيحي/مسيحية">مسيحي/مسيحية</option>
+                                <option value="صابئي/صابئية">صابئي/صابئية</option>
+                                <option value="ايزيدي/ايزيدية">ايزيدي/ايزيدية</option>
                                 <option value="اخرى">اخرى</option>
                             </select>
                             <label for="modalEmployeereligion">الديانة</label>
@@ -720,15 +719,10 @@
                                 wire:change='getWifeNameStatus($event.target.value)' id="modalEmployeemarital_status"
                                 placeholder="الحالةالاجتماعية"
                                 class="form-select @error('marital_status') is-invalid is-filled @enderror">
-                                <option value=""></option>
-                                <option value="اعزب">اعزب</option>
-                                <option value="باكر">باكر</option>
-                                <option value="متزوج">متزوج</option>
-                                <option value="متزوجة">متزوجة</option>
-                                <option value="مطلق">مطلق</option>
-                                <option value="مطلقة">مطلقة</option>
-                                <option value="ارمل">ارمل</option>
-                                <option value="ارملة">ارملة</option>
+                                <option value="اعزب/باكر">اعزب/باكر</option>
+                                <option value="متزوج/متزوجة">متزوج/متزوجة</option>
+                                <option value="مطلق/مطلقة">مطلق/مطلقة</option>
+                                <option value="ارمل/ارملة">ارمل/ارملة</option>
                             </select>
                             <label for="modalEmployeemarital_status">الحالة الاجتماعية</label>
                         </div>
@@ -758,17 +752,6 @@
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                {{-- <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="13">13</option>
-                                <option value="14">14</option>
-                                <option value="15">15</option> --}}
                             </select>
                             <label for="modalEmployeechildren_count">عدد الاطفال</label>
                         </div>
@@ -781,118 +764,54 @@
 
             <div class="tab-pane fade {{ $currentTap == 3 ? 'active show' : '' }}" id="form-tabs-3" role="tabpanel">
                 <div class="divider text-start mt-n3">
-                    <div class="divider-text">هوية الاحوال المدنية</div>
+                    <div class="divider-text">البطاقة الوطنية|البطاقة التموينية</div>
                 </div>
                 <div Class="row g-4">
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='civil_status_identity_number' type="text"
-                                id="modalEmployeecivil_status_identity_number" placeholder="رقم هوية الاحوال"
-                                class="form-control @error('civil_status_identity_number') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeecivil_status_identity_number">رقم هوية الاحوال</label>
+                            <input wire:model.defer='national_card_number' type="text"
+                                id="modalEmployeenational_card_number" placeholder="رقم البطاقة الوطنية"
+                                class="form-control @error('national_card_number') is-invalid is-filled @enderror" />
+                            <label for="modalEmployeenational_card_number">رقم البطاقة الوطنية</label>
                         </div>
-                        @error('civil_status_identity_number')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='registration_number' type="text"
-                                id="modalEmployeeregistration_number" placeholder="رقم السجل"
-                                class="form-control @error('registration_number') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeeregistration_number">رقم السجل</label>
-                        </div>
-                        @error('registration_number')
+                        @error('national_card_number')
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='record_number' type="text" id="modalEmployeerecord_number"
-                                placeholder="رقم الصحيفة"
-                                class="form-control @error('record_number') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeerecord_number">رقم الصحيفة</label>
+                            <input wire:model.defer='national_card_date' type="date"
+                                id="modalEmployeenational_card_date" placeholder="تاريخ البطاقة الوطنية"
+                                class="form-control @error('national_card_date') is-invalid is-filled @enderror" />
+                            <label for="modalEmployeenational_card_date">تاريخ البطاقة الوطنية</label>
                         </div>
-                        @error('record_number')
+                        @error('national_card_date')
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='issue_date_civil_status' type="date"
-                                id="modalEmployeeissue_date_civil_status" placeholder="تاريخ الاصدار"
-                                class="form-control @error('issue_date_civil_status') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeeissue_date_civil_status">تاريخ الاصدار</label>
+                            <input wire:model.defer='ration_card_number' type="text"
+                                id="modalEmployeeration_card_number" placeholder="رقم البطاقة التموينية"
+                                class="form-control @error('ration_card_number') is-invalid is-filled @enderror" />
+                            <label for="modalEmployeeration_card_number">رقم البطاقة التموينية</label>
                         </div>
-                        @error('issue_date_civil_status')
+                        @error('ration_card_number')
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='issuing_authority_civil_status' type="text"
-                                id="modalEmployeeissuing_authority_civil_status" placeholder="جهة الاصدار"
-                                class="form-control @error('issuing_authority_civil_status') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeeissuing_authority_civil_status">جهة الاصدار</label>
+                            <input wire:model.defer='ration_card_date' type="date"
+                                id="modalEmployeeration_card_date" placeholder="تاريخ البطاقة التموينية"
+                                class="form-control @error('ration_card_date') is-invalid is-filled @enderror" />
+                            <label for="modalEmployeeration_card_date">تاريخ البطاقة التموينية</label>
                         </div>
-                        @error('issuing_authority_civil_status')
+                        @error('ration_card_date')
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>
                 </div>
-
-                <div class="divider text-start">
-                    <div class="divider-text">شهادة الجنسية</div>
-                </div>
-                <div Class="row g-4">
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='nationality_certificate_number' type="text"
-                                id="modalEmployeenationality_certificate_number" placeholder="رقم شهادة الجنسية"
-                                class="form-control @error('nationality_certificate_number') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeenationality_certificate_number">رقم شهادة الجنسية</label>
-                        </div>
-                        @error('nationality_certificate_number')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-                    </div>
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='wallet_number' type="text" id="modalEmployeewallet_number"
-                                placeholder="رقم المحفظة"
-                                class="form-control @error('wallet_number') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeewallet_number">رقم المحفظة</label>
-                        </div>
-                        @error('wallet_number')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-                    </div>
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='issue_date_nationality_certificate' type="date"
-                                id="modalEmployeeissue_date_nationality_certificate" placeholder="تاريخ الاصدار"
-                                class="form-control @error('issue_date_nationality_certificate') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeeissue_date_nationality_certificate">تاريخ الاصدار</label>
-                        </div>
-                        @error('issue_date_nationality_certificate')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-                    </div>
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='issuing_authority_nationality_certificate' type="text"
-                                id="modalEmployeeissuing_authority_nationality_certificate" placeholder="جهة الاصدار"
-                                class="form-control @error('issuing_authority_nationality_certificate') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeeissuing_authority_nationality_certificate">جهة
-                                الاصدار</label>
-                        </div>
-                        @error('issuing_authority_nationality_certificate')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-                    </div>
-                </div>
-
                 <div class="divider text-start">
                     <div class="divider-text">بطاقة السكن</div>
                 </div>
@@ -930,62 +849,10 @@
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>
-
-                </div>
-
-                <div class="divider text-start">
-                    <div class="divider-text">البطاقة التموينية</div>
-                </div>
-                <div Class="row g-4">
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='ration_card_number' type="text"
-                                id="modalEmployeeration_card_number" placeholder="رقم البطاقة التموينية"
-                                class="form-control @error('ration_card_number') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeeration_card_number">رقم البطاقة التموينية</label>
-                        </div>
-                        @error('ration_card_number')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='ration_card_date' type="date"
-                                id="modalEmployeeration_card_date" placeholder="تاريخ البطاقة التموينية"
-                                class="form-control @error('ration_card_date') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeeration_card_date">تاريخ البطاقة التموينية</label>
-                        </div>
-                        @error('ration_card_date')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-                    </div>
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='national_card_number' type="text"
-                                id="modalEmployeenational_card_number" placeholder="رقم البطاقة الوطنية"
-                                class="form-control @error('national_card_number') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeenational_card_number">رقم البطاقة الوطنية</label>
-                        </div>
-                        @error('national_card_number')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-                    </div>
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='national_card_date' type="date"
-                                id="modalEmployeenational_card_date" placeholder="تاريخ البطاقة الوطنية"
-                                class="form-control @error('national_card_date') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeenational_card_date">تاريخ البطاقة الوطنية</label>
-                        </div>
-                        @error('national_card_date')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-                    </div>
                 </div>
             </div>
-
-            @include('livewire.workers.modals.add-takhroj')
         </div>
+        @include('livewire.workers.modals.add-takhroj')
     </div>
+</div>
 </div>
