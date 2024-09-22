@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة بيانات الشهادة الجديدة</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -68,10 +68,10 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='document_date' type="date"
-                                            id="modalCertificdocument_date" placeholder="تاريخ الوثيقة"
+                                        <input wire:model.defer='document_date' type="text" id="document_date"
+                                            autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                             class="form-control @error('document_date') is-invalid is-filled @enderror" />
-                                        <label for="modalCertificdocument_date">تاريخ الوثيقة</label>
+                                        <label for="flatpickr-date">تاريخ الوثيقة</label>
                                     </div>
                                     @error('document_date')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
@@ -90,10 +90,10 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='authenticity_date' type="date"
-                                            id="modalCertificauthenticity_date" placeholder="تاريخ صحة الصدور"
+                                        <input wire:model.defer='authenticity_date' type="text"
+                                            id="authenticity_date" autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                             class="form-control @error('authenticity_date') is-invalid is-filled @enderror" />
-                                        <label for="modalCertificauthenticity_date">تاريخ صحة الصدور</label>
+                                        <label for="flatpickr-date">تاريخ صحة الصدور</label>
                                     </div>
                                     @error('authenticity_date')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
@@ -101,33 +101,6 @@
                                 </div>
                             </div>
                             <div Class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='educational_attainment'
-                                            id="modalCertificeducational_attainment"
-                                            class="form-select @error('educational_attainment') is-invalid @enderror">
-                                            <option value="" disabled selected>اختر التحصيل الدراسي</option>
-                                            <option value="امي">امي</option>
-                                            <option value="يقرا فقط">يقرا فقط</option>
-                                            <option value="يقرا ويكتب">يقرا ويكتب</option>
-                                            <option value="ابتدائية">ابتدائية</option>
-                                            <option value="متوسطة">متوسطة</option>
-                                            <option value="اعدادية">اعدادية</option>
-                                            <option value="دبلوم">دبلوم</option>
-                                            <option value="بكالوريوس">بكالوريوس</option>
-                                            <option value="دبلوم عالي">دبلوم عالي</option>
-                                            <option value="ماجستير">ماجستير</option>
-                                            <option value="دكتوراه">دكتوراه</option>
-                                            <option value="اعلى شهادة اختصاص">اعلى شهادة اختصاص</option>
-                                            <option value="غير مبين">غير مبين</option>
-                                            <option value="محو الامية">محو الامية</option>
-                                        </select>
-                                        <label for="modalCertificeducational_attainment">تحصيل الدراسي</label>
-                                    </div>
-                                    @error('educational_attainment')
-                                        <small class='text-danger'>{{ $message }}</small>
-                                    @enderror
-                                </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model='certificate_name' wire:change='loadGraduations'

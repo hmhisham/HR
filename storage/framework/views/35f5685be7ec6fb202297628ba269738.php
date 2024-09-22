@@ -23,15 +23,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('workers.add-worker')->html();
-} elseif ($_instance->childHasBeenRendered('TXzem2s')) {
-    $componentId = $_instance->getRenderedChildComponentId('TXzem2s');
-    $componentTag = $_instance->getRenderedChildComponentTagName('TXzem2s');
+} elseif ($_instance->childHasBeenRendered('7BatANM')) {
+    $componentId = $_instance->getRenderedChildComponentId('7BatANM');
+    $componentTag = $_instance->getRenderedChildComponentTagName('7BatANM');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('TXzem2s');
+    $_instance->preserveRenderedChild('7BatANM');
 } else {
     $response = \Livewire\Livewire::mount('workers.add-worker');
     $html = $response->html();
-    $_instance->logRenderedChild('TXzem2s', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('7BatANM', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -154,7 +154,7 @@ echo $html;
         $(document).ready(function() {
             window.initOrganizationDateDrop = () => {
                 $('#organization_date').flatpickr({
-                    placeholder: 'تاريخ التموينية',
+                    placeholder: 'تاريخ التنظيم',
                     //dropdownParent: $('#addPatientModal')
                 })
             }

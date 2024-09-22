@@ -105,10 +105,10 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='birth_date' type="date" id="modalChildrenbirth_date"
-                                            placeholder="تاريخ التولد"
+                                        <input wire:model.defer='birth_date' type="text" id="birth_date" autocomplete="off"
+                                            readonly placeholder="يوم-شهر-سنة"
                                             class="form-control @error('birth_date') is-invalid is-filled @enderror" />
-                                        <label for="modalChildrenbirth_date">تاريخ التولد</label>
+                                        <label for="flatpickr-date">تاريخ التولد</label>
                                     </div>
                                     @error('birth_date')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
