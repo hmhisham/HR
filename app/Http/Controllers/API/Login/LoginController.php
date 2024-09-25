@@ -70,27 +70,27 @@ class LoginController extends Controller
             ]);
         }
 
-        $Customer = Customers::find($request->id);
-        if(!Hash::check($password, $Customer->password)){
-            return response()->json([
-                'status' => false,
-                'message' => 'خطأ في كلمة المرور',
-                'description' => 'اعد ادخال لكمة المرور بصورة صحيحة',
-            ]);
-        }else{
-            if($Customer && $Customer->active){
-                return response()->json([
-                    'status' => true,
-                ]);
-            }
-            if($Customer && !$Customer->active)
-            {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'حسابك متوقف',
-                    'description' => 'يرجى مراجعة الفرع الرئيسي لمعرفة السبب',
-                ]);
-            }
-        }
+        // $Customer = Customers::find($request->id);
+        // if(!Hash::check($password, $Customer->password)){
+        //     return response()->json([
+        //         'status' => false,
+        //         'message' => 'خطأ في كلمة المرور',
+        //         'description' => 'اعد ادخال لكمة المرور بصورة صحيحة',
+        //     ]);
+        // }else{
+        //     if($Customer && $Customer->active){
+        //         return response()->json([
+        //             'status' => true,
+        //         ]);
+        //     }
+        //     if($Customer && !$Customer->active)
+        //     {
+        //         return response()->json([
+        //             'status' => false,
+        //             'message' => 'حسابك متوقف',
+        //             'description' => 'يرجى مراجعة الفرع الرئيسي لمعرفة السبب',
+        //         ]);
+        //     }
+        // }
     }
 }
