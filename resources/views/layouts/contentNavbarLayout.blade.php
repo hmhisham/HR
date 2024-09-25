@@ -162,7 +162,7 @@ $container = $container ?? 'container-xxl';
                 <li class="menu-item {{ request()->is('Governorates') ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-calculator'></i>
-                        <span class="menu-title">قسم الحسابات</span>
+                        <span class="menu-title">القسم المالي</span>
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item {{ request()->is('Governorates') ? 'active' : '' }}">
