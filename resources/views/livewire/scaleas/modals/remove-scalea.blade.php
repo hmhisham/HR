@@ -30,12 +30,12 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='technicians_salary_stage' type="text" disabled
-                                            id="modalTechniciantechnicians_salary_stage" placeholder="مرحلة الراتب"
-                                            class="form-control @error('technicians_salary_stage') is-invalid is-filled @enderror" />
-                                        <label for="modalTechniciantechnicians_salary_stage">مرحلة الراتب</label>
+                                        <input wire:model.defer='scaleas_salary_stage' type="text" disabled
+                                            id="modalscaleasscaleas_salary_stage" placeholder="مرحلة الراتب"
+                                            class="form-control @error('scaleas_salary_stage') is-invalid is-filled @enderror" />
+                                        <label for="modalscaleasscaleas_salary_stage">مرحلة الراتب</label>
                                     </div>
-                                    @error('technicians_salary_stage')
+                                    @error('scaleas_salary_stage')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
