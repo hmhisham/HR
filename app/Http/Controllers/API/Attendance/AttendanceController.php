@@ -10,43 +10,25 @@ use Illuminate\Support\Facades\Validator;
 
 class AttendanceController extends Controller
 {
-
-    public function attendance(Request $request)
+    public function getAttendance($calculator_number)
     {
-        $calculatorNumber = $request->calculatorNumber;
-        $mypassword = $request->mypassword;
+        // جلب بيانات الحضور باستخدام رقم الحاسبة
+        $attendance = Attendance::where('calculator_number', $calculator_number)
+            ->orderBy('Att_Date', 'desc')
+            ->get();
 
-        $validator = Validator::make($request->all(), [
-            'calculatorNumber' => 'required',
-
-        ], [
-            'calculatorNumber.required' => 'رقم الحاسبه مطلوب',
-
-        ]);
-        if ($validator->fails()) {
-            $errors = $validator->errors();
-
+        if ($attendance->isEmpty()) {
+            // إذا لم يتم العثور على بيانات، يتم إرجاع status = false
             return response()->json([
                 'status' => false,
-                'calculatorNumber' => $errors->first('calculatorNumber'),
-
-            ]);
+                'message' => 'لايوجد بيانات'
+            ], 404);
         }
 
-        $Attendance = Attendance::where('calculator_number', $request->calculatorNumber)->where('mypassword', $request->mypassword)->first();
-
-        if ($Attendance) {
-            return response()->json([
-                'status' => true,
-                'Attendance' => $Attendance,
-                //'token' => $Attendance->createToken(Hash::make($Attendance->calculator_number))->plainTextToken,
-            ]);
-        } else {
-            return response()->json([
-                'status' => false,
-                'message' => 'لا يوجد تطابق لهذه البيانات في سجلاتنا',
-                'description' => 'تأكد من كتابة رقم الحاسبة بصورة صحيحة',
-            ]);
-        }
+        // إذا تم العثور على بيانات، يتم إرجاع status = true مع جميع البيانات
+        return response()->json([
+            'status' => true,
+            'data' => $attendance
+        ], 200);
     }
 }
