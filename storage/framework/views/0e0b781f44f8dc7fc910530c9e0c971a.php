@@ -44,9 +44,9 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='technicians_salary_stage' type="text" disabled
-                                            id="modalTechniciantechnicians_salary_stage" placeholder="مرحلة الراتب"
-                                            class="form-control <?php $__errorArgs = ['technicians_salary_stage'];
+                                        <input wire:model.defer='scaleas_salary_stage' type="text" disabled
+                                            id="modalscaleasscaleas_salary_stage" placeholder="مرحلة الراتب"
+                                            class="form-control <?php $__errorArgs = ['scaleas_salary_stage'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -54,9 +54,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalTechniciantechnicians_salary_stage">مرحلة الراتب</label>
+                                        <label for="modalscaleasscaleas_salary_stage">مرحلة الراتب</label>
                                     </div>
-                                    <?php $__errorArgs = ['technicians_salary_stage'];
+                                    <?php $__errorArgs = ['scaleas_salary_stage'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

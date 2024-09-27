@@ -21,13 +21,13 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th class="text-center">معرّف درجة الموظف</th>
+                            <th class="text-center">الدرجة الوظيفية</th>
                             <th class="text-center">المرحلة الوظيفية</th>
                             <th class="text-center">درجة الراتب</th>
                             <th class="text-center">مرحلة الراتب</th>
                             <th class="text-center">مقدار العلاوة</th>
                             <th class="text-center">الراتب</th>
-                            <th class="text-center">المدة الأصغرية بالأشهر</th>
+                            <th class="text-center">المدة الأصغرية</th>
                             <th class="text-center">الراتب السابق</th>
                             <th class="text-center">العملية</th>
                         </tr>

@@ -75,7 +75,7 @@ $container = $container ?? 'container-xxl';
                 </li>
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employees')): ?>
-                <li class="menu-item <?php echo e(request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays','Wives','Childrens',) ? 'open active' : ''); ?>">
+                <li class="menu-item <?php echo e(request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays','Wives','Childrens','Placements',) ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                         <span class="menu-title">قسم الموارد البشرية</span>
@@ -95,7 +95,7 @@ $container = $container ?? 'container-xxl';
                         <li Class="menu-item <?php echo e(request()->Is('Wives') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Wives.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
-                                <div>بيانات الزوجة</div>
+                                <div>بيانات الزوج/ـة</div>
                             </a>
                         </li>
                         <li Class="menu-item <?php echo e(request()->Is('Childrens') ? 'active' : ''); ?>">
@@ -151,6 +151,11 @@ $container = $container ?? 'container-xxl';
                                 <div>الترفيعات</div>
                             </a>
                         </li>
+                        <li Class="menu-item <?php echo e(request()->Is('Placements') ? 'active' : ''); ?>">
+                            <a href = "<?php echo e(Route('Placements.index')); ?>" Class="menu-link">
+                                <div>التنسيب</div>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <?php endif; ?>
@@ -158,7 +163,7 @@ $container = $container ?? 'container-xxl';
                 <li class="menu-item <?php echo e(request()->is('Governorates') ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-calculator'></i>
-                        <span class="menu-title">قسم الحسابات</span>
+                        <span class="menu-title">القسم المالي</span>
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item <?php echo e(request()->is('Governorates') ? 'active' : ''); ?>">

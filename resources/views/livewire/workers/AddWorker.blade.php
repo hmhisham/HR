@@ -739,7 +739,7 @@
                         <div class="form-floating form-floating-outline">
                             <input wire:model.defer='wife_name' type="text" id="modalEmployeewife_name"
                                 placeholder="{{ $HusbandName }}" {{ $isMaritalStatus }}
-                                class="form-control @error('wife_name') is-invalid is-filled @enderror"/>
+                                class="form-control @error('wife_name') is-invalid is-filled @enderror" />
                             <label for="modalEmployeewife_name">{{ $HusbandName }}</label>
                         </div>
                         @error('wife_name')
@@ -784,8 +784,8 @@
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='national_card_date' type="text" id="national_card_date" autocomplete="off"
-                                readonly placeholder="يوم-شهر-سنة"
+                            <input wire:model.defer='national_card_date' type="text" id="national_card_date"
+                                autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                 class="form-control @error('national_card_date') is-invalid is-filled @enderror" />
                             <label for="flatpickr-date">تاريخ البطاقة الوطنية</label>
                         </div>
@@ -806,8 +806,8 @@
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='ration_card_date' type="text" id="ration_card_date" autocomplete="off"
-                                readonly placeholder="يوم-شهر-سنة"
+                            <input wire:model.defer='ration_card_date' type="text" id="ration_card_date"
+                                autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                 class="form-control @error('ration_card_date') is-invalid is-filled @enderror" />
                             <label for="flatpickr-date">تاريخ البطاقة التموينية</label>
                         </div>
@@ -833,19 +833,23 @@
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='information_office' type="text"
-                                id="modalEmployeeinformation_office" placeholder="مكتب المعلومات"
-                                class="form-control @error('information_office') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeeinformation_office">مكتب المعلومات</label>
+                            <select wire:model.defer='information_office' id="modalWorkerinformation_office"
+                                class="form-select @error('information_office') is-invalid is-filled @enderror">
+                                <option value="">اختر مكتب المعلومات</option>
+                                @foreach ($infooffice as $infooffic)
+                                    <option value="{{ $infooffic->id }}">{{ $infooffic->infooffice_name }}</option>
+                                @endforeach
+                            </select>
+                            <label for="modalWorkerinformation_office">مكتب المعلومات</label>
                         </div>
                         @error('information_office')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
+                            <small class='text-danger inputerror'>{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='organization_date' type="text" id="organization_date" autocomplete="off"
-                                readonly placeholder="يوم-شهر-سنة"
+                            <input wire:model.defer='organization_date' type="text" id="organization_date"
+                                autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                 class="form-control @error('organization_date') is-invalid is-filled @enderror" />
                             <label for="flatpickr-date">تاريخ التنظيم</label>
                         </div>
