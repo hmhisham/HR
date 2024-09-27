@@ -87,6 +87,22 @@
             });
         });
 
+        $(document).ready(function() {
+            window.initInfoofficeDrop = () => {
+                $('#modalWorkerinformation_office').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addworkerModal')
+                });
+            }
+            initInfoofficeDrop();
+            $('#modalWorkerinformation_office').on('change', function(e) {
+                livewire.emit('SelectInformationOffice', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initInfoofficeDrop();
+            });
+        });
+
         /* تاريخ التولد */
         $(document).ready(function() {
             window.initBirthDateDrop = () => {

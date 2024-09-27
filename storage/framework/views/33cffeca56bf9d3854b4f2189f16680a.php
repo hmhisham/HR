@@ -809,7 +809,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"/>
+unset($__errorArgs, $__bag); ?>" />
                             <label for="modalEmployeewife_name"><?php echo e($HusbandName); ?></label>
                         </div>
                         <?php $__errorArgs = ['wife_name'];
@@ -890,8 +890,8 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='national_card_date' type="text" id="national_card_date" autocomplete="off"
-                                readonly placeholder="يوم-شهر-سنة"
+                            <input wire:model.defer='national_card_date' type="text" id="national_card_date"
+                                autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                 class="form-control <?php $__errorArgs = ['national_card_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -940,8 +940,8 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='ration_card_date' type="text" id="ration_card_date" autocomplete="off"
-                                readonly placeholder="يوم-شهر-سنة"
+                            <input wire:model.defer='ration_card_date' type="text" id="ration_card_date"
+                                autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                 class="form-control <?php $__errorArgs = ['ration_card_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -1020,8 +1020,37 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='organization_date' type="text" id="organization_date" autocomplete="off"
-                                readonly placeholder="يوم-شهر-سنة"
+                            <select wire:model.defer='information_office' id="modalWorkerinformation_office"
+                                class="form-select <?php $__errorArgs = ['information_office'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                <option value=""></option>
+                                <?php $__currentLoopData = $infooffice; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $infooffic): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($infooffic->id); ?>"><?php echo e($infooffic->infooffice_name); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
+                            <label for="modalWorkerinformation_office">information_office</label>
+                        </div>
+                        <?php $__errorArgs = ['information_office'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class='text-danger inputerror'><?php echo e($message); ?></small>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                    </div>
+                    <div class="mb-3 col">
+                        <div class="form-floating form-floating-outline">
+                            <input wire:model.defer='organization_date' type="text" id="organization_date"
+                                autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                 class="form-control <?php $__errorArgs = ['organization_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

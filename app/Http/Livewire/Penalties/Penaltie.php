@@ -69,7 +69,7 @@ class Penaltie extends Component
             $this->get_departmen = null;
         }
     }
-    
+
 
 
     public function render()

@@ -80,7 +80,7 @@
                                                 <option value="{{ $departmen->id }}">{{ $departmen->department_name }}</option>
                                             @endforeach
                                         </select>
-                                        <label for="modalPenaltiep_issuing_authority">الجهة المانحة للشكر</label>
+                                        <label for="modalPenaltiep_issuing_authority">الجهة المانحة للعقوبة</label>
                                     </div>
                                     @error('p_issuing_authority')
                                         <small class='text-danger inputerror'> {{ $message }} </small>

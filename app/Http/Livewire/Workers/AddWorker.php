@@ -7,8 +7,9 @@ use App\Models\Areas\Areas;
 use Livewire\WithPagination;
 use App\Models\Workers\Workers;
 use App\Models\Districts\Districts;
-use App\Models\Governorates\Governorates;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Infooffice\Infooffice;
+use App\Models\Governorates\Governorates;
 
 class AddWorker extends Component
 {
@@ -22,6 +23,7 @@ class AddWorker extends Component
     public $graduations = [];
     public $specializations = [];
     public $Workers = [];
+    public $infooffice = [];
     public $WorkerSearch = '';
     public $calculator_number, $employee_number, $paper_folder_number, $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name;
     public $mother_name, $maternal_grandfather_name, $maternal_great_grandfather_name, $maternal_surname, $mother_full_name;
@@ -33,26 +35,39 @@ class AddWorker extends Component
     public $ration_card_number, $ration_card_date, $national_card_number, $national_card_date;
     public $isMaritalStatus, $HusbandName;
 
-    protected $listeners = [
-		'GetDistricts',
-		'GetAreas',
-		'SelectArea',
-	];
 
-	public function hydrate()
-	{
-		$this->emit('select2');
-		$this->emit('flatpickr');
-	}
+    protected $listeners = [
+        'GetDistricts',
+        'GetAreas',
+        'SelectArea',
+        'SelectInformationOffice',
+    ];
+
+    public function hydrate()
+    {
+        $this->emit('select2');
+        $this->emit('flatpickr');
+    }
 
     public function mount()
     {
         $this->Governorates = Governorates::all();
+        $this->infooffice = Infooffice::all();
     }
 
-    Public function render()
+    public function SelectInformationOffice($InformationOfficeID)
     {
-        $WorkerSearch ='%' . $this->WorkerSearch . '%';
+        $information_office = Infooffice::find($InformationOfficeID);
+        if ($information_office) {
+            $this->information_office = $InformationOfficeID;
+        } else {
+            $this->information_office = null;
+        }
+    }
+
+    public function render()
+    {
+        $WorkerSearch = '%' . $this->WorkerSearch . '%';
         $Workers = Workers::where('calculator_number', 'LIKE', $WorkerSearch)
             ->orWhere('employee_number', 'LIKE', $WorkerSearch)
             ->orderBy('id', 'ASC')
@@ -96,19 +111,19 @@ class AddWorker extends Component
         $this->surname = trim($this->surname);
 
         $this->full_name = $this->first_name;
-        if($this->father_name != ''){
+        if ($this->father_name != '') {
             $this->full_name .= ' ';
             $this->full_name .= $this->father_name;
         }
-        if($this->grandfather_name != ''){
+        if ($this->grandfather_name != '') {
             $this->full_name .= ' ';
             $this->full_name .= $this->grandfather_name;
         }
-        if($this->great_grandfather_name != ''){
+        if ($this->great_grandfather_name != '') {
             $this->full_name .= ' ';
             $this->full_name .= $this->great_grandfather_name;
         }
-        if($this->surname != ''){
+        if ($this->surname != '') {
             $this->full_name .= ' ';
             $this->full_name .= $this->surname;
         }
@@ -119,7 +134,7 @@ class AddWorker extends Component
             'father_name' => 'required',
             'grandfather_name' => 'required',
             'great_grandfather_name' => 'required',
-        ],[
+        ], [
             'first_name.required' => 'حقل الاسم الاول مطلوب',
             'father_name.required' => 'حقل اسم الاب مطلوب',
             'grandfather_name.required' => 'حقل اسم الجد مطلوب',
@@ -135,15 +150,15 @@ class AddWorker extends Component
         $this->maternal_surname = trim($this->maternal_surname);
 
         $this->mother_full_name = $this->mother_name;
-        if($this->maternal_grandfather_name != ''){
+        if ($this->maternal_grandfather_name != '') {
             $this->mother_full_name .= ' ';
             $this->mother_full_name .= $this->maternal_grandfather_name;
         }
-        if($this->maternal_great_grandfather_name != ''){
+        if ($this->maternal_great_grandfather_name != '') {
             $this->mother_full_name .= ' ';
             $this->mother_full_name .= $this->maternal_great_grandfather_name;
         }
-        if($this->maternal_surname != ''){
+        if ($this->maternal_surname != '') {
             $this->mother_full_name .= ' ';
             $this->mother_full_name .= $this->maternal_surname;
         }
@@ -153,7 +168,7 @@ class AddWorker extends Component
             'mother_name' => 'required',
             'maternal_grandfather_name' => 'required',
             'maternal_great_grandfather_name' => 'required',
-        ],[
+        ], [
             'mother_name.required' => 'حقل اسم الام مطلوب',
             'maternal_grandfather_name.required' => 'حقل اسم والد الام مطلوب',
             'maternal_great_grandfather_name.required' => 'حقل اسم جد الام مطلوب',
@@ -181,15 +196,12 @@ class AddWorker extends Component
     public function getWifeNameStatus($MaritalStatus)
     {
 
-        if($MaritalStatus == 'اعزب' or $MaritalStatus == 'باكر')
-        {
+        if ($MaritalStatus == 'اعزب' or $MaritalStatus == 'باكر') {
             $this->isMaritalStatus = '';
             $this->isMaritalStatus = 'disabled';
-        }
-        elseif($MaritalStatus == 'متزوجة' or $MaritalStatus == 'مطلقة' or $MaritalStatus == 'ارملة')
-        {
+        } elseif ($MaritalStatus == 'متزوجة' or $MaritalStatus == 'مطلقة' or $MaritalStatus == 'ارملة') {
             $this->HusbandName = 'اسم الزوج';
-        }else{
+        } else {
             $this->HusbandName = 'اسم الزوجة';
         }
     }
@@ -213,7 +225,7 @@ class AddWorker extends Component
             'mother_full_name' => 'required:workers,mother_full_name',
             'phone_number' => 'required',
 
-        ],[
+        ], [
             'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'calculator_number.unique' => 'لقد تم أخذ رقم الحاسبة بالفعل',
             //'employee_number.required' => 'حقل الرقم الوظيفي مطلوب',

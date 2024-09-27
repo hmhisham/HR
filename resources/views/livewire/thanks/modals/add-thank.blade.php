@@ -59,7 +59,7 @@
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='grantor' id="modalThanksgrantor"
                                             class="form-select @error('grantor') is-invalid is-filled @enderror">
-                                            <option value=""></option>
+                                            <option value="">اختر الجهة</option>
                                             @foreach ($department as $departmen)
                                                 <option value="{{ $departmen->id }}">{{ $departmen->department_name }}
                                                 </option>

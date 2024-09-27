@@ -28,12 +28,10 @@
                                         <label for="modalEmployeefull_name">اسم الموظف</label>
                                     </div>
                                     @error('full_name')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                                 <div class="row">
-
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='calculator_number' type="text"
@@ -43,45 +41,39 @@
                                             <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
                                         </div>
                                         @error('calculator_number')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col-6">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='get_departmen' type="text" id="get_departmen"
-                                                   placeholder="اسم القسم"
-                                                   class="form-control @error('get_departmen') is-invalid is-filled @enderror"
-                                                   disabled />
+                                                placeholder="اسم القسم"
+                                                class="form-control @error('get_departmen') is-invalid is-filled @enderror"
+                                                disabled />
                                             <label for="get_departmen">اسم القسم</label>
                                         </div>
                                         @error('get_departmen')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
-
-
                                 </div>
-
                                 <Div Class="row">
-
-
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='grantor' id="modalThanksgrantor" class="form-select @error('grantor') is-invalid is-filled @enderror">
-                                            <option value=""></option>
-                                            @foreach ($department as $departmen)
-                                                <option value="{{ $departmen->id }}">{{ $departmen->department_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="modalThanksgrantor">الجهة المانحة للشكر</label>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='grantor' id="modalThanksgrantor"
+                                                class="form-select @error('grantor') is-invalid is-filled @enderror">
+                                                <option value="">اختر الجهة</option>
+                                                @foreach ($department as $departmen)
+                                                    <option value="{{ $departmen->id }}">
+                                                        {{ $departmen->department_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="modalThanksgrantor">الجهة المانحة للشكر</label>
+                                        </div>
+                                        @error('grantor')
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @enderror
                                     </div>
-                                    @error('grantor')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-
-
                                 </div>
                                 <Div Class="row">
                                     <div class="mb-3 col">
@@ -92,10 +84,9 @@
                                             <label for="modalThankministerial_order_number">رقم الامر الوزاري</label>
                                         </div>
                                         @error('ministerial_order_number')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='ministerial_order_date' type="text"
@@ -104,10 +95,9 @@
                                             <label for="modalThankministerial_order_date">تاريخ الامر الوزاري</label>
                                         </div>
                                         @error('ministerial_order_date')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='reason' type="text" id="modalThankreason"
@@ -116,7 +106,7 @@
                                             <label for="modalThankreason">السبب من الشكر</label>
                                         </div>
                                         @error('reason')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                 </div>
@@ -132,10 +122,9 @@
                                             <label for="modalEmployeemonths_of_service">عدد الاشهر </label>
                                         </div>
                                         @error('months_of_service')
-                                        <small class="text-danger inputerror">{{ $message }}</small>
+                                            <small class="text-danger inputerror">{{ $message }}</small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='notes' type="text" id="modalThanknotes"
@@ -144,7 +133,7 @@
                                             <label for="modalThanknotes">الملاحظات</label>
                                         </div>
                                         @error('notes')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 

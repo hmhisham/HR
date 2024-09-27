@@ -23,15 +23,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('workers.add-worker')->html();
-} elseif ($_instance->childHasBeenRendered('7BatANM')) {
-    $componentId = $_instance->getRenderedChildComponentId('7BatANM');
-    $componentTag = $_instance->getRenderedChildComponentTagName('7BatANM');
+} elseif ($_instance->childHasBeenRendered('fDIXmy2')) {
+    $componentId = $_instance->getRenderedChildComponentId('fDIXmy2');
+    $componentTag = $_instance->getRenderedChildComponentTagName('fDIXmy2');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('7BatANM');
+    $_instance->preserveRenderedChild('fDIXmy2');
 } else {
     $response = \Livewire\Livewire::mount('workers.add-worker');
     $html = $response->html();
-    $_instance->logRenderedChild('7BatANM', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('fDIXmy2', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -97,6 +97,22 @@ echo $html;
             });
             window.livewire.on('select2', () => {
                 initAreaDrop();
+            });
+        });
+
+        $(document).ready(function() {
+            window.initInfoofficeDrop = () => {
+                $('#modalWorkerinformation_office').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addworkerModal')
+                });
+            }
+            initInfoofficeDrop();
+            $('#modalWorkerinformation_office').on('change', function(e) {
+                livewire.emit('SelectInformationOffice', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initInfoofficeDrop();
             });
         });
 
