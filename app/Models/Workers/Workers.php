@@ -12,8 +12,8 @@ class Workers extends Model
     protected $guarded = [];
     protected $table = "workers";
 
-    public function Getinfooffic()
+    Public function Getinfooffic()
     {
-        return $this->belongsTo(Infooffice::class, 'information_office');
+        return $this->belongsTo(Infooffice::class, 'information_office' );
     }
 }

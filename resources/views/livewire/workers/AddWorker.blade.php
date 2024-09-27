@@ -45,8 +45,6 @@
         <div class="tab-content">
             <div class="tab-pane fade {{ $currentTap == 1 ? 'active show' : '' }} " id="form-tabs-1" role="tabpanel">
 
-
-
                 <!-- Bootstrap Datepicker -->
                 {{-- <div class="layout-wrapper layout-content-navbar">
                     <div class="layout-container">
@@ -831,13 +829,14 @@
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>
+
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='information_office' id="modalWorkerinformation_office"
                                 class="form-select @error('information_office') is-invalid is-filled @enderror">
-                                <option value="">اختر مكتب المعلومات</option>
+                                <option value=""></option>
                                 @foreach ($infooffice as $infooffic)
-                                    <option value="{{ $infooffic->id }}">{{ $infooffic->infooffice_name }}</option>
+                                    <option value="{{ $infooffic->id }}">{{ $infooffic->Infooffice_name }}</option>
                                 @endforeach
                             </select>
                             <label for="modalWorkerinformation_office">مكتب المعلومات</label>
@@ -846,6 +845,7 @@
                             <small class='text-danger inputerror'>{{ $message }}</small>
                         @enderror
                     </div>
+
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <input wire:model.defer='organization_date' type="text" id="organization_date"

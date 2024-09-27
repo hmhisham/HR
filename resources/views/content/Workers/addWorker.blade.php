@@ -87,11 +87,13 @@
             });
         });
 
+
+        /*  مكتب الملومات   */
         $(document).ready(function() {
             window.initInfoofficeDrop = () => {
                 $('#modalWorkerinformation_office').select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#addworkerModal')
+                    // dropdownParent: $('#addWorker')
                 });
             }
             initInfoofficeDrop();
@@ -102,6 +104,7 @@
                 initInfoofficeDrop();
             });
         });
+
 
         /* تاريخ التولد */
         $(document).ready(function() {

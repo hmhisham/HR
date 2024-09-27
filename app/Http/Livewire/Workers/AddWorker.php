@@ -24,6 +24,7 @@ class AddWorker extends Component
     public $specializations = [];
     public $Workers = [];
     public $infooffice = [];
+
     public $WorkerSearch = '';
     public $calculator_number, $employee_number, $paper_folder_number, $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name;
     public $mother_name, $maternal_grandfather_name, $maternal_great_grandfather_name, $maternal_surname, $mother_full_name;
@@ -40,12 +41,12 @@ class AddWorker extends Component
         'GetDistricts',
         'GetAreas',
         'SelectArea',
-        'SelectInformationOffice',
+     'SelectInformationOffice',
     ];
 
     public function hydrate()
     {
-        $this->emit('select2');
+       $this->emit('select2');
         $this->emit('flatpickr');
     }
 
@@ -53,11 +54,13 @@ class AddWorker extends Component
     {
         $this->Governorates = Governorates::all();
         $this->infooffice = Infooffice::all();
+
     }
 
     public function SelectInformationOffice($InformationOfficeID)
     {
         $information_office = Infooffice::find($InformationOfficeID);
+    
         if ($information_office) {
             $this->information_office = $InformationOfficeID;
         } else {
@@ -100,6 +103,12 @@ class AddWorker extends Component
         } elseif ($step == 8) {
             $this->currentTap = 8;
         }
+    }
+    public function AddWorkerModalShow()
+    {
+        // $this->reset();
+        $this->resetValidation();
+        $this->dispatchBrowserEvent('WorkerModalShow');
     }
 
     public function changeName()
@@ -296,7 +305,7 @@ class AddWorker extends Component
             'user_id' => Auth::id(),
         ]);
 
-        $this->reset();
+        // $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافة بنجاح',
             'title' => 'اضافة'
