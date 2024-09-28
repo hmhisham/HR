@@ -48,12 +48,11 @@ class Precise extends Component
         $this->resetValidation();
         $this->validate([
             'specialtys_code' => 'required:precises',
-            'precises_code' => 'required|unique:precises',
-            'precises_name' => 'required|unique:precises',
+            'precises_code' => 'required|unique:precises,precises_code,NULL,id,specialtys_code,'.$this->specialtys_code,
+            'precises_name' => 'required|unique:precises,precises_name,NULL,id,specialtys_code,'.$this->specialtys_code,
 
         ], [
             'specialtys_code.required' => 'حقل الاسم مطلوب',
-            'specialtys_code.unique' => 'الأسم موجود',
             'precises_code.required' => 'حقل الاسم مطلوب',
             'precises_code.unique' => 'الأسم موجود',
             'precises_name.required' => 'حقل الاسم مطلوب',
@@ -90,12 +89,13 @@ class Precise extends Component
         $this->resetValidation();
         $this->validate([
             'specialtys_code' => 'required:precises',
-            'precises_code' => 'required:precises',
-            'precises_name' => 'required|unique:precises',
+            'precises_code' => 'required|unique:precises,precises_code,NULL,id,specialtys_code,'.$this->specialtys_code,
+            'precises_name' => 'required|unique:precises,precises_name,NULL,id,specialtys_code,'.$this->specialtys_code,
 
         ], [
             'specialtys_code.required' => 'حقل الاسم مطلوب',
             'precises_code.required' => 'حقل الاسم مطلوب',
+            'precises_code.unique' => 'الأسم موجود',
             'precises_name.required' => 'حقل الاسم مطلوب',
             'precises_name.unique' => 'الأسم موجود',
         ]);

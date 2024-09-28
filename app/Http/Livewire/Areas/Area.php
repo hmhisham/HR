@@ -114,7 +114,7 @@ class Area extends Component
             'governorate_id' => 'required:areas',
             'district_id' => 'required:areas',
             'area_id' => 'required|unique:areas,area_id,NULL,id,district_id,'.$this->district_id,
-            'area_name' => 'required|unique:areas,area_name,NULL,id,district_id,'.$this->district_id,
+            'area_name' => 'required|unique:areas,area_name,NULL,id,district_id,'.$this->district_id.',governorate_id,'.$this->governorate_id,
 
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
