@@ -21,6 +21,14 @@ class Unit extends Component
     public $branch = [];
     public $sections = [];
 
+    protected $listeners = [
+        'sectionid',
+    ];
+    public function hydrate()
+    {
+        $this->emit('select2');
+    }
+
     public function mount()
     {
         $this->branch = Branch::all();
@@ -33,21 +41,16 @@ class Unit extends Component
         $this->branch = Branch::where('section_id', $section_id)->get();
     }
 
-
-
     public function render()
     {
         $UnitSearch = '%' . $this->UnitSearch . '%';
         $Units = Units::where('branch_id', 'LIKE', $UnitSearch)
             ->orWhere('units_name', 'LIKE', $UnitSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
         $links = $Units;
         $this->Units = collect($Units->items());
         return view('livewire.units.unit', [
-
             'links' => $links
         ]);
     }
@@ -58,7 +61,6 @@ class Unit extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('UnitModalShow');
     }
-
 
     public function store()
     {
@@ -73,7 +75,6 @@ class Unit extends Component
             'units_name.required' => 'حقل الاسم مطلوب',
             'units_name.unique' => 'الاسم موجود',
         ]);
-
 
         Units::create([
             'section_id' => $this->section_id,
@@ -96,7 +97,7 @@ class Unit extends Component
         $this->UnitId = $this->Unit->id;
         $this->branch_id = $this->Unit->branch_id;
         $this->units_name = $this->Unit->units_name;
-        $this->section_id = $this->Unit->sections_id;
+        $this->section_id = $this->Unit->section_id;
     }
 
     public function update()
@@ -113,6 +114,10 @@ class Unit extends Component
             'units_name.required' => 'حقل الاسم مطلوب',
             'units_name.unique' => 'الاسم موجود',
         ]);
+        /* $this->validate([
+            'name' => 'required|unique:units,units_name,id' . $this->mark->id,
+            'mark_no' => 'required|string|unique:marks,mark_no,' . $this->mark->id,
+        ]); */
 
         $Units = Units::find($this->UnitId);
         $Units->update([

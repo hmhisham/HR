@@ -20,8 +20,8 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='section_id'
-                                                wire:change='sectionid($event.target.value)' id="section_id"
+                                            <select wire:model.defer='section_id' id="edit_section_id"
+                                                {{-- wire:change='sectionid($event.target.value)' --}}
                                                 class="form-select @error('section_id') is-invalid is-filled @enderror">
                                                 <option value="">اختر القسم</option>
                                                 @foreach ($sections as $section)
