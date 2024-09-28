@@ -21,7 +21,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='section_id'
-                                                wire:change='sectionid($event.target.value)' id="section_id"
+                                                 id="modalUnitssection_id"
                                                 class="form-select <?php $__errorArgs = ['section_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -37,7 +37,7 @@ unset($__errorArgs, $__bag); ?>">
                                                     </option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
-                                            <label for="section_id">اسم القسم</label>
+                                            <label for="modalUnitssection_id">اسم القسم</label>
                                         </div>
                                         <?php $__errorArgs = ['section_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
