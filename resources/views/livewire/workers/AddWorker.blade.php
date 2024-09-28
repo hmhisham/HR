@@ -406,6 +406,9 @@
                         @enderror
                     </div>
                 </div>
+                <div class="divider text-start mt-n3">
+                    <div class="divider-text">ادخال اسم الموظف</div>
+                </div>
                 <div Class="row g-4">
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
@@ -476,6 +479,9 @@
                         @enderror
                     </div>
                 </div>
+                <div class="divider text-start mt-n3">
+                    <div class="divider-text">ادخال اسم الام</div>
+                </div>
                 <div Class="row g-4">
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
@@ -536,62 +542,12 @@
                         @enderror
                     </div>
                 </div>
-                <div Class="row g-4">
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='phone_number' type="text" id="modalEmployeephone_number"
-                                placeholder="رقم الهاتف"
-                                class="form-control @error('phone_number') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeephone_number">رقم الهاتف</label>
-                        </div>
-                        @error('phone_number')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-                    </div>
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <select wire:model.defer="blood_type" id="modalEmployeeblood_type"
-                                class="form-select @error('blood_type') is-invalid is-filled @enderror">
-                                <option value="" disabled selected>اختر صنف الدم</option>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                            </select>
-                            <label for="modalEmployeeblood_type">صنف الدم</label>
-                        </div>
-                        @error('blood_type')
-                            <small class="text-danger inputerror">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='email' type="text" id="modalEmployeeemail"
-                                placeholder="الايميل"
-                                class="form-control @error('email') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeeemail">الايميل</label>
-                        </div>
-                        @error('email')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-                    </div>
-                </div>
             </div>
             <div class="tab-pane fade {{ $currentTap == 2 ? 'active show' : '' }}" id="form-tabs-2" role="tabpanel">
+                <div class="divider text-start mt-n3">
+                    <div class="divider-text">ادخال معلومات السكن</div>
+                </div>
                 <div class="row g-4">
-                    <!-- Date Picker-->
-                    {{-- <div class="col-md-6 col-12 mb-4">
-                            <div class="form-floating form-floating-outline">
-                            <input wire:model='daterw' type="text" class="form-control" placeholder="YYYY-MM-DD" id="flatpickr-date" />
-                            <label for="flatpickr-date">Date Picker</label>
-                            </div>
-                        </div> --}}
-                    <!-- /Date Picker -->
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='governorate_id' id="governorate_id"
@@ -651,6 +607,9 @@
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>
+                </div>
+                <div class="divider text-start mt-n3">
+                    <div class="divider-text">ادخال المعلومات الشخصية</div>
                 </div>
                 <div Class="row g-4">
                     <div class="mb-3 col">
@@ -759,6 +718,53 @@
                             <label for="modalEmployeechildren_count">عدد الاطفال</label>
                         </div>
                         @error('children_count')
+                            <small class='text-danger inputerror'> {{ $message }} </small>
+                        @enderror
+                    </div>
+                    <div class="mb-3 col">
+                        <div class="form-floating form-floating-outline">
+                            <select wire:model.defer="blood_type" id="modalEmployeeblood_type"
+                                class="form-select @error('blood_type') is-invalid is-filled @enderror">
+                                <option value="" disabled selected>اختر صنف الدم</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                            <label for="modalEmployeeblood_type">صنف الدم</label>
+                        </div>
+                        @error('blood_type')
+                            <small class="text-danger inputerror">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="divider text-start mt-n3">
+                    <div class="divider-text">ادخال معلومات التواصل</div>
+                </div>
+                <div Class="row g-4">
+                    <div class="mb-3 col">
+                        <div class="form-floating form-floating-outline">
+                            <input wire:model.defer='phone_number' type="text" id="modalEmployeephone_number"
+                                placeholder="رقم الهاتف"
+                                class="form-control @error('phone_number') is-invalid is-filled @enderror" />
+                            <label for="modalEmployeephone_number">رقم الهاتف</label>
+                        </div>
+                        @error('phone_number')
+                            <small class='text-danger inputerror'> {{ $message }} </small>
+                        @enderror
+                    </div>
+                    <div class="mb-3 col">
+                        <div class="form-floating form-floating-outline">
+                            <input wire:model.defer='email' type="text" id="modalEmployeeemail"
+                                placeholder="الايميل"
+                                class="form-control @error('email') is-invalid is-filled @enderror" />
+                            <label for="modalEmployeeemail">الايميل</label>
+                        </div>
+                        @error('email')
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>

@@ -8,20 +8,22 @@
                     <h3 class="pb-1 mb-2">تعديل الوحدة</h3>
                     <p>نافذة التعديل</p>
                 </div>
+
                 <hr class="mt-n2">
+
                 <h5 wire:loading wire:target="GetUnit" wire:loading.class="d-flex justify-content-center text-primary">
                     جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-                <div wire:loading.remove>
+
+                <div wire:loading.remove wire:target="GetUnit">
                     <form id="editUnitModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='section_id'
-                                                 id="modalUnitssection_id"
+                                            <select wire:model.defer='section_id' id="editSection"
                                                 class="form-select <?php $__errorArgs = ['section_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -37,7 +39,7 @@ unset($__errorArgs, $__bag); ?>">
                                                     </option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
-                                            <label for="modalUnitssection_id">اسم القسم</label>
+                                            <label for="section_id">اسم القسم</label>
                                         </div>
                                         <?php $__errorArgs = ['section_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -52,7 +54,7 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='branch_id' id="modalUnitsbranch_id"
+                                            <select wire:model.defer='branch_id' id="editUnitsbranch"
                                                 class="form-select <?php $__errorArgs = ['branch_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

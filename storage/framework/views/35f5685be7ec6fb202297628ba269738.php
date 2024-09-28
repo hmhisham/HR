@@ -23,15 +23,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('workers.add-worker')->html();
-} elseif ($_instance->childHasBeenRendered('wQFqltF')) {
-    $componentId = $_instance->getRenderedChildComponentId('wQFqltF');
-    $componentTag = $_instance->getRenderedChildComponentTagName('wQFqltF');
+} elseif ($_instance->childHasBeenRendered('NQJgCAE')) {
+    $componentId = $_instance->getRenderedChildComponentId('NQJgCAE');
+    $componentTag = $_instance->getRenderedChildComponentTagName('NQJgCAE');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('wQFqltF');
+    $_instance->preserveRenderedChild('NQJgCAE');
 } else {
     $response = \Livewire\Livewire::mount('workers.add-worker');
     $html = $response->html();
-    $_instance->logRenderedChild('wQFqltF', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('NQJgCAE', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -135,6 +135,7 @@ echo $html;
                 initBirthDateDrop();
             });
         });
+
         /*  تاريخ البطاقة الوطنية */
         $(document).ready(function() {
             window.initNationalCardDateDrop = () => {
