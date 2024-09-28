@@ -105,7 +105,7 @@ class Unit extends Component
         $this->validate([
             'section_id' => 'required:branch',
             'branch_id' => 'required:units',
-            'units_name' => 'required|unique:units,units_name,NULL,id,branch_id,'. $this->branch_id,
+            'units_name' => 'required|unique:units,units_name,NULL,id,branch_id,'. $this->branch_id.',section_id,'.$this->section_id
 
         ], [
             'section_id.required' => 'حقل الاسم مطلوب',
@@ -116,7 +116,7 @@ class Unit extends Component
 
         $Units = Units::find($this->UnitId);
         $Units->update([
-            'sections_id' => $this->section_id,
+            'section_id' => $this->section_id,
             'branch_id' => $this->branch_id,
             'units_name' => $this->units_name,
 
