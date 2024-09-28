@@ -30,7 +30,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                                disabled>
+                                                >
                                                 <option value="">اختر الارتباط</option>
                                                 <?php $__currentLoopData = $linkages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linkage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($linkage->id); ?>"><?php echo e($linkage->Linkages_name); ?>
@@ -62,7 +62,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                                disabled>
+                                                >
                                                 <option value="">اختر القسم</option>
                                                 <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($section->id); ?>"><?php echo e($section->section_name); ?>

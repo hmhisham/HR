@@ -66,10 +66,10 @@ class Area extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'governorate_id' => 'required',
-            'district_id' => 'required',
-            'area_id' => 'required|unique:areas',
-            'area_name' => 'required|unique:areas',
+            'governorate_id' => 'required:areas',
+            'district_id' => 'required:areas',
+            'area_id' => 'required|unique:areas,area_id,NULL,id,district_id,'.$this->district_id,
+            'area_name' => 'required|unique:areas,area_name,NULL,id,district_id,'.$this->district_id,
 
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
@@ -115,15 +115,16 @@ class Area extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'governorate_id' => 'required',
-            'district_id' => 'required',
-            'area_id' => 'required|unique:areas,area_id,'.$this->AreaId,
-            'area_name' => 'required',
+            'governorate_id' => 'required:areas',
+            'district_id' => 'required:areas',
+            'area_id' => 'required|unique:areas,area_id,NULL,id,district_id,'.$this->district_id,
+            'area_name' => 'required|unique:areas,area_name,NULL,id,district_id,'.$this->district_id,
 
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
             'district_id.required' => 'حقل الاسم مطلوب',
             'area_id.required' => 'حقل الرقم مطلوب',
+            'area_id.unique' => 'الرقم موجود',
             'area_name.required' => 'حقل الاسم مطلوب',
             'area_name.unique' => 'الاسم موجود',
         ]);

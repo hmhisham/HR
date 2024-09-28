@@ -103,6 +103,7 @@ class Branc extends Component
             'linkage_id.required' => 'حقل الاسم مطلوب',
             'section_id.required' => 'حقل الاسم مطلوب',
             'branch_name.required' => 'حقل الاسم مطلوب',
+            'branch_name.unique' => 'الاسم موجود',
         ]);
 
         $Branch = Branch::find($this->BrancId);

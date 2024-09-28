@@ -66,12 +66,13 @@ class Unit extends Component
         $this->validate([
             'section_id' => 'required:branch',
             'branch_id' => 'required:units',
-            'units_name' => 'required:units',
+            'units_name' => 'required|unique:units,units_name,NULL,id,branch_id,'. $this->branch_id
 
         ], [
             'section_id.required' => 'حقل الاسم مطلوب',
             'branch_id.required' => 'حقل الاسم مطلوب',
             'units_name.required' => 'حقل الاسم مطلوب',
+            'units_name.unique' => 'الاسم موجود',
         ]);
 
 
@@ -103,10 +104,15 @@ class Unit extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'units_name' => 'required:units',
+            'section_id' => 'required:branch',
+            'branch_id' => 'required:units',
+            'units_name' => 'required|unique:units,units_name,NULL,id,branch_id,'. $this->branch_id,
 
         ], [
+            'section_id.required' => 'حقل الاسم مطلوب',
+            'branch_id.required' => 'حقل الاسم مطلوب',
             'units_name.required' => 'حقل الاسم مطلوب',
+            'units_name.unique' => 'الاسم موجود',
         ]);
 
         $Units = Units::find($this->UnitId);
