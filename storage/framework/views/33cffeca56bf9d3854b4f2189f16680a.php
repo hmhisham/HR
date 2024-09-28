@@ -45,8 +45,6 @@
         <div class="tab-content">
             <div class="tab-pane fade <?php echo e($currentTap == 1 ? 'active show' : ''); ?> " id="form-tabs-1" role="tabpanel">
 
-
-
                 <!-- Bootstrap Datepicker -->
                 
                 <!-- /Bootstrap Datepicker -->
@@ -993,31 +991,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-                    <div class="mb-3 col">
-                        <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='information_office' type="text"
-                                id="modalEmployeeinformation_office" placeholder="مكتب المعلومات"
-                                class="form-control <?php $__errorArgs = ['information_office'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" />
-                            <label for="modalEmployeeinformation_office">مكتب المعلومات</label>
-                        </div>
-                        <?php $__errorArgs = ['information_office'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                    </div>
+
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='information_office' id="modalWorkerinformation_office"
@@ -1031,10 +1005,10 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                 <option value=""></option>
                                 <?php $__currentLoopData = $infooffice; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $infooffic): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($infooffic->id); ?>"><?php echo e($infooffic->infooffice_name); ?></option>
+                                    <option value="<?php echo e($infooffic->id); ?>"><?php echo e($infooffic->Infooffice_name); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
-                            <label for="modalWorkerinformation_office">information_office</label>
+                            <label for="modalWorkerinformation_office">مكتب المعلومات</label>
                         </div>
                         <?php $__errorArgs = ['information_office'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -1047,6 +1021,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
+
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <input wire:model.defer='organization_date' type="text" id="organization_date"

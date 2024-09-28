@@ -1,6 +1,6 @@
 
 @extends('layouts/layoutMaster')
-@section('title', 'Grades')
+@section('title', 'Gyears')
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel = "stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
@@ -12,8 +12,8 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
         @endsection
-@section('content')
-@livewire('grades.grade')
+@section('content') 
+@livewire('gyears.gyear')
 
 
 @endsection
@@ -48,29 +48,33 @@
             }
         })
 
-        window.addEventListener('GradeModalShow', event => {
+        window.addEventListener('GyearModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);
+               }, 100);  
         })
-
+      
         window.addEventListener('success', event => {
-            $('#addgradeModal').modal('hide');
-            $('#editgradeModal').modal('hide');
-            $('#removegradeModal').modal('hide');
+            $('#addgyearModal').modal('hide');
+            $('#editgyearModal').modal('hide');
+            $('#removegyearModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.message
             })
         })
+           
+
+            
+
         window.addEventListener('error', event => {
-            $('#removegradeModal').modal('hide');
+            $('#removegyearModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.message,
                 timer: 5000,
             })
-
+           
         })
     </script>
 @endsection

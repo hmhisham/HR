@@ -23,15 +23,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('workers.add-worker')->html();
-} elseif ($_instance->childHasBeenRendered('fDIXmy2')) {
-    $componentId = $_instance->getRenderedChildComponentId('fDIXmy2');
-    $componentTag = $_instance->getRenderedChildComponentTagName('fDIXmy2');
+} elseif ($_instance->childHasBeenRendered('wQFqltF')) {
+    $componentId = $_instance->getRenderedChildComponentId('wQFqltF');
+    $componentTag = $_instance->getRenderedChildComponentTagName('wQFqltF');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('fDIXmy2');
+    $_instance->preserveRenderedChild('wQFqltF');
 } else {
     $response = \Livewire\Livewire::mount('workers.add-worker');
     $html = $response->html();
-    $_instance->logRenderedChild('fDIXmy2', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('wQFqltF', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -100,11 +100,13 @@ echo $html;
             });
         });
 
+
+        /*  مكتب الملومات   */
         $(document).ready(function() {
             window.initInfoofficeDrop = () => {
                 $('#modalWorkerinformation_office').select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#addworkerModal')
+                    // dropdownParent: $('#addWorker')
                 });
             }
             initInfoofficeDrop();
@@ -115,6 +117,7 @@ echo $html;
                 initInfoofficeDrop();
             });
         });
+
 
         /* تاريخ التولد */
         $(document).ready(function() {

@@ -14,10 +14,11 @@ use App\Http\Controllers\Branch\BranchController;
 
 use App\Http\Controllers\Grades\GradesController;
 
+use App\Http\Controllers\Gyears\GyearsController;
 use App\Http\Controllers\Thanks\ThanksController;
 use App\Http\Controllers\Coaches\CoachesController;
-use App\Http\Controllers\Courses\CoursesController;
 
+use App\Http\Controllers\Courses\CoursesController;
 use App\Http\Controllers\Scaleas\ScaleasController;
 use App\Http\Controllers\Scalems\ScalemsController;
 use App\Http\Controllers\Workers\WorkersController;
@@ -26,8 +27,8 @@ use App\Http\Controllers\Dispatch\DispatchController;
 use App\Http\Controllers\Holidays\HolidaysController;
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\Linkages\LinkagesController;
-use App\Http\Controllers\Precises\PrecisesController;
 
+use App\Http\Controllers\Precises\PrecisesController;
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Childrens\ChildrensController;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -155,8 +156,10 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Wives', WivesController::class);
         // الاطفال
         Route::RESOURCE('Childrens', ChildrensController::class);
-// التنمسيب
-        Route::  RESOURCE('Placements', PlacementsController::class);
+        // التنمسيب
+        Route::RESOURCE('Placements', PlacementsController::class);
+        //  السنوات
+        Route::RESOURCE('Gyears', GyearsController::class);
     });
 });
 

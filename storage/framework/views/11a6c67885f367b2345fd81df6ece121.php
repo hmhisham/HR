@@ -9,8 +9,10 @@
                     <p>نافذة اضافة جهة التخرج</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetWorker" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">جار حفظ البيانات...</h5>
+                <h5 wire:loading wire:target="GetWorker"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار حفظ البيانات...</h5>
                 <div wire:loading.remove>
                     <form id="editWorkerModalForm" autocomplete="off">
                         <div class="row row-cols-1">
@@ -18,7 +20,9 @@
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='calculator_number' type="text" id="modalWorkercalculator_number" placeholder="رقم الحاسبة" class="form-control <?php $__errorArgs = ['calculator_number'];
+                                            <input wire:model.defer='calculator_number' type="text"
+                                                id="modalWorkercalculator_number" placeholder="رقم الحاسبة"
+                                                class="form-control <?php $__errorArgs = ['calculator_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -33,7 +37,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
                                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -49,5 +53,4 @@ unset($__errorArgs, $__bag); ?>
     </div>
 </div>
 <!--/ Edite Worker Modal -->
-
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/workers/modals/add-takhroj.blade.php ENDPATH**/ ?>
