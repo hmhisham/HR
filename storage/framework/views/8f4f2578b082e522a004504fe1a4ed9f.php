@@ -75,7 +75,7 @@ $container = $container ?? 'container-xxl';
                 </li>
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employees')): ?>
-                <li class="menu-item <?php echo e(request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays') ? 'open active' : ''); ?>">
+                <li class="menu-item <?php echo e(request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays','Wives','Childrens','Placements',) ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                         <span class="menu-title">قسم الموارد البشرية</span>
@@ -92,7 +92,23 @@ $container = $container ?? 'container-xxl';
                                 <div>إضافة موظف</div>
                             </a>
                         </li>
-
+                        <li Class="menu-item <?php echo e(request()->Is('Wives') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Wives.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>بيانات الزوج/ـة</div>
+                            </a>
+                        </li>
+                        <li Class="menu-item <?php echo e(request()->Is('Childrens') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Childrens.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>بيانات الاطفال</div>
+                            </a>
+                        </li>
+                        <li Class="menu-item <?php echo e(request()->Is('Certific') ? 'active' : ''); ?>">
+                            <a href = "<?php echo e(Route('Certific.index')); ?>" Class="menu-link">
+                                <div>الشهادات</div>
+                            </a>
+                        </li>
                         <li Class="menu-item <?php echo e(request()->Is('Thanks') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Thanks.index')); ?>" Class="menu-link">
                                 <div>الشكر و التقدير</div>
@@ -117,12 +133,6 @@ $container = $container ?? 'container-xxl';
                             </a>
                         </li>
 
-                        <li Class="menu-item <?php echo e(request()->Is('Certific') ? 'active' : ''); ?>">
-                            <a href = "<?php echo e(Route('Certific.index')); ?>" Class="menu-link">
-                                <div>الشهادات</div>
-                            </a>
-                        </li>
-
                         <li Class="menu-item <?php echo e(request()->Is('Holidays') ? 'active' : ''); ?>">
                             <a href = "<?php echo e(Route('Holidays.index')); ?>" Class="menu-link">
                                 <div>الاجازات</div>
@@ -141,6 +151,11 @@ $container = $container ?? 'container-xxl';
                                 <div>الترفيعات</div>
                             </a>
                         </li>
+                        <li Class="menu-item <?php echo e(request()->Is('Placements') ? 'active' : ''); ?>">
+                            <a href = "<?php echo e(Route('Placements.index')); ?>" Class="menu-link">
+                                <div>التنسيب</div>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <?php endif; ?>
@@ -148,7 +163,7 @@ $container = $container ?? 'container-xxl';
                 <li class="menu-item <?php echo e(request()->is('Governorates') ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-calculator'></i>
-                        <span class="menu-title">قسم الحسابات</span>
+                        <span class="menu-title">القسم المالي</span>
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item <?php echo e(request()->is('Governorates') ? 'active' : ''); ?>">
@@ -189,7 +204,7 @@ $container = $container ?? 'container-xxl';
                 
 
                 <li
-                    class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices') ? 'open active' : ''); ?>">
+                    class="menu-item <?php echo e(request()->is( 'Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems','Technicians', 'Scaleas' ,'Trainings','Typeholidays','Specializationclassification','Typesservices','Department','Gyears',) ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                         <span class="menu-title">الاعدادات</span>
@@ -252,6 +267,13 @@ $container = $container ?? 'container-xxl';
                                 <div>الوحدات</div>
                             </a>
                         </li>
+                            
+                        <li Class="menu-item <?php echo e(request()->Is('Department') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Department.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>الدوائر</div>
+                            </a>
+                        </li>
                         
                         <li Class="menu-item <?php echo e(request()->Is('Certificates') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Certificates.index')); ?>" Class="menu-link">
@@ -259,6 +281,15 @@ $container = $container ?? 'container-xxl';
                                 <div>الشهادة</div>
                             </a>
                         </li>
+
+                         
+                         <li Class="menu-item <?php echo e(request()->Is('Gyears') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Gyears.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>سنوات التخرج</div>
+                            </a>
+                        </li>
+
                         
                         <li Class="menu-item <?php echo e(request()->Is('Graduations') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Graduations.index')); ?>" Class="menu-link">
@@ -287,6 +318,13 @@ $container = $container ?? 'container-xxl';
                                 <div>التخصص الدقيق</div>
                             </a>
                         </li>
+                        
+                        <li Class="menu-item <?php echo e(request()->Is('Specializationclassification') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Specializationclassification.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>تصنيف التخصص</div>
+                            </a>
+                        </li>
                         <li Class="menu-item <?php echo e(request()->Is('Grades') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Grades.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
@@ -312,6 +350,13 @@ $container = $container ?? 'container-xxl';
                                 <div>سلم رواتب العقود</div>
                             </a>
                         </li>
+                        <li Class="menu-item <?php echo e(request()->Is('Technicians') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(Route('Technicians.index')); ?>" Class="menu-link">
+                                <i Class=''></i>
+                                <div>سلم رواتب الفنيين</div>
+                            </a>
+                        </li>
+
                         <li Class="menu-item <?php echo e(request()->Is('Trainings') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Trainings.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
@@ -323,13 +368,6 @@ $container = $container ?? 'container-xxl';
                             <a href="<?php echo e(Route('Typeholidays.index')); ?>" Class="menu-link">
                                 <i Class=''></i>
                                 <div>نوع الاجازة</div>
-                            </a>
-                        </li>
-
-                        <li Class="menu-item <?php echo e(request()->Is('Specializationclassification') ? 'active' : ''); ?>">
-                            <a href="<?php echo e(Route('Specializationclassification.index')); ?>" Class="menu-link">
-                                <i Class=''></i>
-                                <div>تصنيف التخصص</div>
                             </a>
                         </li>
 

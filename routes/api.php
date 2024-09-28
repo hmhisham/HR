@@ -7,6 +7,7 @@ use \App\Http\Controllers\API\Attendance\AttendanceController;
 
 Route::POST('Login',[LoginController::class,'login']);
 Route::get('/attendance/{calculator_number}', [AttendanceController::class, 'getAttendance']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 });
