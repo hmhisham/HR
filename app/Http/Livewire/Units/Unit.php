@@ -115,10 +115,6 @@ class Unit extends Component
             'units_name.required' => 'حقل الاسم مطلوب',
             'units_name.unique' => 'الاسم موجود',
         ]);
-        /* $this->validate([
-            'name' => 'required|unique:units,units_name,id' . $this->mark->id,
-            'mark_no' => 'required|string|unique:marks,mark_no,' . $this->mark->id,
-        ]); */
 
         $Units = Units::find($this->UnitId);
         $Units->update([
