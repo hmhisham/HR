@@ -31,18 +31,33 @@
 
     <script>
         $(document).ready(function() {
-            window.initGovernorateDrop = () => {
-                $('#edit_section_id').select2({
+            window.initEditSectionDrop = () => {
+                $('#editSection').select2({
                     placeholder: 'حدد المحافظة',
                     dropdownParent: $('#editunitModal')
                 })
             }
-            initGovernorateDrop();
-            $('#edit_section_id').on('change', function(e) {
-                livewire.emit('GetDistricts', e.target.value)
+            initEditSectionDrop();
+            $('#editSection').on('change', function(e) {
+                livewire.emit('GetSection', e.target.value)
             });
             window.livewire.on('select2', () => {
-                initGovernorateDrop();
+                initEditSectionDrop();
+            });
+        });
+        $(document).ready(function() {
+            window.initUnitBranchDrop = () => {
+                $('#editUnitsbranch').select2({
+                    placeholder: 'حدد المحافظة',
+                    dropdownParent: $('#editunitModal')
+                })
+            }
+            initUnitBranchDrop();
+            $('#editUnitsbranch').on('change', function(e) {
+                livewire.emit('GetUnitBranch', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initUnitBranchDrop();
             });
         });
 

@@ -8,20 +8,22 @@
                     <h3 class="pb-1 mb-2">تعديل الوحدة</h3>
                     <p>نافذة التعديل</p>
                 </div>
+
                 <hr class="mt-n2">
+
                 <h5 wire:loading wire:target="GetUnit" wire:loading.class="d-flex justify-content-center text-primary">
                     جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-                <div wire:loading.remove>
+
+                <div wire:loading.remove wire:target="GetUnit">
                     <form id="editUnitModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='section_id' id="edit_section_id"
-                                                {{-- wire:change='sectionid($event.target.value)' --}}
+                                            <select wire:model.defer='section_id' id="editSection"
                                                 class="form-select @error('section_id') is-invalid is-filled @enderror">
                                                 <option value="">اختر القسم</option>
                                                 @foreach ($sections as $section)
@@ -37,7 +39,7 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='branch_id' id="modalUnitsbranch_id"
+                                            <select wire:model.defer='branch_id' id="editUnitsbranch"
                                                 class="form-select @error('branch_id') is-invalid is-filled @enderror">
                                                 <option value="">اختر الشعبة</option>
                                                 @foreach ($branch as $branc)

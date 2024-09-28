@@ -22,7 +22,7 @@ class Unit extends Component
     public $sections = [];
 
     protected $listeners = [
-        'sectionid',
+        'GetSection',
     ];
     public function hydrate()
     {
@@ -35,7 +35,7 @@ class Unit extends Component
         $this->sections = Sections::all();
     }
 
-    public function sectionid($section_id)
+    public function GetSection($section_id)
     {
         $this->section_id = $section_id;
         $this->branch = Branch::where('section_id', $section_id)->get();
@@ -98,6 +98,7 @@ class Unit extends Component
         $this->branch_id = $this->Unit->branch_id;
         $this->units_name = $this->Unit->units_name;
         $this->section_id = $this->Unit->section_id;
+        $this->branch = Branch::where('section_id', $this->section_id)->get();
     }
 
     public function update()
