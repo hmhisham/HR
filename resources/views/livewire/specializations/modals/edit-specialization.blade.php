@@ -22,7 +22,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='certificates_id'
                                                 id="modalSpecializationscertificates_id"
-                                                class="form-select @error('certificates_id') is-invalid is-filled @enderror" disabled>
+                                                class="form-select @error('certificates_id') is-invalid is-filled @enderror">
                                                 <option value="">اختر الشهادة</option>
                                                 @foreach ($certificates as $certificate)
                                                     <option value="{{ $certificate->id }}">
@@ -39,7 +39,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='graduations_id'
                                                 id="modalSpecializationsgraduations_id"
-                                                class="form-select @error('graduations_id') is-invalid is-filled @enderror" disabled>
+                                                class="form-select @error('graduations_id') is-invalid is-filled @enderror">
                                                 <option value="">اختر جهة التخرج</option>
                                                 @foreach ($graduations as $graduation)
                                                     <option value="{{ $graduation->id }}">

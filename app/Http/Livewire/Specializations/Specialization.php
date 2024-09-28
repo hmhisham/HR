@@ -61,7 +61,7 @@ class Specialization extends Component
         $this->validate([
             'certificates_id' => 'required',
             'graduations_id' => 'required',
-            'specializations_name' => 'required|unique:specializations',
+            'specializations_name' => 'required|unique:specializations,specializations_name,NULL,id,graduations_id,' . $this->graduations_id,
         ], [
             'certificates_id.required' => 'حقل الاسم مطلوب',
             'graduations_id.required' => 'حقل الاسم مطلوب',
@@ -100,8 +100,7 @@ class Specialization extends Component
         $this->validate([
             'certificates_id' => 'required:specializations',
             'graduations_id' => 'required:specializations',
-            'specializations_name' => 'required|unique:specializations',
-
+            'specializations_name' => 'required|unique:specializations,specializations_name,NULL,id,graduations_id,' . $this->graduations_id,
         ], [
             'certificates_id.required' => 'حقل الاسم مطلوب',
             'graduations_id.required' => 'حقل الاسم مطلوب',
