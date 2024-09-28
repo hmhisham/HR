@@ -229,15 +229,14 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='scaleas_previous_salary' type="text"
                                             id="modalscaleasscaleas_previous_salary" placeholder="الراتب السابق"
-                                            class="form-control <?php $__errorArgs = ['scaleas_previous_salary'];
+                                            onkeypress="return onlyNumberKey(event)" class="form-control <?php $__errorArgs = ['scaleas_previous_salary'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"
-                                            onkeypress="return onlyNumberKey(event)" />
+unset($__errorArgs, $__bag); ?>" />
                                         <label for="modalscaleasscaleas_previous_salary">الراتب السابق</label>
                                     </div>
                                     <?php $__errorArgs = ['scaleas_previous_salary'];
