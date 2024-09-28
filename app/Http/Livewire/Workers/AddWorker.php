@@ -311,6 +311,6 @@ class AddWorker extends Component
             'title' => 'اضافة'
         ]);
 
-      
+
     }
 }

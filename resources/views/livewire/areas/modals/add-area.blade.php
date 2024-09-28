@@ -53,7 +53,7 @@
                                         <input wire:model.defer='area_id' type="text" id="modalAreasarea_id"
                                             placeholder="رقم الناحية"
                                             class="form-control @error('area_id') is-invalid is-filled @enderror"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalAreasarea_id">رقم الناحية</label>
                                     </div>
                                     @error('area_id')
@@ -85,13 +85,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Add Area Modal -->

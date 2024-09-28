@@ -22,7 +22,7 @@
                                     <div class="mb-3 col flex-fill {{ $governorates }}">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='governorate_id' id="modalDistrictsgovernorate_id"
-                                                class="form-select @error('governorate_id') is-invalid is-filled @enderror" disabled>
+                                                class="form-select @error('governorate_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($governorates as $governorate)
                                                     <option value="{{ $governorate->id }}">
@@ -44,7 +44,7 @@
                                                 <input wire:model.defer='district_number' type="text"
                                                     id="modalDistrictsdistrict_number" placeholder="رقم القضاء"
                                                     class="form-control @error('district_number') is-invalid is-filled @enderror"
-                                                    disabled onkeypress="return restrictAlphabets(event)" />
+                                                    onkeypress="return onlyNumberKey(event)" />
                                                 @error('district_number')
                                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                                 @enderror

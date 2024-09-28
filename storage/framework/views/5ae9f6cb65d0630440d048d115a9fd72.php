@@ -10,19 +10,19 @@
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
     <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
         <?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?> 
+<?php $__env->startSection('content'); ?>
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('grades.grade')->html();
-} elseif ($_instance->childHasBeenRendered('gPOVb0B')) {
-    $componentId = $_instance->getRenderedChildComponentId('gPOVb0B');
-    $componentTag = $_instance->getRenderedChildComponentTagName('gPOVb0B');
+} elseif ($_instance->childHasBeenRendered('t3NuVhg')) {
+    $componentId = $_instance->getRenderedChildComponentId('t3NuVhg');
+    $componentTag = $_instance->getRenderedChildComponentTagName('t3NuVhg');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('gPOVb0B');
+    $_instance->preserveRenderedChild('t3NuVhg');
 } else {
     $response = \Livewire\Livewire::mount('grades.grade');
     $html = $response->html();
-    $_instance->logRenderedChild('gPOVb0B', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('t3NuVhg', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -63,9 +63,9 @@ echo $html;
         window.addEventListener('GradeModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addgradeModal').modal('hide');
             $('#editgradeModal').modal('hide');
@@ -82,8 +82,9 @@ echo $html;
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\11\Desktop\HR\resources\views/content/Grades/index.blade.php ENDPATH**/ ?>

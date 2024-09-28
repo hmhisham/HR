@@ -1,10 +1,4 @@
 <?php $__env->startSection('title', 'Thanks'); ?>
-
-
-
-
-
-
 <?php $__env->startSection('vendor-style'); ?>
 <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
 <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')); ?>">
@@ -15,6 +9,10 @@
 <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/animate-css/animate.css')); ?>" />
 <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
 <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
+<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/flatpickr/flatpickr.css')); ?>" />
+<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css')); ?>" />
+<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css')); ?>" />
+<link rel="stylesheet" href="<?php echo e(asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css')); ?>" />
 <!-- CSS -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <?php $__env->stopSection(); ?>
@@ -24,15 +22,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('thanks.thank')->html();
-} elseif ($_instance->childHasBeenRendered('UsXJdA7')) {
-    $componentId = $_instance->getRenderedChildComponentId('UsXJdA7');
-    $componentTag = $_instance->getRenderedChildComponentTagName('UsXJdA7');
+} elseif ($_instance->childHasBeenRendered('uQBQfCi')) {
+    $componentId = $_instance->getRenderedChildComponentId('uQBQfCi');
+    $componentTag = $_instance->getRenderedChildComponentTagName('uQBQfCi');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('UsXJdA7');
+    $_instance->preserveRenderedChild('uQBQfCi');
 } else {
     $response = \Livewire\Livewire::mount('thanks.thank');
     $html = $response->html();
-    $_instance->logRenderedChild('UsXJdA7', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('uQBQfCi', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -52,6 +50,11 @@ echo $html;
 <script src="<?php echo e(asset('assets/vendor/libs/cleavejs/cleave-phone.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/vendor/libs/flatpickr/flatpickr.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/vendor/libs/pickr/pickr.js')); ?>"></script>
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -66,10 +69,36 @@ echo $html;
     function onlyNumberKey(evt) {
         // Only ASCII character in that range allowed
         var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57) && (ASCIICode < 45 || ASCIICode > 47))
+        if (ASCIICode < 48 || ASCIICode > 57)
             return false;
         return true;
     }
+
+    /*	لجعل الـ text يقبل ارقام فقط
+    function onlyNumberKey(evt) {
+        // Only ASCII character in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57) && (ASCIICode < 45 || ASCIICode > 47))
+            return false;
+        return true;
+    }*/
+
+     /* تاريخ الامر الوزاري */
+     $(document).ready(function() {
+            window.initBirthDateDrop = () => {
+                $('#ministerial_order_date').flatpickr({
+                    placeholder: 'تاريخ الامر الوزاري',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initBirthDateDrop();
+            $('#ministerial_order_date').on('change', function(e) {
+                livewire.emit('employeeMinisterialOrderDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initBirthDateDrop();
+            });
+        });
 
     /* الموظفين */
     $(document).ready(function() {
@@ -91,7 +120,7 @@ echo $html;
         });
     });
 
- 
+
 
     $(document).ready(function() {
         window.initDepartmentDrop = () => {

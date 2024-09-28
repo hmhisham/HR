@@ -122,6 +122,7 @@
                 initBirthDateDrop();
             });
         });
+
         /*  تاريخ البطاقة الوطنية */
         $(document).ready(function() {
             window.initNationalCardDateDrop = () => {

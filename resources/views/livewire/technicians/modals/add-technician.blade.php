@@ -107,7 +107,7 @@
                                             <input wire:model.defer='technicians_salary' type="text"
                                                 id="modalTechniciantechnicians_salary" placeholder="الراتب"
                                                 class="form-control @error('technicians_salary') is-invalid is-filled @enderror"
-                                                onkeypress="return restrictAlphabets(event)" />
+                                                onkeypress="return onlyNumberKey(event)" />
                                             <label for="modalTechniciantechnicians_salary">الراتب</label>
                                         </div>
                                         @error('technicians_salary')
@@ -137,7 +137,7 @@
                                                 id="modalTechniciantechnicians_previous_salary"
                                                 placeholder="الراتب السابق"
                                                 class="form-control @error('technicians_previous_salary') is-invalid is-filled @enderror"
-                                                onkeypress="return restrictAlphabets(event)" />
+                                                onkeypress="return onlyNumberKey(event)" />
                                             <label for="modalTechniciantechnicians_previous_salary">الراتب
                                                 السابق</label>
                                         </div>
@@ -161,13 +161,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Add Technician Modal -->

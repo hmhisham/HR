@@ -18,7 +18,7 @@
                                         <input wire:model.defer='Infooffice_id' type="text"
                                             id="modalInfoofficeInfooffice_id" placeholder="رقم"
                                             class="form-control @error('Infooffice_id') is-invalid is-filled @enderror"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalInfoofficeInfooffice_id">رقم</label>
                                     </div>
                                     @error('Infooffice_id')
@@ -52,13 +52,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Add InfoOffic Modal -->

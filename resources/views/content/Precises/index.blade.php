@@ -12,7 +12,7 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
         @endsection
-@section('content') 
+@section('content')
 @livewire('precises.precise')
 
 
@@ -48,12 +48,20 @@
             }
         })
 
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+        
         window.addEventListener('PreciseModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addpreciseModal').modal('hide');
             $('#editpreciseModal').modal('hide');
@@ -70,7 +78,7 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

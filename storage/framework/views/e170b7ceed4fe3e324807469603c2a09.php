@@ -21,7 +21,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='Infooffice_id' type="text"
-                                                id="modalInfoOfficInfooffice_id" placeholder="رقم"
+                                                id="modalInfoofficeInfooffice_id" placeholder="رقم"
                                                 class="form-control <?php $__errorArgs = ['Infooffice_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -30,8 +30,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                                disabled onkeypress="return restrictAlphabets(event)" />
-                                            <label for="modalInfoOfficInfooffice_id">رقم</label>
+                                                onkeypress="return onlyNumberKey(event)" />
+                                            <label for="modalInfoofficeInfooffice_id">رقم</label>
                                         </div>
                                         <?php $__errorArgs = ['Infooffice_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -86,14 +86,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Edite InfoOffic Modal -->
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/infooffice/modals/edit-infooffic.blade.php ENDPATH**/ ?>

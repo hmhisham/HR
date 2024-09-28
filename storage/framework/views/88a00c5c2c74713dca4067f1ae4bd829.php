@@ -14,15 +14,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('districts.district')->html();
-} elseif ($_instance->childHasBeenRendered('8sTlskO')) {
-    $componentId = $_instance->getRenderedChildComponentId('8sTlskO');
-    $componentTag = $_instance->getRenderedChildComponentTagName('8sTlskO');
+} elseif ($_instance->childHasBeenRendered('hDQrl5x')) {
+    $componentId = $_instance->getRenderedChildComponentId('hDQrl5x');
+    $componentTag = $_instance->getRenderedChildComponentTagName('hDQrl5x');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('8sTlskO');
+    $_instance->preserveRenderedChild('hDQrl5x');
 } else {
     $response = \Livewire\Livewire::mount('districts.district');
     $html = $response->html();
-    $_instance->logRenderedChild('8sTlskO', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('hDQrl5x', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -60,6 +60,14 @@ echo $html;
             }
         })
 
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+        
         window.addEventListener('DistrictModalShow', event => {
             setTimeout(() => {
              $('#governorate_id').focus();

@@ -21,7 +21,7 @@
                                     <div class="mb-3 col flex-fill {{ $specialtys }}">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='specialtys_code' id="modalPrecisesspecialtys_code"
-                                                class="form-select @error('specialtys_code') is-invalid is-filled @enderror" disabled>
+                                                class="form-select @error('specialtys_code') is-invalid is-filled @enderror">
                                                 <option value="">اختر التخصص العام</option>
                                                 @foreach ($specialtys as $specialty)
                                                     <option value="{{ $specialty->id }}">
@@ -39,7 +39,7 @@
                                             <input wire:model.defer='precises_code' type="text"
                                                 id="modalPreciseprecises_code" placeholder="الرمز"
                                                 class="form-control @error('precises_code') is-invalid is-filled @enderror"
-                                                disabled onkeypress="return restrictAlphabets(event)" />
+                                                onkeypress="return onlyNumberKey(event)" />
                                             <label for="modalPreciseprecises_code">الرمز</label>
                                         </div>
                                         @error('precises_code')
@@ -76,13 +76,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Edite Precise Modal -->

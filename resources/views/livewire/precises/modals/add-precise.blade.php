@@ -34,7 +34,7 @@
                                         <input wire:model.defer='precises_code' type="text"
                                             id="modalPrecisesprecises_code" placeholder="الرمز"
                                             class="form-control @error('precises_code') is-invalid is-filled @enderror"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalPrecisesprecises_code">الرمز</label>
                                     </div>
                                     @error('precises_code')
@@ -70,13 +70,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Add Precise Modal -->

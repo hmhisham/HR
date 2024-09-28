@@ -166,7 +166,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
+unset($__errorArgs, $__bag); ?>"
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalThanksministerial_order_number">رقم الامر الوزاري</label>
                                     </div>
                                     <?php $__errorArgs = ['ministerial_order_number'];
@@ -183,7 +184,7 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='ministerial_order_date' type="date"
-                                            id="modalThanksministerial_order_date" placeholder="تاريخ الامر الوزاري"
+                                            id="ministerial_order_date" placeholder="تاريخ الامر الوزاري"
                                             class="form-control <?php $__errorArgs = ['ministerial_order_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -192,7 +193,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" />
-                                        <label for="modalThanksministerial_order_date">تاريخ الامر الوزاري</label>
+                                        <label for="ministerial_order_date">تاريخ الامر الوزاري</label>
                                     </div>
                                     <?php $__errorArgs = ['ministerial_order_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

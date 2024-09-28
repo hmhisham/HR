@@ -183,7 +183,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalScalemsscalems_salary">الراتب</label>
                                     </div>
                                     <?php $__errorArgs = ['scalems_salary'];
@@ -239,7 +239,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalScalemsscalems_previous_salary">الراتب السابق</label>
                                     </div>
                                     <?php $__errorArgs = ['scalems_previous_salary'];
@@ -269,14 +269,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Add Scalem Modal -->
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/scalems/modals/add-scalem.blade.php ENDPATH**/ ?>

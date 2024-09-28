@@ -9,20 +9,20 @@
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/animate-css/animate.css')); ?>" />
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
     <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
-        <?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-<?php
+    <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('governorates.governorate')->html();
-} elseif ($_instance->childHasBeenRendered('vzHpBxk')) {
-    $componentId = $_instance->getRenderedChildComponentId('vzHpBxk');
-    $componentTag = $_instance->getRenderedChildComponentTagName('vzHpBxk');
+} elseif ($_instance->childHasBeenRendered('icE4GLy')) {
+    $componentId = $_instance->getRenderedChildComponentId('icE4GLy');
+    $componentTag = $_instance->getRenderedChildComponentTagName('icE4GLy');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('vzHpBxk');
+    $_instance->preserveRenderedChild('icE4GLy');
 } else {
     $response = \Livewire\Livewire::mount('governorates.governorate');
     $html = $response->html();
-    $_instance->logRenderedChild('vzHpBxk', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('icE4GLy', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -60,10 +60,18 @@ echo $html;
             }
         })
 
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+
         window.addEventListener('GovernorateModalShow', event => {
             setTimeout(() => {
-             $('#modalGovernoratesgovernorate_number').focus();
-               }, 100);
+                $('#modalGovernoratesgovernorate_number').focus();
+            }, 100);
         })
 
         window.addEventListener('success', event => {

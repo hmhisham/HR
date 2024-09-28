@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title', 'Scalems'); ?>
 <?php $__env->startSection('vendor-style'); ?>
     <link rel="stylesheet"href="<?php echo e(asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')); ?>">
@@ -12,19 +10,19 @@
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
     <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
         <?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?> 
+<?php $__env->startSection('content'); ?>
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('scalems.scalem')->html();
-} elseif ($_instance->childHasBeenRendered('0xbFs2s')) {
-    $componentId = $_instance->getRenderedChildComponentId('0xbFs2s');
-    $componentTag = $_instance->getRenderedChildComponentTagName('0xbFs2s');
+} elseif ($_instance->childHasBeenRendered('1efxtjI')) {
+    $componentId = $_instance->getRenderedChildComponentId('1efxtjI');
+    $componentTag = $_instance->getRenderedChildComponentTagName('1efxtjI');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('0xbFs2s');
+    $_instance->preserveRenderedChild('1efxtjI');
 } else {
     $response = \Livewire\Livewire::mount('scalems.scalem');
     $html = $response->html();
-    $_instance->logRenderedChild('0xbFs2s', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('1efxtjI', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -62,12 +60,20 @@ echo $html;
             }
         })
 
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+        
         window.addEventListener('ScalemModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addscalemModal').modal('hide');
             $('#editscalemModal').modal('hide');
@@ -84,8 +90,9 @@ echo $html;
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\11\Desktop\HR\resources\views/content/Scalems/index.blade.php ENDPATH**/ ?>

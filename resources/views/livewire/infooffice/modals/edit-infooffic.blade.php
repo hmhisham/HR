@@ -21,10 +21,10 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='Infooffice_id' type="text"
-                                                id="modalInfoOfficInfooffice_id" placeholder="رقم"
+                                                id="modalInfoofficeInfooffice_id" placeholder="رقم"
                                                 class="form-control @error('Infooffice_id') is-invalid is-filled @enderror"
-                                                disabled onkeypress="return restrictAlphabets(event)" />
-                                            <label for="modalInfoOfficInfooffice_id">رقم</label>
+                                                onkeypress="return onlyNumberKey(event)" />
+                                            <label for="modalInfoofficeInfooffice_id">رقم</label>
                                         </div>
                                         @error('Infooffice_id')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -58,13 +58,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Edite InfoOffic Modal -->

@@ -106,7 +106,7 @@
                                         <input wire:model.defer='scalems_salary' type="text"
                                             id="modalScalemsscalems_salary" placeholder="الراتب"
                                             class="form-control @error('scalems_salary') is-invalid is-filled @enderror"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalScalemsscalems_salary">الراتب</label>
                                     </div>
                                     @error('scalems_salary')
@@ -134,7 +134,7 @@
                                         <input wire:model.defer='scalems_previous_salary' type="text"
                                             id="modalScalemsscalems_previous_salary" placeholder="الراتب السابق"
                                             class="form-control @error('scalems_previous_salary') is-invalid is-filled @enderror"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalScalemsscalems_previous_salary">الراتب السابق</label>
                                     </div>
                                     @error('scalems_previous_salary')
@@ -157,13 +157,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Add Scalem Modal -->

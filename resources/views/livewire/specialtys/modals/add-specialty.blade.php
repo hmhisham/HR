@@ -18,7 +18,7 @@
                                         <input wire:model.defer='specialtys_code' type="text"
                                             id="modalSpecialtysspecialtys_code" placeholder="الرمز"
                                             class="form-control @error('specialtys_code') is-invalid is-filled @enderror"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalSpecialtysspecialtys_code">الرمز</label>
                                     </div>
                                     @error('specialtys_code')
@@ -51,13 +51,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Add Specialty Modal -->

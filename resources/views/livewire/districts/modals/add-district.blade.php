@@ -34,7 +34,7 @@
                                     <input wire:model.defer='district_number' type="text"
                                         id="modalDistrictsdistrict_number" placeholder="رقم القضاء"
                                         class="form-control @error('district_number') is-invalid is-filled @enderror"
-                                        onkeypress="return restrictAlphabets(event)" />
+                                        onkeypress="return onlyNumberKey(event)" />
                                     @error('district_number')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
@@ -66,12 +66,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>

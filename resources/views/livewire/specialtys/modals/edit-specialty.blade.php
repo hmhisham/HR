@@ -21,10 +21,10 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='specialtys_code' type="text"
-                                                id="modalSpecialtyspecialtys_code" placeholder="الرمز"
+                                                id="modalSpecialtysspecialtys_code" placeholder="الرمز"
                                                 class="form-control @error('specialtys_code') is-invalid is-filled @enderror"
-                                                disabled onkeypress="return restrictAlphabets(event)" />
-                                            <label for="modalSpecialtyspecialtys_code">الرمز</label>
+                                                onkeypress="return onlyNumberKey(event)" />
+                                            <label for="modalSpecialtysspecialtys_code">الرمز</label>
                                         </div>
                                         @error('specialtys_code')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -58,13 +58,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Edite Specialty Modal -->

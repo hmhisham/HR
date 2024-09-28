@@ -189,7 +189,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
+unset($__errorArgs, $__bag); ?>"
+                                                onkeypress="return onlyNumberKey(event)" />
                                             <label for="modalScalemsscalems_salary">الراتب</label>
                                         </div>
                                         <?php $__errorArgs = ['scalems_salary'];
@@ -244,7 +245,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" />
+unset($__errorArgs, $__bag); ?>"
+                                                onkeypress="return onlyNumberKey(event)" />
                                             <label for="modalScalemsscalems_previous_salary">الراتب السابق</label>
                                         </div>
                                         <?php $__errorArgs = ['scalems_previous_salary'];

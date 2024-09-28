@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Governorates')
 @section('vendor-style')
@@ -11,9 +10,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
+@endsection
 @section('content')
-@livewire('governorates.governorate')
+    @livewire('governorates.governorate')
 
 
 @endsection
@@ -48,10 +47,18 @@
             }
         })
 
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+
         window.addEventListener('GovernorateModalShow', event => {
             setTimeout(() => {
-             $('#modalGovernoratesgovernorate_number').focus();
-               }, 100);
+                $('#modalGovernoratesgovernorate_number').focus();
+            }, 100);
         })
 
         window.addEventListener('success', event => {

@@ -22,8 +22,8 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='governorate_number' type="text"
                                                 id="modalGovernorategovernorate_number" placeholder="رقم المحافظة"
-                                                class="form-control @error('governorate_number') is-invalid is-filled @enderror" disabled
-                                                onkeypress="return restrictAlphabets(event)" />
+                                                class="form-control @error('governorate_number') is-invalid is-filled @enderror"
+                                                onkeypress="return onlyNumberKey(event)" />
                                             <label for="modalGovernorategovernorate_number">رقم المحافظة</label>
                                         </div>
                                         @error('governorate_number')
@@ -57,13 +57,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Edite Governorate Modal -->

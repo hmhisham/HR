@@ -10,19 +10,19 @@
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
     <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
         <?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?> 
+<?php $__env->startSection('content'); ?>
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('technicians.technician')->html();
-} elseif ($_instance->childHasBeenRendered('b2OVkzq')) {
-    $componentId = $_instance->getRenderedChildComponentId('b2OVkzq');
-    $componentTag = $_instance->getRenderedChildComponentTagName('b2OVkzq');
+} elseif ($_instance->childHasBeenRendered('tL2Kkud')) {
+    $componentId = $_instance->getRenderedChildComponentId('tL2Kkud');
+    $componentTag = $_instance->getRenderedChildComponentTagName('tL2Kkud');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('b2OVkzq');
+    $_instance->preserveRenderedChild('tL2Kkud');
 } else {
     $response = \Livewire\Livewire::mount('technicians.technician');
     $html = $response->html();
-    $_instance->logRenderedChild('b2OVkzq', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('tL2Kkud', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -60,12 +60,20 @@ echo $html;
             }
         })
 
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+        
         window.addEventListener('TechnicianModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addtechnicianModal').modal('hide');
             $('#edittechnicianModal').modal('hide');
@@ -75,9 +83,9 @@ echo $html;
                 title: event.detail.message
             })
         })
-           
 
-            
+
+
 
         window.addEventListener('error', event => {
             $('#removetechnicianModal').modal('hide');
@@ -86,8 +94,9 @@ echo $html;
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\11\Desktop\HR\resources\views/content/Technicians/index.blade.php ENDPATH**/ ?>

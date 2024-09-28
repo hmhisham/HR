@@ -36,6 +36,7 @@ class Thank extends Component
     public function hydrate()
     {
         $this->emit('select2');
+        $this->emit('flatpickr');
     }
 
 

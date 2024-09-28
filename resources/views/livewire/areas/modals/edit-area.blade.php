@@ -22,7 +22,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='governorate_id' wire:change='chooseGovernorate'
                                                 id="modalAreasgovernorate_id"
-                                                class="form-select @error('governorate_id') is-invalid is-filled @enderror" disabled>
+                                                class="form-select @error('governorate_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($governorates as $governorate)
                                                     <option value="{{ $governorate->id }}">
@@ -38,7 +38,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='district_id' id="modalAreasdistrict_id"
-                                                class="form-select @error('district_id') is-invalid is-filled @enderror" disabled>
+                                                class="form-select @error('district_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($Districts as $district)
                                                     <option value="{{ $district->id }}">
@@ -56,11 +56,11 @@
                                 <div class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='area_id' type="text" id="modalAreaarea_id"
+                                            <input wire:model.defer='area_id' type="text" id="area_id"
                                                 placeholder="رقم الناحية"
                                                 class="form-control @error('area_id') is-invalid is-filled @enderror"
-                                                disabled onkeypress="return restrictAlphabets(event)" />
-                                            <label for="modalAreaarea_id">رقم الناحية</label>
+                                                onkeypress="return onlyNumberKey(event)" />
+                                            <label for="area_id">رقم الناحية</label>
                                         </div>
                                         @error('area_id')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -93,13 +93,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Edit Area Modal -->
