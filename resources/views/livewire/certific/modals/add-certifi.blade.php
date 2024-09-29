@@ -171,7 +171,7 @@
                                 </div>
                             </div>
                             <div Class="row">
-                                <div class="mb-3 col">
+                                {{--<div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='graduation_year' type="text"
                                             id="modalCertificgraduation_year" placeholder="سنة التخرج"
@@ -181,7 +181,7 @@
                                     @error('graduation_year')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
-                                </div>
+                                </div>--}}
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         @php
