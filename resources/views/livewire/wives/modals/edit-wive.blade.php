@@ -18,8 +18,9 @@
                         <div class="row row-cols-1  ">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='workers_id' id="modalWiveworkers_id" class="form-select @error('workers_id') is-invalid is-filled @enderror">
-                                        <option value=""></option>
+                                    <select wire:model.defer='workers_id' id="modalWiveworkers_id"
+                                        class="form-select @error('workers_id') is-invalid is-filled @enderror">
+                                        <option value="">اختر اسم الموظف</option>
                                         @foreach ($workers as $worker)
                                             <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
                                         @endforeach
