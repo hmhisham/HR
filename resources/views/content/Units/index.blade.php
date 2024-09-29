@@ -54,7 +54,7 @@
             }
             initUnitBranchDrop();
             $('#editUnitsbranch').on('change', function(e) {
-                livewire.emit('GetUnitBranch', e.target.value)
+                livewire.emit('GetBranch', e.target.value)
             });
             window.livewire.on('select2', () => {
                 initUnitBranchDrop();

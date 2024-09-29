@@ -43,8 +43,7 @@
                                                 class="form-select @error('branch_id') is-invalid is-filled @enderror">
                                                 <option value="">اختر الشعبة</option>
                                                 @foreach ($branch as $branc)
-                                                    <option value="{{ $branc->id }}">{{ $branc->branch_name }}
-                                                    </option>
+                                                    <option value="{{ $branc->id }}">{{ $branc->branch_name }}</option>
                                                 @endforeach
                                             </select>
                                             <label for="modalUnitsbranch_id">اسم الشعبة</label>

@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Units\Units;
 use Livewire\WithPagination;
 use App\Models\Branch\Branch;
+use Illuminate\Validation\Rule;
 use App\Models\Sections\Sections;
 
 class Unit extends Component
@@ -23,6 +24,7 @@ class Unit extends Component
 
     protected $listeners = [
         'GetSection',
+        'GetBranch',
     ];
     public function hydrate()
     {
@@ -35,10 +37,14 @@ class Unit extends Component
         $this->sections = Sections::all();
     }
 
-    public function GetSection($section_id)
+    public function GetSection($Section_id)
     {
-        $this->section_id = $section_id;
-        $this->branch = Branch::where('section_id', $section_id)->get();
+        $this->section_id = $Section_id;
+        $this->branch = Branch::where('section_id', $Section_id)->get();
+    }
+    public function GetBranch($Branch_id)
+    {
+        $this->branch_id = $Branch_id;
     }
 
     public function render()
@@ -101,20 +107,38 @@ class Unit extends Component
         $this->branch = Branch::where('section_id', $this->section_id)->get();
     }
 
+    /* protected function rules()
+    {
+        return [
+            'field1' => [
+                'required',
+                Rule::unique('your_table')->where(function ($query) {
+                    return $query->where('field2', $this->field2)
+                                 ->where('id', '!=', $this->model->id);
+                }),
+            ],
+            'field2' => 'required',
+        ];
+    } */
+
     public function update()
     {
         $this->resetValidation();
         $this->validate([
-            'section_id' => 'required:branch',
-            'branch_id' => 'required:units',
-            'units_name' => 'required|unique:units,units_name,NULL,id,branch_id,'. $this->branch_id.',section_id,'.$this->section_id
-
+            'section_id' => 'required',
+            'branch_id' => 'required',
+            //'units_name' => 'required|unique:units,units_name,NULL,id,branch_id,'. $this->branch_id.',section_id,'.$this->section_id
+            'units_name' => 'required|unique:units,units_name,' . $this->Unit->id . ',id,branch_id,' . $this->branch_id,
         ], [
             'section_id.required' => 'حقل الاسم مطلوب',
             'branch_id.required' => 'حقل الاسم مطلوب',
             'units_name.required' => 'حقل الاسم مطلوب',
             'units_name.unique' => 'الاسم موجود',
         ]);
+
+        /* $this->validate([
+            'units_name' => 'required|unique:units,units_name,' . $this->Unit->id,
+        ]); */
 
         $Units = Units::find($this->UnitId);
         $Units->update([
