@@ -14,15 +14,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('wives.wive')->html();
-} elseif ($_instance->childHasBeenRendered('1637Y32')) {
-    $componentId = $_instance->getRenderedChildComponentId('1637Y32');
-    $componentTag = $_instance->getRenderedChildComponentTagName('1637Y32');
+} elseif ($_instance->childHasBeenRendered('OmXDXNu')) {
+    $componentId = $_instance->getRenderedChildComponentId('OmXDXNu');
+    $componentTag = $_instance->getRenderedChildComponentTagName('OmXDXNu');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('1637Y32');
+    $_instance->preserveRenderedChild('OmXDXNu');
 } else {
     $response = \Livewire\Livewire::mount('wives.wive');
     $html = $response->html();
-    $_instance->logRenderedChild('1637Y32', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('OmXDXNu', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -48,11 +48,12 @@ echo $html;
     <script src=" <?php echo e(asset('assets/js/extended-ui-sweetalert2.js')); ?>"></script>
     <script src=" <?php echo e(asset('assets/js/form-basic-inputs.js')); ?>"></script>
     <script>
+        //استدعاء اسم الموظف
         $(document).ready(function() {
             window.initWorkersDrop = () => {
                 $('#modalWiveworkers_id').select2({
                     placeholder: 'اختيار',
-                    //dropdownParent: $('#addwiveModal')
+                    dropdownParent: $('#addwiveModal')
                 });
             }
             initWorkersDrop();
@@ -63,6 +64,14 @@ echo $html;
                 initWorkersDrop();
             });
         });
+
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
 
         const Toast = Swal.mixin({
             toast: true,

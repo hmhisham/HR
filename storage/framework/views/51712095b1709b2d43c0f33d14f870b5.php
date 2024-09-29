@@ -305,7 +305,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalWivenational_id">رقم البطاقة الوطنية</label>
                                     </div>
                                     <?php $__errorArgs = ['national_id'];
@@ -363,14 +363,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Add Wive Modal -->
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/wives/modals/add-wive.blade.php ENDPATH**/ ?>

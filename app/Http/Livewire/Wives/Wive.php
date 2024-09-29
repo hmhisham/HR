@@ -19,15 +19,16 @@ class Wive extends Component
     public $WiveSearch, $Wive, $WiveId;
     public $workers_id, $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name, $marital_status, $occupational_status, $organization_name, $is_married, $national_id;
     public $EmpStatus ;
+
     protected $listeners = [
         'SelectWorkersId',
         'SelectOrganizationName',
     ];
+
     public function hydrate()
     {
         $this->emit('select2');
     }
-
 
     public function mount()
     {
@@ -86,7 +87,7 @@ class Wive extends Component
     public function AddWiveModalShow()
     {
 
-        $this->reset(['first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
+        $this->reset(['workers_id','first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('WiveModalShow');
     }
@@ -106,6 +107,7 @@ class Wive extends Component
     {
         $this->resetValidation();
         $this->validate([
+            'workers_id' => 'required',
             'first_name' => 'required',
             'father_name' => 'required',
             'grandfather_name' => 'required',
@@ -114,11 +116,11 @@ class Wive extends Component
             'full_name' => 'required',
             'marital_status' => 'required',
             'occupational_status' => 'required',
-
             'is_married' => 'required',
             'national_id' => 'required',
 
         ], [
+            'workers_id.required' => 'حقل اسم الموظف مطلوب',
             'first_name.required' => 'حقل الاسم الأول مطلوب',
             'father_name.required' => 'حقل اسم الأب مطلوب',
             'grandfather_name.required' => 'حقل اسم الجد مطلوب',
@@ -127,7 +129,6 @@ class Wive extends Component
             'full_name.required' => 'حقل الاسم الكامل مطلوب',
             'marital_status.required' => 'حقل الحالة الزوجية مطلوب',
             'occupational_status.required' => 'حقل الحالة المهنية مطلوب',
-
             'is_married.required' => 'حقل الحالة الزوجية مطلوب',
             'national_id.required' => 'حقل رقم البطاقة الوطنية مطلوب',
         ]);
@@ -137,6 +138,7 @@ class Wive extends Component
 
         Wives::create([
 
+            'workers_id' => $this->workers_id,
             'first_name' => $this->first_name,
             'father_name' => $this->father_name,
             'grandfather_name' => $this->grandfather_name,
@@ -150,7 +152,7 @@ class Wive extends Component
             'national_id' => $this->national_id,
 
         ]);
-        $this->reset(['first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
+        $this->reset(['workers_id','first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -163,6 +165,7 @@ class Wive extends Component
 
         $this->Wive  = Wives::find($WiveId);
         $this->WiveId = $this->Wive->id;
+        $this->workers_id = $this->Wive->workers_id;
         $this->first_name = $this->Wive->first_name;
         $this->father_name = $this->Wive->father_name;
         $this->grandfather_name = $this->Wive->grandfather_name;
@@ -182,6 +185,7 @@ class Wive extends Component
     {
         $this->resetValidation();
         $this->validate([
+            'workers_id' => 'required:wives',
             'first_name' => 'required:wives',
             'father_name' => 'required:wives',
             'grandfather_name' => 'required:wives',
@@ -190,11 +194,11 @@ class Wive extends Component
             'full_name' => 'required:wives',
             'marital_status' => 'required:wives',
             'occupational_status' => 'required:wives',
-
             'is_married' => 'required:wives',
             'national_id' => 'required:wives',
 
         ], [
+            'workers_id.required' => 'حقل الاسم مطلوب',
             'first_name.required' => 'حقل الاسم مطلوب',
             'father_name.required' => 'حقل الاسم مطلوب',
             'grandfather_name.required' => 'حقل الاسم مطلوب',
@@ -203,13 +207,13 @@ class Wive extends Component
             'full_name.required' => 'حقل الاسم مطلوب',
             'marital_status.required' => 'حقل الاسم مطلوب',
             'occupational_status.required' => 'حقل الاسم مطلوب',
-
             'is_married.required' => 'حقل الاسم مطلوب',
             'national_id.required' => 'حقل الاسم مطلوب',
         ]);
 
         $Wives = Wives::find($this->WiveId);
         $Wives->update([
+            'workers_id' => $this->workers_id,
             'first_name' => $this->first_name,
             'father_name' => $this->father_name,
             'grandfather_name' => $this->grandfather_name,
@@ -223,7 +227,7 @@ class Wive extends Component
             'national_id' => $this->national_id,
 
         ]);
-        $this->reset(['first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
+        $this->reset(['workers_id','first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
