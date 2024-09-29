@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('wives', function (Blueprint $table) {
             $table->id();
+            $table->string('workers_id')->comment('الاسم الموظف');
             $table->string('first_name')->comment('الاسم الأول');
             $table->string('father_name')->comment('اسم الأب');
             $table->string('grandfather_name')->comment('اسم الجد');

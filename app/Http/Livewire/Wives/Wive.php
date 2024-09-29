@@ -6,6 +6,7 @@ use Livewire\Component;
 
 use App\Models\Wives\Wives;
 use Livewire\WithPagination;
+use App\Models\Workers\Workers;
 use App\Models\Department\Department;
 
 class Wive extends Component
@@ -13,11 +14,13 @@ class Wive extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $department = [];
+    public $workers = [];
     public $Wives = [];
     public $WiveSearch, $Wive, $WiveId;
-    public $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name, $marital_status, $occupational_status, $organization_name, $is_married, $national_id;
+    public $workers_id, $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name, $marital_status, $occupational_status, $organization_name, $is_married, $national_id;
     public $EmpStatus ;
     protected $listeners = [
+        'SelectWorkersId',
         'SelectOrganizationName',
     ];
     public function hydrate()
@@ -28,7 +31,18 @@ class Wive extends Component
 
     public function mount()
     {
+        $this->workers = Workers::all();
         $this->department = Department::all();
+    }
+
+    public function SelectWorkersId($WorkersIdID)
+    {
+        $workers_id = Workers::find($WorkersIdID);
+        if ($workers_id) {
+            $this->workers_id = $WorkersIdID;
+        } else {
+            $this->workers_id = null;
+        }
     }
 
     public function SelectOrganizationName($OrganizationNameID)
@@ -40,9 +54,6 @@ class Wive extends Component
             $this->organization_name = null;
         }
     }
-
-
-
 
     public function updated($field)
     {
@@ -91,9 +102,7 @@ class Wive extends Component
 
     }
 
-
     public function store()
-
     {
         $this->resetValidation();
         $this->validate([
