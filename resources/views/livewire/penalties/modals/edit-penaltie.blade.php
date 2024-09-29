@@ -13,7 +13,6 @@
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5> --}}
-
                 <div wire:loading.remove>
                     <form id="editPenaltieModalForm" autocomplete="off">
                         <div class="row row-cols-1">
@@ -27,12 +26,10 @@
                                         <label for="modalEmployeefull_name">اسم الموظف</label>
                                     </div>
                                     @error('full_name')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                                 <div class="row">
-
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='calculator_number' type="text"
@@ -42,24 +39,22 @@
                                             <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
                                         </div>
                                         @error('calculator_number')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col-6">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='get_departmen' type="text" id="modalEmployeeget_departmen"
-                                                placeholder="اسم القسم"
+                                            <input wire:model.defer='get_departmen' type="text"
+                                                id="modalEmployeeget_departmen" placeholder="اسم القسم"
                                                 class="form-control @error('get_departmen') is-invalid is-filled @enderror"
                                                 disabled />
                                             <label for="modalEmployeeget_departmen">اسم القسم </label>
                                         </div>
                                         @error('get_departmen')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                 </div>
-
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
@@ -69,10 +64,9 @@
                                             <label for="modalPenaltiep_reason">سبب العقوبة</label>
                                         </div>
                                         @error('p_reason')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='p_issuing_authority' type="text"
@@ -81,21 +75,21 @@
                                             <label for="modalPenaltiep_issuing_authority">جهة الاصدار</label>
                                         </div>
                                         @error('p_issuing_authority')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='p_ministerial_order_number' type="text"
                                                 id="modalPenaltiep_ministerial_order_number"
                                                 placeholder="رقم الامر الوزاري"
-                                                class="form-control @error('p_ministerial_order_number') is-invalid is-filled @enderror" />
+                                                class="form-control @error('p_ministerial_order_number') is-invalid is-filled @enderror"
+                                                onkeypress="return onlyNumberKey(event)" />
                                             <label for="modalPenaltiep_ministerial_order_number">رقم الامر
                                                 الوزاري</label>
                                         </div>
                                         @error('p_ministerial_order_number')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                 </div>
@@ -110,10 +104,9 @@
                                                 الوزاري</label>
                                         </div>
                                         @error('p_ministerial_order_date')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='p_penalty_type' id="modalPenaltiesp_penalty_type"
@@ -132,20 +125,18 @@
                                             <label for="modalPenaltiesp_penalty_type">نوع العقوبة</label>
                                         </div>
                                         @error('p_penalty_type')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='p_notes' type="text" id="modalPenaltiep_notes"
-                                                placeholder="ملاحظات"
+                                            <input wire:model.defer='p_notes' type="text"
+                                                id="modalPenaltiep_notes" placeholder="ملاحظات"
                                                 class="form-control @error('p_notes') is-invalid is-filled @enderror" />
                                             <label for="modalPenaltiep_notes">ملاحظات</label>
                                         </div>
                                         @error('p_notes')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
