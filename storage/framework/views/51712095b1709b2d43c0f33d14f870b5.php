@@ -10,7 +10,7 @@
                 </div>
                 <hr class="mt-n2">
                 <form id="addwiveModalForm" autocomplete="off">
-                    <div class="row row-cols-1  ">
+                    <div class="row row-cols-1 ">
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='workers_id' id="modalWiveworkers_id"

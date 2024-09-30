@@ -9,20 +9,20 @@
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/animate-css/animate.css')); ?>" />
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
     <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
-        <?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?> 
-<?php
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('specializations.specialization')->html();
-} elseif ($_instance->childHasBeenRendered('cwkMy4c')) {
-    $componentId = $_instance->getRenderedChildComponentId('cwkMy4c');
-    $componentTag = $_instance->getRenderedChildComponentTagName('cwkMy4c');
+} elseif ($_instance->childHasBeenRendered('A516FZ5')) {
+    $componentId = $_instance->getRenderedChildComponentId('A516FZ5');
+    $componentTag = $_instance->getRenderedChildComponentTagName('A516FZ5');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('cwkMy4c');
+    $_instance->preserveRenderedChild('A516FZ5');
 } else {
     $response = \Livewire\Livewire::mount('specializations.specialization');
     $html = $response->html();
-    $_instance->logRenderedChild('cwkMy4c', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('A516FZ5', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -48,6 +48,39 @@ echo $html;
     <script src=" <?php echo e(asset('assets/js/extended-ui-sweetalert2.js')); ?>"></script>
     <script src=" <?php echo e(asset('assets/js/form-basic-inputs.js')); ?>"></script>
     <script>
+
+        //add graduations
+        $(document).ready(function() {
+            window.initAddGraduationsDrop = () => {
+                $('#addgraduations').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addspecializationModal')
+                });
+            }
+            initAddGraduationsDrop();
+            $('#addgraduations').on('change', function(e) {
+                livewire.emit('SelectGraduationsId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddGraduationsDrop();
+            });
+        });
+        //edit graduations
+        $(document).ready(function() {
+            window.initEditGraduationsDrop = () => {
+                $('#editgraduations').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editspecializationModal')
+                });
+            }
+            initEditGraduationsDrop();
+            $('#editgraduations').on('change', function(e) {
+                livewire.emit('SelectGraduationsId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditGraduationsDrop();
+            });
+        });
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -62,10 +95,10 @@ echo $html;
 
         window.addEventListener('SpecializationModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);  
+                $('#id').focus();
+            }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addspecializationModal').modal('hide');
             $('#editspecializationModal').modal('hide');
@@ -82,8 +115,9 @@ echo $html;
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\11\Desktop\HR\resources\views/content/Specializations/index.blade.php ENDPATH**/ ?>

@@ -10,19 +10,19 @@
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
     <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
         <?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?> 
+<?php $__env->startSection('content'); ?>
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('branch.branc')->html();
-} elseif ($_instance->childHasBeenRendered('TK26Xz7')) {
-    $componentId = $_instance->getRenderedChildComponentId('TK26Xz7');
-    $componentTag = $_instance->getRenderedChildComponentTagName('TK26Xz7');
+} elseif ($_instance->childHasBeenRendered('dZBrOYu')) {
+    $componentId = $_instance->getRenderedChildComponentId('dZBrOYu');
+    $componentTag = $_instance->getRenderedChildComponentTagName('dZBrOYu');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('TK26Xz7');
+    $_instance->preserveRenderedChild('dZBrOYu');
 } else {
     $response = \Livewire\Livewire::mount('branch.branc');
     $html = $response->html();
-    $_instance->logRenderedChild('TK26Xz7', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('dZBrOYu', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -48,6 +48,71 @@ echo $html;
     <script src=" <?php echo e(asset('assets/js/extended-ui-sweetalert2.js')); ?>"></script>
     <script src=" <?php echo e(asset('assets/js/form-basic-inputs.js')); ?>"></script>
     <script>
+        /* addLinkage */
+        $(document).ready(function() {
+            window.initAddLinkageDrop = () => {
+                $('#addLinkage').select2({
+                    placeholder: 'حدد الارتباط',
+                    dropdownParent: $('#addbrancModal')
+                })
+            }
+            initAddLinkageDrop();
+            $('#addLinkage').on('change', function(e) {
+                livewire.emit('GetLinkage', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddLinkageDrop();
+            });
+        });
+        /* addSection */
+        $(document).ready(function() {
+            window.initAddSectionDrop = () => {
+                $('#addSection').select2({
+                    placeholder: 'حدد القسم',
+                    dropdownParent: $('#addbrancModal')
+                })
+            }
+            initAddSectionDrop();
+            $('#addSection').on('change', function(e) {
+                livewire.emit('GetSection', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddSectionDrop();
+            });
+        });
+        /* editLinkage */
+        $(document).ready(function() {
+            window.initEditLinkageDrop = () => {
+                $('#editLinkage').select2({
+                    placeholder: 'حدد الارتباط',
+                    dropdownParent: $('#editbrancModal')
+                })
+            }
+            initEditLinkageDrop();
+            $('#editLinkage').on('change', function(e) {
+                livewire.emit('GetLinkage', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initEditLinkageDrop();
+            });
+        });
+        /* editSection */
+        $(document).ready(function() {
+            window.initEditSectionDrop = () => {
+                $('#editSection').select2({
+                    placeholder: 'حدد القسم',
+                    dropdownParent: $('#editbrancModal')
+                })
+            }
+            initEditSectionDrop();
+            $('#editSection').on('change', function(e) {
+                livewire.emit('GetSection', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initEditSectionDrop();
+            });
+        });
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -63,9 +128,9 @@ echo $html;
         window.addEventListener('BrancModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addbrancModal').modal('hide');
             $('#editbrancModal').modal('hide');
@@ -82,8 +147,9 @@ echo $html;
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\11\Desktop\HR\resources\views/content/Branch/index.blade.php ENDPATH**/ ?>

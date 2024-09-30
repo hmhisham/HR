@@ -13,15 +13,14 @@
                     جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="GetBranc">
                     <form id="editBrancModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='linkage_id'
-                                                wire:change='LinkageId($event.target.value)' id="linkage_id"
+                                            <select wire:model.defer='linkage_id' id="editLinkage"
                                                 class="form-select <?php $__errorArgs = ['linkage_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -29,9 +28,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"
-                                                >
-                                                <option value="">اختر الارتباط</option>
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
                                                 <?php $__currentLoopData = $linkages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linkage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($linkage->id); ?>"><?php echo e($linkage->Linkages_name); ?>
 
@@ -53,7 +51,7 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='section_id' id="modalBranchsection_id"
+                                            <select wire:model.defer='section_id' id="editSection"
                                                 class="form-select <?php $__errorArgs = ['section_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -61,13 +59,10 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"
-                                                >
-                                                <option value="">اختر القسم</option>
+unset($__errorArgs, $__bag); ?>">
+                                                <option value=""></option>
                                                 <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <option value="<?php echo e($section->id); ?>"><?php echo e($section->section_name); ?>
-
-                                                    </option>
+                                                    <option value="<?php echo e($section->id); ?>"><?php echo e($section->section_name); ?></option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                             <label for="modalBranchsection_id">اسم القسم</label>
@@ -114,7 +109,7 @@ unset($__errorArgs, $__bag); ?>
                         <hr class="my-0">
                         <div class="text-center col-12 demo-vertical-spacing mb-n4">
                             <button wire:click='update' wire:loading.attr="disabled" type="button"
-                                class="btn btn-success me-sm-3 me-1">تعديل</button>
+                                class="btn btn-primary me-sm-3 me-1">تعديل</button>
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">تجاهل</button>
                         </div>

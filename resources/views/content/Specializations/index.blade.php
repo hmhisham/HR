@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Specializations')
 @section('vendor-style')
@@ -11,9 +10,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
-@section('content') 
-@livewire('specializations.specialization')
+@endsection
+@section('content')
+    @livewire('specializations.specialization')
 
 
 @endsection
@@ -36,6 +35,39 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+
+        //add graduations
+        $(document).ready(function() {
+            window.initAddGraduationsDrop = () => {
+                $('#addgraduations').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addspecializationModal')
+                });
+            }
+            initAddGraduationsDrop();
+            $('#addgraduations').on('change', function(e) {
+                livewire.emit('SelectGraduationsId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddGraduationsDrop();
+            });
+        });
+        //edit graduations
+        $(document).ready(function() {
+            window.initEditGraduationsDrop = () => {
+                $('#editgraduations').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editspecializationModal')
+                });
+            }
+            initEditGraduationsDrop();
+            $('#editgraduations').on('change', function(e) {
+                livewire.emit('SelectGraduationsId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditGraduationsDrop();
+            });
+        });
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -50,10 +82,10 @@
 
         window.addEventListener('SpecializationModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);  
+                $('#id').focus();
+            }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addspecializationModal').modal('hide');
             $('#editspecializationModal').modal('hide');
@@ -70,7 +102,7 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

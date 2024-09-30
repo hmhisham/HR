@@ -15,8 +15,7 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='linkage_id'
-                                            wire:change='LinkageId($event.target.value)' id="linkage_id"
+                                        <select wire:model.defer='linkage_id' id="addLinkage"
                                             class="form-select <?php $__errorArgs = ['linkage_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -25,7 +24,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value="">اختر الارتباط</option>
+                                            <option value=""></option>
                                             <?php $__currentLoopData = $linkages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linkage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($linkage->id); ?>"><?php echo e($linkage->Linkages_name); ?>
 
@@ -47,7 +46,7 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='section_id' id="modalBranchsection_id"
+                                        <select wire:model.defer='section_id' id="addSection"
                                             class="form-select <?php $__errorArgs = ['section_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -56,7 +55,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                            <option value="">اختر القسم</option>
+                                            <option value=""></option>
                                             <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($section->id); ?>"><?php echo e($section->section_name); ?>
 

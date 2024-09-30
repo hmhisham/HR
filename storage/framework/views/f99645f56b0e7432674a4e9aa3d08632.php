@@ -9,13 +9,11 @@
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetWive" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار حفظ البيانات...</h5>
+                
                 <div wire:loading.remove>
                     <form id="editWiveModalForm" autocomplete="off">
-                        <div class="row row-cols-1  ">
+                        <div class="row row-cols-1">
+
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='workers_id' id="modalWiveworkers_id"
@@ -27,7 +25,11 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
+<<<<<<< HEAD
+                                        <option value=""></option>
+=======
                                         <option value="">اختر اسم الموظف</option>
+>>>>>>> c12cfb4473d72fb6b7147e77d9729e60fed5f33b
                                         <?php $__currentLoopData = $workers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $worker): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($worker->id); ?>"><?php echo e($worker->full_name); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -45,6 +47,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
+
                             <div class="col mb-3">
                                 <div class="row">
                                     <!-- الاسم الأول -->

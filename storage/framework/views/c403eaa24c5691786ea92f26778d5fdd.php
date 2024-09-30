@@ -15,37 +15,31 @@
                     جار حذف البيانات...</h5>
                 <div wire:loading.remove>
                     <form id="removeBrancModalForm" onsubmit="return false" autocomplete="off">
-                        <div class="row row-cols-1">
-                            <div class="col mb-3">
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='branch_name' type="text"
-                                                id="modalBrancbranch_name" placeholder="اسم الشعبة"
-                                                class="form-control <?php $__errorArgs = ['branch_name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
-                                                disabled />
-                                            <label for="modalBrancbranch_name">اسم الشعبة</label>
-                                        </div>
-                                        <?php $__errorArgs = ['branch_name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                    </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="">
+                                    <label for="modalUnitunits_name">الارتباط</label>
+                                    <div class="form-control-plaintext mt-n2"><?php echo e($linkageName); ?></div>
                                 </div>
                             </div>
+                            <div class="col text-center">
+                                <div class="">
+                                    <label for="modalUnitunits_name">القسم</label>
+                                    <div class="form-control-plaintext mt-n2"><?php echo e($SectionsName); ?></div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="text-danger">
+                                    <label for="modalUnitunits_name">الشعبة</label>
+                                    <div class="form-control-plaintext mt-n2"><?php echo e($branch_name); ?></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-cols-1">
                             <hr class="my-0">
                             <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
                                 <button wire:click='destroy'

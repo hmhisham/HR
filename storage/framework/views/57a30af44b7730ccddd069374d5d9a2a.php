@@ -13,15 +13,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('units.unit')->html();
-} elseif ($_instance->childHasBeenRendered('LAscoDZ')) {
-    $componentId = $_instance->getRenderedChildComponentId('LAscoDZ');
-    $componentTag = $_instance->getRenderedChildComponentTagName('LAscoDZ');
+} elseif ($_instance->childHasBeenRendered('bbElKyi')) {
+    $componentId = $_instance->getRenderedChildComponentId('bbElKyi');
+    $componentTag = $_instance->getRenderedChildComponentTagName('bbElKyi');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('LAscoDZ');
+    $_instance->preserveRenderedChild('bbElKyi');
 } else {
     $response = \Livewire\Livewire::mount('units.unit');
     $html = $response->html();
-    $_instance->logRenderedChild('LAscoDZ', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('bbElKyi', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -43,10 +43,43 @@ echo $html;
 <script src="<?php echo e(asset('assets/js/extended-ui-sweetalert2.js')); ?>"></script>
 
     <script>
+        /* addSection */
+        $(document).ready(function() {
+            window.initAddSectionDrop = () => {
+                $('#addSection').select2({
+                    placeholder: 'حدد القسم',
+                    dropdownParent: $('#addunitModal')
+                })
+            }
+            initAddSectionDrop();
+            $('#addSection').on('change', function(e) {
+                livewire.emit('GetSection', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddSectionDrop();
+            });
+        });
+        /* AddBranch */
+        $(document).ready(function() {
+            window.initAddBranchDrop = () => {
+                $('#addBranch').select2({
+                    placeholder: 'حدد الشعبة',
+                    dropdownParent: $('#addunitModal')
+                })
+            }
+            initAddBranchDrop();
+            $('#addBranch').on('change', function(e) {
+                livewire.emit('GetBranch', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddBranchDrop();
+            });
+        });
+        /* editSection */
         $(document).ready(function() {
             window.initEditSectionDrop = () => {
                 $('#editSection').select2({
-                    placeholder: 'حدد المحافظة',
+                    placeholder: 'حدد القسم',
                     dropdownParent: $('#editunitModal')
                 })
             }
@@ -58,19 +91,20 @@ echo $html;
                 initEditSectionDrop();
             });
         });
+        /* editbranch */
         $(document).ready(function() {
-            window.initUnitBranchDrop = () => {
-                $('#editUnitsbranch').select2({
-                    placeholder: 'حدد المحافظة',
+            window.initEditBranchDrop = () => {
+                $('#editbranch').select2({
+                    placeholder: 'حدد الشعبة',
                     dropdownParent: $('#editunitModal')
                 })
             }
-            initUnitBranchDrop();
-            $('#editUnitsbranch').on('change', function(e) {
-                livewire.emit('GetUnitBranch', e.target.value)
+            initEditBranchDrop();
+            $('#editbranch').on('change', function(e) {
+                livewire.emit('GetBranch', e.target.value)
             });
             window.livewire.on('select2', () => {
-                initUnitBranchDrop();
+                initEditBranchDrop();
             });
         });
 

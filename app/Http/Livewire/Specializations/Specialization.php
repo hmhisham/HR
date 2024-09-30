@@ -20,6 +20,26 @@ class Specialization extends Component
     public $SpecializationSearch, $Specialization, $SpecializationId;
     public $certificates_id, $graduations_id, $specializations_name;
 
+    protected $listeners = [
+        'SelectGraduationsId',
+    ];
+    public function hydrate()
+    {
+        $this->emit('select2');
+    }
+    public function mount()
+    {
+        $this->Graduations = Graduations::all();
+    }
+    public function SelectGraduationsId($GraduationsIdID)
+    {
+        $graduations_id = Graduations::find($GraduationsIdID);
+        if ($graduations_id) {
+            $this->graduations_id = $GraduationsIdID;
+        } else {
+            $this->graduations_id = null;
+        }
+    }
 
     public function render()
     {
@@ -42,7 +62,7 @@ class Specialization extends Component
 
     public function AddSpecializationModalShow()
     {
-        $this->reset();
+        $this->reset(['certificates_id','graduations_id','specializations_name']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('SpecializationModalShow');
     }
@@ -52,8 +72,6 @@ class Specialization extends Component
         $Certificates = Certificates::find($this->certificates_id);
         $this->Graduations = $Certificates->Getgraduation;
     }
-
-
 
     public function store()
     {

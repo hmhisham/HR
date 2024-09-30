@@ -18,19 +18,18 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('wives.wive')->html();
-} elseif ($_instance->childHasBeenRendered('uKBwvxo')) {
-    $componentId = $_instance->getRenderedChildComponentId('uKBwvxo');
-    $componentTag = $_instance->getRenderedChildComponentTagName('uKBwvxo');
+} elseif ($_instance->childHasBeenRendered('5lExaDN')) {
+    $componentId = $_instance->getRenderedChildComponentId('5lExaDN');
+    $componentTag = $_instance->getRenderedChildComponentTagName('5lExaDN');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('uKBwvxo');
+    $_instance->preserveRenderedChild('5lExaDN');
 } else {
     $response = \Livewire\Livewire::mount('wives.wive');
     $html = $response->html();
-    $_instance->logRenderedChild('uKBwvxo', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('5lExaDN', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
-
 
 <?php $__env->stopSection(); ?>
 
@@ -126,21 +125,25 @@ echo $html;
                 title: event.detail.message
             })
         })
+
+
         $(document).ready(function() {
-            window.initDepartmentDrop = () => {
-                $('#modalWiveorganization_name').select2({
+            window.initWorkersDrop = () => {
+                $('#modalWiveworkers_id').select2({
                     placeholder: 'اختيار',
                     dropdownParent: $('#addwiveModal')
                 });
             }
-            initDepartmentDrop();
-            $('#modalWiveorganization_name').on('change', function(e) {
-                livewire.emit('SelectOrganizationName', e.target.value);
+            initWorkersDrop();
+            $('#modalWiveworkers_id').on('change', function(e) {
+                livewire.emit('SelectWorkersId', e.target.value);
             });
             window.livewire.on('select2', () => {
-                initDepartmentDrop();
+                initWorkersDrop();
             });
         });
+
+
     </script>
 <?php $__env->stopSection(); ?>
 

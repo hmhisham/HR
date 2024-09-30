@@ -15,57 +15,51 @@
                     جار حفظ البيانات...</h5>
                 <div wire:loading.remove>
                     <form id="editSpecializationModalForm" autocomplete="off">
-                        <div class="row row-cols-1">
-                            <div class="col mb-3">
-                                <div Class="row">
-                                    <div class="mb-3 col flex-fill {{ $certificates }}">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='certificates_id'
-                                                id="modalSpecializationscertificates_id"
-                                                class="form-select @error('certificates_id') is-invalid is-filled @enderror">
-                                                <option value="">اختر الشهادة</option>
-                                                @foreach ($certificates as $certificate)
-                                                    <option value="{{ $certificate->id }}">
-                                                        {{ $certificate->certificates_name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <label for="modalSpecializationscertificates_id">الشهادة</label>
-                                        </div>
-                                        @error('certificates_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3 col flex-fill {{ $graduations }}">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='graduations_id'
-                                                id="modalSpecializationsgraduations_id"
-                                                class="form-select @error('graduations_id') is-invalid is-filled @enderror">
-                                                <option value="">اختر جهة التخرج</option>
-                                                @foreach ($graduations as $graduation)
-                                                    <option value="{{ $graduation->id }}">
-                                                        {{ $graduation->graduations_name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <label for="modalSpecializationsgraduations_id">جهة التخرج</label>
-                                        </div>
-                                        @error('graduations_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2">
+                            <div class="mb-3 col ">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='certificates_id' wire:change='chooseCertificate'
+                                        id="addmodalSpecializationscertificates_id"
+                                        class="form-select @error('certificates_id') is-invalid is-filled @enderror">
+                                        <option value="">اختر الشهادة</option>
+                                        @foreach ($certificates as $certificate)
+                                            <option value="{{ $certificate->id }}">
+                                                {{ $certificate->certificates_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <label for="modalSpecializationscertificates_id">الشهادة</label>
                                 </div>
-                                <Div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='specializations_name' type="text"
-                                                id="modalSpecializationspecializations_name" placeholder="الاختصاص"
-                                                class="form-control @error('specializations_name') is-invalid is-filled @enderror" />
-                                            <label for="modalSpecializationspecializations_name">الاختصاص</label>
-                                        </div>
-                                        @error('specializations_name')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                                @error('certificates_id')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='graduations_id' id="editgraduations"
+                                        class="form-select @error('graduations_id') is-invalid is-filled @enderror">
+                                        <option value="">اختر جهة التخرج</option>
+                                        @foreach ($graduations as $graduation)
+                                            <option value="{{ $graduation->id }}">
+                                                {{ $graduation->graduations_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="modalSpecializationgraduations_id">جهة التخرج</label>
                                 </div>
+                                @error('graduations_id')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col flex-fill">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='specializations_name' type="text"
+                                        id="modalSpecializationspecializations_name" placeholder="الاختصاص"
+                                        class="form-control @error('specializations_name') is-invalid is-filled @enderror" />
+                                    <label for="modalSpecializationspecializations_name">الاختصاص</label>
+                                </div>
+                                @error('specializations_name')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
                             </div>
                         </div>
                         <hr class="my-0">
