@@ -406,8 +406,11 @@
                         @enderror
                     </div>
                 </div>
-                <div class="divider text-start mt-n3">
+                {{-- <div class="divider text-start mt-n3">
                     <div class="divider-text">ادخال اسم الموظف</div>
+                </div> --}}
+                <div class="divider divider-primary mt-n2">
+                    <div class="divider-text">أدخال اسم الموظف</div>
                 </div>
                 <div Class="row g-4">
                     <div class="mb-3 col">
@@ -479,7 +482,10 @@
                         @enderror
                     </div>
                 </div>
-                <div class="divider text-start mt-n3">
+                {{-- <div class="divider text-start mt-n3">
+                    <div class="divider-text">ادخال اسم الام</div>
+                </div> --}}
+                <div class="divider divider-primary mt-n2">
                     <div class="divider-text">ادخال اسم الام</div>
                 </div>
                 <div Class="row g-4">
@@ -544,8 +550,11 @@
                 </div>
             </div>
             <div class="tab-pane fade {{ $currentTap == 2 ? 'active show' : '' }}" id="form-tabs-2" role="tabpanel">
-                <div class="divider text-start mt-n3">
+                {{-- <div class="divider text-start mt-n3">
                     <div class="divider-text">ادخال معلومات السكن</div>
+                </div> --}}
+                <div class="divider divider-primary mt-n2">
+                    <div class="divider-text">ادخل معلومات السكن</div>
                 </div>
                 <div class="row g-4">
                     <div class="mb-3 col">
@@ -564,7 +573,6 @@
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>
-
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='district_id' id="district_id"
@@ -580,7 +588,6 @@
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>
-
                     <div class="mb-3 col ">
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='area_id' id="modalEmployeearea_id"
@@ -608,7 +615,10 @@
                         @enderror
                     </div>
                 </div>
-                <div class="divider text-start mt-n3">
+                {{-- <div class="divider text-start mt-n3">
+                    <div class="divider-text">ادخال المعلومات الشخصية</div>
+                </div> --}}
+                <div class="divider divider-primary mt-n2">
                     <div class="divider-text">ادخال المعلومات الشخصية</div>
                 </div>
                 <div Class="row g-4">
@@ -634,7 +644,6 @@
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>
-
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='gender' id="modalEmployeegender" placeholder="الجنس"
@@ -649,7 +658,6 @@
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>
-
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='religion' id="modalEmployeereligion" placeholder="الديانة"
@@ -668,7 +676,6 @@
                         @enderror
                     </div>
                 </div>
-
                 <div Class="row g-4">
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
@@ -742,7 +749,10 @@
                         @enderror
                     </div>
                 </div>
-                <div class="divider text-start mt-n3">
+                {{-- <div class="divider text-start mt-n3">
+                    <div class="divider-text">ادخال معلومات التواصل</div>
+                </div> --}}
+                <div class="divider divider-primary mt-n2">
                     <div class="divider-text">ادخال معلومات التواصل</div>
                 </div>
                 <div Class="row g-4">
@@ -771,7 +781,10 @@
                 </div>
             </div>
             <div class="tab-pane fade {{ $currentTap == 3 ? 'active show' : '' }}" id="form-tabs-3" role="tabpanel">
-                <div class="divider text-start mt-n3">
+                {{-- <div class="divider text-start mt-n3">
+                    <div class="divider-text">البطاقة الوطنية / البطاقة التموينية</div>
+                </div> --}}
+                <div class="divider divider-primary mt-n2">
                     <div class="divider-text">البطاقة الوطنية / البطاقة التموينية</div>
                 </div>
                 <div Class="row g-4">
@@ -820,7 +833,10 @@
                         @enderror
                     </div>
                 </div>
-                <div class="divider text-start">
+                {{-- <div class="divider text-start">
+                    <div class="divider-text">بطاقة السكن</div>
+                </div> --}}
+                <div class="divider divider-primary mt-n2">
                     <div class="divider-text">بطاقة السكن</div>
                 </div>
                 <div Class="row g-4">
@@ -868,5 +884,4 @@
         </div>
         @include('livewire.workers.modals.add-takhroj')
     </div>
-</div>
 </div>

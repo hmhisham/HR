@@ -11,6 +11,21 @@
                 <hr class="mt-n2">
                 <form id="addwiveModalForm" autocomplete="off">
                     <div class="row row-cols-1  ">
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <select wire:model.defer='workers_id' id="modalWiveworkers_id"
+                                    class="form-select @error('workers_id') is-invalid is-filled @enderror">
+                                    <option value="">اختر اسم الموظف</option>
+                                    @foreach ($workers as $worker)
+                                        <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="modalWiveworkers_id">اسم الموظف</label>
+                            </div>
+                            @error('workers_id')
+                                <small class='text-danger inputerror'>{{ $message }}</small>
+                            @enderror
+                        </div>
                         <div class="col mb-3">
                             <div class="row">
                                 <!-- الاسم الأول -->
@@ -126,7 +141,8 @@
                                             {{ $EmpStatus }}>
                                             <option value="">اختر الدائرة</option>
                                             @foreach ($department as $departmen)
-                                                <option value="{{ $departmen->id }}">{{ $departmen->department_name }}
+                                                <option value="{{ $departmen->id }}">
+                                                    {{ $departmen->department_name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -141,7 +157,7 @@
                                         <input wire:model.defer='national_id' type="text"
                                             id="modalWivenational_id" placeholder="رقم البطاقة الوطنية"
                                             class="form-control @error('national_id') is-invalid is-filled @enderror"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalWivenational_id">رقم البطاقة الوطنية</label>
                                     </div>
                                     @error('national_id')
@@ -178,13 +194,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Add Wive Modal -->

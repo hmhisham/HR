@@ -21,7 +21,8 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th class="text-center">الاسم الكامل</th>
+                            <th class="text-center">اسم الموظف</th>
+                            <th class="text-center">الاسم الزوجة</th>
                             <th class="text-center">الحالة الزوجية</th>
                             <th class="text-center">الحالة المهنية</th>
                             <th class="text-center">رقم البطاقة الوطنية</th>
@@ -35,6 +36,7 @@
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
+                                <td class="text-center">{{ $Wive->Getworker ? $Wive->Getworker->full_name : '' }}</td>
                                 <td class="text-center">{{ $Wive->full_name }}</td>
                                 <td class="text-center">{{ $Wive->marital_status }}</td>
                                 <td class="text-center">{{ $Wive->occupational_status }}</td>

@@ -44,6 +44,23 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        //استدعاء اسم الام
+        $(document).ready(function() {
+            window.initWivesDrop = () => {
+                $('#modalChildrenwives_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addchildrenModal')
+                });
+            }
+            initWivesDrop();
+            $('#modalChildrenwives_id').on('change', function(e) {
+                livewire.emit('SelectWivesId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initWivesDrop();
+            });
+        });
+
         /* تاريخ التولد */
         $(document).ready(function() {
             window.initBirthDateDrop = () => {
@@ -89,9 +106,6 @@
             })
         })
 
-
-
-
         window.addEventListener('error', event => {
             $('#removechildrenModal').modal('hide');
             Toast.fire({
@@ -101,21 +115,5 @@
             })
 
         })
-
-        $(document).ready(function() {
-            window.initWivesDrop = () => {
-                $('#modalChildrenwives_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addchildrenModal')
-                });
-            }
-            initWivesDrop();
-            $('#modalChildrenwives_id').on('change', function(e) {
-                livewire.emit('SelectWivesId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initWivesDrop();
-            });
-        });
     </script>
 @endsection

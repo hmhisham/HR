@@ -150,8 +150,9 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
-                <div class="divider text-start mt-n3">
-                    <div class="divider-text">ادخال اسم الموظف</div>
+                
+                <div class="divider divider-primary mt-n2">
+                    <div class="divider-text">أدخال اسم الموظف</div>
                 </div>
                 <div Class="row g-4">
                     <div class="mb-3 col">
@@ -307,7 +308,8 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
-                <div class="divider text-start mt-n3">
+                
+                <div class="divider divider-primary mt-n2">
                     <div class="divider-text">ادخال اسم الام</div>
                 </div>
                 <div Class="row g-4">
@@ -442,8 +444,9 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
             <div class="tab-pane fade <?php echo e($currentTap == 2 ? 'active show' : ''); ?>" id="form-tabs-2" role="tabpanel">
-                <div class="divider text-start mt-n3">
-                    <div class="divider-text">ادخال معلومات السكن</div>
+                
+                <div class="divider divider-primary mt-n2">
+                    <div class="divider-text">ادخل معلومات السكن</div>
                 </div>
                 <div class="row g-4">
                     <div class="mb-3 col">
@@ -477,7 +480,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='district_id' id="district_id"
@@ -507,7 +509,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-
                     <div class="mb-3 col ">
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='area_id' id="modalEmployeearea_id"
@@ -563,7 +564,8 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
-                <div class="divider text-start mt-n3">
+                
+                <div class="divider divider-primary mt-n2">
                     <div class="divider-text">ادخال المعلومات الشخصية</div>
                 </div>
                 <div Class="row g-4">
@@ -617,7 +619,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='gender' id="modalEmployeegender" placeholder="الجنس"
@@ -646,7 +647,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='religion' id="modalEmployeereligion" placeholder="الديانة"
@@ -679,7 +679,6 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
-
                 <div Class="row g-4">
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
@@ -811,7 +810,8 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
-                <div class="divider text-start mt-n3">
+                
+                <div class="divider divider-primary mt-n2">
                     <div class="divider-text">ادخال معلومات التواصل</div>
                 </div>
                 <div Class="row g-4">
@@ -868,7 +868,8 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
             <div class="tab-pane fade <?php echo e($currentTap == 3 ? 'active show' : ''); ?>" id="form-tabs-3" role="tabpanel">
-                <div class="divider text-start mt-n3">
+                
+                <div class="divider divider-primary mt-n2">
                     <div class="divider-text">البطاقة الوطنية / البطاقة التموينية</div>
                 </div>
                 <div Class="row g-4">
@@ -973,7 +974,8 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
-                <div class="divider text-start">
+                
+                <div class="divider divider-primary mt-n2">
                     <div class="divider-text">بطاقة السكن</div>
                 </div>
                 <div Class="row g-4">
@@ -1063,6 +1065,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
         <?php echo $__env->make('livewire.workers.modals.add-takhroj', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
-</div>
 </div>
 <?php /**PATH C:\Users\11\Desktop\HR\resources\views/livewire/workers/AddWorker.blade.php ENDPATH**/ ?>

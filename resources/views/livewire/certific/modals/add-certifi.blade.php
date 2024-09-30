@@ -171,12 +171,32 @@
                                 </div>
                             </div>
                             <div Class="row">
-                                <div class="mb-3 col">
+                                {{--<div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='graduation_year' type="text"
                                             id="modalCertificgraduation_year" placeholder="سنة التخرج"
                                             class="form-control @error('graduation_year') is-invalid is-filled @enderror" />
                                         <label for="modalCertificgraduation_year">سنة التخرج</label>
+                                    </div>
+                                    @error('graduation_year')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>--}}
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        @php
+                                            $startYear = 1950; // Change this to your desired start year
+                                            $currentYear = date('Y');
+                                        @endphp
+                                        <select wire:model.defer='graduation_year' id="modalCertificgraduation_year"
+                                            class="form-select @error('graduation_year') is-invalid is-filled @enderror"
+                                            name="year">
+                                            <option value="">اختر سنة التخرج</option>
+                                            @for ($year = $startYear; $year <= $currentYear; $year++)
+                                                <option value="{{ $year }}">{{ $year-1 }} - {{ $year }}</option>
+                                            @endfor
+                                        </select>
+                                        <label for="modalCertificgraduation_year">سنوات التخرج</label>
                                     </div>
                                     @error('graduation_year')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
