@@ -21,12 +21,13 @@ return new class extends Migration
             $table->string('certificate_name')->nullable()->comment('الشهادة');
             $table->string('authenticity_number')->nullable()->comment('رقم صحة الصدور');
             $table->date('authenticity_date')->nullable()->comment('تاريخ صحة الصدور');
-            $table->string('educational_attainment')->nullable()->comment('تحصيل الدراسي');
+            // $table->string('educational_attainment')->nullable()->comment('تحصيل الدراسي');
             $table->string('college_name')->nullable()->comment('اسم الكلية');
             // $table->string('department_name')->nullable()->comment('القسم الدراسي');
             $table->string('specialization')->nullable()->comment('التخصص');
             $table->string('graduation_year')->nullable()->comment('سنة التخرج');
-            $table->string('grade')->nullable()->comment('التقدير والدرجة');
+            $table->string('grade')->nullable()->comment('الدرجة');
+            $table->string('estimate')->nullable()->comment('التقدير');
             $table->string('issuing_country')->nullable()->comment('البلد المانح للشهادة');
             $table->text('notes')->nullable()->comment('الملاحظات');
             $table->boolean('status')->nullable()->comment('الحالة');

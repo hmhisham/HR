@@ -123,8 +123,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                            </div>
-                            <div Class="row">
+
                                 <!-- حقل جهة التخرج -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
@@ -171,17 +170,7 @@
                                 </div>
                             </div>
                             <div Class="row">
-                                {{--<div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='graduation_year' type="text"
-                                            id="modalCertificgraduation_year" placeholder="سنة التخرج"
-                                            class="form-control @error('graduation_year') is-invalid is-filled @enderror" />
-                                        <label for="modalCertificgraduation_year">سنة التخرج</label>
-                                    </div>
-                                    @error('graduation_year')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>--}}
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         @php
@@ -193,7 +182,8 @@
                                             name="year">
                                             <option value="">اختر سنة التخرج</option>
                                             @for ($year = $startYear; $year <= $currentYear; $year++)
-                                                <option value="{{ $year }}">{{ $year-1 }} - {{ $year }}</option>
+                                                <option value="{{ $year }}">{{ $year - 1 }} -
+                                                    {{ $year }}</option>
                                             @endfor
                                         </select>
                                         <label for="modalCertificgraduation_year">سنوات التخرج</label>
@@ -204,15 +194,31 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='grade' type="text" id="modalCertificgrade"
-                                            placeholder="التقدير والدرجة"
-                                            class="form-control @error('grade') is-invalid is-filled @enderror" />
-                                        <label for="modalCertificgrade">التقدير والدرجة</label>
+                                        <input wire:model.lazy='grade' type="number" id="modalCertificgrade"
+                                            placeholder="الدرجة"
+                                            class="form-control @error('grade') is-invalid is-filled @enderror"
+                                            min="0" max="100" step="1" inputmode="numeric"
+                                            pattern="[0-9]*" />
+                                        <label for="modalCertificgrade">الدرجة</label>
                                     </div>
                                     @error('grade')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model='estimate' type="text" id="modalCertificestimate"
+                                            placeholder="التقدير"
+                                            class="form-control @error('estimate') is-invalid is-filled @enderror"
+                                            readonly />
+                                        <label for="modalCertificestimate">التقدير</label>
+                                    </div>
+                                    @error('estimate')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='issuing_country' type="text"

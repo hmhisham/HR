@@ -17,20 +17,24 @@
                     <form id="editCertifiModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
-                                <div class="mb-3">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='full_name' type="text" id="modalEmployeefull_name"
-                                            placeholder=" اسم الموظف"
-                                            class="form-control @error('full_name') is-invalid is-filled @enderror"
-                                            disabled />
-                                        <label for="modalEmployeefull_name">اسم الموظف</label>
-                                    </div>
-                                    @error('full_name')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
                                 <div class="row">
-                                    <div class="mb-3 col">
+                                    <div class="mb-3 col-12">
+                                        <div class="form-floating form-floating-outline @error('worker') is-invalid is-filled @enderror"
+                                            style="width: 100%">
+                                            <select wire:model='worker' id="worker" class="form-select"
+                                                placeholder='حدد العملية'>
+                                                <option value=""></option>
+                                                @foreach ($workers as $worker)
+                                                    <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="worker">حدد الموظف</label>
+                                        </div>
+                                        @error('worker')
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-4 col-6">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='calculator_number' type="text"
                                                 id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
@@ -42,10 +46,10 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-                                    <div class="mb-3 col">
+                                    <div class="mb-3 col-6">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='department' type="text"
-                                                id="modalEmployeedepartment" placeholder="اسم القسم"
+                                            <input wire:model.defer='department' type="text" id="modalEmployeedepartment"
+                                                placeholder="اسم القسم"
                                                 class="form-control @error('department') is-invalid is-filled @enderror"
                                                 disabled />
                                             <label for="modalEmployeedepartment">اسم القسم </label>
@@ -59,9 +63,9 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='document_number' type="text"
-                                                id="modalCertifidocument_number" placeholder="رقم الوثيقة"
+                                                id="modalCertificdocument_number" placeholder="رقم الوثيقة"
                                                 class="form-control @error('document_number') is-invalid is-filled @enderror" />
-                                            <label for="modalCertifidocument_number">رقم الوثيقة</label>
+                                            <label for="modalCertificdocument_number">رقم الوثيقة</label>
                                         </div>
                                         @error('document_number')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -69,10 +73,10 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='document_date' type="date"
-                                                id="modalCertifidocument_date" placeholder="تاريخ الوثيقة"
+                                            <input wire:model.defer='document_date' type="text" id="document_date"
+                                                autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                                 class="form-control @error('document_date') is-invalid is-filled @enderror" />
-                                            <label for="modalCertifidocument_date">تاريخ الوثيقة</label>
+                                            <label for="flatpickr-date">تاريخ الوثيقة</label>
                                         </div>
                                         @error('document_date')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -81,9 +85,9 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='authenticity_number' type="text"
-                                                id="modalCertifiauthenticity_number" placeholder="رقم صحة الصدور"
+                                                id="modalCertificauthenticity_number" placeholder="رقم صحة الصدور"
                                                 class="form-control @error('authenticity_number') is-invalid is-filled @enderror" />
-                                            <label for="modalCertifiauthenticity_number">رقم صحة الصدور</label>
+                                            <label for="modalCertificauthenticity_number">رقم صحة الصدور</label>
                                         </div>
                                         @error('authenticity_number')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -91,10 +95,10 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='authenticity_date' type="date"
-                                                id="modalCertifiauthenticity_date" placeholder="تاريخ صحة الصدور"
+                                            <input wire:model.defer='authenticity_date' type="text"
+                                                id="authenticity_date" autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                                 class="form-control @error('authenticity_date') is-invalid is-filled @enderror" />
-                                            <label for="modalCertifiauthenticity_date">تاريخ صحة الصدور</label>
+                                            <label for="flatpickr-date">تاريخ صحة الصدور</label>
                                         </div>
                                         @error('authenticity_date')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -104,34 +108,66 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='certificate_name' type="text"
-                                                id="modalCertificertificate_name" placeholder="الشهادة"
-                                                class="form-control @error('certificate_name') is-invalid is-filled @enderror" />
-                                            <label for="modalCertificertificate_name">الشهادة</label>
+                                            <select wire:model='certificate_name' wire:change='loadGraduations'
+                                                id="modalCertificcertificate_name"
+                                                class="form-select @error('certificate_name') is-invalid is-filled @enderror">
+                                                <option value="">اختر الشهادة</option>
+                                                @if ($Certificates && count($Certificates) > 0)
+                                                    @foreach ($Certificates as $certificate)
+                                                        <option value="{{ $certificate->id }}">
+                                                            {{ $certificate->certificates_name }}
+                                                        </option>
+                                                    @endforeach
+                                                @else
+                                                    <option value="">لا توجد شهادات متاحة</option>
+                                                @endif
+                                            </select>
+                                            <label for="modalCertificcertificate_name">الشهادة</label>
                                         </div>
                                         @error('certificate_name')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-                                </div>
-                                <div Class="row">
+
+                                    <!-- حقل جهة التخرج -->
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='college_name' type="text"
-                                                id="modalCertificgraduation_name" placeholder="القسم الدراسي"
-                                                class="form-control @error('college_name') is-invalid is-filled @enderror" />
+                                            <select wire:model='college_name' id="modalCertificgraduation_name"
+                                                wire:change='loadSpecializations'
+                                                class="form-select @error('college_name') is-invalid is-filled @enderror">
+                                                <option value="">اختر جهة التخرج</option>
+                                                @if ($Graduations && count($Graduations) > 0)
+                                                    @foreach ($Graduations as $graduation)
+                                                        <option value="{{ $graduation->id }}">
+                                                            {{ $graduation->graduations_name }}
+                                                        </option>
+                                                    @endforeach
+                                                @else
+                                                    <option value="">لا توجد جهات تخرج متاحة</option>
+                                                @endif
+                                            </select>
                                             <label for="modalCertificgraduation_name">جهة التخرج</label>
                                         </div>
                                         @error('college_name')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
+                                    <!-- حقل التخصص -->
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='specialization' type="text"
-                                                id="modalCertifispecialization" placeholder="التخصص"
-                                                class="form-control @error('specialization') is-invalid is-filled @enderror" />
-                                            <label for="modalCertifispecialization">التخصص</label>
+                                            <select wire:model.defer='specialization' id="modalCertificspecialization"
+                                                class="form-select @error('specialization') is-invalid is-filled @enderror">
+                                                <option value="">اختر التخصص</option>
+                                                @if ($Specializations && count($Specializations) > 0)
+                                                    @foreach ($Specializations as $specialization)
+                                                        <option value="{{ $specialization->id }}">
+                                                            {{ $specialization->specializations_name }}</option>
+                                                    @endforeach
+                                                @else
+                                                    <option value="">لا توجد تخصصات متاحة</option>
+                                                @endif
+                                            </select>
+                                            <label for="modalCertificspecialization">التخصص</label>
                                         </div>
                                         @error('specialization')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -139,6 +175,7 @@
                                     </div>
                                 </div>
                                 <div Class="row">
+
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             @php
@@ -150,7 +187,8 @@
                                                 name="year">
                                                 <option value="">اختر سنة التخرج</option>
                                                 @for ($year = $startYear; $year <= $currentYear; $year++)
-                                                    <option value="{{ $year }}">{{ $year-1 }} - {{ $year }}</option>
+                                                    <option value="{{ $year }}">{{ $year - 1 }} -
+                                                        {{ $year }}</option>
                                                 @endfor
                                             </select>
                                             <label for="modalCertificgraduation_year">سنوات التخرج</label>
@@ -161,21 +199,37 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='grade' type="text" id="modalCertifigrade"
-                                                placeholder="التقدير والدرجة"
-                                                class="form-control @error('grade') is-invalid is-filled @enderror" />
-                                            <label for="modalCertifigrade">التقدير والدرجة</label>
+                                            <input wire:model.lazy='grade' type="number" id="modalCertificgrade"
+                                                placeholder="الدرجة"
+                                                class="form-control @error('grade') is-invalid is-filled @enderror"
+                                                min="0" max="100" step="1" inputmode="numeric"
+                                                pattern="[0-9]*" />
+                                            <label for="modalCertificgrade">الدرجة</label>
                                         </div>
                                         @error('grade')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
+
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model='estimate' type="text" id="modalCertificestimate"
+                                                placeholder="التقدير"
+                                                class="form-control @error('estimate') is-invalid is-filled @enderror"
+                                                readonly />
+                                            <label for="modalCertificestimate">التقدير</label>
+                                        </div>
+                                        @error('estimate')
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @enderror
+                                    </div>
+
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='issuing_country' type="text"
-                                                id="modalCertifiissuing_country" placeholder="البلد المانح للشهادة"
+                                                id="modalCertificissuing_country" placeholder="البلد المانح للشهادة"
                                                 class="form-control @error('issuing_country') is-invalid is-filled @enderror" />
-                                            <label for="modalCertifiissuing_country">البلد المانح للشهادة</label>
+                                            <label for="modalCertificissuing_country">البلد المانح للشهادة</label>
                                         </div>
                                         @error('issuing_country')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -185,10 +239,10 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='notes' type="text" id="modalCertifinotes"
+                                            <input wire:model.defer='notes' type="text" id="modalCertificnotes"
                                                 placeholder="الملاحظات"
                                                 class="form-control @error('notes') is-invalid is-filled @enderror" />
-                                            <label for="modalCertifinotes">الملاحظات</label>
+                                            <label for="modalCertificnotes">الملاحظات</label>
                                         </div>
                                         @error('notes')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -207,7 +261,6 @@
                                             <small class='text-danger'>{{ $message }}</small>
                                         @enderror
                                     </div>
-
                                 </div>
                             </div>
                         </div>
