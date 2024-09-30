@@ -24,8 +24,7 @@
                             <th Class="text-center">الاسم الكامل</th>
                             <th Class="text-center">القسم</th>
                             <th class="text-center">رقم الحاسبة</th>
-                            <th class="text-center">الشهادة</th>
-                            <th class="text-center">تحصيل الدراسي</th>
+
                             <th class="text-center">سنة التخرج</th>
                             <th class="text-center">العملية</th>
                         </tr>
@@ -39,8 +38,7 @@
                                 <td class="text-center">{{ $Certifi->worker ? $Certifi->worker->full_name : 'N/A' }}</td>
                                 <td class="text-center">{{ $Certifi->worker ? $Certifi->worker->department : 'N/A' }}</td>
                                 <td class="text-center">{{ $Certifi->calculator_number }}</td>
-                                <td class="text-center">{{ $Certifi->certificate_name }}</td>
-                                <td class="text-center">{{ $Certifi->educational_attainment }}</td>
+
                                 <td class="text-center">{{ $Certifi->graduation_year }}</td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
