@@ -14,7 +14,6 @@
 @section('content')
     @livewire('wives.wive')
 
-
 @endsection
 
 @section('vendor-script')
@@ -35,23 +34,6 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        //استدعاء اسم الموظف
-        $(document).ready(function() {
-            window.initWorkersDrop = () => {
-                $('#modalWiveworkers_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addwiveModal')
-                });
-            }
-            initWorkersDrop();
-            $('#modalWiveworkers_id').on('change', function(e) {
-                livewire.emit('SelectWorkersId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initWorkersDrop();
-            });
-        });
-
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
@@ -87,20 +69,24 @@
                 title: event.detail.message
             })
         })
+
+
         $(document).ready(function() {
-            window.initDepartmentDrop = () => {
-                $('#modalWiveorganization_name').select2({
+            window.initWorkersDrop = () => {
+                $('#modalWiveworkers_id').select2({
                     placeholder: 'اختيار',
                     dropdownParent: $('#addwiveModal')
                 });
             }
-            initDepartmentDrop();
-            $('#modalWiveorganization_name').on('change', function(e) {
-                livewire.emit('SelectOrganizationName', e.target.value);
+            initWorkersDrop();
+            $('#modalWiveworkers_id').on('change', function(e) {
+                livewire.emit('SelectWorkersId', e.target.value);
             });
             window.livewire.on('select2', () => {
-                initDepartmentDrop();
+                initWorkersDrop();
             });
         });
+
+        
     </script>
 @endsection

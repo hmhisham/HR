@@ -9,16 +9,18 @@
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetWive" wire:loading.class="d-flex justify-content-center text-primary">
+                {{-- <h5 wire:loading wire:target="GetWive" wire:loading.class="d-flex justify-content-center text-primary">
                     جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار حفظ البيانات...</h5>
+                    جار حفظ البيانات...</h5> --}}
                 <div wire:loading.remove>
                     <form id="editWiveModalForm" autocomplete="off">
-                        <div class="row row-cols-1  ">
+                        <div class="row row-cols-1">
+
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='workers_id' id="modalWiveworkers_id" class="form-select @error('workers_id') is-invalid is-filled @enderror">
+                                    <select wire:model.defer='workers_id' id="modalWiveworkers_id"
+                                        class="form-select @error('workers_id') is-invalid is-filled @enderror">
                                         <option value=""></option>
                                         @foreach ($workers as $worker)
                                             <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
@@ -30,6 +32,7 @@
                                     <small class='text-danger inputerror'>{{ $message }}</small>
                                 @enderror
                             </div>
+
                             <div class="col mb-3">
                                 <div class="row">
                                     <!-- الاسم الأول -->

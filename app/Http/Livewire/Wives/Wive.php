@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Http\Livewire\Wives;
-
 use Livewire\Component;
-
 use App\Models\Wives\Wives;
 use Livewire\WithPagination;
 use App\Models\Workers\Workers;
@@ -18,7 +15,7 @@ class Wive extends Component
     public $Wives = [];
     public $WiveSearch, $Wive, $WiveId;
     public $workers_id, $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name, $marital_status, $occupational_status, $organization_name, $is_married, $national_id;
-    public $EmpStatus ;
+    public $EmpStatus;
 
     protected $listeners = [
         'SelectWorkersId',
@@ -76,9 +73,6 @@ class Wive extends Component
             ->paginate(10);
         $links = $Wives;
         $this->Wives = collect($Wives->items());
-
-
-
         return view('livewire.wives.wive', [
             'links' => $links
         ]);
@@ -86,21 +80,18 @@ class Wive extends Component
 
     public function AddWiveModalShow()
     {
-
-        $this->reset(['workers_id','first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
+        $this->reset(['workers_id', 'first_name', 'father_name', 'grandfather_name', 'great_grandfather_name', 'surname', 'full_name', 'marital_status', 'occupational_status', 'organization_name', 'is_married', 'national_id']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('WiveModalShow');
     }
 
     public function getEmpStatus($Emp)
     {
-        if($Emp == 'موظف/ـة' )
-        {
+        if ($Emp == 'موظف/ـة') {
             $this->EmpStatus = '';
-        }else{
+        } else {
             $this->EmpStatus = 'disabled';
         }
-
     }
 
     public function store()
@@ -152,7 +143,7 @@ class Wive extends Component
             'national_id' => $this->national_id,
 
         ]);
-        $this->reset(['workers_id','first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
+        $this->reset(['workers_id', 'first_name', 'father_name', 'grandfather_name', 'great_grandfather_name', 'surname', 'full_name', 'marital_status', 'occupational_status', 'organization_name', 'is_married', 'national_id']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -227,7 +218,7 @@ class Wive extends Component
             'national_id' => $this->national_id,
 
         ]);
-        $this->reset(['workers_id','first_name','father_name','grandfather_name','great_grandfather_name','surname','full_name','marital_status','occupational_status','organization_name','is_married','national_id']);
+        $this->reset(['workers_id', 'first_name', 'father_name', 'grandfather_name', 'great_grandfather_name', 'surname', 'full_name', 'marital_status', 'occupational_status', 'organization_name', 'is_married', 'national_id']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
