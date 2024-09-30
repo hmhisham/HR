@@ -1,11 +1,11 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">نافذة الشعب</h4>
+    <h4 Class="mb-1fw-semiboyld">الشعب</h4>
     <div Class="card">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <input wire:model="BrancSearch" type="text" class="form-control" placeholder="بحث...">
+                        <input wire:model="BranchSearch" type="text" class="form-control" placeholder="بحث...">
                     </div>
                     <div>
                         @can('branc-create')
@@ -29,27 +29,25 @@
                     </thead>
                     <tbody>
                         <?php $i = 0; ?>
-                        @foreach ($Branch as $Branc)
+                        @foreach ($Branches as $Branch)
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
-                                <td class="text-center">{{ $Branc->Getlinkage ? $Branc->Getlinkage->Linkages_name : '' }}
-                                </td>
-                                <td class="text-center">{{ $Branc->Getsection ? $Branc->Getsection->section_name : '' }}
-                                </td>
-                                <td Class="text-center">{{ $Branc->branch_name }}</td>
+                                <td class="text-center">{{ $Branch->Getlinkage ? $Branch->Getlinkage->Linkages_name : '' }}</td>
+                                <td class="text-center">{{ $Branch->Getsection ? $Branch->Getsection->section_name : '' }}</td>
+                                <td Class="text-center">{{ $Branch->branch_name }}</td>
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('branc-edit')
-                                            <button wire:click="GetBranc({{ $Branc->id }})"
-                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                            <button wire:click="GetBranch({{ $Branch->id }})"
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editbrancModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('branc-delete')
-                                            <button wire:click="GetBranc({{ $Branc->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Branc->active ? 'disabled' : '' }}"
+                                            <button wire:click="GetBranch({{ $Branch->id }})"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect {{ $Branch->active ? 'disabled' : '' }}"
                                                 data-bs-toggle="modal" data-bs-target="#removebrancModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>

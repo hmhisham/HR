@@ -18,7 +18,8 @@
                         <div class="row row-cols-1  ">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='workers_id' id="modalWiveworkers_id" class="form-select <?php $__errorArgs = ['workers_id'];
+                                    <select wire:model.defer='workers_id' id="modalWiveworkers_id"
+                                        class="form-select <?php $__errorArgs = ['workers_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -26,7 +27,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                        <option value=""></option>
+                                        <option value="">اختر اسم الموظف</option>
                                         <?php $__currentLoopData = $workers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $worker): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($worker->id); ?>"><?php echo e($worker->full_name); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

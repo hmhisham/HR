@@ -203,8 +203,8 @@ unset($__errorArgs, $__bag); ?>
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='birth_date' type="text" id="birth_date" autocomplete="off"
-                                            readonly placeholder="يوم-شهر-سنة"
+                                        <input wire:model.defer='birth_date' type="text" id="birth_date"
+                                            autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                             class="form-control <?php $__errorArgs = ['birth_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

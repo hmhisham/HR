@@ -15,10 +15,9 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='section_id'
-                                            wire:change='sectionid($event.target.value)' id="section_id"
+                                        <select wire:model.defer='section_id' id="addSection"
                                             class="form-select @error('section_id') is-invalid is-filled @enderror">
-                                            <option value="">اختر القسم</option>
+                                            <option value=""></option>
                                             @foreach ($sections as $section)
                                                 <option value="{{ $section->id }}">{{ $section->section_name }}
                                                 </option>
@@ -32,9 +31,9 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='branch_id' id="modalUnitsbranch_id"
+                                        <select wire:model.defer='branch_id' id="addBranch"
                                             class="form-select @error('branch_id') is-invalid is-filled @enderror">
-                                            <option value="">اختر الشعبة</option>
+                                            <option value=""></option>
                                             @foreach ($branch as $branc)
                                                 <option value="{{ $branc->id }}">{{ $branc->branch_name }}</option>
                                             @endforeach

@@ -15,13 +15,13 @@ class Units extends Model
 
     public function Getbranc()
     {
-        return $this->belongsTo(Branch::class, 'branch_id' );
+        return $this->belongsTo(Branch::class, 'branch_id');
     }
 
 
     Public function Getsection()
     {
-        return $this->belongsTo(Sections::class, 'section_id' );
+        return $this->belongsTo(Sections::class, 'section_id');
     }
 
 

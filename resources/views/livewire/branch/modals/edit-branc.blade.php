@@ -13,18 +13,16 @@
                     جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="GetBranc">
                     <form id="editBrancModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='linkage_id'
-                                                wire:change='LinkageId($event.target.value)' id="linkage_id"
-                                                class="form-select @error('linkage_id') is-invalid is-filled @enderror"
-                                                >
-                                                <option value="">اختر الارتباط</option>
+                                            <select wire:model.defer='linkage_id' id="editLinkage"
+                                                class="form-select @error('linkage_id') is-invalid is-filled @enderror">
+                                                <option value=""></option>
                                                 @foreach ($linkages as $linkage)
                                                     <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}
                                                     </option>
@@ -38,13 +36,11 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='section_id' id="modalBranchsection_id"
-                                                class="form-select @error('section_id') is-invalid is-filled @enderror"
-                                                >
-                                                <option value="">اختر القسم</option>
+                                            <select wire:model.defer='section_id' id="editSection"
+                                                class="form-select @error('section_id') is-invalid is-filled @enderror">
+                                                <option value=""></option>
                                                 @foreach ($sections as $section)
-                                                    <option value="{{ $section->id }}">{{ $section->section_name }}
-                                                    </option>
+                                                    <option value="{{ $section->id }}">{{ $section->section_name }}</option>
                                                 @endforeach
                                             </select>
                                             <label for="modalBranchsection_id">اسم القسم</label>
@@ -70,7 +66,7 @@
                         <hr class="my-0">
                         <div class="text-center col-12 demo-vertical-spacing mb-n4">
                             <button wire:click='update' wire:loading.attr="disabled" type="button"
-                                class="btn btn-success me-sm-3 me-1">تعديل</button>
+                                class="btn btn-primary me-sm-3 me-1">تعديل</button>
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">تجاهل</button>
                         </div>

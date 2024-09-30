@@ -18,15 +18,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('childrens.children')->html();
-} elseif ($_instance->childHasBeenRendered('LiiStKn')) {
-    $componentId = $_instance->getRenderedChildComponentId('LiiStKn');
-    $componentTag = $_instance->getRenderedChildComponentTagName('LiiStKn');
+} elseif ($_instance->childHasBeenRendered('5Thf5sz')) {
+    $componentId = $_instance->getRenderedChildComponentId('5Thf5sz');
+    $componentTag = $_instance->getRenderedChildComponentTagName('5Thf5sz');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('LiiStKn');
+    $_instance->preserveRenderedChild('5Thf5sz');
 } else {
     $response = \Livewire\Livewire::mount('childrens.children');
     $html = $response->html();
-    $_instance->logRenderedChild('LiiStKn', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('5Thf5sz', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -57,6 +57,23 @@ echo $html;
     <script src=" <?php echo e(asset('assets/js/extended-ui-sweetalert2.js')); ?>"></script>
     <script src=" <?php echo e(asset('assets/js/form-basic-inputs.js')); ?>"></script>
     <script>
+        //استدعاء اسم الام
+        $(document).ready(function() {
+            window.initWivesDrop = () => {
+                $('#modalChildrenwives_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addchildrenModal')
+                });
+            }
+            initWivesDrop();
+            $('#modalChildrenwives_id').on('change', function(e) {
+                livewire.emit('SelectWivesId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initWivesDrop();
+            });
+        });
+
         /* تاريخ التولد */
         $(document).ready(function() {
             window.initBirthDateDrop = () => {
@@ -102,9 +119,6 @@ echo $html;
             })
         })
 
-
-
-
         window.addEventListener('error', event => {
             $('#removechildrenModal').modal('hide');
             Toast.fire({
@@ -114,22 +128,6 @@ echo $html;
             })
 
         })
-
-        $(document).ready(function() {
-            window.initWivesDrop = () => {
-                $('#modalChildrenwives_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addchildrenModal')
-                });
-            }
-            initWivesDrop();
-            $('#modalChildrenwives_id').on('change', function(e) {
-                livewire.emit('SelectWivesId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initWivesDrop();
-            });
-        });
     </script>
 <?php $__env->stopSection(); ?>
 

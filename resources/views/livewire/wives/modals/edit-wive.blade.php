@@ -21,7 +21,11 @@
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='workers_id' id="modalWiveworkers_id"
                                         class="form-select @error('workers_id') is-invalid is-filled @enderror">
+<<<<<<< HEAD
                                         <option value=""></option>
+=======
+                                        <option value="">اختر اسم الموظف</option>
+>>>>>>> c12cfb4473d72fb6b7147e77d9729e60fed5f33b
                                         @foreach ($workers as $worker)
                                             <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
                                         @endforeach

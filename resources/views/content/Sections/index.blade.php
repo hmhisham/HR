@@ -12,9 +12,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
         @endsection
-@section('content') 
-@livewire('sections.section')
+@section('content')
 
+    @livewire('sections.section')
 
 @endsection
 
@@ -36,6 +36,39 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        /* addLinkage */
+        $(document).ready(function() {
+            window.initAddLinkageDrop = () => {
+                $('#addLinkage').select2({
+                    placeholder: 'حدد الارتباط',
+                    dropdownParent: $('#addsectionModal')
+                })
+            }
+            initAddLinkageDrop();
+            $('#addLinkage').on('change', function(e) {
+                livewire.emit('GetLinkage', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddLinkageDrop();
+            });
+        });
+        /* editLinkage */
+        $(document).ready(function() {
+            window.initEditLinkageDrop = () => {
+                $('#editLinkage').select2({
+                    placeholder: 'حدد الارتباط',
+                    dropdownParent: $('#editsectionModal')
+                })
+            }
+            initEditLinkageDrop();
+            $('#editLinkage').on('change', function(e) {
+                livewire.emit('GetLinkage', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initEditLinkageDrop();
+            });
+        });
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -51,9 +84,9 @@
         window.addEventListener('SectionModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addsectionModal').modal('hide');
             $('#editsectionModal').modal('hide');
@@ -70,7 +103,7 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

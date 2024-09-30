@@ -30,10 +30,43 @@
 <script src="{{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
 
     <script>
+        /* addSection */
+        $(document).ready(function() {
+            window.initAddSectionDrop = () => {
+                $('#addSection').select2({
+                    placeholder: 'حدد القسم',
+                    dropdownParent: $('#addunitModal')
+                })
+            }
+            initAddSectionDrop();
+            $('#addSection').on('change', function(e) {
+                livewire.emit('GetSection', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddSectionDrop();
+            });
+        });
+        /* AddBranch */
+        $(document).ready(function() {
+            window.initAddBranchDrop = () => {
+                $('#addBranch').select2({
+                    placeholder: 'حدد الشعبة',
+                    dropdownParent: $('#addunitModal')
+                })
+            }
+            initAddBranchDrop();
+            $('#addBranch').on('change', function(e) {
+                livewire.emit('GetBranch', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddBranchDrop();
+            });
+        });
+        /* editSection */
         $(document).ready(function() {
             window.initEditSectionDrop = () => {
                 $('#editSection').select2({
-                    placeholder: 'حدد المحافظة',
+                    placeholder: 'حدد القسم',
                     dropdownParent: $('#editunitModal')
                 })
             }
@@ -45,19 +78,20 @@
                 initEditSectionDrop();
             });
         });
+        /* editbranch */
         $(document).ready(function() {
-            window.initUnitBranchDrop = () => {
-                $('#editUnitsbranch').select2({
-                    placeholder: 'حدد المحافظة',
+            window.initEditBranchDrop = () => {
+                $('#editbranch').select2({
+                    placeholder: 'حدد الشعبة',
                     dropdownParent: $('#editunitModal')
                 })
             }
-            initUnitBranchDrop();
-            $('#editUnitsbranch').on('change', function(e) {
+            initEditBranchDrop();
+            $('#editbranch').on('change', function(e) {
                 livewire.emit('GetBranch', e.target.value)
             });
             window.livewire.on('select2', () => {
-                initUnitBranchDrop();
+                initEditBranchDrop();
             });
         });
 

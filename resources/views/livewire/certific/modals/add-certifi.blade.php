@@ -193,7 +193,7 @@
                                             name="year">
                                             <option value="">اختر سنة التخرج</option>
                                             @for ($year = $startYear; $year <= $currentYear; $year++)
-                                                <option value="{{ $year }}">{{ $year }} - {{ $year + 1 }}</option>
+                                                <option value="{{ $year }}">{{ $year-1 }} - {{ $year }}</option>
                                             @endfor
                                         </select>
                                         <label for="modalCertificgraduation_year">سنوات التخرج</label>
