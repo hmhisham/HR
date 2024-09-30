@@ -12,9 +12,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
         @endsection
-@section('content') 
-@livewire('linkages.linkage')
+@section('content')
 
+    @livewire('linkages.linkage')
 
 @endsection
 
@@ -36,6 +36,23 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        /* addLinkage */
+        $(document).ready(function() {
+            window.initAddLinkageDrop = () => {
+                $('#addLinkage').select2({
+                    placeholder: 'حدد الارتباط',
+                    dropdownParent: $('#addbrancModal')
+                })
+            }
+            initAddLinkageDrop();
+            $('#addLinkage').on('change', function(e) {
+                livewire.emit('GetLinkage', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddLinkageDrop();
+            });
+        });
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -51,9 +68,9 @@
         window.addEventListener('LinkageModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addlinkageModal').modal('hide');
             $('#editlinkageModal').modal('hide');
@@ -63,9 +80,9 @@
                 title: event.detail.message
             })
         })
-           
 
-            
+
+
 
         window.addEventListener('error', event => {
             $('#removelinkageModal').modal('hide');
@@ -74,7 +91,7 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

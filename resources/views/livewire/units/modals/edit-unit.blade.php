@@ -25,7 +25,7 @@
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='section_id' id="editSection"
                                                 class="form-select @error('section_id') is-invalid is-filled @enderror">
-                                                <option value="">اختر القسم</option>
+                                                <option value=""></option>
                                                 @foreach ($sections as $section)
                                                     <option value="{{ $section->id }}">{{ $section->section_name }}
                                                     </option>
@@ -39,9 +39,9 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='branch_id' id="editUnitsbranch"
+                                            <select wire:model.defer='branch_id' id="editbranch"
                                                 class="form-select @error('branch_id') is-invalid is-filled @enderror">
-                                                <option value="">اختر الشعبة</option>
+                                                <option value=""></option>
                                                 @foreach ($branch as $branc)
                                                     <option value="{{ $branc->id }}">{{ $branc->branch_name }}</option>
                                                 @endforeach
@@ -69,7 +69,7 @@
                         <hr class="my-0">
                         <div class="text-center col-12 demo-vertical-spacing mb-n4">
                             <button wire:click='update' wire:loading.attr="disabled" type="button"
-                                class="btn btn-success me-sm-3 me-1">تعديل</button>
+                                class="btn btn-primary me-sm-3 me-1">تعديل</button>
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">تجاهل</button>
                         </div>

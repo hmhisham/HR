@@ -6,7 +6,6 @@ use Livewire\Component;
 use App\Models\Units\Units;
 use Livewire\WithPagination;
 use App\Models\Branch\Branch;
-use Illuminate\Validation\Rule;
 use App\Models\Sections\Sections;
 
 class Unit extends Component
@@ -16,9 +15,8 @@ class Unit extends Component
 
     public $Units = [];
     public $UnitSearch, $Unit, $UnitId;
-    public $branch_id, $units_name;
+    public $branch_id, $units_name, $BranchName, $SectionName;
     public $section_id, $branch_name, $units_id;
-
     public $branch = [];
     public $sections = [];
 
@@ -33,8 +31,22 @@ class Unit extends Component
 
     public function mount()
     {
-        $this->branch = Branch::all();
         $this->sections = Sections::all();
+    }
+
+    public function render()
+    {
+        $UnitSearch = '%' . $this->UnitSearch . '%';
+        $Units = Units::where('branch_id', 'LIKE', $UnitSearch)
+            ->orWhere('units_name', 'LIKE', $UnitSearch)
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
+
+        $links = $Units;
+        $this->Units = collect($Units->items());
+        return view('livewire.units.unit', [
+            'links' => $links
+        ]);
     }
 
     public function GetSection($Section_id)
@@ -47,23 +59,9 @@ class Unit extends Component
         $this->branch_id = $Branch_id;
     }
 
-    public function render()
-    {
-        $UnitSearch = '%' . $this->UnitSearch . '%';
-        $Units = Units::where('branch_id', 'LIKE', $UnitSearch)
-            ->orWhere('units_name', 'LIKE', $UnitSearch)
-            ->orderBy('id', 'ASC')
-            ->paginate(10);
-        $links = $Units;
-        $this->Units = collect($Units->items());
-        return view('livewire.units.unit', [
-            'links' => $links
-        ]);
-    }
-
     public function AddUnitModalShow()
     {
-        $this->reset(['section_id', 'branch_id', 'units_name']);
+        $this->reset(['section_id', 'branch_id', 'units_name', 'branch']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('UnitModalShow');
     }
@@ -76,10 +74,10 @@ class Unit extends Component
             'branch_id' => 'required:units',
             'units_name' => 'required|unique:units,units_name,NULL,id,branch_id,'. $this->branch_id.',section_id,'.$this->section_id
         ], [
-            'section_id.required' => 'حقل الاسم مطلوب',
-            'branch_id.required' => 'حقل الاسم مطلوب',
-            'units_name.required' => 'حقل الاسم مطلوب',
-            'units_name.unique' => 'الاسم موجود',
+            'section_id.required' => 'حقل القسم مطلوب',
+            'branch_id.required' => 'حقل الشعبة مطلوب',
+            'units_name.required' => 'حقل الوحدة مطلوب',
+            'units_name.unique' => 'أسم الوحدة موجود',
         ]);
 
         Units::create([
@@ -101,25 +99,15 @@ class Unit extends Component
 
         $this->Unit  = Units::find($UnitId);
         $this->UnitId = $this->Unit->id;
-        $this->branch_id = $this->Unit->branch_id;
         $this->units_name = $this->Unit->units_name;
+        $this->branch_id = $this->Unit->branch_id;
         $this->section_id = $this->Unit->section_id;
-        $this->branch = Branch::where('section_id', $this->section_id)->get();
-    }
 
-    /* protected function rules()
-    {
-        return [
-            'field1' => [
-                'required',
-                Rule::unique('your_table')->where(function ($query) {
-                    return $query->where('field2', $this->field2)
-                                 ->where('id', '!=', $this->model->id);
-                }),
-            ],
-            'field2' => 'required',
-        ];
-    } */
+        $this->branch = $this->Unit->Getsection->GetBranch;
+
+        $this->BranchName = $this->Unit->Getbranc->branch_name;
+        $this->SectionName = $this->Unit->Getsection->section_name;
+    }
 
     public function update()
     {
@@ -128,17 +116,13 @@ class Unit extends Component
             'section_id' => 'required',
             'branch_id' => 'required',
             //'units_name' => 'required|unique:units,units_name,NULL,id,branch_id,'. $this->branch_id.',section_id,'.$this->section_id
-            'units_name' => 'required|unique:units,units_name,' . $this->Unit->id . ',id,branch_id,' . $this->branch_id,
+            'units_name' => 'required|unique:units,units_name,' . $this->Unit->id . ',id,branch_id,' . $this->branch_id.',section_id,'.$this->section_id
         ], [
-            'section_id.required' => 'حقل الاسم مطلوب',
-            'branch_id.required' => 'حقل الاسم مطلوب',
-            'units_name.required' => 'حقل الاسم مطلوب',
-            'units_name.unique' => 'الاسم موجود',
+            'section_id.required' => 'حقل القسم مطلوب',
+            'branch_id.required' => 'حقل الشعبة مطلوب',
+            'units_name.required' => 'حقل الوحدة مطلوب',
+            'units_name.unique' => 'أسم الوحدة موجود',
         ]);
-
-        /* $this->validate([
-            'units_name' => 'required|unique:units,units_name,' . $this->Unit->id,
-        ]); */
 
         $Units = Units::find($this->UnitId);
         $Units->update([

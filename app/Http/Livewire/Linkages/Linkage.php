@@ -16,15 +16,13 @@ class Linkage extends Component
     public $LinkageSearch, $Linkage, $LinkageId;
     public $Linkages_name;
 
-
     public function render()
     {
         $LinkageSearch = '%' . $this->LinkageSearch . '%';
         $Linkages = Linkages::where('Linkages_name', 'LIKE', $LinkageSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Linkages;
         $this->Linkages = collect($Linkages->items());
         return view('livewire.linkages.linkage', [
@@ -34,11 +32,10 @@ class Linkage extends Component
 
     public function AddLinkageModalShow()
     {
-        $this->reset();
+        $this->reset('Linkages_name');
         $this->resetValidation();
         $this->dispatchBrowserEvent('LinkageModalShow');
     }
-
 
     public function store()
     {
@@ -51,14 +48,11 @@ class Linkage extends Component
             'Linkages_name.unique' => 'الأسم موجود',
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
-
-
         Linkages::create([
             'Linkages_name' => $this->Linkages_name,
-
         ]);
-        $this->reset();
+
+        $this->reset('Linkages_name');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -90,7 +84,8 @@ class Linkage extends Component
             'Linkages_name' => $this->Linkages_name,
 
         ]);
-        $this->reset();
+
+        $this->reset('Linkages_name');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'

@@ -15,30 +15,37 @@
                     جار حذف البيانات...</h5>
                 <div wire:loading.remove>
                     <form id="removeUnitModalForm" onsubmit="return false" autocomplete="off">
-                        <div class="row row-cols-1">
-                            <div class="col mb-3">
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='units_name' type="text" id="modalUnitunits_name"
-                                                placeholder="اسم الوحدة"
-                                                class="form-control @error('units_name') is-invalid is-filled @enderror"
-                                                disabled />
-                                            <label for="modalUnitunits_name">اسم الوحدة</label>
-                                        </div>
-                                        @error('units_name')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="">
+                                    <label for="modalUnitunits_name">القسم</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $SectionName }}</div>
                                 </div>
                             </div>
-                            <hr class="my-0">
-                            <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
-                                <button wire:click='destroy'
-                                    type="submit"class="flex-fill btn btn-danger me-sm-3 me-1">حذف </button>
-                                <button type="reset" class="flex-fill btn btn-outline-secondary"
-                                    data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
+                            <div class="col text-center">
+                                <div class="">
+                                    <label for="modalUnitunits_name">الشعبة</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $BranchName }}</div>
+                                </div>
                             </div>
+                        </div>
+                        <hr>
+                        <div Class="row">
+                            <div class="col text-center">
+                                <div class="text-danger">
+                                    <label for="modalUnitunits_name">اسم الوحدة</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $units_name }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-0">
+
+                        <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
+                            <button wire:click='destroy'
+                                type="submit"class="flex-fill btn btn-danger me-sm-3 me-1">حذف </button>
+                            <button type="reset" class="flex-fill btn btn-outline-secondary"
+                                data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
                         </div>
                     </form>
                 </div>
