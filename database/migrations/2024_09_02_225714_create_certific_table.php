@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('certificate_name')->nullable()->comment('الشهادة');
             $table->string('authenticity_number')->nullable()->comment('رقم صحة الصدور');
             $table->date('authenticity_date')->nullable()->comment('تاريخ صحة الصدور');
-            // $table->string('educational_attainment')->nullable()->comment('تحصيل الدراسي');
+          $table->string('duration')->nullable()->comment('مدة القدم');
             $table->string('college_name')->nullable()->comment('اسم الكلية');
             // $table->string('department_name')->nullable()->comment('القسم الدراسي');
             $table->string('specialization')->nullable()->comment('التخصص');
