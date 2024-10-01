@@ -18,15 +18,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('childrens.children')->html();
-} elseif ($_instance->childHasBeenRendered('5Thf5sz')) {
-    $componentId = $_instance->getRenderedChildComponentId('5Thf5sz');
-    $componentTag = $_instance->getRenderedChildComponentTagName('5Thf5sz');
+} elseif ($_instance->childHasBeenRendered('GbYiSFc')) {
+    $componentId = $_instance->getRenderedChildComponentId('GbYiSFc');
+    $componentTag = $_instance->getRenderedChildComponentTagName('GbYiSFc');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('5Thf5sz');
+    $_instance->preserveRenderedChild('GbYiSFc');
 } else {
     $response = \Livewire\Livewire::mount('childrens.children');
     $html = $response->html();
-    $_instance->logRenderedChild('5Thf5sz', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('GbYiSFc', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -91,6 +91,13 @@ echo $html;
             });
         });
 
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',

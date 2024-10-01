@@ -165,7 +165,7 @@
                                         <input wire:model.defer='national_id' type="text"
                                             id="modalChildrennational_id" placeholder="رقم البطاقة الوطنية"
                                             class="form-control @error('national_id') is-invalid is-filled @enderror"
-                                            onkeypress="return restrictAlphabets(event)" />
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalChildrennational_id">رقم البطاقة الوطنية</label>
                                     </div>
                                     @error('national_id')

@@ -12,7 +12,7 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
         @endsection
-@section('content') 
+@section('content')
 @livewire('certificates.certificate')
 
 
@@ -51,9 +51,9 @@
         window.addEventListener('CertificateModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addcertificateModal').modal('hide');
             $('#editcertificateModal').modal('hide');
@@ -70,7 +70,7 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

@@ -78,6 +78,13 @@
             });
         });
 
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',

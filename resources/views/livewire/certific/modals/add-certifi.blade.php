@@ -59,7 +59,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='document_number' type="text"
                                             id="modalCertificdocument_number" placeholder="رقم الوثيقة"
-                                            class="form-control @error('document_number') is-invalid is-filled @enderror" />
+                                            class="form-control @error('document_number') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalCertificdocument_number">رقم الوثيقة</label>
                                     </div>
                                     @error('document_number')
@@ -81,7 +82,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='authenticity_number' type="text"
                                             id="modalCertificauthenticity_number" placeholder="رقم صحة الصدور"
-                                            class="form-control @error('authenticity_number') is-invalid is-filled @enderror" />
+                                            class="form-control @error('authenticity_number') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalCertificauthenticity_number">رقم صحة الصدور</label>
                                     </div>
                                     @error('authenticity_number')
@@ -197,7 +199,7 @@
                                         <input wire:model.lazy='grade' type="number" id="modalCertificgrade"
                                             placeholder="الدرجة"
                                             class="form-control @error('grade') is-invalid is-filled @enderror"
-                                            min="0" max="100" step="1" inputmode="numeric"
+                                            min="50" max="100" step="1" inputmode="numeric"
                                             pattern="[0-9]*" />
                                         <label for="modalCertificgrade">الدرجة</label>
                                     </div>
