@@ -13,7 +13,7 @@
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-                <div wire:loading.remove>
+                <div wire:loading.remove  wire:target="GetCertifi">
                     <form id="editCertifiModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">

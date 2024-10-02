@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Livewire\Certific;
-
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Workers\Workers;
@@ -10,12 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Graduations\Graduations;
 use App\Models\Certificates\Certificates;
 use App\Models\Specializations\Specializations;
-
 class Certifi extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-
     public $Certific = [];
     public $CertifiSearch, $Certifi, $CertifiId;
     public $user_id, $calculator_number, $document_number, $document_date, $certificate_name, $authenticity_number, $authenticity_date,  $college_name, $specialization, $graduation_year, $grade, $estimate, $duration, $issuing_country, $notes, $status;
@@ -27,26 +23,19 @@ class Certifi extends Component
     public $worker, $department, $full_name;
     public $selectedWorker = null;
     public $selectedCertificate;
-
     public $graduation_id;
-
-
     protected $listeners = [
         'SelectWorker',
     ];
-
     public function hydrate()
     {
         $this->emit('select2');
     }
-
-
     public function mount()
     {
         $this->workers = Workers::all();
         $this->Certificates = Certificates::all();
     }
-
     public function SelectWorker($workerID)
     {
         $worker = Workers::find($workerID);
@@ -60,7 +49,6 @@ class Certifi extends Component
             $this->department = null;
         }
     }
-
     public function render()
     {
         $CertifiSearch = '%' . $this->CertifiSearch . '%';
@@ -78,8 +66,6 @@ class Certifi extends Component
             'links' => $links
         ]);
     }
-
-
     public function updatedGrade($value)
     {
         $grade = (int)$value;
@@ -102,11 +88,8 @@ class Certifi extends Component
             $this->estimate = 'ضعيف';
         }
     }
-
-
     public function loadGraduations()
     {
-
         if ($this->certificate_name) {
             $this->Graduations = Graduations::where('certificates_id', $this->certificate_name)->get();
         }
@@ -121,11 +104,9 @@ class Certifi extends Component
     public function AddCertifiModalShow()
     {
         $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date',   'college_name',   'specialization', 'graduation_year', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
-
         $this->resetValidation();
         $this->dispatchBrowserEvent('CertifiModalShow');
     }
-
     public function store()
     {
         $this->resetValidation();
@@ -136,14 +117,12 @@ class Certifi extends Component
             'certificate_name' => 'required',
             'authenticity_number' => 'required',
             'authenticity_date' => 'required',
-
             'college_name' => 'required',
             'specialization' => 'required',
             'graduation_year' => 'required',
             'grade' => 'required',
             'estimate' => 'required',
             'duration' => 'required',
-
             'issuing_country' => 'required',
             'status' => 'required',
         ], [
@@ -153,18 +132,15 @@ class Certifi extends Component
             'certificate_name.required' => 'حقل الاسم مطلوب',
             'authenticity_number.required' => 'حقل الاسم مطلوب',
             'authenticity_date.required' => 'حقل الاسم مطلوب',
-
             'college_name.required' => 'حقل الاسم مطلوب',
             'specialization.required' => 'حقل الاسم مطلوب',
             'graduation_year.required' => 'حقل الاسم مطلوب',
             'grade.required' => 'حقل الاسم مطلوب',
             'duration.required' => 'حقل الاسم مطلوب',
-
             'estimate.required' => 'حقل الاسم مطلوب',
             'issuing_country.required' => 'حقل الاسم مطلوب',
             'status.required' => 'حقل الاسم مطلوب',
         ]);
-
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Certific::create([
             'user_id' => Auth::id(),
@@ -174,7 +150,6 @@ class Certifi extends Component
             'certificate_name' => $this->certificate_name,
             'authenticity_number' => $this->authenticity_number,
             'authenticity_date' => $this->authenticity_date,
-
             'college_name' => $this->college_name,
             'specialization' => $this->specialization,
             'graduation_year' => $this->graduation_year,
@@ -184,24 +159,18 @@ class Certifi extends Component
             'issuing_country' => $this->issuing_country,
             'notes' => $this->notes,
             'status' => $this->status,
-
         ]);
         $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date',   'college_name',   'specialization', 'graduation_year', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
-
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
     }
-
     public function GetCertifi($CertifiId)
     {
         $this->resetValidation();
-
-
         $this->Certifi  = Certific::find($CertifiId);
         $worker = $this->Certifi->worker;
-
         $this->CertifiId = $this->Certifi->id;
         $this->user_id = $this->Certifi->user_id;
         $this->calculator_number = $this->Certifi->calculator_number;
@@ -210,9 +179,7 @@ class Certifi extends Component
         $this->certificate_name = $this->Certifi->certificate_name;
         $this->authenticity_number = $this->Certifi->authenticity_number;
         $this->authenticity_date = $this->Certifi->authenticity_date;
-
         $this->college_name = $this->Certifi->college_name;
-
         $this->specialization = $this->Certifi->specialization;
         $this->graduation_year = $this->Certifi->graduation_year;
         $this->grade = $this->Certifi->grade;
@@ -229,19 +196,16 @@ class Certifi extends Component
             $this->department = 'N/A';
         }
     }
-
     public function update()
     {
         $this->resetValidation();
         $this->validate([
-
             'calculator_number' => 'required:certific',
             'document_number' => 'required:certific',
             'document_date' => 'required:certific',
             'certificate_name' => 'required:certific',
             'authenticity_number' => 'required:certific',
             'authenticity_date' => 'required:certific',
-
             'college_name' => 'required:certific',
             'specialization' => 'required:certific',
             'graduation_year' => 'required:certific',
@@ -257,7 +221,6 @@ class Certifi extends Component
             'certificate_name.required' => 'حقل الاسم مطلوب',
             'authenticity_number.required' => 'حقل الاسم مطلوب',
             'authenticity_date.required' => 'حقل الاسم مطلوب',
-
             'college_name.required' => 'حقل الاسم مطلوب',
             'specialization.required' => 'حقل الاسم مطلوب',
             'graduation_year.required' => 'حقل الاسم مطلوب',
@@ -267,7 +230,6 @@ class Certifi extends Component
             'issuing_country.required' => 'حقل الاسم مطلوب',
             'status.required' => 'حقل الاسم مطلوب',
         ]);
-
         $Certific = Certific::find($this->CertifiId);
         $Certific->update([
             'user_id' => Auth::id(),
@@ -286,16 +248,13 @@ class Certifi extends Component
             'issuing_country' => $this->issuing_country,
             'notes' => $this->notes,
             'status' => $this->status,
-
         ]);
         $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date',   'college_name',   'specialization', 'graduation_year', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
-
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
     }
-
     public function destroy()
     {
         $Certific = Certific::find($this->CertifiId);
