@@ -13,7 +13,7 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div class="row">
-                                <div class="mb-3 col-12">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline @error('worker') is-invalid is-filled @enderror"
                                         style="width: 100%">
                                         <select wire:model='worker' id="worker" class="form-select"
@@ -29,7 +29,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                                <div class="mb-4 col-6">
+                                <div class="mb-3 col-3">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='calculator_number' type="text"
                                             id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
@@ -41,7 +41,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                                <div class="mb-3 col-6">
+                                <div class="mb-3 col-3">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='department' type="text" id="modalEmployeedepartment"
                                             placeholder="اسم القسم"
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='document_date' type="text" id="document_date"
+                                        <input wire:model.defer='document_date' type="text" id="adddocument_date"
                                             autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                             class="form-control @error('document_date') is-invalid is-filled @enderror" />
                                         <label for="flatpickr-date">تاريخ الوثيقة</label>
@@ -103,7 +103,7 @@
                                 </div>
                             </div>
                             <div Class="row">
-                                <div class="mb-3 col">
+                                <div class="mb-3 col-3">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model='certificate_name' wire:change='loadGraduations'
                                             id="modalCertificcertificate_name"
@@ -150,7 +150,7 @@
                                     @enderror
                                 </div>
                                 <!-- حقل التخصص -->
-                                <div class="mb-3 col">
+                                <div class="mb-3 col-3">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='specialization' id="modalCertificspecialization"
                                             class="form-select @error('specialization') is-invalid is-filled @enderror">
@@ -172,7 +172,22 @@
                                 </div>
                             </div>
                             <div Class="row">
-
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='duration' id="modalCertificdurationgraduation_year"
+                                            class="form-select @error('duration') is-invalid is-filled @enderror"
+                                            name="year">
+                                            <option value="">اختر مدة القدم</option>
+                                            <option value="0">0</option>
+                                            <option value="6">6</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                        <label for="modalCertificduration">مدة القدم/بالاشهر</label>
+                                    </div>
+                                    @error('duration')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         @php
@@ -220,7 +235,8 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
+                            </div>
+                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='issuing_country' type="text"
@@ -232,8 +248,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                            </div>
-                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='notes' type="text" id="modalCertificnotes"

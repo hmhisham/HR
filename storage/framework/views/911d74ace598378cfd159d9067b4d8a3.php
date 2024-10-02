@@ -22,15 +22,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('thanks.thank')->html();
-} elseif ($_instance->childHasBeenRendered('uQBQfCi')) {
-    $componentId = $_instance->getRenderedChildComponentId('uQBQfCi');
-    $componentTag = $_instance->getRenderedChildComponentTagName('uQBQfCi');
+} elseif ($_instance->childHasBeenRendered('4F9juSe')) {
+    $componentId = $_instance->getRenderedChildComponentId('4F9juSe');
+    $componentTag = $_instance->getRenderedChildComponentTagName('4F9juSe');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('uQBQfCi');
+    $_instance->preserveRenderedChild('4F9juSe');
 } else {
     $response = \Livewire\Livewire::mount('thanks.thank');
     $html = $response->html();
-    $_instance->logRenderedChild('uQBQfCi', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('4F9juSe', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -83,20 +83,36 @@ echo $html;
         return true;
     }*/
 
-     /* تاريخ الامر الوزاري */
+     /* اضافة تاريخ الامر الوزاري */
      $(document).ready(function() {
-            window.initBirthDateDrop = () => {
-                $('#ministerial_order_date').flatpickr({
+            window.initAddBirthDateDrop = () => {
+                $('#addministerial_order_date').flatpickr({
                     placeholder: 'تاريخ الامر الوزاري',
                     //dropdownParent: $('#addPatientModal')
                 })
             }
-            initBirthDateDrop();
-            $('#ministerial_order_date').on('change', function(e) {
+            initAddBirthDateDrop();
+            $('#addministerial_order_date').on('change', function(e) {
                 livewire.emit('employeeMinisterialOrderDate', e.target.value)
             });
             window.livewire.on('flatpickr', () => {
-                initBirthDateDrop();
+                initAddBirthDateDrop();
+            });
+        });
+     /* تعديل تاريخ الامر الوزاري */
+     $(document).ready(function() {
+            window.initEditBirthDateDrop = () => {
+                $('#editministerial_order_date').flatpickr({
+                    placeholder: 'تاريخ الامر الوزاري',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initEditBirthDateDrop();
+            $('#editministerial_order_date').on('change', function(e) {
+                livewire.emit('employeeMinisterialOrderDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initEditBirthDateDrop();
             });
         });
 
@@ -120,7 +136,13 @@ echo $html;
         });
     });
 
-
+    function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
 
     $(document).ready(function() {
         window.initDepartmentDrop = () => {

@@ -70,20 +70,36 @@
         return true;
     }*/
 
-     /* تاريخ الامر الوزاري */
+     /* اضافة تاريخ الامر الوزاري */
      $(document).ready(function() {
-            window.initBirthDateDrop = () => {
-                $('#ministerial_order_date').flatpickr({
+            window.initAddBirthDateDrop = () => {
+                $('#addministerial_order_date').flatpickr({
                     placeholder: 'تاريخ الامر الوزاري',
                     //dropdownParent: $('#addPatientModal')
                 })
             }
-            initBirthDateDrop();
-            $('#ministerial_order_date').on('change', function(e) {
+            initAddBirthDateDrop();
+            $('#addministerial_order_date').on('change', function(e) {
                 livewire.emit('employeeMinisterialOrderDate', e.target.value)
             });
             window.livewire.on('flatpickr', () => {
-                initBirthDateDrop();
+                initAddBirthDateDrop();
+            });
+        });
+     /* تعديل تاريخ الامر الوزاري */
+     $(document).ready(function() {
+            window.initEditBirthDateDrop = () => {
+                $('#editministerial_order_date').flatpickr({
+                    placeholder: 'تاريخ الامر الوزاري',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initEditBirthDateDrop();
+            $('#editministerial_order_date').on('change', function(e) {
+                livewire.emit('employeeMinisterialOrderDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initEditBirthDateDrop();
             });
         });
 
@@ -107,7 +123,13 @@
         });
     });
 
-
+    function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
 
     $(document).ready(function() {
         window.initDepartmentDrop = () => {
