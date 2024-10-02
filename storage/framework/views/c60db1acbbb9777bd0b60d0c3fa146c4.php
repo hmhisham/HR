@@ -18,15 +18,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('childrens.children')->html();
-} elseif ($_instance->childHasBeenRendered('GbYiSFc')) {
-    $componentId = $_instance->getRenderedChildComponentId('GbYiSFc');
-    $componentTag = $_instance->getRenderedChildComponentTagName('GbYiSFc');
+} elseif ($_instance->childHasBeenRendered('CIMnYV4')) {
+    $componentId = $_instance->getRenderedChildComponentId('CIMnYV4');
+    $componentTag = $_instance->getRenderedChildComponentTagName('CIMnYV4');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('GbYiSFc');
+    $_instance->preserveRenderedChild('CIMnYV4');
 } else {
     $response = \Livewire\Livewire::mount('childrens.children');
     $html = $response->html();
-    $_instance->logRenderedChild('GbYiSFc', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('CIMnYV4', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -74,20 +74,36 @@ echo $html;
             });
         });
 
-        /* تاريخ التولد */
+        /* اضافة تاريخ التولد */
         $(document).ready(function() {
-            window.initBirthDateDrop = () => {
-                $('#birth_date').flatpickr({
+            window.initAddBirthDateDrop = () => {
+                $('#addbirth_date').flatpickr({
                     placeholder: 'تاريخ التولد',
                     //dropdownParent: $('#addPatientModal')
                 })
             }
-            initBirthDateDrop();
-            $('#birth_date').on('change', function(e) {
+            initAddBirthDateDrop();
+            $('#addbirth_date').on('change', function(e) {
                 livewire.emit('employeeBirthDate', e.target.value)
             });
             window.livewire.on('flatpickr', () => {
-                initBirthDateDrop();
+                initAddBirthDateDrop();
+            });
+        });
+        /* تعديل تاريخ التولد */
+        $(document).ready(function() {
+            window.initEditBirthDateDrop = () => {
+                $('#editbirth_date').flatpickr({
+                    placeholder: 'تاريخ التولد',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initEditBirthDateDrop();
+            $('#editbirth_date').on('change', function(e) {
+                livewire.emit('employeeBirthDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initEditBirthDateDrop();
             });
         });
 

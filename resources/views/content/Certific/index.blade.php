@@ -44,37 +44,69 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        /* تاريخ الوثيقة */
+        /*  اضافة تاريخ الوثيقة */
         $(document).ready(function() {
-            window.initDocumentDateDrop = () => {
-                $('#document_date').flatpickr({
+            window.initAddDocumentDateDrop = () => {
+                $('#adddocument_date').flatpickr({
                     placeholder: 'تاريخ الوثيقة',
                     //dropdownParent: $('#addPatientModal')
                 })
             }
-            initDocumentDateDrop();
-            $('#document_date').on('change', function(e) {
+            initAddDocumentDateDrop();
+            $('#adddocument_date').on('change', function(e) {
                 livewire.emit('employeeDocumentDate', e.target.value)
             });
             window.livewire.on('flatpickr', () => {
-                initDocumentDateDrop();
+                initAddDocumentDateDrop();
+            });
+        });
+        /* تعديل تاريخ الوثيقة */
+        $(document).ready(function() {
+            window.initEditDocumentDateDrop = () => {
+                $('#editdocument_date').flatpickr({
+                    placeholder: 'تاريخ الوثيقة',
+                    //dropdownParent: $('#editPatientModal')
+                })
+            }
+            initEditDocumentDateDrop();
+            $('#editdocument_date').on('change', function(e) {
+                livewire.emit('employeeDocumentDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initEditDocumentDateDrop();
             });
         });
 
-        /* تاريخ صحة الصدور */
+        /* اضافة تاريخ صحة الصدور */
         $(document).ready(function() {
-            window.initAuthenticityDateDrop = () => {
-                $('#authenticity_date').flatpickr({
+            window.initAddAuthenticityDateDrop = () => {
+                $('#addauthenticity_date').flatpickr({
                     placeholder: 'تاريخ صحة الصدور',
                     //dropdownParent: $('#addPatientModal')
                 })
             }
-            initAuthenticityDateDrop();
-            $('#authenticity_date').on('change', function(e) {
+            initAddAuthenticityDateDrop();
+            $('#addauthenticity_date').on('change', function(e) {
                 livewire.emit('employeeAuthenticityDate', e.target.value)
             });
             window.livewire.on('flatpickr', () => {
-                initAuthenticityDateDrop();
+                initAddAuthenticityDateDrop();
+            });
+        });
+        /* تعديل تاريخ صحة الصدور */
+        $(document).ready(function() {
+            window.initEditAuthenticityDateDrop = () => {
+                $('#editauthenticity_date').flatpickr({
+                    placeholder: 'تاريخ صحة الصدور',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initEditAuthenticityDateDrop();
+            $('#editauthenticity_date').on('change', function(e) {
+                livewire.emit('employeeAuthenticityDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initEditAuthenticityDateDrop();
             });
         });
 

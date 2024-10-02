@@ -5,21 +5,21 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل</h3>
+                    <h3 class="pb-1 mb-2">تعديل بيانات كتاب الشكر والتقدير</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
                 
-
                 <div wire:loading.remove>
                     <form id="editThankModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
-                                <div class="mb-3">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='full_name' type="text" id="modalEmployeefull_name"
-                                            placeholder=" اسم الموظف"
-                                            class="form-control <?php $__errorArgs = ['full_name'];
+                                <div class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='full_name' type="text"
+                                                id="modalEmployeefull_name" placeholder=" اسم الموظف"
+                                                class="form-control <?php $__errorArgs = ['full_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -27,22 +27,21 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                            disabled />
-                                        <label for="modalEmployeefull_name">اسم الموظف</label>
-                                    </div>
-                                    <?php $__errorArgs = ['full_name'];
+                                                disabled />
+                                            <label for="modalEmployeefull_name">اسم الموظف</label>
+                                        </div>
+                                        <?php $__errorArgs = ['full_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                        <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                    <?php unset($message);
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                </div>
-                                <div class="row">
-                                    <div class="mb-3 col">
+                                    </div>
+                                    <div class="mb-3 col-3">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='calculator_number' type="text"
                                                 id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
@@ -68,7 +67,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-3 col-3">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='get_departmen' type="text" id="get_departmen"
                                                 placeholder="اسم القسم"
@@ -126,58 +125,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-                                </div>
-                                <Div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='ministerial_order_number' type="text"
-                                                id="modalThankministerial_order_number" placeholder="رقم الامر الوزاري"
-                                                class="form-control <?php $__errorArgs = ['ministerial_order_number'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" />
-                                            <label for="modalThankministerial_order_number">رقم الامر الوزاري</label>
-                                        </div>
-                                        <?php $__errorArgs = ['ministerial_order_number'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                    </div>
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='ministerial_order_date' type="text"
-                                                id="modalThankministerial_order_date" placeholder="تاريخ الامر الوزاري"
-                                                class="form-control <?php $__errorArgs = ['ministerial_order_date'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" />
-                                            <label for="modalThankministerial_order_date">تاريخ الامر الوزاري</label>
-                                        </div>
-                                        <?php $__errorArgs = ['ministerial_order_date'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
-                                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                    </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='reason' type="text" id="modalThankreason"
@@ -207,6 +154,57 @@ unset($__errorArgs, $__bag); ?>
                                 <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='ministerial_order_number' type="text"
+                                                id="modalThankministerial_order_number" placeholder="رقم الامر الوزاري"
+                                                class="form-control <?php $__errorArgs = ['ministerial_order_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                                onkeypress="return onlyNumberKey(event)" />
+                                            <label for="modalThankministerial_order_number">رقم الامر الوزاري</label>
+                                        </div>
+                                        <?php $__errorArgs = ['ministerial_order_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='ministerial_order_date' type="text"
+                                                id="editministerial_order_date" placeholder="تاريخ الامر الوزاري"
+                                                class="form-control <?php $__errorArgs = ['ministerial_order_date'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid is-filled <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" />
+                                            <label for="modalThankministerial_order_date">تاريخ الامر الوزاري</label>
+                                        </div>
+                                        <?php $__errorArgs = ['ministerial_order_date'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class='text-danger inputerror'> <?php echo e($message); ?> </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
                                             <select wire:model.defer="months_of_service" id="months_of_service"
                                                 class="form-select <?php $__errorArgs = ['months_of_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -233,6 +231,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
+                                </div>
+                                <Div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='notes' type="text" id="modalThanknotes"

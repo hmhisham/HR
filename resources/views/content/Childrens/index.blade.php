@@ -61,20 +61,36 @@
             });
         });
 
-        /* تاريخ التولد */
+        /* اضافة تاريخ التولد */
         $(document).ready(function() {
-            window.initBirthDateDrop = () => {
-                $('#birth_date').flatpickr({
+            window.initAddBirthDateDrop = () => {
+                $('#addbirth_date').flatpickr({
                     placeholder: 'تاريخ التولد',
                     //dropdownParent: $('#addPatientModal')
                 })
             }
-            initBirthDateDrop();
-            $('#birth_date').on('change', function(e) {
+            initAddBirthDateDrop();
+            $('#addbirth_date').on('change', function(e) {
                 livewire.emit('employeeBirthDate', e.target.value)
             });
             window.livewire.on('flatpickr', () => {
-                initBirthDateDrop();
+                initAddBirthDateDrop();
+            });
+        });
+        /* تعديل تاريخ التولد */
+        $(document).ready(function() {
+            window.initEditBirthDateDrop = () => {
+                $('#editbirth_date').flatpickr({
+                    placeholder: 'تاريخ التولد',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initEditBirthDateDrop();
+            $('#editbirth_date').on('change', function(e) {
+                livewire.emit('employeeBirthDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initEditBirthDateDrop();
             });
         });
 

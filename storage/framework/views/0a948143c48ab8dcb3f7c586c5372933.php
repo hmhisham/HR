@@ -10,19 +10,19 @@
     <link rel=" stylesheet" href=" <?php echo e(asset('assets/vendor/libs/sweetalert2/sweetalert2.css')); ?>" />
     <link rel=" stylesheet" href="<?php echo e(asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')); ?>" />
         <?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?> 
+<?php $__env->startSection('content'); ?>
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('certificates.certificate')->html();
-} elseif ($_instance->childHasBeenRendered('MUO05x8')) {
-    $componentId = $_instance->getRenderedChildComponentId('MUO05x8');
-    $componentTag = $_instance->getRenderedChildComponentTagName('MUO05x8');
+} elseif ($_instance->childHasBeenRendered('UnHOQ8P')) {
+    $componentId = $_instance->getRenderedChildComponentId('UnHOQ8P');
+    $componentTag = $_instance->getRenderedChildComponentTagName('UnHOQ8P');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('MUO05x8');
+    $_instance->preserveRenderedChild('UnHOQ8P');
 } else {
     $response = \Livewire\Livewire::mount('certificates.certificate');
     $html = $response->html();
-    $_instance->logRenderedChild('MUO05x8', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('UnHOQ8P', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -63,9 +63,9 @@ echo $html;
         window.addEventListener('CertificateModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addcertificateModal').modal('hide');
             $('#editcertificateModal').modal('hide');
@@ -82,8 +82,9 @@ echo $html;
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts/layoutMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\11\Desktop\HR\resources\views/content/Certificates/index.blade.php ENDPATH**/ ?>
