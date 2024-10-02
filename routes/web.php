@@ -14,7 +14,6 @@ use App\Http\Controllers\Branch\BranchController;
 
 use App\Http\Controllers\Grades\GradesController;
 
-use App\Http\Controllers\Gyears\GyearsController;
 use App\Http\Controllers\Thanks\ThanksController;
 use App\Http\Controllers\Coaches\CoachesController;
 
@@ -158,8 +157,6 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Childrens', ChildrensController::class);
         // التنمسيب
         Route::RESOURCE('Placements', PlacementsController::class);
-        //  السنوات
-        Route::RESOURCE('Gyears', GyearsController::class);
     });
 });
 

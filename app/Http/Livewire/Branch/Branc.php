@@ -41,7 +41,6 @@ class Branc extends Component
             ->orWhere('branch_name', 'LIKE', $BranchSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
-
         $this->Branches = collect($Branch->items());
         return view('livewire.branch.branc', [
             'links' => $Branch,
@@ -71,20 +70,18 @@ class Branc extends Component
         $this->validate([
             'linkage_id' => 'required:branch',
             'section_id' => 'required:branch',
-            'branch_name' => 'required|unique:branch,branch_name,NULL,id,section_id,'. $this->section_id.',linkage_id,'.$this->linkage_id,
+            'branch_name' => 'required|unique:branch,branch_name,NULL,id,section_id,' . $this->section_id . ',linkage_id,' . $this->linkage_id,
         ], [
             'linkage_id.required' => 'حقل الارتباط مطلوب',
             'section_id.required' => 'حقل القسم مطلوب',
             'branch_name.required' => 'حقل الشعبة مطلوب',
             'branch_name.unique' => 'أسم الشعبة موجود',
         ]);
-
         Branch::create([
             'linkage_id' => $this->linkage_id,
             'section_id' => $this->section_id,
             'branch_name' => $this->branch_name,
         ]);
-
         $this->reset(['linkage_id', 'section_id', 'branch_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافة بنجاح',
@@ -100,9 +97,7 @@ class Branc extends Component
         $this->section_id = $this->Branch->section_id;
         $this->linkage_id = $this->Branch->linkage_id;
         $this->branch_name = $this->Branch->branch_name;
-
         $this->sections = $this->Branch->Getlinkage->GetSections;
-
         $this->linkageName = $this->Branch->Getsection->Getlinkage->Linkages_name;
         $this->SectionsName = $this->Branch->Getsection->section_name;
     }
@@ -114,21 +109,19 @@ class Branc extends Component
             'linkage_id' => 'required:branch',
             'section_id' => 'required:branch',
             //'branch_name' => 'required|unique:branch,branch_name,NULL,id,section_id,'. $this->section_id,
-            'branch_name' => 'required|unique:branch,branch_name,' . $this->Branch->id . ',id,section_id,' . $this->section_id.',linkage_id,'.$this->linkage_id
+            'branch_name' => 'required|unique:branch,branch_name,' . $this->Branch->id . ',id,section_id,' . $this->section_id . ',linkage_id,' . $this->linkage_id
         ], [
             'linkage_id.required' => 'حقل الارتباط مطلوب',
             'section_id.required' => 'حقل القسم مطلوب',
             'branch_name.required' => 'حقل الشعبة مطلوب',
             'branch_name.unique' => 'أسم الشعبة موجود',
         ]);
-
         $Branch = Branch::find($this->BranchId);
         $Branch->update([
             'linkage_id' => $this->linkage_id,
             'section_id' => $this->section_id,
             'branch_name' => $this->branch_name,
         ]);
-
         $this->reset(['linkage_id', 'section_id', 'branch_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
@@ -138,7 +131,7 @@ class Branc extends Component
 
     public function destroy()
     {
-        $Branch = Branch::find($this->BrancId);
+        $Branch = Branch::find($this->BranchId);
         $Branch->delete();
         $this->reset(['linkage_id', 'section_id', 'branch_name']);
         $this->dispatchBrowserEvent('success', [
