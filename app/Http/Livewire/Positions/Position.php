@@ -108,7 +108,7 @@ class Position extends Component
 
     public function AddPositionModalShow()
     {
-        $this->reset(['worker_id','linkage_id','section_id','branch_id','unit_id','position_name','position_order_number','position_order_date','position_start_date','commissioning_type','commissioning_statu','p_notes']);
+        $this->reset(['worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'position_name', 'position_order_number', 'position_order_date', 'position_start_date', 'commissioning_type', 'commissioning_statu', 'p_notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('PositionModalShow');
     }
@@ -129,7 +129,7 @@ class Position extends Component
             'position_start_date' => 'required',
             'commissioning_type' => 'required',
             'commissioning_statu' => 'required',
-            'p_notes' => 'required',
+
 
         ], [
             'worker_id.required' => 'حقل الاسم مطلوب',
@@ -143,7 +143,7 @@ class Position extends Component
             'position_start_date.required' => 'حقل تاريخ المباشرة بالنصب مطلوب',
             'commissioning_type.required' => 'حقل نوع التكليف مطلوب',
             'commissioning_statu.required' => 'حقل حالة التكليف مطلوب',
-            'p_notes.required' => 'حقل ملاحظات مطلوب',
+
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -198,7 +198,7 @@ class Position extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'user_id' => 'required:positions',
+
             'worker_id' => 'required:positions',
             'linkage_id' => 'required:positions',
             'section_id' => 'required:positions',
@@ -210,10 +210,10 @@ class Position extends Component
             'position_start_date' => 'required:positions',
             'commissioning_type' => 'required:positions',
             'commissioning_statu' => 'required:positions',
-            'p_notes' => 'required:positions',
+
 
         ], [
-            'user_id.required' => 'حقل رقم المستخدم مطلوب',
+         
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
             'section_id.required' => 'حقل القسم مطلوب',
@@ -225,12 +225,12 @@ class Position extends Component
             'position_start_date.required' => 'حقل تاريخ المباشرة بالنصب مطلوب',
             'commissioning_type.required' => 'حقل نوع التكليف مطلوب',
             'commissioning_statu.required' => 'حقل حالة التكليف مطلوب',
-            'p_notes.required' => 'حقل ملاحظات مطلوب',
+
         ]);
 
         $Positions = Positions::find($this->PositionId);
         $Positions->update([
-            'user_id' => $this->user_id,
+            'user_id' => Auth::id(),
             'worker_id' => $this->worker_id,
             'linkage_id' => $this->linkage_id,
             'section_id' => $this->section_id,
