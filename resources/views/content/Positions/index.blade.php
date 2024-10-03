@@ -19,7 +19,6 @@
 @section('content')
     @livewire('positions.position')
 
-
 @endsection
 
 @section('vendor-script')
@@ -118,39 +117,39 @@
             return true;
         }
 
-      // add Workers
-    $(document).ready(function() {
-             window.initAddWorkersDrop = () => {
-            $('#addPositionworker_id').select2({
-                placeholder: 'اختيار',
-                dropdownParent: $('#addpositionModal')
+        // add Workers
+        $(document).ready(function() {
+            window.initAddWorkersDrop = () => {
+                $('#addPositionworker_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addpositionModal')
+                });
+            }
+            initAddWorkersDrop();
+            $('#addPositionworker_id').on('change', function(e) {
+                livewire.emit('SelectWorkerId', e.target.value);
             });
-        }
-            initAddWorkersDrop();
-        $('#addPositionworker_id').on('change', function(e) {
-            livewire.emit('SelectWorkerId', e.target.value);
+            window.livewire.on('select2', () => {
+                initAddWorkersDrop();
+            });
         });
-        window.livewire.on('select2', () => {
-            initAddWorkersDrop();
-        });
-    });
 
- // edit Workers
-    $(document).ready(function() {
-             window.initEditWorkersDrop = () => {
-            $('#editPositionworker_id').select2({
-                placeholder: 'اختيار',
-                dropdownParent: $('#editpositionModal')
+        // edit Workers
+        $(document).ready(function() {
+            window.initEditWorkersDrop = () => {
+                $('#editPositionworker_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editpositionModal')
+                });
+            }
+            initEditWorkersDrop();
+            $('#editPositionworker_id').on('change', function(e) {
+                livewire.emit('SelectWorkerId', e.target.value);
             });
-        }
-            initEditWorkersDrop();
-        $('#editPositionworker_id').on('change', function(e) {
-            livewire.emit('SelectWorkerId', e.target.value);
+            window.livewire.on('select2', () => {
+                initEditWorkersDrop();
+            });
         });
-        window.livewire.on('select2', () => {
-            initEditWorkersDrop();
-        });
-    });
 
 
         /* addLinkage */
@@ -327,5 +326,10 @@
             })
 
         })
+
+//         document.addEventListener('reinitialize-select2', function () {
+//     // إعادة تهيئة Select2
+//     $('.select2').select2();
+// });
     </script>
 @endsection
