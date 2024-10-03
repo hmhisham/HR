@@ -108,6 +108,11 @@ $container = $container ?? 'container-xxl';
                                 <div>الشهادات</div>
                             </a>
                         </li>
+                        <li Class="menu-item {{ request()->Is('Placements') ? 'active' : '' }}">
+                            <a href = "{{ Route('Placements.index') }}" Class="menu-link">
+                                <div>التنسيب</div>
+                            </a>
+                        </li>
                         <li Class="menu-item {{ request()->Is('Thanks') ? 'active' : '' }}">
                             <a href="{{ Route('Thanks.index') }}" Class="menu-link">
                                 <div>الشكر و التقدير</div>
@@ -148,11 +153,6 @@ $container = $container ?? 'container-xxl';
                             <a href="" Class="menu-link">
                                 <i Class=''></i>
                                 <div>الترفيعات</div>
-                            </a>
-                        </li>
-                        <li Class="menu-item {{ request()->Is('Placements') ? 'active' : '' }}">
-                            <a href = "{{ Route('Placements.index') }}" Class="menu-link">
-                                <div>التنسيب</div>
                             </a>
                         </li>
                     </ul>
@@ -281,7 +281,7 @@ $container = $container ?? 'container-xxl';
                             </a>
                         </li>
 
-                     
+
 
                         {{-- التخرج --}}
                         <li Class="menu-item {{ request()->Is('Graduations') ? 'active' : '' }}">

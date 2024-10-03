@@ -72,7 +72,7 @@
                                             <select wire:model.defer='p_issuing_authority'
                                                 id="modalPenaltiep_issuing_authority"
                                                 class="form-select @error('p_issuing_authority') is-invalid is-filled @enderror">
-                                                <option value=""></option>
+                                                <option value="">اختر الجهة</option>
                                                 @foreach ($department as $departmen)
                                                     <option value="{{ $departmen->id }}">
                                                         {{ $departmen->department_name }}
