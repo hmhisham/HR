@@ -111,13 +111,13 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer="months_of_service" id="months_of_service"
+                                            <select wire:model.defer="months_of_service" id="modalEmployeemonths_of_service"
                                                 class="form-select @error('months_of_service') is-invalid is-filled @enderror">
                                                 <option value="" disabled selected>عدد الاشهر</option>
                                                 <option value="1">1</option>
                                                 <option value="6">6</option>
                                             </select>
-                                            <label for="modalEmployeemonths_of_service">عدد الاشهر </label>
+                                            <label for="modalEmployeemonths_of_service">مدة القدم/عدد الاشهر</label>
                                         </div>
                                         @error('months_of_service')
                                             <small class="text-danger inputerror">{{ $message }}</small>

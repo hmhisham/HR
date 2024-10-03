@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('p_ministerial_order_number')->comment('رقم الامر الوزاري');
             $table->date('p_ministerial_order_date')->comment('تاريخ الامر الوزاري');
             $table->string('p_penalty_type')->comment('نوع العقوبة');
+            $table->integer('duration _of_delay')->nullable()->comment('مدة التاخير');
             $table->text('p_notes')->comment('ملاحظات');
             $table->timestamps();
         });

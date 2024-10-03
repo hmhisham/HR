@@ -70,7 +70,7 @@ class Certifi extends Component
     {
         $grade = (int)$value;
         if ($grade < 50 || $grade > 100) {
-            $this->addError('grade', 'الدرجة يجب أن تكون بين 0 و 100.');
+            $this->addError('grade', 'الدرجة يجب أن تكون بين 50 و 100.');
             $this->grade = '';
             $this->estimate = '';
             return;

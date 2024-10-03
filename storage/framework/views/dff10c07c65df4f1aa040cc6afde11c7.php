@@ -205,7 +205,7 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer="months_of_service" id="months_of_service"
+                                            <select wire:model.defer="months_of_service" id="modalEmployeemonths_of_service"
                                                 class="form-select <?php $__errorArgs = ['months_of_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -218,7 +218,7 @@ unset($__errorArgs, $__bag); ?>">
                                                 <option value="1">1</option>
                                                 <option value="6">6</option>
                                             </select>
-                                            <label for="modalEmployeemonths_of_service">عدد الاشهر </label>
+                                            <label for="modalEmployeemonths_of_service">مدة القدم/عدد الاشهر</label>
                                         </div>
                                         <?php $__errorArgs = ['months_of_service'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
