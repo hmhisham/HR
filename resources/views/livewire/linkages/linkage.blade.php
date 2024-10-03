@@ -1,5 +1,5 @@
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semiboyld">نافذة الارتباط</h4>
+    <h4 class="mb-1 fw-semiboyld">الارتباطات</h4>
     <div class="card">
         <div class="card">
             <div class="card-header">
@@ -36,14 +36,14 @@
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('linkage-edit')
                                             <button wire:click="GetLinkage({{ $Linkage->id }})"
-                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editlinkageModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('linkage-delete')
                                             <button wire:click="GetLinkage({{ $Linkage->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Linkage->active ? 'disabled' : '' }}"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect {{ $Linkage->active ? 'disabled' : '' }}"
                                                 data-bs-toggle = "modal" data-bs-target="#removelinkageModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>
