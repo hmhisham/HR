@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Positions')
 @section('vendor-style')
@@ -11,9 +10,14 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
-@section('content') 
-@livewire('positions.position')
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
+@endsection
+@section('content')
+    @livewire('positions.position')
 
 
 @endsection
@@ -29,6 +33,11 @@
     <script src=" {{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
 @endsection
 
 @section('page-script')
@@ -36,6 +45,250 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        /* اضافة تاريخ امر التكليف */
+        $(document).ready(function() {
+            window.initAddPositionOrderDateDrop = () => {
+                $('#addposition_order_date').flatpickr({
+                    placeholder: 'تاريخ امر التنسيب',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initAddPositionOrderDateDrop();
+            $('#addposition_order_date').on('change', function(e) {
+                livewire.emit('employeePositionOrderDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initAddPositionOrderDateDrop();
+            });
+        });
+        /* تعديل تاريخ امر التكليف */
+        $(document).ready(function() {
+            window.initEditPositionOrderDateDrop = () => {
+                $('#editposition_order_date').flatpickr({
+                    placeholder: 'تاريخ امر التنسيب',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initEditPositionOrderDateDrop();
+            $('#editposition_order_date').on('change', function(e) {
+                livewire.emit('employeePositionOrderDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initEditPositionOrderDateDrop();
+            });
+        });
+        /* اضافة تاريخ المباشرة */
+        $(document).ready(function() {
+            window.initAddPositionStartDateDrop = () => {
+                $('#addposition_start_date').flatpickr({
+                    placeholder: 'تاريخ المباشرة',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initAddPositionStartDateDrop();
+            $('#addposition_start_date').on('change', function(e) {
+                livewire.emit('employeePositionStartDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initAddPositionStartDateDrop();
+            });
+        });
+        /* تعديل تاريخ المباشرة */
+        $(document).ready(function() {
+            window.initEditPositionStartDateDrop = () => {
+                $('#editposition_start_date').flatpickr({
+                    placeholder: 'تاريخ المباشرة',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initEditPositionStartDateDrop();
+            $('#editposition_start_date').on('change', function(e) {
+                livewire.emit('employeePositionStartDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initEditPositionStartDateDrop();
+            });
+        });
+
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+
+        //تحميل بيانات الاسم
+        $(document).ready(function() {
+            window.initWorkersDrop = () => {
+                $('#modalPositionworker_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addpositionModal')
+                });
+            }
+            initWorkersDrop();
+            $('#modalPositionworker_id').on('change', function(e) {
+                livewire.emit('SelectWorkerId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initWorkersDrop();
+            });
+        });
+
+        //تحميل بيانات الاسم
+        $(document).ready(function() {
+            window.initWorkersDrop = () => {
+                $('#modalPositionworker_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editpositionModal')
+                });
+            }
+            initWorkersDrop();
+            $('#modalPositionworker_id').on('change', function(e) {
+                livewire.emit('SelectWorkerId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initWorkersDrop();
+            });
+        });
+
+        /* addLinkage */
+        $(document).ready(function() {
+            window.initAddLinkageDrop = () => {
+                $('#addLinkage').select2({
+                    placeholder: 'حدد الارتباط',
+                    dropdownParent: $('#addpositionModal')
+                })
+            }
+            initAddLinkageDrop();
+            $('#addLinkage').on('change', function(e) {
+                livewire.emit('GetLinkage', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddLinkageDrop();
+            });
+        });
+
+
+        /* addSection */
+        $(document).ready(function() {
+            window.initAddSectionDrop = () => {
+                $('#addSection').select2({
+                    placeholder: 'حدد القسم',
+                    dropdownParent: $('#addpositionModal')
+                })
+            }
+            initAddSectionDrop();
+            $('#addSection').on('change', function(e) {
+                livewire.emit('GetSection', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddSectionDrop();
+            });
+        });
+
+        /* addBranch */
+        $(document).ready(function() {
+            window.initAddBranchDrop = () => {
+                $('#addBranch').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addpositionModal')
+                });
+            }
+            initAddBranchDrop();
+            $('#addBranch').on('change', function(e) {
+                livewire.emit('GetBranch', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddBranchDrop();
+            });
+        });
+
+        /* addUnit */
+        $(document).ready(function() {
+            window.initAddUnitDrop = () => {
+                $('#addUnit').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addpositionModal')
+                });
+            }
+            initAddUnitDrop();
+            $('#addUnit').on('change', function(e) {
+                livewire.emit('GetUnit', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddUnitDrop();
+            });
+        });
+
+        /* editLinkage */
+        $(document).ready(function() {
+            window.initEditLinkageDrop = () => {
+                $('#editLinkage').select2({
+                    placeholder: 'حدد الارتباط',
+                    dropdownParent: $('#editpositionModal')
+                })
+            }
+            initEditLinkageDrop();
+            $('#editLinkage').on('change', function(e) {
+                livewire.emit('GetLinkage', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initEditLinkageDrop();
+            });
+        });
+        /* editSection */
+        $(document).ready(function() {
+            window.initEditSectionDrop = () => {
+                $('#editSection').select2({
+                    placeholder: 'حدد القسم',
+                    dropdownParent: $('#editpositionModal')
+                })
+            }
+            initEditSectionDrop();
+            $('#editSection').on('change', function(e) {
+                livewire.emit('GetSection', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initEditSectionDrop();
+            });
+        });
+
+        /* editBranch */
+        $(document).ready(function() {
+            window.initEditBranchDrop = () => {
+                $('#editBranch').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editpositionModal')
+                });
+            }
+            initEditBranchDrop();
+            $('#editBranch').on('change', function(e) {
+                livewire.emit('GetBranch', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditBranchDrop();
+            });
+        });
+
+        /* editUnit */
+        $(document).ready(function() {
+            window.initEditUnitDrop = () => {
+                $('#editUnit').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editpositionModal')
+                });
+            }
+            initEditUnitDrop();
+            $('#editUnit').on('change', function(e) {
+                livewire.emit('GetUnit', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditUnitDrop();
+            });
+        });
+
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -50,10 +303,10 @@
 
         window.addEventListener('PositionModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);  
+                $('#id').focus();
+            }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addpositionModal').modal('hide');
             $('#editpositionModal').modal('hide');
@@ -63,9 +316,6 @@
                 title: event.detail.message
             })
         })
-           
-
-            
 
         window.addEventListener('error', event => {
             $('#removepositionModal').modal('hide');
@@ -74,7 +324,7 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

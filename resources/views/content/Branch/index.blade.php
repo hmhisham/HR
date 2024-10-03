@@ -53,7 +53,7 @@
             });
         });
 
-        
+
         /* addSection */
         $(document).ready(function() {
             window.initAddSectionDrop = () => {

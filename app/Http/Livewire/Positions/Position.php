@@ -4,24 +4,85 @@ namespace App\Http\Livewire\Positions;
 
 use Livewire\Component;
 
+use App\Models\Units\Units;
 use Livewire\WithPagination;
+use App\Models\Branch\Branch;
+use App\Models\Workers\Workers;
+use App\Models\Linkages\Linkages;
+use App\Models\Sections\Sections;
 use App\Models\Positions\Positions;
+use Illuminate\Support\Facades\Auth;
 
 class Position extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
+    public $workers = [];
+    public $linkages = [];
+    public $sections = [];
+    public $branch = [];
+    public $units = [];
     public $Positions = [];
     public $PositionSearch, $Position, $PositionId;
-    public   $user_id, $worker_id, $linkage_id, $section_id, $branch_id, $unit_id, $position_name, $position_order_number, $position_order_date, $position_start_date, $commissioning_type, $commissioning_statu, $p_notes;
+    public $user_id, $worker_id, $linkage_id, $section_id, $branch_id, $unit_id, $position_name, $position_order_number, $position_order_date, $position_start_date, $commissioning_type, $commissioning_statu, $p_notes;
 
+
+    protected $listeners = [
+        'SelectWorkerId',
+        'GetLinkage',
+        'GetSection',
+        'GetBranch',
+        'GetUnit',
+    ];
+    public function hydrate()
+    {
+        $this->emit('select2');
+        $this->emit('flatpickr');
+    }
+    public function mount()
+    {
+        $this->workers = Workers::all();
+        $this->linkages = Linkages::all();
+    }
+
+    public function SelectWorkerId($WorkerIdID)
+    {
+        $worker_id = Workers::find($WorkerIdID);
+        if ($worker_id) {
+            $this->worker_id = $WorkerIdID;
+        } else {
+            $this->worker_id = null;
+        }
+    }
+
+    public function GetLinkage($Linkage_id)
+    {
+        $this->linkage_id = $Linkage_id;
+        $this->sections = Sections::where('linkage_id', $Linkage_id)->get();
+    }
+
+    public function GetSection($Section_id)
+    {
+        $this->section_id = $Section_id;
+        $this->branch = Branch::where('section_id', $Section_id)->get();
+    }
+
+    public function GetBranch($Branch_id)
+    {
+        $this->branch_id = $Branch_id;
+        $this->units = Units::where('branch_id', $Branch_id)->get();
+    }
+
+    public function GetUnit($Unit_id)
+    {
+        $this->unit_id = $Unit_id;
+    }
 
     public function render()
     {
         $PositionSearch = '%' . $this->PositionSearch . '%';
-        $Positions = Positions::where('id', 'LIKE', $PositionSearch)
-            ->orWhere('user_id', 'LIKE', $PositionSearch)
+        $Positions = Positions::where('user_id', 'LIKE', $PositionSearch)
             ->orWhere('worker_id', 'LIKE', $PositionSearch)
             ->orWhere('linkage_id', 'LIKE', $PositionSearch)
             ->orWhere('section_id', 'LIKE', $PositionSearch)
@@ -47,7 +108,7 @@ class Position extends Component
 
     public function AddPositionModalShow()
     {
-        $this->reset();
+        $this->reset(['worker_id','linkage_id','section_id','branch_id','unit_id','position_name','position_order_number','position_order_date','position_start_date','commissioning_type','commissioning_statu','p_notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('PositionModalShow');
     }
@@ -57,8 +118,6 @@ class Position extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'id' => 'required',
-            'user_id' => 'required',
             'worker_id' => 'required',
             'linkage_id' => 'required',
             'section_id' => 'required',
@@ -73,8 +132,6 @@ class Position extends Component
             'p_notes' => 'required',
 
         ], [
-            'id.required' => 'حقل  مطلوب',
-            'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
             'section_id.required' => 'حقل القسم مطلوب',
@@ -93,7 +150,7 @@ class Position extends Component
 
 
         Positions::create([
-            'id' => $this->id,
+            'user_id' => Auth::id(),
             'user_id' => $this->user_id,
             'worker_id' => $this->worker_id,
             'linkage_id' => $this->linkage_id,
@@ -122,7 +179,6 @@ class Position extends Component
 
         $this->Position  = Positions::find($PositionId);
         $this->PositionId = $this->Position->id;
-        $this->id = $this->Position->id;
         $this->user_id = $this->Position->user_id;
         $this->worker_id = $this->Position->worker_id;
         $this->linkage_id = $this->Position->linkage_id;
@@ -142,7 +198,6 @@ class Position extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'id' => 'required:positions',
             'user_id' => 'required:positions',
             'worker_id' => 'required:positions',
             'linkage_id' => 'required:positions',
@@ -158,7 +213,6 @@ class Position extends Component
             'p_notes' => 'required:positions',
 
         ], [
-            'id.required' => 'حقل  مطلوب',
             'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
@@ -176,7 +230,6 @@ class Position extends Component
 
         $Positions = Positions::find($this->PositionId);
         $Positions->update([
-            'id' => $this->id,
             'user_id' => $this->user_id,
             'worker_id' => $this->worker_id,
             'linkage_id' => $this->linkage_id,

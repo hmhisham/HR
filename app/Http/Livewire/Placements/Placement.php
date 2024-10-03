@@ -37,7 +37,7 @@ class Placement extends Component
     {
         $this->workers = Workers::all();
         $this->linkages = Linkages::all();
-         
+
     }
 
     public function SelectWorkerId($WorkerIdID)
