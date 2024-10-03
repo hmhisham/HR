@@ -41,8 +41,6 @@ class Placement extends Component
         }
     }
 
-
-
     public function render()
     {
         $PlacementSearch = '%' . $this->PlacementSearch . '%';

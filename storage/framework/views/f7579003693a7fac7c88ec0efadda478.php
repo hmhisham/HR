@@ -14,15 +14,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('branch.branc')->html();
-} elseif ($_instance->childHasBeenRendered('07kulL5')) {
-    $componentId = $_instance->getRenderedChildComponentId('07kulL5');
-    $componentTag = $_instance->getRenderedChildComponentTagName('07kulL5');
+} elseif ($_instance->childHasBeenRendered('Ay97UOB')) {
+    $componentId = $_instance->getRenderedChildComponentId('Ay97UOB');
+    $componentTag = $_instance->getRenderedChildComponentTagName('Ay97UOB');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('07kulL5');
+    $_instance->preserveRenderedChild('Ay97UOB');
 } else {
     $response = \Livewire\Livewire::mount('branch.branc');
     $html = $response->html();
-    $_instance->logRenderedChild('07kulL5', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('Ay97UOB', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -64,6 +64,8 @@ echo $html;
                 initAddLinkageDrop();
             });
         });
+
+
         /* addSection */
         $(document).ready(function() {
             window.initAddSectionDrop = () => {

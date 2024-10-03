@@ -58,11 +58,6 @@ class Branc extends Component
         $this->section_id = $Section_id;
     }
 
-
-
-
- 
-
     public function AddBrancModalShow()
     {
         $this->reset(['linkage_id', 'section_id', 'branch_name', 'sections']);
