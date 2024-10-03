@@ -22,15 +22,13 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='worker_id' id="modalPositionworker_id"
-                                                class="form-select @error('worker_id') is-invalid is-filled @enderror">
+                                            <select wire:model.defer='worker_id' id="editPositionworker_id" class="form-select @error('worker_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($workers as $worker)
-                                                    <option value="{{ $worker->id }}">{{ $worker->full_name }}
-                                                    </option>
+                                                    <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
                                                 @endforeach
                                             </select>
-                                            <label for="modalPositionworker_id">worker_id</label>
+                                            <label for="modalPositionworker_id">الاسم الكامل</label>
                                         </div>
                                         @error('worker_id')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
