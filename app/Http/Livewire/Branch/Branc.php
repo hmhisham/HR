@@ -52,10 +52,16 @@ class Branc extends Component
         $this->linkage_id = $Linkage_id;
         $this->sections = Sections::where('linkage_id', $Linkage_id)->get();
     }
+
     public function GetSection($Section_id)
     {
         $this->section_id = $Section_id;
     }
+
+
+
+
+ 
 
     public function AddBrancModalShow()
     {
