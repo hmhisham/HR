@@ -6,6 +6,8 @@ use Livewire\Component;
 
 use Livewire\WithPagination;
 use App\Models\Workers\Workers;
+use App\Models\Linkages\Linkages;
+use App\Models\Sections\Sections;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Placements\Placements;
 
@@ -14,6 +16,8 @@ class Placement extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $workers = [];
+    public $linkages = [];
+    public $sections = [];
     public $Placements = [];
     public $PlacementSearch, $Placement, $PlacementId;
     public $user_id, $worker_id, $linkage_id, $section_id, $branch_id, $unit_id, $placement_order_number, $placement_order_date, $release_date, $start_date;
@@ -21,6 +25,8 @@ class Placement extends Component
 
     protected $listeners = [
         'SelectWorkerId',
+        'SelectLinkageId',
+        'SelectSectionId',
     ];
     public function hydrate()
     {
@@ -30,7 +36,10 @@ class Placement extends Component
     public function mount()
     {
         $this->workers = Workers::all();
+        $this->linkages = Linkages::all();
+         
     }
+
     public function SelectWorkerId($WorkerIdID)
     {
         $worker_id = Workers::find($WorkerIdID);
@@ -42,7 +51,21 @@ class Placement extends Component
     }
 
 
+    public function SelectLinkageId($Linkage_id)
+    {
+        $this->linkage_id = $Linkage_id;
+        $this->sections = Sections::where('linkage_id', $Linkage_id)->get();
+    }
 
+    public function SelectSectionId($SectionIdID)
+    {
+        $section_id = Sections::find($SectionIdID);
+        if ($section_id) {
+            $this->section_id = $SectionIdID;
+        } else {
+            $this->section_id = null;
+        }
+    }
     public function render()
     {
         $PlacementSearch = '%' . $this->PlacementSearch . '%';

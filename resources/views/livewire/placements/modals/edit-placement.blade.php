@@ -13,60 +13,69 @@
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="GetPlacement">
                     <form id="editPlacementModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div Class="row">
+
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='user_id' type="text" id="modalPlacementuser_id"
-                                                placeholder="رقم المستخدم"
-                                                class="form-control @error('user_id') is-invalid is-filled @enderror" />
-                                            <label for="modalPlacementuser_id">رقم المستخدم</label>
-                                        </div>
-                                        @error('user_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='worker_id' type="text"
-                                                id="modalPlacementworker_id" placeholder="الاسم"
-                                                class="form-control @error('worker_id') is-invalid is-filled @enderror" />
-                                            <label for="modalPlacementworker_id">الاسم</label>
+                                            <select wire:model.defer='worker_id' id="editPlacementworker_id"
+                                                class="form-select @error('worker_id') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                @foreach ($workers as $worker)
+                                                    <option value="{{ $worker->id }}">{{ $worker->full_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <label for="modalPlacementworker_id">الاسم الكامل</label>
                                         </div>
                                         @error('worker_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='linkage_id' type="text"
-                                                id="modalPlacementlinkage_id" placeholder="الارتباط"
-                                                class="form-control @error('linkage_id') is-invalid is-filled @enderror" />
-                                            <label for="modalPlacementlinkage_id">الارتباط</label>
-                                        </div>
-                                        @error('linkage_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='section_id' type="text"
-                                                id="modalPlacementsection_id" placeholder="القسم"
-                                                class="form-control @error('section_id') is-invalid is-filled @enderror" />
-                                            <label for="modalPlacementsection_id">القسم</label>
-                                        </div>
-                                        @error('section_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
 
                                 </div>
+
+                                <div class="divider divider-primary mt-n2">
+                                    <div class="divider-text">بيانات القسم الجديد</div>
+                                </div>
+
                                 <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='linkage_id' id="editPlacementlinkage_id"
+                                                class="form-select @error('linkage_id') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                @foreach ($linkages as $linkage)
+                                                    <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <label for="modalPlacementlinkage_id">الارتباط</label>
+                                        </div>
+                                        @error('linkage_id')
+                                            <small class='text-danger inputerror'>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='section_id' id="editPlacementsection_id"
+                                                class="form-select @error('section_id') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                @foreach ($sections as $section)
+                                                    <option value="{{ $section->id }}">{{ $section->section_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <label for="modalPlacementsection_id">القسم</label>
+                                        </div>
+                                        @error('section_id')
+                                            <small class='text-danger inputerror'>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='branch_id' type="text"
@@ -90,6 +99,7 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
@@ -97,7 +107,8 @@
                                                 id="modalPlacementplacement_order_number" placeholder="رقم أمر التنسيب"
                                                 class="form-control @error('placement_order_number') is-invalid is-filled @enderror"
                                                 onkeypress="return onlyNumberKey(event)" />
-                                            <label for="modalPlacementplacement_order_number">رقم أمر التنسيب</label>
+                                            <label for="modalPlacementplacement_order_number">رقم أمر
+                                                التنسيب</label>
                                         </div>
                                         @error('placement_order_number')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -108,7 +119,8 @@
                                             <input wire:model.defer='placement_order_date' type="date"
                                                 id="editplacement_order_date" placeholder="تاريخ أمر التنسيب"
                                                 class="form-control @error('placement_order_date') is-invalid is-filled @enderror" />
-                                            <label for="modalPlacementplacement_order_date">تاريخ أمر التنسيب</label>
+                                            <label for="modalPlacementplacement_order_date">تاريخ أمر
+                                                التنسيب</label>
                                         </div>
                                         @error('placement_order_date')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -116,8 +128,8 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='release_date' type="date"
-                                                id="editrelease_date" placeholder="تاريخ الانفكاك"
+                                            <input wire:model.defer='release_date' type="date" id="editrelease_date"
+                                                placeholder="تاريخ الانفكاك"
                                                 class="form-control @error('release_date') is-invalid is-filled @enderror" />
                                             <label for="modalPlacementrelease_date">تاريخ الانفكاك</label>
                                         </div>
@@ -137,6 +149,7 @@
                                         @enderror
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         <hr class="my-0">

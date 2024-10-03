@@ -19,7 +19,6 @@
 @section('content')
     @livewire('placements.placement')
 
-
 @endsection
 
 @section('vendor-script')
@@ -177,21 +176,7 @@
             })
         })
 
-        $(document).ready(function() {
-            window.initWorkersDrop = () => {
-                $('#modalPlacementworker_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addplacementModal')
-                });
-            }
-            initWorkersDrop();
-            $('#modalPlacementworker_id').on('change', function(e) {
-                livewire.emit('SelectWorkerId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initWorkersDrop();
-            });
-        });
+
 
 
         window.addEventListener('error', event => {
@@ -203,5 +188,109 @@
             })
 
         })
+
+        // add Workers
+        $(document).ready(function() {
+            window.initAddWorkersDrop = () => {
+                $('#addPlacementworker_id').select2({
+                    placeholder: 'اختيار الاسم',
+                    dropdownParent: $('#addplacementModal')
+                });
+            }
+            initAddWorkersDrop();
+            $('#addPlacementworker_id').on('change', function(e) {
+                livewire.emit('SelectWorkerId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddWorkersDrop();
+            });
+        });
+
+        // edit Workers
+        $(document).ready(function() {
+            window.initEditWorkersDrop = () => {
+                $('#editPlacementworker_id').select2({
+                    placeholder: 'اختيار الاسم',
+                    dropdownParent: $('#editplacementModal')
+                });
+            }
+            initEditWorkersDrop();
+            $('#editPlacementworker_id').on('change', function(e) {
+                livewire.emit('SelectWorkerId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditWorkersDrop();
+            });
+        });
+
+
+
+        // add Linkages
+        $(document).ready(function() {
+            window.initAddLinkagesDrop = () => {
+                $('#addPlacementlinkage_id').select2({
+                    placeholder: 'اختيار الارتباط',
+                    dropdownParent: $('#addplacementModal')
+                });
+            }
+            initAddLinkagesDrop();
+            $('#addPlacementlinkage_id').on('change', function(e) {
+                livewire.emit('SelectLinkageId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddLinkagesDrop();
+            });
+        });
+
+        // edit Linkages
+        $(document).ready(function() {
+            window.initEditLinkagesDrop = () => {
+                $('#editPlacementlinkage_id').select2({
+                    placeholder: 'اختيار الارتباط',
+                    dropdownParent: $('#editplacementModal')
+                });
+            }
+            initEditLinkagesDrop();
+            $('#editPlacementlinkage_id').on('change', function(e) {
+                livewire.emit('SelectLinkageId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditLinkagesDrop();
+            });
+        });
+
+        // add Sections
+        $(document).ready(function() {
+            window.initAddSectionsDrop = () => {
+                $('#addPlacementsection_id').select2({
+                    placeholder: 'اختيار القسم',
+                    dropdownParent: $('#addplacementModal')
+                });
+            }
+            initAddSectionsDrop();
+            $('#addPlacementsection_id').on('change', function(e) {
+                livewire.emit('SelectSectionId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddSectionsDrop();
+            });
+        });
+
+        // edit Sections
+        $(document).ready(function() {
+            window.initEditSectionsDrop = () => {
+                $('#editPlacementsection_id').select2({
+                    placeholder: 'اختيار القسم',
+                    dropdownParent: $('#editplacementModal')
+                });
+            }
+            initEditSectionsDrop();
+            $('#editPlacementsection_id').on('change', function(e) {
+                livewire.emit('SelectSectionId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditSectionsDrop();
+            });
+        });
     </script>
 @endsection
