@@ -13,7 +13,7 @@
                     <div class="row row-cols-1 ">
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
-                                <select wire:model.defer='workers_id' id="modalWiveworkers_id"
+                                <select wire:model.defer='workers_id' id="addWiveworkers_id"
                                     class="form-select @error('workers_id') is-invalid is-filled @enderror">
                                     <option value="">اختر اسم الموظف</option>
                                     @foreach ($workers as $worker)
@@ -136,7 +136,7 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='organization_name' id="modalWiveorganization_name"
+                                        <select wire:model.defer='organization_name' id="addWiveorganization_name"
                                             class="form-select @error('organization_name') is-invalid is-filled @enderror"
                                             {{ $EmpStatus }}>
                                             <option value="">اختر الدائرة</option>

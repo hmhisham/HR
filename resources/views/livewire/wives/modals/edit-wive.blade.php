@@ -13,19 +13,14 @@
                     جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5> --}}
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="GetWive">
                     <form id="editWiveModalForm" autocomplete="off">
                         <div class="row row-cols-1">
-
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='workers_id' id="modalWiveworkers_id"
+                                    <select wire:model.defer='workers_id' id="editWiveworkers_id"
                                         class="form-select @error('workers_id') is-invalid is-filled @enderror">
-<<<<<<< HEAD
-                                        <option value=""></option>
-=======
                                         <option value="">اختر اسم الموظف</option>
->>>>>>> c12cfb4473d72fb6b7147e77d9729e60fed5f33b
                                         @foreach ($workers as $worker)
                                             <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
                                         @endforeach
@@ -36,7 +31,6 @@
                                     <small class='text-danger inputerror'>{{ $message }}</small>
                                 @enderror
                             </div>
-
                             <div class="col mb-3">
                                 <div class="row">
                                     <!-- الاسم الأول -->
@@ -113,7 +107,6 @@
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='marital_status' id="modalWivemarital_status"
@@ -146,11 +139,10 @@
                                     </div>
                                 </div>
                                 <div Class="row">
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='organization_name'
-                                                id="modalWiveorganization_name"
+                                                id="editWiveorganization_name"
                                                 class="form-select @error('organization_name') is-invalid is-filled @enderror"
                                                 {{ $EmpStatus }}>
                                                 <option value="">اختر الدائرة</option>
@@ -171,14 +163,13 @@
                                             <input wire:model.defer='national_id' type="text"
                                                 id="modalWivenational_id" placeholder="رقم البطاقة الوطنية"
                                                 class="form-control @error('national_id') is-invalid is-filled @enderror"
-                                                onkeypress="return restrictAlphabets(event)" />
+                                                onkeypress="return onlyNumberKey(event)" />
                                             <label for="modalWivenational_id">رقم البطاقة الوطنية</label>
                                         </div>
                                         @error('national_id')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <div class="form-check">
@@ -209,13 +200,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function restrictAlphabets(e) {
-        var x = e.which || e.keycode;
-        if ((x >= 48 && x <= 57))
-            return true;
-        else
-            return false;
-    }
-</script>
 <!--/ Edite Wive Modal -->

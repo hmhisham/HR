@@ -12,7 +12,8 @@
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 @endsection
 @section('content')
@@ -43,20 +44,37 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        //استدعاء اسم الموظف
+        // add Workers
         $(document).ready(function() {
-            window.initWorkersDrop = () => {
-                $('#modalWiveworkers_id').select2({
+            window.initAddWorkersDrop = () => {
+                $('#addWiveworkers_id').select2({
                     placeholder: 'اختيار',
                     dropdownParent: $('#addwiveModal')
                 });
             }
-            initWorkersDrop();
-            $('#modalWiveworkers_id').on('change', function(e) {
+            initAddWorkersDrop();
+            $('#addWiveworkers_id').on('change', function(e) {
                 livewire.emit('SelectWorkersId', e.target.value);
             });
             window.livewire.on('select2', () => {
-                initWorkersDrop();
+                initAddWorkersDrop();
+            });
+        });
+
+        // edit Workers
+        $(document).ready(function() {
+            window.initEditWorkersDrop = () => {
+                $('#editWiveworkers_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editwiveModal')
+                });
+            }
+            initEditWorkersDrop();
+            $('#editWiveworkers_id').on('change', function(e) {
+                livewire.emit('SelectWorkersId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditWorkersDrop();
             });
         });
 
@@ -74,6 +92,40 @@
             });
             window.livewire.on('flatpickr', () => {
                 initBirthDateDrop();
+            });
+        });
+
+        // add Department
+        $(document).ready(function() {
+            window.initAddDepartmentDrop = () => {
+                $('#addWiveorganization_name').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addwiveModal')
+                });
+            }
+            initAddDepartmentDrop();
+            $('#addWiveorganization_name').on('change', function(e) {
+                livewire.emit('SelectOrganizationName', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddDepartmentDrop();
+            });
+        });
+
+        // edit Department
+        $(document).ready(function() {
+            window.initEditDepartmentDrop = () => {
+                $('#editWiveorganization_name').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editwiveModal')
+                });
+            }
+            initEditDepartmentDrop();
+            $('#editWiveorganization_name').on('change', function(e) {
+                livewire.emit('SelectOrganizationName', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditDepartmentDrop();
             });
         });
 
@@ -129,7 +181,5 @@
                 initWorkersDrop();
             });
         });
-
-
     </script>
 @endsection
