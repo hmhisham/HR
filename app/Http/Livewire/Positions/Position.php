@@ -166,7 +166,7 @@ class Position extends Component
             'p_notes' => $this->p_notes,
 
         ]);
-        $this->reset();
+        $this->reset(['worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'position_name', 'position_order_number', 'position_order_date', 'position_start_date', 'commissioning_type', 'commissioning_statu', 'p_notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -213,7 +213,7 @@ class Position extends Component
 
 
         ], [
-         
+
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
             'section_id.required' => 'حقل القسم مطلوب',
@@ -245,7 +245,7 @@ class Position extends Component
             'p_notes' => $this->p_notes,
 
         ]);
-        $this->reset();
+        $this->reset(['worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'position_name', 'position_order_number', 'position_order_date', 'position_start_date', 'commissioning_type', 'commissioning_statu', 'p_notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
