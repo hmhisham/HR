@@ -34,6 +34,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Penalties\PenaltiesController;
+use App\Http\Controllers\Positions\PositionsController;
 use App\Http\Controllers\Trainings\TrainingsController;
 use App\Http\Controllers\Department\DepartmentController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
@@ -157,6 +158,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Childrens', ChildrensController::class);
         // التنمسيب
         Route::RESOURCE('Placements', PlacementsController::class);
+        //المنصب
+        Route::RESOURCE('Positions', PositionsController::class);
     });
 });
 

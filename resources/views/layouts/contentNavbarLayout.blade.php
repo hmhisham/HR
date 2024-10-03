@@ -74,7 +74,7 @@ $container = $container ?? 'container-xxl';
                 </li>
 
                 @can('employees')
-                <li class="menu-item {{ request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays','Wives','Childrens','Placements',) ? 'open active' : '' }}">
+                <li class="menu-item {{ request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays','Wives','Childrens','Placements','Positions',) ? 'open active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                         <span class="menu-title">قسم الموارد البشرية</span>
@@ -111,6 +111,11 @@ $container = $container ?? 'container-xxl';
                         <li Class="menu-item {{ request()->Is('Placements') ? 'active' : '' }}">
                             <a href = "{{ Route('Placements.index') }}" Class="menu-link">
                                 <div>التنسيب</div>
+                            </a>
+                        </li>
+                        <li Class="menu-item {{ request()->Is('Positions') ? 'active' : '' }}">
+                            <a href = "{{ Route('Positions.index') }}" Class="menu-link">
+                                <div>المنصب</div>
                             </a>
                         </li>
                         <li Class="menu-item {{ request()->Is('Thanks') ? 'active' : '' }}">

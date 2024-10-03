@@ -75,7 +75,7 @@ $container = $container ?? 'container-xxl';
                 </li>
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employees')): ?>
-                <li class="menu-item <?php echo e(request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays','Wives','Childrens','Placements',) ? 'open active' : ''); ?>">
+                <li class="menu-item <?php echo e(request()->is('Workers', 'AddWorker','Thanks','Penalties','Jobleavers','Dispatch','Certific','Holidays','Wives','Childrens','Placements','Positions',) ? 'open active' : ''); ?>">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                         <span class="menu-title">قسم الموارد البشرية</span>
@@ -112,6 +112,11 @@ $container = $container ?? 'container-xxl';
                         <li Class="menu-item <?php echo e(request()->Is('Placements') ? 'active' : ''); ?>">
                             <a href = "<?php echo e(Route('Placements.index')); ?>" Class="menu-link">
                                 <div>التنسيب</div>
+                            </a>
+                        </li>
+                        <li Class="menu-item <?php echo e(request()->Is('Positions') ? 'active' : ''); ?>">
+                            <a href = "<?php echo e(Route('Positions.index')); ?>" Class="menu-link">
+                                <div>المنصب</div>
                             </a>
                         </li>
                         <li Class="menu-item <?php echo e(request()->Is('Thanks') ? 'active' : ''); ?>">
