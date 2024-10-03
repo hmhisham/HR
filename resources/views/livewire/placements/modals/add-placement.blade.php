@@ -35,58 +35,64 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='linkage_id' id="addPlacementlinkage_id"
+                                        <select wire:model.defer='linkage_id' id="addLinkage"
                                             class="form-select @error('linkage_id') is-invalid is-filled @enderror">
-                                            <option value=""></option>
+                                            <option value="">اختر جهة الارتباط</option>
                                             @foreach ($linkages as $linkage)
                                                 <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <label for="modalPlacementlinkage_id">الارتباط</label>
+                                        <label for="modalPositionlinkage_id">الارتباط</label>
                                     </div>
                                     @error('linkage_id')
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='section_id' id="addPlacementsection_id"
+                                        <select wire:model.defer='section_id' id="addSection"
                                             class="form-select @error('section_id') is-invalid is-filled @enderror">
-                                            <option value=""></option>
+                                            <option value="">اختر القسم</option>
                                             @foreach ($sections as $section)
                                                 <option value="{{ $section->id }}">{{ $section->section_name }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <label for="modalPlacementsection_id">القسم</label>
+                                        <label for="modalPositionsection_id">القسم</label>
                                     </div>
                                     @error('section_id')
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='branch_id' type="text" id="modalPlacementbranch_id"
-                                            placeholder="الشعبة"
-                                            class="form-control @error('branch_id') is-invalid is-filled @enderror" />
-                                        <label for="modalPlacementbranch_id">الشعبة</label>
+                                        <select wire:model.defer='branch_id' id="addBranch"
+                                            class="form-select @error('branch_id') is-invalid is-filled @enderror">
+                                            <option value="">اختر الشعبة</option>
+                                            @foreach ($branch as $branc)
+                                                <option value="{{ $branc->id }}">{{ $branc->branch_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="modalPositionbranch_id">الشعبة</label>
                                     </div>
                                     @error('branch_id')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='unit_id' type="text" id="modalPlacementunit_id"
-                                            placeholder="الوحدة"
-                                            class="form-control @error('unit_id') is-invalid is-filled @enderror" />
-                                        <label for="modalPlacementunit_id">الوحدة</label>
+                                        <select wire:model.defer='unit_id' id="addUnit"
+                                            class="form-select @error('unit_id') is-invalid is-filled @enderror">
+                                            <option value="">اختر الوحدة</option>
+                                            @foreach ($units as $unit)
+                                                <option value="{{ $unit->id }}">{{ $unit->units_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="modalPositionunit_id">الوحدة</label>
                                     </div>
                                     @error('unit_id')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
