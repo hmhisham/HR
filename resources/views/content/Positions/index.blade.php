@@ -135,6 +135,23 @@
             });
         });
 
+        //تحميل بيانات الاسم
+        $(document).ready(function() {
+            window.initWorkersDrop = () => {
+                $('#modalPositionworker_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editpositionModal')
+                });
+            }
+            initWorkersDrop();
+            $('#modalPositionworker_id').on('change', function(e) {
+                livewire.emit('SelectWorkerId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initWorkersDrop();
+            });
+        });
+
         /* addLinkage */
         $(document).ready(function() {
             window.initAddLinkageDrop = () => {
