@@ -93,7 +93,7 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='authenticity_date' type="text"
-                                            id="authenticity_date" autocomplete="off" readonly placeholder="يوم-شهر-سنة"
+                                            id="addauthenticity_date" autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                             class="form-control @error('authenticity_date') is-invalid is-filled @enderror" />
                                         <label for="flatpickr-date">تاريخ صحة الصدور</label>
                                     </div>
