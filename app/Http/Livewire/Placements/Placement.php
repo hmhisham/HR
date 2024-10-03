@@ -25,6 +25,7 @@ class Placement extends Component
     public function hydrate()
     {
         $this->emit('select2');
+        $this->emit('flatpickr');
     }
     public function mount()
     {
@@ -78,7 +79,7 @@ class Placement extends Component
     {
         $this->resetValidation();
         $this->validate([
-          
+
             'worker_id' => 'required',
             'linkage_id' => 'required',
             'section_id' => 'required',

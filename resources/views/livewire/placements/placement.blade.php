@@ -1,7 +1,6 @@
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semiboyld">قائمة</h4>
+    <h4 class="mb-1 fw-semiboyld">نافذة التنسيب</h4>
     <div class="card">
-
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -27,7 +26,6 @@
                             <th class="text-center">رقم أمر التنسيب</th>
                             <th class="text-center">تاريخ أمر التنسيب</th>
                             <th class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +34,8 @@
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
-                                <td class="text-center">{{ $Placement->Getworker ? $Placement->Getworker->full_name : '' }}</td>
+                                <td class="text-center">{{ $Placement->Getworker ? $Placement->Getworker->full_name : '' }}
+                                </td>
                                 <td class="text-center">{{ $Placement->section_id }}</td>
                                 <td class="text-center">{{ $Placement->placement_order_number }}</td>
                                 <td class="text-center">{{ $Placement->placement_order_date }}</td>
@@ -72,5 +71,4 @@
             @endcan
         </div>
     </div>
-</div>
 </div>
