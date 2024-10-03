@@ -10,6 +10,11 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 @endsection
 @section('content')
     @livewire('penalties.penaltie')
@@ -28,6 +33,11 @@
     <script src=" {{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
 @endsection
 
 @section('page-script')
@@ -35,6 +45,39 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        /* اضافة تاريخ الامر الوزاري */
+        $(document).ready(function() {
+            window.initAddPMinisterialOrderDateDrop = () => {
+                $('#addp_ministerial_order_date').flatpickr({
+                    placeholder: 'تاريخ الامر الوزاري',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initAddPMinisterialOrderDateDrop();
+            $('#addp_ministerial_order_date').on('change', function(e) {
+                livewire.emit('employeePMinisterialOrderDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initAddPMinisterialOrderDateDrop();
+            });
+        });
+        /* تعديل تاريخ الامر الوزاري */
+        $(document).ready(function() {
+            window.initEditPMinisterialOrderDateDrop = () => {
+                $('#editp_ministerial_order_date').flatpickr({
+                    placeholder: 'تاريخ الامر الوزاري',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initEditPMinisterialOrderDateDrop();
+            $('#editp_ministerial_order_date').on('change', function(e) {
+                livewire.emit('employeePMinisterialOrderDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initEditPMinisterialOrderDateDrop();
+            });
+        });
+
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
@@ -97,13 +140,13 @@
             });
         });
 
-        /* الجهات  */
+        /* الجهات */
 
         $(document).ready(function() {
             // Initialize select2 for the grantor field
             window.initDepartmentDrop = () => {
                 $('#modalPenaltiep_issuing_authority').select2({
-                    placeholder: 'حدد الموظف', // Set placeholder text
+                    placeholder: 'حدد الجهة', // Set placeholder text
                     dropdownParent: $('#addpenaltieModal') // Parent modal for dropdown
                 });
             }

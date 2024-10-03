@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة تنسيب موظف جديد</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -13,7 +13,6 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='worker_id' id="modalPlacementworker_id"
@@ -53,6 +52,8 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+                            </div>
+                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='branch_id' type="text" id="modalPlacementbranch_id"
@@ -64,8 +65,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                            </div>
-                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='unit_id' type="text" id="modalPlacementunit_id"
@@ -77,11 +76,14 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+                            </div>
+                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='placement_order_number' type="text"
                                             id="modalPlacementplacement_order_number" placeholder="رقم أمر التنسيب"
-                                            class="form-control @error('placement_order_number') is-invalid is-filled @enderror" />
+                                            class="form-control @error('placement_order_number') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalPlacementplacement_order_number">رقم أمر التنسيب</label>
                                     </div>
                                     @error('placement_order_number')
@@ -91,7 +93,7 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='placement_order_date' type="date"
-                                            id="modalPlacementplacement_order_date" placeholder="تاريخ أمر التنسيب"
+                                            id="addplacement_order_date" placeholder="تاريخ أمر التنسيب"
                                             class="form-control @error('placement_order_date') is-invalid is-filled @enderror" />
                                         <label for="modalPlacementplacement_order_date">تاريخ أمر التنسيب</label>
                                     </div>
@@ -99,12 +101,10 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                            </div>
-                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='release_date' type="date"
-                                            id="modalPlacementrelease_date" placeholder="تاريخ الانفكاك"
+                                        <input wire:model.defer='release_date' type="date" id="addrelease_date"
+                                            placeholder="تاريخ الانفكاك"
                                             class="form-control @error('release_date') is-invalid is-filled @enderror" />
                                         <label for="modalPlacementrelease_date">تاريخ الانفكاك</label>
                                     </div>
@@ -114,8 +114,8 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='start_date' type="date"
-                                            id="modalPlacementstart_date" placeholder="تاريخ المباشرة"
+                                        <input wire:model.defer='start_date' type="date" id="addstart_date"
+                                            placeholder="تاريخ المباشرة"
                                             class="form-control @error('start_date') is-invalid is-filled @enderror" />
                                         <label for="modalPlacementstart_date">تاريخ المباشرة</label>
                                     </div>

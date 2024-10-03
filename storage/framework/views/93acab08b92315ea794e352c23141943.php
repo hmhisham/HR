@@ -109,6 +109,11 @@ $container = $container ?? 'container-xxl';
                                 <div>الشهادات</div>
                             </a>
                         </li>
+                        <li Class="menu-item <?php echo e(request()->Is('Placements') ? 'active' : ''); ?>">
+                            <a href = "<?php echo e(Route('Placements.index')); ?>" Class="menu-link">
+                                <div>التنسيب</div>
+                            </a>
+                        </li>
                         <li Class="menu-item <?php echo e(request()->Is('Thanks') ? 'active' : ''); ?>">
                             <a href="<?php echo e(Route('Thanks.index')); ?>" Class="menu-link">
                                 <div>الشكر و التقدير</div>
@@ -149,11 +154,6 @@ $container = $container ?? 'container-xxl';
                             <a href="" Class="menu-link">
                                 <i Class=''></i>
                                 <div>الترفيعات</div>
-                            </a>
-                        </li>
-                        <li Class="menu-item <?php echo e(request()->Is('Placements') ? 'active' : ''); ?>">
-                            <a href = "<?php echo e(Route('Placements.index')); ?>" Class="menu-link">
-                                <div>التنسيب</div>
                             </a>
                         </li>
                     </ul>
@@ -282,7 +282,7 @@ $container = $container ?? 'container-xxl';
                             </a>
                         </li>
 
-                     
+
 
                         
                         <li Class="menu-item <?php echo e(request()->Is('Graduations') ? 'active' : ''); ?>">
