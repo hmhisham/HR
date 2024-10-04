@@ -65,6 +65,14 @@ class Placement extends Component
     public function GetUnit($Unit_id)
     {
         $this->unit_id = $Unit_id;
+
+        if ($Unit_id) {
+            $this->unit_id = $Unit_id;
+        } else {
+            $this->unit_id = null;
+        }
+
+
     }
     public function render()
     {
@@ -97,6 +105,7 @@ class Placement extends Component
     {
         $this->resetValidation();
         $this->Placement = Placements::find($PlacementId);
+        $this->PlacementId = $this->Placement->id;
         $this->worker_id = $this->Placement->worker_id;
         $this->linkage_id = $this->Placement->linkage_id;
         $this->section_id = $this->Placement->section_id;
