@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Livewire\Placements;
+
 use Livewire\Component;
 use App\Models\Units\Units;
 use Livewire\WithPagination;
@@ -9,6 +11,7 @@ use App\Models\Linkages\Linkages;
 use App\Models\Sections\Sections;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Placements\Placements;
+
 class Placement extends Component
 {
     use WithPagination;
@@ -19,7 +22,7 @@ class Placement extends Component
     public $branch = [];
     public $units = [];
     public $Placements = [];
-    public $PlacementSearch, $Placement, $PlacementId;
+    public $PlacementSearch, $Placement, $PlacementId, $linkageName, $SectionsName, $branch_name, $UnitName;
     public $user_id, $worker_id, $linkage_id, $section_id, $branch_id, $unit_id, $placement_order_number, $placement_order_date, $release_date, $start_date;
     protected $listeners = [
         'SelectWorkerId',
@@ -93,6 +96,37 @@ class Placement extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('PlacementModalShow');
     }
+
+
+    public function GetPlacement($PlacementId)
+    {
+        $this->resetValidation();
+        $this->Placement = Placements::find($PlacementId);
+        // $this->PlacementId = $this->Placement->id;
+        $this->worker_id = $this->Placement->worker_id;
+        $this->linkage_id = $this->Placement->linkage_id;
+        $this->section_id = $this->Placement->section_id;
+        $this->branch_id = $this->Placement->branch_id;
+        $this->unit_id = $this->Placement->unit_id;
+        $this->placement_order_number = $this->Placement->placement_order_number;
+        $this->placement_order_date = $this->Placement->placement_order_date;
+        $this->release_date = $this->Placement->release_date;
+        $this->start_date = $this->Placement->start_date;
+
+        $this->sections = $this->Placement->Getlinkage->GetSections;
+        $this->linkageName = $this->Placement->Getsection->Getlinkage->Linkages_name;
+        $this->SectionsName = $this->Placement->Getsection->section_name;
+        $this->branch = $this->Placement->Getsection->GetBranch;
+
+        $this->UnitName = $this->Placement->GetUnit->GetBranch->units_name;
+    }
+
+
+
+
+
+
+
     public function store()
     {
         $this->resetValidation();
@@ -135,22 +169,7 @@ class Placement extends Component
             'title' => 'اضافه'
         ]);
     }
-    public function GetPlacement($PlacementId)
-    {
-        $this->resetValidation();
-        $this->Placement  = Placements::find($PlacementId);
-        $this->PlacementId = $this->Placement->id;
-        $this->user_id = $this->Placement->user_id;
-        $this->worker_id = $this->Placement->worker_id;
-        $this->linkage_id = $this->Placement->linkage_id;
-        $this->section_id = $this->Placement->section_id;
-        $this->branch_id = $this->Placement->branch_id;
-        $this->unit_id = $this->Placement->unit_id;
-        $this->placement_order_number = $this->Placement->placement_order_number;
-        $this->placement_order_date = $this->Placement->placement_order_date;
-        $this->release_date = $this->Placement->release_date;
-        $this->start_date = $this->Placement->start_date;
-    }
+
     public function update()
     {
         $this->resetValidation();

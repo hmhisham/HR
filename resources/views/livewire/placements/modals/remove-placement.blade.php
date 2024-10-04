@@ -23,7 +23,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='worker_id' type="text"
-                                                id="modalPlacementworker_id" placeholder="الاسم"
+                                            disabled        id="modalPlacementworker_id" placeholder="الاسم"
                                                 class="form-control @error('worker_id') is-invalid is-filled @enderror" />
                                             <label for="modalPlacementworker_id">الاسم</label>
                                         </div>
@@ -35,7 +35,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='section_id' type="text"
-                                                id="modalPlacementsection_id" placeholder="القسم"
+                                        disabled        id="modalPlacementsection_id" placeholder="القسم"
                                                 class="form-control @error('section_id') is-invalid is-filled @enderror" />
                                             <label for="modalPlacementsection_id">القسم</label>
                                         </div>
