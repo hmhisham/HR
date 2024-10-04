@@ -68,7 +68,6 @@ class Placement extends Component
     public function GetUnit($Unit_id)
     {
         $this->unit_id = $Unit_id;
-
         if ($Unit_id) {
             $this->unit_id = $Unit_id;
         } else {
@@ -106,10 +105,8 @@ class Placement extends Component
     {
         $this->resetValidation();
         $this->Placement = Placements::find($PlacementId);
-
-
         $this->PlacementId = $this->Placement->id;
-          $this->worker_id = $this->Placement->worker_id;
+        $this->worker_id = $this->Placement->worker_id;
         // $this->worker_id = $this->Placement->Getworker->full_name;
         $this->linkage_id = $this->Placement->linkage_id;
         $this->section_id = $this->Placement->section_id;
@@ -119,8 +116,6 @@ class Placement extends Component
         $this->placement_order_date = $this->Placement->placement_order_date;
         $this->release_date = $this->Placement->release_date;
         $this->start_date = $this->Placement->start_date;
-
-
         $this->sections = $this->Placement->Getlinkage->GetSections;
         $this->linkageName = $this->Placement->Getsection->Getlinkage->Linkages_name;
         $this->SectionsName = $this->Placement->Getsection->section_name;
@@ -134,8 +129,6 @@ class Placement extends Component
             'worker_id' => 'required',
             'linkage_id' => 'required',
             'section_id' => 'required',
-            'branch_id' => 'required',
-            'unit_id' => 'required',
             'placement_order_number' => 'required',
             'placement_order_date' => 'required',
             'release_date' => 'required',
@@ -144,8 +137,6 @@ class Placement extends Component
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
             'section_id.required' => 'حقل القسم مطلوب',
-            'branch_id.required' => 'حقل الشعبة مطلوب',
-            'unit_id.required' => 'حقل الوحدة مطلوب',
             'placement_order_number.required' => 'حقل رقم أمر التنسيب مطلوب',
             'placement_order_date.required' => 'حقل تاريخ أمر التنسيب مطلوب',
             'release_date.required' => 'حقل تاريخ الانفكاك مطلوب',
@@ -176,8 +167,6 @@ class Placement extends Component
             'worker_id' => 'required:placements',
             'linkage_id' => 'required:placements',
             'section_id' => 'required:placements',
-            'branch_id' => 'required:placements',
-            'unit_id' => 'required:placements',
             'placement_order_number' => 'required:placements',
             'placement_order_date' => 'required:placements',
             'release_date' => 'required:placements',
@@ -186,8 +175,6 @@ class Placement extends Component
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
             'section_id.required' => 'حقل القسم مطلوب',
-            'branch_id.required' => 'حقل الشعبة مطلوب',
-            'unit_id.required' => 'حقل الوحدة مطلوب',
             'placement_order_number.required' => 'حقل رقم أمر التنسيب مطلوب',
             'placement_order_date.required' => 'حقل تاريخ أمر التنسيب مطلوب',
             'release_date.required' => 'حقل تاريخ الانفكاك مطلوب',
