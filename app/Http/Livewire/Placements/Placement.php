@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Livewire\Placements;
-
 use Livewire\Component;
 use App\Models\Units\Units;
 use Livewire\WithPagination;
@@ -11,7 +9,6 @@ use App\Models\Linkages\Linkages;
 use App\Models\Sections\Sections;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Placements\Placements;
-
 class Placement extends Component
 {
     use WithPagination;
@@ -96,13 +93,10 @@ class Placement extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('PlacementModalShow');
     }
-
-
     public function GetPlacement($PlacementId)
     {
         $this->resetValidation();
         $this->Placement = Placements::find($PlacementId);
-        // $this->PlacementId = $this->Placement->id;
         $this->worker_id = $this->Placement->worker_id;
         $this->linkage_id = $this->Placement->linkage_id;
         $this->section_id = $this->Placement->section_id;
@@ -112,21 +106,13 @@ class Placement extends Component
         $this->placement_order_date = $this->Placement->placement_order_date;
         $this->release_date = $this->Placement->release_date;
         $this->start_date = $this->Placement->start_date;
-
         $this->sections = $this->Placement->Getlinkage->GetSections;
         $this->linkageName = $this->Placement->Getsection->Getlinkage->Linkages_name;
         $this->SectionsName = $this->Placement->Getsection->section_name;
         $this->branch = $this->Placement->Getsection->GetBranch;
+        $this->units = $this->Placement->Getbranc->GetUnit;
 
-        $this->UnitName = $this->Placement->GetUnit->GetBranch->units_name;
     }
-
-
-
-
-
-
-
     public function store()
     {
         $this->resetValidation();
@@ -169,7 +155,6 @@ class Placement extends Component
             'title' => 'اضافه'
         ]);
     }
-
     public function update()
     {
         $this->resetValidation();
