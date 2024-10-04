@@ -154,7 +154,7 @@ class Holiday extends Component
         $this->resetValidation();
 
         $this->Holiday  = Holidays::find($HolidayId);
-        $worker = $this->Holiday->worker;
+
         $this->HolidayId = $this->Holiday->id;
         $this->user_id = $this->Holiday->user_id;
         $this->calculator_number = $this->Holiday->calculator_number;
@@ -168,7 +168,8 @@ class Holiday extends Component
         $this->cut_off_holiday = $this->Holiday->cut_off_holiday;
         $this->file_path = $this->Holiday->file_path;
         $this->notes = $this->Holiday->notes;
-
+        
+    $worker = $this->Holiday->worker;
         if ($worker) {
             $this->full_name = $worker->full_name;
             $this->department = $worker->department;
