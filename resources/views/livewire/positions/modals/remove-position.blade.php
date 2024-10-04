@@ -20,19 +20,8 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='worker_id' type="text"
-                                            disabled    id="modalPositionworker_id" placeholder="الاسم"
-                                                class="form-control @error('worker_id') is-invalid is-filled @enderror" />
-                                            <label for="modalPositionworker_id">الاسم</label>
-                                        </div>
-                                        @error('worker_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='position_name' type="text"
-                                            disabled    id="modalPositionposition_name" placeholder="اسم المنصب"
+                                            <input wire:model.defer='position_name' type="text" disabled
+                                                id="modalPositionposition_name" placeholder="اسم المنصب"
                                                 class="form-control @error('position_name') is-invalid is-filled @enderror" />
                                             <label for="modalPositionposition_name">اسم المنصب</label>
                                         </div>
@@ -42,8 +31,8 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='position_order_number' type="text"
-                                            disabled    id="modalPositionposition_order_number" placeholder="رقم امر التكليف"
+                                            <input wire:model.defer='position_order_number' type="text" disabled
+                                                id="modalPositionposition_order_number" placeholder="رقم امر التكليف"
                                                 class="form-control @error('position_order_number') is-invalid is-filled @enderror" />
                                             <label for="modalPositionposition_order_number">رقم امر التكليف</label>
                                         </div>
