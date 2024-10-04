@@ -14,7 +14,7 @@
                 <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حذف البيانات...</h5>
 
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="GetPlacement">
                     <form id="removePlacementModalForm" onsubmit="return false" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Livewire\Placements;
-
 use Livewire\Component;
 use App\Models\Units\Units;
 use Livewire\WithPagination;
@@ -11,7 +9,6 @@ use App\Models\Linkages\Linkages;
 use App\Models\Sections\Sections;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Placements\Placements;
-
 class Placement extends Component
 {
     use WithPagination;
@@ -23,7 +20,7 @@ class Placement extends Component
     public $units = [];
     public $Placements = [];
     public $PlacementSearch, $Placement, $PlacementId, $linkageName, $SectionsName, $branch_name, $UnitName;
-    public $user_id, $worker_id,$worker_full_name, $linkage_id, $section_id, $branch_id, $unit_id, $placement_order_number, $placement_order_date, $release_date, $start_date;
+    public $user_id, $worker_id, $worker_full_name, $linkage_id, $section_id, $branch_id, $unit_id, $placement_order_number, $placement_order_date, $release_date, $start_date;
     protected $listeners = [
         'SelectWorkerId',
         'GetLinkage',
@@ -106,8 +103,7 @@ class Placement extends Component
         $this->resetValidation();
         $this->Placement = Placements::find($PlacementId);
         $this->PlacementId = $this->Placement->id;
-      $this->worker_id = $this->Placement->worker_id;
-
+        $this->worker_id = $this->Placement->worker_id;
         $this->linkage_id = $this->Placement->linkage_id;
         $this->section_id = $this->Placement->section_id;
         $this->branch_id = $this->Placement->branch_id;
@@ -121,9 +117,7 @@ class Placement extends Component
         $this->SectionsName = $this->Placement->Getsection->section_name;
         $this->branch = $this->Placement->Getsection->GetBranch;
         $this->units = $this->Placement->Getbranc->GetUnit;
-
- $this->worker_full_name = $this->Placement->Getworker->full_name;
-
+        $this->worker_full_name = $this->Placement->Getworker->full_name;
     }
     public function store()
     {
