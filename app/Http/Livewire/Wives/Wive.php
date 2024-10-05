@@ -37,12 +37,17 @@ class Wive extends Component
     {
         $WiveSearch = '%' . $this->WiveSearch . '%';
 
-        //$worker = Workers::where('full_name', $this->WiveSearch)->first();
-
-        $Wives = Wives::where('workers_id', Workers::where('full_name', $this->WiveSearch)->first()->id)
-            ->orWhere('full_name', 'LIKE', $WiveSearch)
-            ->orderBy('id', 'ASC')
-            ->paginate(10);
+        $worker = Workers::where('full_name', $this->WiveSearch)->first();
+        if($worker){
+            $Wives = Wives::where('workers_id', $worker->id)
+                ->orWhere('full_name', 'LIKE', $WiveSearch)
+                ->orderBy('id', 'ASC')
+                ->paginate(10);
+        }else{
+            $Wives = Wives::where('full_name', 'LIKE', $WiveSearch)
+                ->orderBy('id', 'ASC')
+                ->paginate(10);
+        }
 
         $links = $Wives;
         $this->Wives = collect($Wives->items());
