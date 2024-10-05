@@ -27,7 +27,6 @@
                             <th class="text-center">الحالة المهنية</th>
                             <th class="text-center">رقم البطاقة الوطنية</th>
                             <th class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
