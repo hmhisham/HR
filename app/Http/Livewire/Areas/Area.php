@@ -32,8 +32,6 @@ class Area extends Component
     public function mount()
     {
         $this->Governorates = Governorates::all();
-        /* $this->Districts = Districts::all();
-        $this->Areas = Areas::all(); */
     }
 
     public function render()
@@ -80,8 +78,8 @@ class Area extends Component
         $this->validate([
             'governorate_id' => 'required',
             'district_id' => 'required',
-            'area_id' => 'required|unique:areas,area_id,NULL,id,district_id,'.$this->district_id.',governorate_id,'.$this->governorate_id,
-            'area_name' => 'required|unique:areas,area_name,NULL,id,district_id,'.$this->district_id.',governorate_id,'.$this->governorate_id,
+            'area_id' => 'required|unique:areas,area_id',
+            'area_name' => 'required|unique:areas,area_name',
         ], [
             'governorate_id.required' => 'حقل الاسم مطلوب',
             'district_id.required' => 'حقل الاسم مطلوب',
@@ -127,8 +125,8 @@ class Area extends Component
         $this->validate([
             'governorate_id' => 'required',
             'district_id' => 'required',
-            'area_id' => 'required|unique:areas,area_id,' . $this->Area->id . ',id,district_id,'.$this->district_id.',governorate_id,' . $this->governorate_id,
-            'area_name' => 'required|unique:areas,area_name,' . $this->Area->id . ',id,district_id,'.$this->district_id.',governorate_id,' . $this->governorate_id,
+            'area_id' => 'required|unique:areas,area_id,' . $this->Area->id . ',id',
+            'area_name' => 'required|unique:areas,area_name,' . $this->Area->id . ',id',
         ], [
             'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
             'district_id.required' => 'حقل أسم القضاء مطلوب',

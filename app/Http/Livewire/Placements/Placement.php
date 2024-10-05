@@ -86,6 +86,7 @@ class Placement extends Component
             ->orWhere('start_date', 'LIKE', $PlacementSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
+            
         $links = $Placements;
         $this->Placements = collect($Placements->items());
         return view('livewire.placements.placement', [

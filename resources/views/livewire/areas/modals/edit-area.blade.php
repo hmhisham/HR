@@ -21,7 +21,8 @@
                                 <div class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='governorate_id' id="editGovernorate" class="form-select @error('governorate_id') is-invalid is-filled @enderror">
+                                            <select wire:model.defer='governorate_id' id="editGovernorate" class="form-select
+                                                @error('governorate_id') is-invalid is-filled @enderror" disabled>
                                                 <option value=""></option>
                                                 @foreach ($governorates as $governorate)
                                                     <option value="{{ $governorate->id }}">

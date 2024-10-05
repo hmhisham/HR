@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <hr>
                         <div class="row">
                             <div class="col text-center">
                                 <div class="text-danger">
