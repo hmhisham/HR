@@ -8,17 +8,17 @@
                     <h3 class="pb-1 mb-2">اضافة اسم ناحية جديدة</h3>
                     <p>نافذة الأضافة </p>
                 </div>
+
                 <hr class="mt-n2">
+
                 <form id="addareaModalForm" autocomplete="off">
                     <div class="row row-cols-1">
                         <div class="mb-3 col">
                             <div class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='governorate_id' wire:change='chooseGovernorate'
-                                            id="modalAreasgovernorate_id"
-                                            class="form-select @error('governorate_id') is-invalid is-filled @enderror">
-                                            <option value="">اختر اسم المحافظة</option>
+                                        <select wire:model.defer='governorate_id' id="addGovernorate" class="form-select @error('governorate_id') is-invalid is-filled @enderror">
+                                            <option value=""></option>
                                             @foreach ($governorates as $governorate)
                                                 <option value="{{ $governorate->id }}">
                                                     {{ $governorate->governorate_name }}</option>
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='district_id' id="modalAreasdistrict_id"
+                                        <select wire:model.defer='district_id' id="addDistrict"
                                             class="form-select @error('district_id') is-invalid is-filled @enderror">
                                             <option value="">اختر اسم القضاء</option>
                                             @foreach ($Districts as $District)
@@ -76,10 +76,11 @@
                         <hr class="my-0">
                         <div class="text-center col-12 demo-vertical-spacing mb-n4">
                             <button wire:click='store' wire:loading.attr="disabled" type="button"
-                                class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                                class="btn btn-primary me-sm-3 me-1">اضافة</button>
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">تجاهل</button>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>

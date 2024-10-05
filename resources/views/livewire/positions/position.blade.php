@@ -1,21 +1,25 @@
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semiboyld">نافذة المناصب</h4>
+    <h4 class="mb-2">
+        <span class="text-muted fw-light">الموارد البشرية <span class="mdi mdi-chevron-left mdi-24px"></span></span> المنصب
+    </h4>
+
     <div class="card">
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <input wire:model="PositionSearch" type="text" class="form-control" placeholder="بحث...">
-                    </div>
-                    <div>
-                        @can('position-create')
-                            <button wire:click='AddPositionModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
-                                data-bs-toggle="modal" data-bs-target="#addpositionModal">أضــافــة</button>
-                            @include('livewire.positions.modals.add-position')
-                        @endcan
-                    </div>
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <input wire:model="PositionSearch" type="text" class="form-control" placeholder="بحث...">
+                </div>
+                <div>
+                    @can('position-create')
+                        <button wire:click='AddPositionModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
+                            data-bs-toggle="modal" data-bs-target="#addpositionModal">أضــافــة</button>
+                        @include('livewire.positions.modals.add-position')
+                    @endcan
                 </div>
             </div>
+        </div>
+
+        <div class="card-body">
             @can('position-list')
                 <table class="table">
                     <thead class="table-light">
@@ -25,7 +29,6 @@
                             <th class="text-center">اسم المنصب</th>
                             <th class="text-center">رقم امر التكليف</th>
                             <th class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -59,9 +62,11 @@
                         @endforeach
                     </tbody>
                 </table>
+
                 <div class="mt-2 d-flex justify-content-center">
                     {{ $links->links() }}
                 </div>
+
                 <!-- Modal -->
                 @include('livewire.positions.modals.edit-position')
                 @include('livewire.positions.modals.remove-position')

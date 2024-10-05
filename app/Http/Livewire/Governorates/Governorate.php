@@ -41,8 +41,8 @@ class Governorate extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'governorate_number' => 'required|unique:governorates',
-            'governorate_name' => 'required|unique:governorates',
+            'governorate_number' => 'required|unique:governorates,governorate_number',
+            'governorate_name' => 'required|unique:governorates,governorate_name',
         ], [
             'governorate_number.required' => 'حقل الرقم مطلوب',
             'governorate_number.unique' => 'الرقم موجود',
@@ -50,11 +50,11 @@ class Governorate extends Component
             'governorate_name.unique' => 'الأسم موجود',
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Governorates::create([
             'governorate_number' => $this->governorate_number,
             'governorate_name' => $this->governorate_name,
         ]);
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
@@ -79,9 +79,11 @@ class Governorate extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'governorate_number' => 'required:governorates',
-            'governorate_name' => 'required|unique:governorates',
+            'governorate_number' => 'required|unique:governorates,governorate_number,'.$this->Governorate->id.',id',
+            'governorate_name' => 'required|unique:governorates,governorate_name,'.$this->Governorate->id.',id',
         ], [
+            'governorate_number.required' => 'حقل الرقم مطلوب',
+            'governorate_number.unique' => 'الرقم موجود',
             'governorate_name.required' => 'حقل الاسم مطلوب',
             'governorate_name.unique' => 'الأسم موجود',
         ]);

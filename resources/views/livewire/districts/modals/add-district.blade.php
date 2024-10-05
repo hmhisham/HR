@@ -7,16 +7,18 @@
                     <h3 class="pb-1 mb-2">إضافة اسم قضاء جديد</h3>
                     <p>نافذة الإضافة</p>
                 </div>
+
                 <hr class="mt-n2">
+                
                 <form id="adddistrictModalForm" autocomplete="off">
                     <div class="row">
-                        <div class="mb-3 col flex-fill {{ $governorates }}">
+                        <div class="mb-3 col flex-fill">
                             <div class="form-floating form-floating-outline">
-                                <select wire:model.defer='governorate_id' id="modalDistrictsgovernorate_id"
+                                <select wire:model.defer='governorate_id' wire:model.change='$event.change.value' id="addGovernorate"
                                     class="form-select @error('governorate_id') is-invalid is-filled @enderror">
-                                    <option value="">اختر اسم المحافظة</option>
-                                    @foreach ($governorates as $governorate)
-                                        <option value="{{ $governorate->id }}">{{ $governorate->governorate_name }}
+                                    <option value=""></option>
+                                    @foreach ($Governorates as $Governorate)
+                                        <option value="{{ $Governorate->id }}">{{ $Governorate->governorate_name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -53,13 +55,14 @@
                             </div>
                         </div>
                     </div>
+
                     <hr class="my-4">
-                    <div class="text-center">
+
+                    <div class="text-center mb-n4">
                         <button wire:click='store' wire:loading.attr="disabled" type="button"
                             class="btn btn-primary me-sm-3 me-1">إضافة</button>
                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                             aria-label="Close">تجاهل</button>
-
                     </div>
                 </form>
             </div>

@@ -8,25 +8,25 @@
                     <h3 class="pb-1 mb-2">تعديل اسم الناحية</h3>
                     <p>نافذة التعديل</p>
                 </div>
+
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetArea" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار حفظ البيانات...</h5>
-                <div wire:loading.remove wire:target="GetArea">
+
+                <h5 wire:loading wire:target="GetArea" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">جار حفظ البيانات...</h5>
+
+                <div wire:loading.remove wire:target="GetArea, update">
                     <form id="editAreaModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="mb-3 col">
                                 <div class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='governorate_id' wire:change='chooseGovernorate'
-                                                id="modalAreasgovernorate_id"
-                                                class="form-select @error('governorate_id') is-invalid is-filled @enderror">
+                                            <select wire:model.defer='governorate_id' id="editGovernorate" class="form-select @error('governorate_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($governorates as $governorate)
                                                     <option value="{{ $governorate->id }}">
-                                                        {{ $governorate->governorate_name }}</option>
+                                                        {{ $governorate->governorate_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             <label for="modalAreasgovernorate_id">اسم المحافظة</label>
@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='district_id' id="modalAreasdistrict_id"
+                                            <select wire:model.defer='district_id' id="editDistrict"
                                                 class="form-select @error('district_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($Districts as $district)
@@ -79,13 +79,15 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <hr class="my-0">
-                        <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                            <button wire:click='update' wire:loading.attr="disabled" type="button"
-                                class="btn btn-success me-sm-3 me-1">تعديل</button>
-                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                aria-label="Close">تجاهل</button>
+
+                            <hr class="my-0">
+
+                            <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                                <button wire:click='update' wire:loading.attr="disabled" type="button"
+                                    class="btn btn-primary me-sm-3 me-1">تعديل</button>
+                                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                    aria-label="Close">تجاهل</button>
+                            </div>
                         </div>
                     </form>
                 </div>

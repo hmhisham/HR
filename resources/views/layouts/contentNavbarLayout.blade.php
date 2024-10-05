@@ -166,17 +166,16 @@
                                 </li>
                             @endcan
 
-                            <li class="menu-item {{ request()->is('Governorates') ? 'open active' : '' }}">
+                            <li class="menu-item {{ request()->is('Salaries') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-calculator'></i>
                                     <span class="menu-title">القسم المالي</span>
                                 </a>
                                 <ul class="menu-sub">
-                                    <li class="menu-item {{ request()->is('Governorates') ? 'active' : '' }}">
-                                        <div class="menu-link">
-                                            <i class=""></i>
-                                            <Div>الرواتب</div>
-                                            </a>
+                                    <li Class="menu-item {{ request()->Is('Salaries') ? 'active' : '' }}">
+                                        <a href="" Class="menu-link">
+                                            <div>الرواتب</div>
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
@@ -207,8 +206,7 @@
 
                             {{-- الإعدادات --}}
 
-                            <li
-                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department') ? 'open active' : '' }}">
+                            <li class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>

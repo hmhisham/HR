@@ -7,7 +7,6 @@ use Livewire\WithPagination;
 use App\Models\Branch\Branch;
 use App\Models\Linkages\Linkages;
 use App\Models\Sections\Sections;
-use App\Http\Livewire\Linkages\Linkage;
 
 class Branc extends Component
 {
@@ -41,6 +40,7 @@ class Branc extends Component
             ->orWhere('branch_name', 'LIKE', $BranchSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $this->Branches = collect($Branch->items());
         return view('livewire.branch.branc', [
             'links' => $Branch,
@@ -78,11 +78,13 @@ class Branc extends Component
             'branch_name.required' => 'حقل الشعبة مطلوب',
             'branch_name.unique' => 'أسم الشعبة موجود',
         ]);
+
         Branch::create([
             'linkage_id' => $this->linkage_id,
             'section_id' => $this->section_id,
             'branch_name' => $this->branch_name,
         ]);
+
         $this->reset(['linkage_id', 'section_id', 'branch_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافة بنجاح',
@@ -109,8 +111,7 @@ class Branc extends Component
         $this->validate([
             'linkage_id' => 'required:branch',
             'section_id' => 'required:branch',
-            //'branch_name' => 'required|unique:branch,branch_name,NULL,id,section_id,'. $this->section_id,
-            'branch_name' => 'required|unique:branch,branch_name,' . $this->Branch->id . ',id,section_id,' . $this->section_id . ',linkage_id,' . $this->linkage_id
+            'branch_name' => 'required|unique:branch,branch_name,' . $this->Branch->id . ',id,section_id,' . $this->section_id . ',linkage_id,' . $this->linkage_id,
         ], [
             'linkage_id.required' => 'حقل الارتباط مطلوب',
             'section_id.required' => 'حقل القسم مطلوب',
@@ -134,7 +135,9 @@ class Branc extends Component
     {
         $Branch = Branch::find($this->BranchId);
         $Branch->delete();
+
         $this->reset(['linkage_id', 'section_id', 'branch_name']);
+        
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

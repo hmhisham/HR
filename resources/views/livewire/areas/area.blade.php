@@ -1,21 +1,25 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">نافذة النواحي</h4>
+    <h4 class="mb-2">
+        <span class="text-muted fw-light">الإعدادات <span class="mdi mdi-chevron-left mdi-24px"></span></span> النواحي
+    </h4>
+
     <div class="card">
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <input wire:model="AreaSearch" type="text" class="form-control" placeholder="بحث...">
-                    </div>
-                    <div>
-                        @can('area-create')
-                            <button wire:click='AddAreaModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
-                                data-bs-toggle="modal" data-bs-target="#addareaModal">أضــافــة</button>
-                            @include('livewire.areas.modals.add-area')
-                        @endcan
-                    </div>
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <input wire:model="AreaSearch" type="text" class="form-control" placeholder="بحث...">
+                </div>
+                <div>
+                    @can('area-create')
+                        <button wire:click='AddAreaModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
+                            data-bs-toggle="modal" data-bs-target="#addareaModal">أضــافــة</button>
+                        @include('livewire.areas.modals.add-area')
+                    @endcan
                 </div>
             </div>
+        </div>
+
+        <div class="card-body">
             @can('area-list')
                 <table class="table">
                     <thead class="table-light">
@@ -43,14 +47,14 @@
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('area-edit')
                                             <button wire:click="GetArea({{ $Area->id }})"
-                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editareaModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('area-delete')
                                             <button wire:click="GetArea({{ $Area->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Area->active ? 'disabled' : '' }}"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect {{ $Area->active ? 'disabled' : '' }}"
                                                 data-bs-toggle = "modal" data-bs-target="#removeareaModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>
