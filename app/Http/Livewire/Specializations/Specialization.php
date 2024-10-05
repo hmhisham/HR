@@ -36,15 +36,13 @@ class Specialization extends Component
     public function render()
     {
         $SpecializationSearch = '%' . $this->SpecializationSearch . '%';
-        $Specializations = Specializations::where('certificates_id', 'LIKE', $SpecializationSearch)
-            ->orWhere('graduations_id', 'LIKE', $SpecializationSearch)
-            ->orWhere('specializations_name', 'LIKE', $SpecializationSearch)
-
-
+        $Specializations = Specializations::where('specializations_name', 'LIKE', $SpecializationSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Specializations;
         $this->Specializations = collect($Specializations->items());
+
         return view('livewire.specializations.specialization', [
             'certificates' => Certificates::get(),
             'graduations' => Graduations::get(),
@@ -120,7 +118,7 @@ class Specialization extends Component
         $this->validate([
             'certificates_id' => 'required',
             'graduations_id' => 'required',
-            'specializations_name' => 'required|unique:specializations,specializations_name,NULL,id,graduations_id,' . $this->graduations_id,
+            'specializations_name' => 'required|unique:specializations,specializations_name,'.$this->Specialization->id.',id,graduations_id,' . $this->graduations_id.',certificates_id,'.$this->certificates_id,
         ], [
             'certificates_id.required' => 'حقل الاسم مطلوب',
             'graduations_id.required' => 'حقل الاسم مطلوب',

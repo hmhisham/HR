@@ -33,6 +33,24 @@ class Wive extends Component
         $this->department = Department::all();
     }
 
+    public function render()
+    {
+        $WiveSearch = '%' . $this->WiveSearch . '%';
+
+        $worker = Workers::where('full_name', $this->WiveSearch)->first();
+
+        $Wives = Wives::where('workers_id', $worker->id)
+            ->orWhere('full_name', 'LIKE', $WiveSearch)
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
+
+        $links = $Wives;
+        $this->Wives = collect($Wives->items());
+        return view('livewire.wives.wive', [
+            'links' => $links
+        ]);
+    }
+
     public function SelectWorkersId($WorkersIdID)
     {
         $workers_id = Workers::find($WorkersIdID);
@@ -63,19 +81,6 @@ class Wive extends Component
     {
         // توليد الاسم الكامل بناءً على الحقول المدخلة
         $this->full_name = trim("{$this->first_name} {$this->father_name} {$this->grandfather_name} {$this->great_grandfather_name} {$this->surname}");
-    }
-
-    public function render()
-    {
-        $WiveSearch = '%' . $this->WiveSearch . '%';
-        $Wives = Wives::Where('full_name', 'LIKE', $WiveSearch)
-            ->orderBy('id', 'ASC')
-            ->paginate(10);
-        $links = $Wives;
-        $this->Wives = collect($Wives->items());
-        return view('livewire.wives.wive', [
-            'links' => $links
-        ]);
     }
 
     public function AddWiveModalShow()

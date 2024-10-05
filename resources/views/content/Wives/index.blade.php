@@ -16,7 +16,9 @@
         href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 @endsection
+
 @section('content')
+
     @livewire('wives.wive')
 
 @endsection

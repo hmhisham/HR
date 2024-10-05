@@ -13,7 +13,7 @@
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="update, GetSpecialization">
                     <form id="editSpecializationModalForm" autocomplete="off">
                         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2">
                             <div class="mb-3 col ">
@@ -65,7 +65,7 @@
                         <hr class="my-0">
                         <div class="text-center col-12 demo-vertical-spacing mb-n4">
                             <button wire:click='update' wire:loading.attr="disabled" type="button"
-                                class="btn btn-success me-sm-3 me-1">تعديل</button>
+                                class="btn btn-primary me-sm-3 me-1">تعديل</button>
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">تجاهل</button>
                         </div>
