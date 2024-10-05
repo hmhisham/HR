@@ -64,8 +64,8 @@ class District extends Component
         $this->resetValidation();
         $this->validate([
             'governorate_id' => 'required',
-            'district_number' => 'required|unique:districts,district_number,NULL,id,governorate_id,' . $this->governorate_id,
-            'district_name' => 'required|unique:districts,district_name,NULL,id,governorate_id,' . $this->governorate_id,
+            'district_number' => 'required|unique:districts,district_number',
+            'district_name' => 'required|unique:districts,district_name',
         ], [
             'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
             'district_number.required' => 'حقل رقم القضاء مطلوب',
@@ -107,8 +107,8 @@ class District extends Component
         $this->resetValidation();
         $this->validate([
             'governorate_id' => 'required',
-            'district_number' => 'required|unique:districts,district_number,' . $this->District->id . ',id,governorate_id,' . $this->governorate_id,
-            'district_name' => 'required|unique:districts,district_name,' . $this->District->id . ',id,governorate_id,' . $this->governorate_id,
+            'district_number' => 'required|unique:districts,district_number,' . $this->District->id . ',id',
+            'district_name' => 'required|unique:districts,district_name,' . $this->District->id . ',id',
         ], [
             'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
             'district_number.required' => 'حقل رقم القضاء مطلوب',
@@ -138,7 +138,7 @@ class District extends Component
 
         $this->reset();
         $this->mount();
-        
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 @endsection
 @section('content')
+
     @livewire('placements.placement')
 
 @endsection
