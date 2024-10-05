@@ -24,6 +24,8 @@ class Certifi extends Component
     public $selectedWorker = null;
     public $selectedCertificate;
     public $graduation_id;
+    public $durationAptly = 'disabled';
+
     protected $listeners = [
         'SelectWorker',
     ];
@@ -31,24 +33,13 @@ class Certifi extends Component
     {
         $this->emit('select2');
     }
+
     public function mount()
     {
         $this->workers = Workers::all();
         $this->Certificates = Certificates::all();
     }
-    public function SelectWorker($workerID)
-    {
-        $worker = Workers::find($workerID);
-        if ($worker) {
-            $this->worker = $workerID;
-            $this->calculator_number = $worker->calculator_number;
-            $this->department = $worker->department;
-        } else {
-            $this->worker = null;
-            $this->calculator_number = null;
-            $this->department = null;
-        }
-    }
+
     public function render()
     {
         $CertifiSearch = '%' . $this->CertifiSearch . '%';
@@ -66,6 +57,21 @@ class Certifi extends Component
             'links' => $links
         ]);
     }
+
+    public function SelectWorker($workerID)
+    {
+        $worker = Workers::find($workerID);
+        if ($worker) {
+            $this->worker = $workerID;
+            $this->calculator_number = $worker->calculator_number;
+            $this->department = $worker->department;
+        } else {
+            $this->worker = null;
+            $this->calculator_number = null;
+            $this->department = null;
+        }
+    }
+
     public function updatedGrade($value)
     {
         $grade = (int)$value;
@@ -91,6 +97,12 @@ class Certifi extends Component
     public function loadGraduations()
     {
         if ($this->certificate_name) {
+            $Certificates = Certificates::find($this->certificate_name);
+            if($Certificates->certificates_name == 'دبلوم عالي'){
+                $this->durationAptly = '';
+            }else{
+                $this->reset('durationAptly');
+            }
             $this->Graduations = Graduations::where('certificates_id', $this->certificate_name)->get();
         }
     }

@@ -174,7 +174,7 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='duration' id="modalCertificdurationgraduation_year"
+                                        <select wire:model.defer='duration' {{ $durationAptly }} id="modalCertificdurationgraduation_year"
                                             class="form-select @error('duration') is-invalid is-filled @enderror"
                                             name="year">
                                             <option value="">اختر مدة القدم</option>
