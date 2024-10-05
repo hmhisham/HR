@@ -27,18 +27,10 @@ class Specialization extends Component
     {
         $this->emit('select2');
     }
+
     public function mount()
     {
         $this->Graduations = Graduations::all();
-    }
-    public function SelectGraduationsId($GraduationsIdID)
-    {
-        $graduations_id = Graduations::find($GraduationsIdID);
-        if ($graduations_id) {
-            $this->graduations_id = $GraduationsIdID;
-        } else {
-            $this->graduations_id = null;
-        }
     }
 
     public function render()
@@ -60,6 +52,16 @@ class Specialization extends Component
         ]);
     }
 
+    public function SelectGraduationsId($GraduationsIdID)
+    {
+        $graduations_id = Graduations::find($GraduationsIdID);
+        if ($graduations_id) {
+            $this->graduations_id = $GraduationsIdID;
+        } else {
+            $this->graduations_id = null;
+        }
+    }
+
     public function AddSpecializationModalShow()
     {
         $this->reset(['certificates_id','graduations_id','specializations_name']);
@@ -79,7 +81,7 @@ class Specialization extends Component
         $this->validate([
             'certificates_id' => 'required',
             'graduations_id' => 'required',
-            'specializations_name' => 'required|unique:specializations,specializations_name,NULL,id,graduations_id,' . $this->graduations_id,
+            'specializations_name' => 'required|unique:specializations,specializations_name,NULL,id,graduations_id,' . $this->graduations_id.',certificates_id,'.$this->certificates_id,
         ], [
             'certificates_id.required' => 'حقل الاسم مطلوب',
             'graduations_id.required' => 'حقل الاسم مطلوب',
@@ -87,13 +89,13 @@ class Specialization extends Component
             'specializations_name.unique' => 'الاسم موجود',
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Specializations::create([
             'certificates_id' => $this->certificates_id,
             'graduations_id' => $this->graduations_id,
             'specializations_name' => $this->specializations_name,
 
         ]);
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
@@ -116,8 +118,8 @@ class Specialization extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'certificates_id' => 'required:specializations',
-            'graduations_id' => 'required:specializations',
+            'certificates_id' => 'required',
+            'graduations_id' => 'required',
             'specializations_name' => 'required|unique:specializations,specializations_name,NULL,id,graduations_id,' . $this->graduations_id,
         ], [
             'certificates_id.required' => 'حقل الاسم مطلوب',

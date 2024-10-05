@@ -11,9 +11,10 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
 @endsection
-@section('content')
-    @livewire('specializations.specialization')
 
+@section('content')
+
+    @livewire('specializations.specialization')
 
 @endsection
 
@@ -68,6 +69,7 @@
                 initEditGraduationsDrop();
             });
         });
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -102,7 +104,6 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-
         })
     </script>
 @endsection
