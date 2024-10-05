@@ -14,34 +14,26 @@
                 <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حذف البيانات...</h5>
 
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="GetPlacement">
                     <form id="removePlacementModalForm" onsubmit="return false" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div Class="row">
 
-                                    <div class="mb-3 col">
+                                    <div class="col text-center">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='worker_id' type="text"
-                                                id="modalPlacementworker_id" placeholder="الاسم"
-                                                class="form-control @error('worker_id') is-invalid is-filled @enderror" />
-                                            <label for="modalPlacementworker_id">الاسم</label>
+                                            <input type="text" id="worker_id" class="form-control"
+                                                placeholder="الاسم" value="{{ $worker_full_name }}" disabled>
+                                            <label for="worker_id">الاسم</label>
                                         </div>
-                                        @error('worker_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
                                     </div>
 
-                                    <div class="mb-3 col">
+                                    <div class="col text-center">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='section_id' type="text"
-                                                id="modalPlacementsection_id" placeholder="القسم"
-                                                class="form-control @error('section_id') is-invalid is-filled @enderror" />
-                                            <label for="modalPlacementsection_id">القسم</label>
+                                            <input type="text" id="section_id" class="form-control"
+                                                placeholder="القسم" value="{{ $SectionsName }}" disabled>
+                                            <label for="section_id">القسم</label>
                                         </div>
-                                        @error('section_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
                                     </div>
 
                                 </div>

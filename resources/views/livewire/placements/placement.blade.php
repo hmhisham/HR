@@ -36,7 +36,8 @@
                                 <td>{{ $i }}</td>
                                 <td class="text-center">{{ $Placement->Getworker ? $Placement->Getworker->full_name : '' }}
                                 </td>
-                                <td class="text-center">{{ $Placement->section_id }}</td>
+                                <td class="text-center">
+                                    {{ $Placement->Getsection ? $Placement->Getsection->section_name : '' }}</td>
                                 <td class="text-center">{{ $Placement->placement_order_number }}</td>
                                 <td class="text-center">{{ $Placement->placement_order_date }}</td>
                                 <td class="text-center">

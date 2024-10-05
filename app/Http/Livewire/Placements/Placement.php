@@ -19,8 +19,8 @@ class Placement extends Component
     public $branch = [];
     public $units = [];
     public $Placements = [];
-    public $PlacementSearch, $Placement, $PlacementId;
-    public $user_id, $worker_id, $linkage_id, $section_id, $branch_id, $unit_id, $placement_order_number, $placement_order_date, $release_date, $start_date;
+    public $PlacementSearch, $Placement, $PlacementId, $linkageName, $SectionsName, $branch_name, $UnitName;
+    public $user_id, $worker_id, $worker_full_name, $linkage_id, $section_id, $branch_id, $unit_id, $placement_order_number, $placement_order_date, $release_date, $start_date;
     protected $listeners = [
         'SelectWorkerId',
         'GetLinkage',
@@ -65,6 +65,11 @@ class Placement extends Component
     public function GetUnit($Unit_id)
     {
         $this->unit_id = $Unit_id;
+        if ($Unit_id) {
+            $this->unit_id = $Unit_id;
+        } else {
+            $this->unit_id = null;
+        }
     }
     public function render()
     {
@@ -93,6 +98,27 @@ class Placement extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('PlacementModalShow');
     }
+    public function GetPlacement($PlacementId)
+    {
+        $this->resetValidation();
+        $this->Placement = Placements::find($PlacementId);
+        $this->PlacementId = $this->Placement->id;
+        $this->worker_id = $this->Placement->worker_id;
+        $this->linkage_id = $this->Placement->linkage_id;
+        $this->section_id = $this->Placement->section_id;
+        $this->branch_id = $this->Placement->branch_id;
+        $this->unit_id = $this->Placement->unit_id;
+        $this->placement_order_number = $this->Placement->placement_order_number;
+        $this->placement_order_date = $this->Placement->placement_order_date;
+        $this->release_date = $this->Placement->release_date;
+        $this->start_date = $this->Placement->start_date;
+        $this->sections = $this->Placement->Getlinkage->GetSections;
+        $this->linkageName = $this->Placement->Getsection->Getlinkage->Linkages_name;
+        $this->SectionsName = $this->Placement->Getsection->section_name;
+        $this->branch = $this->Placement->Getsection->GetBranch;
+        $this->units = $this->Placement->Getbranc->GetUnit;
+        $this->worker_full_name = $this->Placement->Getworker->full_name;
+    }
     public function store()
     {
         $this->resetValidation();
@@ -100,8 +126,6 @@ class Placement extends Component
             'worker_id' => 'required',
             'linkage_id' => 'required',
             'section_id' => 'required',
-            'branch_id' => 'required',
-            'unit_id' => 'required',
             'placement_order_number' => 'required',
             'placement_order_date' => 'required',
             'release_date' => 'required',
@@ -110,8 +134,6 @@ class Placement extends Component
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
             'section_id.required' => 'حقل القسم مطلوب',
-            'branch_id.required' => 'حقل الشعبة مطلوب',
-            'unit_id.required' => 'حقل الوحدة مطلوب',
             'placement_order_number.required' => 'حقل رقم أمر التنسيب مطلوب',
             'placement_order_date.required' => 'حقل تاريخ أمر التنسيب مطلوب',
             'release_date.required' => 'حقل تاريخ الانفكاك مطلوب',
@@ -135,22 +157,6 @@ class Placement extends Component
             'title' => 'اضافه'
         ]);
     }
-    public function GetPlacement($PlacementId)
-    {
-        $this->resetValidation();
-        $this->Placement  = Placements::find($PlacementId);
-        $this->PlacementId = $this->Placement->id;
-        $this->user_id = $this->Placement->user_id;
-        $this->worker_id = $this->Placement->worker_id;
-        $this->linkage_id = $this->Placement->linkage_id;
-        $this->section_id = $this->Placement->section_id;
-        $this->branch_id = $this->Placement->branch_id;
-        $this->unit_id = $this->Placement->unit_id;
-        $this->placement_order_number = $this->Placement->placement_order_number;
-        $this->placement_order_date = $this->Placement->placement_order_date;
-        $this->release_date = $this->Placement->release_date;
-        $this->start_date = $this->Placement->start_date;
-    }
     public function update()
     {
         $this->resetValidation();
@@ -158,8 +164,6 @@ class Placement extends Component
             'worker_id' => 'required:placements',
             'linkage_id' => 'required:placements',
             'section_id' => 'required:placements',
-            'branch_id' => 'required:placements',
-            'unit_id' => 'required:placements',
             'placement_order_number' => 'required:placements',
             'placement_order_date' => 'required:placements',
             'release_date' => 'required:placements',
@@ -168,8 +172,6 @@ class Placement extends Component
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
             'section_id.required' => 'حقل القسم مطلوب',
-            'branch_id.required' => 'حقل الشعبة مطلوب',
-            'unit_id.required' => 'حقل الوحدة مطلوب',
             'placement_order_number.required' => 'حقل رقم أمر التنسيب مطلوب',
             'placement_order_date.required' => 'حقل تاريخ أمر التنسيب مطلوب',
             'release_date.required' => 'حقل تاريخ الانفكاك مطلوب',

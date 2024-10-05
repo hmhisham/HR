@@ -193,13 +193,13 @@
         // add Workers
         $(document).ready(function() {
             window.initAddWorkersDrop = () => {
-                $('#addPositionworker_id').select2({
+                $('#addPlacementworker_id').select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#addpositionModal')
+                    dropdownParent: $('#addplacementModal')
                 });
             }
             initAddWorkersDrop();
-            $('#addPositionworker_id').on('change', function(e) {
+            $('#addPlacementworker_id').on('change', function(e) {
                 livewire.emit('SelectWorkerId', e.target.value);
             });
             window.livewire.on('select2', () => {
@@ -210,13 +210,13 @@
         // edit Workers
         $(document).ready(function() {
             window.initEditWorkersDrop = () => {
-                $('#editPositionworker_id').select2({
+                $('#editPlacementworker_id').select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#editpositionModal')
+                    dropdownParent: $('#editplacementModal')
                 });
             }
             initEditWorkersDrop();
-            $('#editPositionworker_id').on('change', function(e) {
+            $('#editPlacementworker_id').on('change', function(e) {
                 livewire.emit('SelectWorkerId', e.target.value);
             });
             window.livewire.on('select2', () => {
@@ -361,10 +361,7 @@
             });
         });
 
-        document.addEventListener('reinitialize-select2', function() {
-            // إعادة تهيئة Select2
-            $('.select2').select2();
-        });
-        
+     
+
     </script>
 @endsection
