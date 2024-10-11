@@ -47,7 +47,7 @@ class Departmen extends Component
             'department_name' => 'required|unique:department',
 
         ], [
-            'department_name.required' => 'حقل الاسم مطلوب',
+            'department_name.required' => 'حقل اسم الدائرة مطلوب',
             'department_name.unique' => 'الاسم موجود',
         ]);
 
@@ -78,10 +78,10 @@ class Departmen extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'department_name' => 'required|unique:department',
+            'department_name' => 'required|unique:department,department_name,'.$this->Departmen->id.',id',
 
         ], [
-            'department_name.required' => 'حقل الاسم مطلوب',
+            'department_name.required' => 'حقل اسم الدائرة مطلوب',
             'department_name.unique' => 'الاسم موجود',
         ]);
 

@@ -50,10 +50,10 @@ class Jobtitle extends Component
             'jobtitles_name' => 'required|unique:jobtitles',
 
         ], [
-            'grades_id.required' => 'حقل الاسم مطلوب',
-            'grades_id.unique' => 'الأسم موجود',
-            'jobtitles_name.required' => 'حقل الاسم مطلوب',
-            'jobtitles_name.unique' => 'الأسم موجود',
+            'grades_id.required' => 'حقل الدرجة الوظيفية مطلوب',
+            'grades_id.unique' => 'الدرجة الوظيفية موجودة',
+            'jobtitles_name.required' => 'حقل العنوان الوظيفي مطلوب',
+            'jobtitles_name.unique' => 'العنوان الوظيفي موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -84,11 +84,13 @@ class Jobtitle extends Component
         $this->resetValidation();
         $this->validate([
             'grades_id' => 'required:jobtitles',
-            'jobtitles_name' => 'required|unique:jobtitles',
+            'jobtitles_name' => 'required|unique:jobtitles,jobtitles_name,'.$this->Jobtitle->id.',id',
 
         ], [
-            'jobtitles_name.required' => 'حقل الاسم مطلوب',
-            'jobtitles_name.unique' => 'الأسم موجود',
+            'grades_id.required' => 'حقل الدرجة الوظيفية مطلوب',
+            'grades_id.unique' => 'الدرجة الوظيفية موجودة',
+            'jobtitles_name.required' => 'حقل العنوان الوظيفي مطلوب',
+            'jobtitles_name.unique' => 'العنوان الوظيفي موجود',
         ]);
 
         $Jobtitles = Jobtitles::find($this->JobtitleId);

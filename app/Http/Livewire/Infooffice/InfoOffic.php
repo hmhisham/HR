@@ -48,9 +48,9 @@ class InfoOffic extends Component
             'Infooffice_name' => 'required|unique:infooffice',
 
         ], [
-            'Infooffice_id.required' => 'حقل الرقم مطلوب',
+            'Infooffice_id.required' => 'حقل رقم مكتب المعلومات مطلوب',
             'Infooffice_id.unique' => 'الرقم موجود',
-            'Infooffice_name.required' => 'حقل الاسم مطلوب',
+            'Infooffice_name.required' => 'حقل اسم مكتب المعلومات مطلوب',
             'Infooffice_name.unique' => 'الأسم موجود',
         ]);
 
@@ -81,11 +81,13 @@ class InfoOffic extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'Infooffice_id' => 'required:infooffice',
-            'Infooffice_name' => 'required|unique:infooffice',
+            'Infooffice_id' => 'required|unique:infooffice,Infooffice_id,' . $this->InfoOffic->id . ',id',
+            'Infooffice_name' => 'required|unique:infooffice,Infooffice_name,' . $this->InfoOffic->id . ',id',
 
         ], [
-            'Infooffice_name.required' => 'حقل الاسم مطلوب',
+            'Infooffice_id.required' => 'حقل رقم مكتب المعلومات مطلوب',
+            'Infooffice_id.unique' => 'الرقم موجود',
+            'Infooffice_name.required' => 'حقل اسم مكتب المعلومات مطلوب',
             'Infooffice_name.unique' => 'الأسم موجود',
         ]);
 

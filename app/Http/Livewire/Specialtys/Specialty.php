@@ -48,9 +48,9 @@ class Specialty extends Component
             'specialtys_name' => 'required|unique:specialtys',
 
         ], [
-            'specialtys_code.required' => 'حقل الاسم مطلوب',
+            'specialtys_code.required' => 'حقل رمز التخصص العام مطلوب',
             'specialtys_code.unique' => 'الأسم موجود',
-            'specialtys_name.required' => 'حقل الاسم مطلوب',
+            'specialtys_name.required' => 'حقل اسم التخصص العام مطلوب',
             'specialtys_name.unique' => 'الأسم موجود',
         ]);
 
@@ -81,12 +81,13 @@ class Specialty extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'specialtys_code' => 'required:specialtys',
-            'specialtys_name' => 'required|unique:specialtys',
+            'specialtys_code' => 'required|unique:specialtys,specialtys_code,'.$this->Specialty->id.',id',
+            'specialtys_name' => 'required|unique:specialtys,specialtys_name,'.$this->Specialty->id.',id',
 
         ], [
-            'specialtys_code.required' => 'حقل الاسم مطلوب',
-            'specialtys_name.required' => 'حقل الاسم مطلوب',
+            'specialtys_code.required' => 'حقل رمز التخصص العام مطلوب',
+            'specialtys_code.unique' => 'الأسم موجود',
+            'specialtys_name.required' => 'حقل اسم التخصص العام مطلوب',
             'specialtys_name.unique' => 'الأسم موجود',
         ]);
 

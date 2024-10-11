@@ -44,7 +44,7 @@ class Linkage extends Component
             'Linkages_name' => 'required|unique:linkages',
 
         ], [
-            'Linkages_name.required' => 'حقل الاسم مطلوب',
+            'Linkages_name.required' => 'حقل اسم الارتباط مطلوب',
             'Linkages_name.unique' => 'الأسم موجود',
         ]);
 
@@ -72,10 +72,10 @@ class Linkage extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'Linkages_name' => 'required|unique:linkages',
+            'Linkages_name' => 'required|unique:linkages,Linkages_name,'.$this->Linkage->id.',id',
 
         ], [
-            'Linkages_name.required' => 'حقل الاسم مطلوب',
+            'Linkages_name.required' => 'حقل اسم الارتباط مطلوب',
             'Linkages_name.unique' => 'الأسم موجود',
         ]);
 

@@ -75,7 +75,8 @@ class Specializationclassificatio extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'specializationclassification_name' => 'required|unique:specializationclassification',
+            'specializationclassification_name' => 'required|unique:specializationclassification,specializationclassification_name,'.$this->Specializationclassificatio->id.',id',
+        ], [
 
         ], [
             'specializationclassification_name.required' => 'حقل الاسم مطلوب',
