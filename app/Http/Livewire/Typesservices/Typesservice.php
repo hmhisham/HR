@@ -43,7 +43,7 @@ class Typesservice extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'typesservices_name' => 'required|unique:trainings',
+            'typesservices_name' => 'required|unique:typesservices',
 
         ], [
             'typesservices_name.required' => 'حقل الاسم مطلوب',
@@ -75,11 +75,10 @@ class Typesservice extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'typesservices_name' => 'required|unique:typesservices',
+            'typesservices_name' => 'required',
 
         ], [
             'typesservices_name.required' => 'حقل الاسم مطلوب',
-            'typesservices_name.unique' => 'الاسم موجود',
         ]);
 
         $Typesservices = Typesservices::find($this->TypesserviceId);

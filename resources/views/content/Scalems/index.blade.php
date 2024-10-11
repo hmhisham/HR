@@ -55,7 +55,7 @@
                 return false;
             return true;
         }
-        
+
         window.addEventListener('ScalemModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
@@ -68,14 +68,14 @@
             $('#removescalemModal').modal('hide');
             Toast.fire({
                 icon: 'success',
-                title: event.detail.message
+                title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
         window.addEventListener('error', event => {
             $('#removescalemModal').modal('hide');
             Toast.fire({
                 icon: 'error',
-                title: event.detail.message,
+                title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
 
