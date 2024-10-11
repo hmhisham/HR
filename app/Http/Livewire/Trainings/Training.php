@@ -43,7 +43,7 @@ class Training extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'trainings_name' => 'required|unique::trainings',
+            'trainings_name' => 'required|unique:trainings',
 
         ], [
             'trainings_name.required' => 'حقل الاسم مطلوب',
