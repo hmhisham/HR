@@ -36,14 +36,14 @@
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('departmen-edit')
                                             <button wire:click="GetDepartmen({{ $Departmen->id }})"
-                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editdepartmenModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('departmen-delete')
                                             <button wire:click="GetDepartmen({{ $Departmen->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Departmen->active ? 'disabled' : '' }}"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect {{ $Departmen->active ? 'disabled' : '' }}"
                                                 data-bs-toggle = "modal" data-bs-target="#removedepartmenModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>

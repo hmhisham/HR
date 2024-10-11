@@ -36,14 +36,14 @@
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('typesservice-edit')
                                             <button wire:click="GetTypesservice({{ $Typesservice->id }})"
-                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#edittypesserviceModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('typesservice-delete')
                                             <button wire:click="GetTypesservice({{ $Typesservice->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Typesservice->active ? 'disabled' : '' }}"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect {{ $Typesservice->active ? 'disabled' : '' }}"
                                                 data-bs-toggle = "modal" data-bs-target="#removetypesserviceModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>

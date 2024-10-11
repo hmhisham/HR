@@ -50,14 +50,14 @@
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('scalem-edit')
                                             <button wire:click="GetScalem({{ $Scalem->id }})"
-                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editscalemModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('scalem-delete')
                                             <button wire:click="GetScalem({{ $Scalem->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Scalem->active ? 'disabled' : '' }}"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect {{ $Scalem->active ? 'disabled' : '' }}"
                                                 data-bs-toggle = "modal" data-bs-target="#removescalemModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>

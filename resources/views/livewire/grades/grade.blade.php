@@ -36,14 +36,14 @@
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('grade-edit')
                                             <button wire:click="GetGrade({{ $Grade->id }})"
-                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editgradeModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('grade-delete')
                                             <button wire:click="GetGrade({{ $Grade->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Grade->active ? 'disabled' : '' }}"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect {{ $Grade->active ? 'disabled' : '' }}"
                                                 data-bs-toggle = "modal" data-bs-target="#removegradeModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>

@@ -40,14 +40,14 @@
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('jobtitle-edit')
                                             <button wire:click="GetJobtitle({{ $Jobtitle->id }})"
-                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editjobtitleModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('jobtitle-delete')
                                             <button wire:click="GetJobtitle({{ $Jobtitle->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Jobtitle->active ? 'disabled' : '' }}"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect {{ $Jobtitle->active ? 'disabled' : '' }}"
                                                 data-bs-toggle = "modal" data-bs-target="#removejobtitleModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>
