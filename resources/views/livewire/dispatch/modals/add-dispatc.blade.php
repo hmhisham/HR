@@ -209,7 +209,7 @@
                     <hr class="my-0">
                     <div class="text-center col-12 demo-vertical-spacing mb-n4">
                         <button wire:click='store' wire:loading.attr="disabled" type="button"
-                            class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                            class="btn btn-primary me-sm-3 me-1">اضافة</button>
                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                             aria-label="Close">تجاهل</button>
                     </div>
