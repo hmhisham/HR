@@ -46,8 +46,8 @@ class Typesservice extends Component
             'typesservices_name' => 'required|unique:typesservices',
 
         ], [
-            'typesservices_name.required' => 'حقل الاسم مطلوب',
-            'typesservices_name.unique' => 'الاسم موجود',
+            'typesservices_name.required' => 'حقل حالة الخدمة مطلوب',
+            'typesservices_name.unique' => 'حالة الخدمة موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -75,10 +75,11 @@ class Typesservice extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'typesservices_name' => 'required',
+            'typesservices_name' => 'required|unique:typesservices,typesservices_name,'.$this->Typesservice->id.',id',
 
         ], [
-            'typesservices_name.required' => 'حقل الاسم مطلوب',
+            'typesservices_name.required' => 'حقل حالة الخدمة مطلوب',
+            'typesservices_name.unique' => 'حالة الخدمة موجود',
         ]);
 
         $Typesservices = Typesservices::find($this->TypesserviceId);

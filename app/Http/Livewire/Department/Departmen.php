@@ -48,7 +48,7 @@ class Departmen extends Component
 
         ], [
             'department_name.required' => 'حقل اسم الدائرة مطلوب',
-            'department_name.unique' => 'الاسم موجود',
+            'department_name.unique' => 'اسم الدائرة موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -82,7 +82,7 @@ class Departmen extends Component
 
         ], [
             'department_name.required' => 'حقل اسم الدائرة مطلوب',
-            'department_name.unique' => 'الاسم موجود',
+            'department_name.unique' => 'اسم الدائرة موجود',
         ]);
 
         $Department = Department::find($this->DepartmenId);

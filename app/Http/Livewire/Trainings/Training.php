@@ -46,8 +46,8 @@ class Training extends Component
             'trainings_name' => 'required|unique:trainings',
 
         ], [
-            'trainings_name.required' => 'حقل الاسم مطلوب',
-            'trainings_name.unique' => 'الاسم موجود',
+            'trainings_name.required' => 'حقل المجال التدريب مطلوب',
+            'trainings_name.unique' => 'المجال التدريب موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -75,11 +75,11 @@ class Training extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'trainings_name' => 'required|unique:trainings',
+            'trainings_name' => 'required|unique:trainings,trainings_name,'.$this->Training->id.',id',
 
         ], [
-            'trainings_name.required' => 'حقل الاسم مطلوب',
-            'trainings_name.unique' => 'الاسم موجود',
+            'trainings_name.required' => 'حقل المجال التدريب مطلوب',
+            'trainings_name.unique' => 'المجال التدريب موجود',
         ]);
 
         $Trainings = Trainings::find($this->TrainingId);

@@ -46,8 +46,8 @@ class Certificate extends Component
             'certificates_name' => 'required|unique:certificates',
 
         ], [
-            'certificates_name.required' => 'حقل اسم الشهادة مطلوب',
-            'certificates_name.unique' => 'الأسم موجود',
+            'certificates_name.required' => 'حقل التحصيل الدراسي مطلوب',
+            'certificates_name.unique' => 'التحصيل الدراسي موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -78,8 +78,8 @@ class Certificate extends Component
             'certificates_name' => 'required|unique:certificates,certificates_name,'.$this->Certificate->id.',id',
 
         ], [
-            'certificates_name.required' => 'حقل اسم الشهادة مطلوب',
-            'certificates_name.unique' => 'الأسم موجود',
+            'certificates_name.required' => 'حقل التحصيل الدراسي مطلوب',
+            'certificates_name.unique' => 'التحصيل الدراسي موجود',
         ]);
 
         $Certificates = Certificates::find($this->CertificateId);

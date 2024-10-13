@@ -49,9 +49,9 @@ class InfoOffic extends Component
 
         ], [
             'Infooffice_id.required' => 'حقل رقم مكتب المعلومات مطلوب',
-            'Infooffice_id.unique' => 'الرقم موجود',
+            'Infooffice_id.unique' => 'رقم مكتب المعلومات موجود',
             'Infooffice_name.required' => 'حقل اسم مكتب المعلومات مطلوب',
-            'Infooffice_name.unique' => 'الأسم موجود',
+            'Infooffice_name.unique' => 'اسم مكتب المعلومات موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -86,9 +86,9 @@ class InfoOffic extends Component
 
         ], [
             'Infooffice_id.required' => 'حقل رقم مكتب المعلومات مطلوب',
-            'Infooffice_id.unique' => 'الرقم موجود',
+            'Infooffice_id.unique' => 'رقم مكتب المعلومات موجود',
             'Infooffice_name.required' => 'حقل اسم مكتب المعلومات مطلوب',
-            'Infooffice_name.unique' => 'الأسم موجود',
+            'Infooffice_name.unique' => 'اسم مكتب المعلومات موجود',
         ]);
 
         $Infooffice = Infooffice::find($this->InfoOfficId);

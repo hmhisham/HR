@@ -81,10 +81,10 @@ class Specialization extends Component
             'graduations_id' => 'required',
             'specializations_name' => 'required|unique:specializations,specializations_name,NULL,id,graduations_id,' . $this->graduations_id.',certificates_id,'.$this->certificates_id,
         ], [
-            'certificates_id.required' => 'حقل الاسم مطلوب',
-            'graduations_id.required' => 'حقل الاسم مطلوب',
-            'specializations_name.required' => 'حقل الاسم مطلوب',
-            'specializations_name.unique' => 'الاسم موجود',
+            'certificates_id.required' => 'حقل التحصيل الدراسي مطلوب',
+            'graduations_id.required' => 'حقل جهةالتخرج مطلوب',
+            'specializations_name.required' => 'حقل الاختصاص مطلوب',
+            'specializations_name.unique' => 'الاختصاص موجود',
         ]);
 
         Specializations::create([
@@ -120,10 +120,10 @@ class Specialization extends Component
             'graduations_id' => 'required',
             'specializations_name' => 'required|unique:specializations,specializations_name,'.$this->Specialization->id.',id,graduations_id,' . $this->graduations_id.',certificates_id,'.$this->certificates_id,
         ], [
-            'certificates_id.required' => 'حقل الاسم مطلوب',
-            'graduations_id.required' => 'حقل الاسم مطلوب',
-            'specializations_name.required' => 'حقل الاسم مطلوب',
-            'specializations_name.unique' => 'الاسم موجود',
+            'certificates_id.required' => 'حقل التحصيل الدراسي مطلوب',
+            'graduations_id.required' => 'حقل جهةالتخرج مطلوب',
+            'specializations_name.required' => 'حقل الاختصاص مطلوب',
+            'specializations_name.unique' => 'الاختصاص موجود',
         ]);
 
         $Specializations = Specializations::find($this->SpecializationId);

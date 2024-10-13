@@ -83,9 +83,9 @@ class Governorate extends Component
             'governorate_name' => 'required|unique:governorates,governorate_name,'.$this->Governorate->id.',id',
         ], [
             'governorate_number.required' => 'حقل رقم المحافظة مطلوب',
-            'governorate_number.unique' => 'الرقم موجود',
+            'governorate_number.unique' => 'رقم المحافظة موجود',
             'governorate_name.required' => 'حقل اسم المحافظة مطلوب',
-            'governorate_name.unique' => 'الأسم موجود',
+            'governorate_name.unique' => 'اسم المحافظة موجود',
         ]);
 
         $Governorates = Governorates::find($this->GovernorateId);

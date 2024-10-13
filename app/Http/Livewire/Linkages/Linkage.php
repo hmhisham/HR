@@ -45,7 +45,7 @@ class Linkage extends Component
 
         ], [
             'Linkages_name.required' => 'حقل اسم الارتباط مطلوب',
-            'Linkages_name.unique' => 'الأسم موجود',
+            'Linkages_name.unique' => 'اسم الارتباط موجود',
         ]);
 
         Linkages::create([
@@ -76,7 +76,7 @@ class Linkage extends Component
 
         ], [
             'Linkages_name.required' => 'حقل اسم الارتباط مطلوب',
-            'Linkages_name.unique' => 'الأسم موجود',
+            'Linkages_name.unique' => 'اسم الارتباط موجود',
         ]);
 
         $Linkages = Linkages::find($this->LinkageId);

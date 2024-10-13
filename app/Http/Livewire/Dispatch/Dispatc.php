@@ -108,7 +108,7 @@ class dispatc extends Component
 
         ], [
 
-            'calculator_number.required' => 'حقل الاسم مطلوب',
+            'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'country_status.required' => 'حقل الاسم مطلوب',
             'dispatch_subject.required' => 'حقل الاسم مطلوب',
             'funding_agency.required' => 'حقل الاسم مطلوب',

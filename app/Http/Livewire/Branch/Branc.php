@@ -73,9 +73,9 @@ class Branc extends Component
             'section_id' => 'required:branch',
             'branch_name' => 'required|unique:branch,branch_name,NULL,id,section_id,' . $this->section_id . ',linkage_id,' . $this->linkage_id,
         ], [
-            'linkage_id.required' => 'حقل الارتباط مطلوب',
-            'section_id.required' => 'حقل القسم مطلوب',
-            'branch_name.required' => 'حقل الشعبة مطلوب',
+            'linkage_id.required' => 'حقل اسم الارتباط مطلوب',
+            'section_id.required' => 'حقل اسم القسم مطلوب',
+            'branch_name.required' => 'حقل اسم الشعبة مطلوب',
             'branch_name.unique' => 'أسم الشعبة موجود',
         ]);
 
@@ -113,9 +113,9 @@ class Branc extends Component
             'section_id' => 'required:branch',
             'branch_name' => 'required|unique:branch,branch_name,' . $this->Branch->id . ',id,section_id,' . $this->section_id . ',linkage_id,' . $this->linkage_id,
         ], [
-            'linkage_id.required' => 'حقل الارتباط مطلوب',
-            'section_id.required' => 'حقل القسم مطلوب',
-            'branch_name.required' => 'حقل الشعبة مطلوب',
+            'linkage_id.required' => 'حقل اسم الارتباط مطلوب',
+            'section_id.required' => 'حقل اسم القسم مطلوب',
+            'branch_name.required' => 'حقل اسم الشعبة مطلوب',
             'branch_name.unique' => 'أسم الشعبة موجود',
         ]);
         $Branch = Branch::find($this->BranchId);
@@ -137,7 +137,7 @@ class Branc extends Component
         $Branch->delete();
 
         $this->reset(['linkage_id', 'section_id', 'branch_name']);
-        
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

@@ -68,7 +68,7 @@ class Section extends Component
 
         ], [
             'linkage_id.required' => 'حقل الارتباط مطلوب',
-            'section_name.required' => 'حقل القسم مطلوب',
+            'section_name.required' => 'حقل اسم القسم مطلوب',
             'section_name.unique' => 'أسم القسم موجود',
         ]);
 
@@ -107,7 +107,7 @@ class Section extends Component
 
         ], [
             'linkage_id.required' => 'حقل الارتباط مطلوب',
-            'section_name.required' => 'حقل القسم مطلوب',
+            'section_name.required' => 'حقل اسم القسم مطلوب',
             'section_name.unique' => 'أسم القسم موجود',
         ]);
 

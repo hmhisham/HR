@@ -50,9 +50,9 @@ class Graduation extends Component
             'graduations_name' => 'required|unique:graduations',
 
         ], [
-            'certificates_id.required' => 'حقل الاسم مطلوب',
-            'graduations_name.required' => 'حقل الاسم مطلوب',
-            'graduations_name.unique' => 'الاسم موجود',
+            'certificates_id.required' => 'حقل اسم الشهادة مطلوب',
+            'graduations_name.required' => 'حقل اسم الاختصاص مطلوب',
+            'graduations_name.unique' => 'اسم الاختصاص موجود',
 
         ]);
 
@@ -84,12 +84,12 @@ class Graduation extends Component
         $this->resetValidation();
         $this->validate([
             'certificates_id' => 'required:graduations',
-            'graduations_name' => 'required|unique:graduations',
+            'graduations_name' => 'required|unique:graduations,graduations_name,'.$this->Graduation->id.',id',
 
         ], [
-            'certificates_id.required' => 'حقل الاسم مطلوب',
-            'graduations_name.required' => 'حقل الاسم مطلوب',
-            'graduations_name.unique' => 'الاسم موجود',
+            'certificates_id.required' => 'حقل اسم الشهادة مطلوب',
+            'graduations_name.required' => 'حقل اسم الاختصاص مطلوب',
+            'graduations_name.unique' => 'اسم الاختصاص موجود',
 
         ]);
 

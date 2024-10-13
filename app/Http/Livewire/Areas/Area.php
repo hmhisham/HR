@@ -81,9 +81,9 @@ class Area extends Component
             'area_id' => 'required|unique:areas,area_id',
             'area_name' => 'required|unique:areas,area_name',
         ], [
-            'governorate_id.required' => 'حقل الاسم مطلوب',
-            'district_id.required' => 'حقل الاسم مطلوب',
-            'area_id.required' => 'حقل الرقم مطلوب',
+            'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
+            'district_id.required' => 'حقل أسم القضاء مطلوب',
+            'area_id.required' => 'حقل رقم الناحية مطلوب',
             'area_id.unique' => 'رقم الناحية موجود',
             'area_name.required' => 'حقل أسم الناحية مطلوب',
             'area_name.unique' => 'أسم الناحية موجود',

@@ -52,11 +52,11 @@ class Precise extends Component
             'precises_name' => 'required|unique:precises,precises_name,NULL,id,specialtys_code,'.$this->specialtys_code,
 
         ], [
-            'specialtys_code.required' => 'حقل الاسم مطلوب',
-            'precises_code.required' => 'حقل الاسم مطلوب',
-            'precises_code.unique' => 'الأسم موجود',
-            'precises_name.required' => 'حقل الاسم مطلوب',
-            'precises_name.unique' => 'الأسم موجود',
+            'specialtys_code.required' => 'حقل رمز التخصص العام مطلوب',
+            'precises_code.required' => 'حقل رمز التخصص الدقيق مطلوب',
+            'precises_code.unique' => 'رمز التخصص الدقيق موجود',
+            'precises_name.required' => 'حقل اسم التخصص الدقيق مطلوب',
+            'precises_name.unique' => 'اسم التخصص الدقيق موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -89,15 +89,17 @@ class Precise extends Component
         $this->resetValidation();
         $this->validate([
             'specialtys_code' => 'required:precises',
-            'precises_code' => 'required|unique:precises,precises_code,NULL,id,specialtys_code,'.$this->specialtys_code,
-            'precises_name' => 'required|unique:precises,precises_name,NULL,id,specialtys_code,'.$this->specialtys_code,
+            //'precises_code' => 'required|unique:precises,precises_code,NULL,id,specialtys_code,'.$this->specialtys_code,
+            //'precises_name' => 'required|unique:precises,precises_name,NULL,id,specialtys_code,'.$this->specialtys_code,
+            'precises_code' => 'required|unique:precises,precises_code,'.$this->Precise->id.',id',
+            'precises_name' => 'required|unique:precises,precises_name,'.$this->Precise->id.',id',
 
         ], [
-            'specialtys_code.required' => 'حقل الاسم مطلوب',
-            'precises_code.required' => 'حقل الاسم مطلوب',
-            'precises_code.unique' => 'الأسم موجود',
-            'precises_name.required' => 'حقل الاسم مطلوب',
-            'precises_name.unique' => 'الأسم موجود',
+            'specialtys_code.required' => 'حقل رمز التخصص العام مطلوب',
+            'precises_code.required' => 'حقل رمز التخصص الدقيق مطلوب',
+            'precises_code.unique' => 'رمز التخصص الدقيق موجود',
+            'precises_name.required' => 'حقل اسم التخصص الدقيق مطلوب',
+            'precises_name.unique' => 'اسم التخصص الدقيق موجود',
         ]);
 
         $Precises = Precises::find($this->PreciseId);

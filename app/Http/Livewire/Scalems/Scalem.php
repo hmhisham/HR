@@ -61,14 +61,14 @@ class Scalem extends Component
             'scalems_minimum_period' => 'required',
             'scalems_previous_salary' => 'required',
         ], [
-            'grades_id.required' => 'حقل الاسم مطلوب',
-            'phase_emp.required' => 'حقل الاسم مطلوب',
-            'scalems_salary_grade.required' => 'حقل الاسم مطلوب',
-            'scalems_salary_stage.required' => 'حقل الاسم مطلوب',
-            'scalems_amount.required' => 'حقل الاسم مطلوب',
-            'scalems_salary.required' => 'حقل الاسم مطلوب',
-            'scalems_minimum_period.required' => 'حقل الاسم مطلوب',
-            'scalems_previous_salary.required' => 'حقل الاسم مطلوب',
+            'grades_id.required' => 'حقل الدرجة الوظيفية مطلوب',
+            'phase_emp.required' => 'حقل المرحلة الوظيفية مطلوب',
+            'scalems_salary_grade.required' => 'حقل درجة الراتب مطلوب',
+            'scalems_salary_stage.required' => 'حقل مرحلة الراتب مطلوب',
+            'scalems_amount.required' => 'حقل مقدار العلاوة مطلوب',
+            'scalems_salary.required' => 'حقل الراتب الحالي مطلوب',
+            'scalems_minimum_period.required' => 'حقل المدة الاصغرية مطلوب',
+            'scalems_previous_salary.required' => 'حقل الراتب السابق مطلوب',
 
         ]);
 
@@ -121,14 +121,14 @@ class Scalem extends Component
             'scalems_minimum_period' => 'required',
             'scalems_previous_salary' => 'required',
         ], [
-            'grades_id.required' => 'حقل الاسم مطلوب',
-            'phase_emp.required' => 'حقل الاسم مطلوب',
-            'scalems_salary_grade.required' => 'حقل الاسم مطلوب',
-            'scalems_salary_stage.required' => 'حقل الاسم مطلوب',
-            'scalems_amount.required' => 'حقل الاسم مطلوب',
-            'scalems_salary.required' => 'حقل الاسم مطلوب',
-            'scalems_minimum_period.required' => 'حقل الاسم مطلوب',
-            'scalems_previous_salary.required' => 'حقل الاسم مطلوب',
+            'grades_id.required' => 'حقل الدرجة الوظيفية مطلوب',
+            'phase_emp.required' => 'حقل المرحلة الوظيفية مطلوب',
+            'scalems_salary_grade.required' => 'حقل درجة الراتب مطلوب',
+            'scalems_salary_stage.required' => 'حقل مرحلة الراتب مطلوب',
+            'scalems_amount.required' => 'حقل مقدار العلاوة مطلوب',
+            'scalems_salary.required' => 'حقل الراتب الحالي مطلوب',
+            'scalems_minimum_period.required' => 'حقل المدة الاصغرية مطلوب',
+            'scalems_previous_salary.required' => 'حقل الراتب السابق مطلوب',
 
         ]);
 

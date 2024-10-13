@@ -49,9 +49,9 @@ class Specialty extends Component
 
         ], [
             'specialtys_code.required' => 'حقل رمز التخصص العام مطلوب',
-            'specialtys_code.unique' => 'الأسم موجود',
+            'specialtys_code.unique' => 'رمز التخصص موجود',
             'specialtys_name.required' => 'حقل اسم التخصص العام مطلوب',
-            'specialtys_name.unique' => 'الأسم موجود',
+            'specialtys_name.unique' => 'اسم التخصص العام موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
