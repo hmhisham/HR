@@ -1,74 +1,72 @@
 <?php
+
 namespace App\Http\Livewire\Certific;
+
 use Livewire\Component;
+
 use Livewire\WithPagination;
 use App\Models\Workers\Workers;
 use App\Models\Certific\Certific;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Graduations\Graduations;
 use App\Models\Certificates\Certificates;
 use App\Models\Specializations\Specializations;
-class Certifi extends Component
+
+class certifi extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+
     public $Certific = [];
-    public $CertifiSearch, $Certifi, $CertifiId;
-    public $user_id, $calculator_number, $document_number, $document_date, $certificate_name, $authenticity_number, $authenticity_date,  $college_name, $specialization, $graduation_year, $grade, $estimate, $duration, $issuing_country, $notes, $status;
-    public $Graduations = [];
-    public $Certificates = [];
-    public $Specializations = [];
-    public $search = '';
     public $workers = [];
-    public $worker, $department, $full_name;
-    public $selectedWorker = null;
-    public $selectedCertificate;
-    public $graduation_id;
-    public $durationAptly = 'disabled';
+    public $certificates = [];
+    public $graduations = [];
+    public $specializations = [];
+    public $certifiSearch, $certifi, $certifiId;
+    public $user_id, $worker_id, $calculator_number, $document_number, $document_date, $certificates_id, $authenticity_number, $authenticity_date, $graduations_id, $specialization_id, $graduation_year, $grade, $estimate, $duration, $issuing_country, $notes, $status;
 
     protected $listeners = [
-        'SelectWorker',
+        'SelectWorkerId',
+        'GetCertificate',
+        'GetGraduation',
+        'GetSpecialization',
     ];
+
     public function hydrate()
     {
         $this->emit('select2');
+        $this->emit('flatpickr');
     }
 
     public function mount()
     {
         $this->workers = Workers::all();
-        $this->Certificates = Certificates::all();
+        $this->certificates = Certificates::all();
     }
 
-    public function render()
+    public function GetCertificate($Certificates_id)
     {
-        $CertifiSearch = '%' . $this->CertifiSearch . '%';
-        $Certific = Certific::join('workers', 'certific.calculator_number', '=', 'workers.calculator_number')
-            ->where(function ($query) use ($CertifiSearch) {
-                $query->where('certific.calculator_number', 'LIKE', $CertifiSearch)
-                    ->orWhere('workers.full_name', 'LIKE', $CertifiSearch);
-            })
-            ->orderBy('certific.id', 'ASC')
-            ->select('certific.*')
-            ->paginate(10);
-        $links = $Certific;
-        $this->Certific = collect($Certific->items());
-        return view('livewire.certific.certifi', [
-            'links' => $links
-        ]);
+        $this->certificates_id = $Certificates_id;
+        $this->graduations = Graduations::where('certificates_id', $Certificates_id)->get();
+    }
+    public function GetGraduation($Graduations_id)
+    {
+        $this->graduations_id = $Graduations_id;
+        $this->specializations = Specializations::where('graduations_id', $Graduations_id)->get();
+    }
+    public function GetSpecialization($Specialization_id)
+    {
+        $this->specialization_id = $Specialization_id;
     }
 
-    public function SelectWorker($workerID)
+    public function SelectWorkerId($WorkerIdID)
     {
-        $worker = Workers::find($workerID);
-        if ($worker) {
-            $this->worker = $workerID;
-            $this->calculator_number = $worker->calculator_number;
-            $this->department = $worker->department;
+        $worker_id = Workers::find($WorkerIdID);
+        if ($worker_id) {
+            $this->worker_id = $WorkerIdID;
+            $this->calculator_number = $worker_id->calculator_number;
         } else {
-            $this->worker = null;
+            $this->worker_id = null;
             $this->calculator_number = null;
-            $this->department = null;
         }
     }
 
@@ -94,76 +92,98 @@ class Certifi extends Component
             $this->estimate = 'ضعيف';
         }
     }
-    public function loadGraduations()
+
+
+    public function render()
     {
-        if ($this->certificate_name) {
-            $Certificates = Certificates::find($this->certificate_name);
-            if($Certificates->certificates_name == 'دبلوم عالي'){
-                $this->durationAptly = '';
-            }else{
-                $this->reset('durationAptly');
-            }
-            $this->Graduations = Graduations::where('certificates_id', $this->certificate_name)->get();
-        }
+        $certifiSearch = '%' . $this->certifiSearch . '%';
+        $Certific = Certific::where('user_id', 'LIKE', $certifiSearch)
+            ->orWhere('worker_id', 'LIKE', $certifiSearch)
+            ->orWhere('calculator_number', 'LIKE', $certifiSearch)
+            ->orWhere('document_number', 'LIKE', $certifiSearch)
+            ->orWhere('document_date', 'LIKE', $certifiSearch)
+            ->orWhere('certificates_id', 'LIKE', $certifiSearch)
+            ->orWhere('authenticity_number', 'LIKE', $certifiSearch)
+            ->orWhere('authenticity_date', 'LIKE', $certifiSearch)
+            ->orWhere('graduations_id', 'LIKE', $certifiSearch)
+            ->orWhere('specialization_id', 'LIKE', $certifiSearch)
+            ->orWhere('graduation_year', 'LIKE', $certifiSearch)
+            ->orWhere('grade', 'LIKE', $certifiSearch)
+            ->orWhere('estimate', 'LIKE', $certifiSearch)
+            ->orWhere('duration', 'LIKE', $certifiSearch)
+            ->orWhere('issuing_country', 'LIKE', $certifiSearch)
+            ->orWhere('notes', 'LIKE', $certifiSearch)
+            ->orWhere('status', 'LIKE', $certifiSearch)
+
+
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
+        $links = $Certific;
+        $this->Certific = collect($Certific->items());
+        return view('livewire.certific.certifi', [
+            'links' => $links
+        ]);
     }
-    public function loadSpecializations()
+
+    public function AddcertifiModalShow()
     {
-        // تحميل التخصصات بناءً على جهة التخرج المختارة
-        if ($this->college_name) {
-            $this->Specializations = Specializations::where('graduations_id', $this->college_name)->get();
-        }
-    }
-    public function AddCertifiModalShow()
-    {
-        $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date',   'college_name',   'specialization', 'graduation_year', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
+        $this->reset(['worker_id', 'calculator_number', 'document_number', 'document_date', 'certificates_id', 'authenticity_number', 'authenticity_date', 'graduations_id', 'specialization_id', 'graduation_year', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
         $this->resetValidation();
-        $this->dispatchBrowserEvent('CertifiModalShow');
+        $this->dispatchBrowserEvent('certifiModalShow');
     }
+
+
     public function store()
     {
         $this->resetValidation();
         $this->validate([
+            'user_id' => 'required',
+            'worker_id' => 'required',
             'calculator_number' => 'required',
             'document_number' => 'required',
             'document_date' => 'required',
-            'certificate_name' => 'required',
+            'certificates_id' => 'required',
             'authenticity_number' => 'required',
             'authenticity_date' => 'required',
-            'college_name' => 'required',
-            'specialization' => 'required',
+            'graduations_id' => 'required',
+            'specialization_id' => 'required',
             'graduation_year' => 'required',
             'grade' => 'required',
             'estimate' => 'required',
-            //'duration' => 'required',
+            'duration' => 'required',
             'issuing_country' => 'required',
-            //'status' => 'required',
         ], [
+            'user_id.required' => 'حقل رقم المستخدم مطلوب',
+            'worker_id.required' => 'حقل اسم الموظف مطلوب',
             'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'document_number.required' => 'حقل رقم الوثيقة مطلوب',
             'document_date.required' => 'حقل تاريخ الوثيقة مطلوب',
-            'certificate_name.required' => 'حقل الشهادة مطلوب',
+            'certificates_id.required' => 'حقل الشهادة مطلوب',
             'authenticity_number.required' => 'حقل رقم صحة الصدور مطلوب',
             'authenticity_date.required' => 'حقل تاريخ صحة الصدور مطلوب',
-            'college_name.required' => 'حقل جهة التخرج مطلوب',
-            'specialization.required' => 'حقل الاختصاص مطلوب',
+            'graduations_id.required' => 'حقل جهة التخرج مطلوب',
+            'specialization_id.required' => 'حقل التخصص مطلوب',
             'graduation_year.required' => 'حقل سنة التخرج مطلوب',
             'grade.required' => 'حقل الدرجة مطلوب',
-            //'duration.required' => 'حقل مدةالقدم مطلوب',
             'estimate.required' => 'حقل التقدير مطلوب',
-            'issuing_country.required' => 'حقل البلد المانح مطلوب',
-            //'status.required' => 'حقل الاسم مطلوب',
+            'duration.required' => 'حقل مدة القدم مطلوب',
+            'issuing_country.required' => 'حقل البلد المانح للشهادة مطلوب',
         ]);
+
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
+
+
         Certific::create([
-            'user_id' => Auth::id(),
+            'user_id' => $this->user_id,
+            'worker_id' => $this->worker_id,
             'calculator_number' => $this->calculator_number,
             'document_number' => $this->document_number,
             'document_date' => $this->document_date,
-            'certificate_name' => $this->certificate_name,
+            'certificates_id' => $this->certificates_id,
             'authenticity_number' => $this->authenticity_number,
             'authenticity_date' => $this->authenticity_date,
-            'college_name' => $this->college_name,
-            'specialization' => $this->specialization,
+            'graduations_id' => $this->graduations_id,
+            'specialization_id' => $this->specialization_id,
             'graduation_year' => $this->graduation_year,
             'grade' => $this->grade,
             'estimate' => $this->estimate,
@@ -171,88 +191,89 @@ class Certifi extends Component
             'issuing_country' => $this->issuing_country,
             'notes' => $this->notes,
             'status' => $this->status,
+
         ]);
-        $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date',   'college_name',   'specialization', 'graduation_year', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
+        $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
     }
-    public function GetCertifi($CertifiId)
+
+    public function Getcertifi($certifiId)
     {
         $this->resetValidation();
-        $this->Certifi  = Certific::find($CertifiId);
-        $worker = $this->Certifi->worker;
-        $this->CertifiId = $this->Certifi->id;
-        $this->user_id = $this->Certifi->user_id;
-        $this->calculator_number = $this->Certifi->calculator_number;
-        $this->document_number = $this->Certifi->document_number;
-        $this->document_date = $this->Certifi->document_date;
-        $this->certificate_name = $this->Certifi->certificate_name;
-        $this->authenticity_number = $this->Certifi->authenticity_number;
-        $this->authenticity_date = $this->Certifi->authenticity_date;
-        $this->college_name = $this->Certifi->college_name;
-        $this->specialization = $this->Certifi->specialization;
-        $this->graduation_year = $this->Certifi->graduation_year;
-        $this->grade = $this->Certifi->grade;
-        $this->estimate = $this->Certifi->estimate;
-        $this->duration = $this->Certifi->duration;
-        $this->issuing_country = $this->Certifi->issuing_country;
-        $this->notes = $this->Certifi->notes;
-        $this->status = $this->Certifi->status;
-        if ($worker) {
-            $this->full_name = $worker->full_name;
-            $this->department = $worker->department;
-        } else {
-            $this->full_name = 'N/A';
-            $this->department = 'N/A';
-        }
+
+        $this->certifi  = Certific::find($certifiId);
+        $this->certifiId = $this->certifi->id;
+        $this->user_id = $this->certifi->user_id;
+        $this->worker_id = $this->certifi->worker_id;
+        $this->calculator_number = $this->certifi->calculator_number;
+        $this->document_number = $this->certifi->document_number;
+        $this->document_date = $this->certifi->document_date;
+        $this->certificates_id = $this->certifi->certificates_id;
+        $this->authenticity_number = $this->certifi->authenticity_number;
+        $this->authenticity_date = $this->certifi->authenticity_date;
+        $this->graduations_id = $this->certifi->graduations_id;
+        $this->specialization_id = $this->certifi->specialization_id;
+        $this->graduation_year = $this->certifi->graduation_year;
+        $this->grade = $this->certifi->grade;
+        $this->estimate = $this->certifi->estimate;
+        $this->duration = $this->certifi->duration;
+        $this->issuing_country = $this->certifi->issuing_country;
+        $this->notes = $this->certifi->notes;
+        $this->status = $this->certifi->status;
     }
+
     public function update()
     {
         $this->resetValidation();
         $this->validate([
+            'user_id' => 'required:certific',
+            'worker_id' => 'required:certific',
             'calculator_number' => 'required:certific',
             'document_number' => 'required:certific',
             'document_date' => 'required:certific',
-            'certificate_name' => 'required:certific',
+            'certificates_id' => 'required:certific',
             'authenticity_number' => 'required:certific',
             'authenticity_date' => 'required:certific',
-            'college_name' => 'required:certific',
-            'specialization' => 'required:certific',
+            'graduations_id' => 'required:certific',
+            'specialization_id' => 'required:certific',
             'graduation_year' => 'required:certific',
             'grade' => 'required:certific',
             'estimate' => 'required:certific',
-            //'duration' => 'required:certific',
+            'duration' => 'required:certific',
             'issuing_country' => 'required:certific',
-            //'status' => 'required:certific',
         ], [
+            'user_id.required' => 'حقل رقم المستخدم مطلوب',
+            'worker_id.required' => 'حقل اسم الموظف مطلوب',
             'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'document_number.required' => 'حقل رقم الوثيقة مطلوب',
             'document_date.required' => 'حقل تاريخ الوثيقة مطلوب',
-            'certificate_name.required' => 'حقل الشهادة مطلوب',
+            'certificates_id.required' => 'حقل الشهادة مطلوب',
             'authenticity_number.required' => 'حقل رقم صحة الصدور مطلوب',
             'authenticity_date.required' => 'حقل تاريخ صحة الصدور مطلوب',
-            'college_name.required' => 'حقل جهة التخرج مطلوب',
-            'specialization.required' => 'حقل الاختصاص مطلوب',
+            'graduations_id.required' => 'حقل جهة التخرج مطلوب',
+            'specialization_id.required' => 'حقل التخصص مطلوب',
             'graduation_year.required' => 'حقل سنة التخرج مطلوب',
             'grade.required' => 'حقل الدرجة مطلوب',
-            //'duration.required' => 'حقل مدةالقدم مطلوب',
             'estimate.required' => 'حقل التقدير مطلوب',
-            'issuing_country.required' => 'حقل البلد المانح مطلوب',
-            //'status.required' => 'حقل الاسم مطلوب',
+            'duration.required' => 'حقل مدة القدم مطلوب',
+            'issuing_country.required' => 'حقل البلد المانح للشهادة مطلوب',
         ]);
-        $Certific = Certific::find($this->CertifiId);
+
+        $Certific = Certific::find($this->certifiId);
         $Certific->update([
-            'user_id' => Auth::id(),
+            'user_id' => $this->user_id,
+            'worker_id' => $this->worker_id,
             'calculator_number' => $this->calculator_number,
             'document_number' => $this->document_number,
             'document_date' => $this->document_date,
-            'certificate_name' => $this->certificate_name,
+            'certificates_id' => $this->certificates_id,
             'authenticity_number' => $this->authenticity_number,
             'authenticity_date' => $this->authenticity_date,
-            'college_name' => $this->college_name,
-            'specialization' => $this->specialization,
+            'graduations_id' => $this->graduations_id,
+            'specialization_id' => $this->specialization_id,
             'graduation_year' => $this->graduation_year,
             'grade' => $this->grade,
             'estimate' => $this->estimate,
@@ -260,21 +281,27 @@ class Certifi extends Component
             'issuing_country' => $this->issuing_country,
             'notes' => $this->notes,
             'status' => $this->status,
+
         ]);
-        $this->reset(['department', 'calculator_number', 'document_number', 'document_date', 'certificate_name', 'authenticity_number', 'authenticity_date',   'college_name',   'specialization', 'graduation_year', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
+        $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
     }
+
     public function destroy()
     {
-        $Certific = Certific::find($this->CertifiId);
-        $Certific->delete();
-        $this->reset();
-        $this->dispatchBrowserEvent('success', [
-            'message' => 'تم حذف البيانات  بنجاح',
-            'title' => 'الحذف '
-        ]);
+        $Certific = Certific::find($this->certifiId);
+
+        if ($Certific) {
+
+            $Certific->delete();
+            $this->reset();
+            $this->dispatchBrowserEvent('success', [
+                'message' => 'تم حذف البيانات بنجاح',
+                'title' => 'الحذف'
+            ]);
+        }
     }
 }

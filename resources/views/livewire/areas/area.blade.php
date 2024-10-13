@@ -2,7 +2,6 @@
     <h4 class="mb-2">
         <span class="text-muted fw-light">الإعدادات <span class="mdi mdi-chevron-left mdi-24px"></span></span> النواحي
     </h4>
-
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
