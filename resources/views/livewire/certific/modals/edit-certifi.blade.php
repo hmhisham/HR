@@ -38,7 +38,7 @@
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='calculator_number' type="text"
                                         id="modalcertificalculator_number" placeholder="رقم الحاسبة"
-                                        class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
+                                        class="form-control @error('calculator_number') is-invalid is-filled @enderror" disabled/>
                                     <label for="modalcertificalculator_number">رقم الحاسبة</label>
                                 </div>
                                 @error('calculator_number')
