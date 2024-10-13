@@ -46,7 +46,7 @@ class Specializationclassificatio extends Component
             'specializationclassification_name' => 'required|unique:specializationclassification',
 
         ], [
-            'specializationclassification_name.required' => 'حقل تصنيف التخصيص مطلوب',
+            'specializationclassification_name.required' => 'حقل تصنيف التخصص مطلوب',
             'specializationclassification_name.unique' => 'الاسم موجود',
         ]);
 
@@ -79,7 +79,7 @@ class Specializationclassificatio extends Component
         ], [
 
         ], [
-            'specializationclassification_name.required' => 'حقل تصنيف التخصيص مطلوب',
+            'specializationclassification_name.required' => 'حقل تصنيف التخصص مطلوب',
             'specializationclassification_name.unique' => 'الاسم موجود',
         ]);
 

@@ -52,7 +52,7 @@ class Precise extends Component
             'precises_name' => 'required|unique:precises,precises_name,NULL,id,specialtys_code,'.$this->specialtys_code,
 
         ], [
-            'specialtys_code.required' => 'حقل رمز التخصص العام مطلوب',
+            'specialtys_code.required' => 'حقل التخصص العام مطلوب',
             'precises_code.required' => 'حقل رمز التخصص الدقيق مطلوب',
             'precises_code.unique' => 'رمز التخصص الدقيق موجود',
             'precises_name.required' => 'حقل اسم التخصص الدقيق مطلوب',
@@ -95,7 +95,7 @@ class Precise extends Component
             'precises_name' => 'required|unique:precises,precises_name,'.$this->Precise->id.',id',
 
         ], [
-            'specialtys_code.required' => 'حقل رمز التخصص العام مطلوب',
+            'specialtys_code.required' => 'حقل التخصص العام مطلوب',
             'precises_code.required' => 'حقل رمز التخصص الدقيق مطلوب',
             'precises_code.unique' => 'رمز التخصص الدقيق موجود',
             'precises_name.required' => 'حقل اسم التخصص الدقيق مطلوب',

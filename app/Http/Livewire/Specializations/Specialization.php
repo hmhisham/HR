@@ -82,7 +82,7 @@ class Specialization extends Component
             'specializations_name' => 'required|unique:specializations,specializations_name,NULL,id,graduations_id,' . $this->graduations_id.',certificates_id,'.$this->certificates_id,
         ], [
             'certificates_id.required' => 'حقل التحصيل الدراسي مطلوب',
-            'graduations_id.required' => 'حقل جهةالتخرج مطلوب',
+            'graduations_id.required' => 'حقل جهة التخرج مطلوب',
             'specializations_name.required' => 'حقل الاختصاص مطلوب',
             'specializations_name.unique' => 'الاختصاص موجود',
         ]);
@@ -121,7 +121,7 @@ class Specialization extends Component
             'specializations_name' => 'required|unique:specializations,specializations_name,'.$this->Specialization->id.',id,graduations_id,' . $this->graduations_id.',certificates_id,'.$this->certificates_id,
         ], [
             'certificates_id.required' => 'حقل التحصيل الدراسي مطلوب',
-            'graduations_id.required' => 'حقل جهةالتخرج مطلوب',
+            'graduations_id.required' => 'حقل جهة التخرج مطلوب',
             'specializations_name.required' => 'حقل الاختصاص مطلوب',
             'specializations_name.unique' => 'الاختصاص موجود',
         ]);

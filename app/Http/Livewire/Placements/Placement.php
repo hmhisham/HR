@@ -86,7 +86,7 @@ class Placement extends Component
             ->orWhere('start_date', 'LIKE', $PlacementSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
-            
+
         $links = $Placements;
         $this->Placements = collect($Placements->items());
         return view('livewire.placements.placement', [
@@ -126,7 +126,7 @@ class Placement extends Component
         $this->validate([
             'worker_id' => 'required',
             'linkage_id' => 'required',
-            'section_id' => 'required',
+            //'section_id' => 'required',
             'placement_order_number' => 'required',
             'placement_order_date' => 'required',
             'release_date' => 'required',
@@ -134,7 +134,7 @@ class Placement extends Component
         ], [
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
-            'section_id.required' => 'حقل القسم مطلوب',
+            //'section_id.required' => 'حقل القسم مطلوب',
             'placement_order_number.required' => 'حقل رقم أمر التنسيب مطلوب',
             'placement_order_date.required' => 'حقل تاريخ أمر التنسيب مطلوب',
             'release_date.required' => 'حقل تاريخ الانفكاك مطلوب',
@@ -164,7 +164,7 @@ class Placement extends Component
         $this->validate([
             'worker_id' => 'required:placements',
             'linkage_id' => 'required:placements',
-            'section_id' => 'required:placements',
+            //'section_id' => 'required:placements',
             'placement_order_number' => 'required:placements',
             'placement_order_date' => 'required:placements',
             'release_date' => 'required:placements',
@@ -172,7 +172,7 @@ class Placement extends Component
         ], [
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
-            'section_id.required' => 'حقل القسم مطلوب',
+            //'section_id.required' => 'حقل القسم مطلوب',
             'placement_order_number.required' => 'حقل رقم أمر التنسيب مطلوب',
             'placement_order_date.required' => 'حقل تاريخ أمر التنسيب مطلوب',
             'release_date.required' => 'حقل تاريخ الانفكاك مطلوب',

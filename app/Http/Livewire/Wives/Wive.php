@@ -112,7 +112,7 @@ class Wive extends Component
             'full_name' => 'required',
             'marital_status' => 'required',
             'occupational_status' => 'required',
-            'is_married' => 'required',
+            //'is_married' => 'required',
             'national_id' => 'required',
 
         ], [
@@ -125,7 +125,7 @@ class Wive extends Component
             'full_name.required' => 'حقل الاسم الكامل مطلوب',
             'marital_status.required' => 'حقل الحالة الزوجية مطلوب',
             'occupational_status.required' => 'حقل الحالة المهنية مطلوب',
-            'is_married.required' => 'حقل الحالة الزوجية مطلوب',
+            //'is_married.required' => 'حقل الحالة الزوجية مطلوب',
             'national_id.required' => 'حقل رقم البطاقة الوطنية مطلوب',
         ]);
 
@@ -190,7 +190,7 @@ class Wive extends Component
             'full_name' => 'required:wives',
             'marital_status' => 'required:wives',
             'occupational_status' => 'required:wives',
-            'is_married' => 'required:wives',
+            //'is_married' => 'required:wives',
             'national_id' => 'required:wives',
 
         ], [
@@ -203,7 +203,7 @@ class Wive extends Component
             'full_name.required' => 'حقل الاسم مطلوب',
             'marital_status.required' => 'حقل الاسم مطلوب',
             'occupational_status.required' => 'حقل الاسم مطلوب',
-            'is_married.required' => 'حقل الاسم مطلوب',
+            //'is_married.required' => 'حقل الاسم مطلوب',
             'national_id.required' => 'حقل الاسم مطلوب',
         ]);
 

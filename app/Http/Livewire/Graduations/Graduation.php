@@ -51,8 +51,8 @@ class Graduation extends Component
 
         ], [
             'certificates_id.required' => 'حقل اسم الشهادة مطلوب',
-            'graduations_name.required' => 'حقل اسم الاختصاص مطلوب',
-            'graduations_name.unique' => 'اسم الاختصاص موجود',
+            'graduations_name.required' => 'حقل اسم جهة التخرج مطلوب',
+            'graduations_name.unique' => 'اسم جهة التخرج موجود',
 
         ]);
 
@@ -88,8 +88,8 @@ class Graduation extends Component
 
         ], [
             'certificates_id.required' => 'حقل اسم الشهادة مطلوب',
-            'graduations_name.required' => 'حقل اسم الاختصاص مطلوب',
-            'graduations_name.unique' => 'اسم الاختصاص موجود',
+            'graduations_name.required' => 'حقل اسم جهة التخرج مطلوب',
+            'graduations_name.unique' => 'اسم جهة التخرج موجود',
 
         ]);
 

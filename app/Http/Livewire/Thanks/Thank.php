@@ -107,18 +107,20 @@ class Thank extends Component
     {
         $this->resetValidation();
         $this->validate([
+            'user_id' => 'required',
             'grantor' => 'required',
+            'reason' => 'required',
             'ministerial_order_number' => 'required',
             'ministerial_order_date' => 'required',
-            'reason' => 'required',
             'months_of_service' => 'required',
 
         ], [
-            'grantor.required' => 'حقل الاسم مطلوب',
-            'ministerial_order_number.required' => 'حقل الاسم مطلوب',
-            'ministerial_order_date.required' => 'حقل الاسم مطلوب',
-            'reason.required' => 'حقل الاسم مطلوب',
-            'months_of_service.required' => 'حقل الاسم مطلوب',
+            'user_id.required' => 'حقل اسم الموظف مطلوب',
+            'grantor.required' => 'حقل الجهة المانحة مطلوب',
+            'reason.required' => 'حقل السبب من الشكر مطلوب',
+            'ministerial_order_number.required' => 'حقل رقم الامر الوزاري مطلوب',
+            'ministerial_order_date.required' => 'حقل تاريخ الامر الوزاري مطلوب',
+            'months_of_service.required' => 'حقل مدة القدم مطلوب',
 
         ]);
 
@@ -176,17 +178,17 @@ class Thank extends Component
         $this->validate([
             'user_id' => 'required:thanks',
             'grantor' => 'required:thanks',
+            'reason' => 'required:thanks',
             'ministerial_order_number' => 'required:thanks',
             'ministerial_order_date' => 'required:thanks',
-            'reason' => 'required:thanks',
             'months_of_service' => 'required:thanks',
         ], [
-            'user_id.required' => 'حقل الاسم مطلوب',
-            'grantor.required' => 'حقل الاسم مطلوب',
-            'ministerial_order_number.required' => 'حقل الاسم مطلوب',
-            'ministerial_order_date.required' => 'حقل الاسم مطلوب',
-            'reason.required' => 'حقل الاسم مطلوب',
-            'months_of_service.required' => 'حقل الاسم مطلوب',
+            'user_id.required' => 'حقل اسم الموظف مطلوب',
+            'grantor.required' => 'حقل الجهة المانحة مطلوب',
+            'reason.required' => 'حقل السبب من الشكر مطلوب',
+            'ministerial_order_number.required' => 'حقل رقم الامر الوزاري مطلوب',
+            'ministerial_order_date.required' => 'حقل تاريخ الامر الوزاري مطلوب',
+            'months_of_service.required' => 'حقل مدة القدم مطلوب',
         ]);
 
         $Thanks = Thanks::find($this->ThankId);

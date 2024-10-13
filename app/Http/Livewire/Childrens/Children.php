@@ -105,7 +105,7 @@ class Children extends Component
             'birth_date' => 'required',
             'marital_status' => 'required',
             'gender' => 'required',
-            'is_counted' => 'required',
+            //'is_counted' => 'required',
             'occupational_status' => 'required',
             'national_id' => 'required',
 
@@ -120,7 +120,7 @@ class Children extends Component
             'birth_date.required' => 'حقل تاريخ الميلاد مطلوب',
             'marital_status.required' => 'حقل الحالة الزوجية مطلوب',
             'gender.required' => 'حقل الجنس مطلوب',
-            'is_counted.required' => 'حقل هل يتم احتسابه مطلوب',
+            //'is_counted.required' => 'حقل هل يتم احتسابه مطلوب',
             'occupational_status.required' => 'حقل الحالة الدراسية مطلوب',
             'national_id.required' => 'حقل رقم البطاقة الوطنية مطلوب',
         ]);
@@ -186,7 +186,7 @@ class Children extends Component
             'birth_date' => 'required:childrens',
             'marital_status' => 'required:childrens',
             'gender' => 'required:childrens',
-            'is_counted' => 'required:childrens',
+            //'is_counted' => 'required:childrens',
             'occupational_status' => 'required:childrens',
             'national_id' => 'required:childrens',
 
@@ -201,7 +201,7 @@ class Children extends Component
             'birth_date.required' => 'حقل تاريخ الميلاد مطلوب',
             'marital_status.required' => 'حقل الحالة الزوجية مطلوب',
             'gender.required' => 'حقل الجنس مطلوب',
-            'is_counted.required' => 'حقل هل يتم احتسابه مطلوب',
+            //'is_counted.required' => 'حقل هل يتم احتسابه مطلوب',
             'occupational_status.required' => 'حقل الحالة الدراسية مطلوب',
             'national_id.required' => 'حقل رقم البطاقة الوطنية مطلوب',
         ]);
