@@ -3,6 +3,7 @@
         <span class="text-muted fw-light">الإعدادات <span class="mdi mdi-chevron-left mdi-24px"></span></span> الشهادات
     </h4>
     <div class="card">
+
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -41,11 +42,8 @@
                                 <td class="text-center">{{ $Certifi->Getworker ? $Certifi->Getworker->full_name : '' }}</td>
                                 <td class="text-center">{{ $certifi->document_number }}</td>
                                 <td class="text-center">{{ $certifi->document_date }}</td>
-                                <td class="text-center">
-                                    {{ $Certifi->GetCertificate ? $Certifi->Getcertificate->certificates_name : '' }}</td>
-                                <td class="text-center">
-                                    {{ $Certifi->Getspecialization ? $Certifi->Getspecialization->specializations_name : '' }}
-                                </td>
+                                <td class="text-center">{{ $Certifi->Getcertificate ? $Certifi->Getcertificate->certificates_name : '' }}</td>
+                                <td class="text-center">{{ $Certifi->Getspecialization ? $Certifi->Getspecialization->specializations_name : '' }}</td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('certifi-edit')

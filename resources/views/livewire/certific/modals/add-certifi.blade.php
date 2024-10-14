@@ -115,7 +115,8 @@
                                     <option value=""></option>
                                     @foreach ($graduations as $graduation)
                                         <option value="{{ $graduation->id }}">
-                                            {{ $graduation->graduations_name }}</option>
+                                            {{ $graduation->graduations_name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 <label for="modalCertifigraduations_id">جهةالتخرج</label>

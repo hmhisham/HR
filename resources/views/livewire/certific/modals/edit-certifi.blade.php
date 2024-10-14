@@ -5,16 +5,15 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل\ الشهادات</h3>
+                    <h3 class="pb-1 mb-2">تعديل الشهادات</h3>
                     <p>نافذة التعديل</p>
                 </div>
-                <hr class="mt-n2">
-                <h5 wire:loading wire:target="Getcertifi"
-                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار حفظ البيانات...</h5>
 
-                <div wire:loading.remove>
+                <hr class="mt-n2">
+                <h5 wire:loading wire:target="Getcertifi" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">جار حفظ البيانات...</h5>
+
+                <div wire:loading.remove wire:target="update, Getcertifi">
                     <form id="editcertifiModalForm" autocomplete="off">
                         <div Class="row">
                             <div class="mb-3 col">
@@ -121,7 +120,8 @@
                                         <option value=""></option>
                                         @foreach ($graduations as $graduation)
                                             <option value="{{ $graduation->id }}">
-                                                {{ $graduation->graduations_name }}</option>
+                                                {{ $graduation->graduations_name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     <label for="modalCertifigraduations_id">جهة التخرج</label>
@@ -261,7 +261,7 @@
             <hr class="my-0">
             <div class="text-center col-12 demo-vertical-spacing mb-n4">
                 <button wire:click='update' wire:loading.attr="disabled" type="button"
-                    class="btn btn-success me-sm-3 me-1">تعديل</button>
+                    class="btn btn-primary me-sm-3 me-1">تعديل</button>
                 <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                     aria-label="Close">تجاهل</button>
             </div>

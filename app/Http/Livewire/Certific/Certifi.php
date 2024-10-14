@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Workers\Workers;
 use App\Models\Certific\Certific;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Graduations\Graduations;
 use App\Models\Certificates\Certificates;
 use App\Models\Specializations\Specializations;
@@ -41,6 +42,36 @@ class certifi extends Component
     {
         $this->workers = Workers::all();
         $this->certificates = Certificates::all();
+    }
+
+    public function render()
+    {
+        $certifiSearch = '%' . $this->certifiSearch . '%';
+        $Certific = Certific::where('user_id', 'LIKE', $certifiSearch)
+            ->orWhere('worker_id', 'LIKE', $certifiSearch)
+            ->orWhere('calculator_number', 'LIKE', $certifiSearch)
+            ->orWhere('document_number', 'LIKE', $certifiSearch)
+            ->orWhere('document_date', 'LIKE', $certifiSearch)
+            ->orWhere('certificates_id', 'LIKE', $certifiSearch)
+            ->orWhere('authenticity_number', 'LIKE', $certifiSearch)
+            ->orWhere('authenticity_date', 'LIKE', $certifiSearch)
+            ->orWhere('graduations_id', 'LIKE', $certifiSearch)
+            ->orWhere('specialization_id', 'LIKE', $certifiSearch)
+            ->orWhere('graduation_year', 'LIKE', $certifiSearch)
+            ->orWhere('grade', 'LIKE', $certifiSearch)
+            ->orWhere('estimate', 'LIKE', $certifiSearch)
+            ->orWhere('duration', 'LIKE', $certifiSearch)
+            ->orWhere('issuing_country', 'LIKE', $certifiSearch)
+            ->orWhere('notes', 'LIKE', $certifiSearch)
+            ->orWhere('status', 'LIKE', $certifiSearch)
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
+
+        $links = $Certific;
+        $this->Certific = collect($Certific->items());
+        return view('livewire.certific.certifi', [
+            'links' => $links
+        ]);
     }
 
     public function GetCertificate($Certificates_id)
@@ -79,7 +110,9 @@ class certifi extends Component
             $this->estimate = '';
             return;
         }
+
         $this->resetErrorBag('grade');
+
         if ($grade >= 90) {
             $this->estimate = 'ممتاز';
         } elseif ($grade >= 80) {
@@ -93,38 +126,6 @@ class certifi extends Component
         }
     }
 
-
-    public function render()
-    {
-        $certifiSearch = '%' . $this->certifiSearch . '%';
-        $Certific = Certific::where('user_id', 'LIKE', $certifiSearch)
-            ->orWhere('worker_id', 'LIKE', $certifiSearch)
-            ->orWhere('calculator_number', 'LIKE', $certifiSearch)
-            ->orWhere('document_number', 'LIKE', $certifiSearch)
-            ->orWhere('document_date', 'LIKE', $certifiSearch)
-            ->orWhere('certificates_id', 'LIKE', $certifiSearch)
-            ->orWhere('authenticity_number', 'LIKE', $certifiSearch)
-            ->orWhere('authenticity_date', 'LIKE', $certifiSearch)
-            ->orWhere('graduations_id', 'LIKE', $certifiSearch)
-            ->orWhere('specialization_id', 'LIKE', $certifiSearch)
-            ->orWhere('graduation_year', 'LIKE', $certifiSearch)
-            ->orWhere('grade', 'LIKE', $certifiSearch)
-            ->orWhere('estimate', 'LIKE', $certifiSearch)
-            ->orWhere('duration', 'LIKE', $certifiSearch)
-            ->orWhere('issuing_country', 'LIKE', $certifiSearch)
-            ->orWhere('notes', 'LIKE', $certifiSearch)
-            ->orWhere('status', 'LIKE', $certifiSearch)
-
-
-            ->orderBy('id', 'ASC')
-            ->paginate(10);
-        $links = $Certific;
-        $this->Certific = collect($Certific->items());
-        return view('livewire.certific.certifi', [
-            'links' => $links
-        ]);
-    }
-
     public function AddcertifiModalShow()
     {
         $this->reset(['worker_id', 'calculator_number', 'document_number', 'document_date', 'certificates_id', 'authenticity_number', 'authenticity_date', 'graduations_id', 'specialization_id', 'graduation_year', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
@@ -132,12 +133,10 @@ class certifi extends Component
         $this->dispatchBrowserEvent('certifiModalShow');
     }
 
-
     public function store()
     {
         $this->resetValidation();
         $this->validate([
-            'user_id' => 'required',
             'worker_id' => 'required',
             'calculator_number' => 'required',
             'document_number' => 'required',
@@ -153,7 +152,6 @@ class certifi extends Component
             'duration' => 'required',
             'issuing_country' => 'required',
         ], [
-            'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'worker_id.required' => 'حقل اسم الموظف مطلوب',
             'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'document_number.required' => 'حقل رقم الوثيقة مطلوب',
@@ -170,11 +168,8 @@ class certifi extends Component
             'issuing_country.required' => 'حقل البلد المانح للشهادة مطلوب',
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
-
-
         Certific::create([
-            'user_id' => $this->user_id,
+            'user_id' => Auth::User()->id,
             'worker_id' => $this->worker_id,
             'calculator_number' => $this->calculator_number,
             'document_number' => $this->document_number,
@@ -191,8 +186,8 @@ class certifi extends Component
             'issuing_country' => $this->issuing_country,
             'notes' => $this->notes,
             'status' => $this->status,
-
         ]);
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
@@ -223,13 +218,16 @@ class certifi extends Component
         $this->issuing_country = $this->certifi->issuing_country;
         $this->notes = $this->certifi->notes;
         $this->status = $this->certifi->status;
+
+        $this->GetCertificate($this->certifi->id);
+        //$this->graduations = $this->certifi->Getgraduation;
+        //dd($this->graduations);
     }
 
     public function update()
     {
         $this->resetValidation();
         $this->validate([
-            'user_id' => 'required:certific',
             'worker_id' => 'required:certific',
             'calculator_number' => 'required:certific',
             'document_number' => 'required:certific',
@@ -245,7 +243,6 @@ class certifi extends Component
             'duration' => 'required:certific',
             'issuing_country' => 'required:certific',
         ], [
-            'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'worker_id.required' => 'حقل اسم الموظف مطلوب',
             'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'document_number.required' => 'حقل رقم الوثيقة مطلوب',
@@ -264,7 +261,7 @@ class certifi extends Component
 
         $Certific = Certific::find($this->certifiId);
         $Certific->update([
-            'user_id' => $this->user_id,
+            'user_id' => Auth::User()->id,
             'worker_id' => $this->worker_id,
             'calculator_number' => $this->calculator_number,
             'document_number' => $this->document_number,
@@ -283,6 +280,7 @@ class certifi extends Component
             'status' => $this->status,
 
         ]);
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
@@ -295,8 +293,8 @@ class certifi extends Component
         $Certific = Certific::find($this->certifiId);
 
         if ($Certific) {
-
             $Certific->delete();
+
             $this->reset();
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم حذف البيانات بنجاح',
