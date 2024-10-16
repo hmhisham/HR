@@ -1,5 +1,7 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">نافذة الاختصاص</h4>
+    <h4 class="mb-2">
+        <span class="text-muted fw-light">الإعدادات <span class="mdi mdi-chevron-left mdi-24px"></span></span> الاختصاص
+    </h4>
     <div Class="card">
         <div class="card">
             <div class="card-header">

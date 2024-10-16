@@ -1,5 +1,7 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">نافذة سلم رواتب الملاك الدائم</h4>
+    <h4 class="mb-2">
+        <span class="text-muted fw-light">الإعدادات <span class="mdi mdi-chevron-left mdi-24px"></span></span> سلم وراتب الملاك الدائم
+    </h4>
     <Div Class="card">
         <div class="card">
             <div class="card-header">

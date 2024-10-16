@@ -1,6 +1,6 @@
 <div class="mt-n4">
     <h4 class="mb-2">
-        <span class="text-muted fw-light">الإعدادات <span class="mdi mdi-chevron-left mdi-24px"></span></span> الشهادات
+        <span class="text-muted fw-light">الموارد البشرية <span class="mdi mdi-chevron-left mdi-24px"></span></span> الشهادات
     </h4>
     <div class="card">
 
