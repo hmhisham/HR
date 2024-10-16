@@ -15,55 +15,35 @@
                     جار حذف البيانات...</h5>
                 <div wire:loading.remove>
                     <form id="removeScalemModalForm" onsubmit="return false" autocomplete="off">
-                        <div class="row row-cols-1">
-                            <div class="col mb-3">
-                                <div Class="row">
-                                </div>
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='scalems_salary_grade' type="text"
-                                                id="modalScalemscalems_salary_grade" placeholder="درجة الراتب"
-                                              disabled  class="form-control @error('scalems_salary_grade') is-invalid is-filled @enderror" />
-                                            <label for="modalScalemscalems_salary_grade">درجة الراتب</label>
-                                        </div>
-                                        @error('scalems_salary_grade')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='scalems_salary_stage' type="text"
-                                            disabled  id="modalScalemscalems_salary_stage" placeholder="مرحلة الراتب"
-                                                class="form-control @error('scalems_salary_stage') is-invalid is-filled @enderror" />
-                                            <label for="modalScalemscalems_salary_stage">مرحلة الراتب</label>
-                                        </div>
-                                        @error('scalems_salary_stage')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='scalems_salary' type="text"
-                                            disabled  id="modalScalemscalems_salary" placeholder="الراتب"
-                                                class="form-control @error('scalems_salary') is-invalid is-filled @enderror" />
-                                            <label for="modalScalemscalems_salary">الراتب</label>
-                                        </div>
-                                        @error('scalems_salary')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="">
+                                    <label for="modalScalemscalems_salary_stage">درجة الراتب</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $this->scalems_salary_stage }}</div>
                                 </div>
                             </div>
-                            <hr class="my-0">
-                            <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
-                                <button wire:click='destroy'
-                                    type="submit"class="flex-fill btn btn-danger me-sm-3 me-1">حذف </button>
-                                <button type="reset" class="flex-fill btn btn-outline-secondary"
-                                    data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
+                            <div class="col text-center">
+                                <div class="">
+                                    <label for="modalScalemsscalems_salary_stage">مرحلة الراتب</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $this->scalems_salary_stage }}</div>
+                                </div>
                             </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="text-danger">
+                                    <label for="modalScalemscalems_salary">الراتب</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $this->scalems_salary }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-0">
+                        <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
+                            <button wire:click='destroy' type="submit"class="flex-fill btn btn-danger me-sm-3 me-1">حذف
+                            </button>
+                            <button type="reset" class="flex-fill btn btn-outline-secondary" data-bs-dismiss="modal"
+                                aria-label="Close">تجاهل</button>
                         </div>
                     </form>
                 </div>
