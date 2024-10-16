@@ -27,7 +27,7 @@ class Certific extends Model
 
     public function Getgraduation()
     {
-        return $this->belongsTo(Graduations::class, 'certificates_id');
+        return $this->belongsTo(Graduations::class, 'graduations_id');
     }
 
     public function Getspecialization()

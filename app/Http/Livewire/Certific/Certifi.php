@@ -40,13 +40,13 @@ class certifi extends Component
 
     public function mount()
     {
-        $this->workers = Workers::all();
+        //$this->workers = Workers::all();
         $this->certificates = Certificates::all();
     }
 
     public function render()
     {
-        $certifiSearch = '%' . $this->certifiSearch . '%';
+        /* $certifiSearch = '%' . $this->certifiSearch . '%';
         $Certific = Certific::where('user_id', 'LIKE', $certifiSearch)
             ->orWhere('worker_id', 'LIKE', $certifiSearch)
             ->orWhere('calculator_number', 'LIKE', $certifiSearch)
@@ -69,6 +69,17 @@ class certifi extends Component
 
         $links = $Certific;
         $this->Certific = collect($Certific->items());
+        return view('livewire.certific.certifi', [
+            'links' => $links
+        ]); */
+
+        $certifiSearch = '%' . $this->certifiSearch . '%';
+        $workers = Workers::where('full_name', 'LIKE', $certifiSearch)->
+                orderBy('id', 'ASC')->
+                paginate(10);
+//dd($workers->first()->GetCertific);
+        $links = $workers;
+        $this->workers = collect($workers->items());
         return view('livewire.certific.certifi', [
             'links' => $links
         ]);
@@ -219,8 +230,8 @@ class certifi extends Component
         $this->notes = $this->certifi->notes;
         $this->status = $this->certifi->status;
 
-        $this->GetCertificate($this->certifi->id);
-        //$this->graduations = $this->certifi->Getgraduation;
+        //$this->GetCertificate($this->certifi->id);
+        $this->graduations = $this->certifi->Getgraduation;
         //dd($this->graduations);
     }
 
