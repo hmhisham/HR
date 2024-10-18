@@ -139,6 +139,9 @@ return new class extends Migration
             $table->integer('total_college_days')->nullable()->comment('مجموع الكلية يوم');
             $table->integer('total_college_months')->nullable()->comment('مجموع الكلية شهر');
             $table->integer('total_college_years')->nullable()->comment('مجموع الكلية سنة');
+            $table->string('worker_token')->nullable()->comment('token');
+
+
             $table->string('mypassword', 50)->nullable()->comment('كلمة السر');
             $table->timestamps();
         });
