@@ -17,6 +17,7 @@
                         @endcan --}}
                         @can('worker-create')
                             <a href="{{ Route('AddWorker') }}" class="mb-3 add-new btn btn-primary mb-md-0">أضــافــة</a>
+                            <button wire:click="(SenNotify)" class="mb-3 add-new btn btn-success mb-md-0">ارسال اشعار</button>
                         @endcan
                     </div>
                 </div>
