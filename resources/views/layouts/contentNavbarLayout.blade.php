@@ -138,6 +138,12 @@
                                             </a>
                                         </li>
 
+                                        <li Class="menu-item {{ request()->Is('Services') ? 'active' : '' }}">
+                                            <a href = "{{ Route('Services.index') }}" Class="menu-link">
+                                                <div>خلاصة الخدمة</div>
+                                            </a>
+                                        </li>
+
                                         <li Class="menu-item {{ request()->Is('Dispatch') ? 'active' : '' }}">
                                             <a href = "{{ Route('Dispatch.index') }}" Class="menu-link">
                                                 <div>الأيفادات</div>

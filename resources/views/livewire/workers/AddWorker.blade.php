@@ -917,7 +917,7 @@
                         <div class="form-floating form-floating-outline">
                             <select wire:model.defer='service_status' id="addWorkerservice_status"
                                 class="form-select @error('service_status') is-invalid is-filled @enderror">
-                                <option value=""></option>
+                                <option value="">اختر حالة الخدمة</option>
                                 @foreach ($typesservices as $typesservice)
                                     <option value="{{ $typesservice->id }}">{{ $typesservice->typesservices_name }}
                                     </option>
