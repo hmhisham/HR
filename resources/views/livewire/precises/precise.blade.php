@@ -36,7 +36,7 @@
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
-                                <td class="text-center">{{ $Precise->Getspecialty ? $Precise->Getspecialty->specialtys_code : '' }}</td>
+                                <td class="text-center">{{ $Precise->Getspecialty ? $Precise->Getspecialty->specialtys_id : '' }}</td>
                                 <td class="text-center">{{ $Precise->Getspecialty ? $Precise->Getspecialty->specialtys_name : '' }}</td>
                                 <td Class="text-center">{{ $Precise->precises_code }}</td>
                                 <td Class="text-center">{{ $Precise->precises_name }}</td>

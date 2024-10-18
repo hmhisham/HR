@@ -15,17 +15,17 @@
                             <div Class="row">
                                 <div class="mb-3 col flex-fill {{ $specialtys }}">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='specialtys_code' id="modalPrecisesspecialtys_code"
-                                            class="form-select @error('specialtys_code') is-invalid is-filled @enderror">
+                                        <select wire:model.defer='specialtys_id' id="modalPrecisesspecialtys_id"
+                                            class="form-select @error('specialtys_id') is-invalid is-filled @enderror">
                                             <option value="">اختر التخصص العام</option>
                                             @foreach ($specialtys as $specialty)
                                                 <option value="{{ $specialty->id }}">{{ $specialty->specialtys_name }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <label for="modalPrecisesspecialtys_code">التخصص العام</label>
+                                        <label for="modalPrecisesspecialtys_id">التخصص العام</label>
                                     </div>
-                                    @error('specialtys_code')
+                                    @error('specialtys_id')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>

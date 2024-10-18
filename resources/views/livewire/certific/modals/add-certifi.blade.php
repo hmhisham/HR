@@ -12,39 +12,25 @@
                 <hr class="mt-n2">
 
                 <form id="addcertifiModalForm" autocomplete="off">
-<<<<<<< HEAD
-                    <div Class="row">
-                        <div class="mb-3 col">
-                            <div class="form-floating form-floating-outline">
-                                <select wire:model.defer='workers_id' id="addCertifiworkers_id"
-                                    class="form-select @error('workers_id') is-invalid is-filled @enderror">
-                                    <option value=""></option>
-                                    @foreach ($workers as $worker)
-                                        <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="modalCertifiworkers_id">اسم الموظف</label>
-                            </div>
-                            @error('workers_id')
-                                <small class='text-danger inputerror'>{{ $message }}</small>
-                            @enderror
-=======
                     <div Class="row bg-label-primary">
                         <div class="col">
                             <label class="border-bottom-2 text-center mb-2 w-100">اسم الموظف</label>
-                            <div wire:loading wire:target='AddCertifyModal' wire:loading.class="d-flex justify-content-center">
+                            <div wire:loading wire:target='AddCertifyModal'
+                                wire:loading.class="d-flex justify-content-center">
                                 <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                             </div>
-                            <div wire:loading.remove wire:target='AddCertifyModal' class="text-center">{{ $Worker->full_name ?? '' }}</div>
->>>>>>> 4da53beaa96c8c38070db1d39fba1aca47e3449e
+                            <div wire:loading.remove wire:target='AddCertifyModal' class="text-center">
+                                {{ $Worker->full_name ?? '' }}</div>
                         </div>
 
                         <div class="col">
                             <label class="border-bottom-2 text-center mb-2 w-100">رقم الحاسبة</label>
-                            <div wire:loading wire:target='AddCertifyModal' wire:loading.class="d-flex justify-content-center">
+                            <div wire:loading wire:target='AddCertifyModal'
+                                wire:loading.class="d-flex justify-content-center">
                                 <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                             </div>
-                            <div wire:loading.remove wire:target='AddCertifyModal' class="text-center">{{ $Worker->calculator_number ?? '' }}</div>
+                            <div wire:loading.remove wire:target='AddCertifyModal' class="text-center">
+                                {{ $Worker->calculator_number ?? '' }}</div>
                         </div>
                     </div>
                     <hr class="">
