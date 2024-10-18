@@ -44,8 +44,9 @@
                 <li class="nav-item" role="presentation">
                     <button wire:click="buttonStep(4)"
                         class="btn btn-text-dark {{ $currentTap == 4 ? 'active btn btn-label-secondary  btn-fab demo waves-effect' : '' }}"
-                        data-bs-toggle="tab" data-bs-target="#form-tabs-4" role="tab" aria-selected="True">المعلومات الوظيفية
-                        </button>
+                        data-bs-toggle="tab" data-bs-target="#form-tabs-4" role="tab" aria-selected="True">المعلومات
+                        الوظيفية
+                    </button>
                 </li>
             </ul>
         </div>
@@ -891,7 +892,103 @@
             </div>
 
             <div class="tab-pane fade {{ $currentTap == 4 ? 'active show' : '' }}" id="form-tabs-4" role="tabpanel">
+                <div class="divider divider-primary mt-n2">
+                    <div class="divider-text">البطاقة الوطنية / البطاقة التموينية</div>
+                </div>
+                <div Class="row g-4">
+                    <div class="mb-3 col">
+                        <div class="form-floating form-floating-outline">
+                            <select wire:model.defer="service_type" id="modalEmployeeservice_type"
+                                class="form-select @error('service_type') is-invalid is-filled @enderror">
+                                <option value="">اختر نوع الخدمة</option>
+                                <option value="دائمي">دائمي</option>
+                                <option value="عقد">عقد</option>
+                                <option value="مسنب الى وزارتنا">منسب الى وزارتنا</option>
+                                <option value="منسب من وزارتنا">منسب من وزارتنا</option>
+                            </select>
+                            <label for="modalEmployeeservice_type">نوع الخدمة</label>
+                        </div>
+                        @error('service_type')
+                            <small class="text-danger inputerror">{{ $message }}</small>
+                        @enderror
+                    </div>
 
+                    <div class="mb-3 col">
+                        <div class="form-floating form-floating-outline">
+                            <select wire:model.defer='service_status' id="addWorkerservice_status"
+                                class="form-select @error('service_status') is-invalid is-filled @enderror">
+                                <option value=""></option>
+                                @foreach ($typesservices as $typesservice)
+                                    <option value="{{ $typesservice->id }}">{{ $typesservice->typesservices_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <label for="modalWorkerservice_status">حالة الخدمة</label>
+                        </div>
+                        @error('service_status')
+                            <small class='text-danger inputerror'>{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div Class="row g-4">
+                    <div class="mb-3 col">
+                        <div class="form-floating form-floating-outline">
+                            <input wire:model.defer='ministerial_order_number' type="text"
+                                id="modalEmployeeministerial_order_number" placeholder="رقم الامر الوزاري"
+                                class="form-control @error('ministerial_order_number') is-invalid is-filled @enderror"
+                                onkeypress="return onlyNumberKey(event)" />
+                            <label for="modalEmployeeministerial_order_number">رقم الامر الوزاري</label>
+                        </div>
+                        @error('ministerial_order_number')
+                            <small class='text-danger inputerror'> {{ $message }} </small>
+                        @enderror
+                    </div>
+                    <div class="mb-3 col">
+                        <div class="form-floating form-floating-outline">
+                            <input wire:model.defer='ministerial_order_date' type="text"
+                                id="ministerial_order_date" autocomplete="off" readonly placeholder="يوم-شهر-سنة"
+                                class="form-control @error('ministerial_order_date') is-invalid is-filled @enderror" />
+                            <label for="flatpickr-date">تاريخ الامر الوزاري</label>
+                        </div>
+                        @error('ministerial_order_date')
+                            <small class='text-danger inputerror'> {{ $message }} </small>
+                        @enderror
+                    </div>
+                    <div class="mb-3 col">
+                        <div class="form-floating form-floating-outline">
+                            <input wire:model.defer='appointment_order_number' type="text"
+                                id="modalEmployeeappointment_order_number" placeholder="رقم امر التعيين"
+                                class="form-control @error('appointment_order_number') is-invalid is-filled @enderror"
+                                onkeypress="return onlyNumberKey(event)" />
+                            <label for="modalEmployeeappointment_order_number">رقم امر التعيين</label>
+                        </div>
+                        @error('appointment_order_number')
+                            <small class='text-danger inputerror'> {{ $message }} </small>
+                        @enderror
+                    </div>
+                    <div class="mb-3 col">
+                        <div class="form-floating form-floating-outline">
+                            <input wire:model.defer='appointment_date' type="text" id="appointment_date"
+                                autocomplete="off" readonly placeholder="يوم-شهر-سنة"
+                                class="form-control @error('appointment_date') is-invalid is-filled @enderror" />
+                            <label for="flatpickr-date">تاريخ امر التعيين</label>
+                        </div>
+                        @error('appointment_date')
+                            <small class='text-danger inputerror'> {{ $message }} </small>
+                        @enderror
+                    </div>
+                    <div class="mb-3 col">
+                        <div class="form-floating form-floating-outline">
+                            <input wire:model.defer='start_work_date' type="text" id="start_work_date"
+                                autocomplete="off" readonly placeholder="يوم-شهر-سنة"
+                                class="form-control @error('start_work_date') is-invalid is-filled @enderror" />
+                            <label for="flatpickr-date">تاريخ المباشرة</label>
+                        </div>
+                        @error('start_work_date')
+                            <small class='text-danger inputerror'> {{ $message }} </small>
+                        @enderror
+                    </div>
+                </div>
             </div>
         </div>
         @include('livewire.workers.modals.add-takhroj')

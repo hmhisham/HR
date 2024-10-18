@@ -174,6 +174,66 @@
             });
         });
 
+        /*  تاريخ الامر الوزاري */
+        $(document).ready(function() {
+            window.initOrganizationDateDrop = () => {
+                $('#ministerial_order_date').flatpickr({
+                    placeholder: 'تاريخ الامر الوزاري',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initOrganizationDateDrop();
+            $('#ministerial_order_date').on('change', function(e) {
+                livewire.emit('employeeMinisterialOrderDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initOrganizationDateDrop();
+            });
+        });
+
+        /*  تاريخ امر التعيين */
+        $(document).ready(function() {
+            window.initOrganizationDateDrop = () => {
+                $('#appointment_date').flatpickr({
+                    placeholder: 'تاريخ امر التعيين',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initOrganizationDateDrop();
+            $('#appointment_date').on('change', function(e) {
+                livewire.emit('employeeAppointmentOrderDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initOrganizationDateDrop();
+            });
+        });
+
+        /*  تاريخ المباشرة */
+        $(document).ready(function() {
+            window.initOrganizationDateDrop = () => {
+                $('#start_work_date').flatpickr({
+                    placeholder: 'تاريخ امر التعيين',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initOrganizationDateDrop();
+            $('#start_work_date').on('change', function(e) {
+                livewire.emit('employeeStartWorkDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initOrganizationDateDrop();
+            });
+        });
+
+
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',

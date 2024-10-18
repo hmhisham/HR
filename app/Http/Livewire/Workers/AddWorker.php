@@ -10,6 +10,7 @@ use App\Models\Districts\Districts;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Infooffice\Infooffice;
 use App\Models\Governorates\Governorates;
+use App\Models\Typesservices\Typesservices;
 
 class AddWorker extends Component
 {
@@ -24,6 +25,7 @@ class AddWorker extends Component
     public $specializations = [];
     public $Workers = [];
     public $infooffice = [];
+    public $typesservices = [];
 
     public $WorkerSearch = '';
     public $calculator_number, $employee_number, $paper_folder_number, $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name;
@@ -34,7 +36,7 @@ class AddWorker extends Component
     public $nationality_certificate_number, $wallet_number, $issue_date_nationality_certificate, $issuing_authority_nationality_certificate;
     public $residence_card_number, $information_office, $organization_date;
     public $ration_card_number, $ration_card_date, $national_card_number, $national_card_date;
-    public $service_type, $service_status;
+    public $service_type, $service_status, $ministerial_order_number, $ministerial_order_date, $appointment_order_number, $appointment_date, $start_work_date;
     public $isMaritalStatus, $HusbandName;
 
 
@@ -43,6 +45,7 @@ class AddWorker extends Component
         'GetAreas',
         'SelectArea',
         'SelectInformationOffice',
+        'SelectServiceStatus',
     ];
 
     public function hydrate()
@@ -55,8 +58,9 @@ class AddWorker extends Component
     {
         $this->Governorates = Governorates::all();
         $this->infooffice = Infooffice::all();
+        $this->typesservices = Typesservices::all();
     }
-
+    //استدعاء مكاتب المعلومات
     public function SelectInformationOffice($InformationOfficeID)
     {
         $information_office = Infooffice::find($InformationOfficeID);
@@ -65,6 +69,16 @@ class AddWorker extends Component
             $this->information_office = $InformationOfficeID;
         } else {
             $this->information_office = null;
+        }
+    }
+    //استدعاء حالة الخدمة
+    public function SelectServiceStatus($ServiceStatusID)
+    {
+        $service_status = Typesservices::find($ServiceStatusID);
+        if ($service_status) {
+            $this->service_status = $ServiceStatusID;
+        } else {
+            $this->service_status = null;
         }
     }
 
@@ -110,7 +124,7 @@ class AddWorker extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('WorkerModalShow');
     }
-
+    //دمج اسم الموظف
     public function changeName()
     {
         $this->first_name = trim($this->first_name);
@@ -150,7 +164,7 @@ class AddWorker extends Component
             'great_grandfather_name.required' => 'حقل اسم والد الجد مطلوب',
         ]);
     }
-
+    //مج اسم ام الموظف
     public function changeNameMother()
     {
         $this->mother_name = trim($this->mother_name);
@@ -183,13 +197,14 @@ class AddWorker extends Component
             'maternal_great_grandfather_name.required' => 'حقل اسم جد الام مطلوب',
         ]);
     }
-
+    //استدعاء المحافظات
     public function GetDistricts($GovernorateID)
     {
         $this->governorate_id = $GovernorateID;
         $this->GovernorateID = $GovernorateID;
         $this->Districts = Districts::where('governorate_id', $GovernorateID)->get();
     }
+    //استدعاء الاقضية
     public function GetAreas($DistrictID)
     {
         $this->district_id = $DistrictID;
@@ -197,14 +212,14 @@ class AddWorker extends Component
             ->where('district_id', $DistrictID)
             ->get();
     }
+    //استدعاء النواحي
     public function SelectArea($AreaID)
     {
         $this->area_id = $AreaID;
     }
-
+    //اختبار الزوجية
     public function getWifeNameStatus($MaritalStatus)
     {
-
         if ($MaritalStatus == 'اعزب' or $MaritalStatus == 'باكر') {
             $this->isMaritalStatus = '';
             $this->isMaritalStatus = 'disabled';
@@ -217,7 +232,6 @@ class AddWorker extends Component
 
     public function AddWorker()
     {
-
         $this->resetValidation();
         $this->validate([
             'calculator_number' => 'required|unique:workers,calculator_number',
@@ -277,7 +291,6 @@ class AddWorker extends Component
             'locality' => $this->locality,
             'phone_number' => $this->phone_number,
             'employee_id_number' => $this->employee_id_number,
-            //'department_name' => $this->department_name,
             'blood_type' => $this->blood_type,
             'email' => $this->email,
             'birth_date' => $this->birth_date,
@@ -303,6 +316,14 @@ class AddWorker extends Component
             'ration_card_date' => $this->ration_card_date,
             'national_card_number' => $this->national_card_number,
             'national_card_date' => $this->national_card_date,
+
+            'service_type' => $this->service_type,
+            'service_status' => $this->service_status,
+            'ministerial_order_number' => $this->ministerial_order_number,
+            'ministerial_order_date' => $this->ministerial_order_date,
+            'appointment_order_number' => $this->appointment_order_number,
+            'appointment_date' => $this->appointment_date,
+            'start_work_date' => $this->start_work_date,
             'user_id' => Auth::id(),
         ]);
 
@@ -311,7 +332,5 @@ class AddWorker extends Component
             'message' => 'تم الاضافة بنجاح',
             'title' => 'اضافة'
         ]);
-
-
     }
 }
