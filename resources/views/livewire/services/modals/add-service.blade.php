@@ -28,16 +28,55 @@
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
+
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='start_work_date' type="text"
+                                            id="modalcertifistart_work_date" placeholder="تاريخ المباشرة"
+                                            class="form-control @error('start_work_date') is-invalid is-filled @enderror"
+                                            disabled />
+                                        <label for="modalcertifistart_work_date">تاريخ المباشرة</label>
+                                    </div>
+                                    @error('start_work_date')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
                             </div>
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='service_type' type="text"
-                                            id="modalserviceservice_type" placeholder="نوع الخدمة"
-                                            class="form-control @error('service_type') is-invalid is-filled @enderror" />
-                                        <label for="modalserviceservice_type">نوع الخدمة</label>
+                                        <select wire:model.defer='service_type' id="modalserviceservice_type"
+                                            class="form-select @error('service_type') is-invalid is-filled @enderror">
+                                            <option value="">اختر الخدمة</option>
+                                            <option value="قبل الاعادة">قبل الاعادة</option>
+                                            <option value="فصل سياسي">فصل سياسي</option>
+                                            <option value="اجر يومي">اجر يومي</option>
+                                            <option value="عقد">عقد</option>
+                                            <option value="محاماة">محاماة</option>
+                                            <option value="جهادية">جهادية</option>
+                                            <option value="صحفية">صحفية</option>
+                                            <option value="عمالية">عمالية</option>
+                                            <option value="عضوية مجالس">عضوية مجالس</option>
+                                            <option value="عسكرية">عسكرية</option>
+                                        </select>
+                                        <label for="modalserviceservice_type">اسم الخدمة</label>
                                     </div>
                                     @error('service_type')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='purpose' id="modalservicepurpose"
+                                            class="form-select @error('purpose') is-invalid is-filled @enderror">
+                                            <option value="">اختر الخدمة</option>
+                                            <option value="التقاعد">التقاعد</option>
+                                            <option value="لكافة الاغراض">لكافة الاغراض</option>
+                                        </select>
+                                        <label for="modalservicepurpose">الغرض من الاضافة</label>
+                                    </div>
+                                    @error('purpose')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
@@ -57,8 +96,9 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='administrative_order_date' type="text" id="addadministrative_order_date"
-                                            autocomplete="off" readonly placeholder="يوم-شهر-سنة"
+                                        <input wire:model.defer='administrative_order_date' type="text"
+                                            id="addadministrative_order_date" autocomplete="off" readonly
+                                            placeholder="يوم-شهر-سنة"
                                             class="form-control @error('administrative_order_date') is-invalid is-filled @enderror" />
                                         <label for="flatpickr-date">تاريخ الامر الاداري</label>
                                     </div>
@@ -70,7 +110,7 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='from_date' type="text" id="addfrom_date"
+                                        <input wire:model='from_date' type="text" id="addfrom_date"
                                             autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                             class="form-control @error('from_date') is-invalid is-filled @enderror" />
                                         <label for="flatpickr-date">من تاريخ</label>
@@ -82,8 +122,8 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='to_date' type="text" id="addto_date"
-                                            autocomplete="off" readonly placeholder="يوم-شهر-سنة"
+                                        <input wire:model='to_date' type="text" id="addto_date" autocomplete="off"
+                                            readonly placeholder="يوم-شهر-سنة"
                                             class="form-control @error('to_date') is-invalid is-filled @enderror" />
                                         <label for="flatpickr-date">الى تاريخ</label>
                                     </div>
@@ -104,6 +144,47 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='certificates_id' id="addServicecertificates_id"
+                                            class="form-select @error('certificates_id') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @foreach ($certificates as $certificate)
+                                                <option value="{{ $certificate->id }}">
+                                                    {{ $certificate->certificates_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="modalServicecertificates_id">التحصيل الدراسي</label>
+                                    </div>
+                                    @error('certificates_id')
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
+                                    @enderror
+                                </div>
+
+                            </div>
+                            <div Class="row">
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model="days" type="text" readonly placeholder="عدد الأيام"
+                                               class="form-control" />
+                                        <label for="days">الأيام</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model="months" type="text" readonly placeholder="عدد الأشهر"
+                                               class="form-control" />
+                                        <label for="months">الأشهر</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model="years" type="text" readonly placeholder="عدد السنوات"
+                                               class="form-control" />
+                                        <label for="years">السنوات</label>
+                                    </div>
+                                </div>
                             </div>
                             <div Class="row">
                                 <div class="mb-3 col">
@@ -121,8 +202,9 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='calculation_order_date' type="text" id="addcalculation_order_date"
-                                            autocomplete="off" readonly placeholder="يوم-شهر-سنة"
+                                        <input wire:model.defer='calculation_order_date' type="text"
+                                            id="addcalculation_order_date" autocomplete="off" readonly
+                                            placeholder="يوم-شهر-سنة"
                                             class="form-control @error('calculation_order_date') is-invalid is-filled @enderror" />
                                         <label for="flatpickr-date">تاريخ امر الاحتساب</label>
                                     </div>
@@ -133,31 +215,42 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='job_title_deletion' type="text"
-                                            id="modalservicejob_title_deletion" placeholder="العنوان الوظيفي الحذف"
-                                            class="form-control @error('job_title_deletion') is-invalid is-filled @enderror" />
-                                        <label for="modalservicejob_title_deletion">العنوان الوظيفي الحذف</label>
+                                        <select wire:model.defer='job_title_deletion'
+                                            id="addServicejob_title_deletion" placeholder = "اختار"
+                                            class="form-select @error('job_title_deletion') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @foreach ($jobtitles as $jobtitle)
+                                                <option value="{{ $jobtitle->id }}">
+                                                    {{ $jobtitle->jobtitles_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <label for="modalServicejob_title_deletion">العنوان الوظيفي الحذف</label>
                                     </div>
                                     @error('job_title_deletion')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div Class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='job_title_introduction' type="text"
-                                            id="modalservicejob_title_introduction"
-                                            placeholder="العنوان الوظيفي الاستحداث"
-                                            class="form-control @error('job_title_introduction') is-invalid is-filled @enderror" />
-                                        <label for="modalservicejob_title_introduction">العنوان الوظيفي
-                                            الاستحداث</label>
-                                    </div>
-                                    @error('job_title_introduction')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
 
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='job_title_introduction'
+                                            id="addServicejob_title_introduction" placeholder = "اختار"
+                                            class="form-select @error('job_title_introduction') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @foreach ($jobtitles as $jobtitle)
+                                                <option value="{{ $jobtitle->id }}">
+                                                    {{ $jobtitle->jobtitles_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <label for="modalServicejob_title_introduction">العنوان الوظيفي
+                                            الاستحداث</label>
+                                    </div>
+                                    @error('job_title_introduction')
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                     </div>

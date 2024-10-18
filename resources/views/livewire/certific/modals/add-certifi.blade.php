@@ -13,16 +13,16 @@
                     <div Class="row">
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
-                                <select wire:model.defer='worker_id' id="addCertifiworker_id"
-                                    class="form-select @error('worker_id') is-invalid is-filled @enderror">
+                                <select wire:model.defer='workers_id' id="addCertifiworkers_id"
+                                    class="form-select @error('workers_id') is-invalid is-filled @enderror">
                                     <option value=""></option>
                                     @foreach ($workers as $worker)
                                         <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
                                     @endforeach
                                 </select>
-                                <label for="modalCertifiworker_id">اسم الموظف</label>
+                                <label for="modalCertifiworkers_id">اسم الموظف</label>
                             </div>
-                            @error('worker_id')
+                            @error('workers_id')
                                 <small class='text-danger inputerror'>{{ $message }}</small>
                             @enderror
                         </div>

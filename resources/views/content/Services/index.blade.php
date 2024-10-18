@@ -211,6 +211,108 @@
             });
         });
 
+        // add Certificates
+        $(document).ready(function() {
+            window.initAddCertificatesDrop = () => {
+                $('#addServicecertificates_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addserviceModal')
+                });
+            }
+            initAddCertificatesDrop();
+            $('#addServicecertificates_id').on('change', function(e) {
+                livewire.emit('SelectCertificatesId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddCertificatesDrop();
+            });
+        });
+
+        // edit Certificates
+        $(document).ready(function() {
+            window.initEditCertificatesDrop = () => {
+                $('#editServicecertificates_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editserviceModal')
+                });
+            }
+            initEditCertificatesDrop();
+            $('#editServicecertificates_id').on('change', function(e) {
+                livewire.emit('SelectCertificatesId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditCertificatesDrop();
+            });
+        });
+
+        // اضافة العنوان الوظيفي المحذوف
+        $(document).ready(function() {
+            window.initAddJobtitlesDrop = () => {
+                $('#addServicejob_title_deletion').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addserviceModal')
+                });
+            }
+            initAddJobtitlesDrop();
+            $('#addServicejob_title_deletion').on('change', function(e) {
+                livewire.emit('SelectJobTitleDeletion', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddJobtitlesDrop();
+            });
+        });
+
+        // تعديل العنوان الوظيفي المحذوف
+        $(document).ready(function() {
+            window.initEditJobtitlesDrop = () => {
+                $('#editServicejob_title_deletion').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editserviceModal')
+                });
+            }
+            initEditJobtitlesDrop();
+            $('#editServicejob_title_deletion').on('change', function(e) {
+                livewire.emit('SelectJobTitleDeletion', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditJobtitlesDrop();
+            });
+        });
+
+        // اضافة العنوان الوظيفي المستحدث
+        $(document).ready(function() {
+            window.initAddJobtitlesDrop = () => {
+                $('#addServicejob_title_introduction').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addserviceModal')
+                });
+            }
+            initAddJobtitlesDrop();
+            $('#addServicejob_title_introduction').on('change', function(e) {
+                livewire.emit('SelectJobTitleIntroduction', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddJobtitlesDrop();
+            });
+        });
+
+        // تعديل العنوان الوظيفي المستحدث
+        $(document).ready(function() {
+            window.initEditJobtitlesDrop = () => {
+                $('#editServicejob_title_introduction').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editserviceModal')
+                });
+            }
+            initEditJobtitlesDrop();
+            $('#editServicejob_title_introduction').on('change', function(e) {
+                livewire.emit('SelectJobTitleIntroduction', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditJobtitlesDrop();
+            });
+        });
+
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
