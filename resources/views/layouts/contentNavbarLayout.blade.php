@@ -85,7 +85,7 @@
                                     <ul class="menu-sub">
                                         <li Class="menu-item {{ request()->Is('Workers') ? 'active' : '' }}">
                                             <a href="{{ Route('Workers') }}" Class="menu-link">
-                                                <div>المعلومات الوظيفية</div>
+                                                <div>المعلومات العامة</div>
                                             </a>
                                         </li>
                                         <li Class="menu-item {{ request()->Is('AddWorker') ? 'active' : 'hidden' }}">

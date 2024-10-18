@@ -1,5 +1,7 @@
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semiboyld">نافذة بيانات الزوجية</h4>
+    <h4 class="mb-2">
+        <span class="text-muted fw-light">الموارد البشرية <span class="mdi mdi-chevron-left mdi-24px"></span></span> الزوجية
+    </h4>
     <div class="card">
         <div class="card">
             <div class="card-header">

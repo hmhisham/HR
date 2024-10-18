@@ -15,31 +15,20 @@
                     جار حذف البيانات...</h5>
                 <div wire:loading.remove>
                     <form id="removeChildrenModalForm" onsubmit="return false" autocomplete="off">
-                        <div class="row row-cols-1">
-                            <div class="col mb-3">
-                                <div Class="row">
-                                </div>
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='full_name' type="text"
-                                                id="modalChildrenfull_name" placeholder="الاسم الكامل" disabled
-                                                class="form-control @error('full_name') is-invalid is-filled @enderror" />
-                                            <label for="modalChildrenfull_name">الاسم الكامل</label>
-                                        </div>
-                                        @error('full_name')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="">
+                                    <label for="modalChildrenfull_name">اسم الطفل</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $this->full_name }}</div>
                                 </div>
                             </div>
-                            <hr class="my-0">
-                            <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
-                                <button wire:click='destroy'
-                                    type="submit"class="flex-fill btn btn-danger me-sm-3 me-1">حذف </button>
-                                <button type="reset" class="flex-fill btn btn-outline-secondary"
-                                    data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
-                            </div>
+                        </div>
+                        <hr class="my-0">
+                        <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
+                            <button wire:click='destroy' type="submit"class="flex-fill btn btn-danger me-sm-3 me-1">حذف
+                            </button>
+                            <button type="reset" class="flex-fill btn btn-outline-secondary" data-bs-dismiss="modal"
+                                aria-label="Close">تجاهل</button>
                         </div>
                     </form>
                 </div>

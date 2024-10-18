@@ -1,5 +1,7 @@
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semiboyld">الارتباطات</h4>
+    <h4 class="mb-2">
+        <span class="text-muted fw-light">الإعدادات <span class="mdi mdi-chevron-left mdi-24px"></span></span> الارتباط
+    </h4>
     <div class="card">
         <div class="card">
             <div class="card-header">

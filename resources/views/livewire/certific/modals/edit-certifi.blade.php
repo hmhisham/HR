@@ -10,8 +10,10 @@
                 </div>
 
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="Getcertifi" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">جار حفظ البيانات...</h5>
+                <h5 wire:loading wire:target="Getcertifi"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار حفظ البيانات...</h5>
 
                 <div wire:loading.remove wire:target="update, Getcertifi">
                     <form id="editcertifiModalForm" autocomplete="off">
@@ -37,7 +39,8 @@
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='calculator_number' type="text"
                                         id="modalcertificalculator_number" placeholder="رقم الحاسبة"
-                                        class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
+                                        class="form-control @error('calculator_number') is-invalid is-filled @enderror"
+                                        disabled />
                                     <label for="modalcertificalculator_number">رقم الحاسبة</label>
                                 </div>
                                 @error('calculator_number')
@@ -147,8 +150,7 @@
                                     <small class='text-danger inputerror'>{{ $message }}</small>
                                 @enderror
                             </div>
-                        </div>
-                        <div Class="row">
+
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     @php
@@ -170,7 +172,63 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>
+                        </div>
+                        <div Class="row">
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='specialtys_id' id="editCertifispecialtys_id"
+                                        class="form-select @error('specialtys_id') is-invalid is-filled @enderror">
+                                        <option value=""></option>
+                                        @foreach ($specialtys as $specialty)
+                                            <option value="{{ $specialty->id }}">{{ $specialty->specialtys_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <label for="modalCertifispecialtys_id">التخصص العام</label>
+                                </div>
+                                @error('specialtys_id')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
 
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='precises_id' id="editCertifiprecises_id"
+                                        class="form-select @error('precises_id') is-invalid is-filled @enderror">
+                                        <option value=""></option>
+                                        @foreach ($precises as $precise)
+                                            <option value="{{ $precise->id }}">{{ $precise->precises_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <label for="modalCertifiprecises_id">التخصص الدقيق</label>
+                                </div>
+                                @error('precises_id')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='specializationclassification_id'
+                                        id="editCertifispecializationclassification_id"
+                                        class="form-select @error('specializationclassification_id') is-invalid is-filled @enderror">
+                                        <option value=""></option>
+                                        @foreach ($specializationclassification as $specializationclassificatio)
+                                            <option value="{{ $specializationclassificatio->id }}">
+                                                {{ $specializationclassificatio->specializationclassification_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <label for="modalCertifispecializationclassification_id">تصنيف التخصص</label>
+                                </div>
+                                @error('specializationclassification_id')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div Class="row">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.lazy='grade' type="number" id="modalCertificgrade"

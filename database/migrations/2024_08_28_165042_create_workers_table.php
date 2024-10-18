@@ -93,6 +93,8 @@ return new class extends Migration
             $table->string('precise_specialization', 50)->nullable()->comment('التخصص الدقيق');
             $table->string('degree', 50)->nullable()->comment('د / و');
             $table->string('position_title', 50)->nullable()->comment('العنوان الوظيفي');
+            $table->string('ministerial_order_number', 50)->nullable()->comment('رقم الامر الوزاري');
+            $table->string('ministerial_order_date', 50)->nullable()->comment('رقم الامر الوزاري');
             $table->string('appointment_order_number', 50)->nullable()->comment('رقم امر التعيين');
             $table->date('appointment_date')->nullable()->comment('تاريخ التعيين');
             $table->date('start_work_date')->nullable()->comment('تاريخ المباشرة');

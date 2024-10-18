@@ -24,6 +24,9 @@ return new class extends Migration
             $table->string('graduations_id')->nullable()->comment('جهة التخرج');
             $table->string('specialization_id')->nullable()->comment('التخصص');
             $table->string('graduation_year')->nullable()->comment('سنة التخرج');
+            $table->string('specialtys_id')->nullable()->comment('التخصص العام');
+            $table->string('precises_id')->nullable()->comment('التخصص الدقيق');
+            $table->string('specializationclassification_id')->nullable()->comment('تصنيف التخصص');
             $table->string('grade')->nullable()->comment('الدرجة');
             $table->string('estimate')->nullable()->comment('التقدير');
             $table->string('duration')->nullable()->comment('مدة القدم');

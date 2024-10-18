@@ -39,6 +39,14 @@
                         data-bs-toggle="tab" data-bs-target="#form-tabs-3" role="tab" aria-selected="True">مستمسكات
                         الموظف</button>
                 </li>
+
+                {{-- 04 --}}
+                <li class="nav-item" role="presentation">
+                    <button wire:click="buttonStep(4)"
+                        class="btn btn-text-dark {{ $currentTap == 4 ? 'active btn btn-label-secondary  btn-fab demo waves-effect' : '' }}"
+                        data-bs-toggle="tab" data-bs-target="#form-tabs-4" role="tab" aria-selected="True">المعلومات الوظيفية
+                        </button>
+                </li>
             </ul>
         </div>
 
@@ -880,6 +888,10 @@
                         @enderror
                     </div>
                 </div>
+            </div>
+
+            <div class="tab-pane fade {{ $currentTap == 4 ? 'active show' : '' }}" id="form-tabs-4" role="tabpanel">
+
             </div>
         </div>
         @include('livewire.workers.modals.add-takhroj')

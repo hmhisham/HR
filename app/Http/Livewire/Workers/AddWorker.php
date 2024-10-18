@@ -34,6 +34,7 @@ class AddWorker extends Component
     public $nationality_certificate_number, $wallet_number, $issue_date_nationality_certificate, $issuing_authority_nationality_certificate;
     public $residence_card_number, $information_office, $organization_date;
     public $ration_card_number, $ration_card_date, $national_card_number, $national_card_date;
+    public $service_type, $service_status;
     public $isMaritalStatus, $HusbandName;
 
 

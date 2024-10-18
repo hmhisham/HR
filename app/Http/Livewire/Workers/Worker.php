@@ -22,6 +22,7 @@ class Worker extends Component
         $WorkerSearch = '%' . $this->WorkerSearch . '%';
         $Workers = Workers::where('calculator_number', 'LIKE', $WorkerSearch)
             ->orWhere('employee_number', 'LIKE', $WorkerSearch)
+            ->orWhere('full_name', 'LIKE', $WorkerSearch)
 
 
             ->orderBy('id', 'ASC')
