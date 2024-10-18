@@ -2,15 +2,12 @@
 
 namespace App\Http\Livewire\Services;
 
-use DateTime;
-
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Workers\Workers;
 use App\Models\Services\Services;
 use App\Models\Jobtitles\Jobtitles;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Certificates\Certificates;
 
@@ -90,15 +87,13 @@ class service extends Component
         }
     }
 
-    public function employeeAddFromDate($date)
+    public function updatedFromDate()
     {
-        $this->from_date = $date;
         $this->calculateDifference();
     }
 
-    public function employeeAddToDate($date)
+    public function updatedToDate()
     {
-        $this->to_date = $date;
         $this->calculateDifference();
     }
 
@@ -106,17 +101,15 @@ class service extends Component
     public function calculateDifference()
     {
         if ($this->from_date && $this->to_date) {
-            $from_date = DateTime::createFromFormat('d-m-Y', $this->from_date);
-            $to_date = DateTime::createFromFormat('d-m-Y', $this->to_date);
-            $interval = $to_date->diff($from_date);
+            $from_date = Carbon::createFromFormat('d-m-Y', $this->from_date);
+            $to_date = Carbon::createFromFormat('d-m-Y', $this->to_date);
+            $diff = $to_date->diff($from_date);
 
-            // تخزين النتائج في المتغيرات المناسبة
-            $this->days = $interval->d;
-            $this->months = $interval->m;
-            $this->years = $interval->y;
+            $this->days = $diff->days;  // الفرق بالأيام
+            $this->months = $diff->m;   // الفرق بالأشهر
+            $this->years = $diff->y;    // الفرق بالسنوات
         }
     }
-
 
     public function render()
     {
