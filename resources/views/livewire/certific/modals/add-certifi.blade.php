@@ -8,38 +8,28 @@
                     <h3 class="pb-1 mb-2">اضافة شهادة جديدة</h3>
                     <p>نافذة الأضافة </p>
                 </div>
+
                 <hr class="mt-n2">
+
                 <form id="addcertifiModalForm" autocomplete="off">
-                    <div Class="row">
-                        <div class="mb-3 col">
-                            <div class="form-floating form-floating-outline">
-                                <select wire:model.defer='worker_id' id="addCertifiworker_id"
-                                    class="form-select @error('worker_id') is-invalid is-filled @enderror">
-                                    <option value=""></option>
-                                    @foreach ($workers as $worker)
-                                        <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="modalCertifiworker_id">اسم الموظف</label>
+                    <div Class="row bg-label-primary">
+                        <div class="col">
+                            <label class="border-bottom-2 text-center mb-2 w-100">اسم الموظف</label>
+                            <div wire:loading wire:target='AddCertifyModal' wire:loading.class="d-flex justify-content-center">
+                                <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                             </div>
-                            @error('worker_id')
-                                <small class='text-danger inputerror'>{{ $message }}</small>
-                            @enderror
+                            <div wire:loading.remove wire:target='AddCertifyModal' class="text-center">{{ $Worker->full_name ?? '' }}</div>
                         </div>
 
-                        <div class="mb-3 col">
-                            <div class="form-floating form-floating-outline">
-                                <input wire:model.defer='calculator_number' type="text"
-                                    id="modalcertificalculator_number" placeholder="رقم الحاسبة"
-                                    class="form-control @error('calculator_number') is-invalid is-filled @enderror"
-                                    disabled />
-                                <label for="modalcertificalculator_number">رقم الحاسبة</label>
+                        <div class="col">
+                            <label class="border-bottom-2 text-center mb-2 w-100">رقم الحاسبة</label>
+                            <div wire:loading wire:target='AddCertifyModal' wire:loading.class="d-flex justify-content-center">
+                                <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                             </div>
-                            @error('calculator_number')
-                                <small class='text-danger inputerror'> {{ $message }} </small>
-                            @enderror
+                            <div wire:loading.remove wire:target='AddCertifyModal' class="text-center">{{ $Worker->calculator_number ?? '' }}</div>
                         </div>
                     </div>
+                    <hr class="">
                     <div Class="row">
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">

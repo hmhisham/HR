@@ -12,11 +12,17 @@
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
-    <link rel="stylesheet"
-        href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 @endsection
 
+@section('page-style')
+    <style>
+        .border-bottom-2 {
+            border-bottom: 2px solid !important;
+        }
+    </style>
+@endsection
 @section('content')
 
     @livewire('certific.certifi')
@@ -349,7 +355,6 @@
             });
         });
 
-
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
@@ -370,10 +375,8 @@
             }
         })
 
-        window.addEventListener('certifiModalShow', event => {
-            setTimeout(() => {
-                $('#id').focus();
-            }, 100);
+        window.addEventListener('AddCertifyModal', event => {
+            $('#id').focus();
         })
 
         window.addEventListener('success', event => {
