@@ -15,8 +15,7 @@ class Precises extends Model
 
     public function Getspecialty()
     {
-        return $this->belongsTo(Specialtys::class, 'specialtys_code' );
-        //return $this->belongsTo(Specialtys::class, 'specialtys_id');
+        return $this->belongsTo(Specialtys::class, 'specialtys_id' );
     }
 
 
