@@ -74,7 +74,7 @@ return new class extends Migration
             $table->string('appointment_order_number', 50)->nullable()->comment('رقم امر التعيين');
             $table->date('appointment_date')->nullable()->comment('تاريخ التعيين');
             $table->date('start_work_date')->nullable()->comment('تاريخ المباشرة');
-
+            $table->string('worker_token')->nullable()->comment('token');
             $table->string('mypassword', 50)->nullable()->comment('كلمة السر');
 
             $table->timestamps();
