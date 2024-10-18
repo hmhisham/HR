@@ -7,10 +7,13 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Workers\Workers;
 use App\Models\Certific\Certific;
+use App\Models\Precises\Precises;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Specialtys\Specialtys;
 use App\Models\Graduations\Graduations;
 use App\Models\Certificates\Certificates;
 use App\Models\Specializations\Specializations;
+use App\Models\Specializationclassification\Specializationclassification;
 
 class certifi extends Component
 {
@@ -22,14 +25,20 @@ class certifi extends Component
     public $certificates = [];
     public $graduations = [];
     public $specializations = [];
+    public $specialtys = [];
+    public $precises = [];
+    public $specializationclassification = [];
     public $certifiSearch, $certifi, $certifiId;
-    public $user_id, $worker_id, $calculator_number, $document_number, $document_date, $certificates_id, $authenticity_number, $authenticity_date, $graduations_id, $specialization_id, $graduation_year, $grade, $estimate, $duration, $issuing_country, $notes, $status;
+    public $user_id, $worker_id, $calculator_number, $document_number, $document_date, $certificates_id, $authenticity_number, $authenticity_date, $graduations_id, $specialization_id, $graduation_year, $specialtys_id, $precises_id, $specializationclassification_id, $grade, $estimate, $duration, $issuing_country, $notes, $status;
 
     protected $listeners = [
         'SelectWorkerId',
         'GetCertificate',
         'GetGraduation',
         'GetSpecialization',
+        'GetSpecialtys',
+        'GetPrecises',
+        'SelectSpecializationclassificationId',
     ];
 
     public function hydrate()
@@ -42,6 +51,8 @@ class certifi extends Component
     {
         //$this->workers = Workers::all();
         $this->certificates = Certificates::all();
+        $this->specialtys = Specialtys::all();
+        $this->specializationclassification = Specializationclassification::all();
     }
 
     public function render()
@@ -74,17 +85,15 @@ class certifi extends Component
         ]); */
 
         $certifiSearch = '%' . $this->certifiSearch . '%';
-        $workers = Workers::where('full_name', 'LIKE', $certifiSearch)->
-                orderBy('id', 'ASC')->
-                paginate(10);
-//dd($workers->first()->GetCertific);
+        $workers = Workers::where('full_name', 'LIKE', $certifiSearch)->orderBy('id', 'ASC')->paginate(10);
+        //dd($workers->first()->GetCertific);
         $links = $workers;
         $this->workers = collect($workers->items());
         return view('livewire.certific.certifi', [
             'links' => $links
         ]);
     }
-
+    //ربط الشهادة وجهة التخرج والتخصص
     public function GetCertificate($Certificates_id)
     {
         $this->certificates_id = $Certificates_id;
@@ -100,6 +109,29 @@ class certifi extends Component
         $this->specialization_id = $Specialization_id;
     }
 
+    //ربط التخصص العام والدقيق
+    public function GetSpecialtys($Specialtys_id)
+    {
+        $this->specialtys_id = $Specialtys_id;
+        $this->precises = Precises::where('specialtys_id', $Specialtys_id)->get();
+    }
+    public function GetPrecises($Precises_id)
+    {
+        $this->precises_id = $Precises_id;
+    }
+
+    //استدعاء تصنيف التخصص
+    public function SelectSpecializationclassificationId($SpecializationclassificationIdID)
+    {
+        $specializationclassification_id = Specializationclassification::find($SpecializationclassificationIdID);
+        if ($specializationclassification_id) {
+            $this->specializationclassification_id = $SpecializationclassificationIdID;
+        } else {
+            $this->specializationclassification_id = null;
+        }
+    }
+
+    //استدعاء جدول الموظفين
     public function SelectWorkerId($WorkerIdID)
     {
         $worker_id = Workers::find($WorkerIdID);
@@ -139,7 +171,7 @@ class certifi extends Component
 
     public function AddcertifiModalShow()
     {
-        $this->reset(['worker_id', 'calculator_number', 'document_number', 'document_date', 'certificates_id', 'authenticity_number', 'authenticity_date', 'graduations_id', 'specialization_id', 'graduation_year', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
+        $this->reset(['worker_id', 'calculator_number', 'document_number', 'document_date', 'certificates_id', 'authenticity_number', 'authenticity_date', 'graduations_id', 'specialization_id', 'graduation_year', 'specialtys_id', 'precises_id', 'specializationclassification_id', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('certifiModalShow');
     }
@@ -158,6 +190,9 @@ class certifi extends Component
             'graduations_id' => 'required',
             'specialization_id' => 'required',
             'graduation_year' => 'required',
+            'specialtys_id' => 'required',
+            'precises_id' => 'required',
+            'specializationclassification_id' => 'required',
             'grade' => 'required',
             'estimate' => 'required',
             'duration' => 'required',
@@ -173,6 +208,9 @@ class certifi extends Component
             'graduations_id.required' => 'حقل جهة التخرج مطلوب',
             'specialization_id.required' => 'حقل التخصص مطلوب',
             'graduation_year.required' => 'حقل سنة التخرج مطلوب',
+            'specialtys_id.required' => 'حقل التخصص العام مطلوب',
+            'precises_id.required' => 'حقل التخصص الدقيق مطلوب',
+            'specializationclassification_id.required' => 'حقل تصنيف التخصص مطلوب',
             'grade.required' => 'حقل الدرجة مطلوب',
             'estimate.required' => 'حقل التقدير مطلوب',
             'duration.required' => 'حقل مدة القدم مطلوب',
@@ -191,6 +229,9 @@ class certifi extends Component
             'graduations_id' => $this->graduations_id,
             'specialization_id' => $this->specialization_id,
             'graduation_year' => $this->graduation_year,
+            'specialtys_id' => $this->specialtys_id,
+            'precises_id' => $this->precises_id,
+            'specializationclassification_id' => $this->specializationclassification_id,
             'grade' => $this->grade,
             'estimate' => $this->estimate,
             'duration' => $this->duration,
@@ -223,6 +264,9 @@ class certifi extends Component
         $this->graduations_id = $this->certifi->graduations_id;
         $this->specialization_id = $this->certifi->specialization_id;
         $this->graduation_year = $this->certifi->graduation_year;
+        $this->specialtys_id = $this->certifi->specialtys_id;
+        $this->precises_id = $this->certifi->precises_id;
+        $this->specializationclassification_id = $this->certifi->specializationclassification_id;
         $this->grade = $this->certifi->grade;
         $this->estimate = $this->certifi->estimate;
         $this->duration = $this->certifi->duration;
@@ -249,6 +293,9 @@ class certifi extends Component
             'graduations_id' => 'required:certific',
             'specialization_id' => 'required:certific',
             'graduation_year' => 'required:certific',
+            'graduation_year' => 'required',
+            'specialtys_id' => 'required',
+            'precises_id' => 'required',
             'grade' => 'required:certific',
             'estimate' => 'required:certific',
             'duration' => 'required:certific',
@@ -264,6 +311,9 @@ class certifi extends Component
             'graduations_id.required' => 'حقل جهة التخرج مطلوب',
             'specialization_id.required' => 'حقل التخصص مطلوب',
             'graduation_year.required' => 'حقل سنة التخرج مطلوب',
+            'specialtys_id.required' => 'حقل التخصص العام مطلوب',
+            'precises_id.required' => 'حقل التخصص الدقيق مطلوب',
+            'specializationclassification_id.required' => 'حقل تصنيف التخصص مطلوب',
             'grade.required' => 'حقل الدرجة مطلوب',
             'estimate.required' => 'حقل التقدير مطلوب',
             'duration.required' => 'حقل مدة القدم مطلوب',
@@ -283,6 +333,9 @@ class certifi extends Component
             'graduations_id' => $this->graduations_id,
             'specialization_id' => $this->specialization_id,
             'graduation_year' => $this->graduation_year,
+            'specialtys_id' => $this->specialtys_id,
+            'precises_id' => $this->precises_id,
+            'specializationclassification_id' => $this->specializationclassification_id,
             'grade' => $this->grade,
             'estimate' => $this->estimate,
             'duration' => $this->duration,

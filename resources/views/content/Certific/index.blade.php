@@ -12,7 +12,8 @@
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 @endsection
 
@@ -243,6 +244,108 @@
             });
             window.livewire.on('select2', () => {
                 initEditSpecializationsDrop();
+            });
+        });
+
+        // add Specialtys
+        $(document).ready(function() {
+            window.initAddSpecialtysDrop = () => {
+                $('#addCertifispecialtys_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addcertifiModal')
+                });
+            }
+            initAddSpecialtysDrop();
+            $('#addCertifispecialtys_id').on('change', function(e) {
+                livewire.emit('GetSpecialtys', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddSpecialtysDrop();
+            });
+        });
+
+        // edit Specialtys
+        $(document).ready(function() {
+            window.initEditSpecialtysDrop = () => {
+                $('#editCertifispecialtys_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editcertifiModal')
+                });
+            }
+            initEditSpecialtysDrop();
+            $('#editCertifispecialtys_id').on('change', function(e) {
+                livewire.emit('GetSpecialtys', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditSpecialtysDrop();
+            });
+        });
+
+        // add Precises
+        $(document).ready(function() {
+            window.initAddPrecisesDrop = () => {
+                $('#addCertifiprecises_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addcertifiModal')
+                });
+            }
+            initAddPrecisesDrop();
+            $('#addCertifiprecises_id').on('change', function(e) {
+                livewire.emit('GetPrecises', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddPrecisesDrop();
+            });
+        });
+
+        // edit Precises
+        $(document).ready(function() {
+            window.initEditPrecisesDrop = () => {
+                $('#editCertifiprecises_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editcertifiModal')
+                });
+            }
+            initEditPrecisesDrop();
+            $('#editCertifiprecises_id').on('change', function(e) {
+                livewire.emit('GetPrecises', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditPrecisesDrop();
+            });
+        });
+
+        // add Specializationclassification
+        $(document).ready(function() {
+            window.initAddSpecializationclassificationDrop = () => {
+                $('#addCertifispecializationclassification_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addcertifiModal')
+                });
+            }
+            initAddSpecializationclassificationDrop();
+            $('#addCertifispecializationclassification_id').on('change', function(e) {
+                livewire.emit('SelectSpecializationclassificationId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddSpecializationclassificationDrop();
+            });
+        });
+
+        // edit Specializationclassification
+        $(document).ready(function() {
+            window.initEditSpecializationclassificationDrop = () => {
+                $('#editCertifispecializationclassification_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editcertifiModal')
+                });
+            }
+            initEditSpecializationclassificationDrop();
+            $('#editCertifispecializationclassification_id').on('change', function(e) {
+                livewire.emit('SelectSpecializationclassificationId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditSpecializationclassificationDrop();
             });
         });
 
