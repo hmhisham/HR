@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Certific;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CertificController extends Controller
 {

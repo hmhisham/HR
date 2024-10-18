@@ -6,6 +6,7 @@ use Livewire\Component;
 
 use Livewire\WithPagination;
 use App\Models\Workers\Workers;
+use Illuminate\Support\Facades\Http;
 
 class Worker extends Component
 {
@@ -16,18 +17,17 @@ class Worker extends Component
     public $WorkerSearch, $Worker, $WorkerId;
     public $calculator_number, $employee_number, $paper_folder_number, $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name, $mother_name, $maternal_grandfather_name, $maternal_great_grandfather_name, $maternal_surname, $mother_full_name, $wife_name, $district_id, $area_id, $locality, $phone_number, $employee_id_number, $department_name, $blood_type, $email, $birth_date, $birth_place, $governorate_id, $marital_status, $religion, $gender, $children_count, $civil_status_identity_number, $registration_number, $record_number, $issue_date_civil_status, $issuing_authority_civil_status, $nationality_certificate_number, $wallet_number, $issue_date_nationality_certificate, $issuing_authority_nationality_certificate, $residence_card_number, $information_office, $organization_date, $ration_card_number, $ration_card_date, $national_card_number, $national_card_date;
 
-
     public function render()
     {
         $WorkerSearch = '%' . $this->WorkerSearch . '%';
         $Workers = Workers::where('calculator_number', 'LIKE', $WorkerSearch)
             ->orWhere('employee_number', 'LIKE', $WorkerSearch)
             ->orWhere('full_name', 'LIKE', $WorkerSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Workers;
+
         $this->Workers = collect($Workers->items());
         return view('livewire.workers.worker', [
             'links' => $links
@@ -40,7 +40,6 @@ class Worker extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('WorkerModalShow');
     }
-
 
     public function store()
     {
@@ -142,9 +141,6 @@ class Worker extends Component
             'national_card_date.required' => 'حقل تاريخها مطلوب',
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
-
-
         Workers::create([
             'calculator_number' => $this->calculator_number,
             'employee_number' => $this->employee_number,
@@ -192,8 +188,8 @@ class Worker extends Component
             'ration_card_date' => $this->ration_card_date,
             'national_card_number' => $this->national_card_number,
             'national_card_date' => $this->national_card_date,
-
         ]);
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
@@ -403,8 +399,8 @@ class Worker extends Component
             'ration_card_date' => $this->ration_card_date,
             'national_card_number' => $this->national_card_number,
             'national_card_date' => $this->national_card_date,
-
         ]);
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
@@ -419,11 +415,63 @@ class Worker extends Component
         if ($Workers) {
 
             $Workers->delete();
+
             $this->reset();
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم حذف البيانات بنجاح',
                 'title' => 'الحذف'
             ]);
         }
+    }
+
+    /* public function SenNotify()
+    {
+        $userToken = Workers::where('user_id' , 2)->latest()->first();
+        if($userToken)
+            {
+                $title = 'بطاقة الخصومات';
+                $body = 'رقم البطاقة ' . $Card->card_rfid;
+                $body .= 'رصيد البطاقة الحالي ' . $Card->balance;
+                $body .= $message;
+                $this->sendNotificationToApp($this->CustomerID, $title, $body, $userToken->token);
+            }
+    } */
+
+
+    public function SenNotify()
+    {
+        $response = Http::withBody(
+            '{
+                "message": {
+                    "token": "fMT_77QETjOxfjvgNRZkkk:APA91bG_ZdvwKxH2aR6sZIAoERsKBSIx6GCCSTzN-NQ4ngYLX8NvoZL7jtqzEj-vZu6i38dUjqHSbOsHBIZIGL7ZE81y7pnXKCpfddSm-3bMQYWQMwU7ztNesMFwQlml9UkB-oRITiCK",
+                    "notification": {
+                        "title": "تنبية",
+                        "body": "لقد تم تحديث بيانات العنوان الوظيفي"
+                    },
+                    "android": {
+                        "notification": {
+                            "notification_priority": "PRIORITY_MAX",
+                            "sound": "default"
+                        }
+                    },
+                    "apns": {
+                        "payload": {
+                            "aps": {
+                                "content_available": true
+                            }
+                        }
+                    }
+                }
+            }', 'json'
+        )->withHeaders([
+            'Accept'=> '/',
+            'User-Agent'=> 'Thunder Client (https://www.thunderclient.com)',
+            'Authorization'=> 'Bearer ya29.a0AcM612x0yoZOifupB5EMPlzWk9Wd3JctF8tReadLELFn83hw2ISfi0ufka2rN8Dji88IGtObmuH59_jPbhvm_WVp_rzVV8Z:APA91bEvwtZtgi_i6HhPYMcM0DYCU6fKu6c2m2d_SnP4VGnWZSjK8HdH1SvBL5Hv0hHMqrGcBJsOTaEUEsT9qGtKbocUK12Q5PiwvBqq2LHiYNgxsotMObmmvGpa6ybjHZ7r1YTzm0',
+            'Authorization'=> 'Bearer ya29.a0AcM612zDWevL4v6gVbCaUy91g97PXrLKWprjzwhoAYlF0a-3fAyr0CRr3a2c0n1cgg9wuuA8h4oguO8pVj7OUc2rFXOMzh3h_dfNIh-bZNbpR6j2290zcTCN4eZHri_RGI5CJYZTxXiVk-4yZETS37z5xzTnkCMGY3JMjI6taCgYKAQcSARESFQHGX2MiJhAedC4HBZDrLqHq6KeUpw0175',
+            'Content-Type'=> 'application/json',
+        ])
+        ->post('https://fcm.googleapis.com/v1/projects/gcpi-e6c2b/messages:send');
+
+        echo $response->body();
     }
 }

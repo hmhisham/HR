@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('precises', function (Blueprint $table) {
             $table->id();
-            $table->string('specialtys_code'); //الرمز
+            $table->string('specialtys_id'); //الرمز
             $table->string('precises_code'); //الرمز
             $table->string('precises_name'); //التخصص الدقيق
             $table->timestamps();

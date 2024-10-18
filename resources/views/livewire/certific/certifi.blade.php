@@ -78,7 +78,7 @@
                                 </td>
                                 <td class="p-0">
                                     @can('certifi-create')
-                                        <button wire:click='AddcertifiModalShow' class="p-0 px-1 btn btn-text-primary waves-effect"
+                                        <button wire:click='AddCertifyModal({{ $worker->id }})' class="p-0 px-1 btn btn-text-primary waves-effect"
                                             data-bs-toggle="modal" data-bs-target="#addcertifiModal">
                                             <span class="tf-icons mdi mdi-school fs-3"></span>
                                         </button>
