@@ -49,7 +49,8 @@
                             <div class="form-floating form-floating-outline">
                                 <input wire:model.defer='specializations_name' type="text"
                                     id="addmodalSpecializationsspecializations_name" placeholder="الاختصاص"
-                                    class="form-control @error('specializations_name') is-invalid is-filled @enderror" />
+                                    class="form-control @error('specializations_name') is-invalid is-filled @enderror"
+                                    onkeypress="return onlyArabicKey(event)" />
                                 <label for="modalSpecializationsspecializations_name">الاختصاص</label>
                             </div>
                             @error('specializations_name')

@@ -11,8 +11,10 @@
 
                 <hr class="mt-n2">
 
-                <h5 wire:loading wire:target="GetSection" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">جار حفظ البيانات...</h5>
+                <h5 wire:loading wire:target="GetSection"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار حفظ البيانات...</h5>
 
                 <div wire:loading.remove wire:target="GetSection">
                     <form id="editSectionModalForm" autocomplete="off">
@@ -25,7 +27,8 @@
                                                 class="form-select @error('linkage_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($linkages as $linkage)
-                                                    <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}</option>
+                                                    <option value="{{ $linkage->id }}">{{ $linkage->Linkages_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             <label for="modalSectionslinkage_id">اسم الارتباط</label>
@@ -38,7 +41,8 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='section_name' type="text"
                                                 id="modalSectionsection_name" placeholder="اسم القسم"
-                                                class="form-control @error('section_name') is-invalid is-filled @enderror" />
+                                                class="form-control @error('section_name') is-invalid is-filled @enderror"
+                                                onkeypress="return onlyArabicKey(event)" />
                                             <label for="modalSectionsection_name">اسم القسم</label>
                                         </div>
                                         @error('section_name')

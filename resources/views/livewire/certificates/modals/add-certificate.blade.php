@@ -17,7 +17,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='certificates_name' type="text"
                                             id="modalCertificatescertificates_name" placeholder="اسم الشهادة"
-                                            class="form-control @error('certificates_name') is-invalid is-filled @enderror" />
+                                            class="form-control @error('certificates_name') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyArabicKey(event)" />
                                         <label for="modalCertificatescertificates_name">اسم الشهادة</label>
                                     </div>
                                     @error('certificates_name')

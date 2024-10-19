@@ -44,6 +44,15 @@
             return true;
         }
 
+        function onlyArabicKey(evt) {
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+            // نطاق رموز الحروف العربية والفراغ
+            if ((ASCIICode >= 1569 && ASCIICode <= 1610) || ASCIICode === 32) {
+                return true;
+            }
+            return false;
+        }
+
         /* addDistricts */
         $(document).ready(function() {
             window.initaddDistrictsDrop = () => {

@@ -35,7 +35,8 @@
                                             <input wire:model.defer='Infooffice_name' type="text"
                                                 id="modalInfoOfficInfooffice_name"
                                                 placeholder="مكتب معلومات بطاقة السكن"
-                                                class="form-control @error('Infooffice_name') is-invalid is-filled @enderror" />
+                                                class="form-control @error('Infooffice_name') is-invalid is-filled @enderror"
+                                                onkeypress="return onlyArabicKey(event)" />
                                             <label for="modalInfoOfficInfooffice_name">مكتب معلومات بطاقة السكن</label>
                                         </div>
                                         @error('Infooffice_name')

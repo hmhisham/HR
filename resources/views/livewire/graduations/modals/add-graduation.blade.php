@@ -33,7 +33,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='graduations_name' type="text"
                                             id="modalGraduationsgraduations_name" placeholder="جهة التخرج"
-                                            class="form-control @error('graduations_name') is-invalid is-filled @enderror" />
+                                            class="form-control @error('graduations_name') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyArabicKey(event)" />
                                         <label for="modalGraduationsgraduations_name">جهة التخرج</label>
                                     </div>
                                     @error('graduations_name')
