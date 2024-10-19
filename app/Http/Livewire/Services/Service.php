@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 use App\Models\Workers\Workers;
 use App\Models\Services\Services;
 use App\Models\Jobtitles\Jobtitles;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Certificates\Certificates;
 
@@ -29,6 +30,11 @@ class service extends Component
         'SelectCertificatesId',
         'SelectJobTitleDeletion',
         'SelectJobTitleIntroduction',
+
+        'employeeAddFromDate' => 'updatedFromDate',
+        'employeeAddToDate' => 'updatedToDate',
+        'employeeEditFromDate' => 'updatedFromDate',
+        'employeeEditToDate' => 'updatedToDate'
     ];
     public function hydrate()
     {
@@ -87,13 +93,16 @@ class service extends Component
         }
     }
 
-    public function updatedFromDate()
+
+    public function updatedFromDate($value = null)
     {
+        $this->from_date = $value ?? $this->from_date;
         $this->calculateDifference();
     }
 
-    public function updatedToDate()
+    public function updatedToDate($value = null)
     {
+        $this->to_date = $value ?? $this->to_date;
         $this->calculateDifference();
     }
 
@@ -118,6 +127,8 @@ class service extends Component
                 $this->days = $diff->d;  // الفرق بالأيام
                 $this->months = $diff->m;   // الفرق بالأشهر
                 $this->years = $diff->y;    // الفرق بالسنوات
+
+                //Log::info('Difference calculated', ['days' => $this->days, 'months' => $this->months, 'years' => $this->years]);
             } catch (\Exception $e) {
                 // معالجة الخطأ
                 $this->days = $this->months = $this->years = null;
@@ -161,7 +172,7 @@ class service extends Component
 
     public function AddserviceModalShow()
     {
-        $this->reset(['workers_id', 'service_type', 'administrative_order_number', 'administrative_order_date', 'from_date', 'to_date','days','months','years', 'in_service_salary', 'certificates_id', 'calculation_order_number', 'calculation_order_date', 'purpose', 'job_title_deletion', 'job_title_introduction','notes']);
+        $this->reset(['workers_id', 'service_type', 'administrative_order_number', 'administrative_order_date', 'from_date', 'to_date', 'days', 'months', 'years', 'in_service_salary', 'certificates_id', 'calculation_order_number', 'calculation_order_date', 'purpose', 'job_title_deletion', 'job_title_introduction', 'notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('serviceModalShow');
     }
@@ -222,7 +233,7 @@ class service extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset(['workers_id', 'service_type', 'administrative_order_number', 'administrative_order_date', 'from_date', 'to_date','days','months','years', 'in_service_salary', 'certificates_id', 'calculation_order_number', 'calculation_order_date', 'purpose', 'job_title_deletion', 'job_title_introduction','notes']);
+        $this->reset(['workers_id', 'service_type', 'administrative_order_number', 'administrative_order_date', 'from_date', 'to_date', 'days', 'months', 'years', 'in_service_salary', 'certificates_id', 'calculation_order_number', 'calculation_order_date', 'purpose', 'job_title_deletion', 'job_title_introduction', 'notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -306,7 +317,7 @@ class service extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset(['workers_id', 'service_type', 'administrative_order_number', 'administrative_order_date', 'from_date', 'to_date', 'in_service_salary', 'certificates_id', 'calculation_order_number', 'calculation_order_date', 'purpose', 'job_title_deletion', 'job_title_introduction','notes']);
+        $this->reset(['workers_id', 'service_type', 'administrative_order_number', 'administrative_order_date', 'from_date', 'to_date', 'in_service_salary', 'certificates_id', 'calculation_order_number', 'calculation_order_date', 'purpose', 'job_title_deletion', 'job_title_introduction', 'notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -320,7 +331,7 @@ class service extends Component
         if ($Services) {
 
             $Services->delete();
-            $this->reset(['workers_id', 'service_type', 'administrative_order_number', 'administrative_order_date', 'from_date', 'to_date', 'in_service_salary', 'certificates_id', 'calculation_order_number', 'calculation_order_date', 'purpose', 'job_title_deletion', 'job_title_introduction','notes']);
+            $this->reset(['workers_id', 'service_type', 'administrative_order_number', 'administrative_order_date', 'from_date', 'to_date', 'in_service_salary', 'certificates_id', 'calculation_order_number', 'calculation_order_date', 'purpose', 'job_title_deletion', 'job_title_introduction', 'notes']);
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم حذف البيانات بنجاح',
                 'title' => 'الحذف'

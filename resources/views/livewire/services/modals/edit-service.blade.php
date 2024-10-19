@@ -121,7 +121,6 @@
                                                 autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                                 class="form-control @error('from_date') is-invalid is-filled @enderror" />
                                             <label for="flatpickr-date">من تاريخ</label>
-                                        @endif
                                         </div>
                                         @error('from_date')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -134,7 +133,6 @@
                                                 autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                                 class="form-control @error('to_date') is-invalid is-filled @enderror" />
                                             <label for="flatpickr-date">الى تاريخ</label>
-                                        @endif
                                         </div>
                                         @error('to_date')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
