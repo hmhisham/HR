@@ -121,10 +121,6 @@
                                                 autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                                 class="form-control @error('from_date') is-invalid is-filled @enderror" />
                                             <label for="flatpickr-date">من تاريخ</label>
-                                            @if (session()->has('error'))
-                                            <div class="alert alert-danger">
-                                                {{ session('error') }}
-                                            </div>
                                         @endif
                                         </div>
                                         @error('from_date')
@@ -138,10 +134,6 @@
                                                 autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                                 class="form-control @error('to_date') is-invalid is-filled @enderror" />
                                             <label for="flatpickr-date">الى تاريخ</label>
-                                            @if (session()->has('error'))
-                                            <div class="alert alert-danger">
-                                                {{ session('error') }}
-                                            </div>
                                         @endif
                                         </div>
                                         @error('to_date')

@@ -121,7 +121,7 @@ class service extends Component
             } catch (\Exception $e) {
                 // معالجة الخطأ
                 $this->days = $this->months = $this->years = null;
-                session()->flash('error', 'يرجى إدخال التواريخ بالتنسيق الصحيح: يوم-شهر-سنة');
+                //session()->flash('error', 'يرجى إدخال التواريخ بالتنسيق الصحيح: يوم-شهر-سنة');
             }
         }
     }
