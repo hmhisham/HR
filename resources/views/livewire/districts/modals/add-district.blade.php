@@ -9,7 +9,7 @@
                 </div>
 
                 <hr class="mt-n2">
-                
+
                 <form id="adddistrictModalForm" autocomplete="off">
                     <div class="row">
                         <div class="mb-3 col flex-fill">
@@ -47,7 +47,7 @@
                                         القضاء</label>
                                     <input wire:model.defer='district_name' type="text"
                                         id="modalDistrictsdistrict_name" placeholder="اسم القضاء"
-                                        class="form-control @error('district_name') is-invalid is-filled @enderror" />
+                                        class="form-control @error('district_name') is-invalid is-filled @enderror" onkeypress="return onlyArabicKey(event)"/>
                                     @error('district_name')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror

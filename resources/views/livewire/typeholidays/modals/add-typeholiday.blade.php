@@ -16,9 +16,10 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='typeholidays_name' type="text"
-                                            id="modalTypeholidaystypeholidays_name" placeholder="نوع الاجازة"
-                                            class="form-control @error('typeholidays_name') is-invalid is-filled @enderror" />
-                                        <label for="modalTypeholidaystypeholidays_name">نوع الاجازة</label>
+                                            id="modalTypeholidaystypeholidays_name" placeholder="اسم الاجازة"
+                                            class="form-control @error('typeholidays_name') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyArabicKey(event)" />
+                                        <label for="modalTypeholidaystypeholidays_name">اسم الاجازة</label>
                                     </div>
                                     @error('typeholidays_name')
                                         <small class='text-danger inputerror'> {{ $message }} </small>

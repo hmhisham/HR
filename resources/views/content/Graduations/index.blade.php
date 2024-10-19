@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Graduations')
 @section('vendor-style')
@@ -11,9 +10,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
+@endsection
 @section('content')
-@livewire('graduations.graduation')
+    @livewire('graduations.graduation')
 
 
 @endsection
@@ -36,6 +35,14 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        function onlyArabicKey(evt) {
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+            // نطاق رموز الحروف العربية والفراغ
+            if ((ASCIICode >= 1569 && ASCIICode <= 1610) || ASCIICode === 32) {
+                return true;
+            }
+            return false;
+        }
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -50,8 +57,8 @@
 
         window.addEventListener('GraduationModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);
+                $('#id').focus();
+            }, 100);
         })
 
         window.addEventListener('success', event => {

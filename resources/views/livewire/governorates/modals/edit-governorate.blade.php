@@ -11,8 +11,10 @@
 
                 <hr class="mt-n2">
 
-                <h5 wire:loading wire:target="GetGovernorate" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">جار حفظ البيانات...</h5>
+                <h5 wire:loading wire:target="GetGovernorate"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار حفظ البيانات...</h5>
 
                 <div wire:loading.remove wire:target="GetGovernorate, update">
                     <form id="editGovernorateModalForm" autocomplete="off">
@@ -31,11 +33,13 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
+                                    
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='governorate_name' type="text"
                                                 id="modalGovernorategovernorate_name" placeholder="اسم المحافظة"
-                                                class="form-control @error('governorate_name') is-invalid is-filled @enderror" />
+                                                class="form-control @error('governorate_name') is-invalid is-filled @enderror"
+                                                onkeypress="return onlyArabicKey(event)" />
                                             <label for="modalGovernorategovernorate_name">اسم المحافظة</label>
                                         </div>
                                         @error('governorate_name')

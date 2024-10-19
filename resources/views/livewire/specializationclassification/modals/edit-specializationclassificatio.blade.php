@@ -23,7 +23,8 @@
                                             <input wire:model.defer='specializationclassification_name' type="text"
                                                 id="modalSpecializationclassificatiospecializationclassification_name"
                                                 placeholder="تصنيف التخصص"
-                                                class="form-control @error('specializationclassification_name') is-invalid is-filled @enderror" />
+                                                class="form-control @error('specializationclassification_name') is-invalid is-filled @enderror"
+                                                onkeypress="return onlyArabicKey(event)" />
                                             <label
                                                 for="modalSpecializationclassificatiospecializationclassification_name">تصنيف
                                                 التخصص</label>

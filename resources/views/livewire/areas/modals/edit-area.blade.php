@@ -11,8 +11,10 @@
 
                 <hr class="mt-n2">
 
-                <h5 wire:loading wire:target="GetArea" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">جار حفظ البيانات...</h5>
+                <h5 wire:loading wire:target="GetArea" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار حفظ البيانات...</h5>
 
                 <div wire:loading.remove wire:target="GetArea, update">
                     <form id="editAreaModalForm" autocomplete="off">
@@ -21,8 +23,10 @@
                                 <div class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='governorate_id' id="editGovernorate" class="form-select
-                                                @error('governorate_id') is-invalid is-filled @enderror" disabled>
+                                            <select wire:model.defer='governorate_id' id="editGovernorate"
+                                                class="form-select
+                                                @error('governorate_id') is-invalid is-filled @enderror"
+                                                disabled>
                                                 <option value=""></option>
                                                 @foreach ($governorates as $governorate)
                                                     <option value="{{ $governorate->id }}">
@@ -71,7 +75,8 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='area_name' type="text" id="modalAreaarea_name"
                                                 placeholder="اسم الناحية"
-                                                class="form-control @error('area_name') is-invalid is-filled @enderror" />
+                                                class="form-control @error('area_name') is-invalid is-filled @enderror"
+                                                onkeypress="return onlyArabicKey(event)" />
                                             <label for="modalAreaarea_name">اسم الناحية</label>
                                         </div>
                                         @error('area_name')

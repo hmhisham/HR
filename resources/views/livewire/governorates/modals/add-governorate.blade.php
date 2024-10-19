@@ -25,11 +25,13 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+                                
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='governorate_name' type="text"
                                             id="modalGovernoratesgovernorate_name" placeholder="اسم المحافظة"
-                                            class="form-control @error('governorate_name') is-invalid is-filled @enderror" />
+                                            class="form-control @error('governorate_name') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyArabicKey(event)" />
                                         <label for="modalGovernoratesgovernorate_name">اسم المحافظة</label>
                                     </div>
                                     @error('governorate_name')

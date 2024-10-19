@@ -38,7 +38,8 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='jobtitles_name' type="text"
                                                 id="modalJobtitlejobtitles_name" placeholder="العنوان الوظيفي"
-                                                class="form-control @error('jobtitles_name') is-invalid is-filled @enderror" />
+                                                class="form-control @error('jobtitles_name') is-invalid is-filled @enderror"
+                                                onkeypress="return onlyArabicKey(event)" />
                                             <label for="modalJobtitlejobtitles_name">العنوان الوظيفي</label>
                                         </div>
                                         @error('jobtitles_name')

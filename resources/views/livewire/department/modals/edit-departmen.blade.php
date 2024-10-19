@@ -23,7 +23,7 @@
                                             <input wire:model.defer='department_name' type="text"
                                                 id="modalDepartmendepartment_name" placeholder="اسم الدائرة"
                                                 class="form-control @error('department_name') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyArabicKey(event);" />
+                                                onkeypress="return onlyArabicKey(event)" />
                                             <label for="modalDepartmendepartment_name">اسم الدائرة</label>
                                         </div>
                                         @error('department_name')

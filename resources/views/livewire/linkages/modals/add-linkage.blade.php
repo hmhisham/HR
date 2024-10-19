@@ -17,7 +17,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='Linkages_name' type="text"
                                             id="modalLinkageLinkages_name" placeholder="اسم الارتباط"
-                                            class="form-control @error('Linkages_name') is-invalid is-filled @enderror" />
+                                            class="form-control @error('Linkages_name') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyArabicKey(event)" />
                                         <label for="modalLinkageLinkages_name">اسم الارتباط</label>
                                     </div>
                                     @error('Linkages_name')

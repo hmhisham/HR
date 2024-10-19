@@ -17,7 +17,8 @@
                             <div class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='governorate_id' id="addGovernorate" class="form-select @error('governorate_id') is-invalid is-filled @enderror">
+                                        <select wire:model.defer='governorate_id' id="addGovernorate"
+                                            class="form-select @error('governorate_id') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($governorates as $governorate)
                                                 <option value="{{ $governorate->id }}">
@@ -64,7 +65,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='area_name' type="text" id="modalAreasarea_name"
                                             placeholder="اسم الناحية"
-                                            class="form-control @error('area_name') is-invalid is-filled @enderror" />
+                                            class="form-control @error('area_name') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyArabicKey(event)" />
                                         <label for="modalAreasarea_name">اسم الناحية</label>
                                     </div>
                                     @error('area_name')

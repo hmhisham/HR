@@ -48,7 +48,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='units_name' type="text" id="modalUnitsunits_name"
                                             placeholder="اسم الوحدة"
-                                            class="form-control @error('units_name') is-invalid is-filled @enderror" />
+                                            class="form-control @error('units_name') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyArabicKey(event)" />
                                         <label for="modalUnitsunits_name">اسم الوحدة</label>
                                     </div>
                                     @error('units_name')

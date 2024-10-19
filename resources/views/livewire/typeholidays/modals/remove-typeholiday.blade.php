@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col text-center">
                                 <div class="text-danger">
-                                    <label for="modalTypeholidaytypeholidays_name">نوع الاجازة</label>
+                                    <label for="modalTypeholidaytypeholidays_name">اسم الاجازة</label>
                                     <div class="form-control-plaintext mt-n2">{{ $this->typeholidays_name }}</div>
                                 </div>
                             </div>

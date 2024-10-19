@@ -43,7 +43,8 @@
                                                 class="form-select @error('branch_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($branch as $branc)
-                                                    <option value="{{ $branc->id }}">{{ $branc->branch_name }}</option>
+                                                    <option value="{{ $branc->id }}">{{ $branc->branch_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             <label for="modalUnitsbranch_id">اسم الشعبة</label>
@@ -56,7 +57,8 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='units_name' type="text" id="modalUnitunits_name"
                                                 placeholder="اسم الوحدة"
-                                                class="form-control @error('units_name') is-invalid is-filled @enderror" />
+                                                class="form-control @error('units_name') is-invalid is-filled @enderror"
+                                                onkeypress="return onlyArabicKey(event)" />
                                             <label for="modalUnitunits_name">اسم الوحدة</label>
                                         </div>
                                         @error('units_name')
