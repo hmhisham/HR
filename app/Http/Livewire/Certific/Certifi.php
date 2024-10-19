@@ -37,14 +37,14 @@ class certifi extends Component
 
     protected $listeners = [
         'SelectWorkerId',
-        'GetCertificate',
-        'GetGraduation',
-        'GetSpecialization',
         'GetSpecialtys',
         'GetPrecises',
         'SelectSpecializationclassificationId',
 
-        'updateCertificatesId' => 'updateCertificatesId',
+        'GetCertificate' => 'GetCertificate',
+        'GetGraduation' => 'GetGraduation',
+        'GetSpecialization' => 'GetSpecialization',
+        'updateCertificatesId' => 'updateCertificatesId'
     ];
 
     public function hydrate()
@@ -104,6 +104,7 @@ class certifi extends Component
     {
         $this->certificates_id = $Certificates_id;
         $this->graduations = Graduations::where('certificates_id', $Certificates_id)->get();
+        $this->checkDurationId();
     }
     public function GetGraduation($Graduations_id)
     {
@@ -114,6 +115,25 @@ class certifi extends Component
     {
         $this->specialization_id = $Specialization_id;
     }
+
+     //اختبار حقل الشهادة وفتح حقل القدم
+     public function updateCertificatesId($value)
+     {
+         $this->certificates_id = $value;
+         $this->checkDurationId();
+     }
+
+     public function checkDurationId()
+     {
+         $highCerts = [12, 13, 14, 15];
+
+         if (in_array($this->certificates_id, $highCerts)) {
+             $this->isDisabled = false;
+         } else {
+             $this->isDisabled = true;
+             $this->duration = 0;
+         }
+     }
 
     //ربط التخصص العام والدقيق
     public function GetSpecialtys($Specialtys_id)
@@ -174,24 +194,7 @@ class certifi extends Component
         }
     }
 
-    //اختبار حقل الشهادة وفتح حقل القدم
-    public function updateCertificatesId($value)
-    {
-        $this->certificates_id = $value;
-        $this->checkDurationId();
-    }
 
-    public function checkDurationId()
-    {
-        $highCerts = [12, 13, 14, 15];
-
-        if (in_array($this->certificates_id, $highCerts)) {
-            $this->isDisabled = false;
-        } else {
-            $this->isDisabled = true;
-            $this->duration = 0;
-        }
-    }
 
     public function AddCertifyModal($WorkerID)
     {

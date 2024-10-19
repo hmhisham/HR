@@ -100,7 +100,7 @@
 
 
         //أستدعاء جدول التحصيل الدراسي
-        $(document).ready(function() {
+        /*$(document).ready(function() {
             function initSelect2(selector, eventName, parentModal) {
                 $(selector).select2({
                     placeholder: 'اختيار',
@@ -118,7 +118,34 @@
                 initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
                 initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
             });
+        });*/
+
+        //أستدعاء جدول التحصيل الدراسي
+        $(document).ready(function() {
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                }).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
+                });
+            }
+
+            initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
+            initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
+
+            Livewire.hook('message.processed', (message, component) => {
+                initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
+                initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
+            });
+
+            window.livewire.on('select2', () => {
+                initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
+                initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
+            });
         });
+
 
         //استدعاء جهة التخرج
         $(document).ready(function() {

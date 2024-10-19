@@ -85,24 +85,8 @@
                         </div>
                     </div>
                     <div Class="row">
-                        <div class="mb-3 col-3">
-                            <div class="form-floating form-floating-outline">
-                                <select wire:model.defer='certificates_id' id="addCertificertificates_id"
-                                    wire:change="$emit('updateCertificatesId', $event.target.value)"
-                                    class="form-select @error('certificates_id') is-invalid is-filled @enderror">
-                                    <option value=""></option>
-                                    @foreach ($certificates as $certificate)
-                                        <option value="{{ $certificate->id }}">
-                                            {{ $certificate->certificates_name }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="modalCertificertificates_id">التحصيل الدراسي</label>
-                            </div>
-                            @error('certificates_id')
-                                <small class='text-danger inputerror'>{{ $message }}</small>
-                            @enderror
-                        </div>
 
+                        {{--  wire:change="$emit('updateCertificatesId', $event.target.value)" --}}
                         <div class="mb-3 col-3">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='certificates_id' id="addCertificertificates_id"
@@ -121,7 +105,6 @@
                             @enderror
                         </div>
 
-
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='graduations_id' id="addCertifigraduations_id"
@@ -139,7 +122,9 @@
                                 <small class='text-danger inputerror'>{{ $message }}</small>
                             @enderror
                         </div>
+                    </div>
 
+                    <div Class="row">
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='specialization_id' id="addCertifispecialization_id"
@@ -178,8 +163,26 @@
                                 <small class='text-danger inputerror'> {{ $message }} </small>
                             @enderror
                         </div>
-                    </div>
 
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <select wire:model.defer='specializationclassification_id'
+                                    id="addCertifispecializationclassification_id"
+                                    class="form-select @error('specializationclassification_id') is-invalid is-filled @enderror">
+                                    <option value=""></option>
+                                    @foreach ($specializationclassification as $specializationclassificatio)
+                                        <option value="{{ $specializationclassificatio->id }}">
+                                            {{ $specializationclassificatio->specializationclassification_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <label for="modalCertifispecializationclassification_id">تصنيف التخصص</label>
+                            </div>
+                            @error('specializationclassification_id')
+                                <small class='text-danger inputerror'>{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
                     <div Class="row">
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
@@ -213,29 +216,9 @@
                                 <small class='text-danger inputerror'>{{ $message }}</small>
                             @enderror
                         </div>
-
-                        <div class="mb-3 col">
-                            <div class="form-floating form-floating-outline">
-                                <select wire:model.defer='specializationclassification_id'
-                                    id="addCertifispecializationclassification_id"
-                                    class="form-select @error('specializationclassification_id') is-invalid is-filled @enderror">
-                                    <option value=""></option>
-                                    @foreach ($specializationclassification as $specializationclassificatio)
-                                        <option value="{{ $specializationclassificatio->id }}">
-                                            {{ $specializationclassificatio->specializationclassification_name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <label for="modalCertifispecializationclassification_id">تصنيف التخصص</label>
-                            </div>
-                            @error('specializationclassification_id')
-                                <small class='text-danger inputerror'>{{ $message }}</small>
-                            @enderror
-                        </div>
                     </div>
+
                     <div Class="row">
-
-
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <input wire:model.lazy='grade' type="number" id="modalCertificgrade"
