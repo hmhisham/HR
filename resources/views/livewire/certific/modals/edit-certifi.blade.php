@@ -86,6 +86,7 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>
+
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='authenticity_date' type="text" id="addauthenticity_date"
@@ -98,6 +99,7 @@
                                 @enderror
                             </div>
                         </div>
+                        
                         <div Class="row">
                             <div class="mb-3 col-3">
                                 <div class="form-floating form-floating-outline">
