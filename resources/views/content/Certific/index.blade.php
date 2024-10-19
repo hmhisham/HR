@@ -12,7 +12,8 @@
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 @endsection
 
@@ -52,308 +53,182 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        // add Workers
+        //استدعاء اسم الموظف
         $(document).ready(function() {
-            window.initAddWorkersDrop = () => {
-                $('#addCertifiworker_id').select2({
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#addcertifiModal')
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initAddWorkersDrop();
-            $('#addCertifiworker_id').on('change', function(e) {
-                livewire.emit('SelectWorkerId', e.target.value);
-            });
+            initSelect2('#addCertifiworker_id', 'SelectWorkerId', '#addcertifiModal');
+            initSelect2('#editCertifiworker_id', 'SelectWorkerId', '#editcertifiModal');
+
             window.livewire.on('select2', () => {
-                initAddWorkersDrop();
+                initSelect2('#addCertifiworker_id', 'SelectWorkerId', '#addcertifiModal');
+                initSelect2('#editCertifiworker_id', 'SelectWorkerId', '#editcertifiModal');
             });
         });
 
-        // edit Workers
+        //تاريخ الوثيقة وصحة الصدور
         $(document).ready(function() {
-            window.initEditWorkersDrop = () => {
-                $('#editCertifiworker_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editcertifiModal')
+            function initFlatpickr(selector, eventName, placeholderText) {
+                $(selector).flatpickr({
+                    placeholder: placeholderText,
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initEditWorkersDrop();
-            $('#editCertifiworker_id').on('change', function(e) {
-                livewire.emit('SelectWorkerId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditWorkersDrop();
-            });
-        });
-        /*  اضافة تاريخ الوثيقة */
-        $(document).ready(function() {
-            window.initAddDocumentDateDrop = () => {
-                $('#adddocument_date').flatpickr({
-                    placeholder: 'تاريخ الوثيقة',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initAddDocumentDateDrop();
-            $('#adddocument_date').on('change', function(e) {
-                livewire.emit('employeeDocumentDate', e.target.value)
-            });
+            initFlatpickr('#addauthenticity_date', 'employeeAuthenticityDate', 'تاريخ صحة الصدور');
+            initFlatpickr('#editauthenticity_date', 'employeeAuthenticityDate', 'تاريخ صحة الصدور');
+            initFlatpickr('#adddocument_date', 'employeeDocumentDate', 'تاريخ الوثيقة');
+            initFlatpickr('#editdocument_date', 'employeeDocumentDate', 'تاريخ الوثيقة');
+
             window.livewire.on('flatpickr', () => {
-                initAddDocumentDateDrop();
-            });
-        });
-        /* تعديل تاريخ الوثيقة */
-        $(document).ready(function() {
-            window.initEditDocumentDateDrop = () => {
-                $('#editdocument_date').flatpickr({
-                    placeholder: 'تاريخ الوثيقة',
-                    //dropdownParent: $('#editPatientModal')
-                })
-            }
-            initEditDocumentDateDrop();
-            $('#editdocument_date').on('change', function(e) {
-                livewire.emit('employeeDocumentDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initEditDocumentDateDrop();
+                initFlatpickr('#addauthenticity_date', 'employeeAuthenticityDate', 'تاريخ صحة الصدور');
+                initFlatpickr('#editauthenticity_date', 'employeeAuthenticityDate', 'تاريخ صحة الصدور');
+                initFlatpickr('#adddocument_date', 'employeeDocumentDate', 'تاريخ الوثيقة');
+                initFlatpickr('#editdocument_date', 'employeeDocumentDate', 'تاريخ الوثيقة');
             });
         });
 
-        /* اضافة تاريخ صحة الصدور */
-        $(document).ready(function() {
-            window.initAddAuthenticityDateDrop = () => {
-                $('#addauthenticity_date').flatpickr({
-                    placeholder: 'تاريخ صحة الصدور',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initAddAuthenticityDateDrop();
-            $('#addauthenticity_date').on('change', function(e) {
-                livewire.emit('employeeAuthenticityDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initAddAuthenticityDateDrop();
-            });
-        });
-        /* تعديل تاريخ صحة الصدور */
-        $(document).ready(function() {
-            window.initEditAuthenticityDateDrop = () => {
-                $('#editauthenticity_date').flatpickr({
-                    placeholder: 'تاريخ صحة الصدور',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initEditAuthenticityDateDrop();
-            $('#editauthenticity_date').on('change', function(e) {
-                livewire.emit('employeeAuthenticityDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initEditAuthenticityDateDrop();
-            });
-        });
 
-        // add Certificates
+        //أستدعاء جدول التحصيل الدراسي
         $(document).ready(function() {
-            window.initAddCertificatesDrop = () => {
-                $('#addCertificertificates_id').select2({
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#addcertifiModal')
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initAddCertificatesDrop();
-            $('#addCertificertificates_id').on('change', function(e) {
-                livewire.emit('GetCertificate', e.target.value);
-            });
+            initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
+            initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
+
             window.livewire.on('select2', () => {
-                initAddCertificatesDrop();
+                initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
+                initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
             });
         });
 
-        // edit Certificates
+        //استدعاء جهة التخرج
         $(document).ready(function() {
-            window.initEditCertificatesDrop = () => {
-                $('#editCertificertificates_id').select2({
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#editcertifiModal')
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initEditCertificatesDrop();
-            $('#editCertificertificates_id').on('change', function(e) {
-                livewire.emit('GetCertificate', e.target.value);
-            });
+            initSelect2('#addCertifigraduations_id', 'GetGraduation', '#addcertifiModal');
+            initSelect2('#editCertifigraduations_id', 'GetGraduation', '#editcertifiModal');
+
             window.livewire.on('select2', () => {
-                initEditCertificatesDrop();
+                initSelect2('#addCertifigraduations_id', 'GetGraduation', '#addcertifiModal');
+                initSelect2('#editCertifigraduations_id', 'GetGraduation', '#editcertifiModal');
             });
         });
 
-        // add Graduations
+        //استدعاء التخصص
         $(document).ready(function() {
-            window.initAddGraduationsDrop = () => {
-                $('#addCertifigraduations_id').select2({
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#addcertifiModal')
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initAddGraduationsDrop();
-            $('#addCertifigraduations_id').on('change', function(e) {
-                livewire.emit('GetGraduation', e.target.value);
-            });
+            initSelect2('#addCertifispecialization_id', 'GetSpecialization', '#addcertifiModal');
+            initSelect2('#editCertifispecialization_id', 'GetSpecialization', '#editcertifiModal');
+
             window.livewire.on('select2', () => {
-                initAddGraduationsDrop();
+                initSelect2('#addCertifispecialization_id', 'GetSpecialization', '#addcertifiModal');
+                initSelect2('#editCertifispecialization_id', 'GetSpecialization', '#editcertifiModal');
             });
         });
 
-        // edit Graduations
+        //استدعاء التخصص العام
         $(document).ready(function() {
-            window.initEditGraduationsDrop = () => {
-                $('#editCertifigraduations_id').select2({
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#editcertifiModal')
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initEditGraduationsDrop();
-            $('#editCertifigraduations_id').on('change', function(e) {
-                livewire.emit('GetGraduation', e.target.value);
-            });
+            initSelect2('#addCertifispecialtys_id', 'GetSpecialtys', '#addcertifiModal');
+            initSelect2('#editCertifispecialtys_id', 'GetSpecialtys', '#editcertifiModal');
+
             window.livewire.on('select2', () => {
-                initEditGraduationsDrop();
+                initSelect2('#addCertifispecialtys_id', 'GetSpecialtys', '#addcertifiModal');
+                initSelect2('#editCertifispecialtys_id', 'GetSpecialtys', '#editcertifiModal');
             });
         });
 
-        // add Specializations
+        //استدعاء التخصص الدقيق
         $(document).ready(function() {
-            window.initAddSpecializationsDrop = () => {
-                $('#addCertifispecialization_id').select2({
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#addcertifiModal')
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initAddSpecializationsDrop();
-            $('#addCertifispecialization_id').on('change', function(e) {
-                livewire.emit('GetSpecialization', e.target.value);
-            });
+            initSelect2('#addCertifiprecises_id', 'GetPrecises', '#addcertifiModal');
+            initSelect2('#editCertifiprecises_id', 'GetPrecises', '#editcertifiModal');
+
             window.livewire.on('select2', () => {
-                initAddSpecializationsDrop();
+                initSelect2('#addCertifiprecises_id', 'GetPrecises', '#addcertifiModal');
+                initSelect2('#editCertifiprecises_id', 'GetPrecises', '#editcertifiModal');
             });
         });
 
-        // edit Specializations
+        //استدعاء تصنيف التخصص
         $(document).ready(function() {
-            window.initEditSpecializationsDrop = () => {
-                $('#editCertifispecialization_id').select2({
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#editcertifiModal')
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initEditSpecializationsDrop();
-            $('#editCertifispecialization_id').on('change', function(e) {
-                livewire.emit('GetSpecialization', e.target.value);
-            });
+            initSelect2('#addCertifispecializationclassification_id', 'SelectSpecializationclassificationId',
+                '#addcertifiModal');
+            initSelect2('#editCertifispecializationclassification_id', 'SelectSpecializationclassificationId',
+                '#editcertifiModal');
+
             window.livewire.on('select2', () => {
-                initEditSpecializationsDrop();
+                initSelect2('#addCertifispecializationclassification_id',
+                    'SelectSpecializationclassificationId', '#addcertifiModal');
+                initSelect2('#editCertifispecializationclassification_id',
+                    'SelectSpecializationclassificationId', '#editcertifiModal');
             });
         });
 
-        // add Specialtys
-        $(document).ready(function() {
-            window.initAddSpecialtysDrop = () => {
-                $('#addCertifispecialtys_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addcertifiModal')
-                });
-            }
-            initAddSpecialtysDrop();
-            $('#addCertifispecialtys_id').on('change', function(e) {
-                livewire.emit('GetSpecialtys', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initAddSpecialtysDrop();
-            });
-        });
-
-        // edit Specialtys
-        $(document).ready(function() {
-            window.initEditSpecialtysDrop = () => {
-                $('#editCertifispecialtys_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editcertifiModal')
-                });
-            }
-            initEditSpecialtysDrop();
-            $('#editCertifispecialtys_id').on('change', function(e) {
-                livewire.emit('GetSpecialtys', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditSpecialtysDrop();
-            });
-        });
-
-        // add Precises
-        $(document).ready(function() {
-            window.initAddPrecisesDrop = () => {
-                $('#addCertifiprecises_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addcertifiModal')
-                });
-            }
-            initAddPrecisesDrop();
-            $('#addCertifiprecises_id').on('change', function(e) {
-                livewire.emit('GetPrecises', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initAddPrecisesDrop();
-            });
-        });
-
-        // edit Precises
-        $(document).ready(function() {
-            window.initEditPrecisesDrop = () => {
-                $('#editCertifiprecises_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editcertifiModal')
-                });
-            }
-            initEditPrecisesDrop();
-            $('#editCertifiprecises_id').on('change', function(e) {
-                livewire.emit('GetPrecises', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditPrecisesDrop();
-            });
-        });
-
-        // add Specializationclassification
-        $(document).ready(function() {
-            window.initAddSpecializationclassificationDrop = () => {
-                $('#addCertifispecializationclassification_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addcertifiModal')
-                });
-            }
-            initAddSpecializationclassificationDrop();
-            $('#addCertifispecializationclassification_id').on('change', function(e) {
-                livewire.emit('SelectSpecializationclassificationId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initAddSpecializationclassificationDrop();
-            });
-        });
-
-        // edit Specializationclassification
-        $(document).ready(function() {
-            window.initEditSpecializationclassificationDrop = () => {
-                $('#editCertifispecializationclassification_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editcertifiModal')
-                });
-            }
-            initEditSpecializationclassificationDrop();
-            $('#editCertifispecializationclassification_id').on('change', function(e) {
-                livewire.emit('SelectSpecializationclassificationId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditSpecializationclassificationDrop();
-            });
-        });
 
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed
@@ -388,9 +263,6 @@
                 title: event.detail.message
             })
         })
-
-
-
 
         window.addEventListener('error', event => {
             $('#removecertifiModal').modal('hide');

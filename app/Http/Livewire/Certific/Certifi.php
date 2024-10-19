@@ -1,17 +1,19 @@
 <?php
 
 namespace App\Http\Livewire\Certific;
+//use Log;
 
 use Livewire\Component;
-
 use Livewire\WithPagination;
 use App\Models\Workers\Workers;
 use App\Models\Certific\Certific;
 use App\Models\Precises\Precises;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Specialtys\Specialtys;
 use App\Models\Graduations\Graduations;
 use App\Models\Certificates\Certificates;
+use App\Http\Livewire\Certificates\Certificate;
 use App\Models\Specializations\Specializations;
 use App\Models\Specializationclassification\Specializationclassification;
 
@@ -31,6 +33,7 @@ class certifi extends Component
     public $specializationclassification = [];
     public $certifiSearch, $certifi, $certifiId;
     public $user_id, $worker_id, $calculator_number, $document_number, $document_date, $certificates_id, $authenticity_number, $authenticity_date, $graduations_id, $specialization_id, $graduation_year, $specialtys_id, $precises_id, $specializationclassification_id, $grade, $estimate, $duration, $issuing_country, $notes, $status;
+    public $isDisabled = true;
 
     protected $listeners = [
         'SelectWorkerId',
@@ -40,6 +43,8 @@ class certifi extends Component
         'GetSpecialtys',
         'GetPrecises',
         'SelectSpecializationclassificationId',
+
+        'updateCertificatesId' => 'updateCertificatesId',
     ];
 
     public function hydrate()
@@ -90,7 +95,7 @@ class certifi extends Component
         $links = $workers;
         $this->workers = collect($workers->items());
         return view('livewire.certific.certifi', [
-            'links' => $links
+            'links' => $links,
         ]);
     }
 
@@ -145,6 +150,7 @@ class certifi extends Component
         }
     }
 
+    //اختبار حقل الدرجة واعطاء التقدير
     public function updatedGrade($value)
     {
         $grade = (int)$value;
@@ -154,9 +160,7 @@ class certifi extends Component
             $this->estimate = '';
             return;
         }
-
         $this->resetErrorBag('grade');
-
         if ($grade >= 90) {
             $this->estimate = 'ممتاز';
         } elseif ($grade >= 80) {
@@ -167,6 +171,25 @@ class certifi extends Component
             $this->estimate = 'مقبول';
         } else {
             $this->estimate = 'ضعيف';
+        }
+    }
+
+    //اختبار حقل الشهادة وفتح حقل القدم
+    public function updateCertificatesId($value)
+    {
+        $this->certificates_id = $value;
+        $this->checkDurationId();
+    }
+
+    public function checkDurationId()
+    {
+        $highCerts = [12, 13, 14, 15];
+
+        if (in_array($this->certificates_id, $highCerts)) {
+            $this->isDisabled = false;
+        } else {
+            $this->isDisabled = true;
+            $this->duration = 0;
         }
     }
 

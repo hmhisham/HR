@@ -102,6 +102,7 @@
                             <div class="mb-3 col-3">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='certificates_id' id="editCertificertificates_id"
+                                        wire:change="$emit('updateCertificatesId', $event.target.value)"
                                         class="form-select @error('certificates_id') is-invalid is-filled @enderror">
                                         <option value=""></option>
                                         @foreach ($certificates as $certificate)
@@ -259,7 +260,7 @@
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='duration' {{-- $durationAptly --}}
-                                        id="modalcertifiduration"
+                                        id="modalcertifiduration" {{ $isDisabled ? 'disabled' : '' }}
                                         class="form-select @error('duration') is-invalid is-filled @enderror"
                                         name="year">
                                         <option value="">اختر مدة القدم</option>
