@@ -103,6 +103,25 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3 col-3">
+                            <div class="form-floating form-floating-outline">
+                                <select wire:model.defer='certificates_id' id="addCertificertificates_id"
+                                    class="form-select @error('certificates_id') is-invalid is-filled @enderror">
+                                    <option value=""></option>
+                                    @foreach ($certificates as $certificate)
+                                        <option value="{{ $certificate->id }}">
+                                            {{ $certificate->certificates_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <label for="modalCertificertificates_id">التحصيل الدراسي</label>
+                            </div>
+                            @error('certificates_id')
+                                <small class='text-danger inputerror'>{{ $message }}</small>
+                            @enderror
+                        </div>
+
+
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='graduations_id' id="addCertifigraduations_id"
