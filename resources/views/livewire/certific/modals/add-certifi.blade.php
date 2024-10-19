@@ -85,8 +85,6 @@
                         </div>
                     </div>
                     <div Class="row">
-
-                        {{--  wire:change="$emit('updateCertificatesId', $event.target.value)" --}}
                         <div class="mb-3 col-3">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='certificates_id' id="addCertificertificates_id"

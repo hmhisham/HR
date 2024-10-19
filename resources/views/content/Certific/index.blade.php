@@ -146,7 +146,6 @@
             });
         });
 
-
         //استدعاء جهة التخرج
         $(document).ready(function() {
             function initSelect2(selector, eventName, parentModal) {
