@@ -123,17 +123,19 @@ class certifi extends Component
          $this->checkDurationId();
      }
 
-     public function checkDurationId()
-     {
-         $highCerts = [12, 13, 14, 15];
+    public function checkDurationId()
+    {
+        $highCerts = ['دبلوم عالي', 'ماجستير', 'دكتوراه', 'بروفيسور'];
 
-         if (in_array($this->certificates_id, $highCerts)) {
-             $this->isDisabled = false;
-         } else {
-             $this->isDisabled = true;
-             $this->duration = 0;
-         }
-     }
+        $Certificates = Certificates::find($this->certificates_id);
+
+        if (in_array($Certificates->certificates_name, $highCerts)) {
+            $this->isDisabled = '';
+        } else {
+            $this->isDisabled = 'disabled';
+            $this->duration = 0;
+        }
+    }
 
     //ربط التخصص العام والدقيق
     public function GetSpecialtys($Specialtys_id)
