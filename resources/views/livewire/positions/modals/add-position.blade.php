@@ -15,7 +15,8 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='worker_id' id="addPositionworker_id" class="form-select @error('worker_id') is-invalid is-filled @enderror">
+                                        <select wire:model.defer='worker_id' id="addPositionworker_id"
+                                            class="form-select @error('worker_id') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($workers as $worker)
                                                 <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
@@ -198,15 +199,15 @@
                             </div>
                         </div>
                     </div>
+                    <hr class="my-0">
+                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                        <button wire:click='store' wire:loading.attr="disabled" type="button"
+                            class="btn btn-primary me-sm-3 me-1">اضافة</button>
+                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                            aria-label="Close">تجاهل</button>
+                    </div>
+                </form>
             </div>
-            <hr class="my-0">
-            <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                <button wire:click='store' wire:loading.attr="disabled" type="button"
-                    class="btn btn-primary me-sm-3 me-1">اضافة</button>
-                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                    aria-label="Close">تجاهل</button>
-            </div>
-            </form>
         </div>
     </div>
 </div>

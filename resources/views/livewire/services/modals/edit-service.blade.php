@@ -14,7 +14,7 @@
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
 
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="Getservice">
                     <form id="editserviceModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
@@ -33,6 +33,19 @@
                                         </div>
                                         @error('workers_id')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='start_work_date' type="text"
+                                                id="modalcertifistart_work_date" placeholder="تاريخ المباشرة"
+                                                class="form-control @error('start_work_date') is-invalid is-filled @enderror"
+                                                disabled />
+                                            <label for="modalcertifistart_work_date">تاريخ المباشرة</label>
+                                        </div>
+                                        @error('start_work_date')
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                 </div>
@@ -108,6 +121,11 @@
                                                 autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                                 class="form-control @error('from_date') is-invalid is-filled @enderror" />
                                             <label for="flatpickr-date">من تاريخ</label>
+                                            @if (session()->has('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
                                         </div>
                                         @error('from_date')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -120,6 +138,11 @@
                                                 autocomplete="off" readonly placeholder="يوم-شهر-سنة"
                                                 class="form-control @error('to_date') is-invalid is-filled @enderror" />
                                             <label for="flatpickr-date">الى تاريخ</label>
+                                            @if (session()->has('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
                                         </div>
                                         @error('to_date')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -153,6 +176,29 @@
                                         @error('certificates_id')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
+                                    </div>
+                                </div>
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model="days" type="text" readonly placeholder="عدد الأيام"
+                                                class="form-control" disabled />
+                                            <label for="days">الأيام</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model="months" type="text" readonly
+                                                placeholder="عدد الأشهر" class="form-control" disabled />
+                                            <label for="months">الأشهر</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model="years" type="text" readonly
+                                                placeholder="عدد السنوات" class="form-control" disabled />
+                                            <label for="years">السنوات</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div Class="row">
@@ -220,6 +266,19 @@
                                     </div>
                                 </div>
 
+                                <div Class="row">
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <input wire:model.defer='notes' type="text" id="modalServicenotes"
+                                                placeholder="ملاحظات"
+                                                class="form-control @error('notes') is-invalid is-filled @enderror" />
+                                            <label for="modalServicenotes">ملاحظات</label>
+                                        </div>
+                                        @error('notes')
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <hr class="my-0">

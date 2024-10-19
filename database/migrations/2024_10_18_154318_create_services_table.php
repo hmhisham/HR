@@ -20,6 +20,9 @@ return new class extends Migration
             $table->date('administrative_order_date')->nullable()->comment('تاريخ امر الاداري');
             $table->date('from_date')->nullable()->comment('من تاريخ');
             $table->date('to_date')->nullable()->comment('الى تاريخ');
+            $table->string('days', 50)->nullable()->comment('يوم');
+            $table->string('months', 50)->nullable()->comment('شهر');
+            $table->string('years', 50)->nullable()->comment('سنة');
             $table->string('in_service_salary', 50)->nullable()->comment('الراتب خلال المدة');
             $table->string('certificates_id', 50)->nullable()->comment('الشهادة');
             $table->string('calculation_order_number', 50)->nullable()->comment('رقم امر الاحتساب');
@@ -27,6 +30,7 @@ return new class extends Migration
             $table->string('purpose', 50)->nullable()->comment('الغرض');
             $table->string('job_title_deletion', 100)->nullable()->comment('العنوان الوظيفي الحذف');
             $table->string('job_title_introduction', 100)->nullable()->comment('العنوان الوظيفي الاستحداث');
+            $table->text('notes')->nullable()->comment('الملاحظات');
             $table->timestamps();
         });
     }

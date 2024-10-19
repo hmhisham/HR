@@ -45,271 +45,145 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        // add Workers
+        //اضافة وتعيدل اسم الموظف
         $(document).ready(function() {
-            window.initAddWorkersDrop = () => {
-                $('#addServiceworkers_id').select2({
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#addserviceModal')
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initAddWorkersDrop();
-            $('#addServiceworkers_id').on('change', function(e) {
-                livewire.emit('SelectWorkersId', e.target.value);
-            });
+            initSelect2('#addServiceworkers_id', 'SelectWorkersId', '#addserviceModal');
+            initSelect2('#editServiceworkers_id', 'SelectWorkersId', '#editserviceModal');
+
             window.livewire.on('select2', () => {
-                initAddWorkersDrop();
+                initSelect2('#addServiceworkers_id', 'SelectWorkersId', '#addserviceModal');
+                initSelect2('#editServiceworkers_id', 'SelectWorkersId', '#editserviceModal');
             });
         });
 
-        // edit Workers
+        //اضافة وتعديل تاريخ الامر الاداري
         $(document).ready(function() {
-            window.initEditWorkersDrop = () => {
-                $('#editServiceworkers_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editserviceModal')
+            function initFlatpickr(selector, eventName) {
+                $(selector).flatpickr({
+                    dateFormat: 'Y-m-d',
+                    placeholder: 'تاريخ الامر الاداري'
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initEditWorkersDrop();
-            $('#editServiceworkers_id').on('change', function(e) {
-                livewire.emit('SelectWorkersId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditWorkersDrop();
-            });
-        });
+            initFlatpickr('#addadministrative_order_date', 'employeeAddAdministrativeOrderDate');
+            initFlatpickr('#editadministrative_order_date', 'employeeEditAdministrativeOrderDate');
 
-        /* اضافة تاريخ الامر الاداري */
-        $(document).ready(function() {
-            window.initAddPositionOrderDateDrop = () => {
-                $('#addadministrative_order_date').flatpickr({
-                    placeholder: 'تاريخ الامر الاداري',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initAddPositionOrderDateDrop();
-            $('#addadministrative_order_date').on('change', function(e) {
-                livewire.emit('employeeAddAdministrativeOrderDate', e.target.value)
-            });
             window.livewire.on('flatpickr', () => {
-                initAddPositionOrderDateDrop();
+                initFlatpickr('#addadministrative_order_date', 'employeeAddAdministrativeOrderDate');
+                initFlatpickr('#editadministrative_order_date', 'employeeEditAdministrativeOrderDate');
             });
         });
-        /* تعديل تاريخ الامر الاداري */
+        //اضافة وتعديل حقلي من تاريخ والى تاريخ
         $(document).ready(function() {
-            window.initEditPositionOrderDateDrop = () => {
-                $('#editadministrative_order_date').flatpickr({
-                    placeholder: 'تاريخ الامر الاداري',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initEditPositionOrderDateDrop();
-            $('#editadministrative_order_date').on('change', function(e) {
-                livewire.emit('employeeEditAdministrativeOrderDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initEditPositionOrderDateDrop();
-            });
-        });
-
-        /* اضافة من تاريخ */
-        $(document).ready(function() {
-            window.initAddPositionOrderDateDrop = () => {
-                $('#addfrom_date').flatpickr({
-                    placeholder: 'تاريخ الامر الاداري',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initAddPositionOrderDateDrop();
-            $('#addfrom_date').on('change', function(e) {
-                livewire.emit('employeeAddFromDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initAddPositionOrderDateDrop();
-            });
-        });
-        /* تعديل من تاريخ */
-        $(document).ready(function() {
-            window.initEditPositionOrderDateDrop = () => {
-                $('#editfrom_date').flatpickr({
-                    placeholder: 'تاريخ الامر الاداري',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initEditPositionOrderDateDrop();
-            $('#editfrom_date').on('change', function(e) {
-                livewire.emit('employeeEditFromDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initEditPositionOrderDateDrop();
-            });
-        });
-
-        /* اضافة الى تاريخ */
-        $(document).ready(function() {
-            window.initAddPositionOrderDateDrop = () => {
-                $('#addto_date').flatpickr({
-                    placeholder: 'تاريخ الامر الاداري',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initAddPositionOrderDateDrop();
-            $('#addto_date').on('change', function(e) {
-                livewire.emit('employeeAddToDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initAddPositionOrderDateDrop();
-            });
-        });
-        /* تعديل الى تاريخ */
-        $(document).ready(function() {
-            window.initEditPositionOrderDateDrop = () => {
-                $('#editfrom_date').flatpickr({
-                    placeholder: 'تاريخ الامر الاداري',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initEditPositionOrderDateDrop();
-            $('#editfrom_date').on('change', function(e) {
-                livewire.emit('employeeEditToDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initEditPositionOrderDateDrop();
-            });
-        });
-
-        /* اضافة تاريخ امر الاحتساب */
-        $(document).ready(function() {
-            window.initAddPositionOrderDateDrop = () => {
-                $('#addcalculation_order_date').flatpickr({
-                    placeholder: 'تاريخ الامر الاداري',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initAddPositionOrderDateDrop();
-            $('#addcalculation_order_date').on('change', function(e) {
-                livewire.emit('employeeAddCalculationOrderDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initAddPositionOrderDateDrop();
-            });
-        });
-        /* تعديل تاريخ امر الاحتساب */
-        $(document).ready(function() {
-            window.initEditPositionOrderDateDrop = () => {
-                $('#editcalculation_order_date').flatpickr({
-                    placeholder: 'تاريخ الامر الاداري',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initEditPositionOrderDateDrop();
-            $('#editcalculation_order_date').on('change', function(e) {
-                livewire.emit('employeeEditCalculationOrderDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initEditPositionOrderDateDrop();
-            });
-        });
-
-        // add Certificates
-        $(document).ready(function() {
-            window.initAddCertificatesDrop = () => {
-                $('#addServicecertificates_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addserviceModal')
+            function initFlatpickr(selector, eventName) {
+                $(selector).flatpickr({
+                    dateFormat: 'Y-m-d',
+                    placeholder: 'تاريخ الامر الاداري'
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initAddCertificatesDrop();
-            $('#addServicecertificates_id').on('change', function(e) {
-                livewire.emit('SelectCertificatesId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initAddCertificatesDrop();
+
+            function initAllFlatpickrs() {
+                initFlatpickr('#addfrom_date', 'employeeAddFromDate');
+                initFlatpickr('#addto_date', 'employeeAddToDate');
+                initFlatpickr('#editfrom_date', 'employeeEditFromDate');
+                initFlatpickr('#editto_date', 'employeeEditToDate');
+            }
+
+            initAllFlatpickrs();
+
+            window.livewire.on('flatpickr', () => {
+                initAllFlatpickrs();
             });
         });
 
-        // edit Certificates
+
+        //اضافة وتعديل تاريخ الاحتساب
         $(document).ready(function() {
-            window.initEditCertificatesDrop = () => {
-                $('#editServicecertificates_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editserviceModal')
+            function initFlatpickr(selector, eventName) {
+                $(selector).flatpickr({
+                    dateFormat: 'Y-m-d',
+                    placeholder: 'تاريخ الامر الاداري'
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initEditCertificatesDrop();
-            $('#editServicecertificates_id').on('change', function(e) {
-                livewire.emit('SelectCertificatesId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditCertificatesDrop();
+
+            initFlatpickr('#addcalculation_order_date', 'employeeAddCalculationOrderDate');
+            initFlatpickr('#editcalculation_order_date', 'employeeEditCalculationOrderDate');
+
+            window.livewire.on('flatpickr', () => {
+                initFlatpickr('#addcalculation_order_date', 'employeeAddCalculationOrderDate');
+                initFlatpickr('#editcalculation_order_date', 'employeeEditCalculationOrderDate');
             });
         });
 
-        // اضافة العنوان الوظيفي المحذوف
+
+        //اضافة وتعديل حقل الشهادة
         $(document).ready(function() {
-            window.initAddJobtitlesDrop = () => {
-                $('#addServicejob_title_deletion').select2({
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#addserviceModal')
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initAddJobtitlesDrop();
-            $('#addServicejob_title_deletion').on('change', function(e) {
-                livewire.emit('SelectJobTitleDeletion', e.target.value);
-            });
+            initSelect2('#addServicecertificates_id', 'SelectCertificatesId', '#addserviceModal');
+            initSelect2('#editServicecertificates_id', 'SelectCertificatesId', '#editserviceModal');
+
             window.livewire.on('select2', () => {
-                initAddJobtitlesDrop();
+                initSelect2('#addServicecertificates_id', 'SelectCertificatesId', '#addserviceModal');
+                initSelect2('#editServicecertificates_id', 'SelectCertificatesId', '#editserviceModal');
             });
         });
 
-        // تعديل العنوان الوظيفي المحذوف
+        //اضافة وتعديل العنوان الوظيفي الحذف والاستحداث
         $(document).ready(function() {
-            window.initEditJobtitlesDrop = () => {
-                $('#editServicejob_title_deletion').select2({
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#editserviceModal')
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(e.target.value);
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initEditJobtitlesDrop();
-            $('#editServicejob_title_deletion').on('change', function(e) {
-                livewire.emit('SelectJobTitleDeletion', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditJobtitlesDrop();
-            });
-        });
 
-        // اضافة العنوان الوظيفي المستحدث
-        $(document).ready(function() {
-            window.initAddJobtitlesDrop = () => {
-                $('#addServicejob_title_introduction').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addserviceModal')
-                });
-            }
-            initAddJobtitlesDrop();
-            $('#addServicejob_title_introduction').on('change', function(e) {
-                livewire.emit('SelectJobTitleIntroduction', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initAddJobtitlesDrop();
-            });
-        });
+            initSelect2('#addServicejob_title_deletion', 'SelectJobTitleDeletion', '#addserviceModal');
+            initSelect2('#addServicejob_title_introduction', 'SelectJobTitleIntroduction', '#addserviceModal');
+            initSelect2('#editServicejob_title_deletion', 'SelectJobTitleDeletion', '#editserviceModal');
+            initSelect2('#editServicejob_title_introduction', 'SelectJobTitleIntroduction', '#editserviceModal');
 
-        // تعديل العنوان الوظيفي المستحدث
-        $(document).ready(function() {
-            window.initEditJobtitlesDrop = () => {
-                $('#editServicejob_title_introduction').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editserviceModal')
-                });
-            }
-            initEditJobtitlesDrop();
-            $('#editServicejob_title_introduction').on('change', function(e) {
-                livewire.emit('SelectJobTitleIntroduction', e.target.value);
-            });
             window.livewire.on('select2', () => {
-                initEditJobtitlesDrop();
+                initSelect2('#addServicejob_title_deletion', 'SelectJobTitleDeletion', '#addserviceModal');
+                initSelect2('#addServicejob_title_introduction', 'SelectJobTitleIntroduction',
+                    '#addserviceModal');
+                initSelect2('#editServicejob_title_deletion', 'SelectJobTitleDeletion',
+                    '#editserviceModal');
+                initSelect2('#editServicejob_title_introduction', 'SelectJobTitleIntroduction',
+                    '#editserviceModal');
             });
         });
 

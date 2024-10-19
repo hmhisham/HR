@@ -167,21 +167,21 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model="days" type="text" readonly placeholder="عدد الأيام"
-                                               class="form-control" />
+                                            class="form-control" disabled />
                                         <label for="days">الأيام</label>
                                     </div>
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model="months" type="text" readonly placeholder="عدد الأشهر"
-                                               class="form-control" />
+                                            class="form-control" disabled />
                                         <label for="months">الأشهر</label>
                                     </div>
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model="years" type="text" readonly placeholder="عدد السنوات"
-                                               class="form-control" />
+                                            class="form-control" disabled />
                                         <label for="years">السنوات</label>
                                     </div>
                                 </div>
@@ -249,6 +249,20 @@
                                     </div>
                                     @error('job_title_introduction')
                                         <small class='text-danger inputerror'>{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div Class="row">
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='notes' type="text" id="modalServicenotes"
+                                            placeholder="ملاحظات"
+                                            class="form-control @error('notes') is-invalid is-filled @enderror" />
+                                        <label for="modalServicenotes">ملاحظات</label>
+                                    </div>
+                                    @error('notes')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                             </div>
