@@ -195,7 +195,6 @@ class certifi extends Component
     }
 
 
-
     public function AddCertifyModal($WorkerID)
     {
         $this->reset(['worker_id', 'calculator_number', 'document_number', 'document_date', 'certificates_id', 'authenticity_number', 'authenticity_date', 'graduations_id', 'specialization_id', 'graduation_year', 'specialtys_id', 'precises_id', 'specializationclassification_id', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
