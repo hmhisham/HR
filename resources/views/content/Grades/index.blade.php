@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Grades')
 @section('vendor-style')
@@ -11,9 +10,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
-@section('content') 
-@livewire('grades.grade')
+@endsection
+@section('content')
+    @livewire('grades.grade')
 
 
 @endsection
@@ -36,6 +35,16 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        // نطاق رموز الحروف العربية (ع، أ، ا، ي، ب، ل) بالإضافة إلى الأرقام والفراغ
+        function onlyArabicAndNumberKey(evt) {
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+            if ((ASCIICode >= 48 && ASCIICode <= 57) ||
+                ASCIICode === 32 || [1593, 1571, 1575, 1610, 1576, 1604].includes(ASCIICode)) {
+                return true;
+            }
+            return false;
+        }
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -50,27 +59,27 @@
 
         window.addEventListener('GradeModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);  
+                $('#id').focus();
+            }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addgradeModal').modal('hide');
             $('#editgradeModal').modal('hide');
             $('#removegradeModal').modal('hide');
             Toast.fire({
                 icon: 'success',
-                title: event.detail.message
+                title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
         window.addEventListener('error', event => {
             $('#removegradeModal').modal('hide');
             Toast.fire({
                 icon: 'error',
-                title: event.detail.message,
+                title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

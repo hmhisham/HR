@@ -24,6 +24,6 @@ class Specializations extends Model
         return $this->belongsTo(Graduations::class, 'graduations_id' );
     }
 
- 
+
 
 }

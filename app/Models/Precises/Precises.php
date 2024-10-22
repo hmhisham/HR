@@ -9,12 +9,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Precises extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
     protected $table = "precises";
 
     public function Getspecialty()
     {
-        return $this->belongsTo(Specialtys::class, 'specialtys_code' );
+        return $this->belongsTo(Specialtys::class, 'specialtys_id' );
     }
+
+
 
 }

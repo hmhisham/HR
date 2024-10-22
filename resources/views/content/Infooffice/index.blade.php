@@ -48,6 +48,23 @@
             }
         })
 
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+
+        function onlyArabicKey(evt) {
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+            // نطاق رموز الحروف العربية والفراغ
+            if ((ASCIICode >= 1569 && ASCIICode <= 1610) || ASCIICode === 32) {
+                return true;
+            }
+            return false;
+        }
+
         window.addEventListener('InfoOfficModalShow', event => {
             setTimeout(() => {
              $('#modalInfoofficeInfooffice_id').focus();
@@ -60,14 +77,14 @@
             $('#removeinfoofficModal').modal('hide');
             Toast.fire({
                 icon: 'success',
-                title: event.detail.message
+                title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
         window.addEventListener('error', event => {
             $('#removeinfoofficModal').modal('hide');
             Toast.fire({
                 icon: 'error',
-                title: event.detail.message,
+                title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
 

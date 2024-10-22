@@ -1,26 +1,29 @@
 <?php
+
 namespace App\Http\Livewire\Certificates;
+
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Certificates\Certificates;
+
 class Certificate extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
     public $Certificates = [];
-     public $CertificateSearch, $Certificate, $CertificateId;
+    public $CertificateSearch, $Certificate, $CertificateId;
     public $certificates_name;
 
 
-    Public function render()
+    public function render()
     {
-        $CertificateSearch ='%' . $this->CertificateSearch . '%';
+        $CertificateSearch = '%' . $this->CertificateSearch . '%';
         $Certificates = Certificates::where('certificates_name', 'LIKE', $CertificateSearch)
 
 
-         ->orderBy('id', 'ASC')
-         ->paginate(10);
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
         $links = $Certificates;
         $this->Certificates = collect($Certificates->items());
         return view('livewire.certificates.certificate', [
@@ -39,64 +42,66 @@ class Certificate extends Component
     public function store()
     {
         $this->resetValidation();
-         $this->validate(['certificates_name' => 'required|unique:certificates' ,
+        $this->validate([
+            'certificates_name' => 'required|unique:certificates',
 
-                 ], [
-                'certificates_name.required' => 'حقل الاسم مطلوب',
-                'certificates_name.unique' => 'الأسم موجود',  ]);
+        ], [
+            'certificates_name.required' => 'حقل التحصيل الدراسي مطلوب',
+            'certificates_name.unique' => 'التحصيل الدراسي موجود',
+        ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Certificates::create([
-'certificates_name'=> $this->certificates_name,
+            'certificates_name' => $this->certificates_name,
 
-]);
+        ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
-        'message' => 'تم الاضافه بنجاح',
+            'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
     }
 
- public function GetCertificate($CertificateId)
+    public function GetCertificate($CertificateId)
     {
         $this->resetValidation();
 
-        $this-> Certificate  = Certificates::find($CertificateId);
-        $this-> CertificateId = $this->Certificate->id;
-             $this->certificates_name= $this->Certificate->certificates_name;
-
+        $this->Certificate  = Certificates::find($CertificateId);
+        $this->CertificateId = $this->Certificate->id;
+        $this->certificates_name = $this->Certificate->certificates_name;
     }
 
- public function update()
+    public function update()
     {
         $this->resetValidation();
-         $this->validate(['certificates_name' => 'required:certificates' ,
+        $this->validate([
+            'certificates_name' => 'required|unique:certificates,certificates_name,'.$this->Certificate->id.',id',
 
-                 ], [
-                'certificates_name.required' => 'حقل الاسم مطلوب', ]);
+        ], [
+            'certificates_name.required' => 'حقل التحصيل الدراسي مطلوب',
+            'certificates_name.unique' => 'التحصيل الدراسي موجود',
+        ]);
 
-             $Certificates = Certificates::find($this->CertificateId);
-             $Certificates->update([
-'certificates_name'=> $this->certificates_name,
+        $Certificates = Certificates::find($this->CertificateId);
+        $Certificates->update([
+            'certificates_name' => $this->certificates_name,
 
-]);
+        ]);
         $this->reset();
-         $this->dispatchBrowserEvent('success', [
+        $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
-     }
-
-  public function destroy()
-    {
-      $Certificates = Certificates::find($this->CertificateId);
-        $Certificates->delete();
-         $this->reset();
-       $this->dispatchBrowserEvent('success', [
-      'message' => 'تم حذف البيانات  بنجاح',
-      'title' => 'الحذف '
-    ]);
     }
 
- }
-   
+    public function destroy()
+    {
+        $Certificates = Certificates::find($this->CertificateId);
+        $Certificates->delete();
+        $this->reset();
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'تم حذف البيانات  بنجاح',
+            'title' => 'الحذف '
+        ]);
+    }
+}

@@ -1,7 +1,8 @@
 <div class="mt-n4">
-    <h4 Class="mb-1fw-semiboyld">قائمة</h4>
+    <h4 class="mb-2">
+        <span class="text-muted fw-light">الإعدادات <span class="mdi mdi-chevron-left mdi-24px"></span></span> جهات التخرج
+    </h4>
     <Div Class="card">
-
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -25,7 +26,6 @@
                             <th Class="text-center">الشهادة</th>
                             <th Class="text-center">جهة التخرج</th>
                             <th Class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -34,21 +34,22 @@
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
-                                <td class="text-center">{{ $Graduation->Getcertificate ? $Graduation->Getcertificate->certificates_name : '' }}</td>
+                                <td class="text-center">
+                                    {{ $Graduation->Getcertificate ? $Graduation->Getcertificate->certificates_name : '' }}
+                                </td>
                                 <td Class="text-center">{{ $Graduation->graduations_name }}</td>
-
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('graduation-edit')
                                             <button wire:click="GetGraduation({{ $Graduation->id }})"
-                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editgraduationModal">
                                                 <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('graduation-delete')
                                             <button wire:click="GetGraduation({{ $Graduation->id }})"
-                                                class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Graduation->active ? 'disabled' : '' }}"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect {{ $Graduation->active ? 'disabled' : '' }}"
                                                 data-bs-toggle = "modal" data-bs-target="#removegraduationModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>
@@ -59,7 +60,6 @@
                         @endforeach
                     </tbody>
                 </table>
-
                 <div class="mt-2 d-flex justify-content-center">
                     {{ $links->links() }}
                 </div>
@@ -70,5 +70,4 @@
             @endcan
         </div>
     </div>
-</div>
 </div>

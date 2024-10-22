@@ -47,13 +47,13 @@ class Graduation extends Component
         $this->resetValidation();
         $this->validate([
             'certificates_id' => 'required',
-            'graduations_name' => 'required',
+            'graduations_name' => 'required|unique:graduations',
 
         ], [
-            'certificates_id.required' => 'حقل الاسم مطلوب',
+            'certificates_id.required' => 'حقل اسم الشهادة مطلوب',
+            'graduations_name.required' => 'حقل اسم جهة التخرج مطلوب',
+            'graduations_name.unique' => 'اسم جهة التخرج موجود',
 
-            'graduations_name.required' => 'حقل الاسم مطلوب',
-         
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -84,11 +84,13 @@ class Graduation extends Component
         $this->resetValidation();
         $this->validate([
             'certificates_id' => 'required:graduations',
-            'graduations_name' => 'required:graduations',
+            'graduations_name' => 'required|unique:graduations,graduations_name,'.$this->Graduation->id.',id',
 
         ], [
-            'certificates_id.required' => 'حقل الاسم مطلوب',
-            'graduations_name.required' => 'حقل الاسم مطلوب',
+            'certificates_id.required' => 'حقل اسم الشهادة مطلوب',
+            'graduations_name.required' => 'حقل اسم جهة التخرج مطلوب',
+            'graduations_name.unique' => 'اسم جهة التخرج موجود',
+
         ]);
 
         $Graduations = Graduations::find($this->GraduationId);

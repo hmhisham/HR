@@ -1,4 +1,3 @@
-
 <!-- Remove Unit Modal -->
 <div wire:ignore.self class="modal fade" id="removeunitModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -6,43 +5,52 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">حذف</h3>
+                    <h3 class="pb-1 mb-2">حذف الوحدة</h3>
                     <p>نافذة الحذف</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetUnit" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">جار حذف البيانات...</h5>
-
+                <h5 wire:loading wire:target="GetUnit" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار حذف البيانات...</h5>
                 <div wire:loading.remove>
-                <form id="removeUnitModalForm" onsubmit="return false" autocomplete="off">
-                    <div class="row row-cols-1">
-                        <div class="col mb-3">
-                        '<Div Class="row">
-
-                                    <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='units_name' type="text" id="modalUnitunits_name" placeholder="اسم الوحدة"
-                                            class="form-control @error('units_name') is-invalid is-filled @enderror" disabled/>
-                                        <label for="modalUnitunits_name">اسم الوحدة</label>
-                                    </div>
-                                    @error('units_name')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
+                    <form id="removeUnitModalForm" onsubmit="return false" autocomplete="off">
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="">
+                                    <label for="modalUnitunits_name">القسم</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $SectionName }}</div>
                                 </div>
-
-                         </div>
-                    </div>
-                    <hr class="my-0">
-                    <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
-                            <button wire:click='destroy' type="submit"class="flex-fill btn btn-danger me-sm-3 me-1">حذف </button>
-                             <button type="reset" class="flex-fill btn btn-outline-secondary" data-bs-dismiss="modal"
-                             aria-label="Close">تجاهل</button>
+                            </div>
+                            <div class="col text-center">
+                                <div class="">
+                                    <label for="modalUnitunits_name">الشعبة</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $BranchName }}</div>
+                                </div>
+                            </div>
                         </div>
-                   </div>
-                </form>
+                        <hr>
+                        <div Class="row">
+                            <div class="col text-center">
+                                <div class="text-danger">
+                                    <label for="modalUnitunits_name">اسم الوحدة</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $units_name }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-0">
+
+                        <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
+                            <button wire:click='destroy'
+                                type="submit"class="flex-fill btn btn-danger me-sm-3 me-1">حذف </button>
+                            <button type="reset" class="flex-fill btn btn-outline-secondary"
+                                data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
- </div>
 </div>
 <!--/ Delete Unit Modal -->

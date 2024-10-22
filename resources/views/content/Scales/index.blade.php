@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Scales')
 @section('vendor-style')
@@ -11,9 +10,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
-@section('content') 
-@livewire('scales.scale')
+@endsection
+@section('content')
+    @livewire('scales.scale')
 
 
 @endsection
@@ -48,29 +47,37 @@
             }
         })
 
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+
         window.addEventListener('ScaleModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);  
+                $('#id').focus();
+            }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addscaleModal').modal('hide');
             $('#editscaleModal').modal('hide');
             $('#removescaleModal').modal('hide');
             Toast.fire({
                 icon: 'success',
-                title: event.detail.message
+                title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
         window.addEventListener('error', event => {
             $('#removescaleModal').modal('hide');
             Toast.fire({
                 icon: 'error',
-                title: event.detail.message,
+                title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

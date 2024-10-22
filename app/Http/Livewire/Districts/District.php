@@ -12,10 +12,23 @@ class District extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
+    public $Governorates = [];
     public $Districts = [];
     public $DistrictSearch, $District, $DistrictId;
-    public $governorate_id,   $district_number, $district_name;
+    public $GovernorateName, $governorate_id,   $district_number, $district_name;
 
+    protected $listeners = [
+        'GetGovernorate'
+    ];
+    public function hydrate()
+    {
+        $this->emit('select2');
+    }
+
+    public function mount()
+    {
+        $this->Governorates = Governorates::all();
+    }
 
     public function render()
     {
@@ -30,19 +43,18 @@ class District extends Component
         $this->Districts = collect($Districts->items());
 
         return view('livewire.districts.district', [
-            'governorates' => Governorates::get(),
-          'links' => $links
+            'links' => $links
         ]);
     }
 
-
-
-
-
+    public function GetGovernorate($GovernorateID)
+    {
+        $this->governorate_id = $GovernorateID;
+    }
 
     public function AddDistrictModalShow()
     {
-        $this->reset();
+        $this->reset('governorate_id', 'district_number', 'district_name');
         $this->resetValidation();
         $this->dispatchBrowserEvent('DistrictModalShow');
     }
@@ -52,22 +64,23 @@ class District extends Component
         $this->resetValidation();
         $this->validate([
             'governorate_id' => 'required',
-            'district_number' => 'required|unique:districts',
-            'district_name' => 'required',
+            'district_number' => 'required|unique:districts,district_number',
+            'district_name' => 'required|unique:districts,district_name',
         ], [
-            'governorate_id.required' => 'حقل الاسم مطلوب',
-            'district_number.required' => 'حقل الاسم مطلوب',
-            'district_number.unique' => 'الأسم موجود',
-            'district_name.required' => 'حقل الاسم مطلوب',
+            'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
+            'district_number.required' => 'حقل رقم القضاء مطلوب',
+            'district_number.unique' => 'حقل رقم القضاء موجود',
+            'district_name.required' => 'حقل أسم القضاء مطلوب',
+            'district_name.unique' => 'حقل أسم القضاء موجود',
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Districts::create([
             'governorate_id' => $this->governorate_id,
             'district_number' => $this->district_number,
             'district_name' => $this->district_name,
         ]);
-        $this->reset();
+
+        $this->reset('governorate_id', 'district_number', 'district_name');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -76,6 +89,8 @@ class District extends Component
 
     public function GetDistrict($DistrictId)
     {
+        $this->reset('governorate_id', 'district_number', 'district_name');
+
         $this->resetValidation();
 
         $this->District  = Districts::find($DistrictId);
@@ -83,19 +98,23 @@ class District extends Component
         $this->governorate_id = $this->District->governorate_id;
         $this->district_number = $this->District->district_number;
         $this->district_name = $this->District->district_name;
+
+        $this->GovernorateName = $this->District->GetGovernorate->governorate_name;
     }
 
     public function update()
     {
         $this->resetValidation();
         $this->validate([
-            'governorate_id' => 'required:districts',
-            'district_number' => 'required:districts',
-            'district_name' => 'required:districts',
+            'governorate_id' => 'required',
+            'district_number' => 'required|unique:districts,district_number,' . $this->District->id . ',id',
+            'district_name' => 'required|unique:districts,district_name,' . $this->District->id . ',id',
         ], [
-            'governorate_id.required' => 'حقل الاسم مطلوب',
-            'district_number.required' => 'حقل الاسم مطلوب',
-            'district_name.required' => 'حقل الاسم مطلوب',
+            'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
+            'district_number.required' => 'حقل رقم القضاء مطلوب',
+            'district_number.unique' => 'حقل رقم القضاء موجود',
+            'district_name.required' => 'حقل أسم القضاء مطلوب',
+            'district_name.unique' => 'حقل أسم القضاء موجود',
         ]);
 
         $Districts = Districts::find($this->DistrictId);
@@ -104,7 +123,8 @@ class District extends Component
             'district_number' => $this->district_number,
             'district_name' => $this->district_name,
         ]);
-        $this->reset();
+
+        $this->reset('governorate_id', 'district_number', 'district_name');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -115,7 +135,10 @@ class District extends Component
     {
         $Districts = Districts::find($this->DistrictId);
         $Districts->delete();
+
         $this->reset();
+        $this->mount();
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

@@ -1,4 +1,3 @@
-
 <!-- Remove Branc Modal -->
 <div wire:ignore.self class="modal fade" id="removebrancModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -6,54 +5,53 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">حذف</h3>
+                    <h3 class="pb-1 mb-2">حذف الشعبة</h3>
                     <p>نافذة الحذف</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetBranc" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">جار حذف البيانات...</h5>
-
+                <h5 wire:loading wire:target="GetBranc" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار حذف البيانات...</h5>
                 <div wire:loading.remove>
-                <form id="removeBrancModalForm" onsubmit="return false" autocomplete="off">
-                    <div class="row row-cols-1">
-                        <div class="col mb-3">
-                        '<Div Class="row">
-
-                                    <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='section_id' type="text" id="modalBrancsection_id" placeholder="اسم القسم"
-                                            class="form-control @error('section_id') is-invalid is-filled @enderror" disabled/>
-                                        <label for="modalBrancsection_id">اسم القسم</label>
-                                    </div>
-                                    @error('section_id')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
+                    <form id="removeBrancModalForm" onsubmit="return false" autocomplete="off">
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="">
+                                    <label for="modalUnitunits_name">الارتباط</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $linkageName }}</div>
                                 </div>
-
-                                    <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='branch_name' type="text" id="modalBrancbranch_name" placeholder="اسم الشعبة"
-                                            class="form-control @error('branch_name') is-invalid is-filled @enderror" disabled/>
-                                        <label for="modalBrancbranch_name">اسم الشعبة</label>
-                                    </div>
-                                    @error('branch_name')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
+                            </div>
+                            <div class="col text-center">
+                                <div class="">
+                                    <label for="modalUnitunits_name">القسم</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $SectionsName }}</div>
                                 </div>
-
-                         </div>
-                    </div>
-                    <hr class="my-0">
-                    <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
-                            <button wire:click='destroy' type="submit"class="flex-fill btn btn-danger me-sm-3 me-1">حذف </button>
-                             <button type="reset" class="flex-fill btn btn-outline-secondary" data-bs-dismiss="modal"
-                             aria-label="Close">تجاهل</button>
+                            </div>
                         </div>
-                   </div>
-                </form>
+                        <hr>
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="text-danger">
+                                    <label for="modalUnitunits_name">الشعبة</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $branch_name }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-cols-1">
+                            <hr class="my-0">
+                            <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
+                                <button wire:click='destroy'
+                                    type="submit"class="flex-fill btn btn-danger me-sm-3 me-1">حذف </button>
+                                <button type="reset" class="flex-fill btn btn-outline-secondary"
+                                    data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
- </div>
 </div>
 <!--/ Delete Branc Modal -->

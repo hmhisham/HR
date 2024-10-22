@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Typesservices')
 @section('vendor-style')
@@ -11,9 +10,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
-@section('content') 
-@livewire('typesservices.typesservice')
+@endsection
+@section('content')
+    @livewire('typesservices.typesservice')
 
 
 @endsection
@@ -36,6 +35,14 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        function onlyArabicKey(evt) {
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+            // نطاق رموز الحروف العربية والفراغ
+            if ((ASCIICode >= 1569 && ASCIICode <= 1610) || ASCIICode === 32) {
+                return true;
+            }
+            return false;
+        }
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -50,27 +57,27 @@
 
         window.addEventListener('TypesserviceModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);  
+                $('#id').focus();
+            }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addtypesserviceModal').modal('hide');
             $('#edittypesserviceModal').modal('hide');
             $('#removetypesserviceModal').modal('hide');
             Toast.fire({
                 icon: 'success',
-                title: event.detail.message
+                title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
         window.addEventListener('error', event => {
             $('#removetypesserviceModal').modal('hide');
             Toast.fire({
                 icon: 'error',
-                title: event.detail.message,
+                title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

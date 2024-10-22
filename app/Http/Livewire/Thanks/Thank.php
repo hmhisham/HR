@@ -5,8 +5,9 @@ namespace App\Http\Livewire\Thanks;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Thanks\Thanks;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Workers\Workers;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Department\Department;
 
 class Thank extends Component
 {
@@ -20,41 +21,59 @@ class Thank extends Component
 
     public $search = '';
     public $workers = [];
-    public $worker, $calculator_number, $department, $full_name;
+    public $department= [];
+    public $worker,$thank, $calculator_number, $get_departmen, $full_name   ;
     public $selectedWorker = null;
 
 
     protected $listeners = [
         'SelectWorker',
+        'SelectGrantor',
     ];
+
+
 
     public function hydrate()
     {
         $this->emit('select2');
+        $this->emit('flatpickr');
     }
 
 
     public function mount()
     {
         $this->workers = Workers::all();
+        $this->department = Department::all();
     }
+
+
+    public function SelectGrantor($GrantorID)
+    {
+        $grantor = Department::find($GrantorID);
+         if ($grantor) {
+            $this->grantor = $GrantorID;
+              } else {
+            $this->grantor = null;
+        }
+    }
+
 
     public function SelectWorker($workerID)
     {
-
         $worker = Workers::find($workerID);
-
-
         if ($worker) {
             $this->worker = $workerID;
             $this->calculator_number = $worker->calculator_number;
-            $this->department = $worker->department;
+            $this->get_departmen = $worker->department;
         } else {
             $this->worker = null;
             $this->calculator_number = null;
-            $this->department = null;
+            $this->get_departmen = null;
         }
     }
+
+
+
 
     public function render()
     {
@@ -79,7 +98,7 @@ class Thank extends Component
 
     public function AddThankModalShow()
     {
-        $this->reset(['department','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
+       $this->reset(['get_departmen','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('ThankModalShow');
     }
@@ -88,22 +107,24 @@ class Thank extends Component
     {
         $this->resetValidation();
         $this->validate([
+            'user_id' => 'required',
             'grantor' => 'required',
+            'reason' => 'required',
             'ministerial_order_number' => 'required',
             'ministerial_order_date' => 'required',
-            'reason' => 'required',
             'months_of_service' => 'required',
 
         ], [
-            'grantor.required' => 'حقل الاسم مطلوب',
-            'ministerial_order_number.required' => 'حقل الاسم مطلوب',
-            'ministerial_order_date.required' => 'حقل الاسم مطلوب',
-            'reason.required' => 'حقل الاسم مطلوب',
-            'months_of_service.required' => 'حقل الاسم مطلوب',
+            'user_id.required' => 'حقل اسم الموظف مطلوب',
+            'grantor.required' => 'حقل الجهة المانحة مطلوب',
+            'reason.required' => 'حقل السبب من الشكر مطلوب',
+            'ministerial_order_number.required' => 'حقل رقم الامر الوزاري مطلوب',
+            'ministerial_order_date.required' => 'حقل تاريخ الامر الوزاري مطلوب',
+            'months_of_service.required' => 'حقل مدة القدم مطلوب',
 
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
+
         Thanks::create([
             'user_id' => Auth::id(),
             'calculator_number' => $this->calculator_number,
@@ -115,7 +136,7 @@ class Thank extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset(['department','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
+        $this->reset(['get_departmen','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -131,24 +152,23 @@ class Thank extends Component
         $this->ThankId = $this->Thank->id;
         $this->user_id = $this->Thank->user_id;
 
-        // جلب بيانات العمالة باستخدام العلاقة بين Thanks و Workers
-
-        // تعيين القيم في المتغيرات الخاصة بك
         $this->grantor = $this->Thank->grantor;
         $this->ministerial_order_number = $this->Thank->ministerial_order_number;
         $this->ministerial_order_date = $this->Thank->ministerial_order_date;
         $this->reason = $this->Thank->reason;
         $this->months_of_service = $this->Thank->months_of_service;
         $this->calculator_number = $this->Thank->calculator_number;
-        $worker = $this->Thank->worker;
 
+
+        $worker = $this->Thank->worker;
         if ($worker) {
             $this->full_name = $worker->full_name;
-            $this->department = $worker->department;
+            $this->get_departmen = $worker->get_departmen;
         } else {
-            $this->full_name = 'N/A';
-            $this->department = 'N/A';
+            $this->full_name = '';
+            $this->get_departmen = '';
         }
+
     }
 
 
@@ -158,20 +178,17 @@ class Thank extends Component
         $this->validate([
             'user_id' => 'required:thanks',
             'grantor' => 'required:thanks',
+            'reason' => 'required:thanks',
             'ministerial_order_number' => 'required:thanks',
             'ministerial_order_date' => 'required:thanks',
-            'reason' => 'required:thanks',
             'months_of_service' => 'required:thanks',
-
-
         ], [
-            'user_id.required' => 'حقل الاسم مطلوب',
-            'grantor.required' => 'حقل الاسم مطلوب',
-            'ministerial_order_number.required' => 'حقل الاسم مطلوب',
-            'ministerial_order_date.required' => 'حقل الاسم مطلوب',
-            'reason.required' => 'حقل الاسم مطلوب',
-            'months_of_service.required' => 'حقل الاسم مطلوب',
-
+            'user_id.required' => 'حقل اسم الموظف مطلوب',
+            'grantor.required' => 'حقل الجهة المانحة مطلوب',
+            'reason.required' => 'حقل السبب من الشكر مطلوب',
+            'ministerial_order_number.required' => 'حقل رقم الامر الوزاري مطلوب',
+            'ministerial_order_date.required' => 'حقل تاريخ الامر الوزاري مطلوب',
+            'months_of_service.required' => 'حقل مدة القدم مطلوب',
         ]);
 
         $Thanks = Thanks::find($this->ThankId);
@@ -185,7 +202,7 @@ class Thank extends Component
             'months_of_service' => $this->months_of_service,
             'notes' => $this->notes,
         ]);
-        $this->reset(['department','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
+        $this->reset(['get_departmen','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'

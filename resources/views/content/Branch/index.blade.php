@@ -12,7 +12,7 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
         @endsection
-@section('content') 
+@section('content')
 @livewire('branch.branc')
 
 
@@ -36,6 +36,81 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        /* addLinkage */
+        $(document).ready(function() {
+            window.initAddLinkageDrop = () => {
+                $('#addLinkage').select2({
+                    placeholder: 'حدد الارتباط',
+                    dropdownParent: $('#addbrancModal')
+                })
+            }
+            initAddLinkageDrop();
+            $('#addLinkage').on('change', function(e) {
+                livewire.emit('GetLinkage', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddLinkageDrop();
+            });
+        });
+
+        /* addSection */
+        $(document).ready(function() {
+            window.initAddSectionDrop = () => {
+                $('#addSection').select2({
+                    placeholder: 'حدد القسم',
+                    dropdownParent: $('#addbrancModal')
+                })
+            }
+            initAddSectionDrop();
+            $('#addSection').on('change', function(e) {
+                livewire.emit('GetSection', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initAddSectionDrop();
+            });
+        });
+        /* editLinkage */
+        $(document).ready(function() {
+            window.initEditLinkageDrop = () => {
+                $('#editLinkage').select2({
+                    placeholder: 'حدد الارتباط',
+                    dropdownParent: $('#editbrancModal')
+                })
+            }
+            initEditLinkageDrop();
+            $('#editLinkage').on('change', function(e) {
+                livewire.emit('GetLinkage', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initEditLinkageDrop();
+            });
+        });
+        /* editSection */
+        $(document).ready(function() {
+            window.initEditSectionDrop = () => {
+                $('#editSection').select2({
+                    placeholder: 'حدد القسم',
+                    dropdownParent: $('#editbrancModal')
+                })
+            }
+            initEditSectionDrop();
+            $('#editSection').on('change', function(e) {
+                livewire.emit('GetSection', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initEditSectionDrop();
+            });
+        });
+
+        function onlyArabicKey(evt) {
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+            // نطاق رموز الحروف العربية والفراغ
+            if ((ASCIICode >= 1569 && ASCIICode <= 1610) || ASCIICode === 32) {
+                return true;
+            }
+            return false;
+        }
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -51,26 +126,26 @@
         window.addEventListener('BrancModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addbrancModal').modal('hide');
             $('#editbrancModal').modal('hide');
             $('#removebrancModal').modal('hide');
             Toast.fire({
                 icon: 'success',
-                title: event.detail.message
+                title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
         window.addEventListener('error', event => {
             $('#removebrancModal').modal('hide');
             Toast.fire({
                 icon: 'error',
-                title: event.detail.message,
+                title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

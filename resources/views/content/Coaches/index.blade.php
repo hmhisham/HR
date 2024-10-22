@@ -12,7 +12,7 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
         @endsection
-@section('content') 
+@section('content')
 @livewire('coaches.coache')
 
 
@@ -51,30 +51,30 @@
         window.addEventListener('CoacheModalShow', event => {
             setTimeout(() => {
              $('#id').focus();
-               }, 100);  
+               }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addcoacheModal').modal('hide');
             $('#editcoacheModal').modal('hide');
             $('#removecoacheModal').modal('hide');
             Toast.fire({
                 icon: 'success',
-                title: event.detail.message
+                title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
 
 
-            
+
 
         window.addEventListener('error', event => {
             $('#removecoacheModal').modal('hide');
             Toast.fire({
                 icon: 'error',
-                title: event.detail.message,
+                title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

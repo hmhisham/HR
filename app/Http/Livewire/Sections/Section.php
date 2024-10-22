@@ -14,54 +14,71 @@ class Section extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Sections = [];
-    public $SectionSearch, $Section, $SectionId;
+    public $linkages = [];
+    public $SectionSearch, $Section, $SectionId, $linkageName;
     public $linkage_id, $section_name;
 
+    protected $listeners = [
+        'GetLinkage',
+    ];
+    public function hydrate()
+    {
+        $this->emit('select2');
+    }
+
+    public function mount()
+    {
+        $this->linkages = Linkages::all();
+    }
 
     public function render()
     {
         $SectionSearch = $this->SectionSearch . '%';
-        $Sections = Sections::where('linkage_id', 'LIKE', $SectionSearch)
-            ->orWhere('section_name', 'LIKE', $SectionSearch)
-            ->orderBy('id', 'ASC')
-            ->paginate(10);
-        $linkss = $Sections;
+        $Sections = Sections::where('section_name', 'LIKE', $SectionSearch)->
+                                orderBy('id', 'ASC')->
+                                paginate(10);
+
+        $links = $Sections;
         $this->Sections = collect($Sections->items());
         return view('livewire.sections.section', [
             'linkages' => Linkages::get(),
-            'linkss' => $linkss
+            'links' => $links
         ]);
+    }
+
+    public function GetLinkage($Linkage_id)
+    {
+        $this->linkage_id = $Linkage_id;
     }
 
     public function AddSectionModalShow()
     {
-        $this->reset();
+        $this->reset(['linkage_id', 'section_name']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('SectionModalShow');
     }
-
 
     public function store()
     {
         $this->resetValidation();
         $this->validate([
             'linkage_id' => 'required',
-            'section_name' => 'required|unique:sections',
+            'section_name' => 'required|unique:sections,section_name',
+            'section_name' => 'required|unique:sections,section_name,NULL,id,linkage_id,'.$this->linkage_id,
 
         ], [
-            'linkage_id.required' => 'حقل الاسم مطلوب',
-            'linkage_id.unique' => 'الأسم موجود',
-            'section_name.required' => 'حقل الاسم مطلوب',
-            'section_name.unique' => 'الأسم موجود',
+            'linkage_id.required' => 'حقل الارتباط مطلوب',
+            'section_name.required' => 'حقل اسم القسم مطلوب',
+            'section_name.unique' => 'أسم القسم موجود',
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Sections::create([
             'linkage_id' => $this->linkage_id,
             'section_name' => $this->section_name,
 
         ]);
-        $this->reset();
+
+        $this->reset(['linkage_id', 'section_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -76,6 +93,8 @@ class Section extends Component
         $this->SectionId = $this->Section->id;
         $this->linkage_id = $this->Section->linkage_id;
         $this->section_name = $this->Section->section_name;
+
+        $this->linkageName = $this->Section->Getlinkage->Linkages_name;
     }
 
     public function update()
@@ -83,20 +102,22 @@ class Section extends Component
         $this->resetValidation();
         $this->validate([
             'linkage_id' => 'required:sections',
-            'section_name' => 'required:sections',
+            'section_name' => 'required|unique:sections',
+            'section_name' => 'required|unique:sections,section_name,' . $this->Section->id . ',id,linkage_id,'.$this->linkage_id
 
         ], [
-            'linkage_id.required' => 'حقل الاسم مطلوب',
-            'section_name.required' => 'حقل الاسم مطلوب',
+            'linkage_id.required' => 'حقل الارتباط مطلوب',
+            'section_name.required' => 'حقل اسم القسم مطلوب',
+            'section_name.unique' => 'أسم القسم موجود',
         ]);
 
         $Sections = Sections::find($this->SectionId);
         $Sections->update([
             'linkage_id' => $this->linkage_id,
             'section_name' => $this->section_name,
-
         ]);
-        $this->reset();
+
+        $this->reset(['linkage_id', 'section_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'

@@ -62,14 +62,14 @@ class Scalea extends Component
             'scaleas_previous_salary' => 'required',
 
         ], [
-            'grades_id.required' => 'حقل الاسم مطلوب',
-            'phase_emp.required' => 'حقل الاسم مطلوب',
-            'scaleas_salary_grade.required' => 'حقل الاسم مطلوب',
-            'scaleas_salary_stage.required' => 'حقل الاسم مطلوب',
-            'scaleas_amount.required' => 'حقل الاسم مطلوب',
-            'scaleas_salary.required' => 'حقل الاسم مطلوب',
-            'scaleas_minimum_period.required' => 'حقل الاسم مطلوب',
-            'scaleas_previous_salary.required' => 'حقل الاسم مطلوب',
+            'grades_id.required' => 'حقل الدرجة الوظيفية مطلوب',
+            'phase_emp.required' => 'حقل المرحلة الوظيفية مطلوب',
+            'scaleas_salary_grade.required' => 'حقل درجة الراتب مطلوب',
+            'scaleas_salary_stage.required' => 'حقل مرحلة الراتب مطلوب',
+            'scaleas_amount.required' => 'حقل مقدار العلاوة مطلوب',
+            'scaleas_salary.required' => 'حقل الراتب الحالي مطلوب',
+            'scaleas_minimum_period.required' => 'حقل المدة الاصغرية مطلوب',
+            'scaleas_previous_salary.required' => 'حقل الراتب السابق مطلوب',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
@@ -121,14 +121,14 @@ class Scalea extends Component
             'scaleas_previous_salary' => 'required:scaleas',
 
         ], [
-            'grades_id.required' => 'حقل الاسم مطلوب',
-            'phase_emp.required' => 'حقل الاسم مطلوب',
-            'scaleas_salary_grade.required' => 'حقل الاسم مطلوب',
-            'scaleas_salary_stage.required' => 'حقل الاسم مطلوب',
-            'scaleas_amount.required' => 'حقل الاسم مطلوب',
-            'scaleas_salary.required' => 'حقل الاسم مطلوب',
-            'scaleas_minimum_period.required' => 'حقل الاسم مطلوب',
-            'scaleas_previous_salary.required' => 'حقل الاسم مطلوب',
+            'grades_id.required' => 'حقل الدرجة الوظيفية مطلوب',
+            'phase_emp.required' => 'حقل المرحلة الوظيفية مطلوب',
+            'scaleas_salary_grade.required' => 'حقل درجة الراتب مطلوب',
+            'scaleas_salary_stage.required' => 'حقل مرحلة الراتب مطلوب',
+            'scaleas_amount.required' => 'حقل مقدار العلاوة مطلوب',
+            'scaleas_salary.required' => 'حقل الراتب الحالي مطلوب',
+            'scaleas_minimum_period.required' => 'حقل المدة الاصغرية مطلوب',
+            'scaleas_previous_salary.required' => 'حقل الراتب السابق مطلوب',
         ]);
 
         $Scaleas = Scaleas::find($this->ScaleaId);

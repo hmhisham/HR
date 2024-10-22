@@ -9,15 +9,16 @@ use App\Http\Controllers\Areas\AreasController;
 
 use App\Http\Controllers\Units\UnitsController;
 
+use App\Http\Controllers\Wives\WivesController;
 use App\Http\Controllers\Branch\BranchController;
+
 use App\Http\Controllers\Grades\GradesController;
 
 use App\Http\Controllers\Thanks\ThanksController;
-
 use App\Http\Controllers\Coaches\CoachesController;
+
 use App\Http\Controllers\Courses\CoursesController;
 use App\Http\Controllers\Scaleas\ScaleasController;
-
 use App\Http\Controllers\Scalems\ScalemsController;
 use App\Http\Controllers\Workers\WorkersController;
 use App\Http\Controllers\Certific\CertificController;
@@ -25,18 +26,24 @@ use App\Http\Controllers\Dispatch\DispatchController;
 use App\Http\Controllers\Holidays\HolidaysController;
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\Linkages\LinkagesController;
+
 use App\Http\Controllers\Precises\PrecisesController;
 use App\Http\Controllers\Sections\SectionsController;
-
+use App\Http\Controllers\Services\ServicesController;
+use App\Http\Controllers\Childrens\ChildrensController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Penalties\PenaltiesController;
+use App\Http\Controllers\Positions\PositionsController;
 use App\Http\Controllers\Trainings\TrainingsController;
+use App\Http\Controllers\Department\DepartmentController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
 use App\Http\Controllers\Jobleavers\JobleaversController;
+use App\Http\Controllers\Placements\PlacementsController;
 use App\Http\Controllers\Specialtys\SpecialtysController;
 use App\Http\Controllers\Graduations\GraduationsController;
+use App\Http\Controllers\Technicians\TechniciansController;
 use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
 use App\Http\Controllers\Typeholidays\TypeholidaysController;
@@ -79,8 +86,6 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Users-Accounts', UsersAccountsController::class);
         Route::RESOURCE('Customers-Accounts', CustomersAccountsController::class);
 
-
-
         // المحافظات I
         Route::RESOURCE('Governorates', GovernoratesController::class);
         // الاقضية I
@@ -90,7 +95,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         // مكتب المعلومات
         Route::RESOURCE('Infooffice', InfoofficeController::class);
         //الارتباط
-        Route::  RESOURCE('Linkages', LinkagesController::class);
+        Route::RESOURCE('Linkages', LinkagesController::class);
         //القسم
         Route::RESOURCE('Sections', SectionsController::class);
         //الشعبة
@@ -115,6 +120,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         Route::RESOURCE('Scalems', ScalemsController::class);
         // العقود السلم الوظيفي
         Route::RESOURCE('Scaleas', ScaleasController::class);
+        // سلم عقود الفنيين
+        Route::RESOURCE('Technicians', TechniciansController::class);
         //مجال التدريب
         Route::RESOURCE('Trainings', TrainingsController::class);
         //نوع الاجازة
@@ -124,7 +131,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         //نوع الخدمة
         Route::RESOURCE('Typesservices', TypesservicesController::class);
         // Route::  RESOURCE('Workers', WorkersController::class);
-
+        // الدوائر
+        Route::RESOURCE('Department', DepartmentController::class);
         // بيانات الموظف
         Route::GET('Workers', [WorkersController::class, 'index'])->name('Workers');
         Route::GET('AddWorker', [WorkersController::class, 'AddWorker'])->name('AddWorker');
@@ -144,7 +152,17 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
         // المدربين
         Route::RESOURCE('Coaches', CoachesController::class);
         // الدورات
-        Route::  RESOURCE('Courses', CoursesController::class);
+        Route::RESOURCE('Courses', CoursesController::class);
+        // الزوجية
+        Route::RESOURCE('Wives', WivesController::class);
+        // الاطفال
+        Route::RESOURCE('Childrens', ChildrensController::class);
+        // التنمسيب
+        Route::RESOURCE('Placements', PlacementsController::class);
+        //المنصب
+        Route::RESOURCE('Positions', PositionsController::class);
+        //الخدمات
+        Route::RESOURCE('Services', ServicesController::class);
     });
 });
 

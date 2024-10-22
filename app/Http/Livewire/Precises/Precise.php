@@ -14,13 +14,13 @@ class Precise extends Component
 
     public $Precises = [];
     public $PreciseSearch, $Precise, $PreciseId;
-    public $specialtys_code, $precises_code, $precises_name;
+    public $specialtys_id, $precises_code, $precises_name;
 
 
     public function render()
     {
         $PreciseSearch = '%' . $this->PreciseSearch . '%';
-        $Precises = Precises::where('specialtys_code', 'LIKE', $PreciseSearch)
+        $Precises = Precises::where('specialtys_id', 'LIKE', $PreciseSearch)
             ->orWhere('precises_code', 'LIKE', $PreciseSearch)
             ->orWhere('precises_name', 'LIKE', $PreciseSearch)
 
@@ -47,22 +47,21 @@ class Precise extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'specialtys_code' => 'required|unique:precises',
-            'precises_code' => 'required|unique:precises',
-            'precises_name' => 'required|unique:precises',
+            'specialtys_id' => 'required:precises',
+            'precises_code' => 'required|unique:precises,precises_code,NULL,id,specialtys_id,'.$this->specialtys_id,
+            'precises_name' => 'required|unique:precises,precises_name,NULL,id,specialtys_id,'.$this->specialtys_id,
 
         ], [
-            'specialtys_code.required' => 'حقل الاسم مطلوب',
-            'specialtys_code.unique' => 'الأسم موجود',
-            'precises_code.required' => 'حقل الاسم مطلوب',
-            'precises_code.unique' => 'الأسم موجود',
-            'precises_name.required' => 'حقل الاسم مطلوب',
-            'precises_name.unique' => 'الأسم موجود',
+            'specialtys_id.required' => 'حقل التخصص العام مطلوب',
+            'precises_code.required' => 'حقل رمز التخصص الدقيق مطلوب',
+            'precises_code.unique' => 'رمز التخصص الدقيق موجود',
+            'precises_name.required' => 'حقل اسم التخصص الدقيق مطلوب',
+            'precises_name.unique' => 'اسم التخصص الدقيق موجود',
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Precises::create([
-            'specialtys_code' => $this->specialtys_code,
+            'specialtys_id' => $this->specialtys_id,
             'precises_code' => $this->precises_code,
             'precises_name' => $this->precises_name,
 
@@ -80,7 +79,7 @@ class Precise extends Component
 
         $this->Precise  = Precises::find($PreciseId);
         $this->PreciseId = $this->Precise->id;
-        $this->specialtys_code = $this->Precise->specialtys_code;
+        $this->specialtys_id = $this->Precise->specialtys_id;
         $this->precises_code = $this->Precise->precises_code;
         $this->precises_name = $this->Precise->precises_name;
     }
@@ -89,19 +88,23 @@ class Precise extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'specialtys_code' => 'required:precises',
-            'precises_code' => 'required:precises',
-            'precises_name' => 'required:precises',
+            'specialtys_id' => 'required:precises',
+            //'precises_code' => 'required|unique:precises,precises_code,NULL,id,specialtys_id,'.$this->specialtys_id,
+            //'precises_name' => 'required|unique:precises,precises_name,NULL,id,specialtys_id,'.$this->specialtys_id,
+            'precises_code' => 'required|unique:precises,precises_code,'.$this->Precise->id.',id',
+            'precises_name' => 'required|unique:precises,precises_name,'.$this->Precise->id.',id',
 
         ], [
-            'specialtys_code.required' => 'حقل الاسم مطلوب',
-            'precises_code.required' => 'حقل الاسم مطلوب',
-            'precises_name.required' => 'حقل الاسم مطلوب',
+            'specialtys_id.required' => 'حقل التخصص العام مطلوب',
+            'precises_code.required' => 'حقل رمز التخصص الدقيق مطلوب',
+            'precises_code.unique' => 'رمز التخصص الدقيق موجود',
+            'precises_name.required' => 'حقل اسم التخصص الدقيق مطلوب',
+            'precises_name.unique' => 'اسم التخصص الدقيق موجود',
         ]);
 
         $Precises = Precises::find($this->PreciseId);
         $Precises->update([
-            'specialtys_code' => $this->specialtys_code,
+            'specialtys_id' => $this->specialtys_id,
             'precises_code' => $this->precises_code,
             'precises_name' => $this->precises_name,
 

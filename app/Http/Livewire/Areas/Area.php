@@ -4,10 +4,8 @@ namespace App\Http\Livewire\Areas;
 
 use Livewire\Component;
 use App\Models\Areas\Areas;
-use App\Models\Links\Links;
 use Livewire\WithPagination;
 use App\Models\Districts\Districts;
-use App\Http\Livewire\Districts\District;
 use App\Models\Governorates\Governorates;
 
 
@@ -15,21 +13,26 @@ class Area extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $Links = [];
     public $Areas = [];
     public $Districts = [];
+    public $Governorates = [];
     public $AreaSearch, $Area, $AreaId;
     public $governorate_id, $district_id, $area_id, $area_name;
-    public $Governorates = [];
+    public $GovernorateName, $DistrictsName;
+
+    protected $listeners = [
+        'chooseGovernorate',
+        'chooseDistrict',
+    ];
+    public function hydrate()
+    {
+        $this->emit('select2');
+    }
 
     public function mount()
     {
         $this->Governorates = Governorates::all();
-        $this->Areas = Areas::all();
-        $this->Districts = Districts::all();
-  
     }
-
 
     public function render()
     {
@@ -40,13 +43,26 @@ class Area extends Component
             ->orWhere('area_name', 'LIKE', $AreaSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Areas;
         $this->Areas = collect($Areas->items());
-        return view('livewire.areas.area', [
 
+        return view('livewire.areas.area', [
             'governorates' => Governorates::get(),
             'links' => $links
         ]);
+    }
+
+    public function chooseGovernorate($GovernorateID)
+    {
+        $this->governorate_id = $GovernorateID;
+        $Governorate = Governorates::find($GovernorateID);
+        $this->Districts = $Governorate->GetDistrict;
+        $this->reset('district_id');
+    }
+    public function chooseDistrict($DistrictID)
+    {
+        $this->district_id = $DistrictID;
     }
 
     public function AddAreaModalShow()
@@ -56,40 +72,30 @@ class Area extends Component
         $this->dispatchBrowserEvent('AreaModalShow');
     }
 
-    public function chooseGovernorate()
-    {
-        $Governorates = Governorates::find($this->governorate_id);
-        $this->Districts = $Governorates->GetDistrict;
-    }
-
     public function store()
     {
         $this->resetValidation();
         $this->validate([
             'governorate_id' => 'required',
             'district_id' => 'required',
-            'area_id' => 'required|unique:areas',
-            'area_name' => 'required',
-
+            'area_id' => 'required|unique:areas,area_id',
+            'area_name' => 'required|unique:areas,area_name',
         ], [
-            'governorate_id.required' => 'حقل الاسم مطلوب',
-
-            'district_id.required' => 'حقل الاسم مطلوب',
-
-            'area_id.required' => 'حقل الاسم مطلوب',
-            'area_id.unique' => 'الأسم موجود',
-            'area_name.required' => 'حقل الاسم مطلوب',
-
+            'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
+            'district_id.required' => 'حقل أسم القضاء مطلوب',
+            'area_id.required' => 'حقل رقم الناحية مطلوب',
+            'area_id.unique' => 'رقم الناحية موجود',
+            'area_name.required' => 'حقل أسم الناحية مطلوب',
+            'area_name.unique' => 'أسم الناحية موجود',
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
         Areas::create([
             'governorate_id' => $this->governorate_id,
             'district_id' => $this->district_id,
             'area_id' => $this->area_id,
             'area_name' => $this->area_name,
-
         ]);
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
@@ -108,8 +114,9 @@ class Area extends Component
         $this->area_id = $this->Area->area_id;
         $this->area_name = $this->Area->area_name;
 
-        $Governorates = Governorates::find($this->governorate_id);
-        $this->Districts = $Governorates->GetDistrict;
+        $this->Districts = $this->Area->GetGovernorate->GetDistrict;
+        $this->GovernorateName = $this->Area->GetGovernorate->governorate_name;
+        $this->DistrictsName = $this->Area->Getdistrict->district_name;
     }
 
     public function update()
@@ -118,15 +125,15 @@ class Area extends Component
         $this->validate([
             'governorate_id' => 'required',
             'district_id' => 'required',
-            'area_id' => 'required|unique:areas,area_id,'.$this->AreaId,
-            'area_name' => 'required',
-
+            'area_id' => 'required|unique:areas,area_id,' . $this->Area->id . ',id',
+            'area_name' => 'required|unique:areas,area_name,' . $this->Area->id . ',id',
         ], [
-            'governorate_id.required' => 'حقل الاسم مطلوب',
-            'district_id.required' => 'حقل الاسم مطلوب',
-            'area_id.required' => 'حقل الاسم مطلوب',
-            'area_id.unique' => 'الأسم موجود',
-            'area_name.required' => 'حقل الاسم مطلوب',
+            'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
+            'district_id.required' => 'حقل أسم القضاء مطلوب',
+            'area_id.required' => 'حقل رقم الناحية مطلوب',
+            'area_id.unique' => 'رقم الناحية موجود',
+            'area_name.required' => 'حقل أسم الناحية مطلوب',
+            'area_name.unique' => 'أسم الناحية موجود',
         ]);
 
         $Areas = Areas::find($this->AreaId);
@@ -136,6 +143,7 @@ class Area extends Component
             'area_id' => $this->area_id,
             'area_name' => $this->area_name,
         ]);
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
@@ -147,7 +155,9 @@ class Area extends Component
     {
         $Areas = Areas::find($this->AreaId);
         $Areas->delete();
+
         $this->reset();
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

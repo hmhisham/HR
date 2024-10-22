@@ -1,11 +1,5 @@
 @extends('layouts/layoutMaster')
 @section('title', 'Thanks')
-
-
-
-
-
-
 @section('vendor-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
@@ -16,8 +10,13 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
     <!-- CSS -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -27,7 +26,7 @@
 @endsection
 
 @section('vendor-script')
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script src="{{ asset('assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
@@ -39,8 +38,13 @@
     <script src="{{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
-<!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 @endsection
 
@@ -50,28 +54,97 @@
     <script src="{{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
         //	لجعل الـ text يقبل ارقام فقط
-		function onlyNumberKey(evt) {
-			 // Only ASCII character in that range allowed
-			 var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-			 if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57) && (ASCIICode < 45 || ASCIICode > 47))
-				 return false;
-			 return true;
-		 }
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+
+        /*	لجعل الـ text يقبل ارقام فقط
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57) && (ASCIICode < 45 || ASCIICode > 47))
+                return false;
+            return true;
+        }*/
+
+        /* اضافة تاريخ الامر الوزاري */
+        $(document).ready(function() {
+            window.initAddBirthDateDrop = () => {
+                $('#addministerial_order_date').flatpickr({
+                    placeholder: 'تاريخ الامر الوزاري',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initAddBirthDateDrop();
+            $('#addministerial_order_date').on('change', function(e) {
+                livewire.emit('employeeMinisterialOrderDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initAddBirthDateDrop();
+            });
+        });
+        /* تعديل تاريخ الامر الوزاري */
+        $(document).ready(function() {
+            window.initEditBirthDateDrop = () => {
+                $('#editministerial_order_date').flatpickr({
+                    placeholder: 'تاريخ الامر الوزاري',
+                    //dropdownParent: $('#addPatientModal')
+                })
+            }
+            initEditBirthDateDrop();
+            $('#editministerial_order_date').on('change', function(e) {
+                livewire.emit('employeeMinisterialOrderDate', e.target.value)
+            });
+            window.livewire.on('flatpickr', () => {
+                initEditBirthDateDrop();
+            });
+        });
 
         /* الموظفين */
-		$(document).ready(function() {
-            window.initWorkerDrop=()=>{
+        $(document).ready(function() {
+            window.initWorkerDrop = () => {
                 $('#worker').select2({
-					placeholder: 'حدد الموظف',
+                    placeholder: 'حدد الموظف',
                     dropdownParent: $('#addthankModal')
-				})
-            }
+                });
+            };
+
             initWorkerDrop();
-            $('#worker').on('change', function (e) {
-                livewire.emit('SelectWorker', e.target.value)
+
+            $('#worker').on('change', function(e) {
+                livewire.emit('SelectWorker', e.target.value);
             });
-            window.livewire.on('select2',()=>{
+
+            window.livewire.on('select2', () => {
                 initWorkerDrop();
+            });
+        });
+
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+
+        $(document).ready(function() {
+            window.initDepartmentDrop = () => {
+                $('#modalThanksgrantor').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addthankModal')
+                });
+            }
+            initDepartmentDrop();
+            $('#modalThanksgrantor').on('change', function(e) {
+                livewire.emit('SelectGrantor', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initDepartmentDrop();
             });
         });
 
@@ -99,7 +172,7 @@
             $('#removethankModal').modal('hide');
             Toast.fire({
                 icon: 'success',
-                title: event.detail.message
+                title: event.detail.title + '<hr>' + event.detail.message,
             });
         });
 
@@ -107,12 +180,10 @@
             $('#removethankModal').modal('hide');
             Toast.fire({
                 icon: 'error',
-                title: event.detail.message,
+                title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             });
         });
-
-
     </script>
 
 @endsection

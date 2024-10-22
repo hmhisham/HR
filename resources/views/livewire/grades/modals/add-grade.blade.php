@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة </h3>
+                    <h3 class="pb-1 mb-2">اضافة درجة جديدة</h3>
                     <p>نافذة الأضافة </p>
                 </div>
                 <hr class="mt-n2">
@@ -13,26 +13,25 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='grades_name' type="text" id="modalGradesgrades_name"
-                                            placeholder="اسم الدرجة"
-                                            class="form-control @error('grades_name') is-invalid is-filled @enderror" />
-                                        <label for="modalGradesgrades_name">اسم الدرجة</label>
+                                            placeholder="الدرجة"
+                                            class="form-control @error('grades_name') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyArabicAndNumberKey(event)" />
+                                        <label for="modalGradesgrades_name">الدرجة</label>
                                     </div>
                                     @error('grades_name')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                             </div>
                         </div>
                     </div>
                     <hr class="my-0">
                     <div class="text-center col-12 demo-vertical-spacing mb-n4">
                         <button wire:click='store' wire:loading.attr="disabled" type="button"
-                            class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                            class="btn btn-primary me-sm-3 me-1">اضافة</button>
                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                             aria-label="Close">تجاهل</button>
                     </div>
