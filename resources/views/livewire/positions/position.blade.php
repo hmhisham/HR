@@ -1,8 +1,8 @@
 <div class="mt-n4">
     <h4 class="mb-2">
-        <span class="text-muted fw-light">الموارد البشرية <span class="mdi mdi-chevron-left mdi-24px"></span></span> المنصب
+        <span class="text-muted fw-light">الموارد البشرية <span class="mdi mdi-chevron-left mdi-24px"></span></span>
+        المنصب
     </h4>
-
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
@@ -18,7 +18,6 @@
                 </div>
             </div>
         </div>
-
         <div class="card-body">
             @can('position-list')
                 <table class="table">
@@ -37,7 +36,8 @@
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
-                                <td class="text-center">{{ $Position->Getworker ? $Position->Getworker->full_name : '' }}</td>
+                                <td class="text-center">{{ $Position->Getworker ? $Position->Getworker->full_name : '' }}
+                                </td>
                                 <td class="text-center">{{ $Position->position_name }}</td>
                                 <td class="text-center">{{ $Position->position_order_number }}</td>
                                 <td class="text-center">

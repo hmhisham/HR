@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Livewire\Positions;
+
 use Livewire\Component;
 use App\Models\Units\Units;
 use Livewire\WithPagination;
@@ -9,6 +11,7 @@ use App\Models\Linkages\Linkages;
 use App\Models\Sections\Sections;
 use App\Models\Positions\Positions;
 use Illuminate\Support\Facades\Auth;
+
 class Position extends Component
 {
     use WithPagination;
@@ -87,16 +90,93 @@ class Position extends Component
         $links = $Positions;
         $this->Positions = collect($Positions->items());
         return view('livewire.positions.position', [
-            'links' => $links
+            'links' => $links,
+            'sections' => $this->sections,
+            'branch' => $this->branch,
+            'units' => $this->units,
         ]);
     }
+
+
     public function AddPositionModalShow()
     {
-        $this->reset(['id','worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'position_name', 'position_order_number', 'position_order_date', 'position_start_date', 'commissioning_type', 'commissioning_statu', 'p_notes']);
+        $this->reset(['id', 'worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'position_name', 'position_order_number', 'position_order_date', 'position_start_date', 'commissioning_type', 'commissioning_statu', 'p_notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('PositionModalShow');
     }
+
     public function store()
+    {
+        $this->resetValidation();
+        $rules = [
+            'worker_id' => 'required',
+            'linkage_id' => 'required',
+            'position_name' => 'required',
+            'position_order_number' => 'required',
+            'position_order_date' => 'required',
+            'position_start_date' => 'required',
+            'commissioning_type' => 'required',
+            'commissioning_statu' => 'required',
+        ];
+
+        if (in_array($this->position_name, ['مسؤول وحدة', 'معاون مسؤول شعبة'])) {
+            $rules['unit_id'] = 'required';
+            $rules['branch_id'] = 'required';
+            $rules['section_id'] = 'required';
+        } elseif (in_array($this->position_name, ['مسؤول شعبة', 'معاون مدير قسم'])) {
+            $rules['branch_id'] = 'required';
+            $rules['section_id'] = 'required';
+        } elseif (in_array($this->position_name, ['مدير قسم', 'معاون مدير تشكيل'])) {
+            $rules['section_id'] = 'required';
+        } elseif (in_array($this->position_name, ['مدير تشكيل', 'معاون مدير عام', 'مدير عام', 'رئيس هيئة', 'وكيل وزير'])) {
+            unset($rules['unit_id'], $rules['branch_id'], $rules['section_id']);
+        } else {
+            $rules['unit_id'] = 'required';
+            $rules['branch_id'] = 'required';
+            $rules['section_id'] = 'required';
+            $rules['linkage_id'] = 'required';
+        }
+
+        $this->validate($rules, [
+            'worker_id.required' => 'حقل الاسم مطلوب',
+            'linkage_id.required' => 'حقل الارتباط مطلوب',
+            'position_name.required' => 'حقل اسم المنصب مطلوب',
+            'position_order_number.required' => 'حقل رقم امر التكليف مطلوب',
+            'position_order_date.required' => 'حقل تاريخ أمر التكليف مطلوب',
+            'position_start_date.required' => 'حقل تاريخ المباشرة بالنصب مطلوب',
+            'commissioning_type.required' => 'حقل نوع التكليف مطلوب',
+            'commissioning_statu.required' => 'حقل حالة التكليف مطلوب',
+            'unit_id.required' => 'حقل الوحدة مطلوب',
+            'branch_id.required' => 'حقل الشعبة مطلوب',
+            'section_id.required' => 'حقل القسم مطلوب',
+        ]);
+
+        Positions::create([
+            'user_id' => Auth::id(),
+            'worker_id' => $this->worker_id,
+            'linkage_id' => $this->linkage_id,
+            'section_id' => $this->section_id,
+            'branch_id' => $this->branch_id,
+            'unit_id' => $this->unit_id,
+            'position_name' => $this->position_name,
+            'position_order_number' => $this->position_order_number,
+            'position_order_date' => $this->position_order_date,
+            'position_start_date' => $this->position_start_date,
+            'commissioning_type' => $this->commissioning_type,
+            'commissioning_statu' => $this->commissioning_statu,
+            'p_notes' => $this->p_notes,
+        ]);
+
+        $this->reset(['worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'position_name', 'position_order_number', 'position_order_date', 'position_start_date', 'commissioning_type', 'commissioning_statu', 'p_notes']);
+
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'تم الاضافه بنجاح',
+            'title' => 'اضافه'
+        ]);
+    }
+
+
+    /* public function store()
     {
         $this->resetValidation();
         $this->validate([
@@ -124,7 +204,7 @@ class Position extends Component
             'commissioning_type.required' => 'حقل نوع التكليف مطلوب',
             'commissioning_statu.required' => 'حقل حالة التكليف مطلوب',
         ]);
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
+
         Positions::create([
             'user_id' => Auth::id(),
             'user_id' => $this->user_id,
@@ -146,7 +226,7 @@ class Position extends Component
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
-    }
+    }*/
     public function GetPosition($PositionId)
     {
         $this->resetValidation();
@@ -166,34 +246,53 @@ class Position extends Component
         $this->commissioning_statu = $this->Position->commissioning_statu;
         $this->p_notes = $this->Position->p_notes;
     }
+
     public function update()
     {
         $this->resetValidation();
-        $this->validate([
-            'worker_id' => 'required:positions',
-            'linkage_id' => 'required:positions',
-            //'section_id' => 'required:positions',
-            //'branch_id' => 'required:positions',
-            //'unit_id' => 'required:positions',
-            'position_name' => 'required:positions',
-            'position_order_number' => 'required:positions',
-            'position_order_date' => 'required:positions',
-            'position_start_date' => 'required:positions',
-            'commissioning_type' => 'required:positions',
-            'commissioning_statu' => 'required:positions',
-        ], [
+        $rules = [
+            'worker_id' => 'required',
+            'linkage_id' => 'required',
+            'position_name' => 'required',
+            'position_order_number' => 'required',
+            'position_order_date' => 'required',
+            'position_start_date' => 'required',
+            'commissioning_type' => 'required',
+            'commissioning_statu' => 'required',
+        ];
+
+        if (in_array($this->position_name, ['مسؤول وحدة', 'معاون مسؤول شعبة'])) {
+            $rules['unit_id'] = 'required';
+            $rules['branch_id'] = 'required';
+            $rules['section_id'] = 'required';
+        } elseif (in_array($this->position_name, ['مسؤول شعبة', 'معاون مدير قسم'])) {
+            $rules['branch_id'] = 'required';
+            $rules['section_id'] = 'required';
+        } elseif (in_array($this->position_name, ['مدير قسم', 'معاون مدير تشكيل'])) {
+            $rules['section_id'] = 'required';
+        } elseif (in_array($this->position_name, ['مدير تشكيل', 'معاون مدير عام', 'مدير عام', 'رئيس هيئة', 'وكيل وزير'])) {
+            unset($rules['unit_id'], $rules['branch_id'], $rules['section_id']);
+        } else {
+            $rules['unit_id'] = 'required';
+            $rules['branch_id'] = 'required';
+            $rules['section_id'] = 'required';
+            $rules['linkage_id'] = 'required';
+        }
+
+        $this->validate($rules, [
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
-            //'section_id.required' => 'حقل القسم مطلوب',
-            //'branch_id.required' => 'حقل الشعبة مطلوب',
-            //'unit_id.required' => 'حقل الوحدة مطلوب',
             'position_name.required' => 'حقل اسم المنصب مطلوب',
             'position_order_number.required' => 'حقل رقم امر التكليف مطلوب',
             'position_order_date.required' => 'حقل تاريخ أمر التكليف مطلوب',
             'position_start_date.required' => 'حقل تاريخ المباشرة بالنصب مطلوب',
             'commissioning_type.required' => 'حقل نوع التكليف مطلوب',
             'commissioning_statu.required' => 'حقل حالة التكليف مطلوب',
+            'unit_id.required' => 'حقل الوحدة مطلوب',
+            'branch_id.required' => 'حقل الشعبة مطلوب',
+            'section_id.required' => 'حقل القسم مطلوب',
         ]);
+
         $Positions = Positions::find($this->PositionId);
         $Positions->update([
             'user_id' => Auth::id(),
@@ -210,20 +309,24 @@ class Position extends Component
             'commissioning_statu' => $this->commissioning_statu,
             'p_notes' => $this->p_notes,
         ]);
-        $this->reset(['id','worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'position_name', 'position_order_number', 'position_order_date', 'position_start_date', 'commissioning_type', 'commissioning_statu', 'p_notes']);
+
+        $this->reset(['id', 'worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'position_name', 'position_order_number', 'position_order_date', 'position_start_date', 'commissioning_type', 'commissioning_statu', 'p_notes']);
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
     }
+
+
     public function destroy()
     {
         $Positions = Positions::find($this->PositionId);
-            $Positions->delete();
-            $this->reset(['id','worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'position_name', 'position_order_number', 'position_order_date', 'position_start_date', 'commissioning_type', 'commissioning_statu', 'p_notes']);
-            $this->dispatchBrowserEvent('success', [
-                'message' => 'تم حذف البيانات بنجاح',
-                'title' => 'الحذف'
-            ]);
+        $Positions->delete();
+        $this->reset(['id', 'worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'position_name', 'position_order_number', 'position_order_date', 'position_start_date', 'commissioning_type', 'commissioning_statu', 'p_notes']);
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'تم حذف البيانات بنجاح',
+            'title' => 'الحذف'
+        ]);
     }
 }
