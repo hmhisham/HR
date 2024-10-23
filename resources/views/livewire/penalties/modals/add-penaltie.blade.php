@@ -109,8 +109,8 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
+                                {{-- <div class="mb-3 col">
+                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='p_penalty_type' id="modalPenaltiesp_penalty_type"
                                             class="form-select @error('p_penalty_type') is-invalid is-filled @enderror">
                                             <option value="">اختر نوع العقوبة</option>
@@ -147,6 +147,52 @@
                                             <option value="24">24</option>
                                         </select>
                                         <label for="modalEmployeeduration_of_delay">مدة التاخير/عددالاشهر</label>
+                                    </div>
+                                    @error('duration_of_delay')
+                                        <small class="text-danger inputerror">{{ $message }}</small>
+                                    @enderror
+                                </div> --}}
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model='p_penalty_type' id="modalPenaltiesp_penalty_type"
+                                            class="form-select @error('p_penalty_type') is-invalid is-filled @enderror">
+                                            <option value="">اختر نوع العقوبة</option>
+                                            <option value="لفت نظر">لفت نظر</option>
+                                            <option value="انذار">انذار</option>
+                                            <option value="قطع راتب">قطع راتب</option>
+                                            <option value="توبيخ">توبيخ</option>
+                                            <option value="انقاص راتب">انقاص راتب</option>
+                                            <option value="تنزيل الدرجة">تنزيل الدرجة</option>
+                                            <option value="سحب يد">سحب يد</option>
+                                            <option value="فصل">فصل</option>
+                                            <option value="عزل">عزل</option>
+                                        </select>
+                                        <label for="modalPenaltiesp_penalty_type">نوع العقوبة</label>
+                                    </div>
+                                    @error('p_penalty_type')
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model="duration_of_delay" id="modalEmployeeduration_of_delay"
+                                            class="form-select @error('duration_of_delay') is-invalid is-filled @enderror">
+                                            <option value="">مدة التأخير</option>
+                                            @if ($p_penalty_type == 'لفت نظر')
+                                                <option value="3">3</option>
+                                            @elseif ($p_penalty_type == 'انذار')
+                                                <option value="6">6</option>
+                                            @elseif ($p_penalty_type == 'قطع راتب')
+                                                @for ($i = 5; $i <= 10; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            @elseif ($p_penalty_type == 'توبيخ')
+                                                <option value="12">12</option>
+                                            @elseif ($p_penalty_type == 'انقاص راتب')
+                                                <option value="24">24</option>
+                                            @endif
+                                        </select>
+                                        <label for="modalEmployeeduration_of_delay">مدة التأخير/عدد الأشهر</label>
                                     </div>
                                     @error('duration_of_delay')
                                         <small class="text-danger inputerror">{{ $message }}</small>
