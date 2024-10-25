@@ -20,7 +20,7 @@
                             <a href="{{ Route('AddWorker') }}" class="mb-3 add-new btn btn-primary mb-md-0">أضــافــة</a>
 
                             <button
-                                wire:click="sendNotificationToApp('تجريبي','تجريبي','fMT_77QETjOxfjvgNRZkkk:APA91bG_ZdvwKxH2aR6sZIAoERsKBSIx6GCCSTzN-NQ4ngYLX8NvoZL7jtqzEj-vZu6i38dUjqHSbOsHBIZIGL7ZE81y7pnXKCpfddSm-3bMQYWQMwU7ztNesMFwQlml9UkB-oRITiCK')"
+                                wire:click="sendNotificationToApp('اشعار جديد','تنبيه','d0dlJ6i2Rx6s0UKZvEBOvI:APA91bF_TPxuHTS7sks-jeEk7uKEpfkcn9NiVSsKRGQthlyVMRrJ3q5XY2sadL-odxuWpsZeyxLZnfIoj7BXYzXUG5l1wqcN7lQdDFdyxb3DfXIVYTdvb-0Pq-v6nVWqTM624zkv0W2H')"
                                 class="mb-3 add-new btn btn-success mb-md-0">ارسال اشعار</button>
                         @endcan
                     </div>
