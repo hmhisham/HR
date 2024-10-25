@@ -1,6 +1,7 @@
 <div class="mt-n4">
     <h4 class="mb-2">
-        <span class="text-muted fw-light">الموارد البشرية<span class="mdi mdi-chevron-left mdi-24px"></span></span> المعلومات العامة
+        <span class="text-muted fw-light">الموارد البشرية<span class="mdi mdi-chevron-left mdi-24px"></span></span>
+        المعلومات العامة
     </h4>
     <div class="card">
         <div class="card">
@@ -17,7 +18,10 @@
                         @endcan --}}
                         @can('worker-create')
                             <a href="{{ Route('AddWorker') }}" class="mb-3 add-new btn btn-primary mb-md-0">أضــافــة</a>
-                            <button wire:click="SenNotify" class="mb-3 add-new btn btn-success mb-md-0">ارسال اشعار</button>
+
+                            <button
+                                wire:click="sendNotificationToApp('تجريبي','تجريبي','fMT_77QETjOxfjvgNRZkkk:APA91bG_ZdvwKxH2aR6sZIAoERsKBSIx6GCCSTzN-NQ4ngYLX8NvoZL7jtqzEj-vZu6i38dUjqHSbOsHBIZIGL7ZE81y7pnXKCpfddSm-3bMQYWQMwU7ztNesMFwQlml9UkB-oRITiCK')"
+                                class="mb-3 add-new btn btn-success mb-md-0">ارسال اشعار</button>
                         @endcan
                     </div>
                 </div>
@@ -45,8 +49,8 @@
                                 <td class="text-center">{{ $worker->employee_number }}</td>
                                 <td class="text-center">{{ $worker->full_name }}</td>
 
-                                 <td class="text-center">
-                                    {{--<div class="btn-group" role="group" aria-label="First group">
+                                <td class="text-center">
+                                    {{-- <div class="btn-group" role="group" aria-label="First group">
                                         @can('worker-edit')
                                             <button wire:click="Getworker({{ $worker->id }})"
                                                 class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"

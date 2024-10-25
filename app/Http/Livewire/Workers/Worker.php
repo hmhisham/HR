@@ -2,11 +2,16 @@
 
 namespace App\Http\Livewire\Workers;
 
-use Livewire\Component;
+use Google;
 
+use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Workers\Workers;
+use Google\Client as Google_Client;
 use Illuminate\Support\Facades\Http;
+use Google\Client;
+
+use \Firebase\JWT\JWT;
 
 class Worker extends Component
 {
@@ -425,71 +430,94 @@ class Worker extends Component
     }
 
 
-    public function SenNotify()
+ 
+
+
+
+
+
+
+
+    private function getAccessToken($serviceAccountPath)
     {
-        $deviceToken = 'fMT_77QETjOxfjvgNRZkkk:APA91bG_ZdvwKxH2aR6sZIAoERsKBSIx6GCCSTzN-NQ4ngYLX8NvoZL7jtqzEj-vZu6i38dUjqHSbOsHBIZIGL7ZE81y7pnXKCpfddSm-3bMQYWQMwU7ztNesMFwQlml9UkB-oRITiCK';
+        $serviceAccount = json_decode(file_get_contents($serviceAccountPath), true);
 
-        $title = 'عنوان';
-        $body = 'محتوى الإشعار';
-
-        // استرداد accessToken
-        $accessToken = $this->getAccessToken();
-        if (!$accessToken) {
-            session()->flash('error', 'فشل الحصول على accessToken.');
-            return;
+        if (!$serviceAccount || !isset($serviceAccount['client_email']) || !isset($serviceAccount['private_key'])) {
+            throw new \Exception('Invalid service account configuration');
         }
 
-        $message = [
-            "message" => [
-                "token" => $deviceToken,
-                "notification" => [
-                    "title" => $title,
-                    "body" => $body,
+        $now_seconds = time();
+        $payload = array(
+            "iss" => $serviceAccount['client_email'],
+            "scope" => "https://www.googleapis.com/auth/firebase.messaging",
+            "aud" => "https://oauth2.googleapis.com/token",
+            "exp" => $now_seconds + 3600,
+            "iat" => $now_seconds
+        );
+
+        $private_key = $serviceAccount['private_key'];
+        $token = JWT::encode($payload, $private_key, "RS256");
+
+        $postFields = 'grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=' . $token;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://oauth2.googleapis.com/token');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+
+        // تعطيل التحقق من SSL (غير موصى به للإنتاج)
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        $result = curl_exec($ch);
+
+        // التحقق من وجود أخطاء في CURL
+        if (curl_errno($ch)) {
+            throw new \Exception('CURL Error: ' . curl_error($ch));
+        }
+
+        $response = json_decode($result, true);
+
+        // التحقق من استجابة توكن الوصول
+        if (!isset($response['access_token'])) {
+            // تسجيل الاستجابة كاملة لتسهيل استكشاف الأخطاء
+            throw new \Exception('Failed to retrieve access token: ' . json_encode($response));
+        }
+
+        return $response['access_token'];
+    }
+
+    public function sendNotificationToApp($title, $body, $userToken)
+    {
+        // الحصول على توكن الوصول
+        $accessToken = $this->getAccessToken(public_path('FCM.json'));
+
+        // تحضير البيانات للإرسال
+        $data = [
+            'message' => [
+                'token' => $userToken,
+                'notification' => [
+                    'title' => $title,
+                    'body' => $body
                 ],
-                "data" => [
-                    "click_action" => "FLUTTER_NOTIFICATION_CLICK"
-                ]
-            ]
+            ],
         ];
 
         // إرسال الطلب إلى FCM
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . $accessToken,
-        ])->post('https://fcm.googleapis.com/v1/projects/gcpi-e6c2b/messages:send', $message);
-
-        // عرض محتوى الرد من Firebase
-        if ($response->successful()) {
-            session()->flash('message', 'تم إرسال الإشعار بنجاح.');
-        } else {
-            session()->flash('error', 'حدث خطأ: ' . $response->status() . ' - ' . $response->body());
-        }
-    }
-
-    private function getAccessToken()
-    {
+        $client = new \GuzzleHttp\Client();
         try {
-            // مسار ملف حساب الخدمة
-            $serviceAccountPath = base_path('app\Http\Controllers\API\Login\gcpi-e6c2b-firebase-adminsdk-cy1bp-b8182b619f.json');
-
-            // إعداد Google Client
-            $client = new Google_Client();
-            $client->setAuthConfig($serviceAccountPath);
-            $client->addScope('https://www.googleapis.com/auth/firebase.messaging');
-
-            // تحديث Access Token
-            $client->refreshTokenWithAssertion();
-            $accessToken = $client->getAccessToken();
-
-            return $accessToken['access_token'] ?? null;
-
-        } catch (\Exception $e) {
-            // التعامل مع الأخطاء
-            Log::error('Failed to get access token: ' . $e->getMessage());
-            return null;
+            $response = $client->post('https://fcm.googleapis.com/v1/projects/gcpi-e6c2b/messages:send', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $accessToken,
+                    'Content-Type' => 'application/json'
+                ],
+                'json' => $data
+            ]);
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            throw new \Exception('Guzzle Error: ' . $e->getMessage());
         }
+
+        // إعادة الاستجابة
+        return $response;
     }
-
-
-
 }
