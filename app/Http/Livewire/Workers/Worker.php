@@ -424,54 +424,72 @@ class Worker extends Component
         }
     }
 
-    /* public function SenNotify()
-    {
-        $userToken = Workers::where('user_id' , 2)->latest()->first();
-        if($userToken)
-            {
-                $title = 'بطاقة الخصومات';
-                $body = 'رقم البطاقة ' . $Card->card_rfid;
-                $body .= 'رصيد البطاقة الحالي ' . $Card->balance;
-                $body .= $message;
-                $this->sendNotificationToApp($this->CustomerID, $title, $body, $userToken->token);
-            }
-    } */
-
 
     public function SenNotify()
     {
-        $response = Http::withBody(
-            '{
-                "message": {
-                    "token": "d0dlJ6i2Rx6s0UKZvEBOvI:APA91bF_TPxuHTS7sks-jeEk7uKEpfkcn9NiVSsKRGQthlyVMRrJ3q5XY2sadL-odxuWpsZeyxLZnfIoj7BXYzXUG5l1wqcN7lQdDFdyxb3DfXIVYTdvb-0Pq-v6nVWqTM624zkv0W2H",
-                    "notification": {
-                        "title": "تنبية",
-                        "body": "لقد تم تحديث بيانات العنوان الوظيفي"
-                    },
-                    "android": {
-                        "notification": {
-                            "notification_priority": "PRIORITY_MAX",
-                            "sound": "default"
-                        }
-                    },
-                    "apns": {
-                        "payload": {
-                            "aps": {
-                                "content_available": true
-                            }
-                        }
-                    }
-                }
-            }', 'json'
-        )->withHeaders([
-            'Accept'=> '/',
-            'User-Agent'=> 'Thunder Client (https://www.thunderclient.com)',
-            'Authorization'=> 'Bearer ya29.a0AcM612x0yoZOifupB5EMPlzWk9Wd3JctF8tReadLELFn83hw2ISfi0ufka2rN8Dji88IGtObmuH59_jPbhvm_WVp_rzVV8Z:APA91bEvwtZtgi_i6HhPYMcM0DYCU6fKu6c2m2d_SnP4VGnWZSjK8HdH1SvBL5Hv0hHMqrGcBJsOTaEUEsT9qGtKbocUK12Q5PiwvBqq2LHiYNgxsotMObmmvGpa6ybjHZ7r1YTzm0',
-            'Authorization'=> 'Bearer ya29.a0AcM612zDWevL4v6gVbCaUy91g97PXrLKWprjzwhoAYlF0a-3fAyr0CRr3a2c0n1cgg9wuuA8h4oguO8pVj7OUc2rFXOMzh3h_dfNIh-bZNbpR6j2290zcTCN4eZHri_RGI5CJYZTxXiVk-4yZETS37z5xzTnkCMGY3JMjI6taCgYKAQcSARESFQHGX2MiJhAedC4HBZDrLqHq6KeUpw0175',
-            'Content-Type'=> 'application/json',
-        ])
-        ->post('https://fcm.googleapis.com/v1/projects/gcpi-e6c2b/messages:send');
+        $deviceToken = 'fMT_77QETjOxfjvgNRZkkk:APA91bG_ZdvwKxH2aR6sZIAoERsKBSIx6GCCSTzN-NQ4ngYLX8NvoZL7jtqzEj-vZu6i38dUjqHSbOsHBIZIGL7ZE81y7pnXKCpfddSm-3bMQYWQMwU7ztNesMFwQlml9UkB-oRITiCK';
 
-        echo $response->body();
+        $title = 'عنوان';
+        $body = 'محتوى الإشعار';
+
+        // استرداد accessToken
+        $accessToken = $this->getAccessToken();
+        if (!$accessToken) {
+            session()->flash('error', 'فشل الحصول على accessToken.');
+            return;
+        }
+
+        $message = [
+            "message" => [
+                "token" => $deviceToken,
+                "notification" => [
+                    "title" => $title,
+                    "body" => $body,
+                ],
+                "data" => [
+                    "click_action" => "FLUTTER_NOTIFICATION_CLICK"
+                ]
+            ]
+        ];
+
+        // إرسال الطلب إلى FCM
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . $accessToken,
+        ])->post('https://fcm.googleapis.com/v1/projects/gcpi-e6c2b/messages:send', $message);
+
+        // عرض محتوى الرد من Firebase
+        if ($response->successful()) {
+            session()->flash('message', 'تم إرسال الإشعار بنجاح.');
+        } else {
+            session()->flash('error', 'حدث خطأ: ' . $response->status() . ' - ' . $response->body());
+        }
     }
+
+    private function getAccessToken()
+    {
+        try {
+            // مسار ملف حساب الخدمة
+            $serviceAccountPath = base_path('app\Http\Controllers\API\Login\gcpi-e6c2b-firebase-adminsdk-cy1bp-b8182b619f.json');
+
+            // إعداد Google Client
+            $client = new Google_Client();
+            $client->setAuthConfig($serviceAccountPath);
+            $client->addScope('https://www.googleapis.com/auth/firebase.messaging');
+
+            // تحديث Access Token
+            $client->refreshTokenWithAssertion();
+            $accessToken = $client->getAccessToken();
+
+            return $accessToken['access_token'] ?? null;
+
+        } catch (\Exception $e) {
+            // التعامل مع الأخطاء
+            Log::error('Failed to get access token: ' . $e->getMessage());
+            return null;
+        }
+    }
+
+
+
 }
