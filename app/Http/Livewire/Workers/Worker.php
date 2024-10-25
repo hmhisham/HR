@@ -430,7 +430,6 @@ class Worker extends Component
     }
 
 
- 
 
 
 
@@ -438,6 +437,7 @@ class Worker extends Component
 
 
 
+    // ========================================تحديث توكن السيرفر وارسال التنبيه ============================================
     private function getAccessToken($serviceAccountPath)
     {
         $serviceAccount = json_decode(file_get_contents($serviceAccountPath), true);
@@ -486,20 +486,26 @@ class Worker extends Component
 
         return $response['access_token'];
     }
-
-    public function sendNotificationToApp($title, $body, $userToken)
+    public function sendNotificationToApp($title, $body, $userToken, $imageUrl = null)
     {
         // الحصول على توكن الوصول
         $accessToken = $this->getAccessToken(public_path('FCM.json'));
 
         // تحضير البيانات للإرسال
+        $notificationData = [
+            'title' => $title,
+            'body' => $body,
+        ];
+
+        // إذا كان هناك صورة، أضفها إلى بيانات الإشعار
+        if ($imageUrl) {
+            $notificationData['image'] = $imageUrl;
+        }
+
         $data = [
             'message' => [
                 'token' => $userToken,
-                'notification' => [
-                    'title' => $title,
-                    'body' => $body
-                ],
+                'notification' => $notificationData,
             ],
         ];
 
@@ -520,4 +526,10 @@ class Worker extends Component
         // إعادة الاستجابة
         return $response;
     }
+
+
+
+    // ========================================تحديث توكن السيرفر وارسال التنبيه ============================================
+
+
 }
