@@ -182,7 +182,7 @@ class Coache extends Component
         if ($Coaches) {
 
             $Coaches->delete();
-            $this->reset();
+
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم حذف البيانات بنجاح',
                 'title' => 'الحذف'
@@ -198,6 +198,7 @@ class Coache extends Component
                     $imageUrl = null
                 );
             }
+            $this->reset();
         }
     }
 }
