@@ -18,10 +18,7 @@
                         @endcan --}}
                         @can('worker-create')
                             <a href="{{ Route('AddWorker') }}" class="mb-3 add-new btn btn-primary mb-md-0">أضــافــة</a>
-
-                            <button
-                                wire:click="sendNotificationToApp('تجريبي','تجريبي','fMT_77QETjOxfjvgNRZkkk:APA91bG_ZdvwKxH2aR6sZIAoERsKBSIx6GCCSTzN-NQ4ngYLX8NvoZL7jtqzEj-vZu6i38dUjqHSbOsHBIZIGL7ZE81y7pnXKCpfddSm-3bMQYWQMwU7ztNesMFwQlml9UkB-oRITiCK','https://png.pngtree.com/png-clipart/20231001/original/pngtree-3d-illustration-avatar-profile-man-png-image_13026634.png')"
-                                class="mb-3 add-new btn btn-success mb-md-0">ارسال اشعار</button>
+ 
                         @endcan
                     </div>
                 </div>

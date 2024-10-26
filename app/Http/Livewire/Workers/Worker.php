@@ -438,94 +438,94 @@ class Worker extends Component
 
 
     // ========================================تحديث توكن السيرفر وارسال التنبيه ============================================
-    private function getAccessToken($serviceAccountPath)
-    {
-        $serviceAccount = json_decode(file_get_contents($serviceAccountPath), true);
+    // private function getAccessToken($serviceAccountPath)
+    // {
+    //     $serviceAccount = json_decode(file_get_contents($serviceAccountPath), true);
 
-        if (!$serviceAccount || !isset($serviceAccount['client_email']) || !isset($serviceAccount['private_key'])) {
-            throw new \Exception('Invalid service account configuration');
-        }
+    //     if (!$serviceAccount || !isset($serviceAccount['client_email']) || !isset($serviceAccount['private_key'])) {
+    //         throw new \Exception('Invalid service account configuration');
+    //     }
 
-        $now_seconds = time();
-        $payload = array(
-            "iss" => $serviceAccount['client_email'],
-            "scope" => "https://www.googleapis.com/auth/firebase.messaging",
-            "aud" => "https://oauth2.googleapis.com/token",
-            "exp" => $now_seconds + 3600,
-            "iat" => $now_seconds
-        );
+    //     $now_seconds = time();
+    //     $payload = array(
+    //         "iss" => $serviceAccount['client_email'],
+    //         "scope" => "https://www.googleapis.com/auth/firebase.messaging",
+    //         "aud" => "https://oauth2.googleapis.com/token",
+    //         "exp" => $now_seconds + 3600,
+    //         "iat" => $now_seconds
+    //     );
 
-        $private_key = $serviceAccount['private_key'];
-        $token = JWT::encode($payload, $private_key, "RS256");
+    //     $private_key = $serviceAccount['private_key'];
+    //     $token = JWT::encode($payload, $private_key, "RS256");
 
-        $postFields = 'grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=' . $token;
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://oauth2.googleapis.com/token');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+    //     $postFields = 'grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=' . $token;
+    //     $ch = curl_init();
+    //     curl_setopt($ch, CURLOPT_URL, 'https://oauth2.googleapis.com/token');
+    //     curl_setopt($ch, CURLOPT_POST, true);
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+    //     curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
 
-        // تعطيل التحقق من SSL (غير موصى به للإنتاج)
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    //     // تعطيل التحقق من SSL (غير موصى به للإنتاج)
+    //     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-        $result = curl_exec($ch);
+    //     $result = curl_exec($ch);
 
-        // التحقق من وجود أخطاء في CURL
-        if (curl_errno($ch)) {
-            throw new \Exception('CURL Error: ' . curl_error($ch));
-        }
+    //     // التحقق من وجود أخطاء في CURL
+    //     if (curl_errno($ch)) {
+    //         throw new \Exception('CURL Error: ' . curl_error($ch));
+    //     }
 
-        $response = json_decode($result, true);
+    //     $response = json_decode($result, true);
 
-        // التحقق من استجابة توكن الوصول
-        if (!isset($response['access_token'])) {
-            // تسجيل الاستجابة كاملة لتسهيل استكشاف الأخطاء
-            throw new \Exception('Failed to retrieve access token: ' . json_encode($response));
-        }
+    //     // التحقق من استجابة توكن الوصول
+    //     if (!isset($response['access_token'])) {
+    //         // تسجيل الاستجابة كاملة لتسهيل استكشاف الأخطاء
+    //         throw new \Exception('Failed to retrieve access token: ' . json_encode($response));
+    //     }
 
-        return $response['access_token'];
-    }
-    public function sendNotificationToApp($title, $body, $userToken, $imageUrl = null)
-    {
-        // الحصول على توكن الوصول
-        $accessToken = $this->getAccessToken(public_path('FCM.json'));
+    //     return $response['access_token'];
+    // }
+    // public function sendNotificationToApp($title, $body, $userToken, $imageUrl = null)
+    // {
+    //     // الحصول على توكن الوصول
+    //     $accessToken = $this->getAccessToken(public_path('FCM.json'));
 
-        // تحضير البيانات للإرسال
-        $notificationData = [
-            'title' => $title,
-            'body' => $body,
-        ];
+    //     // تحضير البيانات للإرسال
+    //     $notificationData = [
+    //         'title' => $title,
+    //         'body' => $body,
+    //     ];
 
-        // إذا كان هناك صورة، أضفها إلى بيانات الإشعار
-        if ($imageUrl) {
-            $notificationData['image'] = $imageUrl;
-        }
+    //     // إذا كان هناك صورة، أضفها إلى بيانات الإشعار
+    //     if ($imageUrl) {
+    //         $notificationData['image'] = $imageUrl;
+    //     }
 
-        $data = [
-            'message' => [
-                'token' => $userToken,
-                'notification' => $notificationData,
-            ],
-        ];
+    //     $data = [
+    //         'message' => [
+    //             'token' => $userToken,
+    //             'notification' => $notificationData,
+    //         ],
+    //     ];
 
-        // إرسال الطلب إلى FCM
-        $client = new \GuzzleHttp\Client();
-        try {
-            $response = $client->post('https://fcm.googleapis.com/v1/projects/gcpi-e6c2b/messages:send', [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $accessToken,
-                    'Content-Type' => 'application/json'
-                ],
-                'json' => $data
-            ]);
-        } catch (\GuzzleHttp\Exception\RequestException $e) {
-            throw new \Exception('Guzzle Error: ' . $e->getMessage());
-        }
+    //     // إرسال الطلب إلى FCM
+    //     $client = new \GuzzleHttp\Client();
+    //     try {
+    //         $response = $client->post('https://fcm.googleapis.com/v1/projects/gcpi-e6c2b/messages:send', [
+    //             'headers' => [
+    //                 'Authorization' => 'Bearer ' . $accessToken,
+    //                 'Content-Type' => 'application/json'
+    //             ],
+    //             'json' => $data
+    //         ]);
+    //     } catch (\GuzzleHttp\Exception\RequestException $e) {
+    //         throw new \Exception('Guzzle Error: ' . $e->getMessage());
+    //     }
 
-        // إعادة الاستجابة
-        return $response;
-    }
+    //     // إعادة الاستجابة
+    //     return $response;
+    // }
 
 
 

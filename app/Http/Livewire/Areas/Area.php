@@ -101,6 +101,8 @@ class Area extends Component
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
+
+
     }
 
     public function GetArea($AreaId)

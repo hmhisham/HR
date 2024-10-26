@@ -7,6 +7,8 @@ use Livewire\Component;
 use App\Models\Wives\Wives;
 use Livewire\WithPagination;
 use App\Models\Childrens\Childrens;
+use App\Helpers\FCM;
+
 
 class Children extends Component
 {
@@ -144,11 +146,30 @@ class Children extends Component
             'national_id' => $this->national_id,
 
         ]);
-        $this->reset();
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
+
+
+        // =============================ارسال اشعار================================
+        $title = "إشعار جديد";
+        $body = "تم اضافة بيانات الاسم: " . $this->full_name;
+        $userToken = "fMT_77QETjOxfjvgNRZkkk:APA91bG_ZdvwKxH2aR6sZIAoERsKBSIx6GCCSTzN-NQ4ngYLX8NvoZL7jtqzEj-vZu6i38dUjqHSbOsHBIZIGL7ZE81y7pnXKCpfddSm-3bMQYWQMwU7ztNesMFwQlml9UkB-oRITiCK"; // ضع توكن المستخدم المناسب هنا
+        $imageUrl = null; // إذا كان هناك صورة، ضع رابطها هنا
+
+        try {
+            $response = FCM::sendNotificationToApp($title, $body, $userToken, $imageUrl);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'حدث خطأ أثناء إرسال الإشعار',
+                'title' => 'خطأ'
+            ]);
+        }
+        // =============================================================
+
+        $this->reset();
     }
 
     public function GetChildren($ChildrenId)
