@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire\Coaches;
 
-use Livewire\Component;
+use App\Helpers\FCM;
 
+use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Coaches\Coaches;
+use App\Models\Workers\Workers;
+use Illuminate\Support\Facades\Auth;
 
 class Coache extends Component
 {
@@ -52,7 +55,7 @@ class Coache extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'user_id' => 'required',
+
             'calculator_number' => 'required',
             'name_coache' => 'required',
             'education' => 'required',
@@ -60,10 +63,10 @@ class Coache extends Component
             'institution' => 'required',
             'training_field' => 'required',
             'email' => 'required',
-            'notes' => 'required',
+
 
         ], [
-            'user_id.required' => 'حقل رقم المستخدم مطلوب',
+
             'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'name_coache.required' => 'حقل اسم المدرب مطلوب',
             'education.required' => 'حقل التحصيل الدراسي مطلوب',
@@ -71,14 +74,14 @@ class Coache extends Component
             'institution.required' => 'حقل مؤسسة المدرب مطلوب',
             'training_field.required' => 'حقل مجال التدريب مطلوب',
             'email.required' => 'حقل البريد الالكتروني مطلوب',
-            'notes.required' => 'حقل الملاحظات مطلوب',
+
         ]);
 
         //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
 
 
         Coaches::create([
-            'user_id' => $this->user_id,
+            'user_id' => Auth::id(),
             'calculator_number' => $this->calculator_number,
             'name_coache' => $this->name_coache,
             'education' => $this->education,
@@ -89,11 +92,24 @@ class Coache extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset();
+        // $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
+
+
+
+        // =============================ارسال اشعار================================
+        $worker = Workers::where('calculator_number', $this->calculator_number)->first();
+        if ($worker) {
+            $response = FCM::sendNotificationToApp(
+                "مرحباً استاذ : " . $worker->full_name,
+                "تم اضافة بياناتك في نافذة المدربين ",
+                $worker->worker_token,
+                $imageUrl = null
+            );
+        }
     }
 
     public function GetCoache($CoacheId)
@@ -117,7 +133,7 @@ class Coache extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'user_id' => 'required:coaches',
+
             'calculator_number' => 'required:coaches',
             'name_coache' => 'required:coaches',
             'education' => 'required:coaches',
@@ -125,10 +141,10 @@ class Coache extends Component
             'institution' => 'required:coaches',
             'training_field' => 'required:coaches',
             'email' => 'required:coaches',
-            'notes' => 'required:coaches',
+
 
         ], [
-            'user_id.required' => 'حقل الاسم مطلوب',
+
             'calculator_number.required' => 'حقل الاسم مطلوب',
             'name_coache.required' => 'حقل الاسم مطلوب',
             'education.required' => 'حقل الاسم مطلوب',
@@ -136,12 +152,12 @@ class Coache extends Component
             'institution.required' => 'حقل الاسم مطلوب',
             'training_field.required' => 'حقل الاسم مطلوب',
             'email.required' => 'حقل الاسم مطلوب',
-            'notes.required' => 'حقل الاسم مطلوب',
+
         ]);
 
         $Coaches = Coaches::find($this->CoacheId);
         $Coaches->update([
-            'user_id' => $this->user_id,
+            'user_id' => Auth::id(),
             'calculator_number' => $this->calculator_number,
             'name_coache' => $this->name_coache,
             'education' => $this->education,
@@ -171,6 +187,17 @@ class Coache extends Component
                 'message' => 'تم حذف البيانات بنجاح',
                 'title' => 'الحذف'
             ]);
+
+            // =============================ارسال اشعار================================
+            $worker = Workers::where('calculator_number', $this->calculator_number)->first();
+            if ($worker) {
+                $response = FCM::sendNotificationToApp(
+                    "مرحباً استاذ : " . $worker->full_name,
+                    "تم حذف بياناتك في نافذة المدربين ",
+                    $worker->worker_token,
+                    $imageUrl = null
+                );
+            }
         }
     }
 }
