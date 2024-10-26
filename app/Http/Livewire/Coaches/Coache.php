@@ -168,11 +168,24 @@ class Coache extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset();
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
+
+        // =============================ارسال اشعار================================
+        $worker = Workers::where('calculator_number', $this->calculator_number)->first();
+        if ($worker) {
+            $response = FCM::sendNotificationToApp(
+                "مرحباً استاذ : " . $worker->full_name,
+                "تم تعديل بياناتك في نافذة المدربين ",
+                $worker->worker_token,
+                $imageUrl = null
+            );
+        }
+
+        $this->reset();
     }
 
     public function destroy()
