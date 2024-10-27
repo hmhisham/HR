@@ -50,10 +50,14 @@ class FCM
         return $response['access_token'];
     }
 
+
+
     public static function sendNotificationToApp($title, $body, $userToken, $imageUrl = null)
     {
+        if (empty($userToken) || strlen($userToken) < 10) {
+            return;
+        }
         $accessToken = self::getAccessToken(public_path('FCM.json'));
-
         $notificationData = [
             'title' => $title,
             'body' => $body,
@@ -62,7 +66,6 @@ class FCM
         if ($imageUrl) {
             $notificationData['image'] = $imageUrl;
         }
-
         $data = [
             'message' => [
                 'token' => $userToken,
