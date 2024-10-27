@@ -32,10 +32,9 @@ class Coache extends Component
             ->orWhere('training_field', 'LIKE', $CoacheSearch)
             ->orWhere('email', 'LIKE', $CoacheSearch)
             ->orWhere('notes', 'LIKE', $CoacheSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Coaches;
         $this->Coaches = collect($Coaches->items());
         return view('livewire.coaches.coache', [
@@ -55,7 +54,6 @@ class Coache extends Component
     {
         $this->resetValidation();
         $this->validate([
-
             'calculator_number' => 'required',
             'name_coache' => 'required',
             'education' => 'required',
@@ -63,10 +61,7 @@ class Coache extends Component
             'institution' => 'required',
             'training_field' => 'required',
             'email' => 'required',
-
-
         ], [
-
             'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'name_coache.required' => 'حقل اسم المدرب مطلوب',
             'education.required' => 'حقل التحصيل الدراسي مطلوب',
@@ -74,11 +69,7 @@ class Coache extends Component
             'institution.required' => 'حقل مؤسسة المدرب مطلوب',
             'training_field.required' => 'حقل مجال التدريب مطلوب',
             'email.required' => 'حقل البريد الالكتروني مطلوب',
-
         ]);
-
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
-
 
         Coaches::create([
             'user_id' => Auth::id(),
@@ -90,15 +81,12 @@ class Coache extends Component
             'training_field' => $this->training_field,
             'email' => $this->email,
             'notes' => $this->notes,
-
         ]);
-        // $this->reset();
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
-
-
 
         // =============================ارسال اشعار================================
         $worker = Workers::where('calculator_number', $this->calculator_number)->first();

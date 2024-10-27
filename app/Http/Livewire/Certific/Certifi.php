@@ -8,12 +8,10 @@ use Livewire\WithPagination;
 use App\Models\Workers\Workers;
 use App\Models\Certific\Certific;
 use App\Models\Precises\Precises;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Specialtys\Specialtys;
 use App\Models\Graduations\Graduations;
 use App\Models\Certificates\Certificates;
-use App\Http\Livewire\Certificates\Certificate;
 use App\Models\Specializations\Specializations;
 use App\Models\Specializationclassification\Specializationclassification;
 

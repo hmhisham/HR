@@ -4,6 +4,8 @@ namespace App\Helpers;
 
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
+use App\Models\Workers\Workers;
+use App\Models\Notifications\Notifications;
 
 class FCM
 {
@@ -79,6 +81,10 @@ class FCM
                 ],
                 'json' => $data
             ]);
+
+            $notificationData['calculator_number'] = Workers::where('worker_token', $userToken)->first()->calculator_number;
+            Notifications::create($notificationData);
+
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             throw new \Exception('Guzzle Error: ' . $e->getMessage());
         }
