@@ -19,5 +19,6 @@ return [
     'Permissions' => 'Permissions',
     'Roles' => 'Roles',
     'slideshow' => 'Slideshow',
+    'PrivateEmployeeFiles' => 'Private Employee Files',
 
 ];

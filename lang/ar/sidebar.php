@@ -19,5 +19,6 @@ return [
     'Permissions' => 'التصاريح',
     'Roles' => 'الأدوار',
     'slideshow' => 'عرض الشرائح',
+    'PrivateEmployeeFiles' => 'ملفات تخص الموظفين',
 
 ];
