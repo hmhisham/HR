@@ -78,6 +78,7 @@
 
         window.addEventListener('success', event => {
             $('#uploadFileModal').modal('hide');
+            $('#deleteFileModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.title + '<hr>' + event.detail.message,

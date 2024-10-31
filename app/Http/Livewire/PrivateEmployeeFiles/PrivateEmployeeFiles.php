@@ -158,7 +158,6 @@ $fileURL = $file_path;
             'Content-Type: application/pdf',
           );
         return response()->download(public_path('storage/PrivateEmployeeFiles/'. $fileName), $fileDownload->file_name, $headers);
-        //return response()->download(public_path('storage/PrivateEmployeeFiles/'. $fileName));
     }
 
     public function FileDelete($fileName)
