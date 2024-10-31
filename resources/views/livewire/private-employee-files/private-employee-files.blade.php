@@ -167,11 +167,11 @@
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
-                                <td class="text-center">{{ $File[0] }}</td>
-                                <td class="text-center">{{ $File[1] }}</td>
+                                <td class="">{{ $File[1] }}</td>
                                 <td class="text-center">{{ $File[2] }}</td>
                                 <td class="text-center">{{ $File[3] }}</td>
-                                <td class="text-center">{{ $File[4] }}</td>
+                                <td class="text-center">{{ $File[5] }}</td>
+                                <td class="text-center">{{ $File[6] }}</td>
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('scalea-edit')
@@ -182,7 +182,7 @@
                                             </button>
                                         @endcan
                                         @can('scalea-edit')
-                                            <button wire:click="FileDownloads('{{ $File[0] }}')"
+                                            <button wire:click="FileDownloads('{{ $File[0] }}')" download="{{ $File[0] }}"
                                                 class="p-0 px-1 btn btn-text-primary waves-effect"
                                                 {{-- data-bs-toggle="modal" data-bs-target="#editscaleaModal" --}}>
                                                 <i class="tf-icons mdi mdi-file-download fs-2"></i>

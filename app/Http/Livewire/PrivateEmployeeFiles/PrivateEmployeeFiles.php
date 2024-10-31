@@ -28,29 +28,37 @@ class PrivateEmployeeFiles extends Component
     public function mount()
     {
         $Files = File::files(public_path('storage/PrivateEmployeeFiles'));
-
         $PrivateFiles = [];
         foreach ($Files as $File) {
-            $fileName = $File->getRelativePathname();
+            $baseFileName = pathinfo($File, PATHINFO_BASENAME);
+            $fileName = pathinfo($File, PATHINFO_FILENAME);
             $fileExt = strtoupper(pathinfo($File, PATHINFO_EXTENSION));
 
             $base = log($File->getSize(), 1024);
             $suffixes = array('بايت', 'كيلوبايت', 'ميكابايت', 'كيكابايت', 'تيرابايت');
             $fileSize = round(pow(1024, $base - floor($base)), 2) . ' ' . $suffixes[floor($base)];
+//dd(Storage::path($baseFileName));
+//dd(url($File['dirname']));
+$file_path = public_path('storage/PrivateEmployeeFiles/'.$baseFileName);
+$fileURL = $file_path;
+            //$fileURL = Storage::getDriver();
+            //$fileURL = url('public/storage/PrivateEmployeeFiles/'.$baseFileName);
 
             $fileCreationTime = date('Y-m-d H:i:s', filectime(realpath($File)));
             //$modificationTime = filemtime(realpath($File));
 
-            $FileDownloads = FileDownloads::where('file_name', $fileName)->first();
+            $FileDownloads = FileDownloads::where('file_name', pathinfo($File)['basename'])->first();
             if($FileDownloads){
                 $DownloadCount = $FileDownloads->download_count;
             }else{
                 $DownloadCount = 0;
             }
             $PrivateFiles[] = array(
+                $baseFileName,
                 $fileName,
                 $fileExt,
                 $fileSize,
+                $fileURL,
                 $fileCreationTime,
                 $DownloadCount
             );
@@ -92,11 +100,12 @@ class PrivateEmployeeFiles extends Component
             'fileChoose.mimes' => 'يجب اختيار ملفات من نوع PDF'
         ]);
 
-        Storage::disk('PrivateFiles')->put($this->fileChoose->getClientOriginalName(), file_get_contents($this->fileChoose->getRealpath()));
+        $fileChoose = str_replace(' ', '-', $this->fileChoose->getClientOriginalName());
+        Storage::disk('PrivateFiles')->put($fileChoose, file_get_contents($this->fileChoose->getRealpath()));
         //$this->fileChoose->storeAs('destination/folder/in/disk', $this->fileChoose->getClientOriginalName() ,'PrivateFiles');
 
         FileDownloads::create([
-            'file_name' => $this->fileChoose->getClientOriginalName()
+            'file_name' => $fileChoose
         ]);
 
         $this->reset();
@@ -145,7 +154,11 @@ class PrivateEmployeeFiles extends Component
         $this->emit('mount');
 
         // تحميل الملف
-        return response()->download(public_path('storage/PrivateEmployeeFiles/'. $fileName));
+        $headers = array(
+            'Content-Type: application/pdf',
+          );
+        return response()->download(public_path('storage/PrivateEmployeeFiles/'. $fileName), $fileDownload->file_name, $headers);
+        //return response()->download(public_path('storage/PrivateEmployeeFiles/'. $fileName));
     }
 
     public function FileDelete($fileName)
