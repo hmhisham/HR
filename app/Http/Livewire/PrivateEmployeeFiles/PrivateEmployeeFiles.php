@@ -5,6 +5,7 @@ namespace App\Http\Livewire\PrivateEmployeeFiles;
 use File;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 use App\Models\FileDownloads\FileDownloads;
 
 class PrivateEmployeeFiles extends Component
@@ -91,10 +92,11 @@ class PrivateEmployeeFiles extends Component
             'fileChoose.mimes' => 'يجب اختيار ملفات من نوع PDF'
         ]);
 
-        $fileName = $this->fileChoose->store('PrivateEmployeeFiles', 'PrivateFiles');
+        Storage::disk('PrivateFiles')->put($this->fileChoose->getClientOriginalName(), file_get_contents($this->fileChoose->getRealpath()));
+        //$this->fileChoose->storeAs('destination/folder/in/disk', $this->fileChoose->getClientOriginalName() ,'PrivateFiles');
 
         FileDownloads::create([
-            'file_name' => basename($fileName)
+            'file_name' => $this->fileChoose->getClientOriginalName()
         ]);
 
         $this->reset();
@@ -149,11 +151,22 @@ class PrivateEmployeeFiles extends Component
     public function FileDelete($fileName)
     {
         if(file_exists(public_path('storage/PrivateEmployeeFiles/'. $fileName))){
-            unlink(public_path('storage/PrivateEmployeeFiles/'. $fileName));
-            $this->dispatchBrowserEvent('success', [
-                'message' => 'تم حذف الملف بنجاح.',
-                'title' => 'ملفات خاصة',
-            ]);
+            if(unlink(public_path('storage/PrivateEmployeeFiles/'. $fileName)))
+            {
+                $file = FileDownloads::where('file_name', $fileName)->first();
+                $file->delete();
+
+                $this->dispatchBrowserEvent('success', [
+                    'message' => 'تم حذف الملف بنجاح.',
+                    'title' => 'ملفات خاصة',
+                ]);
+            }else{
+                $this->dispatchBrowserEvent('error', [
+                    'message' => 'خطأ : لم يحذف الملف',
+                    'title' => 'ملفات خاصة',
+                ]);
+            }
+
         }else{
             $this->dispatchBrowserEvent('error', [
                 'message' => 'الملف غير موجود.',

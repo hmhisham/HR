@@ -46,7 +46,7 @@ return [
 
         'PrivateFiles' => [
             'driver' => 'local',
-            'root' => public_path('storage'),
+            'root' => public_path('storage/PrivateEmployeeFiles'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,

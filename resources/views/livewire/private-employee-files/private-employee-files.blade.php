@@ -110,10 +110,7 @@
                                             <div wire:loading.remove>
                                                 <div class="row">
                                                     <div class="col text-center">
-                                                        {{-- <iframe src="{{ $filePreview }}" width="600" height="400"></iframe> --}}
-                                                        <div>
-                                                            <iframe src="{{ asset('storage/PrivateEmployeeFiles/' . $filePreview) }}" width="600" height="500"></iframe>
-                                                        </div>
+                                                        <iframe src="{{ asset('storage/PrivateEmployeeFiles/' . $filePreview) }}" width="600" height="400"></iframe>
                                                     </div>
                                                 </div>
 
