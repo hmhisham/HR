@@ -12,6 +12,7 @@ class PrivateEmployeeFiles extends Component
 {
     use WithFileUploads;
 
+    public $FileSearch;
     public $PrivateFiles = [];
     public $fileChoose, $fileName, $fileExt, $Size, $fileChooseSize, $fileSize, $fileCreationTime;
     public $filePreview;
@@ -37,12 +38,8 @@ class PrivateEmployeeFiles extends Component
             $base = log($File->getSize(), 1024);
             $suffixes = array('بايت', 'كيلوبايت', 'ميكابايت', 'كيكابايت', 'تيرابايت');
             $fileSize = round(pow(1024, $base - floor($base)), 2) . ' ' . $suffixes[floor($base)];
-//dd(Storage::path($baseFileName));
-//dd(url($File['dirname']));
-$file_path = public_path('storage/PrivateEmployeeFiles/'.$baseFileName);
-$fileURL = $file_path;
-            //$fileURL = Storage::getDriver();
-            //$fileURL = url('public/storage/PrivateEmployeeFiles/'.$baseFileName);
+
+            $fileURL = public_path('storage/PrivateEmployeeFiles/'.$baseFileName);
 
             $fileCreationTime = date('Y-m-d H:i:s', filectime(realpath($File)));
             //$modificationTime = filemtime(realpath($File));
@@ -108,14 +105,14 @@ $fileURL = $file_path;
             'file_name' => $fileChoose
         ]);
 
-        $this->reset();
+        $this->reset('fileChoose');
 
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم رفع الملف بنجاح',
             'title' => 'ملفات خاصة',
         ]);
 
-        $this->emit('mount');
+        //$this->emit('mount');
     }
 
     public function removeFileChoose()

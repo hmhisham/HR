@@ -2,17 +2,12 @@
     <h4 class="mb-2">
         <span class="fw-light">ملفات تخص الموظفين</span>
     </h4>
-
-
-
-
-
     <div class="card">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between mb-n3">
                     <div>
-                        <input wire:model="ScaleaSearch" type="text" class="form-control" placeholder="بحث...">
+                        <input wire:model="FileSearch" type="text" class="form-control" placeholder="بحث...">
                     </div>
                     <div>
                         @can('scalea-create')
