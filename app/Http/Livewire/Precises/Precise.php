@@ -25,7 +25,7 @@ class Precise extends Component
             ->orWhere('precises_name', 'LIKE', $PreciseSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
-            
+
         $links = $Precises;
         $this->Precises = collect($Precises->items());
         return view('livewire.precises.precise', [
@@ -78,6 +78,7 @@ class Precise extends Component
 
         $this->Precise  = Precises::find($PreciseId);
         $this->PreciseId = $this->Precise->id;
+        $this->specialtys_code = $this->Precise->specialtys_code;
         $this->specialtys_id = $this->Precise->specialtys_id;
         $this->precises_code = $this->Precise->precises_code;
         $this->precises_name = $this->Precise->precises_name;
