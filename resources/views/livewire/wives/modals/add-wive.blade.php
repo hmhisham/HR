@@ -164,6 +164,8 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+                            </div>
+                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <div class="form-check">
