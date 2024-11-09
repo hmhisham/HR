@@ -20,8 +20,7 @@ class Jobtitle extends Component
     public function render()
     {
         $JobtitleSearch = '%' . $this->JobtitleSearch . '%';
-        $Jobtitles = Jobtitles::where('grades_id', 'LIKE', $JobtitleSearch)
-            ->orWhere('jobtitles_name', 'LIKE', $JobtitleSearch)
+        $Jobtitles = Jobtitles::where('jobtitles_name', 'LIKE', $JobtitleSearch)
 
 
             ->orderBy('id', 'ASC')

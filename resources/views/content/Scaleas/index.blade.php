@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Scaleas')
 @section('vendor-style')
@@ -11,9 +10,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
+@endsection
 @section('content')
-@livewire('scaleas.scalea')
+    @livewire('scaleas.scalea')
 
 
 @endsection
@@ -36,7 +35,6 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
@@ -44,6 +42,16 @@
                 return false;
             return true;
         }
+
+        /*function onlyNumberKey(evt) {
+            // Only ASCII characters in that range allowed and the Arabic letter 'م'
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+            // Check if character is a number (0-9) or the Arabic letter 'م'
+            if ((ASCIICode < 48 || ASCIICode > 57) && ASCIICode !== 1605)
+                return false;
+            return true;
+        }*/
+
 
         const Toast = Swal.mixin({
             toast: true,
@@ -59,8 +67,8 @@
 
         window.addEventListener('ScaleaModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);
+                $('#id').focus();
+            }, 100);
         })
 
         window.addEventListener('success', event => {

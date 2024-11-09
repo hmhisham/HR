@@ -76,7 +76,7 @@ class Grade extends Component
         $this->resetValidation();
         $this->validate([
             'grades_name' => 'required|unique:grades,grades_name,'.$this->Grade->id.',id',
- 
+
         ], [
             'grades_name.required' => 'حقل الدرجة الوظيفية مطلوب',
             'grades_name.unique' => 'الدرجة الوظيفية موجودة',

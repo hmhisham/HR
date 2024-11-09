@@ -46,8 +46,8 @@
 
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
-            // نطاق رموز الحروف العربية والفراغ
-            if ((ASCIICode >= 1569 && ASCIICode <= 1610) || ASCIICode === 32) {
+            // نطاق رموز الحروف العربية، الفراغ، والأقواس ( )
+            if ((ASCIICode >= 1569 && ASCIICode <= 1610) || ASCIICode === 32 || ASCIICode === 40 || ASCIICode === 41) {
                 return true;
             }
             return false;
