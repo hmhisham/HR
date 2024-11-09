@@ -44,6 +44,8 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+                            </div>
+                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='units_name' type="text" id="modalUnitsunits_name"
