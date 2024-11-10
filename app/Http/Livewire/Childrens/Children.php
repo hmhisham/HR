@@ -16,7 +16,7 @@ class Children extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $wives = [];
- 
+
     public $Childrens = [];
     public $ChildrenSearch, $Children, $ChildrenId;
     public $wives_id, $first_name, $father_name, $grandfather_name, $great_grandfather_name, $surname, $full_name, $birth_date, $marital_status, $gender, $is_counted, $occupational_status, $national_id;
@@ -104,7 +104,7 @@ class Children extends Component
             'father_name' => 'required',
             'grandfather_name' => 'required',
             'great_grandfather_name' => 'required',
-            'surname' => 'required',
+            //'surname' => 'required',
             'full_name' => 'required',
             'birth_date' => 'required',
             'marital_status' => 'required',
