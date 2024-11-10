@@ -36,10 +36,6 @@
             !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
         </script>
     </div>
-    <div class="mb-5" id="ww_c1e27f3f933c8" v='1.3' loc='id' a='{"t":"horizontal","lang":"ar","sl_lpl":1,"ids":["wl11356"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'><a href="https://weatherwidget.org/" id="ww_c1e27f3f933c8_u" target="_blank">Widget weather</a></div><script async src="https://app3.weatherwidget.org/js/?id=ww_c1e27f3f933c8"></script>
-
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
-    <div class="mb-5 elfsight-app-1b2ed8e6-a1e8-4913-a743-d57aabddaab4" data-elfsight-app-lazy></div>
 
     <div class="row gy-4">
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4">
