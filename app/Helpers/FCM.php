@@ -1,7 +1,6 @@
 <?php
-
 namespace App\Helpers;
-
+require __DIR__ . '/../../vendor/autoload.php';
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
 use App\Models\Workers\Workers;
@@ -12,7 +11,6 @@ class FCM
     public static function getAccessToken($serviceAccountPath)
     {
         $serviceAccount = json_decode(file_get_contents($serviceAccountPath), true);
-
         if (!$serviceAccount || !isset($serviceAccount['client_email']) || !isset($serviceAccount['private_key'])) {
             throw new \Exception('Invalid service account configuration');
         }
@@ -28,7 +26,6 @@ class FCM
 
         $private_key = $serviceAccount['private_key'];
         $token = JWT::encode($payload, $private_key, "RS256");
-
         $postFields = 'grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=' . $token;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://oauth2.googleapis.com/token');
@@ -87,7 +84,6 @@ class FCM
 
             $notificationData['calculator_number'] = Workers::where('worker_token', $userToken)->first()->calculator_number;
             Notifications::create($notificationData);
-
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             throw new \Exception('Guzzle Error: ' . $e->getMessage());
         }
