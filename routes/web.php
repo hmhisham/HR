@@ -1,5 +1,8 @@
 <?php
 
+//use App\Http\Livewire\Workers\Worker;
+use Illuminate\Http\Request;
+use App\Models\Workers\Workers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Areas\AreasController;
 use App\Http\Controllers\Units\UnitsController;
@@ -158,6 +161,13 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Positions', PositionsController::class);
     //الخدمات
     Route::RESOURCE('Services', ServicesController::class);
+
+    //استدعاء اسم الموظف في حق الموظف
+    Route::get('/api/workers', function (Request $request) {
+        $search = $request->input('q');
+        $workers = Workers::where('full_name', 'LIKE', "%{$search}%")->select('id', 'full_name')->get();
+        return response()->json($workers);
+    });
 });
 
 // locale

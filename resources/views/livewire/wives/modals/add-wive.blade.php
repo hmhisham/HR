@@ -11,7 +11,7 @@
                 <hr class="mt-n2">
                 <form id="addwiveModalForm" autocomplete="off">
                     <div class="row row-cols-1 ">
-                        <div class="mb-3 col">
+                        <!--<div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='workers_id' id="addWiveworkers_id"
                                     class="form-select @error('workers_id') is-invalid is-filled @enderror">
@@ -25,7 +25,21 @@
                             @error('workers_id')
                                 <small class='text-danger inputerror'>{{ $message }}</small>
                             @enderror
+                        </div> -->
+
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <select wire:model.defer='workers_id' id="addWiveworkers_id"
+                                    class="form-select @error('workers_id') is-invalid is-filled @enderror">
+                                    <option value="">اختر اسم الموظف</option>
+                                </select>
+                                <label for="modalWiveworkers_id">اسم الموظف</label>
+                            </div>
+                            @error('workers_id')
+                                <small class='text-danger inputerror'>{{ $message }}</small>
+                            @enderror
                         </div>
+
                         <div class="col mb-3">
                             <div class="row">
                                 <!-- الاسم الأول -->

@@ -47,7 +47,7 @@
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
         // add Workers
-        $(document).ready(function() {
+        /*$(document).ready(function() {
             window.initAddWorkersDrop = () => {
                 $('#addWiveworkers_id').select2({
                     placeholder: 'اختيار',
@@ -61,7 +61,48 @@
             window.livewire.on('select2', () => {
                 initAddWorkersDrop();
             });
+        });*/
+
+        $(document).ready(function() {
+            window.initAddWorkersDrop = () => {
+                $('#addWiveworkers_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addwiveModal'),
+                    ajax: {
+                        url: '/api/workers',
+                        dataType: 'json',
+                        delay: 250,
+                        data: function(params) {
+                            return {
+                                q: params.term // مصطلح البحث الذي يتم إرساله إلى الخادم
+                            };
+                        },
+                        processResults: function(data) {
+                            return {
+                                results: $.map(data, function(worker) {
+                                    return {
+                                        id: worker.id,
+                                        text: worker.full_name
+                                    };
+                                })
+                            };
+                        },
+                        cache: true
+                    }
+                });
+            }
+            initAddWorkersDrop();
+            $('#addWiveworkers_id').on('change', function(e) {
+                livewire.emit('SelectWorkersId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddWorkersDrop();
+            });
         });
+
+
+
+
 
         // edit Workers
         $(document).ready(function() {

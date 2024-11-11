@@ -15,6 +15,7 @@ class Workers extends Model
 
     protected $guarded = [];
     protected $table = "workers";
+    protected $fillable = ['full_name'];
 
     public function Getinfooffic()
     {
