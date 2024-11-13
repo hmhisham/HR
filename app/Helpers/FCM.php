@@ -51,7 +51,7 @@ class FCM
 
 
 
-    public static function sendNotificationToApp($title, $body, $userToken, $imageUrl = null)
+    public static function sendNotificationToApp($title, $body, $userToken, $imageUrl)
     {
         if (empty($userToken) || strlen($userToken) < 10) {
             return;
@@ -60,11 +60,12 @@ class FCM
         $notificationData = [
             'title' => $title,
             'body' => $body,
+            'image' => $imageUrl,
         ];
 
-        if ($imageUrl) {
-            $notificationData['image'] = $imageUrl;
-        }
+        // if ($imageUrl) {
+        //     $notificationData['image'] = $imageUrl;
+        // }
         $data = [
             'message' => [
                 'token' => $userToken,
