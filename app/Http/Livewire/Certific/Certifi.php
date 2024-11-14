@@ -307,7 +307,7 @@ class certifi extends Component
         $this->graduations = Graduations::where('certificates_id', $this->certificates_id)->get();
         $this->specializations = Specializations::where('certificates_id', $this->certificates_id)->
                                 where('graduations_id', $this->graduations_id)->get();
-        dd($this->specialization_id);
+        //dd($this->specialization_id);
     }
 
     public function update()
