@@ -29,6 +29,8 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+                            </div>
+                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='precises_code' type="text"
@@ -41,8 +43,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                            </div>
-                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='precises_name' type="text"
@@ -55,16 +55,15 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
+                            </div>
+                            <hr class="my-0">
+                            <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                                <button wire:click='store' wire:loading.attr="disabled" type="button"
+                                    class="btn btn-primary me-sm-3 me-1">اضافة</button>
+                                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                    aria-label="Close">تجاهل</button>
                             </div>
                         </div>
-                    </div>
-                    <hr class="my-0">
-                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                        <button wire:click='store' wire:loading.attr="disabled" type="button"
-                            class="btn btn-primary me-sm-3 me-1">اضافة</button>
-                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                            aria-label="Close">تجاهل</button>
                     </div>
                 </form>
             </div>

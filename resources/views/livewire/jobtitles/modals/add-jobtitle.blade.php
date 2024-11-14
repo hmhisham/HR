@@ -13,7 +13,7 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
-                                <div class="mb-3 col flex-fill {{ $grades }}">
+                                <div class="mb-3 col {{ $grades }}">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='grades_id' id="modalJobtitlesgrades_id"
                                             class="form-select @error('grades_id') is-invalid is-filled @enderror">
@@ -41,14 +41,15 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <hr class="my-0">
+                            <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                                <button wire:click='store' wire:loading.attr="disabled" type="button"
+                                    class="btn btn-primary me-sm-3 me-1">اضافة</button>
+                                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                    aria-label="Close">تجاهل</button>
+                            </div>
                         </div>
-                    </div>
-                    <hr class="my-0">
-                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                        <button wire:click='store' wire:loading.attr="disabled" type="button"
-                            class="btn btn-primary me-sm-3 me-1">اضافة</button>
-                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                            aria-label="Close">تجاهل</button>
                     </div>
                 </form>
             </div>

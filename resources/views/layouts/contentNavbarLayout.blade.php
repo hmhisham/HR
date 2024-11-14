@@ -352,13 +352,13 @@
                                     <li Class="menu-item {{ request()->Is('Scaleas') ? 'active' : '' }}">
                                         <a href="{{ Route('Scaleas.index') }}" Class="menu-link">
                                             <i Class=''></i>
-                                            <div>سلم رواتب العقود</div>
+                                            <div>سلم رواتب العقد الاداري</div>
                                         </a>
                                     </li>
                                     <li Class="menu-item {{ request()->Is('Technicians') ? 'active' : '' }}">
                                         <a href="{{ Route('Technicians.index') }}" Class="menu-link">
                                             <i Class=''></i>
-                                            <div>سلم رواتب الفنيين</div>
+                                            <div>سلم رواتب العقد الفني</div>
                                         </a>
                                     </li>
 

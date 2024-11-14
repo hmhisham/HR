@@ -14,7 +14,7 @@ class Precise extends Component
 
     public $Precises = [];
     public $PreciseSearch, $Precise, $PreciseId;
-    public $specialtys_id, $precises_code, $precises_name;
+    public $specialtys_id,$specialtys_code, $precises_code, $precises_name;
 
 
     public function render()
@@ -65,7 +65,7 @@ class Precise extends Component
             'precises_name' => $this->precises_name,
 
         ]);
-        $this->reset();
+        $this->reset(['specialtys_id','precises_code','precises_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -109,7 +109,7 @@ class Precise extends Component
             'precises_name' => $this->precises_name,
 
         ]);
-        $this->reset();
+        $this->reset(['specialtys_id','precises_code','precises_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -120,7 +120,7 @@ class Precise extends Component
     {
         $Precises = Precises::find($this->PreciseId);
         $Precises->delete();
-        $this->reset();
+        $this->reset(['specialtys_id','precises_code','precises_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Districts;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
 use App\Models\Districts\Districts;
 use App\Models\Governorates\Governorates;
 
@@ -64,12 +65,14 @@ class District extends Component
         $this->resetValidation();
         $this->validate([
             'governorate_id' => 'required',
-            'district_number' => 'required|unique:districts,district_number',
+            'district_number' => ['required', Rule::unique('districts')->where(function ($query) {
+                return $query->where('governorate_id', $this->governorate_id);
+            })],
             'district_name' => 'required|unique:districts,district_name',
         ], [
             'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
             'district_number.required' => 'حقل رقم القضاء مطلوب',
-            'district_number.unique' => 'حقل رقم القضاء موجود',
+            'district_number.unique' => 'حقل رقم القضاء موجود في نفس المحافظة',
             'district_name.required' => 'حقل أسم القضاء مطلوب',
             'district_name.unique' => 'حقل أسم القضاء موجود',
         ]);
@@ -107,12 +110,14 @@ class District extends Component
         $this->resetValidation();
         $this->validate([
             'governorate_id' => 'required',
-            'district_number' => 'required|unique:districts,district_number,' . $this->District->id . ',id',
+            'district_number' => ['required', Rule::unique('districts')->ignore($this->District->id)->where(function ($query) {
+                return $query->where('governorate_id', $this->governorate_id);
+            })],
             'district_name' => 'required|unique:districts,district_name,' . $this->District->id . ',id',
         ], [
             'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
             'district_number.required' => 'حقل رقم القضاء مطلوب',
-            'district_number.unique' => 'حقل رقم القضاء موجود',
+            'district_number.unique' => 'حقل رقم القضاء موجود في نفس المحافظة',
             'district_name.required' => 'حقل أسم القضاء مطلوب',
             'district_name.unique' => 'حقل أسم القضاء موجود',
         ]);
@@ -135,10 +140,8 @@ class District extends Component
     {
         $Districts = Districts::find($this->DistrictId);
         $Districts->delete();
-
-        $this->reset();
+        $this->reset('governorate_id', 'district_number', 'district_name');
         $this->mount();
-
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

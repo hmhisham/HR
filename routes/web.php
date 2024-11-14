@@ -166,10 +166,32 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Services', ServicesController::class);
 
     //استدعاء اسم الموظف في حق الموظف
-    Route::get('/api/workers', function (Request $request) {
+    /*Route::get('/api/workers', function (Request $request) {
         $search = $request->input('q');
         $workers = Workers::where('full_name', 'LIKE', "%{$search}%")->select('id', 'full_name')->get();
         return response()->json($workers);
+    });*/
+
+    Route::get('/api/workers', function (Request $request) {
+        $search = $request->input('q');
+        $page = $request->input('page', 1);
+        $perPage = 20; // عدد السجلات لكل صفحة
+
+        $query = Workers::query();
+
+        if ($search) {
+            $query->where('full_name', 'LIKE', "%{$search}%");
+        }
+
+        $workers = $query->select('id', 'full_name')
+            ->paginate($perPage, ['*'], 'page', $page);
+
+        return response()->json([
+            'items' => $workers->items(),
+            'pagination' => [
+                'more' => $workers->hasMorePages()
+            ]
+        ]);
     });
 });
 

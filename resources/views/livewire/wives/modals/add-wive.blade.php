@@ -17,7 +17,7 @@
                                     class="form-select @error('workers_id') is-invalid is-filled @enderror">
                                     <option value="">اختر اسم الموظف</option>
                                     @foreach ($workers as $worker)
-                                        <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
+                                    <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
                                     @endforeach
                                 </select>
                                 <label for="modalWiveworkers_id">اسم الموظف</label>
@@ -25,7 +25,7 @@
                             @error('workers_id')
                                 <small class='text-danger inputerror'>{{ $message }}</small>
                             @enderror
-                        </div> -->
+                        </div>
 
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
@@ -34,6 +34,19 @@
                                     <option value="">اختر اسم الموظف</option>
                                 </select>
                                 <label for="modalWiveworkers_id">اسم الموظف</label>
+                            </div>
+                            @error('workers_id')
+                                <small class='text-danger inputerror'>{{ $message }}</small>
+                            @enderror
+                        </div>-->
+
+                        <div class="mb-3 col">
+                            <div class="input-group">
+                                <div class="form-floating form-floating-outline flex-grow-1">
+                                    <input type="text" id="autocomplete" class="form-control" placeholder="اختر اسم الموظف">
+                                    <label for="autocomplete">اسم الموظف</label>
+                                </div>
+                                <button id="search-button" class="btn btn-primary">بحث</button>
                             </div>
                             @error('workers_id')
                                 <small class='text-danger inputerror'>{{ $message }}</small>
