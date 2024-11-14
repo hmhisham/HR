@@ -15,6 +15,9 @@
     <link rel="stylesheet"
         href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
 @endsection
 
 @section('content')
@@ -39,6 +42,9 @@
     <script src="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 @endsection
 
 @section('page-script')
@@ -46,6 +52,44 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+    $(document).ready(function() {
+        $('#search-button').on('click', function(event) {
+            event.preventDefault();
+            var searchTerm = $('#autocomplete').val();
+            $('#autocomplete').autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "/api/workers",
+                        dataType: "json",
+                        data: { q: searchTerm },
+                        success: function(data) {
+                            response($.map(data.items, function(worker) {
+                                return {
+                                    label: worker.full_name,
+                                    value: worker.id
+                                };
+                            }));
+                        },
+                        error: function(xhr, status, error) {
+                            $('#error-message').text('Error: ' + error);
+                        }
+                    });
+                },
+                minLength: 0,
+                select: function(event, ui) {
+                    $('#autocomplete').val(ui.item.label);
+                    return false;
+                },
+                open: function() {
+                    $(".ui-autocomplete").css("z-index", 9999);
+                }
+            }).autocomplete("search", searchTerm);
+        });
+    });
+
+
+
+
         // add Workers
         /*$(document).ready(function() {
             window.initAddWorkersDrop = () => {
@@ -63,7 +107,7 @@
             });
         });*/
 
-        $(document).ready(function() {
+        /*$(document).ready(function() {
             window.initAddWorkersDrop = () => {
                 $('#addWiveworkers_id').select2({
                     placeholder: 'اختيار',
@@ -98,7 +142,7 @@
             window.livewire.on('select2', () => {
                 initAddWorkersDrop();
             });
-        });
+        });*/
 
 
 
