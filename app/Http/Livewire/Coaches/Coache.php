@@ -169,7 +169,7 @@ class Coache extends Component
                 "مرحباً استاذ : " . $worker->full_name,
                 "تم تعديل بياناتك في نافذة المدربين ",
                 $worker->worker_token,
-                $imageUrl = null
+                $imageUrl = "https://i1.sndcdn.com/artworks-000201757719-m44t7l-t500x500.jpg"
             );
         }
 
