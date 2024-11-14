@@ -11,7 +11,8 @@
 
                 <hr class="mt-n2">
 
-                <h5 wire:loading wire:target="GetDistrict" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="GetDistrict"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
 
@@ -40,23 +41,26 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="mb-3 col">
-                                                <label for="modalDistrictsdistrict_number" class="form-label">رقم
-                                                    القضاء</label>
-                                                <input wire:model.defer='district_number' type="text"
-                                                    id="modalDistrictsdistrict_number" placeholder="رقم القضاء"
-                                                    class="form-control @error('district_number') is-invalid is-filled @enderror"
-                                                    onkeypress="return onlyNumberKey(event)" />
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='district_number' type="text"
+                                                        id="modalDistrictsdistrict_number" placeholder="رقم القضاء"
+                                                        class="form-control @error('district_number') is-invalid is-filled @enderror"
+                                                        onkeypress="return onlyNumberKey(event)" />
+                                                    <label for="modalDistrictsdistrict_number">رقم القضاء</label>
+                                                </div>
                                                 @error('district_number')
                                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                                 @enderror
                                             </div>
 
                                             <div class="mb-3 col">
-                                                <label for="modalDistrictsdistrict_name" class="form-label">اسم
-                                                    القضاء</label>
-                                                <input wire:model.defer='district_name' type="text"
-                                                    id="modalDistrictsdistrict_name" placeholder="اسم القضاء"
-                                                    class="form-control @error('district_name') is-invalid is-filled @enderror" onkeypress="return onlyArabicKey(event)"/>
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='district_name' type="text"
+                                                        id="modalDistrictsdistrict_name" placeholder="اسم القضاء"
+                                                        class="form-control @error('district_name') is-invalid is-filled @enderror"
+                                                        onkeypress="return onlyArabicKey(event)" />
+                                                    <label for="modalDistrictsdistrict_name">اسم القضاء</label>
+                                                </div>
                                                 @error('district_name')
                                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                                 @enderror
@@ -75,7 +79,7 @@
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">تجاهل</button>
                         </div>
-                    </div>
+                </div>
                 </form>
             </div>
         </div>

@@ -13,138 +13,135 @@
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
                             <div Class="row">
+                                <div class="mb-3 col {{ $grades }}">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='grades_id' id="modalTechniciangrades_id"
+                                            class="form-select @error('grades_id') is-invalid is-filled @enderror">
+                                            <option value="">اختر الدرجة الوظيفية</option>
+                                            @foreach ($grades as $grade)
+                                                <option value="{{ $grade->id }}">{{ $grade->grades_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <label for="modalTechniciangrades_id">الدرجة الوظيفية</label>
+                                    </div>
+                                    @error('grades_id')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
                                 <div class="mb-3 col">
-                                    <div class="mb-3 col flex-fill {{ $grades }}">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='grades_id' id="modalTechniciangrades_id"
-                                                class="form-select @error('grades_id') is-invalid is-filled @enderror">
-                                                <option value="">اختر الدرجة الوظيفية</option>
-                                                @foreach ($grades as $grade)
-                                                    <option value="{{ $grade->id }}">{{ $grade->grades_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            <label for="modalTechniciangrades_id">الدرجة الوظيفية</label>
-                                        </div>
-                                        @error('grades_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='phase_emp' id="modalTechnicianphase_emp"
+                                            class="form-select @error('phase_emp') is-invalid is-filled @enderror">
+                                            <option value="">اختر المرحلة الوظيفية</option>
+                                            @for ($i = 1; $i <= 10; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                            <option value="">م</option>
+                                        </select>
+                                        <label for="modalTechnicianphase_emp">المرحلة الوظيفية</label>
                                     </div>
-                                    <div class="mb-3 col flex-fill">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='phase_emp' id="modalTechnicianphase_emp"
-                                                class="form-select @error('phase_emp') is-invalid is-filled @enderror">
-                                                <option value="">اختر المرحلة الوظيفية</option>
-                                                @for ($i = 1; $i <= 10; $i++)
-                                                    <option value="{{ $i }}">{{ $i }}</option>
-                                                @endfor
-                                                <option value="">م</option>
-                                            </select>
-                                            <label for="modalTechnicianphase_emp">المرحلة الوظيفية</label>
-                                        </div>
-                                        @error('phase_emp')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                                    @error('phase_emp')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
                                 </div>
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='technicians_salary_grade'
-                                                id="modalTechniciantechnicians_salary_grade"
-                                                class="form-select @error('technicians_salary_grade') is-invalid is-filled @enderror">
-                                                <option value="">اختر درجة الراتب</option>
-                                                @for ($i = 1; $i <= 6; $i++)
-                                                    <option value="{{ $i }}">{{ $i }}</option>
-                                                @endfor
-                                            </select>
-                                            <label for="modalTechniciantechnicians_salary_grade">درجة الراتب</label>
-                                        </div>
-                                        @error('technicians_salary_grade')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                            </div>
+                            <div Class="row">
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='technicians_salary_grade'
+                                            id="modalTechniciantechnicians_salary_grade"
+                                            class="form-select @error('technicians_salary_grade') is-invalid is-filled @enderror">
+                                            <option value="">اختر درجة الراتب</option>
+                                            @for ($i = 1; $i <= 6; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                        <label for="modalTechniciantechnicians_salary_grade">درجة الراتب</label>
                                     </div>
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='technicians_salary_stage'
-                                                id="modalTechniciantechnicians_salary_stage"
-                                                class="form-select @error('technicians_salary_stage') is-invalid is-filled @enderror">
-                                                <option value="">اختر مرحلة الراتب</option>
-                                                @for ($i = 1; $i <= 10; $i++)
-                                                    <option value="{{ $i }}">{{ $i }}</option>
-                                                @endfor
-                                                <option value="">م</option>
-                                            </select>
-                                            <label for="modalTechniciantechnicians_salary_stage">مرحلة الراتب</label>
-                                        </div>
-                                        @error('technicians_salary_stage')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='technicians_amount'
-                                                id="modalTechniciantechnicians_amount"
-                                                class="form-select @error('technicians_amount') is-invalid is-filled @enderror">
-                                                <option value="">اختر مقدار العلاوة</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="10">10</option>
-                                                <option value="12">12</option>
-                                            </select>
-                                            <label for="modalTechniciantechnicians_amount">مقدار العلاوة</label>
-                                        </div>
-                                        @error('technicians_amount')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                                    @error('technicians_salary_grade')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
                                 </div>
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='technicians_salary' type="text"
-                                                id="modalTechniciantechnicians_salary" placeholder="الراتب"
-                                                class="form-control @error('technicians_salary') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyNumberKey(event)" />
-                                            <label for="modalTechniciantechnicians_salary">الراتب</label>
-                                        </div>
-                                        @error('technicians_salary')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='technicians_salary_stage'
+                                            id="modalTechniciantechnicians_salary_stage"
+                                            class="form-select @error('technicians_salary_stage') is-invalid is-filled @enderror">
+                                            <option value="">اختر مرحلة الراتب</option>
+                                            @for ($i = 1; $i <= 10; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                            <option value="">م</option>
+                                        </select>
+                                        <label for="modalTechniciantechnicians_salary_stage">مرحلة الراتب</label>
                                     </div>
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='technicians_minimum_period'
-                                                id="modalTechniciantechnicians_minimum_period"
-                                                class="form-select @error('technicians_minimum_period') is-invalid is-filled @enderror">
-                                                <option value="">اختر المدة الاصغرية</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
-                                            <label for="modalTechniciantechnicians_minimum_period">المدة
-                                                الاصغرية</label>
-                                        </div>
-                                        @error('technicians_minimum_period')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                                    @error('technicians_salary_stage')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='technicians_amount'
+                                            id="modalTechniciantechnicians_amount"
+                                            class="form-select @error('technicians_amount') is-invalid is-filled @enderror">
+                                            <option value="">اختر مقدار العلاوة</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="10">10</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                        <label for="modalTechniciantechnicians_amount">مقدار العلاوة</label>
                                     </div>
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='technicians_previous_salary' type="text"
-                                                id="modalTechniciantechnicians_previous_salary"
-                                                placeholder="الراتب السابق"
-                                                class="form-control @error('technicians_previous_salary') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyNumberKey(event)" />
-                                            <label for="modalTechniciantechnicians_previous_salary">الراتب
-                                                السابق</label>
-                                        </div>
-                                        @error('technicians_previous_salary')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
+                                    @error('technicians_amount')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div Class="row">
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='technicians_salary' type="text"
+                                            id="modalTechniciantechnicians_salary" placeholder="الراتب"
+                                            class="form-control @error('technicians_salary') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey(event)" />
+                                        <label for="modalTechniciantechnicians_salary">الراتب</label>
                                     </div>
+                                    @error('technicians_salary')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='technicians_minimum_period'
+                                            id="modalTechniciantechnicians_minimum_period"
+                                            class="form-select @error('technicians_minimum_period') is-invalid is-filled @enderror">
+                                            <option value="">اختر المدة الاصغرية</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                        <label for="modalTechniciantechnicians_minimum_period">المدة
+                                            الاصغرية</label>
+                                    </div>
+                                    @error('technicians_minimum_period')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='technicians_previous_salary' type="text"
+                                            id="modalTechniciantechnicians_previous_salary" placeholder="الراتب السابق"
+                                            class="form-control @error('technicians_previous_salary') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey(event)" />
+                                        <label for="modalTechniciantechnicians_previous_salary">الراتب
+                                            السابق</label>
+                                    </div>
+                                    @error('technicians_previous_salary')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
                                 </div>
                             </div>
                             <hr class="my-0">

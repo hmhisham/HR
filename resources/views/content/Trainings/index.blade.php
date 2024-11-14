@@ -38,12 +38,13 @@
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
             // نطاق رموز الحروف العربية والفراغ
-            if ((ASCIICode >= 1569 && ASCIICode <= 1610) || ASCIICode === 32) {
+            if ((ASCIICode >= 1569 && ASCIICode <= 1610) || (ASCIICode >= 65 && ASCIICode <= 90) ||
+                (ASCIICode >= 97 && ASCIICode <= 122) || ASCIICode === 32 || ASCIICode === 45) {
                 return true;
             }
             return false;
         }
-        
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
