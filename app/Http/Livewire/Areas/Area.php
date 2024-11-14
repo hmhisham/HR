@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Areas;
 use Livewire\Component;
 use App\Models\Areas\Areas;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
 use App\Models\Districts\Districts;
 use App\Models\Governorates\Governorates;
 
@@ -78,13 +79,15 @@ class Area extends Component
         $this->validate([
             'governorate_id' => 'required',
             'district_id' => 'required',
-            'area_id' => 'required|unique:areas,area_id',
+            'area_id' => ['required', Rule::unique('areas')->where(function ($query) {
+                return $query->where('governorate_id', $this->governorate_id)->where('district_id', $this->district_id);
+            })],
             'area_name' => 'required|unique:areas,area_name',
         ], [
             'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
             'district_id.required' => 'حقل أسم القضاء مطلوب',
             'area_id.required' => 'حقل رقم الناحية مطلوب',
-            'area_id.unique' => 'رقم الناحية موجود',
+            'area_id.unique' => 'رقم الناحية موجود في نفس القضاء والمحافظة',
             'area_name.required' => 'حقل أسم الناحية مطلوب',
             'area_name.unique' => 'أسم الناحية موجود',
         ]);
@@ -96,13 +99,11 @@ class Area extends Component
             'area_name' => $this->area_name,
         ]);
 
-        $this->reset();
+        $this->reset(['governorate_id','district_id','area_id','area_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
-
-
     }
 
     public function GetArea($AreaId)
@@ -127,13 +128,15 @@ class Area extends Component
         $this->validate([
             'governorate_id' => 'required',
             'district_id' => 'required',
-            'area_id' => 'required|unique:areas,area_id,' . $this->Area->id . ',id',
+            'area_id' => ['required', Rule::unique('areas')->ignore($this->Area->id)->where(function ($query) {
+                return $query->where('governorate_id', $this->governorate_id)->where('district_id', $this->district_id);
+            })],
             'area_name' => 'required|unique:areas,area_name,' . $this->Area->id . ',id',
         ], [
             'governorate_id.required' => 'حقل أسم المحافظة مطلوب',
             'district_id.required' => 'حقل أسم القضاء مطلوب',
             'area_id.required' => 'حقل رقم الناحية مطلوب',
-            'area_id.unique' => 'رقم الناحية موجود',
+            'area_id.unique' => 'رقم الناحية موجود في نفس القضاء والمحافظة',
             'area_name.required' => 'حقل أسم الناحية مطلوب',
             'area_name.unique' => 'أسم الناحية موجود',
         ]);
@@ -146,7 +149,7 @@ class Area extends Component
             'area_name' => $this->area_name,
         ]);
 
-        $this->reset();
+        $this->reset(['governorate_id','district_id','area_id','area_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -157,9 +160,7 @@ class Area extends Component
     {
         $Areas = Areas::find($this->AreaId);
         $Areas->delete();
-
-        $this->reset();
-
+        $this->reset(['governorate_id','district_id','area_id','area_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '
