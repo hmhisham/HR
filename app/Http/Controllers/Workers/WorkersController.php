@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class WorkersController extends Controller
 {
-    /**
+    /**z
      * Display a listing of the resource.
      */
     public function index()

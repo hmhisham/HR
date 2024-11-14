@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Thanks;
 
+use App\Helpers\FCM;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Thanks\Thanks;
@@ -15,17 +16,17 @@ class Thank extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Thanks = [];
-    public $ThankSearch, $Thank, $ThankId;
+    public $ThankSearch, $Thank, $ThankId, $WorkerSearch;
     public $user_id, $grantor, $ministerial_order_number, $ministerial_order_date, $reason, $notes;
     public $months_of_service = 1;
 
     public $search = '';
     public $workers = [];
-    public $department= [];
-    public $worker,$thank, $calculator_number, $get_departmen, $full_name   ;
+    public $department = [];
+    public $worker, $thank, $calculator_number, $get_departmen, $full_name;
     public $selectedWorker = null;
 
-
+    public  $workerId, $worke;
     protected $listeners = [
         'SelectWorker',
         'SelectGrantor',
@@ -50,9 +51,9 @@ class Thank extends Component
     public function SelectGrantor($GrantorID)
     {
         $grantor = Department::find($GrantorID);
-         if ($grantor) {
+        if ($grantor) {
             $this->grantor = $GrantorID;
-              } else {
+        } else {
             $this->grantor = null;
         }
     }
@@ -72,33 +73,44 @@ class Thank extends Component
         }
     }
 
+    public function search()
+    {
 
+        $WorkerSearch = '%' . $this->WorkerSearch . '%';
+        $Workers = Workers::where(function ($query) use ($WorkerSearch) {
+            $query->where('calculator_number', 'LIKE', $WorkerSearch)
+                ->orWhere('full_name', 'LIKE', $WorkerSearch);
+        })
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
+        $this->workers = collect($Workers->items());
+    }
 
 
     public function render()
     {
-        $ThankSearch = '%' . $this->ThankSearch . '%';
-        $Thanks = Thanks::join('workers', 'thanks.calculator_number', '=', 'workers.calculator_number')
-            ->where(function ($query) use ($ThankSearch) {
-                $query->where('thanks.calculator_number', 'LIKE', $ThankSearch)
-                    ->orWhere('workers.full_name', 'LIKE', $ThankSearch);
-            })
-            ->orderBy('thanks.id', 'ASC')
-            ->select('thanks.*')
+        $WorkerSearch = '%' . $this->WorkerSearch . '%';
+        $Workers = Workers::where('calculator_number', 'LIKE', $WorkerSearch)
+            ->orWhere('employee_number', 'LIKE', $WorkerSearch)
+            ->orWhere('full_name', 'LIKE', $WorkerSearch)
+            ->orderBy('id', 'ASC')
             ->paginate(10);
 
-        $links = $Thanks;
-        $this->Thanks = collect($Thanks->items());
+        $links = $Workers;
 
+        $this->workers = collect($Workers->items());
         return view('livewire.thanks.thank', [
             'links' => $links
         ]);
     }
 
 
+
+
+
     public function AddThankModalShow()
     {
-       $this->reset(['get_departmen','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
+        $this->reset(['get_departmen', 'user_id', 'calculator_number', 'grantor', 'ministerial_order_number', 'ministerial_order_date', 'reason', 'months_of_service', 'notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('ThankModalShow');
     }
@@ -107,7 +119,6 @@ class Thank extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'user_id' => 'required',
             'grantor' => 'required',
             'reason' => 'required',
             'ministerial_order_number' => 'required',
@@ -115,7 +126,6 @@ class Thank extends Component
             'months_of_service' => 'required',
 
         ], [
-            'user_id.required' => 'حقل اسم الموظف مطلوب',
             'grantor.required' => 'حقل الجهة المانحة مطلوب',
             'reason.required' => 'حقل السبب من الشكر مطلوب',
             'ministerial_order_number.required' => 'حقل رقم الامر الوزاري مطلوب',
@@ -136,12 +146,48 @@ class Thank extends Component
             'notes' => $this->notes,
 
         ]);
-        $this->reset(['get_departmen','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
+
+        // =============================ارسال اشعار================================
+        $worker = Workers::where('calculator_number', $this->calculator_number)->first();
+        if ($worker) {
+            $response = FCM::sendNotificationToApp(
+                "مرحباً استاذ : " . $worker->full_name,
+                "تم اضافة بيانات كتاب الشكر والتقدير",
+                $worker->worker_token,
+                $imageUrl = null
+            );
+        }
+
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
+
+        $this->reset(['get_departmen', 'user_id', 'calculator_number', 'grantor', 'ministerial_order_number', 'ministerial_order_date', 'reason', 'months_of_service', 'notes']);
     }
+
+
+
+
+    public function GetWorker($workerId)
+    {
+        $this->reset(['get_departmen', 'user_id', 'calculator_number', 'grantor', 'ministerial_order_number', 'ministerial_order_date', 'reason', 'months_of_service', 'notes']);
+
+
+        $this->resetValidation();
+
+        // البحث عن الموظف بناءً على ID
+        $this->worker = Workers::find($workerId);
+
+        // إذا وجد الموظف، يتم تعيين القيم
+        if ($this->worker) {
+            // $this->workerId = $this->worker->id;
+            $this->calculator_number = $this->worker->calculator_number;
+            $this->full_name = $this->worker->full_name;
+        }
+    }
+
 
     public function GetThank($ThankId)
     {
@@ -168,7 +214,6 @@ class Thank extends Component
             $this->full_name = '';
             $this->get_departmen = '';
         }
-
     }
 
 
@@ -202,17 +247,45 @@ class Thank extends Component
             'months_of_service' => $this->months_of_service,
             'notes' => $this->notes,
         ]);
-        $this->reset(['get_departmen','user_id','calculator_number','grantor','ministerial_order_number','ministerial_order_date','reason','months_of_service','notes']);
-        $this->dispatchBrowserEvent('success', [
+
+            // =============================ارسال اشعار================================
+            $worker = Workers::where('calculator_number', $this->calculator_number)->first();
+            if ($worker) {
+                $response = FCM::sendNotificationToApp(
+                    "مرحباً استاذ : " . $worker->full_name,
+                    "تم تعديل بيانات كتاب الشكر والتقدير",
+                    $worker->worker_token,
+                    $imageUrl = null
+                );
+            }
+
+
+         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
+
+        $this->reset(['get_departmen', 'user_id', 'calculator_number', 'grantor', 'ministerial_order_number', 'ministerial_order_date', 'reason', 'months_of_service', 'notes']);
+
     }
 
     public function destroy()
     {
         $Thanks = Thanks::find($this->ThankId);
         $Thanks->delete();
+
+            // =============================ارسال اشعار================================
+            $worker = Workers::where('calculator_number', $this->calculator_number)->first();
+            if ($worker) {
+                $response = FCM::sendNotificationToApp(
+                    "مرحباً استاذ : " . $worker->full_name,
+                    "تم حذف بيانات كتاب الشكر والتقدير",
+                    $worker->worker_token,
+                    $imageUrl = null
+                );
+            }
+
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',

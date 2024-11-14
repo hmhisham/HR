@@ -133,7 +133,10 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::GET('AddWorker', [WorkersController::class, 'AddWorker'])->name('AddWorker');
 
     // التشكرات
-    Route::RESOURCE('Thanks', ThanksController::class);
+  Route::RESOURCE('Thanks', ThanksController::class);
+//   Route::GET('Thanks', [ThanksController::class, 'index'])->name('Workers');
+
+
     // عقوبات
     Route::RESOURCE('Penalties', PenaltiesController::class);
     // تاركي العمل
