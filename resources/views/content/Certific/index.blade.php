@@ -2,18 +2,17 @@
 @section('title', 'Certific')
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
-    <link rel = "stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
-    <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
-    <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-    <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/select2/select2.css') }}" />
-    <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
-    <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
-    <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
-    <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+    <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
+    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
+    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
-    <link rel="stylesheet"
-        href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 @endsection
 
@@ -52,27 +51,9 @@
     <script src=" {{ asset('assets/js/app-user-list.js') }}"></script>
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
-    <script>
-        //استدعاء اسم الموظف
-        $(document).ready(function() {
-            function initSelect2(selector, eventName, parentModal) {
-                $(selector).select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $(parentModal)
-                });
-                $(selector).on('change', function(e) {
-                    console.log(e.target.value);
-                    livewire.emit(eventName, e.target.value);
-                });
-            }
-            initSelect2('#addCertifiworker_id', 'SelectWorkerId', '#addcertifiModal');
-            initSelect2('#editCertifiworker_id', 'SelectWorkerId', '#editcertifiModal');
 
-            window.livewire.on('select2', () => {
-                initSelect2('#addCertifiworker_id', 'SelectWorkerId', '#addcertifiModal');
-                initSelect2('#editCertifiworker_id', 'SelectWorkerId', '#editcertifiModal');
-            });
-        });
+
+    <script>
 
         //تاريخ الوثيقة وصحة الصدور
         $(document).ready(function() {
@@ -98,55 +79,6 @@
             });
         });
 
-
-        //أستدعاء جدول التحصيل الدراسي
-        /*$(document).ready(function() {
-            function initSelect2(selector, eventName, parentModal) {
-                $(selector).select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $(parentModal)
-                });
-                $(selector).on('change', function(e) {
-                    console.log(e.target.value);
-                    livewire.emit(eventName, e.target.value);
-                });
-            }
-            initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
-            initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
-
-            window.livewire.on('select2', () => {
-                initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
-                initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
-            });
-        });*/
-
-        //أستدعاء جدول التحصيل الدراسي
-        $(document).ready(function() {
-            function initSelect2(selector, eventName, parentModal) {
-                $(selector).select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $(parentModal)
-                }).on('change', function(e) {
-                    console.log(e.target.value);
-                    livewire.emit(eventName, e.target.value);
-                });
-            }
-
-            initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
-            initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
-
-            Livewire.hook('message.processed', (message, component) => {
-                initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
-                initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
-            });
-
-            window.livewire.on('select2', () => {
-                initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
-                initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
-            });
-        });
-
-        //استدعاء جهة التخرج
         $(document).ready(function() {
             function initSelect2(selector, eventName, parentModal) {
                 $(selector).select2({
@@ -154,107 +86,58 @@
                     dropdownParent: $(parentModal)
                 });
                 $(selector).on('change', function(e) {
-                    console.log(e.target.value);
                     livewire.emit(eventName, e.target.value);
                 });
             }
+            //أستدعاء جدول التحصيل الدراسي
+            initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
+            initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
+
+            //استدعاء جهة التخرج
             initSelect2('#addCertifigraduations_id', 'GetGraduation', '#addcertifiModal');
             initSelect2('#editCertifigraduations_id', 'GetGraduation', '#editcertifiModal');
 
-            window.livewire.on('select2', () => {
-                initSelect2('#addCertifigraduations_id', 'GetGraduation', '#addcertifiModal');
-                initSelect2('#editCertifigraduations_id', 'GetGraduation', '#editcertifiModal');
-            });
-        });
-
-        //استدعاء التخصص
-        $(document).ready(function() {
-            function initSelect2(selector, eventName, parentModal) {
-                $(selector).select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $(parentModal)
-                });
-                $(selector).on('change', function(e) {
-                    console.log(e.target.value);
-                    livewire.emit(eventName, e.target.value);
-                });
-            }
+            //استدعاء التخصص
             initSelect2('#addCertifispecialization_id', 'GetSpecialization', '#addcertifiModal');
             initSelect2('#editCertifispecialization_id', 'GetSpecialization', '#editcertifiModal');
 
-            window.livewire.on('select2', () => {
-                initSelect2('#addCertifispecialization_id', 'GetSpecialization', '#addcertifiModal');
-                initSelect2('#editCertifispecialization_id', 'GetSpecialization', '#editcertifiModal');
-            });
-        });
+            //استدعاء تصنيف التخصص
+            initSelect2('#addCertifispecializationclassification_id', 'SelectSpecializationclassificationId', '#addcertifiModal');
+            initSelect2('#editCertifispecializationclassification_id', 'SelectSpecializationclassificationId', '#editcertifiModal');
 
-        //استدعاء التخصص العام
-        $(document).ready(function() {
-            function initSelect2(selector, eventName, parentModal) {
-                $(selector).select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $(parentModal)
-                });
-                $(selector).on('change', function(e) {
-                    console.log(e.target.value);
-                    livewire.emit(eventName, e.target.value);
-                });
-            }
+            //استدعاء التخصص العام
             initSelect2('#addCertifispecialtys_id', 'GetSpecialtys', '#addcertifiModal');
             initSelect2('#editCertifispecialtys_id', 'GetSpecialtys', '#editcertifiModal');
 
-            window.livewire.on('select2', () => {
-                initSelect2('#addCertifispecialtys_id', 'GetSpecialtys', '#addcertifiModal');
-                initSelect2('#editCertifispecialtys_id', 'GetSpecialtys', '#editcertifiModal');
-            });
-        });
-
-        //استدعاء التخصص الدقيق
-        $(document).ready(function() {
-            function initSelect2(selector, eventName, parentModal) {
-                $(selector).select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $(parentModal)
-                });
-                $(selector).on('change', function(e) {
-                    console.log(e.target.value);
-                    livewire.emit(eventName, e.target.value);
-                });
-            }
+            //استدعاء التخصص الدقيق
             initSelect2('#addCertifiprecises_id', 'GetPrecises', '#addcertifiModal');
             initSelect2('#editCertifiprecises_id', 'GetPrecises', '#editcertifiModal');
 
             window.livewire.on('select2', () => {
+                initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
+                initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
+
+                //استدعاء جهة التخرج
+                initSelect2('#addCertifigraduations_id', 'GetGraduation', '#addcertifiModal');
+                initSelect2('#editCertifigraduations_id', 'GetGraduation', '#editcertifiModal');
+
+                //استدعاء التخصص
+                initSelect2('#addCertifispecialization_id', 'GetSpecialization', '#addcertifiModal');
+                initSelect2('#editCertifispecialization_id', 'GetSpecialization', '#editcertifiModal');
+
+                //استدعاء تصنيف التخصص
+                initSelect2('#addCertifispecializationclassification_id', 'SelectSpecializationclassificationId', '#addcertifiModal');
+                initSelect2('#editCertifispecializationclassification_id', 'SelectSpecializationclassificationId', '#editcertifiModal');
+
+                //استدعاء التخصص العام
+                initSelect2('#addCertifispecialtys_id', 'GetSpecialtys', '#addcertifiModal');
+                initSelect2('#editCertifispecialtys_id', 'GetSpecialtys', '#editcertifiModal');
+
+                //استدعاء التخصص الدقيق
                 initSelect2('#addCertifiprecises_id', 'GetPrecises', '#addcertifiModal');
                 initSelect2('#editCertifiprecises_id', 'GetPrecises', '#editcertifiModal');
             });
         });
-
-        //استدعاء تصنيف التخصص
-        $(document).ready(function() {
-            function initSelect2(selector, eventName, parentModal) {
-                $(selector).select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $(parentModal)
-                });
-                $(selector).on('change', function(e) {
-                    console.log(e.target.value);
-                    livewire.emit(eventName, e.target.value);
-                });
-            }
-            initSelect2('#addCertifispecializationclassification_id', 'SelectSpecializationclassificationId',
-                '#addcertifiModal');
-            initSelect2('#editCertifispecializationclassification_id', 'SelectSpecializationclassificationId',
-                '#editcertifiModal');
-
-            window.livewire.on('select2', () => {
-                initSelect2('#addCertifispecializationclassification_id',
-                    'SelectSpecializationclassificationId', '#addcertifiModal');
-                initSelect2('#editCertifispecializationclassification_id',
-                    'SelectSpecializationclassificationId', '#editcertifiModal');
-            });
-        });
-
 
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed

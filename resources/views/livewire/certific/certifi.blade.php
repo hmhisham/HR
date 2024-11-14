@@ -14,7 +14,8 @@
                         @can('certifi-create')
                             {{-- <button wire:click='AddcertifiModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                                 data-bs-toggle="modal" data-bs-target="#addcertifiModal">أضــافــة</button> --}}
-                            @include('livewire.certific.modals.add-certifi')
+
+                            @include('livewire.certific.modals.add-certificate')
                         @endcan
                     </div>
                 </div>
@@ -38,14 +39,14 @@
                                 <td>{{ $i }}</td>
                                 <td class="text-center">{{ $worker->full_name }}</td>
                                 <td class="text-center">
-                                    @if ($worker->GetCertific->count() > 0)
+                                    {{-- @if ($worker->GetCertific->count() > 0)
                                         <table class="table w-100" border="1">
                                             <thead class="table-light">
-                                                <th class="text-center py-1">رقم الوثيقة</th>
-                                                <th class="text-center py-1">تاريخ الوثيقة</th>
-                                                <th class="text-center py-1">الشهادة</th>
-                                                <th class="text-center py-1">التخصص</th>
-                                                <th class="text-center py-1">العملية</th>
+                                                <th class="text-center">رقم الوثيقة</th>
+                                                <th class="text-center">تاريخ الوثيقة</th>
+                                                <th class="text-center">الشهادة</th>
+                                                <th class="text-center">التخصص</th>
+                                                <th class="text-center">العملية</th>
                                             </thead>
                                             <tbody>
                                                 @foreach ($worker->GetCertific as $Certific)
@@ -54,7 +55,7 @@
                                                     <td>{{ $Certific->document_date }}</td>
                                                     <td>{{ $Certific->Getcertificate->certificates_name }}</td>
                                                     <td>{{ $Certific->Getspecialization->specializations_name }}</td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         @can('branc-edit')
                                                             <button wire:click="GetBranch({{ $worker->id }})"
                                                                 class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
@@ -74,16 +75,22 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                    @endif
+                                    @endif --}}
+                                    {{ $worker->GetCertific->count() }}
                                 </td>
                                 <td class="p-0">
+                                    @can('certifi-create')
+                                        <button wire:click='AddCertifyModal({{ $worker->id }})' class="p-0 px-1 btn btn-text-primary waves-effect"
+                                            data-bs-toggle="modal" data-bs-target="#showCertifiModal">
+                                            <span class="tf-icons mdi mdi-eye fs-3"></span>
+                                        </button>
+                                    @endcan
                                     @can('certifi-create')
                                         <button wire:click='AddCertifyModal({{ $worker->id }})' class="p-0 px-1 btn btn-text-primary waves-effect"
                                             data-bs-toggle="modal" data-bs-target="#addcertifiModal">
                                             <span class="tf-icons mdi mdi-school fs-3"></span>
                                         </button>
                                     @endcan
-                                    {{-- @include('livewire.certific.modals.add-certifi') --}}
                                 </td>
                             </tr>
                         @endforeach
@@ -123,8 +130,9 @@
                     {{ $links->links() }}
                 </div>
                 <!-- Modal -->
-                @include('livewire.certific.modals.edit-certifi')
-                @include('livewire.certific.modals.remove-certifi')
+                @include('livewire.certific.modals.show-certificate')
+                @include('livewire.certific.modals.edit-certificate')
+                @include('livewire.certific.modals.remove-certificate')
                 <!-- Modal -->
             @endcan
         </div>

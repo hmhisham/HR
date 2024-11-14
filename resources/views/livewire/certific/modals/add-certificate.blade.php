@@ -1,5 +1,5 @@
 <!-- Add certifi Modal -->
-<div wire:ignore.self class="modal fade" id="addcertifiModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="addcertifiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -33,7 +33,9 @@
                                 {{ $Worker->calculator_number ?? '' }}</div>
                         </div>
                     </div>
+
                     <hr class="">
+
                     <div Class="row">
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
@@ -96,7 +98,7 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                <label for="modalCertificertificates_id">التحصيل الدراسي</label>
+                                <label for="addCertificertificates_id">التحصيل الدراسي</label>
                             </div>
                             @error('certificates_id')
                                 <small class='text-danger inputerror'>{{ $message }}</small>
@@ -245,7 +247,7 @@
 
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
-                                <select wire:model.defer='duration' {{-- $durationAptly --}} id="modalcertifiduration"
+                                <select wire:model.defer='duration' id="modalcertifiduration"
                                     {{ $isDisabled ? 'disabled' : '' }}
                                     class="form-select @error('duration') is-invalid is-filled @enderror"
                                     name="year">
