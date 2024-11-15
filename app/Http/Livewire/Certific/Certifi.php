@@ -208,74 +208,83 @@ class certifi extends Component
 
     public function store()
     {
-        $this->resetValidation();
-        $this->validate([
-            'worker_id' => 'required',
-            'calculator_number' => 'required',
-            'document_number' => 'required',
-            'document_date' => 'required',
-            'certificates_id' => 'required',
-            'authenticity_number' => 'required',
-            'authenticity_date' => 'required',
-            'graduations_id' => 'required',
-            'specialization_id' => 'required',
-            'graduation_year' => 'required',
-            'specialtys_id' => 'required',
-            'precises_id' => 'required',
-            'specializationclassification_id' => 'required',
-            'grade' => 'required',
-            'estimate' => 'required',
-            'duration' => 'required',
-            'issuing_country' => 'required',
-        ], [
-            'worker_id.required' => 'حقل اسم الموظف مطلوب',
-            'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
-            'document_number.required' => 'حقل رقم الوثيقة مطلوب',
-            'document_date.required' => 'حقل تاريخ الوثيقة مطلوب',
-            'certificates_id.required' => 'حقل الشهادة مطلوب',
-            'authenticity_number.required' => 'حقل رقم صحة الصدور مطلوب',
-            'authenticity_date.required' => 'حقل تاريخ صحة الصدور مطلوب',
-            'graduations_id.required' => 'حقل جهة التخرج مطلوب',
-            'specialization_id.required' => 'حقل التخصص مطلوب',
-            'graduation_year.required' => 'حقل سنة التخرج مطلوب',
-            'specialtys_id.required' => 'حقل التخصص العام مطلوب',
-            'precises_id.required' => 'حقل التخصص الدقيق مطلوب',
-            'specializationclassification_id.required' => 'حقل تصنيف التخصص مطلوب',
-            'grade.required' => 'حقل الدرجة مطلوب',
-            'estimate.required' => 'حقل التقدير مطلوب',
-            'duration.required' => 'حقل مدة القدم مطلوب',
-            'issuing_country.required' => 'حقل البلد المانح للشهادة مطلوب',
-        ]);
+        try {
+            $this->resetValidation();
+            $this->validate([
+                'worker_id' => 'required',
+                'calculator_number' => 'required',
+                'document_number' => 'required',
+                'document_date' => 'required',
+                'certificates_id' => 'required',
+                'authenticity_number' => 'required',
+                'authenticity_date' => 'required',
+                'graduations_id' => 'required',
+                'specialization_id' => 'required',
+                'graduation_year' => 'required',
+                'specialtys_id' => 'required',
+                'precises_id' => 'required',
+                'specializationclassification_id' => 'required',
+                'grade' => 'required',
+                'estimate' => 'required',
+                'duration' => 'required',
+                'issuing_country' => 'required',
+            ], [
+                'worker_id.required' => 'حقل اسم الموظف مطلوب',
+                'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
+                'document_number.required' => 'حقل رقم الوثيقة مطلوب',
+                'document_date.required' => 'حقل تاريخ الوثيقة مطلوب',
+                'certificates_id.required' => 'حقل الشهادة مطلوب',
+                'authenticity_number.required' => 'حقل رقم صحة الصدور مطلوب',
+                'authenticity_date.required' => 'حقل تاريخ صحة الصدور مطلوب',
+                'graduations_id.required' => 'حقل جهة التخرج مطلوب',
+                'specialization_id.required' => 'حقل التخصص مطلوب',
+                'graduation_year.required' => 'حقل سنة التخرج مطلوب',
+                'specialtys_id.required' => 'حقل التخصص العام مطلوب',
+                'precises_id.required' => 'حقل التخصص الدقيق مطلوب',
+                'specializationclassification_id.required' => 'حقل تصنيف التخصص مطلوب',
+                'grade.required' => 'حقل الدرجة مطلوب',
+                'estimate.required' => 'حقل التقدير مطلوب',
+                'duration.required' => 'حقل مدة القدم مطلوب',
+                'issuing_country.required' => 'حقل البلد المانح للشهادة مطلوب',
+            ]);
 
-        Certific::create([
-            'user_id' => Auth::User()->id,
-            'worker_id' => $this->worker_id,
-            'calculator_number' => $this->calculator_number,
-            'document_number' => $this->document_number,
-            'document_date' => $this->document_date,
-            'certificates_id' => $this->certificates_id,
-            'authenticity_number' => $this->authenticity_number,
-            'authenticity_date' => $this->authenticity_date,
-            'graduations_id' => $this->graduations_id,
-            'specialization_id' => $this->specialization_id,
-            'graduation_year' => $this->graduation_year,
-            'specialtys_id' => $this->specialtys_id,
-            'precises_id' => $this->precises_id,
-            'specializationclassification_id' => $this->specializationclassification_id,
-            'grade' => $this->grade,
-            'estimate' => $this->estimate,
-            'duration' => $this->duration,
-            'issuing_country' => $this->issuing_country,
-            'notes' => $this->notes,
-            'status' => $this->status,
-        ]);
+            Certific::create([
+                'user_id' => Auth::User()->id,
+                'worker_id' => $this->worker_id,
+                'calculator_number' => $this->calculator_number,
+                'document_number' => $this->document_number,
+                'document_date' => $this->document_date,
+                'certificates_id' => $this->certificates_id,
+                'authenticity_number' => $this->authenticity_number,
+                'authenticity_date' => $this->authenticity_date,
+                'graduations_id' => $this->graduations_id,
+                'specialization_id' => $this->specialization_id,
+                'graduation_year' => $this->graduation_year,
+                'specialtys_id' => $this->specialtys_id,
+                'precises_id' => $this->precises_id,
+                'specializationclassification_id' => $this->specializationclassification_id,
+                'grade' => $this->grade,
+                'estimate' => $this->estimate,
+                'duration' => $this->duration,
+                'issuing_country' => $this->issuing_country,
+                'notes' => $this->notes,
+                'status' => $this->status,
+            ]);
 
-        $this->reset();
-        $this->dispatchBrowserEvent('success', [
-            'message' => 'تم الاضافه بنجاح',
-            'title' => 'اضافه'
-        ]);
+            $this->resete();
+            $this->dispatchBrowserEvent('success', [
+                'message' => 'تم الاضافة بنجاح',
+                'title' => 'إضافة'
+            ]);
+        } catch (\Exception $e) {
+            // سجل رسالة الخطأ
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'حدث خطأ أثناء الإضافة: ' . $e->getMessage(),
+                'title' => 'خطأ'
+            ]);
+        }
     }
+
 
     public function Getcertifi($certifiId)
     {

@@ -11,7 +11,7 @@
 
                 <hr class="mt-n2">
 
-                <form id="addcertifiModalForm" autocomplete="off">
+                <form id="addcertifiModalForm" autocomplete="off" wire:submit.prevent="store">
                     <div Class="row bg-label-primary">
                         <div class="col">
                             <label class="border-bottom-2 text-center mb-2 w-100">اسم الموظف</label>
