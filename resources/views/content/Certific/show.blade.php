@@ -1,19 +1,21 @@
 @extends('layouts/layoutMaster')
+
 @section('title', 'Certific Show')
+
 @section('vendor-style')
-    <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
-    <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
-    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
-    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel = "stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 @endsection
 
 @section('page-style')
@@ -40,11 +42,11 @@
     <script src=" {{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
+    <script src=" {{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <script src=" {{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src=" {{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
+    <script src=" {{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
+    <script src=" {{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
 @endsection
 
 @section('page-script')
@@ -55,25 +57,21 @@
     <script>
         //تاريخ الوثيقة وصحة الصدور
         $(document).ready(function() {
-            function initFlatpickr(selector, eventName, placeholderText) {
+            function initFlatpickr(selector, eventName, placeholderText, parentModal) {
                 $(selector).flatpickr({
                     placeholder: placeholderText,
+                    dropdownParent: $(parentModal)
                 });
                 $(selector).on('change', function(e) {
-                    console.log(e.target.value);
                     livewire.emit(eventName, e.target.value);
                 });
             }
-            initFlatpickr('#addauthenticity_date', 'employeeAuthenticityDate', 'تاريخ صحة الصدور');
-            initFlatpickr('#editauthenticity_date', 'employeeAuthenticityDate', 'تاريخ صحة الصدور');
-            initFlatpickr('#adddocument_date', 'employeeDocumentDate', 'تاريخ الوثيقة');
-            initFlatpickr('#editdocument_date', 'employeeDocumentDate', 'تاريخ الوثيقة');
+            initFlatpickr('#editauthenticity_date', 'employeeAuthenticityDate', 'تاريخ صحة الصدور', '#editcertifiModal');
+            initFlatpickr('#editdocument_date', 'employeeDocumentDate', 'تاريخ الوثيقة', '#editcertifiModal');
 
             window.livewire.on('flatpickr', () => {
-                initFlatpickr('#addauthenticity_date', 'employeeAuthenticityDate', 'تاريخ صحة الصدور');
-                initFlatpickr('#editauthenticity_date', 'employeeAuthenticityDate', 'تاريخ صحة الصدور');
-                initFlatpickr('#adddocument_date', 'employeeDocumentDate', 'تاريخ الوثيقة');
-                initFlatpickr('#editdocument_date', 'employeeDocumentDate', 'تاريخ الوثيقة');
+                initFlatpickr('#editauthenticity_date', 'employeeAuthenticityDate', 'تاريخ صحة الصدور', '#editcertifiModal');
+                initFlatpickr('#editdocument_date', 'employeeDocumentDate', 'تاريخ الوثيقة', '#editcertifiModal');
             });
         });
 
@@ -156,7 +154,7 @@
             $('#removecertifiModal').modal('hide');
             Toast.fire({
                 icon: 'success',
-                title: event.detail.message
+                title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
 
@@ -164,10 +162,9 @@
             $('#removecertifiModal').modal('hide');
             Toast.fire({
                 icon: 'error',
-                title: event.detail.message,
+                title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
-
         })
     </script>
 @endsection

@@ -8,13 +8,13 @@ use App\Models\Certific\Certific;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Specialtys\Specialtys;
 use App\Models\Certificates\Certificates;
-use App\Models\Specializations\Specializations;
 use App\Models\Specializationclassification\Specializationclassification;
 
 class ShowCertifi extends Component
 {
     public $worker_id;
     public $Worker;
+    public $WorkerCertific = [];
     public $certificates = [];
     public $graduations = [];
     public $specializations = [];
@@ -29,6 +29,7 @@ class ShowCertifi extends Component
     {
         $this->Worker = Workers::find($this->worker_id);
 
+        $this->WorkerCertific = $this->Worker->GetCertific;
         $this->certificates = Certificates::all();
         $this->specialtys = Specialtys::all();
         $this->specializationclassification = Specializationclassification::all();
@@ -46,7 +47,7 @@ class ShowCertifi extends Component
         $this->certifi  = Certific::find($certifiId);
         $this->certifiId = $this->certifi->id;
         $this->user_id = $this->certifi->user_id;
-        //$this->worker_id = $this->certifi->worker_id;
+        $this->worker_id = $this->certifi->worker_id;
         $this->calculator_number = $this->certifi->calculator_number;
         $this->document_number = $this->certifi->document_number;
         $this->document_date = $this->certifi->document_date;
@@ -69,8 +70,6 @@ class ShowCertifi extends Component
         $this->graduations = $this->certifi->Getcertificate->Getgraduation;
         $this->specializations = $this->certifi->Getgraduation->Getspecialization;
         $this->precises = $this->certifi->Getspecialty->Getprecise;
-
-        //dd($this->precises);
     }
 
     public function update()
@@ -138,10 +137,28 @@ class ShowCertifi extends Component
             'status' => $this->status,
         ]);
 
-        $this->resetExcept('Worker', 'certificates', 'specialtys', 'specializationclassification');
+        $this->resetExcept('worker_id', 'Worker', 'WorkerCertific', 'certificates', 'specialtys', 'specializationclassification');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
+
+        //$this->Worker->GetCertific;
+        $this->mount();
+    }
+
+    public function destroy()
+    {
+        $Certific = Certific::find($this->certifiId);
+
+        if ($Certific) {
+            $Certific->delete();
+
+            $this->reset();
+            $this->dispatchBrowserEvent('success', [
+                'message' => 'تم حذف البيانات بنجاح',
+                'title' => 'الحذف'
+            ]);
+        }
     }
 }

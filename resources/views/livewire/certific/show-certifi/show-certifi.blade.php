@@ -18,7 +18,7 @@
         </div>
 
         <div class="card">
-            @if (!empty($Worker) and $Worker->GetCertific->count() > 0)
+            @if (!empty($Worker) and count($WorkerCertific) > 0)
                 <table class="table w-100" border="1">
                     <thead class="table-light">
                         <th>#</th>
@@ -30,7 +30,7 @@
                     </thead>
                     <tbody>
                         @php $i = 0; @endphp
-                        @foreach ($Worker->GetCertific as $Certific)
+                        @foreach ($WorkerCertific as $Certific)
                             <tr>
                                 @php $i++;@endphp
                                 <td>{{ $i }}</td>

@@ -323,7 +323,7 @@ class certifi extends Component
         dd($this->graduations);
     }
 
-    public function update()
+    /* public function update()
     {
         $this->resetValidation();
         $this->validate([
@@ -394,9 +394,9 @@ class certifi extends Component
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
-    }
+    } */
 
-    public function destroy()
+    /* public function destroy()
     {
         $Certific = Certific::find($this->certifiId);
 
@@ -409,5 +409,5 @@ class certifi extends Component
                 'title' => 'الحذف'
             ]);
         }
-    }
+    } */
 }
