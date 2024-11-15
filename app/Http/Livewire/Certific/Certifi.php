@@ -22,7 +22,7 @@ class certifi extends Component
 
     public $Certific = [];
     public $workers = [];
-    public $Worker = [];
+    public $Worker;
     public $certificates = [];
     public $graduations = [];
     public $specializations = [];
@@ -204,11 +204,13 @@ class certifi extends Component
         $this->dispatchBrowserEvent('AddCertifyModal');
 
         $this->Worker = Workers::find($WorkerID);
+        $this->worker_id = $WorkerID;
+        $this->calculator_number = $this->Worker->calculator_number;
     }
 
     public function store()
     {
-        try {
+        /* try { */
             $this->resetValidation();
             $this->validate([
                 'worker_id' => 'required',
@@ -271,18 +273,18 @@ class certifi extends Component
                 'status' => $this->status,
             ]);
 
-            $this->resete();
+            $this->reset();
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم الاضافة بنجاح',
                 'title' => 'إضافة'
             ]);
-        } catch (\Exception $e) {
+        /* } catch (\Exception $e) {
             // سجل رسالة الخطأ
             $this->dispatchBrowserEvent('error', [
                 'message' => 'حدث خطأ أثناء الإضافة: ' . $e->getMessage(),
                 'title' => 'خطأ'
             ]);
-        }
+        } */
     }
 
 
