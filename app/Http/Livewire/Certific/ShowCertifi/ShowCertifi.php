@@ -143,7 +143,6 @@ class ShowCertifi extends Component
             'title' => 'تعديل'
         ]);
 
-        //$this->Worker->GetCertific;
         $this->mount();
     }
 
