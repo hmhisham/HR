@@ -21,6 +21,7 @@
             @if (!empty($Worker) and $Worker->GetCertific->count() > 0)
                 <table class="table w-100" border="1">
                     <thead class="table-light">
+                        <th>#</th>
                         <th class="">رقم الوثيقة</th>
                         <th class="">تاريخ الوثيقة</th>
                         <th class="">الشهادة</th>
@@ -28,8 +29,11 @@
                         <th class="text-center">العملية</th>
                     </thead>
                     <tbody>
+                        @php $i = 0; @endphp
                         @foreach ($Worker->GetCertific as $Certific)
                             <tr>
+                                @php $i++;@endphp
+                                <td>{{ $i }}</td>
                                 <td>{{ $Certific->document_number }}</td>
                                 <td class="">{{ $Certific->document_date }}</td>
                                 <td>{{ $Certific->Getcertificate->certificates_name }}</td>
