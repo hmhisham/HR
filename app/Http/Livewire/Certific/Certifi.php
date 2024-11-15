@@ -190,9 +190,9 @@ class certifi extends Component
         } elseif ($grade >= 70) {
             $this->estimate = 'جيد';
         } elseif ($grade >= 60) {
-            $this->estimate = 'مقبول';
+            $this->estimate = 'متوسط';
         } else {
-            $this->estimate = 'ضعيف';
+            $this->estimate = 'قمبول';
         }
     }
 
