@@ -10,14 +10,6 @@
                     <div>
                         <input wire:model="certifiSearch" type="text" class="form-control" placeholder="بحث...">
                     </div>
-                    <div>
-                        @can('certifi-create')
-                            {{-- <button wire:click='AddcertifiModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
-                                data-bs-toggle="modal" data-bs-target="#addcertifiModal">أضــافــة</button> --}}
-
-                            @include('livewire.certific.modals.add-certificate')
-                        @endcan
-                    </div>
                 </div>
             </div>
 
@@ -79,11 +71,10 @@
                                     {{ $worker->GetCertific->count() }}
                                 </td>
                                 <td class="p-0">
-                                    @can('certifi-create')
-                                        <button wire:click='AddCertifyModal({{ $worker->id }})' class="p-0 px-1 btn btn-text-primary waves-effect"
-                                            data-bs-toggle="modal" data-bs-target="#showCertifiModal">
+                                    @can('certifi-show')
+                                        <a href="{{ Route('Certifi-Show', $worker->id) }}" class="p-0 px-1 btn btn-text-primary waves-effect">
                                             <span class="tf-icons mdi mdi-eye fs-3"></span>
-                                        </button>
+                                        </a>
                                     @endcan
                                     @can('certifi-create')
                                         <button wire:click='AddCertifyModal({{ $worker->id }})' class="p-0 px-1 btn btn-text-primary waves-effect"
@@ -94,45 +85,13 @@
                                 </td>
                             </tr>
                         @endforeach
-
-                        {{-- @foreach ($Certific as $certifi)
-                            <tr>
-                                <?php $i++; ?>
-                                <td>{{ $i }}</td>
-                                <td class="text-center">{{ $certifi->Getworker ? $certifi->Getworker->full_name : '' }}</td>
-                                <td class="text-center">{{ $certifi->document_number }}</td>
-                                <td class="text-center">{{ $certifi->document_date }}</td>
-                                <td class="text-center">{{ $certifi->Getcertificate ? $certifi->Getcertificate->certificates_name : '' }}</td>
-                                <td class="text-center">{{ $certifi->Getspecialization ? $certifi->Getspecialization->specializations_name : '' }}</td>
-                                <td class="text-center">
-                                    <div class="btn-group" role="group" aria-label="First group">
-                                        @can('certifi-edit')
-                                            <button wire:click="Getcertifi({{ $certifi->id }})"
-                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
-                                                data-bs-target="#editcertifiModal">
-                                                <i class="tf-icons mdi mdi-pencil fs-3"></i>
-                                            </button>
-                                        @endcan
-                                        @can('certifi-delete')
-                                            <button wire:click="Getcertifi({{ $certifi->id }})"
-                                                class="p-0 px-1 btn btn-text-danger waves-effect {{ $certifi->active ? 'disabled' : '' }}"
-                                                data-bs-toggle = "modal" data-bs-target="#removecertifiModal">
-                                                <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
-                                            </button>
-                                        @endcan
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach --}}
                     </tbody>
                 </table>
                 <div class="mt-2 d-flex justify-content-center">
                     {{ $links->links() }}
                 </div>
                 <!-- Modal -->
-                @include('livewire.certific.modals.show-certificate')
-                @include('livewire.certific.modals.edit-certificate')
-                @include('livewire.certific.modals.remove-certificate')
+                @include('livewire.certific.modals.add-certificate')
                 <!-- Modal -->
             @endcan
         </div>

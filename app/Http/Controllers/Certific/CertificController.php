@@ -9,4 +9,11 @@ class CertificController extends Controller
     {
         Return View('content.Certific.index');
     }
+
+    public function CertifiShow($id)
+    {
+        Return View('content.Certific.show', [
+            'id' => $id
+        ]);
+    }
 }

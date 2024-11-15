@@ -154,8 +154,7 @@
                                         $currentYear = date('Y');
                                     @endphp
                                     <select wire:model.defer='graduation_year' id="modalCertificgraduation_year"
-                                        class="form-select @error('graduation_year') is-invalid is-filled @enderror"
-                                        name="year">
+                                        class="form-select @error('graduation_year') is-invalid is-filled @enderror" name="year">
                                         <option value="">اختر سنة التخرج</option>
                                         @for ($year = $startYear; $year <= $currentYear; $year++)
                                             <option value="{{ $year }}">{{ $year - 1 }} -

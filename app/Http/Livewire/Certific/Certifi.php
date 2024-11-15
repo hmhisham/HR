@@ -101,7 +101,9 @@ class certifi extends Component
     public function GetCertificate($Certificates_id)
     {
         $this->certificates_id = $Certificates_id;
-        $this->graduations = Graduations::where('certificates_id', $Certificates_id)->get();
+        $certifi = Certificates::find($Certificates_id);
+        $this->graduations = $certifi->Getgraduation;
+
         $this->checkDurationId();
     }
     public function GetGraduation($Graduations_id)
@@ -302,12 +304,12 @@ class certifi extends Component
         $this->notes = $this->certifi->notes;
         $this->status = $this->certifi->status;
 
-        //$this->GetCertificate($this->certifi->id);
+        $this->graduations = $this->certifi->Getgraduation;
         //$this->graduations = $this->certifi->Getgraduation;
-        $this->graduations = Graduations::where('certificates_id', $this->certificates_id)->get();
+        //$this->graduations = Graduations::where('certificates_id', $this->certificates_id)->get();
         $this->specializations = Specializations::where('certificates_id', $this->certificates_id)->
                                 where('graduations_id', $this->graduations_id)->get();
-        //dd($this->specialization_id);
+        dd($this->graduations);
     }
 
     public function update()

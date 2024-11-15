@@ -148,6 +148,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Dispatch', DispatchController::class);
     // الشهادات
     Route::RESOURCE('Certific', CertificController::class);
+    Route::GET('Certifi-Show/{id}', [CertificController::class, 'CertifiShow'])->name('Certifi-Show');
     // الاجازات
     Route::RESOURCE('Holidays', HolidaysController::class);
     // المدربين
