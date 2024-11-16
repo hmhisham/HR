@@ -13,14 +13,16 @@ class Placement extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+
     public $workers = [];
+    public $Worker;
     public $linkages = [];
     public $sections = [];
     public $branch = [];
     public $units = [];
     public $Placements = [];
     public $PlacementSearch, $Placement, $PlacementId, $linkageName, $SectionsName, $branch_name, $UnitName;
-    public $user_id, $worker_id, $worker_full_name, $linkage_id, $section_id, $branch_id, $unit_id, $placement_order_number, $placement_order_date, $release_date, $start_date;
+    public $user_id, $worker_id, $calculator_number, $worker_full_name, $linkage_id, $section_id, $branch_id, $unit_id, $placement_order_number, $placement_order_date, $release_date, $start_date;
     protected $listeners = [
         'SelectWorkerId',
         'GetLinkage',
@@ -73,7 +75,7 @@ class Placement extends Component
     }
     public function render()
     {
-        $PlacementSearch = '%' . $this->PlacementSearch . '%';
+        /*$PlacementSearch = '%' . $this->PlacementSearch . '%';
         $Placements = Placements::where('user_id', 'LIKE', $PlacementSearch)
             ->orWhere('worker_id', 'LIKE', $PlacementSearch)
             ->orWhere('linkage_id', 'LIKE', $PlacementSearch)
@@ -91,13 +93,26 @@ class Placement extends Component
         $this->Placements = collect($Placements->items());
         return view('livewire.placements.placement', [
             'links' => $links
+        ]);*/
+
+        $PlacementSearch = '%' . $this->PlacementSearch . '%';
+        $workers = Workers::where('full_name', 'LIKE', $PlacementSearch)->orderBy('id', 'ASC')->paginate(10);
+
+        $links = $workers;
+        $this->workers = collect($workers->items());
+        return view('livewire.placements.placement', [
+            'links' => $links,
         ]);
     }
-    public function AddPlacementModalShow()
+    public function AddPlacementModal($WorkerID)
     {
         $this->reset(['id', 'worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'placement_order_number', 'placement_order_date', 'release_date', 'start_date']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('PlacementModalShow');
+
+        $this->Worker = Workers::find($WorkerID);
+        $this->worker_id = $WorkerID;
+        $this->calculator_number = $this->Worker->calculator_number;
     }
     public function GetPlacement($PlacementId)
     {
@@ -158,7 +173,7 @@ class Placement extends Component
             'title' => 'اضافه'
         ]);
     }
-    public function update()
+    /*public function update()
     {
         $this->resetValidation();
         $this->validate([
@@ -208,5 +223,5 @@ class Placement extends Component
                 'title' => 'الحذف'
             ]);
         }
-    }
+    }*/
 }

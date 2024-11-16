@@ -12,30 +12,26 @@
                 <form id="addplacementModalForm" autocomplete="off">
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
-                            <div Class="row bg-label-primary">
-                                <div class="col">
-                                    <label class="border-bottom-2 text-center mb-2 w-100" style="border-bottom: 2px solid">اسم الموظف</label>
-                                    <div wire:loading wire:target='AddPlacementsModal'
-                                        wire:loading.class="d-flex justify-content-center">
-                                        <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
+                            <div Class="row">
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <select wire:model.defer='worker_id' id="addPlacementworker_id"
+                                            class="form-select @error('worker_id') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @foreach ($workers as $worker)
+                                                <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="modalPlacementworker_id">الاسم الكامل</label>
                                     </div>
-                                    <div wire:loading.remove wire:target='AddPlacementsModal' class="text-center">
-                                        {{ $Worker->full_name ?? '' }}</div>
-                                </div>
-
-                                <div class="col" >
-                                    <label class="border-bottom-2 text-center mb-2 w-100" style="border-bottom: 2px solid">رقم الحاسبة</label>
-                                    <div wire:loading wire:target='AddPlacementsModal'
-                                        wire:loading.class="d-flex justify-content-center">
-                                        <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
-                                    </div>
-                                    <div wire:loading.remove wire:target='AddPlacementsModal' class="text-center">
-                                        {{ $Worker->calculator_number ?? '' }}</div>
+                                    @error('worker_id')
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
-
-                            <hr class="">
-
+                            <div class="divider divider-primary mt-n2">
+                                <div class="divider-text">بيانات القسم الجديد</div>
+                            </div>
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">

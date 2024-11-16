@@ -161,6 +161,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Childrens', ChildrensController::class);
     // التنمسيب
     Route::RESOURCE('Placements', PlacementsController::class);
+    Route::GET('Placement-Show/{id}', [PlacementsController::class, 'PlacementShow'])->name('Placement-Show');
     //المنصب
     Route::RESOURCE('Positions', PositionsController::class);
     //الخدمات

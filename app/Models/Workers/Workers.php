@@ -27,6 +27,11 @@ class Workers extends Model
         return $this->hasMany(Certific::class, 'worker_id');
     }
 
+    public function GetPlacement()
+    {
+        return $this->hasMany(Certific::class, 'worker_id');
+    }
+
     Public function Gettypesservice()
     {
         return $this->belongsTo(Typesservices::class, 'service_status' );

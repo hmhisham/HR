@@ -6,6 +6,13 @@ class PlacementsController extends Controller
 {
     public function index()
     {
-        Return View('content.Placements.index'); 
+        Return View('content.Placements.index');
+    }
+
+    public function CertifiShow($id)
+    {
+        Return View('content.Placements.show', [
+            'id' => $id
+        ]);
     }
 }

@@ -25,6 +25,12 @@ class ShowCertifi extends Component
     public $user_id, $calculator_number, $document_number, $document_date, $certificates_id, $authenticity_number, $authenticity_date, $graduations_id, $specialization_id, $graduation_year, $specialtys_id, $precises_id, $specializationclassification_id, $grade, $estimate, $duration, $issuing_country, $notes, $status;
     public $isDisabled = true;
 
+    public function hydrate()
+    {
+        $this->emit('select2');
+        $this->emit('flatpickr');
+    }
+
     public function mount()
     {
         $this->Worker = Workers::find($this->worker_id);
