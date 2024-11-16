@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Livewire\Placements;
+namespace App\Http\Livewire\Placements\ShowPlacement;
 use Livewire\Component;
 use App\Models\Units\Units;
 use Livewire\WithPagination;
@@ -9,11 +9,13 @@ use App\Models\Linkages\Linkages;
 use App\Models\Sections\Sections;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Placements\Placements;
-class Placement extends Component
+class ShowPlacement extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $workers = [];
+    public $Worker;
+    public $WorkerPlacements = [];
     public $linkages = [];
     public $sections = [];
     public $branch = [];
@@ -29,7 +31,8 @@ class Placement extends Component
     }
     public function mount()
     {
-        $this->workers = Workers::all();
+        $this->Worker = Workers::find($this->worker_id);
+        $this->WorkerPlacements = $this->Worker->GetPlacement;
         $this->linkages = Linkages::all();
     }
 

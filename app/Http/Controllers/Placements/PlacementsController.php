@@ -9,7 +9,7 @@ class PlacementsController extends Controller
         Return View('content.Placements.index');
     }
 
-    public function CertifiShow($id)
+    public function PlacementShow($id)
     {
         Return View('content.Placements.show', [
             'id' => $id

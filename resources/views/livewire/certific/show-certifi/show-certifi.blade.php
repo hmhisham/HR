@@ -35,7 +35,7 @@
                                 @php $i++;@endphp
                                 <td>{{ $i }}</td>
                                 <td>{{ $Certific->document_number }}</td>
-                                <td class="">{{ $Certific->document_date }}</td>
+                                <td>{{ $Certific->document_date }}</td>
                                 <td>{{ $Certific->Getcertificate->certificates_name }}</td>
                                 <td>{{ $Certific->Getspecialization->specializations_name }}</td>
                                 <td class="text-center">
