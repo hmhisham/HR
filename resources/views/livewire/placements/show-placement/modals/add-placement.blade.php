@@ -15,26 +15,6 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='worker_id' id="addPlacementworker_id"
-                                            class="form-select @error('worker_id') is-invalid is-filled @enderror">
-                                            <option value=""></option>
-                                            @foreach ($workers as $worker)
-                                                <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="modalPlacementworker_id">الاسم الكامل</label>
-                                    </div>
-                                    @error('worker_id')
-                                        <small class='text-danger inputerror'>{{ $message }}</small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="divider divider-primary mt-n2">
-                                <div class="divider-text">بيانات القسم الجديد</div>
-                            </div>
-                            <div Class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='linkage_id' id="addLinkage"
                                             class="form-select @error('linkage_id') is-invalid is-filled @enderror">
                                             <option value="">اختر جهة الارتباط</option>

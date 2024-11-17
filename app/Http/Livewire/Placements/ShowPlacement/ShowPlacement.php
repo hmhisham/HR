@@ -69,7 +69,7 @@ class ShowPlacement extends Component
         $this->validate([
             'worker_id' => 'required:placements',
             'linkage_id' => 'required:placements',
-            //'section_id' => 'required:placements',
+            'section_id' => 'required:placements',
             'placement_order_number' => 'required:placements',
             'placement_order_date' => 'required:placements',
             'release_date' => 'required:placements',
@@ -77,7 +77,7 @@ class ShowPlacement extends Component
         ], [
             'worker_id.required' => 'حقل الاسم مطلوب',
             'linkage_id.required' => 'حقل الارتباط مطلوب',
-            //'section_id.required' => 'حقل القسم مطلوب',
+            'section_id.required' => 'حقل القسم مطلوب',
             'placement_order_number.required' => 'حقل رقم أمر التنسيب مطلوب',
             'placement_order_date.required' => 'حقل تاريخ أمر التنسيب مطلوب',
             'release_date.required' => 'حقل تاريخ الانفكاك مطلوب',
@@ -96,7 +96,7 @@ class ShowPlacement extends Component
             'release_date' => $this->release_date,
             'start_date' => $this->start_date,
         ]);
-        $this->reset(['id', 'worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'placement_order_number', 'placement_order_date', 'release_date', 'start_date']);
+        $this->resetExcept('worker_id', 'Worker', 'WorkerPlacements', 'linkages');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -107,7 +107,7 @@ class ShowPlacement extends Component
         $Placements = Placements::find($this->PlacementId);
         if ($Placements) {
             $Placements->delete();
-            $this->reset(['id', 'worker_id', 'linkage_id', 'section_id', 'branch_id', 'unit_id', 'placement_order_number', 'placement_order_date', 'release_date', 'start_date']);
+            $this->reset();
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم حذف البيانات بنجاح',
                 'title' => 'الحذف'

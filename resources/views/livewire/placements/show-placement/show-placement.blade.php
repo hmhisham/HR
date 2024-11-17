@@ -34,7 +34,7 @@
                             <tr>
                                 @php $i++;@endphp
                                 <td>{{ $i }}</td>
-                                <td class="text-center">{{ $Placements->section_name }}</td>
+                                <td class="text-center">{{ $Placements->Getsection->section_name }}</td>
                                 <td class="text-center">{{ $Placements->placement_order_number }}</td>
                                 <td class="text-center">{{ $Placements->placement_order_date }}</td>
                                 <td class="text-center">

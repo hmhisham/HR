@@ -6,6 +6,7 @@ use App\Models\Certific\Certific;
 use App\Models\Infooffice\Infooffice;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Notifications\Notifications;
+use App\Models\Placements\Placements;
 use App\Models\Typesservices\Typesservices;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -29,7 +30,7 @@ class Workers extends Model
 
     public function GetPlacement()
     {
-        return $this->hasMany(Certific::class, 'worker_id');
+        return $this->hasMany(Placements::class, 'worker_id');
     }
 
     Public function Gettypesservice()
