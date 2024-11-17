@@ -12,7 +12,7 @@
                 @can('certificate-create')
                     <button wire:click='AddCertifyModal' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal"
                         data-bs-target="#addcertifiModal">أضــافــة</button>
-                    @include('livewire.certific.modals.add-certificate')
+                    @include('livewire.certific.show-certifi.modals.add-certificate')
                 @endcan
             </div>
         </div>
