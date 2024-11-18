@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('itype', 2)->nullable()->comment('نوع القيد');
             $table->string('idocument', 6)->nullable()->comment('رقم المستند');
             $table->date('idate')->nullable()->comment('تاريخ المستند');
-            $table->decimal('idept',18,3)->nullable()->comment('مبلغ المدين');
-            $table->decimal('icredt',18,3)->nullable()->comment('مبلغ الدائن');
+            $table->string('idept')->nullable()->comment('مبلغ المدين');
+            $table->string('icredt')->nullable()->comment('مبلغ الدائن');
             $table->string('iacct')->nullable()->comment('الدليل');
             $table->string('isub')->nullable()->comment('الافرادي');
             $table->string('icd')->nullable()->comment('بداية الدليل');
