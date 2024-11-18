@@ -23,7 +23,7 @@
                 <thead class="table-light">
                     <tr>
                         <th>#</th>
-                        <th class="text-center">رقم القسم</th>
+                        <th class="text-end">رقم القسم</th>
                         <th class="text-center">اسم القسم</th>
                         <th class="text-center">ملاحظات</th>
                         <th class="text-center">العملية</th>
@@ -36,7 +36,7 @@
                         <tr>
                             <?php $i++; ?>
                             <td>{{ $i }}</td>
-                            <td class="text-center">{{ $Idepartment->idepartment }}</td>
+                            <td class="text-end">{{ $Idepartment->idepartment }}</td>
                             <td class="text-center">{{ $Idepartment->idepartmentcname }}</td>
                             <td class="text-center">{{ $Idepartment->note }}</td>
 
@@ -44,14 +44,14 @@
                                 <div class="btn-group" role="group" aria-label="First group">
                                     @can('idepartment-edit')
                                         <button wire:click="GetIdepartment({{ $Idepartment->id }})"
-                                            class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                            class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                             data-bs-target="#editidepartmentModal">
                                             <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                         </button>
                                     @endcan
                                     @can('idepartment-delete')
                                         <button wire:click="GetIdepartment({{ $Idepartment->id }})"
-                                            class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Idepartment->active ? 'disabled' : '' }}"
+                                            class="p-0 px-1 btn btn-text-danger waves-effect {{ $Idepartment->active ? 'disabled' : '' }}"
                                             data-bs-toggle = "modal" data-bs-target="#removeidepartmentModal">
                                             <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                         </button>

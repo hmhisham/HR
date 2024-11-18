@@ -10,47 +10,43 @@
                 </div>
                 <hr class="mt-n2">
                 <form id="additypeModalForm" autocomplete="off">
-                    <div class="row row-cols-1  ">
-                        <div class="col mb-3">
-                            <div Class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='itypename' type="text" id="modalItypeitypename"
-                                            placeholder="اسم القيد"
-                                            class="form-control @error('itypename') is-invalid is-filled @enderror" />
-                                        <label for="modalItypeitypename">اسم القيد</label>
-                                    </div>
-                                    @error('itypename')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='itype' type="text" id="modalItypeitype"
-                                            placeholder="نوع القيد"
-                                            class="form-control @error('itype') is-invalid is-filled @enderror" />
-                                        <label for="modalItypeitype">نوع القيد</label>
-                                    </div>
-                                    @error('itype')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
+                    <div Class="row">
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <input wire:model.defer='itypename' type="text" id="modalItypeitypename"
+                                    placeholder="اسم القيد"
+                                    class="form-control @error('itypename') is-invalid is-filled @enderror"
+                                    onkeypress="return onlyArabicKey(event)" />
+                                <label for="modalItypeitypename">اسم القيد</label>
                             </div>
-                            <div Class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='note' type="text" id="modalItypenote"
-                                            placeholder="ملاحظات"
-                                            class="form-control @error('note') is-invalid is-filled @enderror" />
-                                        <label for="modalItypenote">ملاحظات</label>
-                                    </div>
-                                    @error('note')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
+                            @error('itypename')
+                                <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
+                        </div>
 
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <input wire:model.defer='itype' type="text" id="modalItypeitype"
+                                    placeholder="نوع القيد"
+                                    class="form-control @error('itype') is-invalid is-filled @enderror"
+                                    onkeypress="return onlyNumberKey(event)" />
+                                <label for="modalItypeitype">نوع القيد</label>
                             </div>
+                            @error('itype')
+                                <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div Class="row">
+                        <div class="mb-3 col">
+                            <div class="form-floating form-floating-outline">
+                                <input wire:model.defer='note' type="text" id="modalItypenote" placeholder="ملاحظات"
+                                    class="form-control @error('note') is-invalid is-filled @enderror" />
+                                <label for="modalItypenote">ملاحظات</label>
+                            </div>
+                            @error('note')
+                                <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
                         </div>
                     </div>
                     <hr class="my-0">

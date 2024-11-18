@@ -16,52 +16,50 @@
 
                 <div wire:loading.remove>
                     <form id="editIdepartmentModalForm" autocomplete="off">
-                        <div class="row row-cols-1">
-                            <div class="col mb-3">
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='idepartment' type="text"
-                                                id="modalIdepartmentidepartment" placeholder="رقم القسم"
-                                                class="form-control @error('idepartment') is-invalid is-filled @enderror" />
-                                            <label for="modalIdepartmentidepartment">رقم القسم</label>
-                                        </div>
-                                        @error('idepartment')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                        <div Class="row">
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='idepartment' type="text"
+                                        id="modalIdepartmentidepartment" placeholder="رقم القسم"
+                                        class="form-control @error('idepartment') is-invalid is-filled @enderror"
+                                        onkeypress="return onlyNumberKey(event)" />
+                                    <label for="modalIdepartmentidepartment">رقم القسم</label>
+                                </div>
+                                @error('idepartment')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+                            </div>
 
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='idepartmentcname' type="text"
-                                                id="modalIdepartmentidepartmentcname" placeholder="اسم القسم"
-                                                class="form-control @error('idepartmentcname') is-invalid is-filled @enderror" />
-                                            <label for="modalIdepartmentidepartmentcname">اسم القسم</label>
-                                        </div>
-                                        @error('idepartmentcname')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='idepartmentcname' type="text"
+                                        id="modalIdepartmentidepartmentcname" placeholder="اسم القسم"
+                                        class="form-control @error('idepartmentcname') is-invalid is-filled @enderror"
+                                        onkeypress="return onlyArabicKey(event)" />
+                                    <label for="modalIdepartmentidepartmentcname">اسم القسم</label>
                                 </div>
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='note' type="text" id="modalIdepartmentnote"
-                                                placeholder="ملاحظات"
-                                                class="form-control @error('note') is-invalid is-filled @enderror" />
-                                            <label for="modalIdepartmentnote">ملاحظات</label>
-                                        </div>
-                                        @error('note')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                                @error('idepartmentcname')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div Class="row">
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='note' type="text" id="modalIdepartmentnote"
+                                        placeholder="ملاحظات"
+                                        class="form-control @error('note') is-invalid is-filled @enderror" />
+                                    <label for="modalIdepartmentnote">ملاحظات</label>
                                 </div>
+                                @error('note')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
                             </div>
                         </div>
                         <hr class="my-0">
                         <div class="text-center col-12 demo-vertical-spacing mb-n4">
                             <button wire:click='update' wire:loading.attr="disabled" type="button"
-                                class="btn btn-success me-sm-3 me-1">تعديل</button>
+                                class="btn btn-primary me-sm-3 me-1">تعديل</button>
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">تجاهل</button>
                         </div>

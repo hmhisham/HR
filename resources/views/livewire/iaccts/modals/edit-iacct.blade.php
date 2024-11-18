@@ -16,53 +16,50 @@
 
                 <div wire:loading.remove>
                     <form id="editIacctModalForm" autocomplete="off">
-                        <div class="row row-cols-1">
-                            <div class="col mb-3">
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='iacct' type="text" id="modalIacctiacct"
-                                                placeholder="رقم الدليل"
-                                                class="form-control @error('iacct') is-invalid is-filled @enderror" />
-                                            <label for="modalIacctiacct">رقم الدليل</label>
-                                        </div>
-                                        @error('iacct')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                        <div Class="row">
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='iacct' type="text" id="modalIacctiacct"
+                                        placeholder="رقم الدليل"
+                                        class="form-control @error('iacct') is-invalid is-filled @enderror"
+                                        onkeypress="return onlyNumberKey(event)" />
+                                    <label for="modalIacctiacct">رقم الدليل</label>
                                 </div>
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='iacctname' type="text" id="modalIacctiacctname"
-                                                placeholder="اسم الدليل"
-                                                class="form-control @error('iacctname') is-invalid is-filled @enderror" />
-                                            <label for="modalIacctiacctname">اسم الدليل</label>
-                                        </div>
-                                        @error('iacctname')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                                @error('iacct')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+                            </div>
 
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='note' type="text" id="modalIacctnote"
-                                                placeholder="ملاحظات"
-                                                class="form-control @error('note') is-invalid is-filled @enderror" />
-                                            <label for="modalIacctnote">ملاحظات</label>
-                                        </div>
-                                        @error('note')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='iacctname' type="text" id="modalIacctiacctname"
+                                        placeholder="اسم الدليل"
+                                        class="form-control @error('iacctname') is-invalid is-filled @enderror"
+                                        onkeypress="return onlyArabicKey(event)" />
+                                    <label for="modalIacctiacctname">اسم الدليل</label>
                                 </div>
+                                @error('iacctname')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div Class="row">
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='note' type="text" id="modalIacctnote"
+                                        placeholder="ملاحظات"
+                                        class="form-control @error('note') is-invalid is-filled @enderror" />
+                                    <label for="modalIacctnote">ملاحظات</label>
+                                </div>
+                                @error('note')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
                             </div>
                         </div>
                         <hr class="my-0">
                         <div class="text-center col-12 demo-vertical-spacing mb-n4">
                             <button wire:click='update' wire:loading.attr="disabled" type="button"
-                                class="btn btn-success me-sm-3 me-1">تعديل</button>
+                                class="btn btn-primary me-sm-3 me-1">تعديل</button>
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">تجاهل</button>
                         </div>
