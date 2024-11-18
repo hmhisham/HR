@@ -24,8 +24,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                            </div>
-                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='itype' type="text" id="modalInputitype"
@@ -86,7 +84,8 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
+                            </div>
+                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='iacct' type="text" id="modalInputiacct"
@@ -98,8 +97,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                            </div>
-                            <div Class="row">
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='isub' type="text" id="modalInputisub"
@@ -148,7 +146,9 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+                            </div>
 
+                            <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='note' type="text" id="modalInputnote"
@@ -160,7 +160,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                             </div>
                         </div>
                     </div>

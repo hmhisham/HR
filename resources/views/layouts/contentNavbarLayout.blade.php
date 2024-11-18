@@ -75,7 +75,7 @@
                             </li>
 
                             @can('employees')
-                                <li class="menu-item {{ request()->is('Workers', 'AddWorker', 'Thanks', 'Penalties', 'Jobleavers', 'Dispatch', 'Certific', 'Holidays', 'Wives', 'Childrens', 'Placements', 'Positions','Services','Inputs') ? 'open active' : '' }}">
+                                <li class="menu-item {{ request()->is('Workers', 'AddWorker', 'Thanks', 'Penalties', 'Jobleavers', 'Dispatch', 'Certific', 'Holidays', 'Wives', 'Childrens', 'Placements', 'Positions','Services','Inputs','Itypes') ? 'open active' : '' }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                                         <span class="menu-title">قسم الموارد البشرية</span>
@@ -171,12 +171,30 @@
                                 </li>
                             @endcan
 
-                            <li class="menu-item {{ request()->is('Salaries') ? 'open active' : '' }}">
+                            <li class="menu-item {{ request()->is('Salaries','Inputs','Itypes','Iaccts','Isection') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-calculator'></i>
                                     <span class="menu-title">القسم المالي</span>
                                 </a>
                                 <ul class="menu-sub">
+                                    <li Class="menu-item {{ request()->Is('Itypes') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Itypes.index') }}" Class="menu-link">
+                                            <div>انواع القيود</div>
+                                        </a>
+                                    </li>
+
+                                    <li Class="menu-item {{ request()->Is('Iaccts') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Iaccts.index') }}" Class="menu-link">
+                                            <div>الدليل المحاسبي</div>
+                                        </a>
+                                    </li>
+
+                                    <li Class="menu-item {{ request()->Is('Isection') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Isection.index') }}" Class="menu-link">
+                                            <div>دليل الاقسام</div>
+                                        </a>
+                                    </li>
+
                                     <li Class="menu-item {{ request()->Is('Inputs') ? 'active' : '' }}">
                                         <a href = "{{ Route('Inputs.index') }}" Class="menu-link">
                                             <div>ادخال اليومية</div>

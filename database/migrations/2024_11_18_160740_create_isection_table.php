@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('itypes', function (Blueprint $table) {
+        Schema::create('isection', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable()->comment('رقم المستخدم');
-            $table->string('itypename', 50)->nullable()->comment('اسم القيد');
-            $table->string('itype', 2)->nullable()->comment('نوع القيد');
+            $table->string('isection')->nullable()->comment('رقم القسم');
+            $table->string('isectioncname')->nullable()->comment('اسم القسم');
             $table->string('note')->nullable()->comment('ملاحظات');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('itypes');
+        Schema::dropIfExists('isection');
     }
 };

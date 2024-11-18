@@ -14,18 +14,18 @@ return new class extends Migration
         Schema::create('inputs', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable()->comment('رقم المستخدم');
-            $table->string('patch')->comment('رقم الرزمة');
-            $table->string('itype', 2)->comment('نوع القيد');
-            $table->string('idocument', 6)->comment('رقم المستند');
-            $table->date('idate')->comment('تاريخ المستند');
-            $table->decimal('idept',18,3)->comment('مبلغ المدين');
-            $table->decimal('icredt',18,3)->comment('مبلغ الدائن');
-            $table->string('iacct')->comment('الدليل');
-            $table->string('isub')->comment('الافرادي');
-            $table->string('icd')->comment('بداية الدليل');
-            $table->string('idep')->comment('القسم');
-            $table->string('irem')->comment('البيان');
-            $table->string('note')->comment('ملاحظات');
+            $table->string('patch')->nullable()->comment('رقم الرزمة');
+            $table->string('itype', 2)->nullable()->comment('نوع القيد');
+            $table->string('idocument', 6)->nullable()->comment('رقم المستند');
+            $table->date('idate')->nullable()->comment('تاريخ المستند');
+            $table->decimal('idept',18,3)->nullable()->comment('مبلغ المدين');
+            $table->decimal('icredt',18,3)->nullable()->comment('مبلغ الدائن');
+            $table->string('iacct')->nullable()->comment('الدليل');
+            $table->string('isub')->nullable()->comment('الافرادي');
+            $table->string('icd')->nullable()->comment('بداية الدليل');
+            $table->string('idep')->nullable()->comment('القسم');
+            $table->string('irem')->nullable()->comment('البيان');
+            $table->string('note')->nullable()->comment('ملاحظات');
             $table->timestamps();
         });
     }
