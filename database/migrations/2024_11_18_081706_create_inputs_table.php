@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->nullable()->comment('رقم المستخدم');
             $table->string('patch')->nullable()->comment('رقم الرزمة');
-            $table->string('itype', 2)->nullable()->comment('نوع القيد');
-            $table->string('idocument', 6)->nullable()->comment('رقم المستند');
+            $table->string('itype')->nullable()->comment('نوع القيد');
+            $table->string('idocument')->nullable()->comment('رقم المستند');
             $table->date('idate')->nullable()->comment('تاريخ المستند');
             $table->string('idept')->nullable()->comment('مبلغ المدين');
             $table->string('icredt')->nullable()->comment('مبلغ الدائن');
