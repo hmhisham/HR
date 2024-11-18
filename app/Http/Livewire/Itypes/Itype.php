@@ -20,8 +20,7 @@ class Itype extends Component
     public function render()
     {
         $ItypeSearch = '%' . $this->ItypeSearch . '%';
-        $Itypes = Itypes::where('user_id', 'LIKE', $ItypeSearch)
-            ->orWhere('itypename', 'LIKE', $ItypeSearch)
+        $Itypes = Itypes::where('itypename', 'LIKE', $ItypeSearch)
             ->orWhere('itype', 'LIKE', $ItypeSearch)
             ->orWhere('note', 'LIKE', $ItypeSearch)
 
@@ -47,17 +46,14 @@ class Itype extends Component
     {
         $this->resetValidation();
         $this->validate([
-            //'user_id' => 'required',
             'itypename' => 'required',
             'itype' => 'required',
         ], [
-            //'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'itypename.required' => 'حقل اسم القيد مطلوب',
             'itype.required' => 'حقل نوع القيد مطلوب',
         ]);
 
         Itypes::create([
-            //'user_id' => $this->user_id,
             'itypename' => $this->itypename,
             'itype' => $this->itype,
             'note' => $this->note,
@@ -85,19 +81,16 @@ class Itype extends Component
     {
         $this->resetValidation();
         $this->validate([
-            //'user_id' => 'required:itypes',
             'itypename' => 'required:itypes',
             'itype' => 'required:itypes',
 
         ], [
-            //'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'itypename.required' => 'حقل اسم القيد مطلوب',
             'itype.required' => 'حقل نوع القيد مطلوب',
         ]);
 
         $Itypes = Itypes::find($this->ItypeId);
         $Itypes->update([
-            //'user_id' => $this->user_id,
             'itypename' => $this->itypename,
             'itype' => $this->itype,
             'note' => $this->note,

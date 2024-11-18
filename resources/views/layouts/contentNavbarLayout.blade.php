@@ -171,7 +171,7 @@
                                 </li>
                             @endcan
 
-                            <li class="menu-item {{ request()->is('Salaries','Inputs','Itypes','Iaccts','Isection') ? 'open active' : '' }}">
+                            <li class="menu-item {{ request()->is('Salaries','Inputs','Itypes','Iaccts','Isections') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-calculator'></i>
                                     <span class="menu-title">القسم المالي</span>
@@ -189,8 +189,8 @@
                                         </a>
                                     </li>
 
-                                    <li Class="menu-item {{ request()->Is('Isection') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Isection.index') }}" Class="menu-link">
+                                    <li Class="menu-item {{ request()->Is('Isections') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Isections.index') }}" Class="menu-link">
                                             <div>دليل الاقسام</div>
                                         </a>
                                     </li>

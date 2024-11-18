@@ -30,6 +30,7 @@ use App\Http\Controllers\Services\ServicesController;
 use App\Http\Controllers\Childrens\ChildrensController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
+use App\Http\Controllers\Isections\IsectionsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Penalties\PenaltiesController;
 use App\Http\Controllers\Positions\PositionsController;
@@ -180,7 +181,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //الدليل
     Route::RESOURCE('Iaccts', IacctsController::class);
     //الاقسام
-    Route::RESOURCE('Isection', IsectionController::class);
+    Route::RESOURCE('Isections', IsectionsController::class);
     //انواع القيود
     Route::RESOURCE('Itypes', ItypesController::class);
 

@@ -20,8 +20,7 @@ class Iacct extends Component
     public function render()
     {
         $IacctSearch = '%' . $this->IacctSearch . '%';
-        $Iaccts = Iaccts::where('user_id', 'LIKE', $IacctSearch)
-            ->orWhere('iacct', 'LIKE', $IacctSearch)
+        $Iaccts = Iaccts::where('iacct', 'LIKE', $IacctSearch)
             ->orWhere('iacctname', 'LIKE', $IacctSearch)
             ->orWhere('note', 'LIKE', $IacctSearch)
 
@@ -47,19 +46,16 @@ class Iacct extends Component
     {
         $this->resetValidation();
         $this->validate([
-            //'user_id' => 'required',
             'iacct' => 'required',
             'iacctname' => 'required',
 
         ], [
-            //'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'iacct.required' => 'حقل رقم الدليل مطلوب',
             'iacctname.required' => 'حقل اسم الدليل مطلوب',
         ]);
 
 
         Iaccts::create([
-            //'user_id' => $this->user_id,
             'iacct' => $this->iacct,
             'iacctname' => $this->iacctname,
             'note' => $this->note,
@@ -88,19 +84,16 @@ class Iacct extends Component
     {
         $this->resetValidation();
         $this->validate([
-            //'user_id' => 'required:iaccts',
             'iacct' => 'required:iaccts',
             'iacctname' => 'required:iaccts',
 
         ], [
-            //'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'iacct.required' => 'حقل رقم الدليل مطلوب',
             'iacctname.required' => 'حقل اسم الدليل مطلوب',
         ]);
 
         $Iaccts = Iaccts::find($this->IacctId);
         $Iaccts->update([
-            //'user_id' => $this->user_id,
             'iacct' => $this->iacct,
             'iacctname' => $this->iacctname,
             'note' => $this->note,
