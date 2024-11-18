@@ -38,7 +38,7 @@
                             <?php $i++; ?>
                             <td>{{ $i }}</td>
                             <td class="text-center">{{ $Input->patch }}</td>
-                            <td class="text-center">{{ $Input->itype }}</td>
+                            <td class="text-center">{{ $Input->Getitype ? $Input->Getitype->itype : '' }}</td>
                             <td class="text-center">{{ $Input->idocument }}</td>
                             <td class="text-center">{{ $Input->idate }}</td>
 

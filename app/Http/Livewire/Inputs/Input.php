@@ -5,7 +5,10 @@ namespace App\Http\Livewire\Inputs;
 use Livewire\Component;
 
 use Livewire\WithPagination;
+use App\Models\Iaccts\Iaccts;
 use App\Models\Inputs\Inputs;
+use App\Models\Itypes\Itypes;
+use App\Models\Idepartments\Idepartments;
 
 class Input extends Component
 {
@@ -13,15 +16,78 @@ class Input extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Inputs = [];
+    public $itypes = [];
+    public $iaccts = [];
+    public $idepartments = [];
     public $InputSearch, $Input, $InputId;
-    public $user_id, $patch, $itype, $idocument, $idate, $idept, $icredt, $iacct, $isub, $icd, $idep, $irem, $note;
+    public $user_id, $patch, $itype, $idocument, $idate, $idept, $icredt, $iacct, $isub, $icd = '', $idep, $irem, $note;
 
+    protected $listeners = [
+        'SelectItype',
+        'SelectIacct',
+        'SelectIdept',
+
+        'SelectIacct' => 'updateIcd',
+    ];
+    public function hydrate()
+    {
+        $this->emit('select2');
+        $this->emit('flatpickr');
+    }
+    public function mount()
+    {
+        $this->itypes = Itypes::all();
+        $this->iaccts = Iaccts::all();
+        $this->idepartments = Idepartments::all();
+    }
+
+    //استدعاء نوع القيد
+    public function SelectItype($ItypeID)
+    {
+        $itype = Itypes::find($ItypeID);
+        if ($itype) {
+            $this->itype = $ItypeID;
+        } else {
+            $this->itype = null;
+        }
+    }
+    //استدعاء الدليل المحاسبي
+    public function SelectIacct($IacctID)
+    {
+        $iacct = Iaccts::find($IacctID);
+        if ($iacct) {
+            $this->iacct = $IacctID;
+        } else {
+            $this->iacct = null;
+        }
+    }
+
+    //استدعاء قيد القسم
+    public function SelectIdept($IdeptID)
+    {
+        $idept = Idepartments::find($IdeptID);
+        if ($idept) {
+            $this->idept = $IdeptID;
+        } else {
+            $this->idept = null;
+        }
+    }
+
+    //اخذ رقم بداية الدليل
+    public function updateIcd($iacctId)
+    {
+        $iacct = Iaccts::find($iacctId);
+        if ($iacct) {
+            $this->icd = substr($iacct->iacct, 0, 1); // افتراض أن الرقم الأول هو المطلوب
+        } else {
+            $this->icd = '';
+        }
+    }
 
     public function render()
     {
         $InputSearch = '%' . $this->InputSearch . '%';
-        $Inputs = Inputs::where('user_id', 'LIKE', $InputSearch)
-            ->orWhere('patch', 'LIKE', $InputSearch)
+        $Inputs = Inputs::where('patch', 'LIKE', $InputSearch)
             ->orWhere('itype', 'LIKE', $InputSearch)
             ->orWhere('idocument', 'LIKE', $InputSearch)
             ->orWhere('idate', 'LIKE', $InputSearch)
@@ -55,62 +121,60 @@ class Input extends Component
     public function store()
     {
         $this->resetValidation();
+
+        // التحقق من وجود مبلغ المدين أو مبلغ الدائن
+        if (empty($this->idept) && empty($this->icredt)) {
+            $this->addError('idept', 'يجب إدخال مبلغ المدين أو مبلغ الدائن.');
+            $this->addError('icredt', 'يجب إدخال مبلغ المدين أو مبلغ الدائن.');
+            return;
+        }
+
+        // التحقق من الحقول الأخرى
         $this->validate([
-            //'user_id' => 'required',
             'patch' => 'required',
             'itype' => 'required',
             'idocument' => 'required',
             'idate' => 'required',
-            'idept' => 'required',
-            'icredt' => 'required',
             'iacct' => 'required',
             'isub' => 'required',
             'icd' => 'required',
             'idep' => 'required',
             'irem' => 'required',
-            //'note' => 'required',
-
         ], [
-            //'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'patch.required' => 'حقل رقم الزرمة مطلوب',
             'itype.required' => 'حقل نوع القيد مطلوب',
             'idocument.required' => 'حقل رقم المستند مطلوب',
             'idate.required' => 'حقل تاريخ المستند مطلوب',
-            'idept.required' => 'حقل مبلغ المدين مطلوب',
-            'icredt.required' => 'حقل مبلغ الدائن مطلوب',
             'iacct.required' => 'حقل الدليل مطلوب',
             'isub.required' => 'حقل الافرادي مطلوب',
             'icd.required' => 'حقل بداية الدليل مطلوب',
             'idep.required' => 'حقل القسم مطلوب',
             'irem.required' => 'حقل البيان مطلوب',
-            //'note.required' => 'حقل ملاحظات مطلوب',
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
-
-
         Inputs::create([
-            //'user_id' => $this->user_id,
             'patch' => $this->patch,
             'itype' => $this->itype,
             'idocument' => $this->idocument,
             'idate' => $this->idate,
-            'idept' => $this->idept,
-            'icredt' => $this->icredt,
+            'idept' => $this->idept ?? 0, // وضع القيمة الافتراضية 0 إذا لم يتم إدخالها
+            'icredt' => $this->icredt ?? 0, // وضع القيمة الافتراضية 0 إذا لم يتم إدخالها
             'iacct' => $this->iacct,
             'isub' => $this->isub,
             'icd' => $this->icd,
             'idep' => $this->idep,
             'irem' => $this->irem,
             'note' => $this->note,
-
         ]);
+
         $this->reset();
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
     }
+
 
     public function GetInput($InputId)
     {

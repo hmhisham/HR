@@ -15,24 +15,30 @@
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='patch' type="text" id="modalInputpatch"
+                                        <input wire:ignore wire:model.defer='patch' type="text" id="modalInputpatch"
                                             placeholder="رقم الزرمة"
-                                            class="form-control @error('patch') is-invalid is-filled @enderror" />
+                                            class="form-control @error('patch') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalInputpatch">رقم الزرمة</label>
                                     </div>
                                     @error('patch')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='itype' type="text" id="modalInputitype"
-                                            placeholder="نوع القيد"
-                                            class="form-control @error('itype') is-invalid is-filled @enderror" />
-                                        <label for="modalInputitype">نوع القيد</label>
+                                        <select wire:ignore wire:model.defer='itype' id="addInputitype"
+                                            class="form-select @error('itype') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @foreach ($itypes as $itype)
+                                                <option value="{{ $itype->id }}">{{ $itype->itype }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="addInputitype">نوع القيد</label>
                                     </div>
                                     @error('itype')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
 
@@ -40,7 +46,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='idocument' type="text" id="modalInputidocument"
                                             placeholder="رقم المستند"
-                                            class="form-control @error('idocument') is-invalid is-filled @enderror" />
+                                            class="form-control @error('idocument') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalInputidocument">رقم المستند</label>
                                     </div>
                                     @error('idocument')
@@ -50,7 +57,7 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='idate' type="date" id="modalInputidate"
+                                        <input wire:model.defer='idate' type="date" id="addmodalInputidate"
                                             placeholder="تاريخ المستند"
                                             class="form-control @error('idate') is-invalid is-filled @enderror" />
                                         <label for="modalInputidate">تاريخ المستند</label>
@@ -60,12 +67,13 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div Class="row">
+                            <div class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='idept' type="text" id="modalInputidept"
                                             placeholder="مبلغ المدين"
-                                            class="form-control @error('idept') is-invalid is-filled @enderror" />
+                                            class="form-control @error('idept') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey1(event)" data-type="number" />
                                         <label for="modalInputidept">مبلغ المدين</label>
                                     </div>
                                     @error('idept')
@@ -77,7 +85,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='icredt' type="text" id="modalInputicredt"
                                             placeholder="مبلغ الدائن"
-                                            class="form-control @error('icredt') is-invalid is-filled @enderror" />
+                                            class="form-control @error('icredt') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey1(event)" data-type="number" />
                                         <label for="modalInputicredt">مبلغ الدائن</label>
                                     </div>
                                     @error('icredt')
@@ -85,16 +94,21 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='iacct' type="text" id="modalInputiacct"
-                                            placeholder="الدليل"
-                                            class="form-control @error('iacct') is-invalid is-filled @enderror" />
-                                        <label for="modalInputiacct">الدليل</label>
+                                        <select wire:ignore wire:model.defer='iacct' id="addInputiacct"
+                                            class="form-select @error('iacct') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @foreach ($iaccts as $iacct)
+                                                <option value="{{ $iacct->id }}">{{ $iacct->iacct }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="addInputiacct">الدليل</label>
                                     </div>
                                     @error('iacct')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
 
@@ -102,7 +116,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='isub' type="text" id="modalInputisub"
                                             placeholder="الافرادي"
-                                            class="form-control @error('isub') is-invalid is-filled @enderror" />
+                                            class="form-control @error('isub') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalInputisub">الافرادي</label>
                                     </div>
                                     @error('isub')
@@ -114,7 +129,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='icd' type="text" id="modalInputicd"
                                             placeholder="بداية الدليل"
-                                            class="form-control @error('icd') is-invalid is-filled @enderror" />
+                                            class="form-control @error('icd') is-invalid is-filled @enderror"
+                                            disabled />
                                         <label for="modalInputicd">بداية الدليل</label>
                                     </div>
                                     @error('icd')
@@ -124,13 +140,18 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='idep' type="text" id="modalInputidep"
-                                            placeholder="القسم"
-                                            class="form-control @error('idep') is-invalid is-filled @enderror" />
-                                        <label for="modalInputidep">القسم</label>
+                                        <select wire:ignore wire:model.defer='idept' id="addInputidept"
+                                            class="form-select @error('idept') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @foreach ($idepartments as $idepartment)
+                                                <option value="{{ $idepartment->id }}">
+                                                    {{ $idepartment->idepartmentcname }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="addInputidept">القسم</label>
                                     </div>
-                                    @error('idep')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @error('idept')
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
@@ -139,7 +160,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='irem' type="text" id="modalInputirem"
                                             placeholder="البيان"
-                                            class="form-control @error('irem') is-invalid is-filled @enderror" />
+                                            class="form-control @error('irem') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyArabicKey(event)" />
                                         <label for="modalInputirem">البيان</label>
                                     </div>
                                     @error('irem')
