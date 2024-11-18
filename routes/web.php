@@ -21,7 +21,6 @@ use App\Http\Controllers\Workers\WorkersController;
 use App\Http\Controllers\Certific\CertificController;
 use App\Http\Controllers\Dispatch\DispatchController;
 use App\Http\Controllers\Holidays\HolidaysController;
-use App\Http\Controllers\Isection\IsectionController;
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\Linkages\LinkagesController;
 use App\Http\Controllers\Precises\PrecisesController;
@@ -30,7 +29,6 @@ use App\Http\Controllers\Services\ServicesController;
 use App\Http\Controllers\Childrens\ChildrensController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
-use App\Http\Controllers\Isections\IsectionsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Penalties\PenaltiesController;
 use App\Http\Controllers\Positions\PositionsController;
@@ -44,6 +42,7 @@ use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Technicians\TechniciansController;
 use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
+use App\Http\Controllers\Idepartments\IdepartmentsController;
 use App\Http\Controllers\Typeholidays\TypeholidaysController;
 use App\Http\Controllers\Typesservices\TypesservicesController;
 use App\Http\Controllers\Specializations\SpecializationsController;
@@ -181,7 +180,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //الدليل
     Route::RESOURCE('Iaccts', IacctsController::class);
     //الاقسام
-    Route::RESOURCE('Isections', IsectionsController::class);
+    Route::  RESOURCE('Idepartments', IdepartmentsController::class);
     //انواع القيود
     Route::RESOURCE('Itypes', ItypesController::class);
 
