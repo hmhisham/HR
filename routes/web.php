@@ -9,6 +9,7 @@ use App\Http\Controllers\Units\UnitsController;
 use App\Http\Controllers\Wives\WivesController;
 use App\Http\Controllers\Branch\BranchController;
 use App\Http\Controllers\Grades\GradesController;
+use App\Http\Controllers\Inputs\InputsController;
 use App\Http\Controllers\Thanks\ThanksController;
 use App\Http\Controllers\Coaches\CoachesController;
 use App\Http\Controllers\Courses\CoursesController;
@@ -136,8 +137,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::GET('AddWorker', [WorkersController::class, 'AddWorker'])->name('AddWorker');
 
     // التشكرات
-  Route::RESOURCE('Thanks', ThanksController::class);
-//   Route::GET('Thanks', [ThanksController::class, 'index'])->name('Workers');
+    Route::RESOURCE('Thanks', ThanksController::class);
+    //   Route::GET('Thanks', [ThanksController::class, 'index'])->name('Workers');
 
 
     // عقوبات
@@ -166,6 +167,14 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Positions', PositionsController::class);
     //الخدمات
     Route::RESOURCE('Services', ServicesController::class);
+
+
+
+    //===============المالية==================
+       //اليومية
+       Route::RESOURCE('Inputs', InputsController::class);
+
+
 
     //استدعاء اسم الموظف في حق الموظف
     /*Route::get('/api/workers', function (Request $request) {

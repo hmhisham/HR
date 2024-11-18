@@ -75,7 +75,7 @@
                             </li>
 
                             @can('employees')
-                                <li class="menu-item {{ request()->is('Workers', 'AddWorker', 'Thanks', 'Penalties', 'Jobleavers', 'Dispatch', 'Certific', 'Holidays', 'Wives', 'Childrens', 'Placements', 'Positions','Services') ? 'open active' : '' }}">
+                                <li class="menu-item {{ request()->is('Workers', 'AddWorker', 'Thanks', 'Penalties', 'Jobleavers', 'Dispatch', 'Certific', 'Holidays', 'Wives', 'Childrens', 'Placements', 'Positions','Services','Inputs') ? 'open active' : '' }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                                         <span class="menu-title">قسم الموارد البشرية</span>
@@ -177,9 +177,9 @@
                                     <span class="menu-title">القسم المالي</span>
                                 </a>
                                 <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Salaries') ? 'active' : '' }}">
-                                        <a href="" Class="menu-link">
-                                            <div>الرواتب</div>
+                                    <li Class="menu-item {{ request()->Is('Inputs') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Inputs.index') }}" Class="menu-link">
+                                            <div>ادخال اليومية</div>
                                         </a>
                                     </li>
                                 </ul>
