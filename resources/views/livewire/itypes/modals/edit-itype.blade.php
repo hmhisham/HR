@@ -34,7 +34,7 @@
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='itype' type="text" id="modalItypeitype"
                                         placeholder="نوع القيد"
-                                        class="form-control @error('itype') is-invalid is-filled @enderror"
+                                        class="form-control @error('itype') is-invalid is-filled @enderror" maxlength="2"
                                         onkeypress="return onlyNumberKey(event)" maxlength="6"/>
                                     <label for="modalItypeitype">نوع القيد</label>
                                 </div>
