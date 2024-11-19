@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('iacct')->nullable()->comment('الدليل');
             $table->string('isub')->nullable()->comment('الافرادي');
             $table->string('icd')->nullable()->comment('بداية الدليل');
-            $table->string('idep')->nullable()->comment('القسم');
+            $table->string('idepartment')->nullable()->comment('القسم');
             $table->string('irem')->nullable()->comment('البيان');
             $table->string('note')->nullable()->comment('ملاحظات');
             $table->timestamps();

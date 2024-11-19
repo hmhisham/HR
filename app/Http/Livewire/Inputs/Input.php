@@ -26,8 +26,8 @@ class Input extends Component
         'SelectItype',
         'SelectIacct',
         'SelectIdepartment',
-
-        'SelectIacct' => 'updateIcd',
+        'updateIcd',
+        //'SelectIacct' => 'updateIcd',
     ];
     public function hydrate()
     {
@@ -51,16 +51,32 @@ class Input extends Component
             $this->itype = null;
         }
     }
-    //استدعاء الدليل المحاسبي
+
+    // استدعاء الدليل المحاسبي
     public function SelectIacct($IacctID)
     {
         $iacct = Iaccts::find($IacctID);
         if ($iacct) {
             $this->iacct = $IacctID;
+            // تحديث بداية الدليل
+            $this->updateIcd($IacctID);
         } else {
             $this->iacct = null;
         }
     }
+
+    // اخذ رقم بداية الدليل
+    public function updateIcd($iacctId)
+    {
+        $iacct = Iaccts::find($iacctId);
+        if ($iacct) {
+            $this->icd = substr($iacct->iacct, 0, 1); // افتراض أن الرقم الأول هو المطلوب
+        } else {
+            $this->icd = '';
+        }
+    }
+
+
 
     //استدعاء قيد القسم
     public function SelectIdepartment($IdepartmentID)
@@ -73,16 +89,7 @@ class Input extends Component
         }
     }
 
-    //اخذ رقم بداية الدليل
-    public function updateIcd($iacctId)
-    {
-        $iacct = Iaccts::find($iacctId);
-        if ($iacct) {
-            $this->icd = substr($iacct->iacct, 0, 1); // افتراض أن الرقم الأول هو المطلوب
-        } else {
-            $this->icd = '';
-        }
-    }
+
 
     public function render()
     {

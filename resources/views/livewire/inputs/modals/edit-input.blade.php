@@ -14,7 +14,7 @@
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
 
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="update">
                     <form id="editInputModalForm" autocomplete="off">
                         <div Class="row">
                             <div class="mb-3 col">

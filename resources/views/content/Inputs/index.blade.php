@@ -69,6 +69,7 @@
 
             // Livewire event to reinitialize Select2
             window.livewire.on('select2', () => {
+                console.log("Reinitializing Select2");
                 initSelect2('#addInputitype', 'SelectItype', '#addinputModal');
                 initSelect2('#editInputitype', 'SelectItype', '#editinputModal');
                 initSelect2('#addInputiacct', 'SelectIacct', '#addinputModal');
