@@ -52,6 +52,7 @@
                     dropdownParent: $(parentModal)
                 });
                 $(selector).on('change', function(e) {
+                    console.log(`Value changed to: ${e.target.value}`);
                     livewire.emit(eventName, e.target.value);
                 });
             }
@@ -59,12 +60,12 @@
             // نوع القيد
             initSelect2('#addInputitype', 'SelectItype', '#addinputModal');
             initSelect2('#editInputitype', 'SelectItype', '#editinputModal');
-            //الدليل المحاسبي
+            // الدليل المحاسبي
             initSelect2('#addInputiacct', 'SelectIacct', '#addinputModal');
             initSelect2('#editInputiacct', 'SelectIacct', '#editinputModal');
-            //استدعاء قيد القسم
-            initSelect2('#addInputidept', 'SelectIdept', '#addinputModal');
-            initSelect2('#editInputidept', 'SelectIdept', '#editinputModal');
+            // استدعاء قيد القسم
+            initSelect2('#addInputidepartment', 'SelectIdepartment', '#addinputModal');
+            initSelect2('#editInputidepartment', 'SelectIdepartment', '#editinputModal');
 
             // Livewire event to reinitialize Select2
             window.livewire.on('select2', () => {
@@ -72,40 +73,31 @@
                 initSelect2('#editInputitype', 'SelectItype', '#editinputModal');
                 initSelect2('#addInputiacct', 'SelectIacct', '#addinputModal');
                 initSelect2('#editInputiacct', 'SelectIacct', '#editinputModal');
-                initSelect2('#addInputidept', 'SelectIdept', '#addinputModal');
-                initSelect2('#editInputidept', 'SelectIdept', '#editinputModal');
+                initSelect2('#addInputidepartment', 'SelectIdepartment', '#addinputModal');
+                initSelect2('#editInputidepartment', 'SelectIdepartment', '#editinputModal');
             });
         });
 
+        $(document).ready(function() {
+            function initFlatpickr(selector, eventName, parentModal) {
+                $(selector).flatpickr({
+                    placeholder: 'تاريخ المستند',
+                    onChange: function(selectedDates, dateStr, instance) {
+                        livewire.emit(eventName, dateStr);
+                    },
+                    onReady: function(selectedDates, dateStr, instance) {
+                        $(parentModal).append(instance.calendarContainer);
+                    }
+                });
+            }
 
-        /* اضافة تاريخ امر التكليف */
-        $(document).ready(function() {
-            window.initAddInputIdateDrop = () => {
-                $('#addmodalInputidate').flatpickr({
-                    placeholder: 'تاريخ المستند',
-                })
-            }
-            initAddInputIdateDrop();
-            $('#addmodalInputidate').on('change', function(e) {
-                livewire.emit('AddInputIdateDrop', e.target.value)
-            });
+            // تاريخ المستند
+            initFlatpickr('#addmodalInputidate', 'AddInputIdateDrop', '#addinputModal');
+            initFlatpickr('#editmodalInputidate', 'EditInputIdateDrop', '#editinputModal');
+
             window.livewire.on('flatpickr', () => {
-                initAddInputIdateDrop();
-            });
-        });
-        /* تعديل تاريخ امر التكليف */
-        $(document).ready(function() {
-            window.initEditInputIdateDrop = () => {
-                $('#editmodalInputidate').flatpickr({
-                    placeholder: 'تاريخ المستند',
-                })
-            }
-            initEditInputIdateDrop();
-            $('#editmodalInputidate').on('change', function(e) {
-                livewire.emit('EditInputIdateDrop', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initEditInputIdateDrop();
+                initFlatpickr('#addmodalInputidate', 'AddInputIdateDrop', '#addinputModal');
+                initFlatpickr('#editmodalInputidate', 'EditInputIdateDrop', '#editinputModal');
             });
         });
 
@@ -120,7 +112,7 @@
         }
 
         function onlyNumberKey(evt) {
-            // Only ASCII character in that range allowed
+            // نطاق الارقام
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
             if (ASCIICode < 48 || ASCIICode > 57)
                 return false;
@@ -197,9 +189,6 @@
                 title: event.detail.message
             })
         })
-
-
-
 
         window.addEventListener('error', event => {
             $('#removeinputModal').modal('hide');

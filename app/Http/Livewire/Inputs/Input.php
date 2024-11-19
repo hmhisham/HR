@@ -20,12 +20,12 @@ class Input extends Component
     public $iaccts = [];
     public $idepartments = [];
     public $InputSearch, $Input, $InputId;
-    public $user_id, $patch, $itype, $idocument, $idate, $idept, $icredt, $iacct, $isub, $icd = '', $idep, $irem, $note;
+    public $user_id, $patch, $itype, $idocument, $idate, $idept, $icredt, $iacct, $isub, $icd = '', $idepartment, $irem, $note;
 
     protected $listeners = [
         'SelectItype',
         'SelectIacct',
-        'SelectIdept',
+        'SelectIdepartment',
 
         'SelectIacct' => 'updateIcd',
     ];
@@ -63,13 +63,13 @@ class Input extends Component
     }
 
     //استدعاء قيد القسم
-    public function SelectIdept($IdeptID)
+    public function SelectIdepartment($IdepartmentID)
     {
-        $idept = Idepartments::find($IdeptID);
-        if ($idept) {
-            $this->idept = $IdeptID;
+        $idepartment = Idepartments::find($IdepartmentID);
+        if ($idepartment) {
+            $this->idepartment = $IdepartmentID;
         } else {
-            $this->idept = null;
+            $this->idepartment = null;
         }
     }
 
@@ -96,7 +96,7 @@ class Input extends Component
             ->orWhere('iacct', 'LIKE', $InputSearch)
             ->orWhere('isub', 'LIKE', $InputSearch)
             ->orWhere('icd', 'LIKE', $InputSearch)
-            ->orWhere('idep', 'LIKE', $InputSearch)
+            ->orWhere('idepartment', 'LIKE', $InputSearch)
             ->orWhere('irem', 'LIKE', $InputSearch)
             ->orWhere('note', 'LIKE', $InputSearch)
 
@@ -138,7 +138,7 @@ class Input extends Component
             'iacct' => 'required',
             'isub' => 'required',
             'icd' => 'required',
-            'idep' => 'required',
+            'idepartment' => 'required',
             'irem' => 'required',
         ], [
             'patch.required' => 'حقل رقم الزرمة مطلوب',
@@ -148,7 +148,7 @@ class Input extends Component
             'iacct.required' => 'حقل الدليل مطلوب',
             'isub.required' => 'حقل الافرادي مطلوب',
             'icd.required' => 'حقل بداية الدليل مطلوب',
-            'idep.required' => 'حقل القسم مطلوب',
+            'idepartment.required' => 'حقل القسم مطلوب',
             'irem.required' => 'حقل البيان مطلوب',
         ]);
 
@@ -162,7 +162,7 @@ class Input extends Component
             'iacct' => $this->iacct,
             'isub' => $this->isub,
             'icd' => $this->icd,
-            'idep' => $this->idep,
+            'idepartment' => $this->idepartment,
             'irem' => $this->irem,
             'note' => $this->note,
         ]);
@@ -192,7 +192,7 @@ class Input extends Component
         $this->iacct = $this->Input->iacct;
         $this->isub = $this->Input->isub;
         $this->icd = $this->Input->icd;
-        $this->idep = $this->Input->idep;
+        $this->idepartment = $this->Input->idepartment;
         $this->irem = $this->Input->irem;
         $this->note = $this->Input->note;
     }
@@ -211,7 +211,7 @@ class Input extends Component
             'iacct' => 'required:inputs',
             'isub' => 'required:inputs',
             'icd' => 'required:inputs',
-            'idep' => 'required:inputs',
+            'idepartment' => 'required:inputs',
             'irem' => 'required:inputs',
             //'note' => 'required:inputs',
 
@@ -226,7 +226,7 @@ class Input extends Component
             'iacct.required' => 'حقل الدليل مطلوب',
             'isub.required' => 'حقل الافرادي مطلوب',
             'icd.required' => 'حقل بداية الدليل مطلوب',
-            'idep.required' => 'حقل القسم مطلوب',
+            'idepartment.required' => 'حقل القسم مطلوب',
             'irem.required' => 'حقل البيان مطلوب',
             //'note.required' => 'حقل ملاحظات مطلوب',
         ]);
@@ -243,7 +243,7 @@ class Input extends Component
             'iacct' => $this->iacct,
             'isub' => $this->isub,
             'icd' => $this->icd,
-            'idep' => $this->idep,
+            'idepartment' => $this->idepartment,
             'irem' => $this->irem,
             'note' => $this->note,
 

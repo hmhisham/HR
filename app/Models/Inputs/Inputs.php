@@ -26,6 +26,6 @@ class Inputs extends Model
 
     public function Getidepartment()
     {
-        return $this->belongsTo(Idepartments::class, 'idept');
+        return $this->belongsTo(Idepartments::class, 'idepartment');
     }
 }
