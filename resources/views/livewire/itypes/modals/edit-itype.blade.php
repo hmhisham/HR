@@ -35,7 +35,7 @@
                                     <input wire:model.defer='itype' type="text" id="modalItypeitype"
                                         placeholder="نوع القيد"
                                         class="form-control @error('itype') is-invalid is-filled @enderror"
-                                        onkeypress="return onlyNumberKey(event)" />
+                                        onkeypress="return onlyNumberKey(event)" maxlength="6"/>
                                     <label for="modalItypeitype">نوع القيد</label>
                                 </div>
                                 @error('itype')

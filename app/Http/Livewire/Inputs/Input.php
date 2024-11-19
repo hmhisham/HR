@@ -27,7 +27,6 @@ class Input extends Component
         'SelectIacct',
         'SelectIdepartment',
         'updateIcd',
-        //'SelectIacct' => 'updateIcd',
     ];
     public function hydrate()
     {
@@ -70,13 +69,11 @@ class Input extends Component
     {
         $iacct = Iaccts::find($iacctId);
         if ($iacct) {
-            $this->icd = substr($iacct->iacct, 0, 1); // افتراض أن الرقم الأول هو المطلوب
+            $this->icd = substr($iacct->iacct, 0, 1);
         } else {
             $this->icd = '';
         }
     }
-
-
 
     //استدعاء قيد القسم
     public function SelectIdepartment($IdepartmentID)
@@ -88,8 +85,6 @@ class Input extends Component
             $this->idepartment = null;
         }
     }
-
-
 
     public function render()
     {
@@ -128,20 +123,13 @@ class Input extends Component
     public function store()
     {
         $this->resetValidation();
-
-        // التحقق من وجود مبلغ المدين أو مبلغ الدائن
-        if (empty($this->idept) && empty($this->icredt)) {
-            $this->addError('idept', 'يجب إدخال مبلغ المدين أو مبلغ الدائن.');
-            $this->addError('icredt', 'يجب إدخال مبلغ المدين أو مبلغ الدائن.');
-            return;
-        }
-
-        // التحقق من الحقول الأخرى
         $this->validate([
             'patch' => 'required',
             'itype' => 'required',
             'idocument' => 'required',
             'idate' => 'required',
+            'idept' => 'required',
+            'icredt' => 'required',
             'iacct' => 'required',
             'isub' => 'required',
             'icd' => 'required',
@@ -152,6 +140,8 @@ class Input extends Component
             'itype.required' => 'حقل نوع القيد مطلوب',
             'idocument.required' => 'حقل رقم المستند مطلوب',
             'idate.required' => 'حقل تاريخ المستند مطلوب',
+            'idept.required' => 'حقل مبلغ المدين مطلوب',
+            'icredt.required' => 'حقل مبلغ الدائن مطلوب',
             'iacct.required' => 'حقل الدليل مطلوب',
             'isub.required' => 'حقل الافرادي مطلوب',
             'icd.required' => 'حقل بداية الدليل مطلوب',
@@ -164,8 +154,8 @@ class Input extends Component
             'itype' => $this->itype,
             'idocument' => $this->idocument,
             'idate' => $this->idate,
-            'idept' => $this->idept ?? 0, // وضع القيمة الافتراضية 0 إذا لم يتم إدخالها
-            'icredt' => $this->icredt ?? 0, // وضع القيمة الافتراضية 0 إذا لم يتم إدخالها
+            'idept' => $this->idept ?? 0,
+            'icredt' => $this->icredt ?? 0,
             'iacct' => $this->iacct,
             'isub' => $this->isub,
             'icd' => $this->icd,
@@ -208,7 +198,6 @@ class Input extends Component
     {
         $this->resetValidation();
         $this->validate([
-            //'user_id' => 'required:inputs',
             'patch' => 'required:inputs',
             'itype' => 'required:inputs',
             'idocument' => 'required:inputs',
@@ -220,10 +209,8 @@ class Input extends Component
             'icd' => 'required:inputs',
             'idepartment' => 'required:inputs',
             'irem' => 'required:inputs',
-            //'note' => 'required:inputs',
 
         ], [
-            //'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'patch.required' => 'حقل رقم الزرمة مطلوب',
             'itype.required' => 'حقل نوع القيد مطلوب',
             'idocument.required' => 'حقل رقم المستند مطلوب',
@@ -235,12 +222,10 @@ class Input extends Component
             'icd.required' => 'حقل بداية الدليل مطلوب',
             'idepartment.required' => 'حقل القسم مطلوب',
             'irem.required' => 'حقل البيان مطلوب',
-            //'note.required' => 'حقل ملاحظات مطلوب',
         ]);
 
         $Inputs = Inputs::find($this->InputId);
         $Inputs->update([
-            //'user_id' => $this->user_id,
             'patch' => $this->patch,
             'itype' => $this->itype,
             'idocument' => $this->idocument,
