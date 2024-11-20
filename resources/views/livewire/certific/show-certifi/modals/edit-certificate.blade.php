@@ -310,6 +310,7 @@
                                 @enderror
                             </div>
                         </div>
+                    </form>
                 </div>
             </div>
             <hr class="my-0">

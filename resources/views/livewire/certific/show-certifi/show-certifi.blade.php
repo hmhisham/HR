@@ -63,7 +63,7 @@
             @endif
 
             @include('livewire.certific.show-certifi.modals.edit-certificate')
-            {{-- @include('livewire.certific.modals.remove-certificate') --}}
+            @include('livewire.certific.show-certifi.modals.remove-certificate')
         </div>
     </div>
 </div>
