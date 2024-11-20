@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 @endsection
 @section('content')
-    @livewire('penalties.penaltie')
 
+    @livewire('penalties.penaltie')
 
 @endsection
 
@@ -44,7 +44,34 @@
     <script src=" {{ asset('assets/js/app-user-list.js') }}"></script>
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
+
     <script>
+         /* الموظفين */
+         $(document).ready(function() {
+            window.initSelectedWorkerDrop = () => {
+                $('#selectedWorker').select2({
+                    placeholder: 'حدد الموظف',
+                    dropdownParent: $('#addpenaltieModal'),
+
+                    minimumInputLength: 3,
+                    ajax: {
+                        url: '{{ route("worker.search") }}',
+                        dataType: 'json',
+                    },
+                })
+            }
+            initSelectedWorkerDrop();
+            $('#selectedWorker').on('change', function(e) {
+                livewire.emit('SelectWorker', e.target.value)
+            });
+            window.livewire.on('select2', () => {
+                initSelectedWorkerDrop();
+            });
+        });
+
+
+
+
         /* اضافة تاريخ الامر الوزاري */
         $(document).ready(function() {
             window.initAddPMinisterialOrderDateDrop = () => {
@@ -124,7 +151,7 @@
         })
 
         /* الموظفين */
-        $(document).ready(function() {
+        /* $(document).ready(function() {
             window.initWorkerDrop = () => {
                 $('#worker').select2({
                     placeholder: 'حدد الموظف',
@@ -138,7 +165,7 @@
             window.livewire.on('select2', () => {
                 initWorkerDrop();
             });
-        });
+        }); */
 
         /* الجهات */
 

@@ -92,51 +92,39 @@
             }
             //أستدعاء جدول التحصيل الدراسي
             initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
-            //initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
 
             //استدعاء جهة التخرج
             initSelect2('#addCertifigraduations_id', 'GetGraduation', '#addcertifiModal');
-            //initSelect2('#editCertifigraduations_id', 'GetGraduation', '#editcertifiModal');
 
             //استدعاء التخصص
             initSelect2('#addCertifispecialization_id', 'GetSpecialization', '#addcertifiModal');
-            //initSelect2('#editCertifispecialization_id', 'GetSpecialization', '#editcertifiModal');
 
             //استدعاء تصنيف التخصص
             initSelect2('#addCertifispecializationclassification_id', 'SelectSpecializationclassificationId', '#addcertifiModal');
-            //initSelect2('#editCertifispecializationclassification_id', 'SelectSpecializationclassificationId', '#editcertifiModal');
 
             //استدعاء التخصص العام
             initSelect2('#addCertifispecialtys_id', 'GetSpecialtys', '#addcertifiModal');
-            //initSelect2('#editCertifispecialtys_id', 'GetSpecialtys', '#editcertifiModal');
 
             //استدعاء التخصص الدقيق
             initSelect2('#addCertifiprecises_id', 'GetPrecises', '#addcertifiModal');
-            //initSelect2('#editCertifiprecises_id', 'GetPrecises', '#editcertifiModal');
 
             window.livewire.on('select2', () => {
                 initSelect2('#addCertificertificates_id', 'GetCertificate', '#addcertifiModal');
-                //initSelect2('#editCertificertificates_id', 'GetCertificate', '#editcertifiModal');
 
                 //استدعاء جهة التخرج
                 initSelect2('#addCertifigraduations_id', 'GetGraduation', '#addcertifiModal');
-                //initSelect2('#editCertifigraduations_id', 'GetGraduation', '#editcertifiModal');
 
                 //استدعاء التخصص
                 initSelect2('#addCertifispecialization_id', 'GetSpecialization', '#addcertifiModal');
-                //initSelect2('#editCertifispecialization_id', 'GetSpecialization', '#editcertifiModal');
 
                 //استدعاء تصنيف التخصص
                 initSelect2('#addCertifispecializationclassification_id', 'SelectSpecializationclassificationId', '#addcertifiModal');
-                //initSelect2('#editCertifispecializationclassification_id', 'SelectSpecializationclassificationId', '#editcertifiModal');
 
                 //استدعاء التخصص العام
                 initSelect2('#addCertifispecialtys_id', 'GetSpecialtys', '#addcertifiModal');
-                //initSelect2('#editCertifispecialtys_id', 'GetSpecialtys', '#editcertifiModal');
 
                 //استدعاء التخصص الدقيق
                 initSelect2('#addCertifiprecises_id', 'GetPrecises', '#addcertifiModal');
-                //initSelect2('#editCertifiprecises_id', 'GetPrecises', '#editcertifiModal');
             });
         });
 

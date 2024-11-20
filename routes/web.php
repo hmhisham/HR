@@ -38,6 +38,7 @@ use App\Http\Controllers\Infooffice\InfoofficeController;
 use App\Http\Controllers\Jobleavers\JobleaversController;
 use App\Http\Controllers\Placements\PlacementsController;
 use App\Http\Controllers\Specialtys\SpecialtysController;
+use App\Http\Controllers\Penalties\WorkerSearchController;
 use App\Http\Controllers\Graduations\GraduationsController;
 use App\Http\Controllers\Technicians\TechniciansController;
 use App\Http\Controllers\Certificates\CertificatesController;
@@ -146,6 +147,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
 
     // عقوبات
     Route::RESOURCE('Penalties', PenaltiesController::class);
+    Route::GET('search', [WorkerSearchController::class, 'search'])->name('worker.search');
     // تاركي العمل
     Route::RESOURCE('Jobleavers', JobleaversController::class);
     // الايفادات

@@ -316,8 +316,6 @@ class certifi extends Component
         $this->status = $this->certifi->status;
 
         $this->graduations = $this->certifi->Getgraduation;
-        //$this->graduations = $this->certifi->Getgraduation;
-        //$this->graduations = Graduations::where('certificates_id', $this->certificates_id)->get();
         $this->specializations = Specializations::where('certificates_id', $this->certificates_id)->
                                 where('graduations_id', $this->graduations_id)->get();
         dd($this->graduations);

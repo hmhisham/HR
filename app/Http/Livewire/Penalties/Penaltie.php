@@ -43,36 +43,6 @@ class Penaltie extends Component
         $this->department = Department::all();
     }
 
-    public function Selectauthority($p_issuing_authorityID)
-    {
-        $p_issuing_authority = Department::find($p_issuing_authorityID);
-        if ($p_issuing_authority) {
-            $this->p_issuing_authority = $p_issuing_authorityID;
-        } else {
-            $this->p_issuing_authority = null;
-        }
-    }
-
-
-    public function SelectWorker($workerID)
-    {
-
-        $worker = Workers::find($workerID);
-
-
-        if ($worker) {
-            $this->worker = $workerID;
-            $this->calculator_number = $worker->calculator_number;
-            $this->get_departmen = $worker->department;
-        } else {
-            $this->worker = null;
-            $this->calculator_number = null;
-            $this->get_departmen = null;
-        }
-    }
-
-
-
     public function render()
     {
         $PenaltieSearch = '%' . $this->PenaltieSearch . '%';
@@ -85,13 +55,36 @@ class Penaltie extends Component
             ->select('penalties.*')
             ->paginate(10);
 
-
-
         $links = $Penalties;
         $this->Penalties = collect($Penalties->items());
         return view('livewire.penalties.penaltie', [
             'links' => $links
         ]);
+    }
+
+    public function Selectauthority($p_issuing_authorityID)
+    {
+        $p_issuing_authority = Department::find($p_issuing_authorityID);
+        if ($p_issuing_authority) {
+            $this->p_issuing_authority = $p_issuing_authorityID;
+        } else {
+            $this->p_issuing_authority = null;
+        }
+    }
+
+    public function SelectWorker($workerID)
+    {
+        $worker = Workers::find($workerID);
+
+        if ($worker) {
+            $this->worker = $workerID;
+            $this->calculator_number = $worker->calculator_number;
+            $this->get_departmen = $worker->department;
+        } else {
+            $this->worker = null;
+            $this->calculator_number = null;
+            $this->get_departmen = null;
+        }
     }
 
     public function AddPenaltieModalShow()
