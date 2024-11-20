@@ -53,39 +53,28 @@
             return false;
         }
 
-        /* addDistricts */
         $(document).ready(function() {
-            window.initaddDistrictsDrop = () => {
-                $('#addGovernorate').select2({
-                    placeholder: 'حدد المحافظة',
-                    dropdownParent: $('#adddistrictModal')
-                })
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(`Value changed to: ${e.target.value}`);
+                    livewire.emit(eventName, e.target.value);
+                });
             }
-            initaddDistrictsDrop();
-            $('#addGovernorate').on('change', function(e) {
-                livewire.emit('GetGovernorate', e.target.value)
-            });
+
+            //Districts
+            initSelect2('#addGovernorate', 'GetGovernorate', '#adddistrictModal');
+            initSelect2('#editGovernorate', 'GetGovernorate', '#editdistrictModal');
             window.livewire.on('select2', () => {
-                initaddDistrictsDrop();
+                console.log("Reinitializing Select2");
+                initSelect2('#addGovernorate', 'GetGovernorate', '#adddistrictModal');
+                initSelect2('#editGovernorate', 'GetGovernorate', '#editdistrictModal');
             });
         });
 
-        /* editDistricts */
-        $(document).ready(function() {
-            window.initeditDistrictsDrop = () => {
-                $('#editGovernorate').select2({
-                    placeholder: 'حدد المحافظة',
-                    dropdownParent: $('#editdistrictModal')
-                })
-            }
-            initeditDistrictsDrop();
-            $('#editGovernorate').on('change', function(e) {
-                livewire.emit('GetGovernorate', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initeditDistrictsDrop();
-            });
-        });
 
         const Toast = Swal.mixin({
             toast: true,
@@ -119,7 +108,6 @@
                 title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
-
         })
     </script>
 @endsection

@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Branch')
 @section('vendor-style')
@@ -11,9 +10,9 @@
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
+@endsection
 @section('content')
-@livewire('branch.branc')
+    @livewire('branch.branc')
 
 
 @endsection
@@ -36,71 +35,33 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        /* addLinkage */
         $(document).ready(function() {
-            window.initAddLinkageDrop = () => {
-                $('#addLinkage').select2({
-                    placeholder: 'حدد الارتباط',
-                    dropdownParent: $('#addbrancModal')
-                })
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(`Value changed to: ${e.target.value}`);
+                    livewire.emit(eventName, e.target.value);
+                });
             }
-            initAddLinkageDrop();
-            $('#addLinkage').on('change', function(e) {
-                livewire.emit('GetLinkage', e.target.value)
-            });
+
+            //Linkage
+            initSelect2('#addLinkage', 'GetLinkage', '#addbrancModal');
+            initSelect2('#editLinkage', 'GetLinkage', '#editbrancModal');
+            //Section
+            initSelect2('#addSection', 'GetSection', '#addbrancModal');
+            initSelect2('#editSection', 'GetSection', '#editbrancModal');
             window.livewire.on('select2', () => {
-                initAddLinkageDrop();
+                console.log("Reinitializing Select2");
+                initSelect2('#addLinkage', 'GetLinkage', '#addbrancModal');
+                initSelect2('#editLinkage', 'GetLinkage', '#editbrancModal');
+                initSelect2('#addSection', 'GetSection', '#addbrancModal');
+                initSelect2('#editSection', 'GetSection', '#editbrancModal');
             });
         });
 
-        /* addSection */
-        $(document).ready(function() {
-            window.initAddSectionDrop = () => {
-                $('#addSection').select2({
-                    placeholder: 'حدد القسم',
-                    dropdownParent: $('#addbrancModal')
-                })
-            }
-            initAddSectionDrop();
-            $('#addSection').on('change', function(e) {
-                livewire.emit('GetSection', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initAddSectionDrop();
-            });
-        });
-        /* editLinkage */
-        $(document).ready(function() {
-            window.initEditLinkageDrop = () => {
-                $('#editLinkage').select2({
-                    placeholder: 'حدد الارتباط',
-                    dropdownParent: $('#editbrancModal')
-                })
-            }
-            initEditLinkageDrop();
-            $('#editLinkage').on('change', function(e) {
-                livewire.emit('GetLinkage', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initEditLinkageDrop();
-            });
-        });
-        /* editSection */
-        $(document).ready(function() {
-            window.initEditSectionDrop = () => {
-                $('#editSection').select2({
-                    placeholder: 'حدد القسم',
-                    dropdownParent: $('#editbrancModal')
-                })
-            }
-            initEditSectionDrop();
-            $('#editSection').on('change', function(e) {
-                livewire.emit('GetSection', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initEditSectionDrop();
-            });
-        });
 
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
@@ -125,8 +86,8 @@
 
         window.addEventListener('BrancModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);
+                $('#id').focus();
+            }, 100);
         })
 
         window.addEventListener('success', event => {

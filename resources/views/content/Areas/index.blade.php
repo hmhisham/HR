@@ -54,71 +54,33 @@
         }
 
 
-        /* addGovernorate */
         $(document).ready(function() {
-            window.initaddDistrictsDrop = () => {
-                $('#addGovernorate').select2({
-                    placeholder: 'حدد المحافظة',
-                    dropdownParent: $('#addareaModal')
-                })
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(`Value changed to: ${e.target.value}`);
+                    livewire.emit(eventName, e.target.value);
+                });
             }
-            initaddDistrictsDrop();
-            $('#addGovernorate').on('change', function(e) {
-                livewire.emit('chooseGovernorate', e.target.value)
-            });
+
+            //Governorate
+            initSelect2('#addGovernorate', 'chooseGovernorate', '#addareaModal');
+            initSelect2('#editGovernorate', 'chooseGovernorate', '#editareaModal');
+            //District
+            initSelect2('#editDistrict', 'chooseDistrict', '#editareaModal');
+            initSelect2('#addDistrict', 'chooseDistrict', '#addareaModal');
             window.livewire.on('select2', () => {
-                initaddDistrictsDrop();
-            });
-        });
-        /* addDistrict */
-        $(document).ready(function() {
-            window.initaddDistrictDrop = () => {
-                $('#addDistrict').select2({
-                    placeholder: 'حدد القضاء',
-                    dropdownParent: $('#addareaModal')
-                })
-            }
-            initaddDistrictDrop();
-            $('#addDistrict').on('change', function(e) {
-                livewire.emit('chooseDistrict', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initaddDistrictDrop();
+                console.log("Reinitializing Select2");
+                initSelect2('#addGovernorate', 'chooseGovernorate', '#addareaModal');
+                initSelect2('#editGovernorate', 'chooseGovernorate', '#editareaModal');
+                initSelect2('#addDistrict', 'chooseDistrict', '#addareaModal');
+                initSelect2('#editDistrict', 'chooseDistrict', '#editareaModal');
             });
         });
 
-        /* editGovernorate */
-        $(document).ready(function() {
-            window.initeditDistrictsDrop = () => {
-                $('#editGovernorate').select2({
-                    placeholder: 'حدد المحافظة',
-                    dropdownParent: $('#editareaModal')
-                })
-            }
-            initeditDistrictsDrop();
-            $('#editGovernorate').on('change', function(e) {
-                livewire.emit('chooseGovernorate', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initeditDistrictsDrop();
-            });
-        });
-        /* editDistrict */
-        $(document).ready(function() {
-            window.initeditDistrictDrop = () => {
-                $('#editDistrict').select2({
-                    placeholder: 'حدد القضاء',
-                    dropdownParent: $('#editareaModal')
-                })
-            }
-            initeditDistrictDrop();
-            $('#editDistrict').on('change', function(e) {
-                livewire.emit('chooseDistrict', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initeditDistrictDrop();
-            });
-        });
 
         const Toast = Swal.mixin({
             toast: true,

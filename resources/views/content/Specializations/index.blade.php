@@ -36,39 +36,28 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        $(document).ready(function() {
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(`Value changed to: ${e.target.value}`);
+                    livewire.emit(eventName, e.target.value);
+                });
+            }
 
-        //add graduations
-        $(document).ready(function() {
-            window.initAddGraduationsDrop = () => {
-                $('#addgraduations').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addspecializationModal')
-                });
-            }
-            initAddGraduationsDrop();
-            $('#addgraduations').on('change', function(e) {
-                livewire.emit('SelectGraduationsId', e.target.value);
-            });
+            //Graduations
+            initSelect2('#addgraduations', 'SelectGraduationsId', '#addspecializationModal');
+            initSelect2('#editgraduations', 'SelectGraduationsId', '#editspecializationModal');
             window.livewire.on('select2', () => {
-                initAddGraduationsDrop();
+                console.log("Reinitializing Select2");
+                initSelect2('#addgraduations', 'SelectGraduationsId', '#addspecializationModal');
+                initSelect2('#editgraduations', 'SelectGraduationsId', '#editspecializationModal');
             });
         });
-        //edit graduations
-        $(document).ready(function() {
-            window.initEditGraduationsDrop = () => {
-                $('#editgraduations').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editspecializationModal')
-                });
-            }
-            initEditGraduationsDrop();
-            $('#editgraduations').on('change', function(e) {
-                livewire.emit('SelectGraduationsId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditGraduationsDrop();
-            });
-        });
+
 
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
@@ -78,7 +67,7 @@
             }
             return false;
         }
-        
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',

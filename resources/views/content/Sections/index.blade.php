@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Sections')
 @section('vendor-style')
@@ -11,7 +10,7 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
+@endsection
 @section('content')
 
     @livewire('sections.section')
@@ -36,38 +35,28 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        /* addLinkage */
         $(document).ready(function() {
-            window.initAddLinkageDrop = () => {
-                $('#addLinkage').select2({
-                    placeholder: 'حدد الارتباط',
-                    dropdownParent: $('#addsectionModal')
-                })
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(`Value changed to: ${e.target.value}`);
+                    livewire.emit(eventName, e.target.value);
+                });
             }
-            initAddLinkageDrop();
-            $('#addLinkage').on('change', function(e) {
-                livewire.emit('GetLinkage', e.target.value)
-            });
+
+            //Linkage
+            initSelect2('#addLinkage', 'GetLinkage', '#addsectionModal');
+            initSelect2('#editLinkage', 'GetLinkage', '#editsectionModal');
             window.livewire.on('select2', () => {
-                initAddLinkageDrop();
+                console.log("Reinitializing Select2");
+                initSelect2('#addLinkage', 'GetLinkage', '#addsectionModal');
+                initSelect2('#editLinkage', 'GetLinkage', '#editsectionModal');
             });
         });
-        /* editLinkage */
-        $(document).ready(function() {
-            window.initEditLinkageDrop = () => {
-                $('#editLinkage').select2({
-                    placeholder: 'حدد الارتباط',
-                    dropdownParent: $('#editsectionModal')
-                })
-            }
-            initEditLinkageDrop();
-            $('#editLinkage').on('change', function(e) {
-                livewire.emit('GetLinkage', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initEditLinkageDrop();
-            });
-        });
+
 
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
@@ -92,8 +81,8 @@
 
         window.addEventListener('SectionModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);
+                $('#id').focus();
+            }, 100);
         })
 
         window.addEventListener('success', event => {

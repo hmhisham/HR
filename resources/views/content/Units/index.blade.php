@@ -11,7 +11,7 @@
 @endsection
 @section('content')
 
-@livewire('units.unit')
+    @livewire('units.unit')
 
 @endsection
 
@@ -27,73 +27,37 @@
 @endsection
 
 @section('page-script')
-<script src="{{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
+    <script src="{{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
 
     <script>
-        /* addSection */
         $(document).ready(function() {
-            window.initAddSectionDrop = () => {
-                $('#addSection').select2({
-                    placeholder: 'حدد القسم',
-                    dropdownParent: $('#addunitModal')
-                })
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(`Value changed to: ${e.target.value}`);
+                    livewire.emit(eventName, e.target.value);
+                });
             }
-            initAddSectionDrop();
-            $('#addSection').on('change', function(e) {
-                livewire.emit('GetSection', e.target.value)
-            });
+
+            //Section
+            initSelect2('#addSection', 'GetSection', '#addunitModal');
+            initSelect2('#editSection', 'GetSection', '#editunitModal');
+
+            //Branch
+            initSelect2('#addBranch', 'GetBranch', '#addunitModal');
+            initSelect2('#editbranch', 'GetBranch', '#editunitModal');
             window.livewire.on('select2', () => {
-                initAddSectionDrop();
+                console.log("Reinitializing Select2");
+                initSelect2('#addSection', 'GetSection', '#addunitModal');
+                initSelect2('#editSection', 'GetSection', '#editunitModal');
+                initSelect2('#addBranch', 'GetBranch', '#addunitModal');
+                initSelect2('#editbranch', 'GetBranch', '#editunitModal');
             });
         });
-        /* AddBranch */
-        $(document).ready(function() {
-            window.initAddBranchDrop = () => {
-                $('#addBranch').select2({
-                    placeholder: 'حدد الشعبة',
-                    dropdownParent: $('#addunitModal')
-                })
-            }
-            initAddBranchDrop();
-            $('#addBranch').on('change', function(e) {
-                livewire.emit('GetBranch', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initAddBranchDrop();
-            });
-        });
-        /* editSection */
-        $(document).ready(function() {
-            window.initEditSectionDrop = () => {
-                $('#editSection').select2({
-                    placeholder: 'حدد القسم',
-                    dropdownParent: $('#editunitModal')
-                })
-            }
-            initEditSectionDrop();
-            $('#editSection').on('change', function(e) {
-                livewire.emit('GetSection', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initEditSectionDrop();
-            });
-        });
-        /* editbranch */
-        $(document).ready(function() {
-            window.initEditBranchDrop = () => {
-                $('#editbranch').select2({
-                    placeholder: 'حدد الشعبة',
-                    dropdownParent: $('#editunitModal')
-                })
-            }
-            initEditBranchDrop();
-            $('#editbranch').on('change', function(e) {
-                livewire.emit('GetBranch', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initEditBranchDrop();
-            });
-        });
+
 
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
@@ -118,8 +82,8 @@
 
         window.addEventListener('UnitModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);
+                $('#id').focus();
+            }, 100);
         })
 
         window.addEventListener('success', event => {
