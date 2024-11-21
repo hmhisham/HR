@@ -52,169 +52,135 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-    $(document).ready(function() {
-        $('#search-button').on('click', function(event) {
-            event.preventDefault();
-            var searchTerm = $('#autocomplete').val();
-            $('#autocomplete').autocomplete({
-                source: function(request, response) {
-                    $.ajax({
-                        url: "/api/workers",
-                        dataType: "json",
-                        data: { q: searchTerm },
-                        success: function(data) {
-                            response($.map(data.items, function(worker) {
+        $(document).ready(function() {
+            $('#search-button').on('click', function(event) {
+                event.preventDefault();
+                var searchTerm = $('#autocomplete').val();
+                $('#autocomplete').autocomplete({
+                    source: function(request, response) {
+                        $.ajax({
+                            url: "/api/workers",
+                            dataType: "json",
+                            data: {
+                                q: searchTerm
+                            },
+                            success: function(data) {
+                                response($.map(data.items, function(worker) {
+                                    return {
+                                        label: worker.full_name,
+                                        value: worker.id
+                                    };
+                                }));
+                            },
+                            error: function(xhr, status, error) {
+                                $('#error-message').text('Error: ' + error);
+                            }
+                        });
+                    },
+                    minLength: 0,
+                    select: function(event, ui) {
+                        $('#autocomplete').val(ui.item.label);
+                        return false;
+                    },
+                    open: function() {
+                        $(".ui-autocomplete").css("z-index", 9999);
+                    }
+                }).autocomplete("search", searchTerm);
+            });
+        });
+
+
+        /*$(document).ready(function() {
+                window.initAddWorkersDrop = () => {
+                    $('#addWiveworkers_id').select2({
+                        placeholder: 'اختيار',
+                        dropdownParent: $('#addwiveModal'),
+                        ajax: {
+                            url: '/api/workers',
+                            dataType: 'json',
+                            delay: 250,
+                            data: function(params) {
                                 return {
-                                    label: worker.full_name,
-                                    value: worker.id
+                                    q: params.term // مصطلح البحث الذي يتم إرساله إلى الخادم
                                 };
-                            }));
-                        },
-                        error: function(xhr, status, error) {
-                            $('#error-message').text('Error: ' + error);
+                            },
+                            processResults: function(data) {
+                                return {
+                                    results: $.map(data, function(worker) {
+                                        return {
+                                            id: worker.id,
+                                            text: worker.full_name
+                                        };
+                                    })
+                                };
+                            },
+                            cache: true
                         }
                     });
-                },
-                minLength: 0,
-                select: function(event, ui) {
-                    $('#autocomplete').val(ui.item.label);
-                    return false;
-                },
-                open: function() {
-                    $(".ui-autocomplete").css("z-index", 9999);
                 }
-            }).autocomplete("search", searchTerm);
-        });
-    });
-
-
-
-
-        // add Workers
-        /*$(document).ready(function() {
-            window.initAddWorkersDrop = () => {
-                $('#addWiveworkers_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addwiveModal')
-                });
-            }
-            initAddWorkersDrop();
-            $('#addWiveworkers_id').on('change', function(e) {
-                livewire.emit('SelectWorkersId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
                 initAddWorkersDrop();
-            });
-        });*/
-
-        /*$(document).ready(function() {
-            window.initAddWorkersDrop = () => {
-                $('#addWiveworkers_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addwiveModal'),
-                    ajax: {
-                        url: '/api/workers',
-                        dataType: 'json',
-                        delay: 250,
-                        data: function(params) {
-                            return {
-                                q: params.term // مصطلح البحث الذي يتم إرساله إلى الخادم
-                            };
-                        },
-                        processResults: function(data) {
-                            return {
-                                results: $.map(data, function(worker) {
-                                    return {
-                                        id: worker.id,
-                                        text: worker.full_name
-                                    };
-                                })
-                            };
-                        },
-                        cache: true
-                    }
+                $('#addWiveworkers_id').on('change', function(e) {
+                    livewire.emit('SelectWorkersId', e.target.value);
                 });
-            }
-            initAddWorkersDrop();
-            $('#addWiveworkers_id').on('change', function(e) {
-                livewire.emit('SelectWorkersId', e.target.value);
+                window.livewire.on('select2', () => {
+                    initAddWorkersDrop();
+                });
             });
-            window.livewire.on('select2', () => {
+            // add Workers
+            /*$(document).ready(function() {
+                window.initAddWorkersDrop = () => {
+                    $('#addWiveworkers_id').select2({
+                        placeholder: 'اختيار',
+                        dropdownParent: $('#addwiveModal')
+                    });
+                }
                 initAddWorkersDrop();
-            });
-        });*/
-
-
-
-
-
-        // edit Workers
-        $(document).ready(function() {
-            window.initEditWorkersDrop = () => {
-                $('#editWiveworkers_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editwiveModal')
+                $('#addWiveworkers_id').on('change', function(e) {
+                    livewire.emit('SelectWorkersId', e.target.value);
                 });
-            }
-            initEditWorkersDrop();
-            $('#editWiveworkers_id').on('change', function(e) {
-                livewire.emit('SelectWorkersId', e.target.value);
+                window.livewire.on('select2', () => {
+                    initAddWorkersDrop();
+                });
             });
-            window.livewire.on('select2', () => {
+
+            // edit Workers
+            $(document).ready(function() {
+                window.initEditWorkersDrop = () => {
+                    $('#editWiveworkers_id').select2({
+                        placeholder: 'اختيار',
+                        dropdownParent: $('#editwiveModal')
+                    });
+                }
                 initEditWorkersDrop();
-            });
-        });
+                $('#editWiveworkers_id').on('change', function(e) {
+                    livewire.emit('SelectWorkersId', e.target.value);
+                });
+                window.livewire.on('select2', () => {
+                    initEditWorkersDrop();
+                });
+            });*/
 
-        /* تاريخ التولد */
         $(document).ready(function() {
-            window.initBirthDateDrop = () => {
-                $('#birth_date').flatpickr({
-                    placeholder: 'تاريخ التولد',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initBirthDateDrop();
-            $('#birth_date').on('change', function(e) {
-                livewire.emit('employeeBirthDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initBirthDateDrop();
-            });
-        });
-
-        // add Department
-        $(document).ready(function() {
-            window.initAddDepartmentDrop = () => {
-                $('#addWiveorganization_name').select2({
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $('#addwiveModal')
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    livewire.emit(eventName, e.target.value);
                 });
             }
-            initAddDepartmentDrop();
-            $('#addWiveorganization_name').on('change', function(e) {
-                livewire.emit('SelectOrganizationName', e.target.value);
-            });
+
+            // Initializing add and edit department selectors
+            initSelect2('#addWiveorganization_name', 'SelectOrganizationName', '#addwiveModal');
+            initSelect2('#editWiveorganization_name', 'SelectOrganizationName', '#editwiveModal');
+
             window.livewire.on('select2', () => {
-                initAddDepartmentDrop();
+                initSelect2('#addWiveorganization_name', 'SelectOrganizationName', '#addwiveModal');
+                initSelect2('#editWiveorganization_name', 'SelectOrganizationName', '#editwiveModal');
             });
         });
 
-        // edit Department
-        $(document).ready(function() {
-            window.initEditDepartmentDrop = () => {
-                $('#editWiveorganization_name').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editwiveModal')
-                });
-            }
-            initEditDepartmentDrop();
-            $('#editWiveorganization_name').on('change', function(e) {
-                livewire.emit('SelectOrganizationName', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditDepartmentDrop();
-            });
-        });
 
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed
