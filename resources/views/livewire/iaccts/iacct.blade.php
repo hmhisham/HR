@@ -25,7 +25,6 @@
                         <th>#</th>
                         <th class="text-end">رقم الدليل</th>
                         <th class="text-center">اسم الدليل</th>
-                        <th class="text-center">ملاحظات</th>
                         <th class="text-center">العملية</th>
 
                     </tr>
@@ -38,7 +37,6 @@
                             <td>{{ $i }}</td>
                             <td class="text-end">{{ $Iacct->iacct }}</td>
                             <td class="text-center">{{ $Iacct->iacctname }}</td>
-                            <td class="text-center">{{ $Iacct->note }}</td>
 
                             <td class="text-center">
                                 <div class="btn-group" role="group" aria-label="First group">

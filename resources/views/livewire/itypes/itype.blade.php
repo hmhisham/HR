@@ -25,7 +25,6 @@
                         <th>#</th>
                         <th class="text-center">اسم القيد</th>
                         <th class="text-center">نوع القيد</th>
-                        <th class="text-center">ملاحظات</th>
                         <th class="text-center">العملية</th>
                     </tr>
                 </thead>
@@ -37,7 +36,6 @@
                             <td>{{ $i }}</td>
                             <td class="text-center">{{ $Itype->itypename }}</td>
                             <td class="text-center">{{ $Itype->itype }}</td>
-                            <td class="text-center">{{ $Itype->note }}</td>
 
                             <td class="text-center">
                                 <div class="btn-group" role="group" aria-label="First group">
