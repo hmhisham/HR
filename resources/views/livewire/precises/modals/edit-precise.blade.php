@@ -18,20 +18,18 @@
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div Class="row">
-                                    <div class="mb-3 col flex-fill {{ $specialtys }}">
+                                    <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='specialtys_id' id="modalPrecisesspecialtys_id"
-                                                class="form-select @error('specialtys_id') is-invalid is-filled @enderror">
-                                                <option value="">اختر التخصص العام</option>
+                                            <select wire:model.defer='specialtys_id' id="editPrecisespecialtys_id" class="form-select @error('specialtys_id') is-invalid is-filled @enderror">
+                                                <option value=""></option>
                                                 @foreach ($specialtys as $specialty)
-                                                    <option value="{{ $specialty->id }}">
-                                                        {{ $specialty->specialtys_name }}</option>
+                                                    <option value="{{ $specialty->id }}">{{ $specialty->specialtys_name }}</option>
                                                 @endforeach
                                             </select>
-                                            <label for="modalPrecisesspecialtys_id">التخصص العام</label>
+                                            <label for="modalPrecisespecialtys_id">التخصص العام</label>
                                         </div>
                                         @error('specialtys_id')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
                                 </div>

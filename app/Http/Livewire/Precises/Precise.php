@@ -13,8 +13,30 @@ class Precise extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Precises = [];
+    public $specialtys = [];
     public $PreciseSearch, $Precise, $PreciseId;
-    public $specialtys_id,$specialtys_code, $precises_code, $precises_name;
+    public $specialtys_id, $specialtys_code, $precises_code, $precises_name;
+
+    protected $listeners = [
+        'SelectSpecialtysId',
+    ];
+    public function hydrate()
+    {
+        $this->emit('select2');
+    }
+    public function mount()
+    {
+        $this->specialtys = Specialtys::all();
+    }
+    public function SelectSpecialtysId($SpecialtysIdID)
+    {
+        $specialtys_id = Specialtys::find($SpecialtysIdID);
+        if ($specialtys_id) {
+            $this->specialtys_id = $SpecialtysIdID;
+        } else {
+            $this->specialtys_id = null;
+        }
+    }
 
 
     public function render()
@@ -36,7 +58,7 @@ class Precise extends Component
 
     public function AddPreciseModalShow()
     {
-        $this->reset();
+        $this->resetExcept('specialtys');
         $this->resetValidation();
         $this->dispatchBrowserEvent('PreciseModalShow');
     }
@@ -47,8 +69,8 @@ class Precise extends Component
         $this->resetValidation();
         $this->validate([
             'specialtys_id' => 'required:precises',
-            'precises_code' => 'required|unique:precises,precises_code,NULL,id,specialtys_id,'.$this->specialtys_id,
-            'precises_name' => 'required|unique:precises,precises_name,NULL,id,specialtys_id,'.$this->specialtys_id,
+            'precises_code' => 'required|unique:precises,precises_code,NULL,id,specialtys_id,' . $this->specialtys_id,
+            'precises_name' => 'required|unique:precises,precises_name,NULL,id,specialtys_id,' . $this->specialtys_id,
 
         ], [
             'specialtys_id.required' => 'حقل التخصص العام مطلوب',
@@ -65,7 +87,7 @@ class Precise extends Component
             'precises_name' => $this->precises_name,
 
         ]);
-        $this->reset(['specialtys_id','precises_code','precises_name']);
+        $this->reset(['specialtys_id', 'precises_code', 'precises_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -91,8 +113,8 @@ class Precise extends Component
             'specialtys_id' => 'required:precises',
             //'precises_code' => 'required|unique:precises,precises_code,NULL,id,specialtys_id,'.$this->specialtys_id,
             //'precises_name' => 'required|unique:precises,precises_name,NULL,id,specialtys_id,'.$this->specialtys_id,
-            'precises_code' => 'required|unique:precises,precises_code,'.$this->Precise->id.',id',
-            'precises_name' => 'required|unique:precises,precises_name,'.$this->Precise->id.',id',
+            'precises_code' => 'required|unique:precises,precises_code,' . $this->Precise->id . ',id',
+            'precises_name' => 'required|unique:precises,precises_name,' . $this->Precise->id . ',id',
 
         ], [
             'specialtys_id.required' => 'حقل التخصص العام مطلوب',
@@ -109,7 +131,7 @@ class Precise extends Component
             'precises_name' => $this->precises_name,
 
         ]);
-        $this->reset(['specialtys_id','precises_code','precises_name']);
+        $this->reset(['specialtys_id', 'precises_code', 'precises_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -120,7 +142,7 @@ class Precise extends Component
     {
         $Precises = Precises::find($this->PreciseId);
         $Precises->delete();
-        $this->reset(['specialtys_id','precises_code','precises_name']);
+        $this->reset(['specialtys_id', 'precises_code', 'precises_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

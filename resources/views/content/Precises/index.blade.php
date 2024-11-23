@@ -35,6 +35,28 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        $(document).ready(function() {
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    livewire.emit(eventName, e.target.value);
+                });
+            }
+
+            // التخصص العام
+            initSelect2('#addPrecisespecialtys_id', 'SelectSpecialtysId', '#addpreciseModal');
+            initSelect2('#editPrecisespecialtys_id', 'SelectSpecialtysId', '#editpreciseModal');
+
+            window.livewire.on('select2', () => {
+                initSelect2('#addPrecisespecialtys_id', 'SelectSpecialtysId', '#addpreciseModal');
+                initSelect2('#editPrecisespecialtys_id', 'SelectSpecialtysId', '#editpreciseModal');
+            });
+        });
+
+
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
