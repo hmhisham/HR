@@ -75,7 +75,8 @@
                             </li>
 
                             @can('employees')
-                                <li class="menu-item {{ request()->is('Workers', 'AddWorker', 'Thanks', 'Penalties', 'Jobleavers', 'Dispatch', 'Certific', 'Holidays', 'Wives', 'Childrens', 'Placements', 'Positions','Services','Inputs','Itypes') ? 'open active' : '' }}">
+                                <li
+                                    class="menu-item {{ request()->is('Workers', 'AddWorker', 'Thanks', 'Penalties', 'Jobleavers', 'Dispatch', 'Certific', 'Holidays', 'Wives', 'Childrens', 'Placements', 'Positions', 'Services', 'Inputs', 'Itypes') ? 'open active' : '' }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
                                         <span class="menu-title">قسم الموارد البشرية</span>
@@ -171,7 +172,8 @@
                                 </li>
                             @endcan
 
-                            <li class="menu-item {{ request()->is('Salaries','Inputs','Itypes','Iaccts','Idepartments') ? 'open active' : '' }}">
+                            <li
+                                class="menu-item {{ request()->is('Salaries', 'Inputs', 'Itypes', 'Iaccts', 'Idepartments') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-calculator'></i>
                                     <span class="menu-title">القسم المالي</span>
@@ -203,6 +205,15 @@
                                 </ul>
                             </li>
 
+                            @can('employees')
+                                <li
+                                    class="menu-item {{ request()->is() ? 'open active' : '' }}">
+                                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                        <i class='menu-icon tf-icons mdi mdi-earth'></i>
+                                        <span class="menu-title">قسم الاراضي</span>
+                                    </a>
+                                </li>
+                            @endcan
                             <li class="menu-item {{ request()->is('Coaches', 'Courses') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-account-tie-voice-outline'></i>
@@ -235,7 +246,8 @@
                             </li>
 
                             {{-- الإعدادات --}}
-                            <li class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department') ? 'open active' : '' }}">
+                            <li
+                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
