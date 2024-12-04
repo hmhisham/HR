@@ -205,15 +205,13 @@
                                 </ul>
                             </li>
 
-                            @can('employees')
-                                <li
-                                    class="menu-item {{ request()->is() ? 'open active' : '' }}">
-                                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                        <i class='menu-icon tf-icons mdi mdi-earth'></i>
-                                        <span class="menu-title">قسم الاراضي</span>
-                                    </a>
-                                </li>
-                            @endcan
+                            <li class="menu-item {{ request()->is() ? 'open active' : '' }}">
+                                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                    <i class='menu-icon tf-icons mdi mdi-earth'></i>
+                                    <span class="menu-title">قسم الاراضي</span>
+                                </a>
+                            </li>
+                            
                             <li class="menu-item {{ request()->is('Coaches', 'Courses') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-account-tie-voice-outline'></i>
