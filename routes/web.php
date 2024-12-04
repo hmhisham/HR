@@ -21,7 +21,6 @@ use App\Http\Controllers\Scalems\ScalemsController;
 use App\Http\Controllers\Workers\WorkersController;
 use App\Http\Controllers\Boycotts\BoycottsController;
 use App\Http\Controllers\Certific\CertificController;
-use App\Http\Controllers\Counties\CountiesController;
 use App\Http\Controllers\Dispatch\DispatchController;
 use App\Http\Controllers\Holidays\HolidaysController;
 use App\Http\Controllers\language\LanguageController;
