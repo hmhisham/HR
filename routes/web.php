@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Workers\Workers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Areas\AreasController;
+use App\Http\Controllers\Bonds\BondsController;
 use App\Http\Controllers\Units\UnitsController;
 use App\Http\Controllers\Wives\WivesController;
 use App\Http\Controllers\Branch\BranchController;
@@ -18,7 +19,9 @@ use App\Http\Controllers\Courses\CoursesController;
 use App\Http\Controllers\Scaleas\ScaleasController;
 use App\Http\Controllers\Scalems\ScalemsController;
 use App\Http\Controllers\Workers\WorkersController;
+use App\Http\Controllers\Boycotts\BoycottsController;
 use App\Http\Controllers\Certific\CertificController;
+use App\Http\Controllers\Counties\CountiesController;
 use App\Http\Controllers\Dispatch\DispatchController;
 use App\Http\Controllers\Holidays\HolidaysController;
 use App\Http\Controllers\language\LanguageController;
@@ -173,6 +176,12 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //الخدمات
     Route::RESOURCE('Services', ServicesController::class);
 
+    //===============الاراضي==================
+    //المقاطعات
+    Route::  RESOURCE('Boycotts', BoycottsController::class);
+    //السندات العقارية
+    Route::RESOURCE('Bonds', BondsController::class);
+
 
 
     //===============المالية==================
@@ -182,7 +191,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //الدليل
     Route::RESOURCE('Iaccts', IacctsController::class);
     //الاقسام
-    Route::  RESOURCE('Idepartments', IdepartmentsController::class);
+    Route::RESOURCE('Idepartments', IdepartmentsController::class);
     //انواع القيود
     Route::RESOURCE('Itypes', ItypesController::class);
 

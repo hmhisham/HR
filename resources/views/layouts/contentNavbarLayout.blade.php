@@ -205,13 +205,27 @@
                                 </ul>
                             </li>
 
-                            <li class="menu-item {{ request()->is() ? 'open active' : '' }}">
+                            <li class="menu-item {{ request()->is('Bonds','Boycotts') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-earth'></i>
                                     <span class="menu-title">قسم الاراضي</span>
                                 </a>
+                                <ul class="menu-sub">
+                                    <li Class="menu-item {{ request()->Is('Boycotts') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Boycotts.index') }}" Class="menu-link">
+                                            <div>المقاطعات</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="menu-sub">
+                                    <li Class="menu-item {{ request()->Is('Bonds') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Bonds.index') }}" Class="menu-link">
+                                            <div>السندات العقارية</div>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                            
+
                             <li class="menu-item {{ request()->is('Coaches', 'Courses') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-account-tie-voice-outline'></i>
