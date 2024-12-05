@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Bonds')
 @section('vendor-style')
@@ -11,9 +10,16 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
-@section('content') 
-@livewire('bonds.bond')
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+@endsection
+@section('content')
+    @livewire('bonds.bond')
 
 
 @endsection
@@ -29,6 +35,13 @@
     <script src=" {{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+
 @endsection
 
 @section('page-script')
@@ -36,6 +49,91 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        $(document).ready(function() {
+            function initFlatpickr(selector, eventName) {
+                $(selector).flatpickr({
+                    placeholder: 'التاريخ',
+                    plugins: [
+                        new monthSelectPlugin({
+                            shorthand: true,
+                            dateFormat: "Y-m",
+                            altFormat: "F Y",
+                        })
+                    ]
+                });
+                $(selector).on('change', function(e) {
+                    livewire.emit(eventName, e.target.value);
+                });
+            }
+
+            // تهيئة حقول التاريخ
+            initFlatpickr('#addDate', '#addbondModal');
+            initFlatpickr('#editDate', '#editbondModal');
+
+            window.livewire.on('select2', () => {
+                console.log("Reinitializing Select2 and Flatpickr");
+                initFlatpickr('#addDate', '#addbondModal');
+                initFlatpickr('#editDate', '#editbondModal');
+            });
+        });
+
+
+        $(document).ready(function() {
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    console.log(`Value changed to: ${e.target.value}`);
+                    livewire.emit(eventName, e.target.value);
+                });
+            }
+
+            // تهيئة Select2 لكل من إضافة وتعديل المقاطعات
+            initSelect2('#addBondboycott_id', 'SelectBoycottId', '#addbondModal');
+            initSelect2('#editBondboycott_id', 'SelectBoycottId', '#editbondModal');
+            initSelect2('#addBondownership', 'SelectOwnership', '#addbondModal');
+            initSelect2('#editBondownership', 'SelectOwnership', '#editbondModal');
+            initSelect2('#addBondregistered_office', 'SelectRegisteredOffice', '#addbondModal');
+            initSelect2('#editBondregistered_office', 'SelectRegisteredOffice', '#editbondModal');
+            initSelect2('#addBondgovernorate', 'SelectGovernorate', '#addbondModal');
+            initSelect2('#editBondgovernorate', 'SelectGovernorate', '#editbondModal');
+            initSelect2('#addBonddistrict', 'SelectDistrict', '#addbondModal');
+            initSelect2('#editBonddistrict', 'SelectDistrict', '#editbondModal');
+
+            window.livewire.on('select2', () => {
+                console.log("Reinitializing Select2");
+                initSelect2('#addBondboycott_id', 'SelectBoycottId', '#addbondModal');
+                initSelect2('#editBondboycott_id', 'SelectBoycottId', '#editbondModal');
+                initSelect2('#addBondownership', 'SelectOwnership', '#addbondModal');
+                initSelect2('#editBondownership', 'SelectOwnership', '#editbondModal');
+                initSelect2('#addBondregistered_office', 'SelectRegisteredOffice', '#addbondModal');
+                initSelect2('#editBondregistered_office', 'SelectRegisteredOffice', '#editbondModal');
+                initSelect2('#addBondgovernorate', 'SelectGovernorate', '#addbondModal');
+                initSelect2('#editBondgovernorate', 'SelectGovernorate', '#editbondModal');
+                initSelect2('#addBonddistrict', 'SelectDistrict', '#addbondModal');
+                initSelect2('#editBonddistrict', 'SelectDistrict', '#editbondModal');
+            });
+        });
+
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+
+        function onlyArabicKey(evt) {
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+            // نطاق رموز الحروف العربية والفراغ
+            if ((ASCIICode >= 1569 && ASCIICode <= 1610)||(ASCIICode >= 48 && ASCIICode <= 57) || ASCIICode === 32) {
+                return true;
+            }
+            return false;
+        }
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -50,10 +148,10 @@
 
         window.addEventListener('BondModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);  
+                $('#id').focus();
+            }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addbondModal').modal('hide');
             $('#editbondModal').modal('hide');
@@ -63,9 +161,7 @@
                 title: event.detail.message
             })
         })
-           
 
-            
 
         window.addEventListener('error', event => {
             $('#removebondModal').modal('hide');
@@ -74,7 +170,7 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
     </script>
 @endsection

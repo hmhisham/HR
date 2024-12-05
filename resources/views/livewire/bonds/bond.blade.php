@@ -36,7 +36,7 @@
                         <tr>
                             <?php $i++; ?>
                             <td>{{ $i }}</td>
-                            <td class="text-center">{{ $Bond->boycott_id }}</td>
+                            <td class="text-center">{{ $Bond->Getboycott ? $Bond->Getboycott->boycott_number . ' - ' . $Bond->Getboycott->boycott_name : '' }}</td>
                             <td class="text-center">{{ $Bond->part_number }}</td>
                             <td class="text-center">{{ $Bond->property_number }}</td>
 
@@ -44,14 +44,14 @@
                                 <div class="btn-group" role="group" aria-label="First group">
                                     @can('bond-edit')
                                         <button wire:click="GetBond({{ $Bond->id }})"
-                                            class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                            class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                             data-bs-target="#editbondModal">
                                             <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                         </button>
                                     @endcan
                                     @can('bond-delete')
                                         <button wire:click="GetBond({{ $Bond->id }})"
-                                            class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Bond->active ? 'disabled' : '' }}"
+                                            class="p-0 px-1 btn btn-text-danger waves-effect {{ $Bond->active ? 'disabled' : '' }}"
                                             data-bs-toggle = "modal" data-bs-target="#removebondModal">
                                             <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                         </button>

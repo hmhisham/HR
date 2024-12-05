@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('property_type')->nullable()->comment('جنس العقار');
             $table->string('governorate')->nullable()->comment('المحافظة');
             $table->string('district')->nullable()->comment('القضاء');
-            $table->string('area')->nullable()->comment('الناحية');
             $table->text('mortgage_notes')->nullable()->comment('إشارات التأمينات');
             $table->string('registered_office')->nullable()->comment('الدائرة المسجل لديها');
             $table->string('specialized_department')->nullable()->comment('الشعبة المختصة');
