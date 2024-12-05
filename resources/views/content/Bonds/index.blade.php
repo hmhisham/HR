@@ -70,8 +70,7 @@
             initFlatpickr('#addDate', '#addbondModal');
             initFlatpickr('#editDate', '#editbondModal');
 
-            window.livewire.on('select2', () => {
-                console.log("Reinitializing Select2 and Flatpickr");
+            window.livewire.on('flatpickr', () => {
                 initFlatpickr('#addDate', '#addbondModal');
                 initFlatpickr('#editDate', '#editbondModal');
             });
@@ -117,6 +116,7 @@
             });
         });
 
+
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
@@ -128,7 +128,7 @@
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
             // نطاق رموز الحروف العربية والفراغ
-            if ((ASCIICode >= 1569 && ASCIICode <= 1610)||(ASCIICode >= 48 && ASCIICode <= 57) || ASCIICode === 32) {
+            if ((ASCIICode >= 1569 && ASCIICode <= 1610) || (ASCIICode >= 48 && ASCIICode <= 57) || ASCIICode === 32) {
                 return true;
             }
             return false;

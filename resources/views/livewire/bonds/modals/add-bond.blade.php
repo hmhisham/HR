@@ -263,7 +263,8 @@
                             <div class="form-floating form-floating-outline">
                                 <input wire:model.defer='mortgage_notes' type="text" id="modalBondmortgage_notes"
                                     placeholder="إشارات التأمينات"
-                                    class="form-control @error('mortgage_notes') is-invalid is-filled @enderror" onkeypress="return onlyArabicKey(event)"/>
+                                    class="form-control @error('mortgage_notes') is-invalid is-filled @enderror"
+                                    onkeypress="return onlyArabicKey(event)" />
                                 <label for="modalBondmortgage_notes">إشارات التأمينات</label>
                             </div>
                             @error('mortgage_notes')
@@ -274,7 +275,8 @@
                             <div class="form-floating form-floating-outline">
                                 <input wire:model.defer='notes' type="text" id="modalBondnotes"
                                     placeholder="ملاحظات"
-                                    class="form-control @error('notes') is-invalid is-filled @enderror" onkeypress="return onlyArabicKey(event)"/>
+                                    class="form-control @error('notes') is-invalid is-filled @enderror"
+                                    onkeypress="return onlyArabicKey(event)" />
                                 <label for="modalBondnotes">ملاحظات</label>
                             </div>
                             @error('notes')
