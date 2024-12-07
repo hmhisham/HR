@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('boycotts', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable()->comment('رقم المستخدم');
-            $table->integer('boycott_number')->unique()->comment('رقم المقاطعة');
-            $table->string('boycott_name')->unique()->comment('اسم المقاطعة');
+            $table->integer('boycott_number')->nullable()->comment('رقم المقاطعة');
+            $table->string('boycott_name')->nullable()->comment('اسم المقاطعة');
             $table->timestamps();
         });
     }
