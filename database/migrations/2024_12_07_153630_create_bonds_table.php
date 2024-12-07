@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('bonds', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable()->comment('رقم المستخدم');
-            $table->integer('boycott_id')->nullable()->comment('رقم المقاطعة');
-            $table->integer('part_number')->nullable()->comment('رقم القطعة');
-            $table->integer('property_number')->nullable()->comment('رقم العقار');
+            $table->string('boycott_id')->nullable()->comment('رقم المقاطعة');
+            $table->string('part_number')->nullable()->comment('رقم القطعة');
+            $table->string('property_number')->nullable()->comment('رقم العقار');
             $table->decimal('area_in_meters', 8, 2)->nullable()->comment('المساحة بالمتر');
             $table->decimal('area_in_olok', 8, 2)->nullable()->comment('المساحة بالأولك');
             $table->decimal('area_in_donum', 8, 2)->nullable()->comment('المساحة بالدونم');
