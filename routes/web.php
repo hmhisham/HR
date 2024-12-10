@@ -26,6 +26,7 @@ use App\Http\Controllers\Holidays\HolidaysController;
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\Linkages\LinkagesController;
 use App\Http\Controllers\Precises\PrecisesController;
+use App\Http\Controllers\Property\PropertyController;
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Services\ServicesController;
 use App\Http\Controllers\Childrens\ChildrensController;
@@ -57,8 +58,7 @@ use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
 use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsController;
 use App\Http\Controllers\Specializationclassification\SpecializationclassificationController;
-
-/*
+ /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -183,8 +183,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Boycotts', BoycottsController::class);
     //السندات العقارية
     Route::RESOURCE('Bonds', BondsController::class);
-    Route::GET('Bond-Show/{id}', [BondsController::class, 'BondShow'])->name('Bond-Show');
 
+    Route::  RESOURCE('Property', PropertyController::class);
 
 
 
