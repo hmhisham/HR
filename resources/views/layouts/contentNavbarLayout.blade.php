@@ -205,11 +205,18 @@
                                 </ul>
                             </li>
 
-                            <li class="menu-item {{ request()->is('Bonds','Boycotts') ? 'open active' : '' }}">
+                            <li class="menu-item {{ request()->is('Bonds','Boycotts','Propertytypes') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-earth'></i>
                                     <span class="menu-title">قسم الاراضي</span>
                                 </a>
+                                <ul class="menu-sub">
+                                    <li Class="menu-item {{ request()->Is('Propertytypes') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Propertytypes.index') }}" Class="menu-link">
+                                            <div>جنس العقار</div>
+                                        </a>
+                                    </li>
+                                </ul>
                                 <ul class="menu-sub">
                                     <li Class="menu-item {{ request()->Is('Boycotts') ? 'active' : '' }}">
                                         <a href = "{{ Route('Boycotts.index') }}" Class="menu-link">
