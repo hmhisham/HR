@@ -205,12 +205,9 @@
                                 </ul>
                             </li>
 
-<<<<<<< HEAD
-                            <li class="menu-item {{ request()->is('Bonds','Boycotts','Property') ? 'open active' : '' }}">
-=======
-                            <li class="menu-item {{ request()->is('Bonds','Boycotts','Propertytypes') ? 'open active' : '' }}">
->>>>>>> 7656175500887120821f69adc5ed7b0afcf35b78
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
+
+                            <li class="menu-item {{ request()->is('Bonds','Boycotts','Property','Propertytypes') ? 'open active' : '' }}">
+                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-earth'></i>
                                     <span class="menu-title">قسم الاراضي</span>
                                 </a>

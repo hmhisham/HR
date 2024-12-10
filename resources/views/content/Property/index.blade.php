@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Property')
 @section('vendor-style')
@@ -11,10 +10,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
-@section('content') 
-@livewire('property.propert')
-
+@endsection
+@section('content')
+    @livewire('property.propert')
 
 @endsection
 
@@ -50,10 +48,10 @@
 
         window.addEventListener('PropertModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);  
+                $('#id').focus();
+            }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addpropertModal').modal('hide');
             $('#editpropertModal').modal('hide');
@@ -63,9 +61,9 @@
                 title: event.detail.message
             })
         })
-           
 
-            
+
+
 
         window.addEventListener('error', event => {
             $('#removepropertModal').modal('hide');
@@ -74,7 +72,41 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
+
+        // add Workers
+        $(document).ready(function() {
+            window.initAddWorkersDrop = () => {
+                $('#addPropertworker_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#addpropertModal')
+                });
+            }
+            initAddWorkersDrop();
+            $('#addPropertworker_id').on('change', function(e) {
+                livewire.emit('SelectWorkerId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initAddWorkersDrop();
+            });
+        });
+
+        // edit Workers
+        $(document).ready(function() {
+            window.initEditWorkersDrop = () => {
+                $('#editPropertworker_id').select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $('#editpropertModal')
+                });
+            }
+            initEditWorkersDrop();
+            $('#editPropertworker_id').on('change', function(e) {
+                livewire.emit('SelectWorkerId', e.target.value);
+            });
+            window.livewire.on('select2', () => {
+                initEditWorkersDrop();
+            });
+        });
     </script>
 @endsection
