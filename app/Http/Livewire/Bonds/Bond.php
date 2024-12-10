@@ -36,6 +36,12 @@ class Bond extends Component
         'SelectPropertyType',
     ];
 
+    public function hydrate()
+    {
+        $this->emit('select2');
+        $this->emit('flatpickr');
+    }
+
     public function mount()
     {
         $this->department = Department::all();
@@ -43,10 +49,17 @@ class Bond extends Component
         $this->propertytypes = Propertytypes::all();
     }
 
-    public function hydrate()
+    public function render()
     {
-        $this->emit('select2');
-        $this->emit('flatpickr');
+        $bondSearch = '%' . $this->bondSearch . '%';
+        $boycotts = Boycotts::where('id', 'Like', $bondSearch)->orderBy('id', 'ASC')->paginate(10);
+
+        $links = $boycotts;
+        $this->boycotts = collect($boycotts->items());
+
+        return view('livewire.bonds.bond', [
+            'links' => $links
+        ]);
     }
 
     //المقاطعات
@@ -97,18 +110,6 @@ class Bond extends Component
         }
     }
 
-    public function render()
-    {
-        $bondSearch = '%' . $this->bondSearch . '%';
-        $boycotts = Boycotts::where('id', 'Like', $bondSearch)->orderBy('id', 'ASC')->paginate(10);
-
-        $links = $boycotts;
-        $this->boycotts = collect($boycotts->items());
-        return view('livewire.bonds.bond', [
-            'links' => $links
-        ]);
-    }
-
     public function AddBondModal($BoycottID)
     {
         $this->reset('boycott_id', 'part_number', 'property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
@@ -125,7 +126,7 @@ class Bond extends Component
         $this->resetValidation();
         $this->validate([
             'boycott_id' => 'required',
-            'part_number' => 'required',
+            /* 'part_number' => 'required',
             'property_number' => 'required',
             'area_in_meters' => 'required',
             'area_in_olok' => 'required',
@@ -140,7 +141,7 @@ class Bond extends Component
             'district' => 'required',
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
-            'specialized_department' => 'required',
+            'specialized_department' => 'required', */
             //'property_deed_image' => 'required',
             //'notes' => 'required',
             'visibility' => 'required',
@@ -167,7 +168,7 @@ class Bond extends Component
             //'notes.required' => 'حقل ملاحظات مطلوب',
             'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
         ]);
-
+        dd('000');
         Bonds::create([
             'user_id' => Auth::User()->id,
             'boycott_id' => $this->boycott_id,

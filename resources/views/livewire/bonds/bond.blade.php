@@ -19,7 +19,6 @@
                         <th class="text-center">الاسم</th>
                         <th class="text-center">العدد</th>
                         <th class="text-center"></th>
-
                     </tr>
                 </thead>
                 <tbody>

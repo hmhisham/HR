@@ -147,7 +147,6 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Thanks', ThanksController::class);
     //   Route::GET('Thanks', [ThanksController::class, 'index'])->name('Workers');
 
-
     // عقوبات
     Route::RESOURCE('Penalties', PenaltiesController::class);
     Route::GET('search', [WorkerSearchController::class, 'search'])->name('worker.search');

@@ -205,7 +205,6 @@
                                 </ul>
                             </li>
 
-
                             <li class="menu-item {{ request()->is('Bonds','Boycotts','Property','Propertytypes') ? 'open active' : '' }}">
                                  <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-earth'></i>
