@@ -48,6 +48,7 @@ use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
 use App\Http\Controllers\Idepartments\IdepartmentsController;
 use App\Http\Controllers\Typeholidays\TypeholidaysController;
+use App\Http\Controllers\Propertytypes\PropertytypesController;
 use App\Http\Controllers\Typesservices\TypesservicesController;
 use App\Http\Controllers\Specializations\SpecializationsController;
 use App\Http\Controllers\Users\UsersAccounts\UsersAccountsController;
@@ -176,6 +177,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Services', ServicesController::class);
 
     //===============الاراضي==================
+    //جنس العقار
+    Route::  RESOURCE('Propertytypes', PropertytypesController::class);
     //المقاطعات
     Route::  RESOURCE('Boycotts', BoycottsController::class);
     //السندات العقارية
@@ -183,6 +186,9 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //الأملاك
 
     Route::  RESOURCE('Property', PropertyController::class);
+
+
+
 
 
     //===============المالية==================
