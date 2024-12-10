@@ -16,7 +16,9 @@ class Propert extends Component
     public $Property = [];
     public $PropertSearch, $Propert, $PropertId;
     public $user_id, $worker_id, $bonds_id, $from_date, $to_date, $months_count, $total_amount, $paid_amount, $property_status, $status, $notifications, $notes;
-    public $workers ;
+
+    public $workers = [];
+    public  $calculator_number , $department_name , $email;
 
     protected $listeners = [
         'SelectWorkerId',
@@ -29,15 +31,24 @@ class Propert extends Component
     {
         $this->workers = Workers::all();
     }
+
     public function SelectWorkerId($WorkerIdID)
     {
-        $worker_id = Workers::find($WorkerIdID);
-        if ($worker_id) {
+        $worker = Workers::find($WorkerIdID);
+        if ($worker) {
             $this->worker_id = $WorkerIdID;
+            $this->calculator_number = $worker->calculator_number;
+            $this->department_name = $worker->department_name;
+            $this->email = $worker->email;
+
         } else {
             $this->worker_id = null;
+            $this->calculator_number = null;
+            $this->department_name = null;
+            $this->email = null;
         }
     }
+
 
 
 
@@ -69,7 +80,7 @@ class Propert extends Component
     }
     public function AddPropertModalShow()
     {
-        $this->reset();
+        // $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('PropertModalShow');
     }

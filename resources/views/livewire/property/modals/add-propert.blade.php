@@ -1,6 +1,6 @@
 <!-- Add Propert Modal -->
 <div wire:ignore.self class="modal fade" id="addpropertModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
@@ -12,24 +12,62 @@
                 <form id="addpropertModalForm" autocomplete="off">
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
-                            <div Class="row">
-
+                            <div class="row">
+                                <!-- الاسم الكامل -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='worker_id' id="addPropertworker_id" class="form-select @error('worker_id') is-invalid is-filled @enderror">
-                                            <option value=""></option>
+                                        <select wire:model.defer="worker_id" id="addPropertworker_id"
+                                            class="form-select @error('worker_id') is-invalid is-filled @enderror border border-primary"
+                                            style="width: 70%; height: 40px;">
+                                            <option value="" disabled selected>اختر موظفًا</option>
                                             @foreach ($workers as $worker)
                                                 <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
                                             @endforeach
                                         </select>
-                                        <label for="modalPropertworker_id">worker_id</label>
+                                        <label for="addPropertworker_id">الاسم الكامل</label>
                                     </div>
                                     @error('worker_id')
-                                        <small class='text-danger inputerror'>{{ $message }}</small>
+                                        <small class="text-danger inputerror">{{ $message }}</small>
                                     @enderror
                                 </div>
 
+
+                                <!-- الرقم الوظيفي -->
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <div class="form-control   d-flex align-items-center justify-content-center p-3"
+                                            style="color: #007bff; border: 1px solid #007bff;">
+                                            <span class="fw-bold">{{ $calculator_number ?? '' }}</span>
+                                        </div>
+                                        <label for="addPropertcalculator_number">الرقم الوظيفي</label>
+                                    </div>
+                                </div>
+
+                                <!-- القسم -->
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <div class="form-control   d-flex align-items-center justify-content-center p-3"
+                                            style="color: #007bff; border: 1px solid #007bff;">
+                                            <span class="fw-bold">{{ $department_name ?? '' }}</span>
+                                        </div>
+                                        <label for="addPropertdepartment_name">القسم</label>
+                                    </div>
+                                </div>
+
+                                <!-- الأيميل -->
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <div class="form-control   d-flex align-items-center justify-content-center p-3"
+                                            style="color: #007bff; border: 1px solid #007bff;">
+                                            <span class="fw-bold">{{ $email ?? '' }}</span>
+                                        </div>
+                                        <label for="addPropertemail">الأيميل</label>
+                                    </div>
+                                </div>
+
                             </div>
+
+
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
