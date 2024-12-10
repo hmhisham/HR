@@ -1,6 +1,7 @@
 <div class="mt-n4">
     <h4 class="mb-2">
-        <span class="text-muted fw-light">الموارد البشرية <span class="mdi mdi-chevron-left mdi-24px"></span></span> الشهادات
+        <span class="text-muted fw-light">الموارد البشرية <span class="mdi mdi-chevron-left mdi-24px"></span></span>
+        الشهادات
     </h4>
     <div class="card">
         <div class="card">
@@ -33,13 +34,15 @@
                                 </td>
                                 <td class="p-0">
                                     @can('certifi-show')
-                                        <a href="{{ Route('Certifi-Show', $worker->id) }}" class="p-0 px-1 btn btn-text-primary waves-effect">
+                                        <a href="{{ Route('Certifi-Show', $worker->id) }}"
+                                            class="p-0 px-1 btn btn-text-primary waves-effect">
                                             <span class="tf-icons mdi mdi-eye fs-3"></span>
                                         </a>
                                     @endcan
                                     @can('certifi-create')
-                                        <button wire:click='AddCertifyModal({{ $worker->id }})' class="p-0 px-1 btn btn-text-primary waves-effect"
-                                            data-bs-toggle="modal" data-bs-target="#addcertifiModal">
+                                        <button wire:click='AddCertifyModal({{ $worker->id }})'
+                                            class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
+                                            data-bs-target="#addcertifiModal">
                                             <span class="tf-icons mdi mdi-school fs-3"></span>
                                         </button>
                                     @endcan

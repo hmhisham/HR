@@ -8,4 +8,11 @@ class BondsController extends Controller
     {
         Return View('content.Bonds.index'); 
     }
+
+ public function BondShow($id)
+    {
+        Return View('content.Bonds.show', [
+            'id' => $id
+        ]);
+    }
 }

@@ -7,6 +7,7 @@ use App\Models\Districts\Districts;
 use App\Models\Department\Department;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Governorates\Governorates;
+use App\Models\Propertytypes\Propertytypes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Bonds extends Model
@@ -14,7 +15,7 @@ class Bonds extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = "bonds";
-
+    
     public function Getboycott()
     {
         return $this->belongsTo(Boycotts::class, 'boycott_id');
@@ -40,6 +41,10 @@ class Bonds extends Model
         return $this->belongsTo(Districts::class, 'district');
     }
 
+    public function Getpropertytype()
+    {
+        return $this->belongsTo(Propertytypes::class, 'property_type');
+    }
 
     // إضافة خصائص التحويل
     protected $dates = ['date'];

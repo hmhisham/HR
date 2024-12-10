@@ -1,20 +1,13 @@
 <div class="mt-n4">
     <h4 class="mb-2">
-        <span class="text-muted fw-light">الاملاك والاراضي <span class="mdi mdi-chevron-left mdi-24px"></span></span>
+        <span class="text-muted fw-light">الاملاك والاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
         السندات العقارية
     </h4>
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <div>
-                    <input wire:model="BondSearch" type="text" class="form-control" placeholder="بحث...">
-                </div>
-                <div>
-                    @can('bond-create')
-                        <button wire:click='AddBondModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
-                            data-bs-toggle="modal" data-bs-target="#addbondModal">أضــافــة</button>
-                        @include('livewire.bonds.modals.add-bond')
-                    @endcan
+                    <input wire:model="bondSearch" type="text" class="form-control" placeholder="بحث...">
                 </div>
             </div>
         </div>
@@ -23,40 +16,36 @@
                 <thead class="table-light">
                     <tr>
                         <th>#</th>
-                        <th class="text-center">رقم المقاطعة</th>
-                        <th class="text-center">رقم القطعة</th>
-                        <th class="text-center">رقم العقار</th>
-                        <th class="text-center">العملية</th>
+                        <th class="text-center">الاسم</th>
+                        <th class="text-center">العدد</th>
+                        <th class="text-center"></th>
 
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 0; ?>
-                    @foreach ($Bonds as $Bond)
+                    @foreach ($boycotts as $boycott)
                         <tr>
                             <?php $i++; ?>
                             <td>{{ $i }}</td>
-                            <td class="text-center">{{ $Bond->Getboycott ? $Bond->Getboycott->boycott_number . ' - ' . $Bond->Getboycott->boycott_name : '' }}</td>
-                            <td class="text-center">{{ $Bond->part_number }}</td>
-                            <td class="text-center">{{ $Bond->property_number }}</td>
-
-                            <td class="text-center">
-                                <div class="btn-group" role="group" aria-label="First group">
-                                    @can('bond-edit')
-                                        <button wire:click="GetBond({{ $Bond->id }})"
-                                            class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
-                                            data-bs-target="#editbondModal">
-                                            <i class="tf-icons mdi mdi-pencil fs-3"></i>
-                                        </button>
-                                    @endcan
-                                    @can('bond-delete')
-                                        <button wire:click="GetBond({{ $Bond->id }})"
-                                            class="p-0 px-1 btn btn-text-danger waves-effect {{ $Bond->active ? 'disabled' : '' }}"
-                                            data-bs-toggle = "modal" data-bs-target="#removebondModal">
-                                            <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
-                                        </button>
-                                    @endcan
-                                </div>
+                            <td class="text-center">{{ isset($boycott->boycott_number) && isset($boycott->boycott_name) ? $boycott->boycott_number . ' - ' . $boycott->boycott_name : '' }}</td>
+                            <td Class="text-center">
+                                {{ $boycott->GetBonds->count() }}
+                            </td>
+                            <td class="p-0">
+                                @can('bond-show')
+                                    <a href="{{ Route('Bond-Show', $boycott->id) }}"
+                                        Class="p-0 px-1 btn btn-text-primary waves-effect">
+                                        <span Class="tf-icons mdi mdi-eye fs-3"></span>
+                                    </a>
+                                @endcan
+                                @can('bond-create')
+                                    <Button wire : click='AddBondModal({{ $boycott->id }})'
+                                        class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
+                                        data-bs-target="#addbondModal">
+                                        <span Class=" tf-icons mdi mdi-text-box-multiple"></span>
+                                    </button>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach
@@ -66,8 +55,7 @@
                 {{ $links->links() }}
             </div>
             <!-- Modal -->
-            @include('livewire.bonds.modals.edit-bond')
-            @include('livewire.bonds.modals.remove-bond')
+            @include('livewire.bonds.modals.add-bond')
             <!-- Modal -->
         @endcan
     </div>

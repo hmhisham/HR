@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل السند</h3>
+                    <h3 class="pb-1 mb-2">تعديل السند العقاري</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
@@ -14,26 +14,33 @@
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
 
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="GetBond, update">
                     <form id="editBondModalForm" autocomplete="off">
-                        <div Class="row">
-                            <div class="mb-3 col">
-                                <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='boycott_id' id="editBondboycott_id"
-                                        class="form-select @error('boycott_id') is-invalid is-filled @enderror">
-                                        <option value=""></option>
-                                        @foreach ($boycotts as $boycott)
-                                            <option value="{{ $boycott->id }}">{{ $boycott->boycott_number }} -
-                                                {{ $boycott->boycott_name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <label for="modalBondboycott_id">بيانات المقاطعة</label>
+                        <div Class="row bg-label-primary">
+                            <div class="col">
+                                <label class="border-bottom-2 text-center mb-2 w-100">رقم المقاطعة</label>
+                                <div wire:loading wire:target='AddBondModal'
+                                    wire:loading.class="d-flex justify-content-center">
+                                    <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                                 </div>
-                                @error('boycott_id')
-                                    <small class='text-danger inputerror'>{{ $message }}</small>
-                                @enderror
+                                <div wire:loading.remove wire:target='AddBondModal' class="text-center">
+                                    {{ $boycott->boycott_number ?? '' }}</div>
                             </div>
 
+                            <div class="col">
+                                <label class="border-bottom-2 text-center mb-2 w-100">اسم المقاطعة</label>
+                                <div wire:loading wire:target='AddBondModal'
+                                    wire:loading.class="d-flex justify-content-center">
+                                    <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
+                                </div>
+                                <div wire:loading.remove wire:target='AddBondModal' class="text-center">
+                                    {{ $boycott->boycott_name ?? '' }}</div>
+                            </div>
+                        </div>
+
+                        <hr class="">
+
+                        <div Class="row">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='part_number' type="text" id="modalBondpart_number"
@@ -57,6 +64,54 @@
                                 </div>
                                 @error('property_number')
                                     <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer="bond_type" id="modalBondbond_type"
+                                        class="form-select @error('bond_type') is-invalid is-filled @enderror">
+                                        <option value="">اختر</option>
+                                        <option value="قديم">قديم</option>
+                                        <option value="تسجيل مجدد">تسجيل مجدد</option>
+                                    </select>
+                                    <label for="modalBondbond_type">نوع السند</label>
+                                </div>
+                                @error('bond_type')
+                                    <small class="text-danger inputerror">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='property_type' id="editBondproperty_type"
+                                        class="form-select @error('property_type') is-invalid is-filled @enderror">
+                                        <option value="">اختر</option>
+                                        @foreach ($propertytypes as $propertytype)
+                                            <option value="{{ $propertytype->id }}">{{ $propertytype->type_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <label for="modalBondproperty_type">جنس العقار</label>
+                                </div>
+                                @error('property_type')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer="mortgage_notes" id="modalBondmortgage_notes"
+                                        class="form-select @error('mortgage_notes') is-invalid is-filled @enderror">
+                                        <option value="">اختر</option>
+                                        <option value="رفع الحجز">رفع الحجز</option>
+                                        <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف بالعقار الا
+                                            بموافقة الموانئ</option>
+                                    </select>
+                                    <label for="modalBondmortgage_notes">اشارة التأمينات</label>
+                                </div>
+                                @error('mortgage_notes')
+                                    <small class="text-danger inputerror">{{ $message }}</small>
                                 @enderror
                             </div>
                         </div>
@@ -89,8 +144,8 @@
 
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='area_in_donum' type="text" id="modalBondarea_in_donum"
-                                        placeholder="المساحة بالدونم"
+                                    <input wire:model.defer='area_in_donum' type="text"
+                                        id="modalBondarea_in_donum" placeholder="المساحة بالدونم"
                                         class="form-control @error('area_in_donum') is-invalid is-filled @enderror"
                                         onkeypress="return onlyNumberKey(event)" />
                                     <label for="modalBondarea_in_donum">المساحة بالدونم</label>
@@ -116,7 +171,8 @@
 
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='date' type="date" id="editDate" placeholder="التاريخ"
+                                    <input wire:model.defer='date' type="date" id="addDate"
+                                        placeholder="التاريخ"
                                         class="form-control @error('date') is-invalid is-filled @enderror" />
                                     <label for="modalBonddate">التاريخ</label>
                                 </div>
@@ -137,7 +193,8 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>
-
+                        </div>
+                        <div Class="row">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='ownership' id="editBondownership"
@@ -157,25 +214,6 @@
 
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='property_type' id="modalBondproperty_type"
-                                        class="form-select @error('property_type') is-invalid is-filled @enderror">
-                                        <option value="">اختر</option>
-                                        <option value="سكني">سكني</option>
-                                        <option value="تجاري">تجاري</option>
-                                        <option value="صناعي">صناعي</option>
-                                        <option value="زراعي">زراعي</option>
-                                        <option value="اغراض متعددة">اغراض متعددة</option>
-                                    </select>
-                                    <label for="modalBondproperty_type">جنس العقار</label>
-                                </div>
-                                @error('property_type')
-                                    <small class='text-danger inputerror'>{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div Class="row">
-                            <div class="mb-3 col">
-                                <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='registered_office' id="editBondregistered_office"
                                         class="form-select @error('registered_office') is-invalid is-filled @enderror">
                                         <option value=""></option>
@@ -190,7 +228,8 @@
                                     <small class='text-danger inputerror'>{{ $message }}</small>
                                 @enderror
                             </div>
-
+                        </div>
+                        <div Class="row">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='governorate' id="editBondgovernorate"
@@ -198,7 +237,8 @@
                                         <option value=""></option>
                                         @foreach ($governorates as $governorate)
                                             <option value="{{ $governorate->id }}">
-                                                {{ $governorate->governorate_name }}</option>
+                                                {{ $governorate->governorate_name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     <label for="modalBondgovernorate">المحافظة</label>
@@ -215,6 +255,7 @@
                                         <option value=""></option>
                                         @foreach ($Districts as $District)
                                             <option value="{{ $District->id }}">{{ $District->district_name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     <label for="modalBonddistrict">القضاء</label>
@@ -223,7 +264,6 @@
                                     <small class='text-danger inputerror'>{{ $message }}</small>
                                 @enderror
                             </div>
-
 
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
@@ -245,6 +285,18 @@
                         <div Class="row">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='notes' type="text" id="modalBondnotes"
+                                        placeholder="ملاحظات"
+                                        class="form-control @error('notes') is-invalid is-filled @enderror"
+                                        onkeypress="return onlyArabicKey(event)" />
+                                    <label for="modalBondnotes">ملاحظات</label>
+                                </div>
+                                @error('notes')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='property_deed_image' type="file"
                                         id="modalBondproperty_deed_image" placeholder="صورة السند العقاري"
                                         class="form-control @error('property_deed_image') is-invalid is-filled @enderror" />
@@ -254,7 +306,6 @@
                                     <small class='text-danger inputerror'>{{ $message }}</small>
                                 @enderror
                             </div>
-
                             <div class="mb-3 col">
                                 <div class="form-check">
                                     <input wire:model.defer='visibility' type="checkbox" id="modalBondvisibility"
@@ -263,32 +314,6 @@
                                 </div>
                                 @error('visibility')
                                     <small class='text-danger inputerror'>{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div Class="row">
-                            <div class="mb-3 col">
-                                <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='mortgage_notes' type="text"
-                                        id="modalBondmortgage_notes" placeholder="إشارات التأمينات"
-                                        class="form-control @error('mortgage_notes') is-invalid is-filled @enderror"
-                                        onkeypress="return onlyArabicKey(event)" />
-                                    <label for="modalBondmortgage_notes">إشارات التأمينات</label>
-                                </div>
-                                @error('mortgage_notes')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col">
-                                <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='notes' type="text" id="modalBondnotes"
-                                        placeholder="ملاحظات"
-                                        class="form-control @error('notes') is-invalid is-filled @enderror"
-                                        onkeypress="return onlyArabicKey(event)" />
-                                    <label for="modalBondnotes">ملاحظات</label>
-                                </div>
-                                @error('notes')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>
                         </div>

@@ -1,6 +1,5 @@
-
 @extends('layouts/layoutMaster')
-@section('title', 'Bonds')
+@section('title', 'Bonds Show')
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel = "stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
@@ -18,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
-        @endsection
+@endsection
 @section('page-style')
     <style>
         .border-bottom-2 {
@@ -27,7 +26,7 @@
     </style>
 @endsection
 @section('content')
-@livewire('bonds.bond')
+    @livewire('bonds.show-bond.show-bond', ['boycott_id' => $id])
 
 
 @endsection
@@ -51,40 +50,12 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
 @endsection
 
+
 @section('page-script')
     <script src=" {{ asset('assets/js/app-user-list.js') }}"></script>
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-
-        /*$(document).ready(function() {
-            function initFlatpickr(selector, eventName) {
-                $(selector).flatpickr({
-                    placeholder: 'التاريخ',
-                    plugins: [
-                        new monthSelectPlugin({
-                            shorthand: true,
-                            dateFormat: "Y-m",
-                            altFormat: "F Y",
-                        })
-                    ]
-                });
-                $(selector).on('change', function(e) {
-                    livewire.emit(eventName, e.target.value);
-                });
-            }
-
-            // تهيئة حقول التاريخ
-            initFlatpickr('#addDate', '#addbondModal');
-            initFlatpickr('#editDate', '#editbondModal');
-
-            window.livewire.on('flatpickr', () => {
-                initFlatpickr('#addDate', '#addbondModal');
-                initFlatpickr('#editDate', '#editbondModal');
-            });
-        });*/
-
-
         $(document).ready(function() {
             function initSelect2(selector, eventName, parentModal) {
                 $(selector).select2({
@@ -156,8 +127,8 @@
 
         window.addEventListener('BondModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);
+                $('#id').focus();
+            }, 100);
         })
 
         window.addEventListener('success', event => {

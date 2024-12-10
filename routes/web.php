@@ -178,11 +178,12 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
 
     //===============الاراضي==================
     //جنس العقار
-    Route::  RESOURCE('Propertytypes', PropertytypesController::class);
+    Route::RESOURCE('Propertytypes', PropertytypesController::class);
     //المقاطعات
-    Route::  RESOURCE('Boycotts', BoycottsController::class);
+    Route::RESOURCE('Boycotts', BoycottsController::class);
     //السندات العقارية
     Route::RESOURCE('Bonds', BondsController::class);
+    Route::GET('Bond-Show/{id}', [BondsController::class, 'BondShow'])->name('Bond-Show');
 
 
 
