@@ -1,6 +1,6 @@
 <!-- Add Propertytype Modal -->
 <div wire:ignore.self class="modal fade" id="addpropertytypeModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
@@ -27,7 +27,7 @@
                     <hr class="my-0">
                     <div class="text-center col-12 demo-vertical-spacing mb-n4">
                         <button wire:click='store' wire:loading.attr="disabled" type="button"
-                            class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                            class="btn btn-primary me-sm-3 me-1">اضافة</button>
                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                             aria-label="Close">تجاهل</button>
                     </div>

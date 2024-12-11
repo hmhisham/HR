@@ -18,7 +18,7 @@
                                 <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                             </div>
                             <div wire:loading.remove wire:target='AddBondModal' class="text-center">
-                                {{ $boycott->boycott_number ?? '' }}</div>
+                                {{ $Boycott->boycott_number ?? '' }}</div>
                         </div>
 
                         <div class="col">
@@ -28,12 +28,12 @@
                                 <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                             </div>
                             <div wire:loading.remove wire:target='AddBondModal' class="text-center">
-                                {{ $boycott->boycott_name ?? '' }}</div>
+                                {{ $Boycott->boycott_name ?? '' }}</div>
                         </div>
                     </div>
 
                     <hr class="">
-                    
+
                     <div Class="row">
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">

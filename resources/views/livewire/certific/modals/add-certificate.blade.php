@@ -289,8 +289,8 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3 col">
-                            <div class="form-check">
+                        <div class="col position-relative border">
+                            <div class="form-check position-absolute top-50 start-0 translate-middle-y">
                                 <input wire:model.defer='status' type="checkbox" id="modalHolidaystatus"
                                     placeholder="الحالة"
                                     class="form-check-input @error('status') is-invalid @enderror" />
@@ -302,6 +302,19 @@
                                 <small class='text-danger'>{{ $message }}</small>
                             @enderror
                         </div>
+
+                        {{-- <div class="col position-relative">
+                            <button wire:click='removeDetails("{{ $key }}")' type="button"
+                                class="btn btn-text-danger btn-sm rounded-pill btn-icon waves-effect waves-light position-absolute top-50 start-0 translate-middle-y">
+                                    <span class="tf-icons mdi mdi-close-thick mdi-24px"></span>
+                            </button>
+                            @if ($key == count($detailsInputs) - 1)
+                                <button wire:click='addNewDetails' wire:loading.attr="disabled" type="button"
+                                    class="btn btn-outline-primary position-absolute top-50 end-0 translate-middle-y me-2 px-2">اضافة تفاصيل</button>
+                            @endif
+                        </div> --}}
+
+
                     </div>
                     <hr class="my-0">
                     <div class="text-center col-12 demo-vertical-spacing mb-n4">

@@ -205,8 +205,7 @@
                                 </ul>
                             </li>
 
-
-                            <li class="menu-item {{ request()->is('Bonds','Boycotts','Property','Propertytypes') ? 'open active' : '' }}">
+                            <li class="menu-item {{ request()->is('Bonds', 'Bond-Show/*', 'Boycotts','Property','Propertytypes') ? 'open active' : '' }}">
                                  <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-earth'></i>
                                     <span class="menu-title">قسم الاراضي</span>
@@ -229,6 +228,11 @@
                                     <li Class="menu-item {{ request()->Is('Bonds') ? 'active' : '' }}">
                                         <a href = "{{ Route('Bonds.index') }}" Class="menu-link">
                                             <div>السندات العقارية</div>
+                                        </a>
+                                    </li>
+                                    <li Class="menu-item {{ request()->Is('Bond-Show/*') ? 'active' : 'hidden' }}">
+                                        <a href = "javascript:void(0)" Class="menu-link">
+                                            <div>عرض السندات العقارية</div>
                                         </a>
                                     </li>
                                 </ul>

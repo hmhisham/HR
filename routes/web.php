@@ -147,7 +147,6 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Thanks', ThanksController::class);
     //   Route::GET('Thanks', [ThanksController::class, 'index'])->name('Workers');
 
-
     // عقوبات
     Route::RESOURCE('Penalties', PenaltiesController::class);
     Route::GET('search', [WorkerSearchController::class, 'search'])->name('worker.search');
@@ -178,12 +177,14 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
 
     //===============الاراضي==================
     //جنس العقار
-    Route::  RESOURCE('Propertytypes', PropertytypesController::class);
+    Route::RESOURCE('Propertytypes', PropertytypesController::class);
     //المقاطعات
-    Route::  RESOURCE('Boycotts', BoycottsController::class);
+    Route::RESOURCE('Boycotts', BoycottsController::class);
     //السندات العقارية
     Route::RESOURCE('Bonds', BondsController::class);
-    //الأملاك
+    Route::  GET('Bond-Show/{id}', [BondsController::class,'BondShow'])->name('Bond-Show');
+
+    //الاملاك
     Route::  RESOURCE('Property', PropertyController::class);
   Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
 
