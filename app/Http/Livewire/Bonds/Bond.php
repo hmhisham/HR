@@ -144,7 +144,7 @@ class Bond extends Component
             'specialized_department' => 'required',
             //'property_deed_image' => 'required',
             //'notes' => 'required',
-            'visibility' => 'required',
+            //'visibility' => 'required',
 
         ], [
             'boycott_id.required' => 'حقل رقم المقاطعة مطلوب',
@@ -166,7 +166,7 @@ class Bond extends Component
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             //'property_deed_image.required' => 'حقل صورة السند العقاري مطلوب',
             //'notes.required' => 'حقل ملاحظات مطلوب',
-            'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
+            //'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
         ]);
 
         Bonds::create([
