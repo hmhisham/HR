@@ -147,7 +147,6 @@ class ShowBond extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'boycott_id' => 'required',
             'part_number' => 'required',
             'property_number' => 'required',
             'area_in_meters' => 'required',
@@ -166,10 +165,9 @@ class ShowBond extends Component
             'specialized_department' => 'required',
             //'property_deed_image' => 'required',
             //'notes' => 'required',
-            'visibility' => 'required',
+            //'visibility' => 'required',
 
         ], [
-            //'boycott_id.required' => 'حقل رقم المقاطعة مطلوب',
             'part_number.required' => 'حقل رقم القطعة مطلوب',
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'area_in_meters.required' => 'حقل المساحة بالمتر مطلوب',
@@ -188,7 +186,7 @@ class ShowBond extends Component
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             //'property_deed_image.required' => 'حقل صورة السند العقاري مطلوب',
             //'notes.required' => 'حقل ملاحظات مطلوب',
-            'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
+            //'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
         ]);
 
         Bonds::create([
@@ -287,7 +285,7 @@ class ShowBond extends Component
             'specialized_department' => 'required:bonds',
             //'property_deed_image' => 'required:bonds',
             //'notes' => 'required:bonds',
-            'visibility' => 'required:bonds',
+            //'visibility' => 'required:bonds',
 
         ], [
             'boycott_id.required' => 'حقل رقم المقاطعة مطلوب',
@@ -309,7 +307,7 @@ class ShowBond extends Component
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             //'property_deed_image.required' => 'حقل صورة السند العقاري مطلوب',
             //'notes.required' => 'حقل ملاحظات مطلوب',
-            'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
+            //'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
         ]);
 
         $Bonds = Bonds::find($this->bondId);
