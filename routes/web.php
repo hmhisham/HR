@@ -186,7 +186,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
 
     //الاملاك
     Route::  RESOURCE('Property', PropertyController::class);
-
+  Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
 
 
 
