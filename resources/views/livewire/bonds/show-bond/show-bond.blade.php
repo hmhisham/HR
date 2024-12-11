@@ -3,6 +3,7 @@
         <span class="text-muted fw-light">السندات العقارية <span class="mdi mdi-chevron-left mdi-24px"></span></span> عرض
         البيانات الخاصة بـ/ : {{ $Boycott->boycott_number }} - {{ $Boycott->boycott_name }}
     </h4>
+
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
@@ -13,7 +14,7 @@
                     @can('bond-create')
                         <button wire:click='AddBondModal' class="mb-3 add-new btn btn-primary mb-md-0"
                             data-bs-toggle="modal" data-bs-target="#addbondModal">أضــافــة</button>
-                        @include('livewire.bonds.show-bond.modals.add-bond')
+                       @include('livewire.bonds.show-bond.modals.add-bond')
                     @endcan
                 </div>
             </div>
@@ -30,7 +31,6 @@
                             <th class="text-center">إشارات التأمينات</th>
                             <th class="text-center">الشعبة المختصة</th>
                             <th class="text-center">العملية</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +43,6 @@
                                 <td class="text-center">{{ $Bonds->property_number }}</td>
                                 <td class="text-center">{{ $Bonds->mortgage_notes }}</td>
                                 <td class="text-center">{{ $Bonds->specialized_department }}</td>
-
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('bond-edit')

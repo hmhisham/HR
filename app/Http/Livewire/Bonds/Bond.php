@@ -118,6 +118,7 @@ class Bond extends Component
 
         $this->Boycott = Boycotts::find($BoycottID);
         $this->boycott_id = $BoycottID;
+
     }
 
 
@@ -125,8 +126,7 @@ class Bond extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'boycott_id' => 'required',
-            /* 'part_number' => 'required',
+            'part_number' => 'required',
             'property_number' => 'required',
             'area_in_meters' => 'required',
             'area_in_olok' => 'required',
@@ -141,7 +141,7 @@ class Bond extends Component
             'district' => 'required',
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
-            'specialized_department' => 'required', */
+            'specialized_department' => 'required',
             //'property_deed_image' => 'required',
             //'notes' => 'required',
             'visibility' => 'required',
@@ -168,7 +168,7 @@ class Bond extends Component
             //'notes.required' => 'حقل ملاحظات مطلوب',
             'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
         ]);
-        dd('000');
+
         Bonds::create([
             'user_id' => Auth::User()->id,
             'boycott_id' => $this->boycott_id,

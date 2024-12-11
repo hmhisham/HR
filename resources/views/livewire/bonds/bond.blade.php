@@ -39,7 +39,7 @@
                                     </a>
                                 @endcan
                                 @can('bond-create')
-                                    <Button wire : click='AddBondModal({{ $boycott->id }})'
+                                    <Button wire:click='AddBondModal({{ $boycott->id }})'
                                         class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
                                         data-bs-target="#addbondModal">
                                         <span Class=" tf-icons mdi mdi-text-box-multiple"></span>

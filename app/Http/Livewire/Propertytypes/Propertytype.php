@@ -1,28 +1,27 @@
 <?php
 namespace App\Http\Livewire\Propertytypes;
 use Livewire\Component;
-  
+
  use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Propertytypes\Propertytypes;
- 
+
 class Propertytype extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
     public $Propertytypes = [];
-     public $PropertytypeSearch, $Propertytype, $PropertytypeId;
+    public $PropertytypeSearch, $Propertytype, $PropertytypeId;
     public $type_name;
-
 
     Public function render()
     {
         $PropertytypeSearch ='%' . $this->PropertytypeSearch . '%';
         $Propertytypes = Propertytypes::where('type_name', 'LIKE', $PropertytypeSearch)
- 
- 
-         ->orderBy('id', 'ASC')
-         ->paginate(10); 
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
+
         $links = $Propertytypes;
         $this->Propertytypes = collect($Propertytypes->items());
         return view('livewire.propertytypes.propertytype', [
@@ -37,70 +36,71 @@ class Propertytype extends Component
         $this->dispatchBrowserEvent('PropertytypeModalShow');
     }
 
- 
+
     public function store()
     {
         $this->resetValidation();
-         $this->validate(['type_name' => 'required' ,
-
-                 ], [
-                'type_name.required' => 'حقل اسم النوع مطلوب',  ]);
-                                 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
-
+         $this->validate([
+            'type_name' => 'required' ,
+        ], [
+            'type_name.required' => 'حقل اسم النوع مطلوب',
+        ]);
 
         Propertytypes::create([
-'type_name'=> $this->type_name,
+            'user_id' => Auth::id(),
+            'type_name'=> $this->type_name,
+        ]);
 
-]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
-        'message' => 'تم الاضافه بنجاح',
+            'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
     }
 
- public function GetPropertytype($PropertytypeId)
+    public function GetPropertytype($PropertytypeId)
     {
         $this->resetValidation();
 
         $this-> Propertytype  = Propertytypes::find($PropertytypeId);
         $this-> PropertytypeId = $this->Propertytype->id;
-             $this->type_name= $this->Propertytype->type_name;
+        $this->type_name= $this->Propertytype->type_name;
+    }
 
-    }  
-          
- public function update()
+    public function update()
     {
         $this->resetValidation();
-         $this->validate(['type_name' => 'required:propertytypes' ,
+         $this->validate([
+            'type_name' => 'required:propertytypes' ,
+        ], [
+            'type_name.required' => 'حقل اسم النوع مطلوب',
+        ]);
 
-                 ], [
-                'type_name.required' => 'حقل اسم النوع مطلوب', ]);
-                                 
-             $Propertytypes = Propertytypes::find($this->PropertytypeId);     $Propertytypes->update([
-'type_name'=> $this->type_name,
+        $Propertytypes = Propertytypes::find($this->PropertytypeId);
+        $Propertytypes->update([
+            'user_id' => Auth::id() ,
+            'type_name'=> $this->type_name,
+        ]);
 
-]);
         $this->reset();
          $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
      }
-                         
-public function destroy()
-{
-    $Propertytypes = Propertytypes::find($this->PropertytypeId);
 
-    if ($Propertytypes) {
+    public function destroy()
+    {
+        $Propertytypes = Propertytypes::find($this->PropertytypeId);
 
-        $Propertytypes->delete();
-        $this->reset();
-        $this->dispatchBrowserEvent('success', [
-            'message' => 'تم حذف البيانات بنجاح',
-            'title' => 'الحذف'
-        ]);
+        if ($Propertytypes) {
+            $Propertytypes->delete();
+
+            $this->reset();
+            $this->dispatchBrowserEvent('success', [
+                'message' => 'تم حذف البيانات بنجاح',
+                'title' => 'الحذف'
+            ]);
+        }
     }
-}
 }

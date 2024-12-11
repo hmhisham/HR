@@ -37,21 +37,63 @@ class ShowBond extends Component
         'SelectPropertyType',
     ];
 
+    public function hydrate()
+    {
+        $this->emit('select2');
+        $this->emit('flatpickr');
+    }
+
     public function mount()
     {
         $this->department = Department::all();
         $this->governorates = Governorates::all();
         $this->propertytypes = Propertytypes::all();
 
-
         $this->Boycott = Boycotts::find($this->boycott_id);
         $this->BoycottBonds = $this->Boycott->GetBonds;
     }
 
-    public function hydrate()
+    public function render()
     {
-        $this->emit('select2');
-        $this->emit('flatpickr');
+        $bondSearch = '%' . $this->bondSearch . '%';
+        $Bonds = Bonds::where('boycott_id', 'LIKE', $bondSearch)
+            ->orWhere('part_number', 'LIKE', $bondSearch)
+            ->orWhere('property_number', 'LIKE', $bondSearch)
+            ->orWhere('area_in_meters', 'LIKE', $bondSearch)
+            ->orWhere('area_in_olok', 'LIKE', $bondSearch)
+            ->orWhere('area_in_donum', 'LIKE', $bondSearch)
+            ->orWhere('count', 'LIKE', $bondSearch)
+            ->orWhere('date', 'LIKE', $bondSearch)
+            ->orWhere('volume_number', 'LIKE', $bondSearch)
+            ->orWhere('bond_type', 'LIKE', $bondSearch)
+            ->orWhere('ownership', 'LIKE', $bondSearch)
+            ->orWhere('property_type', 'LIKE', $bondSearch)
+            ->orWhere('governorate', 'LIKE', $bondSearch)
+            ->orWhere('district', 'LIKE', $bondSearch)
+            ->orWhere('mortgage_notes', 'LIKE', $bondSearch)
+            ->orWhere('registered_office', 'LIKE', $bondSearch)
+            ->orWhere('specialized_department', 'LIKE', $bondSearch)
+            ->orWhere('property_deed_image', 'LIKE', $bondSearch)
+            ->orWhere('notes', 'LIKE', $bondSearch)
+            ->orWhere('visibility', 'LIKE', $bondSearch)
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
+
+        $links = $Bonds;
+        $this->Bonds = collect($Bonds->items());
+        return view('livewire.bonds.show-bond.show-bond', [
+            'links' => $links
+        ]);
+    }
+
+    public function AddBondModal()
+    {
+        $this->reset('part_number', 'property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
+        $this->resetValidation();
+        $this->dispatchBrowserEvent('AddBondModal');
+
+        $this->Boycott = Boycotts::find($this->boycott_id);
+        $this->boycott_id = $this->boycott_id;
     }
 
     //المقاطعات
@@ -82,7 +124,6 @@ class ShowBond extends Component
         $this->governorate = $GovernorateID;
         $Governorate = Governorates::find($GovernorateID);
         $this->Districts = $Governorate->GetDistrict;
-
     }
 
     //الاقضية
@@ -102,56 +143,11 @@ class ShowBond extends Component
         }
     }
 
-    public function render()
-    {
-        $bondSearch = '%' . $this->bondSearch . '%';
-        $Bonds = Bonds::where('boycott_id', 'LIKE', $bondSearch)
-            ->orWhere('part_number', 'LIKE', $bondSearch)
-            ->orWhere('property_number', 'LIKE', $bondSearch)
-            ->orWhere('area_in_meters', 'LIKE', $bondSearch)
-            ->orWhere('area_in_olok', 'LIKE', $bondSearch)
-            ->orWhere('area_in_donum', 'LIKE', $bondSearch)
-            ->orWhere('count', 'LIKE', $bondSearch)
-            ->orWhere('date', 'LIKE', $bondSearch)
-            ->orWhere('volume_number', 'LIKE', $bondSearch)
-            ->orWhere('bond_type', 'LIKE', $bondSearch)
-            ->orWhere('ownership', 'LIKE', $bondSearch)
-            ->orWhere('property_type', 'LIKE', $bondSearch)
-            ->orWhere('governorate', 'LIKE', $bondSearch)
-            ->orWhere('district', 'LIKE', $bondSearch)
-            ->orWhere('mortgage_notes', 'LIKE', $bondSearch)
-            ->orWhere('registered_office', 'LIKE', $bondSearch)
-            ->orWhere('specialized_department', 'LIKE', $bondSearch)
-            ->orWhere('property_deed_image', 'LIKE', $bondSearch)
-            ->orWhere('notes', 'LIKE', $bondSearch)
-            ->orWhere('visibility', 'LIKE', $bondSearch)
-
-
-            ->orderBy('id', 'ASC')
-            ->paginate(10);
-        $links = $Bonds;
-        $this->Bonds = collect($Bonds->items());
-        return view('livewire.bonds.show-bond.show-bond', [
-            'links' => $links
-        ]);
-    }
-
-    public function AddBondModal()
-    {
-        $this->reset('boycott_id', 'part_number', 'property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
-        $this->resetValidation();
-        $this->dispatchBrowserEvent('AddBondModal');
-
-        $this->Boycott = Boycotts::find($this->boycott_id);
-        $this->boycott_id = $this->boycott_id;
-    }
-
-
     public function store()
     {
         $this->resetValidation();
         $this->validate([
-            //'boycott_id' => 'required',
+            'boycott_id' => 'required',
             'part_number' => 'required',
             'property_number' => 'required',
             'area_in_meters' => 'required',
@@ -217,56 +213,56 @@ class ShowBond extends Component
             'property_deed_image' => $this->property_deed_image,
             'notes' => $this->notes,
             'visibility' => $this->visibility,
-
         ]);
-        //$this->reset();
+
+        $this->resetExcept('boycott_id');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
+
+        $this->mount();
     }
 
     public function GetBond($bondId)
-{
-    $this->resetValidation();
+    {
+        $this->resetValidation();
 
-    $this->bond = Bonds::find($bondId);
-    if ($this->bond) {
-        $this->bondId = $this->bond->id;
-        $this->user_id = $this->bond->user_id;
-        $this->boycott_id = $this->bond->boycott_id;
-        $this->part_number = $this->bond->part_number;
-        $this->property_number = $this->bond->property_number;
-        $this->area_in_meters = $this->bond->area_in_meters;
-        $this->area_in_olok = $this->bond->area_in_olok;
-        $this->area_in_donum = $this->bond->area_in_donum;
-        $this->count = $this->bond->count;
-        $this->date = $this->bond->date;
-        $this->volume_number = $this->bond->volume_number;
-        $this->bond_type = $this->bond->bond_type;
-        $this->ownership = $this->bond->ownership;
-        $this->property_type = $this->bond->property_type;
-        $this->governorate = $this->bond->governorate;
-        $this->district = $this->bond->district;
-        $this->mortgage_notes = $this->bond->mortgage_notes;
-        $this->registered_office = $this->bond->registered_office;
-        $this->specialized_department = $this->bond->specialized_department;
-        $this->property_deed_image = $this->bond->property_deed_image;
-        $this->notes = $this->bond->notes;
-        $this->visibility = $this->bond->visibility;
+        $this->bond = Bonds::find($bondId);
+        if ($this->bond) {
+            $this->bondId = $this->bond->id;
+            $this->user_id = $this->bond->user_id;
+            $this->boycott_id = $this->bond->boycott_id;
+            $this->part_number = $this->bond->part_number;
+            $this->property_number = $this->bond->property_number;
+            $this->area_in_meters = $this->bond->area_in_meters;
+            $this->area_in_olok = $this->bond->area_in_olok;
+            $this->area_in_donum = $this->bond->area_in_donum;
+            $this->count = $this->bond->count;
+            $this->date = $this->bond->date;
+            $this->volume_number = $this->bond->volume_number;
+            $this->bond_type = $this->bond->bond_type;
+            $this->ownership = $this->bond->ownership;
+            $this->property_type = $this->bond->property_type;
+            $this->governorate = $this->bond->governorate;
+            $this->district = $this->bond->district;
+            $this->mortgage_notes = $this->bond->mortgage_notes;
+            $this->registered_office = $this->bond->registered_office;
+            $this->specialized_department = $this->bond->specialized_department;
+            $this->property_deed_image = $this->bond->property_deed_image;
+            $this->notes = $this->bond->notes;
+            $this->visibility = $this->bond->visibility;
 
-        // تحميل بيانات المقاطعة
-        $this->boycott = $this->bond->Getboycott;
+            // تحميل بيانات المقاطعة
+            $this->boycott = $this->bond->Getboycott;
 
-        // تحميل بيانات الأقضية بناءً على المحافظة
-        if ($this->governorate) {
-            $Governorate = Governorates::find($this->governorate);
-            $this->Districts = $Governorate ? $Governorate->GetDistrict : [];
+            // تحميل بيانات الأقضية بناءً على المحافظة
+            if ($this->governorate) {
+                $Governorate = Governorates::find($this->governorate);
+                $this->Districts = $Governorate ? $Governorate->GetDistrict : [];
+            }
         }
     }
-}
-
-
 
     public function update()
     {
@@ -339,9 +335,9 @@ class ShowBond extends Component
             'property_deed_image' => $this->property_deed_image,
             'notes' => $this->notes,
             'visibility' => $this->visibility,
-
         ]);
-        $this->reset();
+
+        $this->resetExcept('boycott_id');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -362,6 +358,7 @@ class ShowBond extends Component
                 'message' => 'تم حذف البيانات بنجاح',
                 'title' => 'الحذف'
             ]);
+
             $this->mount();
         }
     }
