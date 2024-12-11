@@ -184,9 +184,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //السندات العقارية
     Route::RESOURCE('Bonds', BondsController::class);
     //الأملاك
-
     Route::  RESOURCE('Property', PropertyController::class);
-
+  Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
 
 
 

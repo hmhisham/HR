@@ -4,9 +4,12 @@ namespace App\Http\Livewire\Property;
 
 use Livewire\Component;
 
+use App\Models\Bonds\Bonds;
 use Livewire\WithPagination;
+use Illuminate\Support\Carbon;
 use App\Models\Workers\Workers;
 use App\Models\Property\Property;
+use Illuminate\Support\Facades\Auth;
 
 class Propert extends Component
 {
@@ -15,10 +18,12 @@ class Propert extends Component
 
     public $Property = [];
     public $PropertSearch, $Propert, $PropertId;
-    public $user_id, $worker_id, $bonds_id, $from_date, $to_date, $months_count, $total_amount, $paid_amount, $property_status, $status, $notifications, $notes;
+    public $user_id, $worker_id, $bonds_id, $from_date, $to_date, $months_count, $total_amount, $paid_amount, $property_status, $status, $notifications, $notes, $monthly_amount;
 
     public $workers = [];
-    public  $calculator_number , $department_name , $email;
+    public  $calculator_number, $department_name, $email;
+
+    public $Bonds = [];
 
     protected $listeners = [
         'SelectWorkerId',
@@ -26,6 +31,7 @@ class Propert extends Component
     public function hydrate()
     {
         $this->emit('select2');
+        $this->emit('flatpickr');
     }
     public function mount()
     {
@@ -40,7 +46,6 @@ class Propert extends Component
             $this->calculator_number = $worker->calculator_number;
             $this->department_name = $worker->department_name;
             $this->email = $worker->email;
-
         } else {
             $this->worker_id = null;
             $this->calculator_number = null;
@@ -50,34 +55,80 @@ class Propert extends Component
     }
 
 
+    public $months_difference;
 
+
+    public function updateToDate($value)
+    {
+        if ($value) {
+            $this->to_date = \Carbon\Carbon::parse($value)->addYears(20)->format('Y-m-d');
+            $this->calculateMonthsDifference();
+        }
+    }
+    public function calculateMonthsDifference()
+    {
+        if ($this->from_date && $this->to_date) {
+            $start = Carbon::parse($this->from_date);
+            $end = Carbon::parse($this->to_date);
+            $this->months_count = $start->diffInMonths($end);
+        }
+    }
+
+
+
+    // تحديث المبلغ الشهري عند تغيير عدد الأشهر أو المبلغ الكلي
+    public function updated($propertyName)
+    {
+
+        if ($propertyName === 'months_count' || $propertyName === 'total_amount') {
+            $this->calculateMonthlyAmount();
+        }
+    }
+
+    // حساب المبلغ الشهري
+    public function calculateMonthlyAmount()
+    {
+        $cleanTotalAmount = (float)str_replace(',', '', $this->total_amount); // Remove commas
+        if ($this->months_count > 0 && $cleanTotalAmount > 0) {
+            $this->monthly_amount = number_format($cleanTotalAmount / $this->months_count, 2);
+        } else {
+            $this->monthly_amount = 0;
+        }
+    }
 
 
     public function render()
     {
-        $PropertSearch = '%' . $this->PropertSearch . '%';
-        $Property = Property::where('user_id', 'LIKE', $PropertSearch)
-            ->orWhere('worker_id', 'LIKE', $PropertSearch)
-            ->orWhere('bonds_id', 'LIKE', $PropertSearch)
-            ->orWhere('from_date', 'LIKE', $PropertSearch)
-            ->orWhere('to_date', 'LIKE', $PropertSearch)
-            ->orWhere('months_count', 'LIKE', $PropertSearch)
-            ->orWhere('total_amount', 'LIKE', $PropertSearch)
-            ->orWhere('paid_amount', 'LIKE', $PropertSearch)
-            ->orWhere('property_status', 'LIKE', $PropertSearch)
-            ->orWhere('status', 'LIKE', $PropertSearch)
-            ->orWhere('notifications', 'LIKE', $PropertSearch)
-            ->orWhere('notes', 'LIKE', $PropertSearch)
+        $BondSearch = '%' . $this->PropertSearch . '%';
+        $Bonds = Bonds::where('boycott_id', 'LIKE', $BondSearch)
 
+            ->orWhere('part_number', 'LIKE', $BondSearch)
+            ->orWhere('property_number', 'LIKE', $BondSearch)
 
             ->orderBy('id', 'ASC')
             ->paginate(10);
-        $links = $Property;
-        $this->Property = collect($Property->items());
+        $links = $Bonds;
+        $this->Bonds = collect($Bonds->items());
         return view('livewire.property.propert', [
             'links' => $links
         ]);
     }
+    // public function render()
+    // {
+    //     $PropertSearch = '%' . $this->PropertSearch . '%';
+    //     $Property = Property::where('user_id', 'LIKE', $PropertSearch)
+
+    //         ->orWhere('bonds_id', 'LIKE', $PropertSearch)
+
+
+    //         ->orderBy('id', 'ASC')
+    //         ->paginate(10);
+    //     $links = $Property;
+    //     $this->Property = collect($Property->items());
+    //     return view('livewire.property.propert', [
+    //         'links' => $links
+    //     ]);
+    // }
     public function AddPropertModalShow()
     {
         // $this->reset();
@@ -90,7 +141,6 @@ class Propert extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'user_id' => 'required',
             'worker_id' => 'required',
             'bonds_id' => 'required',
             'from_date' => 'required',
@@ -101,10 +151,10 @@ class Propert extends Component
             'property_status' => 'required',
             'status' => 'required',
             'notifications' => 'required',
-            'notes' => 'required',
+            'monthly_amount' => 'required',
+
 
         ], [
-            'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'worker_id.required' => 'حقل رقم المستخدم مطلوب',
             'bonds_id.required' => 'حقل رقم العقار مطلوب',
             'from_date.required' => 'حقل من تاريخ مطلوب',
@@ -115,14 +165,13 @@ class Propert extends Component
             'property_status.required' => 'حقل حالة العقار مطلوب',
             'status.required' => 'حقل الحالة مطلوب',
             'notifications.required' => 'حقل الاشعارات مطلوب',
-            'notes.required' => 'حقل ملاحظات مطلوب',
+            'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
         ]);
 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
 
 
         Property::create([
-            'user_id' => $this->user_id,
+        'user_id' => Auth::id(),
             'worker_id' => $this->worker_id,
             'bonds_id' => $this->bonds_id,
             'from_date' => $this->from_date,
@@ -134,7 +183,7 @@ class Propert extends Component
             'status' => $this->status,
             'notifications' => $this->notifications,
             'notes' => $this->notes,
-
+            'monthly_amount' => $this->monthly_amount,
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -161,27 +210,27 @@ class Propert extends Component
         $this->status = $this->Propert->status;
         $this->notifications = $this->Propert->notifications;
         $this->notes = $this->Propert->notes;
+        $this->monthly_amount = $this->Propert->monthly_amount;
     }
 
     public function update()
     {
         $this->resetValidation();
         $this->validate([
-            'user_id' => 'required:property',
-            'worker_id' => 'required:property',
-            'bonds_id' => 'required:property',
-            'from_date' => 'required:property',
-            'to_date' => 'required:property',
-            'months_count' => 'required:property',
-            'total_amount' => 'required:property',
-            'paid_amount' => 'required:property',
-            'property_status' => 'required:property',
-            'status' => 'required:property',
-            'notifications' => 'required:property',
-            'notes' => 'required:property',
+            'worker_id' => 'required',
+            'bonds_id' => 'required',
+            'from_date' => 'required',
+            'to_date' => 'required',
+            'months_count' => 'required',
+            'total_amount' => 'required',
+            'paid_amount' => 'required',
+            'property_status' => 'required',
+            'status' => 'required',
+            'notifications' => 'required',
+            'monthly_amount' => 'required',
+
 
         ], [
-            'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'worker_id.required' => 'حقل رقم المستخدم مطلوب',
             'bonds_id.required' => 'حقل رقم العقار مطلوب',
             'from_date.required' => 'حقل من تاريخ مطلوب',
@@ -192,12 +241,13 @@ class Propert extends Component
             'property_status.required' => 'حقل حالة العقار مطلوب',
             'status.required' => 'حقل الحالة مطلوب',
             'notifications.required' => 'حقل الاشعارات مطلوب',
-            'notes.required' => 'حقل ملاحظات مطلوب',
+            'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
         ]);
+
 
         $Property = Property::find($this->PropertId);
         $Property->update([
-            'user_id' => $this->user_id,
+            'user_id' => Auth::id(),
             'worker_id' => $this->worker_id,
             'bonds_id' => $this->bonds_id,
             'from_date' => $this->from_date,
@@ -209,7 +259,7 @@ class Propert extends Component
             'status' => $this->status,
             'notifications' => $this->notifications,
             'notes' => $this->notes,
-
+            'monthly_amount' => $this->monthly_amount,
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
