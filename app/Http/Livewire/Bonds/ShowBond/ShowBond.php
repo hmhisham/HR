@@ -6,6 +6,7 @@ use Livewire\Component;
 
 use App\Models\Bonds\Bonds;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
 use App\Models\Boycotts\Boycotts;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Department\Department;
@@ -149,6 +150,13 @@ class ShowBond extends Component
         $this->validate([
             'part_number' => 'required',
             'property_number' => 'required',
+             'property_number' => [
+                'required',
+                Rule::unique('bonds')->ignore($this->bondId)->where(function ($query) {
+                    return $query->where('part_number', $this->part_number)
+                        ->where('boycott_id', $this->boycott_id);
+                })
+            ],
             'area_in_meters' => 'required',
             'area_in_olok' => 'required',
             'area_in_donum' => 'required',
@@ -171,6 +179,7 @@ class ShowBond extends Component
             'part_number.required' => 'حقل رقم القطعة مطلوب',
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'area_in_meters.required' => 'حقل المساحة بالمتر مطلوب',
+            'property_number.unique' => 'رقم العقار هذا موجود بالفعل ضمن نفس القطعة والمقاطعة',
             'area_in_olok.required' => 'حقل المساحة بالأولك مطلوب',
             'area_in_donum.required' => 'حقل المساحة بالدونم مطلوب',
             'count.required' => 'حقل العدد مطلوب',
@@ -269,6 +278,13 @@ class ShowBond extends Component
             'boycott_id' => 'required:bonds',
             'part_number' => 'required:bonds',
             'property_number' => 'required:bonds',
+            'property_number' => [
+                'required',
+                Rule::unique('bonds')->ignore($this->bondId)->where(function ($query) {
+                    return $query->where('part_number', $this->part_number)
+                        ->where('boycott_id', $this->boycott_id);
+                })
+            ],
             'area_in_meters' => 'required:bonds',
             'area_in_olok' => 'required:bonds',
             'area_in_donum' => 'required:bonds',
@@ -291,6 +307,7 @@ class ShowBond extends Component
             'boycott_id.required' => 'حقل رقم المقاطعة مطلوب',
             'part_number.required' => 'حقل رقم القطعة مطلوب',
             'property_number.required' => 'حقل رقم العقار مطلوب',
+            'property_number.unique' => 'رقم العقار هذا موجود بالفعل ضمن نفس القطعة والمقاطعة',
             'area_in_meters.required' => 'حقل المساحة بالمتر مطلوب',
             'area_in_olok.required' => 'حقل المساحة بالأولك مطلوب',
             'area_in_donum.required' => 'حقل المساحة بالدونم مطلوب',
