@@ -140,33 +140,33 @@ class Propert extends Component
     public function store()
     {
         $this->resetValidation();
-        $this->validate([
-            'worker_id' => 'required',
-            'bonds_id' => 'required',
-            'from_date' => 'required',
-            'to_date' => 'required',
-            'months_count' => 'required',
-            'total_amount' => 'required',
-            'paid_amount' => 'required',
-            'property_status' => 'required',
-            'status' => 'required',
-            'notifications' => 'required',
-            'monthly_amount' => 'required',
+        // $this->validate([
+        //     'worker_id' => 'required',
+        //     'bonds_id' => 'required',
+        //     'from_date' => 'required',
+        //     'to_date' => 'required',
+        //     'months_count' => 'required',
+        //     'total_amount' => 'required',
+        //     'paid_amount' => 'required',
+        //     'property_status' => 'required',
+        //     'status' => 'required',
+        //     'notifications' => 'required',
+        //     'monthly_amount' => 'required',
 
 
-        ], [
-            'worker_id.required' => 'حقل رقم المستخدم مطلوب',
-            'bonds_id.required' => 'حقل رقم العقار مطلوب',
-            'from_date.required' => 'حقل من تاريخ مطلوب',
-            'to_date.required' => 'حقل الى تاريخ مطلوب',
-            'months_count.required' => 'حقل عدد الاشهر مطلوب',
-            'total_amount.required' => 'حقل المبلغ الكلي مطلوب',
-            'paid_amount.required' => 'حقل مجموع المسدد مطلوب',
-            'property_status.required' => 'حقل حالة العقار مطلوب',
-            'status.required' => 'حقل الحالة مطلوب',
-            'notifications.required' => 'حقل الاشعارات مطلوب',
-            'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
-        ]);
+        // ], [
+        //     'worker_id.required' => 'حقل رقم المستخدم مطلوب',
+        //     'bonds_id.required' => 'حقل رقم العقار مطلوب',
+        //     'from_date.required' => 'حقل من تاريخ مطلوب',
+        //     'to_date.required' => 'حقل الى تاريخ مطلوب',
+        //     'months_count.required' => 'حقل عدد الاشهر مطلوب',
+        //     'total_amount.required' => 'حقل المبلغ الكلي مطلوب',
+        //     'paid_amount.required' => 'حقل مجموع المسدد مطلوب',
+        //     'property_status.required' => 'حقل حالة العقار مطلوب',
+        //     'status.required' => 'حقل الحالة مطلوب',
+        //     'notifications.required' => 'حقل الاشعارات مطلوب',
+        //     'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
+        // ]);
 
 
 

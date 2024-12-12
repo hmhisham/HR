@@ -152,11 +152,10 @@
                                     @enderror
                                 </div>
 
-
                             </div>
 
                             <div Class="row">
-    <!-- المبلغ الشهري -->
+                                <!-- المبلغ الشهري -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='monthly_amount' type="text"
@@ -182,12 +181,10 @@
                                     @enderror
                                 </div>
 
-
                                 <style>
-                                    /* تغيير لون النص لخيار محجوز */
-                                    select option[value="محجوز"] {
-                                        color: red; /* اللون الذي ترغب به */
-                                    }
+                                     select option[value="محجوز"] {
+                                        color: red;
+                                     }
                                 </style>
 
                                 <script>
@@ -198,7 +195,7 @@
                                             if (selectElement.value === 'محجوز') {
                                                 selectElement.style.color = 'red';
                                             } else {
-                                                selectElement.style.color = '';  
+                                                selectElement.style.color = '';
                                             }
                                         });
                                     });
@@ -210,7 +207,7 @@
                                             class="form-control @error('property_status') is-invalid is-filled @enderror"
                                             style="width: 100%;">
                                             <option value="محجوز">محجوز</option>
-                                            <option value="متاح">متاح</option>
+                                            <option value="رفع حجز">رفع حجز</option>
                                         </select>
                                         <label for="modalPropertproperty_status">حالة العقار</label>
                                     </div>
@@ -219,10 +216,11 @@
                                     @enderror
                                 </div>
 
-
                                 <div class="mb-3 col">
                                     <div class="form-check form-switch">
-                                        <input wire:model.defer="status" class="form-check-input @error('status') is-invalid is-filled @enderror" type="checkbox" id="modalPropertstatus">
+                                        <input wire:model.defer="status"
+                                            class="form-check-input @error('status') is-invalid is-filled @enderror"
+                                            type="checkbox" id="modalPropertstatus">
                                         <label class="form-check-label" for="modalPropertstatus">حالة العقار</label>
                                     </div>
                                     @error('status')
@@ -230,10 +228,13 @@
                                     @enderror
                                 </div>
 
-                                 <div class="mb-3 col">
+                                <div class="mb-3 col">
                                     <div class="form-check form-switch">
-                                        <input wire:model.defer="notifications" class="form-check-input @error('notifications') is-invalid is-filled @enderror" type="checkbox" id="modalPropertnotifications">
-                                        <label class="form-check-label" for="modalPropertnotifications">الاشعارات</label>
+                                        <input wire:model.defer="notifications"
+                                            class="form-check-input @error('notifications') is-invalid is-filled @enderror"
+                                            type="checkbox" id="modalPropertnotifications">
+                                        <label class="form-check-label"
+                                            for="modalPropertnotifications">الاشعارات</label>
                                     </div>
                                     @error('notifications')
                                         <small class='text-danger inputerror'>{{ $message }}</small>
