@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\PrivateEmployeeFiles;
 
-use File;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Models\FileDownloads\FileDownloads;
 

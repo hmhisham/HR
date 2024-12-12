@@ -5,18 +5,19 @@ namespace App\Http\Livewire\Certific;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use App\Models\Workers\Workers;
 use App\Models\Certific\Certific;
 use App\Models\Precises\Precises;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Specialtys\Specialtys;
-use App\Models\Graduations\Graduations;
 use App\Models\Certificates\Certificates;
 use App\Models\Specializations\Specializations;
 use App\Models\Specializationclassification\Specializationclassification;
 
 class certifi extends Component
 {
+    use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
@@ -32,6 +33,7 @@ class certifi extends Component
     public $certifiSearch, $certifi, $certifiId;
     public $user_id, $worker_id, $calculator_number, $document_number, $document_date, $certificates_id, $authenticity_number, $authenticity_date, $graduations_id, $specialization_id, $graduation_year, $specialtys_id, $precises_id, $specializationclassification_id, $grade, $estimate, $duration, $issuing_country, $notes, $status;
     public $isDisabled = true;
+    public $file, $filePreview;
 
     protected $listeners = [
         'SelectWorkerId',
@@ -206,6 +208,18 @@ class certifi extends Component
         $this->Worker = Workers::find($WorkerID);
         $this->worker_id = $WorkerID;
         $this->calculator_number = $this->Worker->calculator_number;
+    }
+
+    public function updatedFile() {
+        $this->filePreview = $this->file->temporaryUrl();
+    }
+    public function upload() {
+        $this->validate([
+            'file' => 'required|file|max:10240', // الحد الأقصى للحجم 10 ميجابايت
+        ]);
+
+        $this->file->store('public/Certific');
+
     }
 
     public function store()
