@@ -58,7 +58,7 @@ use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
 use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsController;
 use App\Http\Controllers\Specializationclassification\SpecializationclassificationController;
- /*
+/*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -182,11 +182,11 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Boycotts', BoycottsController::class);
     //السندات العقارية
     Route::RESOURCE('Bonds', BondsController::class);
-    Route::  GET('Bond-Show/{id}', [BondsController::class,'BondShow'])->name('Bond-Show');
+    Route::GET('Bond-Show/{id}', [BondsController::class, 'BondShow'])->name('Bond-Show');
 
     //الاملاك
-    Route::  RESOURCE('Property', PropertyController::class);
-  Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
+    Route::RESOURCE('Property', PropertyController::class);
+    Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
 
 
 

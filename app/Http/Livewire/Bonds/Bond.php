@@ -6,6 +6,7 @@ use Livewire\Component;
 
 use App\Models\Bonds\Bonds;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use App\Models\Boycotts\Boycotts;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,7 @@ use App\Models\Propertytypes\Propertytypes;
 
 class Bond extends Component
 {
+    use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
@@ -27,7 +29,7 @@ class Bond extends Component
     public $propertytypes = [];
     public $bondSearch, $bond, $bondId;
     public $user_id, $boycott_id, $part_number, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $property_deed_image, $notes, $visibility;
-    public $GovernorateName, $DistrictsName;
+    public $GovernorateName, $DistrictsName, $filePreview;
 
     protected $listeners = [
         'SelectOwnership',
@@ -122,6 +124,17 @@ class Bond extends Component
 
     }
 
+    public function updatedFile() {
+        $this->filePreview = $this->property_deed_image->temporaryUrl();
+    }
+    public function upload() {
+        $this->validate([
+            'property_deed_image' => 'required|file|max:10240', // الحد الأقصى للحجم 10 ميجابايت
+        ]);
+
+        $this->property_deed_image->store('public/Bonds');
+
+    }
 
     public function store()
     {
