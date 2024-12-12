@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
-        @endsection
+@endsection
 @section('page-style')
     <style>
         .border-bottom-2 {
@@ -57,7 +57,7 @@
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
 
-        /*$(document).ready(function() {
+        $(document).ready(function() {
             function initFlatpickr(selector, eventName) {
                 $(selector).flatpickr({
                     placeholder: 'التاريخ',
@@ -82,7 +82,7 @@
                 initFlatpickr('#addDate', '#addbondModal');
                 initFlatpickr('#editDate', '#editbondModal');
             });
-        });*/
+        });
 
 
         $(document).ready(function() {
