@@ -20,7 +20,7 @@
                             <div class="col-8">
                                 <div Class="row bg-label-primary">
                                     <div class="col">
-                                        <label class="border-bottom-2 text-center mb-2 w-100">رقم المقاطعة</label>
+                                        <label class="border-bottom-2 text-center mb-2 w-100">رقم واسم المقاطعة</label>
                                         <div wire:loading wire:target='AddBondModal'
                                             wire:loading.class="d-flex justify-content-center">
                                             <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
