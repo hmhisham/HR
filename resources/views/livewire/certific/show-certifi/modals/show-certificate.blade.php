@@ -22,27 +22,28 @@
                         </thead>
                         <tbody>
                             @foreach ($Worker->GetCertific as $Certific)
-                            <tr>
-                                <td>{{ $Certific->document_number }}</td>
-                                <td class="">{{ $Certific->document_date }}</td>
-                                <td>{{ $Certific->Getcertificate->certificates_name }}</td>
-                                <td>{{ $Certific->Getspecialization->specializations_name }}</td>
-                                <td class="text-center">
-                                    @can('branc-edit')
-                                        <button wire:click="Getcertifi({{ $Worker->id }})" class="p-0 px-1 btn btn-text-success waves-effect"
-                                            data-bs-toggle="modal" data-bs-target="#editcertifiModal">
-                                            <i class="tf-icons mdi mdi-pencil mdi-24px"></i>
-                                        </button>
-                                    @endcan
-                                    @can('branc-delete')
-                                        <button wire:click="Getcertifi({{ $Worker->id }})"
-                                            class="p-0 px-1 btn btn-text-danger waves-effect {{ $Worker->active ? 'disabled' : '' }}"
-                                            data-bs-toggle="modal" data-bs-target="#removebrancModal">
-                                            <i class="tf-icons mdi mdi-delete-outline mdi-24px"></i>
-                                        </button>
-                                    @endcan
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{ $Certific->document_number }}</td>
+                                    <td>{{ $Certific->document_date }}</td>
+                                    <td>{{ $Certific->Getcertificate->certificates_name }}</td>
+                                    <td>{{ $Certific->Getspecialization->specializations_name }}</td>
+                                    <td class="text-center">
+                                        @can('branc-edit')
+                                            <button wire:click="Getcertifi({{ $Worker->id }})"
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#editcertifiModal">
+                                                <i class="tf-icons mdi mdi-pencil mdi-24px"></i>
+                                            </button>
+                                        @endcan
+                                        @can('branc-delete')
+                                            <button wire:click="Getcertifi({{ $Worker->id }})"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect {{ $Worker->active ? 'disabled' : '' }}"
+                                                data-bs-toggle="modal" data-bs-target="#removebrancModal">
+                                                <i class="tf-icons mdi mdi-delete-outline mdi-24px"></i>
+                                            </button>
+                                        @endcan
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
