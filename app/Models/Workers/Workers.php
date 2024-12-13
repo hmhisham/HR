@@ -3,10 +3,11 @@
 namespace App\Models\Workers;
 
 use App\Models\Certific\Certific;
+use App\Models\Services\Services;
 use App\Models\Infooffice\Infooffice;
+use App\Models\Placements\Placements;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Notifications\Notifications;
-use App\Models\Placements\Placements;
 use App\Models\Typesservices\Typesservices;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -28,17 +29,23 @@ class Workers extends Model
         return $this->hasMany(Certific::class, 'worker_id');
     }
 
+    public function GetServices()
+    {
+        return $this->hasMany(Services::class, 'worker_id');
+    }
+
+
     public function GetPlacement()
     {
         return $this->hasMany(Placements::class, 'worker_id');
     }
 
-    Public function Gettypesservice()
+    public function Gettypesservice()
     {
-        return $this->belongsTo(Typesservices::class, 'service_status' );
+        return $this->belongsTo(Typesservices::class, 'service_status');
     }
 
-    Public function GetNotifications()
+    public function GetNotifications()
     {
         return $this->hasMany(Notifications::class, 'calculator_number');
     }
