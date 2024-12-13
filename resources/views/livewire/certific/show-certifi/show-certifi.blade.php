@@ -39,17 +39,17 @@
                                 <td>{{ $Certific->Getcertificate->certificates_name }}</td>
                                 <td>{{ $Certific->Getspecialization->specializations_name }}</td>
                                 <td class="text-center">
-                                    @can('branc-edit')
+                                    @can('certifi-edit')
                                         <button wire:click="Getcertifi({{ $Certific->id }})"
                                             class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                             data-bs-target="#editcertifiModal">
                                             <i class="tf-icons mdi mdi-pencil mdi-24px"></i>
                                         </button>
                                     @endcan
-                                    @can('branc-delete')
+                                    @can('certifi-delete')
                                         <button wire:click="Getcertifi({{ $Certific->id }})"
                                             class="p-0 px-1 btn btn-text-danger waves-effect {{ $Certific->active ? 'disabled' : '' }}"
-                                            data-bs-toggle="modal" data-bs-target="#removebrancModal">
+                                            data-bs-toggle="modal" data-bs-target="#removecertifiModal">
                                             <i class="tf-icons mdi mdi-delete-outline mdi-24px"></i>
                                         </button>
                                     @endcan
