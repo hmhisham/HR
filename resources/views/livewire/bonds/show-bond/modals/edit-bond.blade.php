@@ -292,7 +292,7 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3 col">
-                                        <div class="form-check">
+                                        <div class="form-check form-switch">
                                             <input wire:model.defer='visibility' type="checkbox"
                                                 id="modalBondvisibility"
                                                 class="form-check-input @error('visibility') is-invalid is-filled @enderror" />

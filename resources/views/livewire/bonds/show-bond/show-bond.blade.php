@@ -1,7 +1,7 @@
 <div class="mt-n4">
     <h4 class="mb-2">
         <span class="text-muted fw-light">السندات العقارية <span class="mdi mdi-chevron-left mdi-24px"></span></span> عرض
-        البيانات الخاصة بـ/ : {{ $Boycott->boycott_number }} - {{ $Boycott->boycott_name }}
+        البيانات الخاصة بماقطعة : {{ $Boycott->boycott_number }} - {{ $Boycott->boycott_name }}
     </h4>
 
     <div class="card">

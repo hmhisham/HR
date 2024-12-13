@@ -282,7 +282,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3 col">
-                                    <div class="form-check">
+                                    <div class="form-check form-switch">
                                         <input wire:model.defer='visibility' type="checkbox" id="modalBondvisibility"
                                             class="form-check-input @error('visibility') is-invalid is-filled @enderror" />
                                         <label for="modalBondvisibility" class="form-check-label">إمكانية
@@ -292,6 +292,7 @@
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
+
                             </div>
                             <div Class="row">
                                 <div class="mb-3 col">
