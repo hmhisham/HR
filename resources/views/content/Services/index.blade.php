@@ -57,12 +57,12 @@
                     livewire.emit(eventName, e.target.value);
                 });
             }
-            initSelect2('#addServiceworkers_id', 'SelectWorkersId', '#addserviceModal');
-            initSelect2('#editServiceworkers_id', 'SelectWorkersId', '#editserviceModal');
+            initSelect2('#addServiceworker_id', 'SelectWorkersId', '#addserviceModal');
+            initSelect2('#editServiceworker_id', 'SelectWorkersId', '#editserviceModal');
 
             window.livewire.on('select2', () => {
-                initSelect2('#addServiceworkers_id', 'SelectWorkersId', '#addserviceModal');
-                initSelect2('#editServiceworkers_id', 'SelectWorkersId', '#editserviceModal');
+                initSelect2('#addServiceworker_id', 'SelectWorkersId', '#addserviceModal');
+                initSelect2('#editServiceworker_id', 'SelectWorkersId', '#editserviceModal');
             });
         });
 

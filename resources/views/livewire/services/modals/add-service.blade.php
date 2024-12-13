@@ -10,21 +10,21 @@
                 </div>
                 <hr class="mt-n2">
                 <form id="addserviceModalForm" autocomplete="off">
-                    <div class="row row-cols-1  ">
-                        <div class="col mb-3">
+                    <div class="row row-cols-1">
+                        <div class="mb-3 col">
                             <div Class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='workers_id' id="addServiceworkers_id"
+                                        <select wire:model.defer='worker_id' id="addServiceworker_id"
                                             class="form-select @error('worker_id') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($workers as $worker)
                                                 <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
                                             @endforeach
                                         </select>
-                                        <label for="modalServiceworkers_id">اسم الموظف</label>
+                                        <label for="modalServiceworker_id">اسم الموظف</label>
                                     </div>
-                                    @error('workers_id')
+                                    @error('worker_id')
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>

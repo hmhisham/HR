@@ -17,11 +17,11 @@
                 <div wire:loading.remove wire:target="Getservice">
                     <form id="editserviceModalForm" autocomplete="off">
                         <div class="row row-cols-1">
-                            <div class="col mb-3">
+                            <div class="mb-3 col">
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='workers_id' id="editServiceworkers_id"
+                                            <select wire:model.defer='worker_id' id="editServiceworker_id"
                                                 class="form-select @error('workers_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($workers as $worker)
@@ -29,9 +29,9 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <label for="modalServiceworkers_id">اسم الموظف</label>
+                                            <label for="modalServiceworker_id">اسم الموظف</label>
                                         </div>
-                                        @error('workers_id')
+                                        @error('worker_id')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
