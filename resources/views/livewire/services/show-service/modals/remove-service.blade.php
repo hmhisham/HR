@@ -40,7 +40,7 @@
 
                         <hr class="">
 
-                        <div Class="row">
+                        <div class="row">
                             <div class="row">
                                 <div class="col text-center">
                                     <div class="text-danger">
