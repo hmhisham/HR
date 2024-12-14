@@ -8,4 +8,11 @@ class ServicesController extends Controller
     {
         Return View('content.Services.index'); 
     }
+
+ public function ServiceShow($id)
+    {
+        Return View('content.Services.show', [
+            'id' => $id
+        ]);
+    }
 }

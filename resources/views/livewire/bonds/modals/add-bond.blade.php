@@ -14,7 +14,7 @@
                         <div class="col-8">
                             <div Class="row bg-label-primary">
                                 <div class="col">
-                                    <label class="border-bottom-2 text-center mb-2 w-100">رقم واسم المقاطعة</label>
+                                    <label class="mb-2 text-center border-bottom-2 w-100">رقم واسم المقاطعة</label>
                                     <div wire:loading wire:target='AddBondModal'
                                         wire:loading.class="d-flex justify-content-center">
                                         <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
@@ -24,7 +24,7 @@
                                 </div>
 
                                 <!--<div class="col">
-                                    <label class="border-bottom-2 text-center mb-2 w-100">اسم المقاطعة</label>
+                                    <label class="mb-2 text-center border-bottom-2 w-100">اسم المقاطعة</label>
                                     <div wire:loading wire:target='AddBondModal'
                                         wire:loading.class="d-flex justify-content-center">
                                         <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
@@ -113,13 +113,14 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div Class="row">
+                            <div class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='area_in_meters' type="text"
                                             id="modalBondarea_in_meters" placeholder="المساحة بالمتر"
                                             class="form-control @error('area_in_meters') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)" />
+                                            onkeypress="return onlyNumberKey(event)"
+                                            oninput="validateMeterInput(event)" />
                                         <label for="modalBondarea_in_meters">المساحة بالمتر</label>
                                     </div>
                                     @error('area_in_meters')
@@ -129,10 +130,11 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='area_in_olok' type="text" id="modalBondarea_in_olok"
-                                            placeholder="المساحة بالأولك"
+                                        <input wire:model.defer='area_in_olok' type="text"
+                                            id="modalBondarea_in_olok" placeholder="المساحة بالأولك"
                                             class="form-control @error('area_in_olok') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)" />
+                                            onkeypress="return onlyNumberKey(event)"
+                                            oninput="validateOlokInput(event)" />
                                         <label for="modalBondarea_in_olok">المساحة بالأولك</label>
                                     </div>
                                     @error('area_in_olok')
@@ -145,7 +147,8 @@
                                         <input wire:model.defer='area_in_donum' type="text"
                                             id="modalBondarea_in_donum" placeholder="المساحة بالدونم"
                                             class="form-control @error('area_in_donum') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)" />
+                                            onkeypress="return onlyNumberKey(event)"
+                                            oninput="validateDonumInput(event)" />
                                         <label for="modalBondarea_in_donum">المساحة بالدونم</label>
                                     </div>
                                     @error('area_in_donum')
@@ -283,7 +286,7 @@
                                 </div>
 
                                 <div class="mb-3 col">
-                                    <div class="form-check">
+                                    <div class="form-check form-switch">
                                         <input wire:model.defer='visibility' type="checkbox" id="modalBondvisibility"
                                             class="form-check-input @error('visibility') is-invalid is-filled @enderror" />
                                         <label for="modalBondvisibility" class="form-check-label">إمكانية
@@ -315,13 +318,13 @@
                                     <label for="modalBondproperty_deed_image">صورة السند العقاري</label>
                                 </div>
                                 @error('property_deed_image')
-                                    <small class='text-danger inputerror'>{{ $message }}</small>
-                                @enderror
+    <small class='text-danger inputerror'>{{ $message }}</small>
+@enderror
                                 </div>-->
                             </div>
                         </div>
 
-                        <div class="col-4 text-center">
+                        <div class="text-center col-4">
                             <div>
                                 <div class="form-floating form-floating-outline">
                                     <input type="file" wire:model="property_deed_image"
@@ -336,7 +339,7 @@
 
                                 @if ($filePreview)
                                     @if ($property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
-                                        <iframe src="{{ $filePreview }}" class="mt-3 "
+                                        <iframe src="{{ $filePreview }}" class="mt-3"
                                             style="height: 320px; width: 100%"></iframe>
                                     @else
                                         <img src="{{ $filePreview }}" class="mt-3 rounded img-fluid"

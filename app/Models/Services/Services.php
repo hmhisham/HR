@@ -2,7 +2,6 @@
 
 namespace App\Models\Services;
 
-use App\Models\Workers\Workers;
 use App\Models\Jobtitles\Jobtitles;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Certificates\Certificates;
@@ -14,22 +13,12 @@ class Services extends Model
     protected $guarded = [];
     protected $table = "services";
 
-    public function Getworker()
-    {
-        return $this->belongsTo(Workers::class, 'worker_id');
-    }
-
     public function Getcertificate()
     {
         return $this->belongsTo(Certificates::class, 'certificates_id');
     }
 
-    public function GetjobtitleDeletion()
-    {
-        return $this->belongsTo(Jobtitles::class, 'job_title_deletion');
-    }
-
-    public function GetjobtitleIntroduction()
+    public function Getjobtitle()
     {
         return $this->belongsTo(Jobtitles::class, 'job_title_introduction');
     }

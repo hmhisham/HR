@@ -113,6 +113,33 @@
             return false;
         }
 
+        //اختبار الحقل ان يكون مرتبتين فقط ولا يتجاوز 99 متر
+        function validateMeterInput(evt) {
+            const input = evt.target;
+            if (input.value.length > 2) {
+                input.value = input.value.slice(0, 2);
+            }
+        }
+        //اختبار الحقل ان يكون مرتبتين فقط ولا يتجاوز 25 اولك
+        function validateOlokInput(evt) {
+            const input = evt.target;
+            let value = parseInt(input.value);
+            if (input.value.length > 2 || value > 25) {
+                input.value = value.toString().slice(0, 2);
+            }
+            if (value > 25) {
+                input.value = 25;
+            }
+        }
+
+        //اختبار الحقل ان يكون ثلاث فقط ولا يتجاوز 999 دونم
+        function validateDonumInput(evt) {
+            const input = evt.target;
+            if (input.value.length > 3) {
+                input.value = input.value.slice(0, 3);
+            }
+        }
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -137,18 +164,15 @@
             $('#removebondModal').modal('hide');
             Toast.fire({
                 icon: 'success',
-                title: event.detail.message
+                title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
-
-
-
 
         window.addEventListener('error', event => {
             $('#removebondModal').modal('hide');
             Toast.fire({
                 icon: 'error',
-                title: event.detail.message,
+                title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
 

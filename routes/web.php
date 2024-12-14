@@ -174,6 +174,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Positions', PositionsController::class);
     //الخدمات
     Route::RESOURCE('Services', ServicesController::class);
+    Route::GET('Service-Show/{id}', [ServicesController::class, 'ServiceShow'])->name('Service-Show');
 
     //===============الاراضي==================
     //جنس العقار

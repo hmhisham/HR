@@ -1,11 +1,11 @@
 <!-- Remove certifi Modal -->
-<div wire:ignore.self class="modal fade" id="removebrancModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="removecertifiModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">حذف الشهادات</h3>
+                    <h3 class="pb-1 mb-2">حذف الشهادة</h3>
                     <p>نافذة الحذف</p>
                 </div>
 
@@ -43,121 +43,22 @@
                         <hr class="">
 
                         <div Class="row">
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">رقم الوثيقة</label>
-                                    <div>{{ $document_number }}</div>
+                            <div class="col text-center">
+                                <div class="text-danger">
+                                    <label for="modalCertifydocument_number">رقم الوثيقة</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $document_number }}</div>
                                 </div>
                             </div>
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">تاريخ الوثيقة</label>
-                                    <div>{{ $document_date }}</div>
+                            <div class="col text-center">
+                                <div class="text-danger">
+                                    <label for="modalCertifydocument_date">تاريخ الوثيقة</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $document_date }}</div>
                                 </div>
                             </div>
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">رقم صحة الصدور</label>
-                                    <div>{{ $authenticity_number }}</div>
-                                </div>
-                            </div>
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">تاريخ صحة الصدور</label>
-                                    <div>{{ $authenticity_date }}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">التحصيل الدراسي</label>
-                                    <div>{{ $certifi ? $certifi->Getcertificate->certificates_name:'' }}</div>
-                                </div>
-                            </div>
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">جهة التخرج</label>
-                                    <div>{{ $certifi ? $certifi->Getgraduation->graduations_name:'' }}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">التخصص</label>
-                                    <div>{{ $certifi ? $certifi->Getspecialization->specializations_name:'' }}</div>
-                                </div>
-                            </div>
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">سنوات التخرج</label>
-                                    <div>{{ $graduation_year - 1 }} - {{ $graduation_year }} </div>
-                                </div>
-                            </div>
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">تصنيف التخصص</label>
-                                    <div>{{ $certifi ? $certifi->Getspecializationclassificatio->specializationclassification_name:'' }} </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">التخصص العام</label>
-                                    <div>{{ $certifi ? $certifi->Getspecialty->specialtys_name:'' }} </div>
-                                </div>
-                            </div>
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">التخصص الدقيق</label>
-                                    <div>{{ $certifi ? $certifi->Getprecise->precises_name:'' }} </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">الدرجة</label>
-                                    <div>{{ $grade }} </div>
-                                </div>
-                            </div>
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">التقدير</label>
-                                    <div>{{ $estimate }} </div>
-                                </div>
-                            </div>
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">اختر مدة القدم</label>
-                                    <div>{{ $duration }} </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">البلد المانح للشهادة</label>
-                                    <div>{{ $issuing_country }} </div>
-                                </div>
-                            </div>
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">الملاحظات</label>
-                                    <div>{{ $notes }} </div>
-                                </div>
-                            </div>
-                            <div class="col mb-3">
-                                <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">الحالة</label>
-                                    <div>{{ $status }} </div>
+                            <div class="col text-center">
+                                <div class="text-danger">
+                                    <label for="modalCertifycertificates_name">التحصيل الدراسي</label>
+                                    <div class="form-control-plaintext mt-n2">{{ $certifi ? $certifi->Getcertificate->certificates_name:'' }}</div>
                                 </div>
                             </div>
                         </div>
