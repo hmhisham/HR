@@ -10,7 +10,7 @@ class WorkerSearchController extends Controller
 {
     public function search(Request $request)
     {
-        $workers = Workers::where('full_name', 'LIKE', '%'.$request->input('term', '').'%')->
+        $workers = Workers::where('full_name', 'LIKE', $request->input('term', '').'%')->
             get(['id', 'full_name as text']);
 
         return ['results' => $workers];
