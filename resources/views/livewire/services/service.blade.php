@@ -43,7 +43,7 @@
                                     <Button wire:click='AddServiceModal({{ $worker->id }})'
                                         class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
                                         data-bs-target="#addserviceModal">
-                                        <span Class=" tf-icons mdi mdi-school fs-3"></span>
+                                        <span Class=" tf-icons mdi mdi-trello"></span>
                                     </button>
                                 @endcan
                             </td>
