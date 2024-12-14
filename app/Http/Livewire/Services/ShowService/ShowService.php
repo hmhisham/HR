@@ -125,7 +125,7 @@ class ShowService extends Component
     {
         $ServiceSearch = '%' . $this->ServiceSearch . '%';
         $Services = Services::where('worker_id', $this->worker_id)
-            ->where(function($query) use ($ServiceSearch) {
+            ->where(function ($query) use ($ServiceSearch) {
                 $query->where('service_type', 'LIKE', $ServiceSearch)
                     ->orWhere('from_date', 'LIKE', $ServiceSearch)
                     ->orWhere('to_date', 'LIKE', $ServiceSearch)
