@@ -12,7 +12,7 @@
                 <hr class="mt-n2">
 
                 <form id="addcertifiModalForm" autocomplete="off" wire:submit.prevent="store">
-                    <div Class="row bg-label-primary">
+                    <div Class="row alert alert-outline-dark">
                         <div class="col">
                             <label class="border-bottom-2 text-center mb-2 w-100">اسم الموظف</label>
                             <div wire:loading wire:target='AddCertifyModal'
@@ -35,6 +35,7 @@
                     </div>
 
                     <hr class="">
+
                     <div class="row">
                         <div class="col-8">
                             <div Class="row">
@@ -304,38 +305,113 @@
                                         <small class='text-danger'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
-                                {{-- <div class="col position-relative">
-                                    <button wire:click='removeDetails("{{ $key }}")' type="button"
-                                        class="btn btn-text-danger btn-sm rounded-pill btn-icon waves-effect waves-light position-absolute top-50 start-0 translate-middle-y">
-                                            <span class="tf-icons mdi mdi-close-thick mdi-24px"></span>
-                                    </button>
-                                    @if ($key == count($detailsInputs) - 1)
-                                        <button wire:click='addNewDetails' wire:loading.attr="disabled" type="button"
-                                            class="btn btn-outline-primary position-absolute top-50 end-0 translate-middle-y me-2 px-2">اضافة تفاصيل</button>
-                                    @endif
-                                </div> --}}
-
-
                             </div>
                         </div>
+
                         <div class="col-4 text-center">
-                            <div>
+                            <div class="mb-4">
+                                <div class="card-header p-0">
+                                    <div class="nav-align-top">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <button wire:click='certificateTap' type="button" class="alert  {{ $activeCertificateTap == 'active' ? 'active alert-solid-primary':'' }} py-1 mb-n1" role="tab" data-bs-toggle="tab"
+                                                    data-bs-target="#navs-top-certificate" aria-controls="navs-top-certificate" aria-selected="true">
+                                                    الشهادة
+                                                </button>
+                                            </li>
+                                            <li class="nav-item">
+                                                <button wire:click='validitySsuanceTap' type="button" class="{{-- nav-link --}} alert {{ $activeValiditySsuanceTap == 'active' ? 'active alert-solid-primary':'' }} py-1 mb-n1" role="tab" data-bs-toggle="tab"
+                                                    data-bs-target="#navs-top-validity-ssuance" aria-controls="navs-top-validity-ssuance" aria-selected="false">
+                                                    صحة الصدور
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content p-0">
+                                        <div class="tab-pane fade {{ $activeCertificateTap == 'active' ? 'show active':'' }}" id="navs-top-certificate" role="tabpanel">
+                                            <div class="form-floating form-floating-outline mt-3">
+                                                <input type="file" wire:model="certificate_file" id="certificate_file"
+                                                    class="form-control @error('certificate_file') is-invalid is-filled @enderror"
+                                                    accept="application/pdf, .png, .jpg, .jpeg">
+                                                <label for="modalcertifinotes">اختر ملف الشهادة</label>
+                                            </div>
+
+                                            @error('certificate_file') <span class="error">{{ $message }}</span> @enderror
+
+                                            <div wire:loading.remove wire:target='certificate_file'>
+                                                @if ($certificateFilePreview)
+                                                    @if($certificate_file->getClientOriginalExtension() == strtolower('pdf'))
+                                                        <iframe src="{{ $certificateFilePreview }}" class="mt-3 " style="height: 320px; width: 100%"></iframe>
+                                                    @else
+                                                        <img src="{{ $certificateFilePreview }}" class="mt-3 rounded img-fluid" style="max-height: 150px; width: 100%">
+                                                    @endif
+                                                @endif
+                                            </div>
+
+                                            <div wire:loading wire:target='certificate_file'>
+                                                <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 200px" alt="Timer Loading Animated 3D Icon">
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade {{ $activeValiditySsuanceTap == 'active' ? 'show active':'' }}" id="navs-top-validity-ssuance" role="tabpanel">
+                                            <div class="form-floating form-floating-outline mt-3">
+                                                <input type="file" wire:model="validity_ssuance_certificate_file" id="certificate_file"
+                                                    class="form-control @error('validity_ssuance_certificate_file') is-invalid is-filled @enderror"
+                                                    accept="application/pdf, .png, .jpg, .jpeg">
+                                                <label for="modalcertifinotes">اختر ملف صحة صدور الشهادة</label>
+                                            </div>
+
+                                            @error('validity_ssuance_certificate_file') <span class="error">{{ $message }}</span> @enderror
+
+                                            <div wire:loading.remove wire:target='validity_ssuance_certificate_file'>
+                                                @if ($validitySsuanceFilePreview)
+                                                    @if($validity_ssuance_certificate_file->getClientOriginalExtension() == strtolower('pdf'))
+                                                        <iframe src="{{ $validitySsuanceFilePreview }}" class="mt-3 " style="height: 320px; width: 100%"></iframe>
+                                                    @else
+                                                        <img src="{{ $validitySsuanceFilePreview }}" class="mt-3 rounded img-fluid" style="max-height: 150px; width: 100%">
+                                                    @endif
+                                                @endif
+                                            </div>
+
+                                            <div wire:loading wire:target='certificate_file'>
+                                                <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 200px" alt="Timer Loading Animated 3D Icon">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                            {{-- <div>
                                 <div class="form-floating form-floating-outline">
-                                    <input type="file" wire:model="file" class="form-control @error('file') is-invalid is-filled @enderror" accept="">
+                                    <input type="file" wire:model="certificate_file" id="certificate_file"
+                                        class="form-control @error('certificate_file') is-invalid is-filled @enderror"
+                                        accept="application/pdf, .png, .jpg, .jpeg">
                                     <label for="modalcertifinotes">اختر ملف الشهادة</label>
                                 </div>
 
-                                @error('file') <span class="error">{{ $message }}</span> @enderror
+                                @error('certificate_file') <span class="error">{{ $message }}</span> @enderror
 
-                                @if ($filePreview)
-                                    @if($file->getClientOriginalExtension() == strtolower('pdf'))
-                                        <iframe src="{{ $filePreview }}" class="mt-3 " style="height: 320px; width: 100%"></iframe>
-                                    @else
-                                        <img src="{{ $filePreview }}" class="mt-3 rounded img-fluid" style="max-height: 150px; width: 100%">
+                                <div wire:loading.remove wire:target='certificate_file'>
+                                    @if ($filePreview)
+                                        @if($certificate_file->getClientOriginalExtension() == strtolower('pdf'))
+                                            <iframe src="{{ $filePreview }}" class="mt-3 " style="height: 320px; width: 100%"></iframe>
+                                        @else
+                                            <img src="{{ $filePreview }}" class="mt-3 rounded img-fluid" style="max-height: 150px; width: 100%">
+                                        @endif
                                     @endif
-                                @endif
-                            </div>
+                                </div>
+                                <div wire:loading wire:target='certificate_file'>
+
+                                </div>
+                            </div> --}}
                         </div>
                     </div>
 

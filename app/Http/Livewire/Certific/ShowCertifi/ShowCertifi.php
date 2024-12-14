@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Certific\ShowCertifi;
 
 use Livewire\Component;
+use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use App\Models\Workers\Workers;
 use App\Models\Certific\Certific;
 use App\Models\Precises\Precises;
@@ -14,6 +16,10 @@ use App\Models\Specializationclassification\Specializationclassification;
 
 class ShowCertifi extends Component
 {
+    use WithFileUploads;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public $worker_id;
     public $Worker;
     public $WorkerCertific = [];
@@ -26,6 +32,11 @@ class ShowCertifi extends Component
     public $certifiSearch, $certifi, $certifiId;
     public $user_id, $calculator_number, $document_number, $document_date, $certificates_id, $authenticity_number, $authenticity_date, $graduations_id, $specialization_id, $graduation_year, $specialtys_id, $precises_id, $specializationclassification_id, $grade, $estimate, $duration, $issuing_country, $notes, $status;
     public $isDisabled = true;
+    public $certificate_file, $validity_ssuance_certificate_file;
+    public $certificateFilePreview, $validitySsuanceFilePreview;
+    public $activeCertificateTap = 'active';
+    public $activeValiditySsuanceTap = '';
+    public $Edit_certificate_file, $Edit_validity_ssuance_certificate_file;
 
     protected $listeners = [
         'GetSpecialtys',
@@ -118,6 +129,34 @@ class ShowCertifi extends Component
     public function GetPrecises($Precises_id)
     {
         $this->precises_id = $Precises_id;
+    }
+
+    public function certificateTap() {
+        $this->activeCertificateTap = 'active';
+        $this->activeValiditySsuanceTap = '';
+    }
+    public function validitySsuanceTap() {
+        $this->activeCertificateTap = '';
+        $this->activeValiditySsuanceTap = 'active';
+    }
+
+    public function updatedEditCertificateFile() {
+        $this->certificateFilePreview = $this->Edit_certificate_file->temporaryUrl();
+
+        $this->validate([
+            'Edit_certificate_file' => 'file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+        ], [
+            'Edit_certificate_file.max'=> 'يجب ألا يزيد حجم ملف الشهادة عن 1024 كيلوبايت.'
+        ]);
+    }
+    public function updatedEditValiditySsuanceCertificateFile() {
+        $this->validitySsuanceFilePreview = $this->Edit_validity_ssuance_certificate_file->temporaryUrl();
+
+        $this->validate([
+            'Edit_validity_ssuance_certificate_file' => 'file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+        ], [
+            'Edit_validity_ssuance_certificate_file.max'=> 'يجب ألا يزيد حجم ملف الشهادة عن 1024 كيلوبايت.'
+        ]);
     }
 
     //اختبار حقل الدرجة واعطاء التقدير
@@ -251,10 +290,15 @@ class ShowCertifi extends Component
         $this->issuing_country = $this->certifi->issuing_country;
         $this->notes = $this->certifi->notes;
         $this->status = $this->certifi->status;
+        $this->Edit_certificate_file = $this->certifi->certificate_file;
+        $this->Edit_validity_ssuance_certificate_file = $this->certifi->validity_ssuance_certificate_file;
 
         $this->graduations = $this->certifi->Getcertificate->Getgraduation;
         $this->specializations = $this->certifi->Getgraduation->Getspecialization;
         $this->precises = $this->certifi->Getspecialty->Getprecise;
+
+        $this->activeCertificateTap = 'active';
+        $this->activeValiditySsuanceTap = '';
     }
 
     public function update()
@@ -321,6 +365,48 @@ class ShowCertifi extends Component
             'notes' => $this->notes,
             'status' => $this->status,
         ]);
+
+        if( $this->certificateFilePreview )
+        {
+            $this->validate([
+                'Edit_certificate_file' => 'required|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+            ], [
+                'Edit_certificate_file.required'=> 'ملف الشهادة مطلوب.',
+                'Edit_certificate_file.max'=> 'يجب ألا يزيد حجم ملف الشهادة عن 1024 كيلوبايت.',
+            ]);
+
+            if(file_exists(public_path('storage/Certific/'.$this->calculator_number.'/'.$this->certifi->certificate_file)))
+            {
+                unlink(public_path('storage/Certific/'.$this->calculator_number.'/'.$this->certifi->certificate_file));
+            }
+
+            $this->Edit_certificate_file->store($this->calculator_number, 'Certific');
+
+            $Certific->update([
+                'certificate_file' => $this->Edit_certificate_file->hashName(),
+            ]);
+        }
+
+        if( $this->validitySsuanceFilePreview )
+        {
+            $this->validate([
+                'Edit_validity_ssuance_certificate_file' => 'required|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+            ], [
+                'Edit_validity_ssuance_certificate_file.required'=> 'ملف صحة صدور الشهادة مطلوب.',
+                'Edit_validity_ssuance_certificate_file.max'=> 'يجب ألا يزيد حجم ملف صحة صدور الشهادة عن 1024 كيلوبايت.',
+            ]);
+
+            if(file_exists(public_path('storage/Certific/'.$this->calculator_number.'/'.$this->certifi->validity_ssuance_certificate_file)))
+            {
+                unlink(public_path('storage/Certific/'.$this->calculator_number.'/'.$this->certifi->validity_ssuance_certificate_file));
+            }
+
+            $this->Edit_validity_ssuance_certificate_file->store($this->calculator_number, 'Certific');
+
+            $Certific->update([
+                'validity_ssuance_certificate_file' => $this->Edit_validity_ssuance_certificate_file->hashName(),
+            ]);
+        }
 
         $this->resetExcept('worker_id', 'Worker', 'WorkerCertific', 'certificates', 'specialtys', 'specializationclassification');
         $this->dispatchBrowserEvent('success', [

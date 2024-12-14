@@ -33,7 +33,10 @@ class certifi extends Component
     public $certifiSearch, $certifi, $certifiId;
     public $user_id, $worker_id, $calculator_number, $document_number, $document_date, $certificates_id, $authenticity_number, $authenticity_date, $graduations_id, $specialization_id, $graduation_year, $specialtys_id, $precises_id, $specializationclassification_id, $grade, $estimate, $duration, $issuing_country, $notes, $status;
     public $isDisabled = true;
-    public $file, $filePreview;
+    public $certificate_file, $validity_ssuance_certificate_file;
+    public $certificateFilePreview, $validitySsuanceFilePreview;
+    public $activeCertificateTap = 'active';
+    public $activeValiditySsuanceTap = '';
 
     protected $listeners = [
         'SelectWorkerId',
@@ -198,7 +201,6 @@ class certifi extends Component
         }
     }
 
-
     public function AddCertifyModal($WorkerID)
     {
         $this->reset(['worker_id', 'calculator_number', 'document_number', 'document_date', 'certificates_id', 'authenticity_number', 'authenticity_date', 'graduations_id', 'specialization_id', 'graduation_year', 'specialtys_id', 'precises_id', 'specializationclassification_id', 'grade', 'estimate', 'duration', 'issuing_country', 'notes', 'status']);
@@ -210,16 +212,32 @@ class certifi extends Component
         $this->calculator_number = $this->Worker->calculator_number;
     }
 
-    public function updatedFile() {
-        $this->filePreview = $this->file->temporaryUrl();
+    public function certificateTap() {
+        $this->activeCertificateTap = 'active';
+        $this->activeValiditySsuanceTap = '';
     }
-    public function upload() {
+    public function validitySsuanceTap() {
+        $this->activeCertificateTap = '';
+        $this->activeValiditySsuanceTap = 'active';
+    }
+
+    public function updatedCertificateFile() {
+        $this->certificateFilePreview = $this->certificate_file->temporaryUrl();
+
         $this->validate([
-            'file' => 'required|file|max:10240', // الحد الأقصى للحجم 10 ميجابايت
+            'certificate_file' => 'file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+        ], [
+            'certificate_file.max'=> 'يجب ألا يزيد حجم ملف الشهادة عن 1024 كيلوبايت.'
         ]);
+    }
+    public function updatedValiditySsuanceCertificateFile() {
+        $this->validitySsuanceFilePreview = $this->validity_ssuance_certificate_file->temporaryUrl();
 
-        $this->file->store('public/Certific');
-
+        $this->validate([
+            'validity_ssuance_certificate_file' => 'file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+        ], [
+            'validity_ssuance_certificate_file.max'=> 'يجب ألا يزيد حجم ملف الشهادة عن 1024 كيلوبايت.'
+        ]);
     }
 
     public function store()
@@ -264,6 +282,29 @@ class certifi extends Component
                 'issuing_country.required' => 'حقل البلد المانح للشهادة مطلوب',
             ]);
 
+            if($this->certificate_file)
+            {
+                $this->validate([
+                    'certificate_file' => 'required|file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+                ], [
+                    'certificate_file.required'=> 'ملف الشهادة مطلوب.',
+                    'certificate_file.max'=> 'يجب ألا يزيد حجم ملف الشهادة عن 1024 كيلوبايت.',
+                ]);
+
+                $this->certificate_file->store('public/Certific/'.$this->calculator_number);
+            }
+            if($this->validity_ssuance_certificate_file)
+            {
+                $this->validate([
+                    'validity_ssuance_certificate_file' => 'required|file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+                ], [
+                    'validity_ssuance_certificate_file.required'=> 'ملف صحة صدور الشهادة مطلوب.',
+                    'validity_ssuance_certificate_file.max'=> 'يجب ألا يزيد حجم ملف صحة صدور الشهادة عن 1024 كيلوبايت.',
+                ]);
+
+                $this->validity_ssuance_certificate_file->store('public/Certific/'.$this->calculator_number);
+            }
+
             Certific::create([
                 'user_id' => Auth::User()->id,
                 'worker_id' => $this->worker_id,
@@ -285,6 +326,8 @@ class certifi extends Component
                 'issuing_country' => $this->issuing_country,
                 'notes' => $this->notes,
                 'status' => $this->status,
+                'certificate_file' => $this->certificate_file->getClientOriginalName(),
+                'validity_ssuance_certificate_file' => $this->validity_ssuance_certificate_file->getClientOriginalName(),
             ]);
 
             $this->reset();

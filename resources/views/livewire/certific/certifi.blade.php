@@ -17,7 +17,7 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th class="text-center">اسم الموظف</th>
+                            <th class="">اسم الموظف</th>
                             <th class="text-center">الشهادات</th>
                             <th class="text-center"></th>
                         </tr>
@@ -28,7 +28,7 @@
                             <?php $i++; ?>
                             <tr>
                                 <td>{{ $i }}</td>
-                                <td class="text-center">{{ $worker->full_name }}</td>
+                                <td class="">{{ $worker->full_name }}</td>
                                 <td class="text-center">
                                     {{ $worker->GetCertific->count() }}
                                 </td>

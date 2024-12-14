@@ -23,6 +23,9 @@
         .border-bottom-2 {
             border-bottom: 2px solid !important;
         }
+        select2-selection__rendered {
+            text-align: right;
+        }
     </style>
 @endsection
 @section('content')
@@ -53,10 +56,11 @@
     <script src=" {{ asset('assets/js/app-user-list.js') }}"></script>
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
+    <script src=" {{ asset('assets/js/ui-modals.js') }}"></script>
 
     <script>
-
+        const customBtn = document.getElementById("certificate_file");
+        customBtn.innerHTML = "اختر الملف";
         //تاريخ الوثيقة وصحة الصدور
         $(document).ready(function() {
             function initFlatpickr(selector, eventName, placeholderText, parentModal) {
@@ -85,7 +89,7 @@
             function initSelect2(selector, eventName, parentModal) {
                 $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $(parentModal)
+                    dropdownParent: $(parentModal),
                 });
                 $(selector).on('change', function(e) {
                     livewire.emit(eventName, e.target.value);
