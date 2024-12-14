@@ -20,7 +20,7 @@ class ShowService extends Component
     public $Services = [];
     public $certificates = [];
     public $jobtitles = [];
-    public $WorkerServices = [];
+    protected $WorkerServices = [];
     public $Worker;
     public $ServiceSearch, $Service, $ServiceId;
     public $user_id, $worker_id, $service_type, $administrative_order_number, $administrative_order_date, $from_date, $to_date, $days, $months, $years, $in_service_salary, $certificates_id, $calculation_order_number, $calculation_order_date, $purpose, $job_title_deletion, $job_title_introduction, $notes;
@@ -124,20 +124,21 @@ class ShowService extends Component
     public function render()
     {
         $ServiceSearch = '%' . $this->ServiceSearch . '%';
-        $Services = Services::where('service_type', 'LIKE', $ServiceSearch)
-            ->orWhere('from_date', 'LIKE', $ServiceSearch)
-            ->orWhere('to_date', 'LIKE', $ServiceSearch)
-            ->orWhere('certificates_id', 'LIKE', $ServiceSearch)
-            ->orWhere('purpose', 'LIKE', $ServiceSearch)
-            ->orWhere('job_title_introduction', 'LIKE', $ServiceSearch)
-
-
+        $Services = Services::where('worker_id', $this->worker_id)
+            ->where(function($query) use ($ServiceSearch) {
+                $query->where('service_type', 'LIKE', $ServiceSearch)
+                    ->orWhere('from_date', 'LIKE', $ServiceSearch)
+                    ->orWhere('to_date', 'LIKE', $ServiceSearch)
+                    ->orWhere('certificates_id', 'LIKE', $ServiceSearch)
+                    ->orWhere('purpose', 'LIKE', $ServiceSearch)
+                    ->orWhere('job_title_introduction', 'LIKE', $ServiceSearch);
+            })
             ->orderBy('id', 'ASC')
             ->paginate(10);
-        $links = $Services;
-        $this->Services = collect($Services->items());
+
         return view('livewire.services.show-service.show-service', [
-            'links' => $links
+            'WorkerServices' => $Services,
+            'links' => $Services
         ]);
     }
 
