@@ -22,7 +22,7 @@ class ShowService extends Component
     public $jobtitles = [];
     public $WorkerServices = [];
     public $Worker;
-    public $serviceSearch, $service, $serviceId;
+    public $ServiceSearch, $Service, $ServiceId;
     public $user_id, $worker_id, $service_type, $administrative_order_number, $administrative_order_date, $from_date, $to_date, $days, $months, $years, $in_service_salary, $certificates_id, $calculation_order_number, $calculation_order_date, $purpose, $job_title_deletion, $job_title_introduction, $notes;
 
     protected $listeners = [
@@ -123,25 +123,13 @@ class ShowService extends Component
 
     public function render()
     {
-        $serviceSearch = '%' . $this->serviceSearch . '%';
-        $Services = Services::where('user_id', 'LIKE', $serviceSearch)
-            ->orWhere('worker_id', 'LIKE', $serviceSearch)
-            ->orWhere('service_type', 'LIKE', $serviceSearch)
-            ->orWhere('administrative_order_number', 'LIKE', $serviceSearch)
-            ->orWhere('administrative_order_date', 'LIKE', $serviceSearch)
-            ->orWhere('from_date', 'LIKE', $serviceSearch)
-            ->orWhere('to_date', 'LIKE', $serviceSearch)
-            ->orWhere('days', 'LIKE', $serviceSearch)
-            ->orWhere('months', 'LIKE', $serviceSearch)
-            ->orWhere('years', 'LIKE', $serviceSearch)
-            ->orWhere('in_service_salary', 'LIKE', $serviceSearch)
-            ->orWhere('certificates_id', 'LIKE', $serviceSearch)
-            ->orWhere('calculation_order_number', 'LIKE', $serviceSearch)
-            ->orWhere('calculation_order_date', 'LIKE', $serviceSearch)
-            ->orWhere('purpose', 'LIKE', $serviceSearch)
-            ->orWhere('job_title_deletion', 'LIKE', $serviceSearch)
-            ->orWhere('job_title_introduction', 'LIKE', $serviceSearch)
-            ->orWhere('notes', 'LIKE', $serviceSearch)
+        $ServiceSearch = '%' . $this->ServiceSearch . '%';
+        $Services = Services::where('service_type', 'LIKE', $ServiceSearch)
+            ->orWhere('from_date', 'LIKE', $ServiceSearch)
+            ->orWhere('to_date', 'LIKE', $ServiceSearch)
+            ->orWhere('certificates_id', 'LIKE', $ServiceSearch)
+            ->orWhere('purpose', 'LIKE', $ServiceSearch)
+            ->orWhere('job_title_introduction', 'LIKE', $ServiceSearch)
 
 
             ->orderBy('id', 'ASC')
@@ -231,30 +219,30 @@ class ShowService extends Component
         ]);
     }
 
-    public function GetService($serviceId)
+    public function GetService($ServiceId)
     {
         $this->resetValidation();
 
-        $this->service  = Services::find($serviceId);
-        $this->serviceId = $this->service->id;
-        $this->user_id = $this->service->user_id;
-        $this->worker_id = $this->service->worker_id;
-        $this->service_type = $this->service->service_type;
-        $this->administrative_order_number = $this->service->administrative_order_number;
-        $this->administrative_order_date = $this->service->administrative_order_date;
-        $this->from_date = $this->service->from_date;
-        $this->to_date = $this->service->to_date;
-        $this->days = $this->service->days;
-        $this->months = $this->service->months;
-        $this->years = $this->service->years;
-        $this->in_service_salary = $this->service->in_service_salary;
-        $this->certificates_id = $this->service->certificates_id;
-        $this->calculation_order_number = $this->service->calculation_order_number;
-        $this->calculation_order_date = $this->service->calculation_order_date;
-        $this->purpose = $this->service->purpose;
-        $this->job_title_deletion = $this->service->job_title_deletion;
-        $this->job_title_introduction = $this->service->job_title_introduction;
-        $this->notes = $this->service->notes;
+        $this->Service  = Services::find($ServiceId);
+        $this->ServiceId = $this->Service->id;
+        $this->user_id = $this->Service->user_id;
+        $this->worker_id = $this->Service->worker_id;
+        $this->service_type = $this->Service->service_type;
+        $this->administrative_order_number = $this->Service->administrative_order_number;
+        $this->administrative_order_date = $this->Service->administrative_order_date;
+        $this->from_date = $this->Service->from_date;
+        $this->to_date = $this->Service->to_date;
+        $this->days = $this->Service->days;
+        $this->months = $this->Service->months;
+        $this->years = $this->Service->years;
+        $this->in_service_salary = $this->Service->in_service_salary;
+        $this->certificates_id = $this->Service->certificates_id;
+        $this->calculation_order_number = $this->Service->calculation_order_number;
+        $this->calculation_order_date = $this->Service->calculation_order_date;
+        $this->purpose = $this->Service->purpose;
+        $this->job_title_deletion = $this->Service->job_title_deletion;
+        $this->job_title_introduction = $this->Service->job_title_introduction;
+        $this->notes = $this->Service->notes;
     }
 
     public function update()
@@ -297,7 +285,7 @@ class ShowService extends Component
             'job_title_introduction.required' => 'حقل العنوان الوظيفي الاستحداث مطلوب',
         ]);
 
-        $Services = Services::find($this->serviceId);
+        $Services = Services::find($this->ServiceId);
         $Services->update([
             'user_id' => Auth::User()->id,
             'worker_id' => $this->worker_id,
@@ -329,7 +317,7 @@ class ShowService extends Component
 
     public function destroy()
     {
-        $Services = Services::find($this->serviceId);
+        $Services = Services::find($this->ServiceId);
 
         if ($Services) {
 
