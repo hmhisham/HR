@@ -59,7 +59,7 @@
                                         @can('service-delete')
                                             <button wire:click="GetService({{ $Services->id }})"
                                                 class="p-0 px-1 btn btn-text-danger waves-effect {{ $Services->active ? 'disabled' : '' }}"
-                                                data-bs-toggle = "modal" data-bs-target="#removeserviceModal">
+                                                data-bs-toggle="modal" data-bs-target="#removeserviceModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>
                                         @endcan
