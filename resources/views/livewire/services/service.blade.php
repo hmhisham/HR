@@ -7,7 +7,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <div>
-                    <input wire:model="serviceSearch" type="text" class="form-control" placeholder="بحث...">
+                    <input wire:model="ServiceSearch" type="text" class="form-control" placeholder="بحث...">
                 </div>
             </div>
         </div>
