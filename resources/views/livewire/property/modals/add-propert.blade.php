@@ -12,7 +12,6 @@
                 <form id="addpropertModalForm" autocomplete="off">
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
-
                             <div Class="row bg-label-primary" style="border-radius: 15px;">
                                 <div class="col">
                                     <label class="border-bottom-2 text-center mb-2 w-100"
@@ -25,7 +24,6 @@
                                         {{ $Bond->Getboycott ? $Bond->Getboycott->boycott_number . ' - ' . $Bond->Getboycott->boycott_name : '' }}
                                     </div>
                                 </div>
-
                                 <div class="col">
                                     <label class="border-bottom-2 text-center mb-2 w-100"
                                         style="border-bottom: 2px solid">رقم القطعة </label>
@@ -36,7 +34,6 @@
                                     <div wire:loading.remove wire:target='AddPropertModalShow' class="text-center">
                                         {{ $Bond->part_number ?? '' }}</div>
                                 </div>
-
                                 <div class="col">
                                     <label class="border-bottom-2 text-center mb-2 w-100"
                                         style="border-bottom: 2px solid">رقم العقار </label>
@@ -47,64 +44,69 @@
                                     <div wire:loading.remove wire:target='AddPropertModalShow' class="text-center">
                                         {{ $Bond->property_number }}</div>
                                 </div>
-
                             </div>
+
                             <hr class="">
+
                             <div class="row">
                                 <!-- الاسم الكامل -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer="worker_id" id="addPropertworker_id"
-                                            class="form-select @error('worker_id') is-invalid is-filled @enderror border border-primary"
-                                            style="width: 70%; height: 40px;">
-                                            <option value="" disabled selected>اختر موظفاً</option>
-                                            @foreach ($workers as $worker)
-                                                <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="addPropertworker_id">الاسم الكامل</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="addPropertfull_name"
+                                               name="full_name"
+                                               value="{{ $full_name ?? '' }}"
+                                               placeholder=" "
+                                               style="color: #000; border: 1px solid #007bff;">
+                                        <label for="addPropertfull_name">الأسم الكامل</label>
                                     </div>
-                                    @error('worker_id')
-                                        <small class="text-danger inputerror">{{ $message }}</small>
-                                    @enderror
                                 </div>
                                 <!-- الرقم الوظيفي -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <div class="form-control   d-flex align-items-center justify-content-center p-3"
-                                            style="color: #007bff; border: 1px solid #007bff;">
-                                            <span class="fw-bold">{{ $calculator_number ?? '' }}</span>
-                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="addPropertcalculator_number"
+                                               name="calculator_number"
+                                               value="{{ $calculator_number ?? '' }}"
+                                               placeholder=" "
+                                               style="color: #000; border: 1px solid #007bff;">
                                         <label for="addPropertcalculator_number">الرقم الوظيفي</label>
                                     </div>
                                 </div>
                                 <!-- القسم -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <div class="form-control   d-flex align-items-center justify-content-center p-3"
-                                            style="color: #007bff; border: 1px solid #007bff;">
-                                            <span class="fw-bold">{{ $department_name ?? '' }}</span>
-                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="addPropertdepartment_name"
+                                               name="department_name"
+                                               value="{{ $department_name ?? '' }}"
+                                               placeholder=" "
+                                               style="color: #000; border: 1px solid #007bff;">
                                         <label for="addPropertdepartment_name">القسم</label>
                                     </div>
                                 </div>
                                 <!-- الأيميل -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <div class="form-control   d-flex align-items-center justify-content-center p-3"
-                                            style="color: #007bff; border: 1px solid #007bff;">
-                                            <span class="fw-bold">{{ $email ?? '' }}</span>
-                                        </div>
+                                        <input type="email"
+                                               class="form-control"
+                                               id="addPropertemail"
+                                               name="email"
+                                               value="{{ $email ?? '' }}"
+                                               placeholder=" "
+                                               style="color: #000; border: 1px solid #007bff;">
                                         <label for="addPropertemail">الأيميل</label>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model='from_date' wire:change="updateToDate($event.target.value)"
-                                            type="date" id="modalPropertfrom_date" placeholder="من تاريخ"
+                                            type="text" id="modalPropertfrom_date" placeholder="من تاريخ"
                                             class="form-control @error('from_date') is-invalid is-filled @enderror" />
                                         <label for="modalPropertfrom_date">من تاريخ</label>
                                     </div>
@@ -115,9 +117,9 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model="to_date" type="date" id="modalPropertto_date"
+                                        <input wire:model="to_date" type="text" id="modalPropertto_date"
                                             placeholder="الى تاريخ"
-                                            class="form-control @error('to_date') is-invalid is-filled @enderror" />
+                                            class="form-control @error('to_date') is-invalid is-filled @enderror" readonly />
                                         <label for="modalPropertto_date">الى تاريخ</label>
                                     </div>
                                     @error('to_date')
@@ -140,7 +142,7 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.lazy='total_amount' type="text"
+                                        <input wire:model='total_amount' type="text"
                                             id="modalProperttotal_amount" placeholder="المبلغ الكلي"
                                             class="form-control @error('total_amount') is-invalid is-filled @enderror"
                                             onkeypress="return onlyNumberKey(event)"
@@ -151,9 +153,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                             </div>
-
                             <div Class="row">
                                 <!-- المبلغ الشهري -->
                                 <div class="mb-3 col">
@@ -181,16 +181,28 @@
                                     @enderror
                                 </div>
 
+                                <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='total_paid_amount' type="text"
+                                            id="modalProperttotal_paid_amount" placeholder="مجموع المتبقي"
+                                            class="form-control @error('total_paid_amount') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey(event)"
+                                            oninput="formatWithCommas(this)" />
+                                        <label for="modalProperttotal_paid_amount">مجموع المتبقي</label>
+                                    </div>
+                                    @error('total_paid_amount')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+
                                 <style>
                                      select option[value="محجوز"] {
                                         color: red;
                                      }
                                 </style>
-
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function() {
                                         const selectElement = document.getElementById('modalPropertproperty_status');
-
                                         selectElement.addEventListener('change', function() {
                                             if (selectElement.value === 'محجوز') {
                                                 selectElement.style.color = 'red';
@@ -200,7 +212,6 @@
                                         });
                                     });
                                 </script>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='property_status' id="modalPropertproperty_status"
@@ -216,11 +227,24 @@
                                     @enderror
                                 </div>
 
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='notes' type="text" id="modalPropertnotes"
+                                               placeholder="ملاحظات"
+                                               class="form-control @error('notes') is-invalid is-filled @enderror" />
+                                        <label for="modalPropertnotes">ملاحظات</label>
+                                    </div>
+                                    @error('notes')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
                                 <div class="mb-3 col">
                                     <div class="form-check form-switch">
                                         <input wire:model.defer="status"
-                                            class="form-check-input @error('status') is-invalid is-filled @enderror"
-                                            type="checkbox" id="modalPropertstatus">
+                                               class="form-check-input @error('status') is-invalid is-filled @enderror"
+                                               type="checkbox" id="modalPropertstatus">
                                         <label class="form-check-label" for="modalPropertstatus">حالة العقار</label>
                                     </div>
                                     @error('status')
@@ -231,30 +255,18 @@
                                 <div class="mb-3 col">
                                     <div class="form-check form-switch">
                                         <input wire:model.defer="notifications"
-                                            class="form-check-input @error('notifications') is-invalid is-filled @enderror"
-                                            type="checkbox" id="modalPropertnotifications">
-                                        <label class="form-check-label"
-                                            for="modalPropertnotifications">الاشعارات</label>
+                                               class="form-check-input @error('notifications') is-invalid is-filled @enderror"
+                                               type="checkbox" id="modalPropertnotifications">
+                                        <label class="form-check-label" for="modalPropertnotifications">الاشعارات</label>
                                     </div>
                                     @error('notifications')
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
+
+
                             </div>
 
-                            <div Class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='notes' type="text" id="modalPropertnotes"
-                                            placeholder="ملاحظات"
-                                            class="form-control @error('notes') is-invalid is-filled @enderror" />
-                                        <label for="modalPropertnotes">ملاحظات</label>
-                                    </div>
-                                    @error('notes')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <hr class="my-0">

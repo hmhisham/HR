@@ -1,4 +1,4 @@
-@extends('layouts/layoutMaster')
+{{-- @extends('layouts/layoutMaster')
 @section('title', 'property')
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
@@ -364,4 +364,4 @@
 
 
     </script>
-@endsection
+@endsection --}}

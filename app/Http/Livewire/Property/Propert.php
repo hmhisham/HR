@@ -30,49 +30,37 @@ class Propert extends Component
     ];
     public function hydrate()
     {
-        $this->emit('select2');
-        $this->emit('flatpickr');
-    }
-    public function mount()
-    {
-        $this->workers = Workers::all();
+         $this->emit('flatpickr');
     }
 
-    public function SelectWorkerId($WorkerIdID)
-    {
-        $worker = Workers::find($WorkerIdID);
-        if ($worker) {
-            $this->worker_id = $WorkerIdID;
-            $this->calculator_number = $worker->calculator_number;
-            $this->department_name = $worker->department_name;
-            $this->email = $worker->email;
-        } else {
-            $this->worker_id = null;
-            $this->calculator_number = null;
-            $this->department_name = null;
-            $this->email = null;
-        }
-    }
-
-
-    public $months_difference;
 
 
     public function updateToDate($value)
     {
         if ($value) {
+            // إضافة 20 سنة على التاريخ المدخل
             $this->to_date = \Carbon\Carbon::parse($value)->addYears(20)->format('Y-m-d');
-            $this->calculateMonthsDifference();
+            // بعد تحديث to_date، حساب الفرق بين التواريخ
+            // if (!empty($this->from_date) && !empty($this->to_date)) {
+                try {
+
+                    // تحويل النصوص إلى تواريخ باستخدام Carbon
+                    $start = Carbon::parse($this->from_date);
+                    $end = Carbon::parse($this->to_date);
+
+                    // حساب الفرق بين التاريخين بالأشهر
+                    $this->months_count = $start->diffInMonths($end);
+
+                } catch (\Exception $e) {
+                    // في حالة حدوث خطأ في تحويل التواريخ
+                    $this->months_count = null;
+                }
+            // }
+
         }
     }
-    public function calculateMonthsDifference()
-    {
-        if ($this->from_date && $this->to_date) {
-            $start = Carbon::parse($this->from_date);
-            $end = Carbon::parse($this->to_date);
-            $this->months_count = $start->diffInMonths($end);
-        }
-    }
+
+
 
 
 

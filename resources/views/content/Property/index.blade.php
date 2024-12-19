@@ -5,13 +5,13 @@
 <link rel = "stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
 <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
 <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-<link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/select2/select2.css') }}" />
+
 <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
 <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
 <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+{{-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" /> --}}
 <link rel="stylesheet"
     href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
@@ -24,7 +24,7 @@
 @section('vendor-script')
 <script src=" {{ asset('assets/vendor/libs/moment/moment.js') }}"></script>
 <script src=" {{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-<script src=" {{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+
 <script src=" {{ asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js') }}"></script>
 <script src=" {{ asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js') }}"></script>
 <script src=" {{ asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js') }}"></script>
@@ -33,7 +33,7 @@
 <script src=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 <script src=" {{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+{{-- <script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script> --}}
 <script src="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
@@ -43,6 +43,7 @@
     <script src=" {{ asset('assets/js/app-user-list.js') }}"></script>
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
     <script>
         const Toast = Swal.mixin({
             toast: true,
@@ -100,74 +101,61 @@ function formatWithCommas(input) {
         input.value = parts.join('.');
     }
 
- 
-        // add Workers
-        $(document).ready(function() {
-            window.initAddWorkersDrop = () => {
-                $('#addPropertworker_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addpropertModal')
-                });
-            }
-            initAddWorkersDrop();
-            $('#addPropertworker_id').on('change', function(e) {
-                livewire.emit('SelectWorkerId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initAddWorkersDrop();
-            });
-        });
-        // edit Workers
-        $(document).ready(function() {
-            window.initEditWorkersDrop = () => {
-                $('#editPropertworker_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editpropertModal')
-                });
-            }
-            initEditWorkersDrop();
-            $('#editPropertworker_id').on('change', function(e) {
-                livewire.emit('SelectWorkerId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditWorkersDrop();
-            });
-        });
 
-        $(document).ready(function() {
-            function initSelect2(selector, eventName, parentModal) {
-                $(selector).select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $(parentModal)
-                });
-                $(selector).on('change', function(e) {
-                    console.log(`Value changed to: ${e.target.value}`);
-                    livewire.emit(eventName, e.target.value);
-                });
-            }
+    $(document).ready(function () {
+    /**
+     * Initializes a Flatpickr date picker with Livewire integration.
+     * @param {string} selector - The jQuery selector for the element.
+     * @param {string} eventName - The Livewire event name to emit.
+     */
+    function initFlatpickr(selector, eventName) {
+        // Destroy any existing Flatpickr instance to avoid conflicts
+        if ($(selector)[0] && $(selector)[0]._flatpickr) {
+            $(selector)[0]._flatpickr.destroy();
+        }
 
-            function initFlatpickr(selector, eventName) {
-                $(selector).flatpickr({
-                    placeholder: 'التاريخ'
-                });
-                $(selector).on('change', function(e) {
-                    livewire.emit(eventName, e.target.value);
-                });
-            }
-            // تاريخ امر التكليف
-            initFlatpickr('#modalPropertfrom_date', 'employeePositionOrderDate');
-            initFlatpickr('#editposition_order_date', 'employeePositionOrderDate');
-            // تاريخ المباشرة
-            initFlatpickr('#modalPropertto_date', 'employeePositionStartDate');
-            initFlatpickr('#editposition_start_date', 'employeePositionStartDate');
-            window.livewire.on('select2', () => {
-                console.log("Reinitializing Select2 and Flatpickr");
-                initFlatpickr('#modalPropertfrom_date', 'employeePositionOrderDate');
-                initFlatpickr('#editposition_order_date', 'employeePositionOrderDate');
-                initFlatpickr('#modalPropertto_date', 'employeePositionStartDate');
-                initFlatpickr('#editposition_start_date', 'employeePositionStartDate');
-            });
+        // Initialize Flatpickr
+        $(selector).flatpickr({
+            locale: 'ar', // Adjust locale for Arabic
+            dateFormat: 'Y-m-d', // Adjust date format as needed
+            placeholder: 'التاريخ',
+            onChange: function (selectedDates, dateStr) {
+                // Emit Livewire event on date change
+                livewire.emit(eventName, dateStr);
+            },
         });
+    }
+
+    /**
+     * Batch initialize multiple Flatpickr elements.
+     * @param {Array} configs - Array of configuration objects.
+     */
+    function batchInitFlatpickr(configs) {
+        configs.forEach(config => initFlatpickr(config.selector, config.eventName));
+    }
+
+    // Initialize Flatpickr fields with their respective Livewire event names.
+    batchInitFlatpickr([
+        { selector: '#modalPropertfrom_date', eventName: 'employeePositionOrderDate' },
+        { selector: '#editposition_order_date', eventName: 'employeePositionOrderDate' },
+        { selector: '#modalPropertto_date', eventName: 'employeePositionStartDate' },
+        { selector: '#editposition_start_date', eventName: 'employeePositionStartDate' },
+    ]);
+
+    // Reinitialize Flatpickr after Livewire updates.
+    window.livewire.on('select2', () => {
+        console.log("Reinitializing Flatpickr");
+
+        batchInitFlatpickr([
+            { selector: '#modalPropertfrom_date', eventName: 'employeePositionOrderDate' },
+            { selector: '#editposition_order_date', eventName: 'employeePositionOrderDate' },
+            { selector: '#modalPropertto_date', eventName: 'employeePositionStartDate' },
+            { selector: '#editposition_start_date', eventName: 'employeePositionStartDate' },
+        ]);
+    });
+});
+
+
 
 
     </script>
