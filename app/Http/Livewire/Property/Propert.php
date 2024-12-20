@@ -7,8 +7,7 @@ use Livewire\Component;
 use App\Models\Bonds\Bonds;
 use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
-use App\Models\Workers\Workers;
-use App\Models\Property\Property;
+ use App\Models\Property\Property;
 use Illuminate\Support\Facades\Auth;
 
 class Propert extends Component
@@ -21,7 +20,7 @@ class Propert extends Component
     public $user_id, $worker_id, $bonds_id, $from_date, $to_date, $months_count, $total_amount, $paid_amount, $property_status, $status, $notifications, $notes, $monthly_amount;
 
     public $workers = [];
-    public  $calculator_number, $department_name, $email;
+    public  $calculator_number, $department_name, $email , $total_paid_amount , $full_name ;
 
     public $Bonds = [];
 
@@ -158,26 +157,37 @@ class Propert extends Component
 
 
 
+        $this->total_paid_amount = str_replace(',', '', $this->total_paid_amount);
+        $this->total_amount = str_replace(',', '', $this->total_amount);
+        $this->paid_amount = str_replace(',', '', $this->paid_amount);
+        $this->monthly_amount = str_replace(',', '', $this->monthly_amount);
+
         Property::create([
-        'user_id' => Auth::id(),
-            'worker_id' => $this->worker_id,
+            'user_id' => Auth::id(),
+            'full_name' => $this->full_name,
+            'calculator_number' => $this->calculator_number,
+            'department_name' => $this->department_name,
+            'email' => $this->email,
+            'total_paid_amount' => $this->total_paid_amount,
             'bonds_id' => $this->bonds_id,
             'from_date' => $this->from_date,
             'to_date' => $this->to_date,
             'months_count' => $this->months_count,
             'total_amount' => $this->total_amount,
             'paid_amount' => $this->paid_amount,
-            'property_status' => $this->property_status,
-            'status' => $this->status,
-            'notifications' => $this->notifications,
+            'property_status' => $this->property_status ?: 'محجوز',  
+            'status' => $this->status ?: '0',
+            'notifications' => $this->notifications?: '0',
             'notes' => $this->notes,
             'monthly_amount' => $this->monthly_amount,
         ]);
-        $this->reset();
-        $this->dispatchBrowserEvent('success', [
-            'message' => 'تم الاضافه بنجاح',
-            'title' => 'اضافه'
-        ]);
+
+
+        // $this->reset();
+        // $this->dispatchBrowserEvent('success', [
+        //     'message' => 'تم الاضافه بنجاح',
+        //     'title' => 'اضافه'
+        // ]);
     }
 
     public function GetPropert($PropertId)
@@ -201,60 +211,7 @@ class Propert extends Component
         $this->monthly_amount = $this->Propert->monthly_amount;
     }
 
-    public function update()
-    {
-        $this->resetValidation();
-        $this->validate([
-            'worker_id' => 'required',
-            'bonds_id' => 'required',
-            'from_date' => 'required',
-            'to_date' => 'required',
-            'months_count' => 'required',
-            'total_amount' => 'required',
-            'paid_amount' => 'required',
-            'property_status' => 'required',
-            'status' => 'required',
-            'notifications' => 'required',
-            'monthly_amount' => 'required',
 
-
-        ], [
-            'worker_id.required' => 'حقل رقم المستخدم مطلوب',
-            'bonds_id.required' => 'حقل رقم العقار مطلوب',
-            'from_date.required' => 'حقل من تاريخ مطلوب',
-            'to_date.required' => 'حقل الى تاريخ مطلوب',
-            'months_count.required' => 'حقل عدد الاشهر مطلوب',
-            'total_amount.required' => 'حقل المبلغ الكلي مطلوب',
-            'paid_amount.required' => 'حقل مجموع المسدد مطلوب',
-            'property_status.required' => 'حقل حالة العقار مطلوب',
-            'status.required' => 'حقل الحالة مطلوب',
-            'notifications.required' => 'حقل الاشعارات مطلوب',
-            'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
-        ]);
-
-
-        $Property = Property::find($this->PropertId);
-        $Property->update([
-            'user_id' => Auth::id(),
-            'worker_id' => $this->worker_id,
-            'bonds_id' => $this->bonds_id,
-            'from_date' => $this->from_date,
-            'to_date' => $this->to_date,
-            'months_count' => $this->months_count,
-            'total_amount' => $this->total_amount,
-            'paid_amount' => $this->paid_amount,
-            'property_status' => $this->property_status,
-            'status' => $this->status,
-            'notifications' => $this->notifications,
-            'notes' => $this->notes,
-            'monthly_amount' => $this->monthly_amount,
-        ]);
-        $this->reset();
-        $this->dispatchBrowserEvent('success', [
-            'message' => 'تم التعديل بنجاح',
-            'title' => 'تعديل'
-        ]);
-    }
 
     public function destroy()
     {
