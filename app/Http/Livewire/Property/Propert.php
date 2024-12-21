@@ -64,17 +64,23 @@ class Propert extends Component
     public function render()
     {
         $BondSearch = '%' . $this->PropertSearch . '%';
-        $Bonds = Bonds::where('boycott_id', 'LIKE', $BondSearch)
-            ->orWhere('part_number', 'LIKE', $BondSearch)
-            ->orWhere('property_number', 'LIKE', $BondSearch)
+        $Bonds = Bonds::where('specialized_department', '=', 'شعبة الاملاك') // إضافة شرط
+            ->where(function ($query) use ($BondSearch) {
+                $query->where('boycott_id', 'LIKE', $BondSearch)
+                    ->orWhere('part_number', 'LIKE', $BondSearch)
+                    ->orWhere('property_number', 'LIKE', $BondSearch);
+            })
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Bonds;
         $this->Bonds = collect($Bonds->items());
+
         return view('livewire.property.propert', [
             'links' => $links
         ]);
     }
+
 
     public function AddPropertModalShow($data)
     {
@@ -85,7 +91,7 @@ class Propert extends Component
         $this->Bonds = Bonds::find($BondID);
         $this->property_number = $propertyNumber;
         // dd($this->property_number, $this->Bonds->id);
-         
+
      }
     public function store()
     {
