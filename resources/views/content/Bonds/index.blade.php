@@ -16,7 +16,7 @@
         href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css"> --}}
 @endsection
 @section('page-style')
     <style>
@@ -47,7 +47,7 @@
     <script src="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+   {{--  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script> --}}
 @endsection
 
 @section('page-script')
@@ -55,7 +55,7 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        $(document).ready(function() {
+        /* $(document).ready(function() {
             function initFlatpickr(selector, eventName) {
                 $(selector).flatpickr({
                     placeholder: 'التاريخ',
@@ -79,6 +79,51 @@
             window.livewire.on('flatpickr', () => {
                 initFlatpickr('#addDate', '#addbondModal');
                 initFlatpickr('#editDate', '#editbondModal');
+            });
+        }); */
+
+        $(document).ready(function() {
+            function initFlatpickr(selector, eventName) {
+                $(selector).flatpickr({
+                    placeholder: 'التاريخ',
+                    altInput: true,
+                    altFormat: "Y-m", // تنسيق العرض البديل في الحقل (شهر وسنة فقط)
+                    dateFormat: "Y-m", // تنسيق التخزين (شهر وسنة فقط)
+                    onReady: function(selectedDates, dateStr, instance) {
+                        instance.currentMonthElement = document.createElement('div');
+                        instance.currentMonthElement.classList.add('flatpickr-current-month');
+                        instance.calendarContainer.insertBefore(instance.currentMonthElement, instance
+                            .daysContainer);
+
+                        instance.yearElement.style.display = 'none';
+                        instance.monthElement.style.display = 'none';
+                        instance.timeContainer.style.display = 'none';
+
+                        instance.updateCurrentMonth = function() {
+                            const month = instance.l10n.months.longhand[instance.currentMonth];
+                            const year = instance.currentYear;
+                            instance.currentMonthElement.innerHTML = `${month} ${year}`;
+                        };
+
+                        instance.updateCurrentMonth();
+                    },
+                    onChange: function(selectedDates, dateStr, instance) {
+                        instance.updateCurrentMonth();
+                    }
+                });
+
+                $(selector).on('change', function(e) {
+                    livewire.emit(eventName, e.target.value);
+                });
+            }
+
+            // تهيئة حقول التاريخ
+            initFlatpickr('#addDate', 'addbondModal');
+            initFlatpickr('#editDate', 'editbondModal');
+
+            window.livewire.on('flatpickr', () => {
+                initFlatpickr('#addDate', 'addbondModal');
+                initFlatpickr('#editDate', 'editbondModal');
             });
         });
 

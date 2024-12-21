@@ -180,7 +180,7 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='date' type="date" id="addDate"
+                                            <input wire:model.defer='date' type="date" id="editDate"
                                                 placeholder="التاريخ"
                                                 class="form-control @error('date') is-invalid is-filled @enderror" />
                                             <label for="modalBonddate">التاريخ</label>

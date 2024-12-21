@@ -33,6 +33,8 @@ return new class extends Migration
             $table->string('issuing_country')->nullable()->comment('البلد المانح للشهادة');
             $table->text('notes')->nullable()->comment('الملاحظات');
             $table->boolean('status')->nullable()->comment('الحالة');
+            $table->string('certificate_file')->nullable()->comment('ملف الشهادة');
+            $table->string('validity_ssuance_certificate_file')->nullable()->comment('ملف صحة الصدور');
             $table->timestamps();
         });
     }
