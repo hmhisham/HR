@@ -1,5 +1,6 @@
 <?php
 namespace App\Models\Property;
+use App\Models\Bonds\Bonds;
 use App\Models\Workers\Workers;
 use App\Models\Boycotts\Boycotts;
 use Illuminate\Database\Eloquent\Model;
@@ -20,5 +21,12 @@ class Property extends Model
     {
         return $this->belongsTo(Boycotts::class, 'boycott_id');
     }
+
+    public function GetBonds()
+    {
+        return $this->hasMany(Bonds::class, 'property_id');
+    }
+
+
 
 }

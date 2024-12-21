@@ -11,12 +11,10 @@ return new class extends Migration
         Schema::create('property', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable()->comment('رقم المستخدم');
-
             $table->string('full_name')->nullable()->comment('الاسم الكامل');
             $table->string('calculator_number')->nullable()->comment('رقم الحاسبة');
             $table->string('department_name')->nullable()->comment('اسم القسم');
             $table->string('email')->nullable()->comment('الايميل');
-
             $table->integer('bonds_id')->nullable()->comment('رقم العقار');
             $table->date('from_date')->nullable()->comment('من تاريخ');
             $table->date('to_date')->nullable()->comment('الى تاريخ');

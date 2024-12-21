@@ -25,6 +25,7 @@
                             <th class="text-center"> رقم المقاطعة </th>
                             <th class="text-center"> رقم القطعة </th>
                             <th class="text-center"> رقم العقار </th>
+                            <th class="text-center">مستلمة / غير مستلمه</th>
                             <th class="text-center">العملية</th>
 
                         </tr>
@@ -38,15 +39,14 @@
                                 <td class="text-center">{{ $Bond->Getboycott ? $Bond->Getboycott->boycott_number . ' - ' . $Bond->Getboycott->boycott_name : '' }}</td>
                                 <td class="text-center">{{ $Bond->part_number }}</td>
                                 <td class="text-center">{{ $Bond->property_number }}</td>
+                                <td class="text-center"> </td>
+
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
-
-
                                         @can('propert-create')
-                                        <button wire:click='AddPropertModalShow({{ $Bond->id }})' class="p-0 px-1 btn btn-text-primary waves-effect"
+                                        <button wire:click='AddPropertModalShow(["{{ $Bond->id }}", "{{ $Bond->property_number }}"])' class="p-0 px-1 btn btn-text-primary waves-effect"
                                             data-bs-toggle="modal" data-bs-target="#addpropertModal">
                                             <span class="mdi mdi-home-plus-outline fs-3"></span>
-                                            {{-- <span class="ms-2">إضافة</span> --}}
                                         </button>
                                     @endcan
                                     @can('Property-Show')

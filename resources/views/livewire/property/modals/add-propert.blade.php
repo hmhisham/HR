@@ -12,57 +12,7 @@
                 <form id="addpropertModalForm" autocomplete="off">
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
-                            {{-- <div Class="row bg-label-primary" style="border-radius: 15px;">
-                                <div class="col">
-                                    <label class="border-bottom-2 text-center mb-2 w-100"
-                                        style="border-bottom: 2px solid">رقم المقاطعة </label>
-                                    <div wire:loading wire:target='AddPropertModalShow'
-                                        wire:loading.class="d-flex justify-content-center">
-                                        <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
-                                    </div>
-                                    <div wire:loading.remove wire:target='AddPropertModalShow' class="text-center">
-                                        {{ $Bond->Getboycott ? $Bond->Getboycott->boycott_number . ' - ' . $Bond->Getboycott->boycott_name : '' }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label class="border-bottom-2 text-center mb-2 w-100"
-                                        style="border-bottom: 2px solid">رقم القطعة </label>
-                                    <div wire:loading wire:target='AddPropertModalShow'
-                                        wire:loading.class="d-flex justify-content-center">
-                                        <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
-                                    </div>
-                                    <div wire:loading.remove wire:target='AddPropertModalShow' class="text-center">
-                                        {{ $Bond->part_number ?? '' }}</div>
-                                </div>
-                                <div class="col">
-                                    <label class="border-bottom-2 text-center mb-2 w-100"
-                                        style="border-bottom: 2px solid">رقم العقار </label>
-                                    <div wire:loading wire:target='AddPropertModalShow'
-                                        wire:loading.class="d-flex justify-content-center">
-                                        <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
-                                    </div>
-                                    <div wire:loading.remove wire:target='AddPropertModalShow' class="text-center">
-                                        {{ $Bond->property_number }}</div>
-                                </div>
-                            </div> --}}
-
-
-                                 <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer="bonds_id" type="text" class="form-control" id="modalPropertbonds_id"
-                                               name="bonds_id" placeholder='' style="color: #000; border: 1px solid #007bff;" readonly>
-                                        <label for="addPropertbonds_id">bonds_id</label>
-                                    </div>
-                                    @error('bonds_id')
-                                        <small class='text-danger inputerror'>{{ $message }}</small>
-                                    @enderror
-                                </div>
-
-
-
-
-                            <hr class="">
-
+                            {{-- <hr class=""> --}}
                             <div class="row">
                                 <!-- الاسم الكامل -->
                                 <div class="mb-3 col">
@@ -76,7 +26,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <!-- الرقم الوظيفي -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
@@ -117,7 +66,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model="to_date" type="text" id="modalPropertto_date"
@@ -130,7 +78,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model='months_count' type="text" id="modalPropertmonths_count"
@@ -143,7 +90,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model='total_amount' type="text" id="modalProperttotal_amount"
@@ -183,7 +129,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='total_paid_amount' type="text"
@@ -197,8 +142,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer="property_status" id="modalPropertproperty_status"
@@ -214,10 +157,7 @@
                                         <small class="text-danger inputerror">{{ $message }}</small>
                                     @enderror
                                 </div>
-
-
                             </div>
-
                             <div class="row">
                                 <!-- حالة العقار والإشعارات في المنتصف -->
                                 <div class="d-flex justify-content-center mb-3 col-12">
@@ -235,7 +175,6 @@
                                             for="modalPropertnotifications">الإشعارات</label>
                                     </div>
                                 </div>
-
                                 <!-- الملاحظات -->
                                 <div class="mb-3 col-12">
                                     <div class="form-floating form-floating-outline">
@@ -248,7 +187,6 @@
                                     @enderror
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <hr class="my-0">

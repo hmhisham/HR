@@ -1,29 +1,22 @@
 <?php
-
 namespace App\Http\Livewire\Property;
-
 use Livewire\Component;
-
 use App\Models\Bonds\Bonds;
 use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
  use App\Models\Property\Property;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
 class Propert extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-
     public $Property = [];
     public $PropertSearch, $Propert, $PropertId;
     public $user_id, $worker_id, $bonds_id, $from_date, $to_date, $months_count, $total_amount, $paid_amount, $property_status, $status, $notifications, $notes, $monthly_amount;
-
     public $workers = [];
-    public  $calculator_number, $department_name, $email , $total_paid_amount , $full_name ;
-
+    public  $calculator_number, $department_name, $email , $total_paid_amount , $full_name  , $property_number;
     public $Bonds = [];
-
     protected $listeners = [
         'SelectWorkerId',
     ];
@@ -31,9 +24,6 @@ class Propert extends Component
     {
          $this->emit('flatpickr');
     }
-
-
-
     public function updateToDate($value)
     {
         if ($value) {
@@ -42,36 +32,25 @@ class Propert extends Component
             // بعد تحديث to_date، حساب الفرق بين التواريخ
             // if (!empty($this->from_date) && !empty($this->to_date)) {
                 try {
-
                     // تحويل النصوص إلى تواريخ باستخدام Carbon
                     $start = Carbon::parse($this->from_date);
                     $end = Carbon::parse($this->to_date);
-
                     // حساب الفرق بين التاريخين بالأشهر
                     $this->months_count = $start->diffInMonths($end);
-
                 } catch (\Exception $e) {
                     // في حالة حدوث خطأ في تحويل التواريخ
                     $this->months_count = null;
                 }
             // }
-
         }
     }
-
-
-
-
-
     // تحديث المبلغ الشهري عند تغيير عدد الأشهر أو المبلغ الكلي
     public function updated($propertyName)
     {
-
         if ($propertyName === 'months_count' || $propertyName === 'total_amount') {
             $this->calculateMonthlyAmount();
         }
     }
-
     // حساب المبلغ الشهري
     public function calculateMonthlyAmount()
     {
@@ -82,16 +61,12 @@ class Propert extends Component
             $this->monthly_amount = 0;
         }
     }
-
-
     public function render()
     {
         $BondSearch = '%' . $this->PropertSearch . '%';
         $Bonds = Bonds::where('boycott_id', 'LIKE', $BondSearch)
-
             ->orWhere('part_number', 'LIKE', $BondSearch)
             ->orWhere('property_number', 'LIKE', $BondSearch)
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
         $links = $Bonds;
@@ -104,10 +79,7 @@ class Propert extends Component
     // {
     //     $PropertSearch = '%' . $this->PropertSearch . '%';
     //     $Property = Property::where('user_id', 'LIKE', $PropertSearch)
-
     //         ->orWhere('bonds_id', 'LIKE', $PropertSearch)
-
-
     //         ->orderBy('id', 'ASC')
     //         ->paginate(10);
     //     $links = $Property;
@@ -116,54 +88,48 @@ class Propert extends Component
     //         'links' => $links
     //     ]);
     // }
-    public function AddPropertModalShow()
+    public function AddPropertModalShow($data)
     {
-        // $this->reset();
+        $BondID = $data[0];
+        $propertyNumber = $data[1];
         $this->resetValidation();
         $this->dispatchBrowserEvent('PropertModalShow');
+        $this->Bonds = Bonds::find($BondID);
+        $this->property_number = $propertyNumber;
+        // dd($this->property_number, $this->Bonds->id);
     }
-
-
- 
-
     public function store()
     {
         $this->resetValidation();
-        // $this->validate([
-        //     'worker_id' => 'required',
-        //     'bonds_id' => 'required',
-        //     'from_date' => 'required',
-        //     'to_date' => 'required',
-        //     'months_count' => 'required',
-        //     'total_amount' => 'required',
-        //     'paid_amount' => 'required',
-        //     'property_status' => 'required',
-        //     'status' => 'required',
-        //     'notifications' => 'required',
-        //     'monthly_amount' => 'required',
-
-
-        // ], [
-        //     'worker_id.required' => 'حقل رقم المستخدم مطلوب',
-        //     'bonds_id.required' => 'حقل رقم العقار مطلوب',
-        //     'from_date.required' => 'حقل من تاريخ مطلوب',
-        //     'to_date.required' => 'حقل الى تاريخ مطلوب',
-        //     'months_count.required' => 'حقل عدد الاشهر مطلوب',
-        //     'total_amount.required' => 'حقل المبلغ الكلي مطلوب',
-        //     'paid_amount.required' => 'حقل مجموع المسدد مطلوب',
-        //     'property_status.required' => 'حقل حالة العقار مطلوب',
-        //     'status.required' => 'حقل الحالة مطلوب',
-        //     'notifications.required' => 'حقل الاشعارات مطلوب',
-        //     'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
-        // ]);
-
-
-
+        $this->validate([
+            'worker_id' => 'required',
+            'bonds_id' => 'required',
+            'from_date' => 'required',
+            'to_date' => 'required',
+            'months_count' => 'required',
+            'total_amount' => 'required',
+            'paid_amount' => 'required',
+            'property_status' => 'required',
+            'status' => 'required',
+            'notifications' => 'required',
+            'monthly_amount' => 'required',
+        ], [
+            'worker_id.required' => 'حقل رقم المستخدم مطلوب',
+            'bonds_id.required' => 'حقل رقم العقار مطلوب',
+            'from_date.required' => 'حقل من تاريخ مطلوب',
+            'to_date.required' => 'حقل الى تاريخ مطلوب',
+            'months_count.required' => 'حقل عدد الاشهر مطلوب',
+            'total_amount.required' => 'حقل المبلغ الكلي مطلوب',
+            'paid_amount.required' => 'حقل مجموع المسدد مطلوب',
+            'property_status.required' => 'حقل حالة العقار مطلوب',
+            'status.required' => 'حقل الحالة مطلوب',
+            'notifications.required' => 'حقل الاشعارات مطلوب',
+            'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
+        ]);
         $this->total_paid_amount = str_replace(',', '', $this->total_paid_amount);
         $this->total_amount = str_replace(',', '', $this->total_amount);
         $this->paid_amount = str_replace(',', '', $this->paid_amount);
         $this->monthly_amount = str_replace(',', '', $this->monthly_amount);
-
         Property::create([
             'user_id' => Auth::id(),
             'full_name' => $this->full_name,
@@ -171,7 +137,7 @@ class Propert extends Component
             'department_name' => $this->department_name,
             'email' => $this->email,
             'total_paid_amount' => $this->total_paid_amount,
-            'bonds_id' => $this->bonds_id,
+            'bonds_id' => $this->property_number,
             'from_date' => $this->from_date,
             'to_date' => $this->to_date,
             'months_count' => $this->months_count,
@@ -183,19 +149,15 @@ class Propert extends Component
             'notes' => $this->notes,
             'monthly_amount' => $this->monthly_amount,
         ]);
-
-
         // $this->reset();
         // $this->dispatchBrowserEvent('success', [
         //     'message' => 'تم الاضافه بنجاح',
         //     'title' => 'اضافه'
         // ]);
     }
-
     public function GetPropert($PropertId)
     {
         $this->resetValidation();
-
         $this->Propert  = Property::find($PropertId);
         $this->PropertId = $this->Propert->id;
         $this->user_id = $this->Propert->user_id;
@@ -212,15 +174,10 @@ class Propert extends Component
         $this->notes = $this->Propert->notes;
         $this->monthly_amount = $this->Propert->monthly_amount;
     }
-
-
-
     public function destroy()
     {
         $Property = Property::find($this->PropertId);
-
         if ($Property) {
-
             $Property->delete();
             $this->reset();
             $this->dispatchBrowserEvent('success', [
