@@ -12,7 +12,7 @@
                 <form id="addpropertModalForm" autocomplete="off">
                     <div class="row row-cols-1  ">
                         <div class="col mb-3">
-                            <div Class="row bg-label-primary" style="border-radius: 15px;">
+                            {{-- <div Class="row bg-label-primary" style="border-radius: 15px;">
                                 <div class="col">
                                     <label class="border-bottom-2 text-center mb-2 w-100"
                                         style="border-bottom: 2px solid">رقم المقاطعة </label>
@@ -44,7 +44,22 @@
                                     <div wire:loading.remove wire:target='AddPropertModalShow' class="text-center">
                                         {{ $Bond->property_number }}</div>
                                 </div>
-                            </div>
+                            </div> --}}
+
+
+                                 <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer="bonds_id" type="text" class="form-control" id="modalPropertbonds_id"
+                                               name="bonds_id" placeholder='' style="color: #000; border: 1px solid #007bff;" readonly>
+                                        <label for="addPropertbonds_id">bonds_id</label>
+                                    </div>
+                                    @error('bonds_id')
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
+                                    @enderror
+                                </div>
+
+
+
 
                             <hr class="">
 
@@ -52,52 +67,40 @@
                                 <!-- الاسم الكامل -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="addPropertfull_name"
-                                               name="full_name"
-                                               value="{{ $full_name ?? '' }}"
-                                               placeholder=" "
-                                               style="color: #000; border: 1px solid #007bff;">
+                                        <input wire:model.defer='full_name' type="text" class="form-control"
+                                            id="modalPropertfull_name" name="full_name"
+                                            placeholder="الأسم الكامل" style="color: #000; border: 1px solid #007bff;">
                                         <label for="addPropertfull_name">الأسم الكامل</label>
                                     </div>
+                                    @error('bonds_id')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
                                 </div>
+
                                 <!-- الرقم الوظيفي -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="addPropertcalculator_number"
-                                               name="calculator_number"
-                                               value="{{ $calculator_number ?? '' }}"
-                                               placeholder=" "
-                                               style="color: #000; border: 1px solid #007bff;">
+                                        <input  wire:model.defer='calculator_number' type="text" class="form-control" id="addPropertcalculator_number"
+                                            name="calculator_number"
+                                            placeholder="الرقم الوظيفي" style="color: #000; border: 1px solid #007bff;">
                                         <label for="addPropertcalculator_number">الرقم الوظيفي</label>
                                     </div>
                                 </div>
                                 <!-- القسم -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="addPropertdepartment_name"
-                                               name="department_name"
-                                               value="{{ $department_name ?? '' }}"
-                                               placeholder=" "
-                                               style="color: #000; border: 1px solid #007bff;">
+                                        <input wire:model.defer='department_name' type="text" class="form-control" id="addPropertdepartment_name"
+                                            name="department_name"   placeholder="القسم"
+                                            style="color: #000; border: 1px solid #007bff;">
                                         <label for="addPropertdepartment_name">القسم</label>
                                     </div>
                                 </div>
                                 <!-- الأيميل -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="email"
-                                               class="form-control"
-                                               id="addPropertemail"
-                                               name="email"
-                                               value="{{ $email ?? '' }}"
-                                               placeholder=" "
-                                               style="color: #000; border: 1px solid #007bff;">
+                                        <input wire:model.defer='email' type="email" class="form-control" id="addPropertemail" name="email"
+                                         placeholder="Email"
+                                            style="color: #000; border: 1px solid #007bff;">
                                         <label for="addPropertemail">الأيميل</label>
                                     </div>
                                 </div>
@@ -119,7 +122,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model="to_date" type="text" id="modalPropertto_date"
                                             placeholder="الى تاريخ"
-                                            class="form-control @error('to_date') is-invalid is-filled @enderror" readonly />
+                                            class="form-control @error('to_date') is-invalid is-filled @enderror"
+                                            readonly />
                                         <label for="modalPropertto_date">الى تاريخ</label>
                                     </div>
                                     @error('to_date')
@@ -142,11 +146,10 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='total_amount' type="text"
-                                            id="modalProperttotal_amount" placeholder="المبلغ الكلي"
+                                        <input wire:model='total_amount' type="text" id="modalProperttotal_amount"
+                                            placeholder="المبلغ الكلي"
                                             class="form-control @error('total_amount') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)"
-                                            oninput="formatWithCommas(this)" />
+                                            onkeypress="return onlyNumberKey(event)" oninput="formatWithCommas(this)" />
                                         <label for="modalProperttotal_amount">المبلغ الكلي</label>
                                     </div>
                                     @error('total_amount')
@@ -195,76 +198,55 @@
                                     @enderror
                                 </div>
 
-                                <style>
-                                     select option[value="محجوز"] {
-                                        color: red;
-                                     }
-                                </style>
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        const selectElement = document.getElementById('modalPropertproperty_status');
-                                        selectElement.addEventListener('change', function() {
-                                            if (selectElement.value === 'محجوز') {
-                                                selectElement.style.color = 'red';
-                                            } else {
-                                                selectElement.style.color = '';
-                                            }
-                                        });
-                                    });
-                                </script>
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='property_status' id="modalPropertproperty_status"
-                                            class="form-control @error('property_status') is-invalid is-filled @enderror"
-                                            style="width: 100%;">
+                                        <select wire:model.defer="property_status" id="modalPropertproperty_status"
+                                                class="form-control @error('property_status') is-invalid is-filled @enderror"
+                                                style="width: 100%;" required>
+                                            <option value="" disabled selected>اختر حالة العقار</option>
                                             <option value="محجوز">محجوز</option>
                                             <option value="رفع حجز">رفع حجز</option>
                                         </select>
                                         <label for="modalPropertproperty_status">حالة العقار</label>
                                     </div>
                                     @error('property_status')
-                                        <small class='text-danger inputerror'>{{ $message }}</small>
+                                        <small class="text-danger inputerror">{{ $message }}</small>
                                     @enderror
                                 </div>
 
+
                             </div>
+
                             <div class="row">
-                                <div class="mb-3 col-md-6">
+                                <!-- حالة العقار والإشعارات في المنتصف -->
+                                <div class="d-flex justify-content-center mb-3 col-12">
+                                    <div class="form-check form-switch me-5">
+                                        <input wire:model.defer="status"
+                                            class="form-check-input @error('status') is-invalid is-filled @enderror"
+                                            type="checkbox" id="modalPropertstatus">
+                                        <label class="form-check-label" for="modalPropertstatus">الحالة</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input wire:model.defer="notifications"
+                                            class="form-check-input @error('notifications') is-invalid is-filled @enderror"
+                                            type="checkbox" id="modalPropertnotifications">
+                                        <label class="form-check-label"
+                                            for="modalPropertnotifications">الإشعارات</label>
+                                    </div>
+                                </div>
+
+                                <!-- الملاحظات -->
+                                <div class="mb-3 col-12">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='notes' type="text" id="modalPropertnotes"
-                                               placeholder="ملاحظات"
-                                               class="form-control @error('notes') is-invalid is-filled @enderror" />
+                                        <textarea wire:model.defer='notes' id="modalPropertnotes" placeholder="ملاحظات"
+                                            class="form-control @error('notes') is-invalid is-filled @enderror" style="height: 150px;"></textarea>
                                         <label for="modalPropertnotes">ملاحظات</label>
                                     </div>
                                     @error('notes')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col">
-                                    <div class="form-check form-switch">
-                                        <input wire:model.defer="status"
-                                               class="form-check-input @error('status') is-invalid is-filled @enderror"
-                                               type="checkbox" id="modalPropertstatus">
-                                        <label class="form-check-label" for="modalPropertstatus">حالة العقار</label>
-                                    </div>
-                                    @error('status')
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
-                                <div class="mb-3 col">
-                                    <div class="form-check form-switch">
-                                        <input wire:model.defer="notifications"
-                                               class="form-check-input @error('notifications') is-invalid is-filled @enderror"
-                                               type="checkbox" id="modalPropertnotifications">
-                                        <label class="form-check-label" for="modalPropertnotifications">الاشعارات</label>
-                                    </div>
-                                    @error('notifications')
-                                        <small class='text-danger inputerror'>{{ $message }}</small>
-                                    @enderror
-                                </div>
-
-
                             </div>
 
                         </div>
@@ -272,7 +254,7 @@
                     <hr class="my-0">
                     <div class="text-center col-12 demo-vertical-spacing mb-n4">
                         <button wire:click='store' wire:loading.attr="disabled" type="button"
-                            class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
+                            class="btn btn-primary me-sm-3 me-1">حفظ</button>
                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                             aria-label="Close">تجاهل</button>
                     </div>
