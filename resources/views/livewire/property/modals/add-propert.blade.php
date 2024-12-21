@@ -15,43 +15,61 @@
                             {{-- <hr class=""> --}}
                             <div class="row">
                                 <!-- الاسم الكامل -->
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='full_name' type="text" class="form-control"
-                                            id="modalPropertfull_name" name="full_name"
-                                            placeholder="الأسم الكامل" style="color: #000; border: 1px solid #007bff;">
-                                        <label for="addPropertfull_name">الأسم الكامل</label>
+                                        <input wire:model='full_name'
+                                            type="text" id="modalPropertfull_name" placeholder="الاسم الكامل"
+
+                                            class="form-control @error('full_name') is-invalid is-filled @enderror" />
+                                        <label for="modalPropertfull_name">الاسم الكامل</label>
                                     </div>
-                                    @error('bonds_id')
+                                    @error('full_name')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                                <!-- الرقم الوظيفي -->
+
+
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input  wire:model.defer='calculator_number' type="text" class="form-control" id="addPropertcalculator_number"
-                                            name="calculator_number"
-                                            placeholder="الرقم الوظيفي" style="color: #000; border: 1px solid #007bff;">
-                                        <label for="addPropertcalculator_number">الرقم الوظيفي</label>
+                                        <input wire:model='calculator_number'
+                                            type="text" id="modalPropertcalculator_number" placeholder="رقم الحاسبة"
+
+                                            class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
+                                        <label for="modalPropertcalculator_number">رقم الحاسبة</label>
                                     </div>
+                                    @error('calculator_number')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
                                 </div>
-                                <!-- القسم -->
+
+
+ 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='department_name' type="text" class="form-control" id="addPropertdepartment_name"
-                                            name="department_name"   placeholder="القسم"
-                                            style="color: #000; border: 1px solid #007bff;">
-                                        <label for="addPropertdepartment_name">القسم</label>
+                                        <input wire:model='department_name'
+                                            type="text" id="modalPropertdepartment_name" placeholder="القسم"
+
+                                            class="form-control @error('department_name') is-invalid is-filled @enderror" />
+                                        <label for="modalPropertdepartment_name">القسم</label>
                                     </div>
+                                    @error('department_name')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
                                 </div>
-                                <!-- الأيميل -->
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='email' type="email" class="form-control" id="addPropertemail" name="email"
-                                         placeholder="Email"
-                                            style="color: #000; border: 1px solid #007bff;">
-                                        <label for="addPropertemail">الأيميل</label>
+                                        <input wire:model='email'
+                                            type="text" id="modalPropertemail" placeholder="البريد"
+
+                                            class="form-control @error('email') is-invalid is-filled @enderror" />
+                                        <label for="modalPropertemail">البريد</label>
                                     </div>
+                                    @error('email')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">

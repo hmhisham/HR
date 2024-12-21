@@ -54,7 +54,7 @@ class Propert extends Component
     // حساب المبلغ الشهري
     public function calculateMonthlyAmount()
     {
-        $cleanTotalAmount = (float)str_replace(',', '', $this->total_amount); // Remove commas
+        $cleanTotalAmount = (float)str_replace(',', '', $this->total_amount);
         if ($this->months_count > 0 && $cleanTotalAmount > 0) {
             $this->monthly_amount = number_format($cleanTotalAmount / $this->months_count, 2);
         } else {
@@ -75,19 +75,7 @@ class Propert extends Component
             'links' => $links
         ]);
     }
-    // public function render()
-    // {
-    //     $PropertSearch = '%' . $this->PropertSearch . '%';
-    //     $Property = Property::where('user_id', 'LIKE', $PropertSearch)
-    //         ->orWhere('bonds_id', 'LIKE', $PropertSearch)
-    //         ->orderBy('id', 'ASC')
-    //         ->paginate(10);
-    //     $links = $Property;
-    //     $this->Property = collect($Property->items());
-    //     return view('livewire.property.propert', [
-    //         'links' => $links
-    //     ]);
-    // }
+
     public function AddPropertModalShow($data)
     {
         $BondID = $data[0];
@@ -97,34 +85,37 @@ class Propert extends Component
         $this->Bonds = Bonds::find($BondID);
         $this->property_number = $propertyNumber;
         // dd($this->property_number, $this->Bonds->id);
-    }
+         
+     }
     public function store()
     {
         $this->resetValidation();
         $this->validate([
-            'worker_id' => 'required',
-            'bonds_id' => 'required',
+
+            'full_name' => 'required',
+            'calculator_number' => 'required',
+            'department_name' => 'required',
+            'email' => 'required',
+            'total_paid_amount' => 'required',
             'from_date' => 'required',
             'to_date' => 'required',
             'months_count' => 'required',
             'total_amount' => 'required',
             'paid_amount' => 'required',
-            'property_status' => 'required',
-            'status' => 'required',
-            'notifications' => 'required',
             'monthly_amount' => 'required',
         ], [
-            'worker_id.required' => 'حقل رقم المستخدم مطلوب',
-            'bonds_id.required' => 'حقل رقم العقار مطلوب',
+
+            'full_name.required' => 'حقل  الاسم مطلوب',
+            'calculator_number.required' => 'حقل  رقم الحاسبة مطلوب',
+            'department_name.required' => 'حقل القسم مطلوب',
+            'email.required' => 'حقل email مطلوب',
+            'total_paid_amount.required' => 'حقل مجموع المتبقي مطلوب',
             'from_date.required' => 'حقل من تاريخ مطلوب',
             'to_date.required' => 'حقل الى تاريخ مطلوب',
             'months_count.required' => 'حقل عدد الاشهر مطلوب',
             'total_amount.required' => 'حقل المبلغ الكلي مطلوب',
             'paid_amount.required' => 'حقل مجموع المسدد مطلوب',
-            'property_status.required' => 'حقل حالة العقار مطلوب',
-            'status.required' => 'حقل الحالة مطلوب',
-            'notifications.required' => 'حقل الاشعارات مطلوب',
-            'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
+               'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
         ]);
         $this->total_paid_amount = str_replace(',', '', $this->total_paid_amount);
         $this->total_amount = str_replace(',', '', $this->total_amount);
@@ -149,12 +140,13 @@ class Propert extends Component
             'notes' => $this->notes,
             'monthly_amount' => $this->monthly_amount,
         ]);
-        // $this->reset();
-        // $this->dispatchBrowserEvent('success', [
-        //     'message' => 'تم الاضافه بنجاح',
-        //     'title' => 'اضافه'
-        // ]);
+        $this->reset();
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'تم الاضافه بنجاح',
+            'title' => 'اضافه'
+        ]);
     }
+
     public function GetPropert($PropertId)
     {
         $this->resetValidation();
