@@ -124,6 +124,8 @@ class Propert extends Component
     }
 
 
+ 
+
     public function store()
     {
         $this->resetValidation();
@@ -175,7 +177,7 @@ class Propert extends Component
             'months_count' => $this->months_count,
             'total_amount' => $this->total_amount,
             'paid_amount' => $this->paid_amount,
-            'property_status' => $this->property_status ?: 'محجوز',  
+            'property_status' => $this->property_status ?: 'محجوز',
             'status' => $this->status ?: '0',
             'notifications' => $this->notifications?: '0',
             'notes' => $this->notes,

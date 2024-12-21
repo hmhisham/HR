@@ -46,14 +46,29 @@
                                 </div>
                             </div> --}}
 
-                            {{-- <hr class=""> --}}
+
+                                 <div class="mb-3 col">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer="bonds_id" type="text" class="form-control" id="modalPropertbonds_id"
+                                               name="bonds_id" placeholder='' style="color: #000; border: 1px solid #007bff;" readonly>
+                                        <label for="addPropertbonds_id">bonds_id</label>
+                                    </div>
+                                    @error('bonds_id')
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
+                                    @enderror
+                                </div>
+
+
+
+
+                            <hr class="">
 
                             <div class="row">
                                 <!-- الاسم الكامل -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='full_name' type="text" class="form-control"
-                                            id="modalPropertfull_name" name="full_name" {{-- value="{{ $full_name ?? '' }}" --}}
+                                            id="modalPropertfull_name" name="full_name"
                                             placeholder="الأسم الكامل" style="color: #000; border: 1px solid #007bff;">
                                         <label for="addPropertfull_name">الأسم الكامل</label>
                                     </div>
