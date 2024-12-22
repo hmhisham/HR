@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\Property\Property;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class Propert extends Component
 {
@@ -64,26 +65,37 @@ class Propert extends Component
             $this->monthly_amount = 0;
         }
     }
+    use WithPagination;
+
+
+    public function mount()
+    {
+        $this->PropertSearch = '';
+    }
+
+ 
     public function render()
     {
         $BondSearch = '%' . $this->PropertSearch . '%';
-        $Bonds = Bonds::where('specialized_department', '=', 'شعبة الاملاك') // إضافة شرط
+
+        $bonds = QueryBuilder::for(Bonds::class)
+            ->allowedFilters(['property_number', 'part_number', 'boycott_id'])
+            ->allowedSorts('property_number', 'part_number')
+            ->where('specialized_department', '=', 'شعبة الاملاك')
             ->where(function ($query) use ($BondSearch) {
                 $query->where('boycott_id', 'LIKE', $BondSearch)
-                    ->orWhere('part_number', 'LIKE', $BondSearch)
-                    ->orWhere('property_number', 'LIKE', $BondSearch);
+                      ->orWhere('part_number', 'LIKE', $BondSearch)
+                      ->orWhere('property_number', 'LIKE', $BondSearch);
             })
-            ->orderBy('id', 'ASC')
             ->paginate(10);
 
-        $links = $Bonds;
-        $this->Bonds = collect($Bonds->items());
-
         return view('livewire.property.propert', [
-            'links' => $links
+            'bonds' => $bonds,
+            'links' => $bonds->links()
         ]);
     }
- 
+
+
     public function AddPropertModalShow($data)
     {
         $BondID = $data[0];
