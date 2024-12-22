@@ -45,7 +45,7 @@
                                 </div>
 
 
- 
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model='department_name'
@@ -179,13 +179,13 @@
                             <div class="row">
                                 <!-- حالة العقار والإشعارات في المنتصف -->
                                 <div class="d-flex justify-content-center mb-3 col-12">
-                                    <div class="form-check form-switch me-5">
+                                    {{-- <div class="form-check form-switch me-5">
                                         <input wire:model.defer="status"
                                             class="form-check-input @error('status') is-invalid is-filled @enderror"
                                             type="checkbox" id="modalPropertstatus">
                                         <label class="form-check-label" for="modalPropertstatus">الحالة</label>
-                                    </div>
-                                    <div class="form-check form-switch">
+                                    </div> --}}
+                                    <div class="mb-3 col-12 form-check form-switch">
                                         <input wire:model.defer="notifications"
                                             class="form-check-input @error('notifications') is-invalid is-filled @enderror"
                                             type="checkbox" id="modalPropertnotifications">

@@ -36,25 +36,34 @@
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
-                                <td class="text-center">{{ $Bond->Getboycott ? $Bond->Getboycott->boycott_number . ' - ' . $Bond->Getboycott->boycott_name : '' }}</td>
+                                <td class="text-center">
+                                    {{ $Bond->Getboycott ? $Bond->Getboycott->boycott_number . ' - ' . $Bond->Getboycott->boycott_name : '' }}
+                                </td>
                                 <td class="text-center">{{ $Bond->part_number }}</td>
                                 <td class="text-center">{{ $Bond->property_number }}</td>
-                                <td class="text-center"> </td>
+
+                                <td class="text-center"
+                                    style="color: {{ $Bond->getPropert ? ($Bond->getPropert->status == 1 ? 'green' : 'red') : 'inherit' }}">
+                                    {{ $Bond->getPropert ? ($Bond->getPropert->status == 1 ? 'مستلمة' : 'غير مستلمة') : '' }}
+                                </td>
 
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('propert-create')
-                                        <button wire:click='AddPropertModalShow(["{{ $Bond->id }}", "{{ $Bond->property_number }}"])' class="p-0 px-1 btn btn-text-primary waves-effect"
-                                            data-bs-toggle="modal" data-bs-target="#addpropertModal">
-                                            <span class="mdi mdi-home-plus-outline fs-3"></span>
-                                        </button>
-                                    @endcan
-                                    @can('Property-Show')
-                                    <button wire:click='AddPropertModalShow({{ $Bond->id }})' class="p-0 px-1 btn btn-text-black waves-effect"
-                                        data-bs-toggle="modal" data-bs-target="#addpropertModal">
-                                        <span class="mdi mdi-calculator fs-3"></span>
-                                    </button>
-                                @endcan
+                                            <button
+                                                wire:click='AddPropertModalShow(["{{ $Bond->id }}", "{{ $Bond->property_number }}"])'
+                                                class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#addpropertModal">
+                                                <span class="mdi mdi-home-plus-outline fs-3"></span>
+                                            </button>
+                                        @endcan
+                                        @can('Property-Show')
+                                            <button wire:click='AddPropertModalShow({{ $Bond->id }})'
+                                                class="p-0 px-1 btn btn-text-black waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#addpropertModal">
+                                                <span class="mdi mdi-calculator fs-3"></span>
+                                            </button>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

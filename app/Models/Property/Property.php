@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Models\Property;
+
 use App\Models\Bonds\Bonds;
 use App\Models\Workers\Workers;
 use App\Models\Boycotts\Boycotts;
@@ -8,13 +10,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Property extends Model
 {
-     use HasFactory;
+    use HasFactory;
     protected $guarded = [];
     protected $table = "property";
 
-    Public function Getworker()
+    public function Getworker()
     {
-        return $this->belongsTo(Workers::class, 'worker_id' );
+        return $this->belongsTo(Workers::class, 'worker_id');
     }
 
     public function Getboycott()
@@ -29,4 +31,8 @@ class Property extends Model
 
 
 
-}
+        public function bond()
+        {
+            return $this->belongsTo(Bonds::class, 'bonds_id', 'property_number');
+        }
+    }

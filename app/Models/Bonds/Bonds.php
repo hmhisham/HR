@@ -3,6 +3,7 @@
 namespace App\Models\Bonds;
 
 use App\Models\Boycotts\Boycotts;
+use App\Models\Property\Property;
 use App\Models\Districts\Districts;
 use App\Models\Department\Department;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,7 @@ class Bonds extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = "bonds";
-    
+
     public function Getboycott()
     {
         return $this->belongsTo(Boycotts::class, 'boycott_id');
@@ -53,5 +54,12 @@ class Bonds extends Model
     public function setDateAttribute($value)
     {
         $this->attributes['date'] = \Carbon\Carbon::parse($value . '-01')->format('Y-m-d');
+    }
+
+
+
+    public function getPropert()
+    {
+        return $this->hasOne(Property::class, 'bonds_id', 'property_number');
     }
 }
