@@ -28,8 +28,9 @@ class Bond extends Component
     public $Districts = [];
     public $propertytypes = [];
     public $bondSearch, $bond, $bondId;
-    public $user_id, $boycott_id, $part_number, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $property_deed_image, $notes, $visibility;
+    public $user_id, $boycott_id, $part_number, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $property_deed_image, $notes;
     public $GovernorateName, $DistrictsName, $filePreview;
+    public $visibility = false;
 
     protected $listeners = [
         'SelectOwnership',

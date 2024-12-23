@@ -18,23 +18,14 @@
                     <form id="removeBondModalForm" onsubmit="return false" autocomplete="off">
                         <div class="row bg-label-danger">
                             <div class="col">
-                                <label class="border-bottom-2 text-center mb-2 w-100">رقم المقاطعة</label>
+                                <label class="border-bottom-2 text-center mb-2 w-100">رقم واسم المقاطعة</label>
                                 <div wire:loading wire:target='AddBondModal'
                                     wire:loading.class="d-flex justify-content-center">
                                     <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                                 </div>
                                 <div wire:loading.remove wire:target='AddBondModal' class="text-center">
-                                    {{ $boycott->boycott_number ?? '' }}</div>
-                            </div>
-
-                            <div class="col">
-                                <label class="border-bottom-2 text-center mb-2 w-100">اسم المقاطعة</label>
-                                <div wire:loading wire:target='AddBondModal'
-                                    wire:loading.class="d-flex justify-content-center">
-                                    <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
-                                </div>
-                                <div wire:loading.remove wire:target='AddBondModal' class="text-center">
-                                    {{ $boycott->boycott_name ?? '' }}</div>
+                                    <span>{{ $Boycott->boycott_number ?? '' }}</span> -
+                                    <span>{{ $Boycott->boycott_name ?? '' }}</span></div>
                             </div>
                         </div>
 
@@ -43,14 +34,14 @@
                         <div Class="row">
                             <div class="col mb-3">
                                 <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">رقم القطغة</label>
+                                    <label class="form-control-plaintext mt-n2">رقم القطغة</label>
                                     <div>{{ $part_number }}</div>
                                 </div>
                             </div>
 
                             <div class="col mb-3">
                                 <div class="text-center">
-                                    <label class="text-danger border-bottom-2 text-center w-100">رقم العقار</label>
+                                    <label class="form-control-plaintext mt-n2">رقم العقار</label>
                                     <div>{{ $property_number }}</div>
                                 </div>
                             </div>
