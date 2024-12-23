@@ -46,12 +46,18 @@ class Bond extends Component
         $this->emit('flatpickr');
     }
 
+    public $bonds;
     public function mount()
     {
         $this->department = Department::all();
         $this->governorates = Governorates::all();
         $this->propertytypes = Propertytypes::all();
+        $this->bonds = Bonds::with('getPropert')->get();
+
     }
+
+
+
 
     public function render()
     {
@@ -122,19 +128,19 @@ class Bond extends Component
 
         $this->Boycott = Boycotts::find($BoycottID);
         $this->boycott_id = $BoycottID;
-
     }
 
-    public function updatedFile() {
+    public function updatedFile()
+    {
         $this->filePreview = $this->property_deed_image->temporaryUrl();
     }
-    public function upload() {
+    public function upload()
+    {
         $this->validate([
             'property_deed_image' => 'required|file|max:10240', // الحد الأقصى للحجم 10 ميجابايت
         ]);
 
         $this->property_deed_image->store('public/Bonds');
-
     }
 
     public function store()
