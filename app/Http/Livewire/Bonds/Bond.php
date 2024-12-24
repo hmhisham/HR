@@ -53,7 +53,6 @@ class Bond extends Component
         $this->governorates = Governorates::all();
         $this->propertytypes = Propertytypes::all();
         $this->bonds = Bonds::with('getPropert')->get();
-
     }
 
 
@@ -62,7 +61,10 @@ class Bond extends Component
     public function render()
     {
         $bondSearch = '%' . $this->bondSearch . '%';
-        $boycotts = Boycotts::where('id', 'Like', $bondSearch)->orderBy('id', 'ASC')->paginate(10);
+        $boycotts = Boycotts::where(function ($query) use ($bondSearch) {
+            $query->where('boycott_number', 'like', $bondSearch)
+            ->orWhere('boycott_name', 'like', $bondSearch);
+        })->orderBy('id', 'ASC')->paginate(10);
 
         $links = $boycotts;
         $this->boycotts = collect($boycotts->items());
