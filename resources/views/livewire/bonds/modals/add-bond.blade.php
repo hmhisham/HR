@@ -20,7 +20,9 @@
                                         <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                                     </div>
                                     <div wire:loading.remove wire:target='AddBondModal' class="text-center">
-                                        {{ $boycott->boycott_number ?? '' }} - {{ $boycott->boycott_name ?? '' }}</div>
+                                        <span>{{ $Boycott->boycott_number ?? '' }}</span> -
+                                        <span>{{ $Boycott->boycott_name ?? '' }}</span>
+                                    </div>
                                 </div>
 
                                 <!--<div class="col">

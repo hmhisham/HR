@@ -10,13 +10,13 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
     <link rel="stylesheet"
         href="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
-
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" /> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
 @endsection
 @section('page-style')
     <style>
@@ -42,12 +42,16 @@
     <script src=" {{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
-   {{--  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script> --}}
+    <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script> --}}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+
 @endsection
 
 @section('page-script')
@@ -82,38 +86,36 @@
             });
         }); */
 
+
         $(document).ready(function() {
             function initFlatpickr(selector, eventName) {
                 $(selector).flatpickr({
                     placeholder: 'التاريخ',
                     altInput: true,
-                    altFormat: "Y-m", // تنسيق العرض البديل في الحقل (شهر وسنة فقط)
-                    dateFormat: "Y-m", // تنسيق التخزين (شهر وسنة فقط)
-                    onReady: function(selectedDates, dateStr, instance) {
-                        instance.currentMonthElement = document.createElement('div');
-                        instance.currentMonthElement.classList.add('flatpickr-current-month');
-                        instance.calendarContainer.insertBefore(instance.currentMonthElement, instance
-                            .daysContainer);
-
-                        instance.yearElement.style.display = 'none';
-                        instance.monthElement.style.display = 'none';
-                        instance.timeContainer.style.display = 'none';
-
-                        instance.updateCurrentMonth = function() {
-                            const month = instance.l10n.months.longhand[instance.currentMonth];
-                            const year = instance.currentYear;
-                            instance.currentMonthElement.innerHTML = `${month} ${year}`;
-                        };
-
-                        instance.updateCurrentMonth();
+                    altFormat: "Y-m",
+                    dateFormat: "Y-m",
+                    locale: {
+                        months: {
+                            shorthand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                                'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                            ],
+                            longhand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                                'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                            ]
+                        }
                     },
+                    plugins: [
+                        new monthSelectPlugin({
+                            shorthand: true,
+                            dateFormat: "Y-m",
+                            altFormat: "Y-m",
+                            theme: "light"
+                        })
+                    ],
                     onChange: function(selectedDates, dateStr, instance) {
-                        instance.updateCurrentMonth();
+                        console.log(dateStr);
+                        livewire.emit(eventName, dateStr);
                     }
-                });
-
-                $(selector).on('change', function(e) {
-                    livewire.emit(eventName, e.target.value);
                 });
             }
 
@@ -126,6 +128,7 @@
                 initFlatpickr('#editDate', 'editbondModal');
             });
         });
+
 
 
         $(document).ready(function() {

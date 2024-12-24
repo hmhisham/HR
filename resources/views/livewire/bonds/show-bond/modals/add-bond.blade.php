@@ -20,18 +20,11 @@
                                         <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                                     </div>
                                     <div wire:loading.remove wire:target='AddBondModal' class="text-center">
-                                        {{ $boycott->boycott_number ?? '' }} - {{ $boycott->boycott_name ?? '' }}</div>
+                                        <span>{{ $Boycott->boycott_number ?? '' }}</span> -
+                                        <span>{{ $Boycott->boycott_name ?? '' }}</span>
+                                    </div>
                                 </div>
 
-                                <!--<div class="col">
-                                <label class="border-bottom-2 text-center mb-2 w-100">اسم المقاطعة</label>
-                                <div wire:loading wire:target='AddBondModal'
-                                    wire:loading.class="d-flex justify-content-center">
-                                    <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
-                                </div>
-                                <div wire:loading.remove wire:target='AddBondModal' class="text-center">
-                                    {{ $Boycott->boycott_name ?? '' }}</div>
-                                </div>-->
                             </div>
 
                             <hr class="">
@@ -130,8 +123,8 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='area_in_olok' type="text"
-                                            id="modalBondarea_in_olok" placeholder="المساحة بالأولك"
+                                        <input wire:model.defer='area_in_olok' type="text" id="modalBondarea_in_olok"
+                                            placeholder="المساحة بالأولك"
                                             class="form-control @error('area_in_olok') is-invalid is-filled @enderror"
                                             onkeypress="return onlyNumberKey(event)"
                                             oninput="validateOlokInput(event)" />
@@ -284,6 +277,7 @@
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
+
                                 <div class="mb-3 col">
                                     <div class="form-check form-switch">
                                         <input wire:model.defer='visibility' type="checkbox" id="modalBondvisibility"
@@ -295,7 +289,6 @@
                                         <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
-
                             </div>
                             <div Class="row">
                                 <div class="mb-3 col">
@@ -320,8 +313,8 @@
                                         <label for="modalBondproperty_deed_image">صورة السند العقاري</label>
                                     </div>
                                     @error('property_deed_image')
-                                    <small class='text-danger inputerror'>{{ $message }}</small>
-                                @enderror
+    <small class='text-danger inputerror'>{{ $message }}</small>
+@enderror
                             </div>-->
                         <div class="col-4 text-center">
                             <div>
