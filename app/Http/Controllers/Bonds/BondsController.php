@@ -10,13 +10,7 @@
  {
      public function index(Request $request)
      {
-         $bonds = QueryBuilder::for(Bonds::class)
-             ->allowedFilters(['property_number', 'part_number'])
-             ->allowedSorts('property_number', 'part_number')
-             ->paginate(10)
-             ->appends($request->query());
-
-         return view('content.Bonds.index', compact('bonds'));
+        return view('content.Bonds.index');
      }
 
      public function BondShow($id)
