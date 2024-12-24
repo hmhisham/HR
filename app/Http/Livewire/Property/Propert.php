@@ -7,9 +7,7 @@ use App\Models\Bonds\Bonds;
 use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
 use App\Models\Property\Property;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class Propert extends Component
 {
@@ -65,35 +63,43 @@ class Propert extends Component
             $this->monthly_amount = 0;
         }
     }
-    use WithPagination;
 
+    public $search = [
+        'boycott_number' => '',
+        'part_number' => '',
+        'property_number' => '',
+        'status' => '',
+    ];
 
-    public function mount()
-    {
-        $this->PropertSearch = '';
-    }
-
- 
     public function render()
     {
-        $BondSearch = '%' . $this->PropertSearch . '%';
+        $bonds = Bonds::query();
 
-        $bonds = QueryBuilder::for(Bonds::class)
-            ->allowedFilters(['property_number', 'part_number', 'boycott_id'])
-            ->allowedSorts('property_number', 'part_number')
-            ->where('specialized_department', '=', 'شعبة الاملاك')
-            ->where(function ($query) use ($BondSearch) {
-                $query->where('boycott_id', 'LIKE', $BondSearch)
-                      ->orWhere('part_number', 'LIKE', $BondSearch)
-                      ->orWhere('property_number', 'LIKE', $BondSearch);
-            })
-            ->paginate(10);
+        if (!empty($this->search['boycott_number'])) {
+            $bonds->whereHas('Getboycott', function ($query) {
+                $query->where('boycott_number', 'like', '%' . $this->search['boycott_number'] . '%');
+            });
+        }
 
-        return view('livewire.property.propert', [
-            'bonds' => $bonds,
-            'links' => $bonds->links()
+        if (!empty($this->search['part_number'])) {
+            $bonds->where('part_number', 'like', '%' . $this->search['part_number'] . '%');
+        }
+
+        if (!empty($this->search['property_number'])) {
+            $bonds->where('property_number', 'like', '%' . $this->search['property_number'] . '%');
+        }
+
+        if (isset($this->search['status']) && $this->search['status'] !== '') {
+            $bonds->whereHas('getPropert', function ($query) {
+                $query->where('status', $this->search['status']);
+            });
+        }
+
+        return view('livewire.Property.Propert', [
+            'bonds' => $bonds->paginate(10),
         ]);
     }
+
 
 
     public function AddPropertModalShow($data)
@@ -104,9 +110,18 @@ class Propert extends Component
         $this->dispatchBrowserEvent('PropertModalShow');
         $this->Bonds = Bonds::find($BondID);
         $this->property_number = $propertyNumber;
-        // dd($this->property_number, $this->Bonds->id);
+
+         $this->Property = Property::where('bonds_id', $propertyNumber)->first();
+        if (is_object($this->Property)) {
+            $this->status = $this->Property->status;
+        } else {
+            $this->status = '0';
+        }
 
     }
+
+
+
     public function store()
     {
         $this->resetValidation();
