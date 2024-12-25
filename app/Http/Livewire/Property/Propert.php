@@ -64,6 +64,8 @@ class Propert extends Component
         }
     }
 
+    use WithPagination;
+
     public $search = [
         'boycott_number' => '',
         'part_number' => '',
@@ -71,34 +73,49 @@ class Propert extends Component
         'status' => '',
     ];
 
+    public $sortField = 'id'; // حقل الفرز الافتراضي
+    public $sortDirection = 'asc'; // اتجاه الفرز الافتراضي
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortField = $field;
+            $this->sortDirection = 'asc';
+        }
+    }
+
     public function render()
     {
-        $bonds = Bonds::query();
+        $bonds = Bonds::query()
+     ->where('specialized_department', 'شعبة الاملاك')
+            ->when($this->search['boycott_number'], function($query) {
+                $query->whereHas('Getboycott', function ($query) {
+                    $query->where('boycott_number', 'like', '%' . $this->search['boycott_number'] . '%');
+                });
+            })
+            ->when($this->search['part_number'], function($query) {
+                $query->where('part_number', 'like', '%' . $this->search['part_number'] . '%');
+            })
+            ->when($this->search['property_number'], function($query) {
+                $query->where('property_number', 'like', '%' . $this->search['property_number'] . '%');
+            })
+            ->when($this->search['status'] !== '', function($query) {
+                $query->whereHas('getPropert', function ($query) {
+                    $query->where('status', $this->search['status']);
+                });
+            })
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate(10);
 
-        if (!empty($this->search['boycott_number'])) {
-            $bonds->whereHas('Getboycott', function ($query) {
-                $query->where('boycott_number', 'like', '%' . $this->search['boycott_number'] . '%');
-            });
-        }
-
-        if (!empty($this->search['part_number'])) {
-            $bonds->where('part_number', 'like', '%' . $this->search['part_number'] . '%');
-        }
-
-        if (!empty($this->search['property_number'])) {
-            $bonds->where('property_number', 'like', '%' . $this->search['property_number'] . '%');
-        }
-
-        if (isset($this->search['status']) && $this->search['status'] !== '') {
-            $bonds->whereHas('getPropert', function ($query) {
-                $query->where('status', $this->search['status']);
-            });
-        }
-
-        return view('livewire.Property.Propert', [
-            'bonds' => $bonds->paginate(10),
+        return view('livewire.property.propert', [
+            'bonds' => $bonds,
+            'sortField' => $this->sortField,
+            'sortDirection' => $this->sortDirection,
         ]);
     }
+
 
 
 
