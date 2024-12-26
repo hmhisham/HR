@@ -8,7 +8,7 @@ use App\Models\Workers\Workers;
 use App\Models\Dispatch\Dispatch;
 use Illuminate\Support\Facades\Auth;
 
-class dispatc extends Component
+class Dispatc extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
