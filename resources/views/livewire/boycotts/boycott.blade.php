@@ -30,39 +30,39 @@
                     <tr>
                         <th>#</th>
                         <th>
-                            <input type="text" wire:model="searchBoycottNumber" class="form-control"
+                            <input type="text" wire:model="search.boycott_number" class="form-control"
                                 placeholder="بحث برقم المقاطعة ..">
                         </th>
                         <th>
-                            <input type="text" wire:model="searchBoycottName" class="form-control"
+                            <input type="text" wire:model="search.boycott_Name" class="form-control"
                                 placeholder="بحث اسم المقاطعة ..">
                         </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 0; ?>
-                    @foreach ($Boycotts as $Boycott)
+                    @php
+                        $i = $boycotts->perPage() * ($boycotts->currentPage() - 1) + 1;
+                    @endphp
+                    @foreach ($boycotts as $boycott)
                         <tr>
-                            <?php $i++; ?>
-                            <td>{{ $i }}</td>
-                            <td class="text-center">{{ $Boycott->boycott_number }}</td>
-                            <td class="text-center">{{ $Boycott->boycott_name }}</td>
-
+                            <td>{{ $i++ }}</td>
+                            <td class="text-center">{{ $boycott->boycott_number }}</td>
+                            <td class="text-center">{{ $boycott->boycott_name }}</td>
                             <td class="text-center">
                                 <div class="btn-group" role="group" aria-label="First group">
                                     @can('boycott-edit')
-                                        <button wire:click="GetBoycott({{ $Boycott->id }})"
-                                            class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
-                                            data-bs-target="#editboycottModal">
-                                            <i class="tf-icons mdi mdi-pencil fs-3"></i>
+                                        <button wire:click="GetBoycott({{ $boycott->id }})"
+                                                class="btn btn-warning" data-bs-toggle="modal"
+                                                data-bs-target="#editboycottModal">
+                                            <i class="tf-icons mdi mdi-pencil fs-5"></i>
                                         </button>
                                     @endcan
                                     @can('boycott-delete')
-                                        <button wire:click="GetBoycott({{ $Boycott->id }})"
-                                            class="p-0 px-1 btn btn-text-danger waves-effect {{ $Boycott->active ? 'disabled' : '' }}"
-                                            data-bs-toggle = "modal" data-bs-target="#removeboycottModal">
-                                            <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
+                                        <button wire:click="GetBoycott({{ $boycott->id }})"
+                                                class="btn btn-danger {{ $boycott->active ? 'disabled' : '' }}"
+                                                data-bs-toggle="modal" data-bs-target="#removeboycottModal">
+                                            <i class="tf-icons mdi mdi-delete-outline fs-5"></i>
                                         </button>
                                     @endcan
                                 </div>
@@ -72,7 +72,7 @@
                 </tbody>
             </table>
             <div class="mt-2 d-flex justify-content-center">
-                {{ $links->links() }}
+                {{ $boycotts->links() }}
             </div>
             <!-- Modal -->
             @include('livewire.boycotts.modals.edit-boycott')

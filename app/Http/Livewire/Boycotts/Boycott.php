@@ -8,6 +8,8 @@ use Livewire\WithPagination;
 use App\Models\Boycotts\Boycotts;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class Boycott extends Component
 {
@@ -21,7 +23,7 @@ class Boycott extends Component
     public $searchBoycottNumber = '';
     public $searchBoycottName = '';
 
-    public function render()
+    /*  public function render()
     {
         $cacheKey = 'Boycotts_search_' . $this->searchBoycottNumber . '_' . $this->searchBoycottName;
         $Boycotts = Cache::remember($cacheKey, now()->addMinutes(10), function () {
@@ -33,7 +35,38 @@ class Boycott extends Component
         });
         $this->Boycotts = collect($Boycotts->items());
         return view('livewire.boycotts.boycott', ['Boycotts' => $this->Boycotts, 'links' => $Boycotts]);
+    } */
+
+    public $search = [
+        'boycott_number' => '',
+        'boycott_name' => '',
+    ];
+
+    public function render()
+    {
+        $boycotts = QueryBuilder::for(Boycotts::class)
+            ->allowedFilters([
+                AllowedFilter::callback('boycott_number', function ($query, $value) {
+                    $query->where('boycott_number', 'LIKE', '%' . $value . '%');
+                }),
+                AllowedFilter::partial('boycott_name'),
+            ])
+            ->where(function ($query) {
+                foreach ($this->search as $field => $value) {
+                    if (!empty($value)) {
+                        $query->where($field, 'LIKE', '%' . $value . '%');
+                    }
+                }
+            })
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
+
+            return view('livewire.boycotts.boycott', [
+                'boycotts' => $boycotts,
+            ]);
     }
+
+
 
     public function AddBoycottModalShow()
     {
