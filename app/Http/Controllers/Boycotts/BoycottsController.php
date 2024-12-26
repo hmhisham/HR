@@ -6,6 +6,6 @@ class BoycottsController extends Controller
 {
     public function index()
     {
-        Return View('content.Boycotts.index'); 
+        return view('content.Boycotts.index');
     }
 }
