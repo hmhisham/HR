@@ -8,6 +8,8 @@ use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
 use App\Models\Property\Property;
 use Illuminate\Support\Facades\Auth;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class Propert extends Component
 {
@@ -88,25 +90,22 @@ class Propert extends Component
 
     public function render()
     {
-        $bonds = Bonds::query()
-     ->where('specialized_department', 'شعبة الاملاك')
-            ->when($this->search['boycott_number'], function($query) {
-                $query->whereHas('Getboycott', function ($query) {
-                    $query->where('boycott_number', 'like', '%' . $this->search['boycott_number'] . '%');
-                });
-            })
-            ->when($this->search['part_number'], function($query) {
-                $query->where('part_number', 'like', '%' . $this->search['part_number'] . '%');
-            })
-            ->when($this->search['property_number'], function($query) {
-                $query->where('property_number', 'like', '%' . $this->search['property_number'] . '%');
-            })
-            ->when($this->search['status'] !== '', function($query) {
-                $query->whereHas('getPropert', function ($query) {
-                    $query->where('status', $this->search['status']);
-                });
-            })
-            ->orderBy($this->sortField, $this->sortDirection)
+        $bonds = QueryBuilder::for(Bonds::class)
+            ->allowedFilters([
+                AllowedFilter::callback('boycott_number', function ($query, $value) {
+                    $query->whereHas('Getboycott', function ($query) use ($value) {
+                        $query->where('boycott_number', 'like', '%' . $value . '%');
+                    });
+                }),
+                AllowedFilter::partial('part_number'),
+                AllowedFilter::partial('property_number'),
+                AllowedFilter::callback('status', function ($query, $value) {
+                    $query->whereHas('getPropert', function ($query) use ($value) {
+                        $query->where('status', $value);
+                    });
+                }),
+            ])
+            ->defaultSort($this->sortField, $this->sortDirection)
             ->paginate(10);
 
         return view('livewire.property.propert', [
@@ -115,7 +114,6 @@ class Propert extends Component
             'sortDirection' => $this->sortDirection,
         ]);
     }
-
 
 
 
@@ -128,13 +126,12 @@ class Propert extends Component
         $this->Bonds = Bonds::find($BondID);
         $this->property_number = $propertyNumber;
 
-         $this->Property = Property::where('bonds_id', $propertyNumber)->first();
+        $this->Property = Property::where('bonds_id', $propertyNumber)->first();
         if (is_object($this->Property)) {
             $this->status = $this->Property->status;
         } else {
             $this->status = '0';
         }
-
     }
 
 
