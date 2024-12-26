@@ -93,19 +93,26 @@ class Propert extends Component
         $bonds = QueryBuilder::for(Bonds::class)
             ->allowedFilters([
                 AllowedFilter::callback('boycott_number', function ($query, $value) {
-                    $query->whereHas('Getboycott', function ($query) use ($value) {
+                    $query->whereHas('getBoycott', function ($query) use ($value) {
                         $query->where('boycott_number', 'like', '%' . $value . '%');
                     });
                 }),
                 AllowedFilter::partial('part_number'),
                 AllowedFilter::partial('property_number'),
                 AllowedFilter::callback('status', function ($query, $value) {
-                    $query->whereHas('getPropert', function ($query) use ($value) {
+                    $query->whereHas('getProperty', function ($query) use ($value) {
                         $query->where('status', $value);
                     });
                 }),
             ])
-            ->defaultSort($this->sortField, $this->sortDirection)
+            ->where(function ($query) {
+                foreach ($this->search as $field => $value) {
+                    if (!empty($value)) {
+                        $query->where($field, 'like', '%' . $value . '%');
+                    }
+                }
+            })
+            ->orderBy($this->sortField, $this->sortDirection)
             ->paginate(10);
 
         return view('livewire.property.propert', [
@@ -114,6 +121,7 @@ class Propert extends Component
             'sortDirection' => $this->sortDirection,
         ]);
     }
+
 
 
 
