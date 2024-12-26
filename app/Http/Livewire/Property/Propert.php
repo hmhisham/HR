@@ -66,8 +66,6 @@ class Propert extends Component
         }
     }
 
-    use WithPagination;
-
     public $search = [
         'boycott_number' => '',
         'part_number' => '',
@@ -130,6 +128,7 @@ class Propert extends Component
     {
         $BondID = $data[0];
         $propertyNumber = $data[1];
+        $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('PropertModalShow');
         $this->Bonds = Bonds::find($BondID);
@@ -205,30 +204,35 @@ class Propert extends Component
         ]);
     }
 
-    public function GetPropert($PropertId)
+    public function formatWithCommas($number)
     {
-        // إعادة التحقق من صحة البيانات
-        $this->resetValidation();
+        return number_format($number, 0, '.', ',');
+    }
 
-        // جلب البيانات الخاصة بالعقار
-        $this->Propert  = Property::find($PropertId);
+    public function GetPropert2($PropertId)
+    {
 
-        // تعبئة الخصائص المطلوبة في النموذج
-        $this->PropertId = $this->Propert->id;
+         $this->resetValidation();
+          $this->Propert = Property::where('bonds_id',   $PropertId)->first();
+         $this->PropertId = $this->Propert->id;
         $this->user_id = $this->Propert->user_id;
-        $this->worker_id = $this->Propert->worker_id;
+        $this->full_name = $this->Propert->full_name;
+        $this->calculator_number = $this->Propert->calculator_number;
+        $this->department_name = $this->Propert->department_name;
+        $this->total_paid_amount = $this->formatWithCommas($this->Propert->total_paid_amount);
+                $this->email = $this->Propert->email;
         $this->bonds_id = $this->Propert->bonds_id;
         $this->from_date = $this->Propert->from_date;
         $this->to_date = $this->Propert->to_date;
         $this->months_count = $this->Propert->months_count;
-        $this->total_amount = $this->Propert->total_amount;
-        $this->paid_amount = $this->Propert->paid_amount;
+        $this->total_amount = $this->formatWithCommas($this->Propert->total_amount);
+         $this->paid_amount = $this->formatWithCommas($this->Propert->paid_amount);
         $this->property_status = $this->Propert->property_status;
         $this->status = $this->Propert->status;
         $this->notifications = $this->Propert->notifications;
         $this->notes = $this->Propert->notes;
-        $this->monthly_amount = $this->Propert->monthly_amount;
-    }
+        $this->monthly_amount = $this->formatWithCommas($this->Propert->monthly_amount);
+        }
 
     public function destroy()
     {

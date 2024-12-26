@@ -17,8 +17,8 @@
                                 <!-- الاسم الكامل -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='full_name'
-                                            type="text" id="modalPropertfull_name" placeholder="الاسم الكامل"
+                                        <input wire:model='full_name' type="text" id="modalPropertfull_name"
+                                            placeholder="الاسم الكامل"
                                             class="form-control @error('full_name') is-invalid is-filled @enderror" />
                                         <label for="modalPropertfull_name">الاسم الكامل</label>
                                     </div>
@@ -28,8 +28,8 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='calculator_number'
-                                            type="text" id="modalPropertcalculator_number" placeholder="رقم الحاسبة"
+                                        <input wire:model='calculator_number' type="text"
+                                            id="modalPropertcalculator_number" placeholder="رقم الحاسبة"
                                             class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
                                         <label for="modalPropertcalculator_number">رقم الحاسبة</label>
                                     </div>
@@ -39,8 +39,8 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='department_name'
-                                            type="text" id="modalPropertdepartment_name" placeholder="القسم"
+                                        <input wire:model='department_name' type="text"
+                                            id="modalPropertdepartment_name" placeholder="القسم"
                                             class="form-control @error('department_name') is-invalid is-filled @enderror" />
                                         <label for="modalPropertdepartment_name">القسم</label>
                                     </div>
@@ -50,8 +50,8 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='email'
-                                            type="text" id="modalPropertemail" placeholder="البريد"
+                                        <input wire:model='email' type="text" id="modalPropertemail"
+                                            placeholder="البريد"
                                             class="form-control @error('email') is-invalid is-filled @enderror" />
                                         <label for="modalPropertemail">البريد</label>
                                     </div>
@@ -151,8 +151,8 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer="property_status" id="modalPropertproperty_status"
-                                                class="form-control @error('property_status') is-invalid is-filled @enderror"
-                                                style="width: 100%;" required>
+                                            class="form-control @error('property_status') is-invalid is-filled @enderror"
+                                            style="width: 100%;" required>
                                             <option value="" disabled selected>اختر حالة العقار</option>
                                             <option value="محجوز">محجوز</option>
                                             <option value="رفع حجز">رفع حجز</option>

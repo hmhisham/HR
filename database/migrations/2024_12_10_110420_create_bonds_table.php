@@ -35,6 +35,12 @@ return new class extends Migration
             $table->text('notes')->nullable()->comment('ملاحظات');
             $table->boolean('visibility')->default(true)->comment('إمكانية ظهوره');
             $table->timestamps();
+
+               // إضافة الفهارس
+        $table->index('boycott_id');
+        $table->index('part_number');
+        $table->index('property_number');
+
         });
     }
 
@@ -43,6 +49,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bonds');
+        Schema::table('bonds', function (Blueprint $table) {
+            $table->dropIndex(['boycott_id']);
+            $table->dropIndex(['part_number']);
+            $table->dropIndex(['property_number']);
+        });
     }
 };

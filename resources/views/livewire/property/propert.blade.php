@@ -3,6 +3,7 @@
         <div class="card-header bg-gradient-primary text-white">
             <h5 class="mb-0">إدارة الأملاك</h5>
         </div>
+
         <div class="card-body">
             @can('propert-list')
                 <div class="table-responsive">
@@ -84,7 +85,7 @@
                                             @endcan
                                             @can('propert-edit')
                                                 @if (isset($bond->getPropert) && $bond->getPropert->status == 1)
-                                                    <button wire:click='AddPropertModalShow(["{{ $bond->id }}", "{{ $bond->property_number }}"])'
+                                                    <button wire:click='GetPropert2({{  $bond->property_number }})'
                                                             class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editpropertModal">
                                                         <span class="mdi mdi-home-edit-outline fs-5"></span>
                                                     </button>
@@ -113,4 +114,5 @@
             @endcan
         </div>
     </div>
+</div>
 </div>
