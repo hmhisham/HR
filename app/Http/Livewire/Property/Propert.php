@@ -119,6 +119,7 @@ class Propert extends Component
             'bonds' => $bonds,
             'sortField' => $this->sortField,
             'sortDirection' => $this->sortDirection,
+            'specialized_department' => 'شعبة الاملاك',
         ]);
     }
 
