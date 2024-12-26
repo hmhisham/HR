@@ -22,12 +22,22 @@
             <table class="table">
                 <thead class="table-light">
                     <tr>
-                        <th>#</th>
-                        <th class="text-center">رقم المقاطعة <input wire:model="searchBoycottNumber" type="text"
-                                class="form-control column-search" placeholder="بحث..."> </th>
-                        <th class="text-center">اسم المقاطعة <input wire:model="searchBoycottName" type="text"
-                                class="form-control column-search" placeholder="بحث..."> </th>
+                        <th>ت</th>
+                        <th class="text-center">رقم المقاطعة</th>
+                        <th class="text-center">اسم المقاطعة</th>
                         <th class="text-center">العملية</th>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            <input type="text" wire:model="searchBoycottNumber" class="form-control"
+                                placeholder="بحث برقم المقاطعة ..">
+                        </th>
+                        <th>
+                            <input type="text" wire:model="searchBoycottName" class="form-control"
+                                placeholder="بحث اسم المقاطعة ..">
+                        </th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
