@@ -12,7 +12,7 @@ class ScaleasController extends Controller
      */
     public function index()
     {
-        Return View('content.Scaleas.index');
+        return view('content.Scaleas.index');
     }
 
     /**

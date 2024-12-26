@@ -7,6 +7,9 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Boycotts\Boycotts;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class Boycott extends Component
 {
@@ -17,20 +20,53 @@ class Boycott extends Component
     public $BoycottSearch, $Boycott, $BoycottId;
     public $boycott_number, $boycott_name;
 
+    public $searchBoycottNumber = '';
+    public $searchBoycottName = '';
+
+    /*  public function render()
+    {
+        $cacheKey = 'Boycotts_search_' . $this->searchBoycottNumber . '_' . $this->searchBoycottName;
+        $Boycotts = Cache::remember($cacheKey, now()->addMinutes(10), function () {
+            return Boycotts::select(['id', 'boycott_number', 'boycott_name'])->when($this->searchBoycottNumber, function ($query) {
+                return $query->where('boycott_number', 'LIKE', '%' . $this->searchBoycottNumber . '%');
+            })->when($this->searchBoycottName, function ($query) {
+                return $query->where('boycott_name', 'LIKE', '%' . $this->searchBoycottName . '%');
+            })->orderBy('id', 'ASC')->paginate(10);
+        });
+        $this->Boycotts = collect($Boycotts->items());
+        return view('livewire.boycotts.boycott', ['Boycotts' => $this->Boycotts, 'links' => $Boycotts]);
+    } */
+
+    public $search = [
+        'boycott_number' => '',
+        'boycott_name' => '',
+    ];
+
     public function render()
     {
-        $BoycottSearch = '%' . $this->BoycottSearch . '%';
-        $Boycotts = Boycotts::where('boycott_number', 'LIKE', $BoycottSearch)
-            ->orWhere('boycott_name', 'LIKE', $BoycottSearch)
+        $boycotts = QueryBuilder::for(Boycotts::class)
+            ->allowedFilters([
+                AllowedFilter::callback('boycott_number', function ($query, $value) {
+                    $query->where('boycott_number', 'LIKE', '%' . $value . '%');
+                }),
+                AllowedFilter::partial('boycott_name'),
+            ])
+            ->where(function ($query) {
+                foreach ($this->search as $field => $value) {
+                    if (!empty($value)) {
+                        $query->where($field, 'LIKE', '%' . $value . '%');
+                    }
+                }
+            })
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
-        $links = $Boycotts;
-        $this->Boycotts = collect($Boycotts->items());
-        return view('livewire.boycotts.boycott', [
-            'links' => $links
-        ]);
+            return view('livewire.boycotts.boycott', [
+                'boycotts' => $boycotts,
+            ]);
     }
+
+
 
     public function AddBoycottModalShow()
     {
@@ -79,8 +115,8 @@ class Boycott extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'boycott_number' => 'required|unique:boycotts,boycott_number,'.$this->BoycottId.',id',
-            'boycott_name' => 'required|unique:boycotts,boycott_name,'.$this->BoycottId.',id',
+            'boycott_number' => 'required|unique:boycotts,boycott_number,' . $this->BoycottId . ',id',
+            'boycott_name' => 'required|unique:boycotts,boycott_name,' . $this->BoycottId . ',id',
         ], [
             'boycott_number.required' => 'حقل رقم المقاطعة مطلوب',
             'boycott_number.unique' => 'رقم المقاطعة موجود',

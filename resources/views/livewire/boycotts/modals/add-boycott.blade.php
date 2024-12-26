@@ -18,7 +18,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='boycott_number' type="text"
                                             id="modalBoycottboycott_number" placeholder="رقم المقاطعة"
-                                            class="form-control @error('boycott_number') is-invalid is-filled @enderror" />
+                                            class="form-control @error('boycott_number') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyNumberKey(event)" />
                                         <label for="modalBoycottboycott_number">رقم المقاطعة</label>
                                     </div>
                                     @error('boycott_number')
@@ -31,7 +32,8 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='boycott_name' type="text"
                                             id="modalBoycottboycott_name" placeholder="اسم المقاطعة"
-                                            class="form-control @error('boycott_name') is-invalid is-filled @enderror" />
+                                            class="form-control @error('boycott_name') is-invalid is-filled @enderror"
+                                            onkeypress="return onlyArabicKey(event)" />
                                         <label for="modalBoycottboycott_name">اسم المقاطعة</label>
                                     </div>
                                     @error('boycott_name')

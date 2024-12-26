@@ -6,6 +6,6 @@ class ItypesController extends Controller
 {
     public function index()
     {
-        Return View('content.Itypes.index'); 
+        return view('content.Itypes.index');
     }
 }

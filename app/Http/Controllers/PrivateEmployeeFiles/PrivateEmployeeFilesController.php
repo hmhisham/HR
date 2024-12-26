@@ -9,6 +9,6 @@ class PrivateEmployeeFilesController extends Controller
 {
     public function index()
     {
-        Return View('content.PrivateEmployeeFiles.index');
+        return view('content.PrivateEmployeeFiles.index');
     }
 }

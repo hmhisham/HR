@@ -6,6 +6,6 @@ class ChildrensController extends Controller
 {
     public function index()
     {
-        Return View('content.Childrens.index'); 
+        return view('content.Childrens.index');
     }
 }

@@ -6,6 +6,6 @@ class PositionsController extends Controller
 {
     public function index()
     {
-        Return View('content.Positions.index'); 
+        return view('content.Positions.index');
     }
 }

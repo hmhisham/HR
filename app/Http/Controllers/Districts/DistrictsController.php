@@ -12,7 +12,7 @@ class DistrictsController extends Controller
      */
     public function index()
     {
-        Return View('content.Districts.index');  
+        return view('content.Districts.index');
     }
 
     /**

@@ -6,6 +6,6 @@ class HolidaysController extends Controller
 {
     public function index()
     {
-        Return View('content.Holidays.index'); 
+        return view('content.Holidays.index');
     }
 }

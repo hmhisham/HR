@@ -12,7 +12,7 @@ class TrainingsController extends Controller
      */
     public function index()
     {
-        Return View('content.Trainings.index');
+        return view('content.Trainings.index');
     }
 
     /**

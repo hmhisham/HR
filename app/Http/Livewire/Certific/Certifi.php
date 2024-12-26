@@ -15,7 +15,7 @@ use App\Models\Certificates\Certificates;
 use App\Models\Specializations\Specializations;
 use App\Models\Specializationclassification\Specializationclassification;
 
-class certifi extends Component
+class Certifi extends Component
 {
     use WithFileUploads;
     use WithPagination;

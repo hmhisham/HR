@@ -6,6 +6,6 @@ class WivesController extends Controller
 {
     public function index()
     {
-        Return View('content.Wives.index'); 
+        return view('content.Wives.index');
     }
 }

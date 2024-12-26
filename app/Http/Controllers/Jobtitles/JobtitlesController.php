@@ -12,7 +12,7 @@ class JobtitlesController extends Controller
      */
     public function index()
     {
-        Return View('content.Jobtitles.index');  
+        return view('content.Jobtitles.index');  
     }
 
     /**

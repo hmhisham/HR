@@ -12,7 +12,7 @@ class TypesservicesController extends Controller
      */
     public function index()
     {
-        Return View('content.Typesservices.index');  
+        return view('content.Typesservices.index');
     }
 
     /**

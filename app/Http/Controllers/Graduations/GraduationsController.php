@@ -12,7 +12,7 @@ class GraduationsController extends Controller
      */
     public function index()
     {
-        Return View('content.Graduations.index');
+        return view('content.Graduations.index');
     }
 
     /**

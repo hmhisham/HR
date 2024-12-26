@@ -6,6 +6,6 @@ class InputsController extends Controller
 {
     public function index()
     {
-        Return View('content.Inputs.index'); 
+        return view('content.Inputs.index');
     }
 }

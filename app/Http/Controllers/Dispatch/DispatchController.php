@@ -6,6 +6,6 @@ class DispatchController extends Controller
 {
     public function index()
     {
-        Return View('content.Dispatch.index'); 
+        return view('content.Dispatch.index');
     }
 }

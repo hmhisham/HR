@@ -6,12 +6,12 @@ class PlacementsController extends Controller
 {
     public function index()
     {
-        Return View('content.Placements.index');
+        return view('content.Placements.index');
     }
 
     public function PlacementShow($id)
     {
-        Return View('content.Placements.show', [
+        return view('content.Placements.show', [
             'id' => $id
         ]);
     }

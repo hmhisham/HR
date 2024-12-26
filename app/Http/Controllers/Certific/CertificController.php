@@ -7,12 +7,12 @@ class CertificController extends Controller
 {
     public function index()
     {
-        Return View('content.Certific.index');
+        return view('content.Certific.index');
     }
 
     public function CertifiShow($id)
     {
-        Return View('content.Certific.show', [
+        return view('content.Certific.show', [
             'id' => $id
         ]);
     }

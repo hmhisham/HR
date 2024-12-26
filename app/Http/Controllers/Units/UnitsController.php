@@ -12,7 +12,7 @@ class UnitsController extends Controller
      */
     public function index()
     {
-        Return View('content.Units.index');
+        return view('content.Units.index');
     }
 
     /**
