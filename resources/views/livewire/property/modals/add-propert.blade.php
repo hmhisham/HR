@@ -15,12 +15,10 @@
                             {{-- <hr class=""> --}}
                             <div class="row">
                                 <!-- الاسم الكامل -->
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model='full_name'
                                             type="text" id="modalPropertfull_name" placeholder="الاسم الكامل"
-
                                             class="form-control @error('full_name') is-invalid is-filled @enderror" />
                                         <label for="modalPropertfull_name">الاسم الكامل</label>
                                     </div>
@@ -28,14 +26,10 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model='calculator_number'
                                             type="text" id="modalPropertcalculator_number" placeholder="رقم الحاسبة"
-
                                             class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
                                         <label for="modalPropertcalculator_number">رقم الحاسبة</label>
                                     </div>
@@ -43,14 +37,10 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
-
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model='department_name'
                                             type="text" id="modalPropertdepartment_name" placeholder="القسم"
-
                                             class="form-control @error('department_name') is-invalid is-filled @enderror" />
                                         <label for="modalPropertdepartment_name">القسم</label>
                                     </div>
@@ -58,12 +48,10 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model='email'
                                             type="text" id="modalPropertemail" placeholder="البريد"
-
                                             class="form-control @error('email') is-invalid is-filled @enderror" />
                                         <label for="modalPropertemail">البريد</label>
                                     </div>

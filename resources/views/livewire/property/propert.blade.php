@@ -1,13 +1,13 @@
 <div class="container mt-4">
-     <div class="card shadow-sm">
-        <div class="card-header bg-gradient text-white">
+    <div class="card shadow-lg">
+        <div class="card-header bg-gradient-primary text-white">
             <h5 class="mb-0">إدارة الأملاك</h5>
         </div>
         <div class="card-body">
             @can('propert-list')
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead class="bg-light">
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-light">
                             <tr>
                                 <th>#</th>
                                 <th class="text-center">
@@ -103,11 +103,9 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div class="mt-3 d-flex justify-content-center">
                     {{ $bonds->links() }}
                 </div>
-
                 <!-- Modal -->
                 @include('livewire.property.modals.add-propert')
                 @include('livewire.property.modals.edit-propert')

@@ -201,8 +201,13 @@ class Propert extends Component
 
     public function GetPropert($PropertId)
     {
+        // إعادة التحقق من صحة البيانات
         $this->resetValidation();
+
+        // جلب البيانات الخاصة بالعقار
         $this->Propert  = Property::find($PropertId);
+
+        // تعبئة الخصائص المطلوبة في النموذج
         $this->PropertId = $this->Propert->id;
         $this->user_id = $this->Propert->user_id;
         $this->worker_id = $this->Propert->worker_id;
@@ -218,6 +223,7 @@ class Propert extends Component
         $this->notes = $this->Propert->notes;
         $this->monthly_amount = $this->Propert->monthly_amount;
     }
+
     public function destroy()
     {
         $Property = Property::find($this->PropertId);
