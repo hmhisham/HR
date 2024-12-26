@@ -12,13 +12,13 @@ class WorkersController extends Controller
      */
     public function index()
     {
-        Return View('content.Workers.index');
+        return view('content.Workers.index');
     }
 
     public function addWorker()
     {
         //Return View('content.Workers.forms-pickers');
-        Return View('content.Workers.addWorker');
+        return view('content.Workers.addWorker');
     }
 
 }

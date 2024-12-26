@@ -6,12 +6,12 @@ class PropertyController extends Controller
 {
     public function index()
     {
-        Return View('content.Property.index');
+        return view('content.Property.index');
     }
 
     public function PropertyShow($id)
     {
-        Return View('content.Property.show', [
+        return view('content.Property.show', [
             'id' => $id
         ]);
     }

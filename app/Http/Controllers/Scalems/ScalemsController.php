@@ -12,7 +12,7 @@ class ScalemsController extends Controller
      */
     public function index()
     {
-        Return View('content.Scalems.index');
+        return view('content.Scalems.index');
     }
 
     /**

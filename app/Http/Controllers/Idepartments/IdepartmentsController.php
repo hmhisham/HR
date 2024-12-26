@@ -6,6 +6,6 @@ class IdepartmentsController extends Controller
 {
     public function index()
     {
-        Return View('content.Idepartments.index'); 
+        return view('content.Idepartments.index');
     }
 }

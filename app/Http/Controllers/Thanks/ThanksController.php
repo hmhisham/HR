@@ -12,7 +12,7 @@ class ThanksController extends Controller
      */
     public function index()
     {
-        Return View('content.Thanks.index');  
+        return view('content.Thanks.index');
     }
 
     /**

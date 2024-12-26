@@ -6,6 +6,6 @@ class IacctsController extends Controller
 {
     public function index()
     {
-        Return View('content.Iaccts.index'); 
+        return view('content.Iaccts.index');
     }
 }

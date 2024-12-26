@@ -12,7 +12,7 @@ class CertificatesController extends Controller
      */
     public function index()
     {
-        Return View('content.Certificates.index');
+        return view('content.Certificates.index');
     }
 
     /**

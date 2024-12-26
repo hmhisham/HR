@@ -12,7 +12,7 @@ class SectionsController extends Controller
      */
     public function index()
     {
-        Return View('content.Sections.index'); 
+        return view('content.Sections.index');
     }
 
     /**

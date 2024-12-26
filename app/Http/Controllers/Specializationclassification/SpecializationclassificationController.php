@@ -12,7 +12,7 @@ class SpecializationclassificationController extends Controller
      */
     public function index()
     {
-        Return View('content.Specializationclassification.index');
+        return view('content.Specializationclassification.index');
     }
 
     /**

@@ -12,7 +12,7 @@ class PenaltiesController extends Controller
      */
     public function index()
     {
-        Return View('content.Penalties.index'); 
+        return view('content.Penalties.index');
     }
 
     /**

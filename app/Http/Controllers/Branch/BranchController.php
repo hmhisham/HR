@@ -12,7 +12,7 @@ class BranchController extends Controller
      */
     public function index()
     {
-        Return View('content.Branch.index');
+        return view('content.Branch.index');
     }
 
     /**

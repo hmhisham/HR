@@ -12,7 +12,7 @@ class PrecisesController extends Controller
      */
     public function index()
     {
-        Return View('content.Precises.index');
+        return view('content.Precises.index');
     }
 
     /**

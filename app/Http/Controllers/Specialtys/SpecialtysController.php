@@ -12,7 +12,7 @@ class SpecialtysController extends Controller
      */
     public function index()
     {
-        Return View('content.Specialtys.index');
+        return view('content.Specialtys.index');
     }
 
     /**

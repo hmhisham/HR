@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class AreasController extends Controller
 {
 
-   
+
 
 
     /**
@@ -16,7 +16,7 @@ class AreasController extends Controller
      */
     public function index()
     {
-        Return View('content.Areas.index');
+        return view('content.Areas.index');
     }
 
     /**

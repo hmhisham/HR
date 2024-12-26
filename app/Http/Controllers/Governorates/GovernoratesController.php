@@ -12,7 +12,7 @@ class GovernoratesController extends Controller
      */
     public function index()
     {
-        Return View('content.Governorates.index');  
+        return view('content.Governorates.index');
     }
 
     /**

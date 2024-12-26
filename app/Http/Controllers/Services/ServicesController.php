@@ -6,12 +6,12 @@ class ServicesController extends Controller
 {
     public function index()
     {
-        Return View('content.Services.index'); 
+        return view('content.Services.index');
     }
 
  public function ServiceShow($id)
     {
-        Return View('content.Services.show', [
+        return view('content.Services.show', [
             'id' => $id
         ]);
     }

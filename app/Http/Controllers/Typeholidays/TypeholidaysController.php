@@ -12,7 +12,7 @@ class TypeholidaysController extends Controller
      */
     public function index()
     {
-        Return View('content.Typeholidays.index');
+        return view('content.Typeholidays.index');
     }
 
     /**

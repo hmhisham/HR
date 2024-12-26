@@ -6,6 +6,6 @@ class LinkagesController extends Controller
 {
     public function index()
     {
-        Return View('content.Linkages.index'); 
+        return view('content.Linkages.index');
     }
 }

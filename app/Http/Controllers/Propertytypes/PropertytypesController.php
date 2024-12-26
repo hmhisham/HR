@@ -6,6 +6,6 @@ class PropertytypesController extends Controller
 {
     public function index()
     {
-        Return View('content.Propertytypes.index'); 
+        return view('content.Propertytypes.index');
     }
 }

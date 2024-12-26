@@ -6,6 +6,6 @@ class TechniciansController extends Controller
 {
     public function index()
     {
-        Return View('content.Technicians.index'); 
+        return view('content.Technicians.index');
     }
 }

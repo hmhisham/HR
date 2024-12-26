@@ -12,7 +12,7 @@ class InfoofficeController extends Controller
      */
     public function index()
     {
-        Return View('content.Infooffice.index'); 
+        return view('content.Infooffice.index');
     }
 
     /**
