@@ -6,15 +6,14 @@
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
                     <h3 class="pb-1 mb-2">تعديل \ الأملاك</h3>
-                    <p>نافذة التعديل</p>
+                    <p>نافذة التعديل والحذف</p>
                 </div>
-                <hr class="mt-n2" wire:loading.remove>
-                <h5 wire:loading wire:target="GetPropert2"
-                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-          {{-- <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار حفظ البيانات...</h5> --}}
+                <hr class="mt-n2">
+                <h5 wire:loading wire:target="GetPropert2" >    </h5>
+ <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار حفظ البيانات...</h5>
 
-                <div wire:loading.remove>
+                    <div wire:loading.remove wire:target="GetPropert2, update">
                     <form id="editPropertModalForm" autocomplete="off">
                         <div class="row row-cols-1">
                             <div class="col mb-3">
@@ -22,8 +21,8 @@
                                     <!-- الاسم الكامل -->
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model='full_name' type="text" id="modalPropertfull_name"
-                                                placeholder="الاسم الكامل"
+                                                <input wire:model='full_name' type="text" id="modalPropertfull_name"
+                                            readonly    placeholder="الاسم الكامل"
                                                 class="form-control @error('full_name') is-invalid is-filled @enderror" />
                                             <label for="modalPropertfull_name">الاسم الكامل</label>
                                         </div>
@@ -34,7 +33,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model='calculator_number' type="text"
-                                                id="modalPropertcalculator_number" placeholder="رقم الحاسبة"
+                                            readonly    id="modalPropertcalculator_number" placeholder="رقم الحاسبة"
                                                 class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
                                             <label for="modalPropertcalculator_number">رقم الحاسبة</label>
                                         </div>
@@ -45,7 +44,7 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model='department_name' type="text"
-                                                id="modalPropertdepartment_name" placeholder="القسم"
+                                            readonly    id="modalPropertdepartment_name" placeholder="القسم"
                                                 class="form-control @error('department_name') is-invalid is-filled @enderror" />
                                             <label for="modalPropertdepartment_name">القسم</label>
                                         </div>
@@ -55,8 +54,8 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model='email' type="text" id="modalPropertemail"
-                                                placeholder="البريد"
+                                                <input wire:model='email' type="text" id="modalPropertemail"
+                                            readonly    placeholder="البريد"
                                                 class="form-control @error('email') is-invalid is-filled @enderror" />
                                             <label for="modalPropertemail">البريد</label>
                                         </div>
@@ -70,9 +69,9 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model='from_date'
                                                 wire:change="updateToDate($event.target.value)" type="text"
-                                                id="modalPropertfrom_date" placeholder="من تاريخ"
+                                                id="editposition_start_date" placeholder="من تاريخ"
                                                 class="form-control @error('from_date') is-invalid is-filled @enderror" />
-                                            <label for="modalPropertfrom_date">من تاريخ</label>
+                                            <label for="editposition_start_date">من تاريخ</label>
                                         </div>
                                         @error('from_date')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -80,11 +79,11 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model="to_date" type="text" id="modalPropertto_date"
+                                            <input wire:model="to_date" type="text" id="editposition_order_date"
                                                 placeholder="الى تاريخ"
                                                 class="form-control @error('to_date') is-invalid is-filled @enderror"
                                                 readonly />
-                                            <label for="modalPropertto_date">الى تاريخ</label>
+                                            <label for="editposition_order_date">الى تاريخ</label>
                                         </div>
                                         @error('to_date')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -206,8 +205,12 @@
                 </div>
                 <hr class="my-0">
                 <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                    <button wire:click='update' wire:loading.attr="disabled" type="button"
-                        class="btn btn-success me-sm-3 me-1">تعديل</button>
+                    <button wire:click='update' wire:loading.attr="disabled" type="button"    class="btn btn-success me-sm-3 me-1">تعديل</button>
+        <button wire:click='destroy' type="submit"
+                            class="flex-fill btn btn-danger me-sm-3 me-1">  حذف  </button>
+
+
+
                     <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                         aria-label="Close">تجاهل</button>
                 </div>
