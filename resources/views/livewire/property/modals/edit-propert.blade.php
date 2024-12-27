@@ -9,20 +9,23 @@
                     <p>نافذة التعديل والحذف</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetPropert2" >    </h5>
- <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
+                <h5 wire:loading wire:target="GetPropert2"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+
+                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
 
-                    <div wire:loading.remove wire:target="GetPropert2, update">
+                <div wire:loading.remove wire:target="GetPropert2,update">
                     <form id="editPropertModalForm" autocomplete="off">
+
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div class="row">
                                     <!-- الاسم الكامل -->
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                                <input wire:model='full_name' type="text" id="modalPropertfull_name"
-                                            readonly    placeholder="الاسم الكامل"
+                                            <input wire:model='full_name' type="text" id="modalPropertfull_name"
+                                                readonly placeholder="الاسم الكامل"
                                                 class="form-control @error('full_name') is-invalid is-filled @enderror" />
                                             <label for="modalPropertfull_name">الاسم الكامل</label>
                                         </div>
@@ -32,8 +35,8 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model='calculator_number' type="text"
-                                            readonly    id="modalPropertcalculator_number" placeholder="رقم الحاسبة"
+                                            <input wire:model='calculator_number' type="text" readonly
+                                                id="modalPropertcalculator_number" placeholder="رقم الحاسبة"
                                                 class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
                                             <label for="modalPropertcalculator_number">رقم الحاسبة</label>
                                         </div>
@@ -43,8 +46,8 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model='department_name' type="text"
-                                            readonly    id="modalPropertdepartment_name" placeholder="القسم"
+                                            <input wire:model='department_name' type="text" readonly
+                                                id="modalPropertdepartment_name" placeholder="القسم"
                                                 class="form-control @error('department_name') is-invalid is-filled @enderror" />
                                             <label for="modalPropertdepartment_name">القسم</label>
                                         </div>
@@ -54,8 +57,8 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                                <input wire:model='email' type="text" id="modalPropertemail"
-                                            readonly    placeholder="البريد"
+                                            <input wire:model='email' type="text" id="modalPropertemail" readonly
+                                                placeholder="البريد"
                                                 class="form-control @error('email') is-invalid is-filled @enderror" />
                                             <label for="modalPropertemail">البريد</label>
                                         </div>
@@ -174,12 +177,7 @@
                                 <div class="row">
                                     <!-- حالة العقار والإشعارات في المنتصف -->
                                     <div class="d-flex justify-content-center mb-3 col-12">
-                                        {{-- <div class="form-check form-switch me-5">
-                                            <input wire:model.defer="status"
-                                                class="form-check-input @error('status') is-invalid is-filled @enderror"
-                                                type="checkbox" id="modalPropertstatus">
-                                            <label class="form-check-label" for="modalPropertstatus">الحالة</label>
-                                        </div> --}}
+
                                         <div class="mb-3 col-12 form-check form-switch">
                                             <input wire:model.defer="notifications"
                                                 class="form-check-input @error('notifications') is-invalid is-filled @enderror"
@@ -205,11 +203,9 @@
                 </div>
                 <hr class="my-0">
                 <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                    <button wire:click='update' wire:loading.attr="disabled" type="button"    class="btn btn-success me-sm-3 me-1">تعديل</button>
-        <button wire:click='destroy' type="submit"
-                            class="flex-fill btn btn-danger me-sm-3 me-1">  حذف  </button>
-
-
+                    <button wire:click='update' wire:loading.attr="disabled" type="button"
+                        class="btn btn-success me-sm-3 me-1">تعديل</button>
+                     </button>
 
                     <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                         aria-label="Close">تجاهل</button>

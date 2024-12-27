@@ -27,6 +27,7 @@ return new class extends Migration
             $table->boolean('status')->default(0)->comment('الحالة');
             $table->boolean('notifications')->default(0)->comment('الاشعارات');
             $table->text('notes')->nullable()->comment('ملاحظات');
+            $table->softDeletes(); // اخفاء عملية الحذف اخي منتظررررررر
             $table->timestamps();
         });
     }

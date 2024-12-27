@@ -207,6 +207,71 @@ class Propert extends Component
             'title' => 'اضافه'
         ]);
     }
+
+    public function update()
+    {
+        $this->resetValidation();
+        $this->validate([
+            'full_name' => 'required',
+            'calculator_number' => 'required',
+            'department_name' => 'required',
+            'email' => 'required',
+            'total_paid_amount' => 'required',
+            'from_date' => 'required',
+            'to_date' => 'required',
+            'months_count' => 'required',
+            'total_amount' => 'required',
+            'paid_amount' => 'required',
+            'monthly_amount' => 'required',
+        ], [
+            'full_name.required' => 'حقل  الاسم مطلوب',
+            'calculator_number.required' => 'حقل  رقم الحاسبة مطلوب',
+            'department_name.required' => 'حقل القسم مطلوب',
+            'email.required' => 'حقل email مطلوب',
+            'total_paid_amount.required' => 'حقل مجموع المتبقي مطلوب',
+            'from_date.required' => 'حقل من تاريخ مطلوب',
+            'to_date.required' => 'حقل الى تاريخ مطلوب',
+            'months_count.required' => 'حقل عدد الاشهر مطلوب',
+            'total_amount.required' => 'حقل المبلغ الكلي مطلوب',
+            'paid_amount.required' => 'حقل مجموع المسدد مطلوب',
+            'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
+        ]);
+        $this->total_paid_amount = str_replace(',', '', $this->total_paid_amount);
+        $this->total_amount = str_replace(',', '', $this->total_amount);
+        $this->paid_amount = str_replace(',', '', $this->paid_amount);
+        $this->monthly_amount = str_replace(',', '', $this->monthly_amount);
+
+        $this->property = Property::where('bonds_id',  $this->bonds_id )->first();
+
+                if ($this->bonds_id ) {
+            $this->property->update([
+                'user_id' => Auth::id(),
+                'full_name' => $this->full_name,
+                'calculator_number' => $this->calculator_number,
+                'department_name' => $this->department_name,
+                'email' => $this->email,
+                'total_paid_amount' => $this->total_paid_amount,
+                'bonds_id' => $this->property_number,
+                'from_date' => $this->from_date,
+                'to_date' => $this->to_date,
+                'months_count' => $this->months_count,
+                'total_amount' => $this->total_amount,
+                'paid_amount' => $this->paid_amount,
+                'property_status' => $this->property_status ?: 'محجوز',
+                  'status' =>  '1',
+                'notifications' => $this->notifications ?: '0',
+                'notes' => $this->notes,
+                'monthly_amount' => $this->monthly_amount,
+            ]);
+            $this->reset();
+            $this->dispatchBrowserEvent('success', [
+                'message' => 'تم التعديل بنجاح',
+                'title' => 'اضافه'
+            ]);
+        }
+    }
+
+
     public function formatWithCommas($number)
     {
         return number_format($number, 0, '.', ',');
@@ -221,7 +286,7 @@ class Propert extends Component
         $this->calculator_number = $this->Propert->calculator_number;
         $this->department_name = $this->Propert->department_name;
         $this->total_paid_amount = $this->formatWithCommas($this->Propert->total_paid_amount);
-                $this->email = $this->Propert->email;
+         $this->email = $this->Propert->email;
         $this->bonds_id = $this->Propert->bonds_id;
         $this->from_date = $this->Propert->from_date;
         $this->to_date = $this->Propert->to_date;
@@ -233,6 +298,7 @@ class Propert extends Component
         $this->notifications = $this->Propert->notifications;
         $this->notes = $this->Propert->notes;
         $this->monthly_amount = $this->formatWithCommas($this->Propert->monthly_amount);
+        $this->property_number= $this->Propert->bonds_id;
         }
     public function destroy()
     {

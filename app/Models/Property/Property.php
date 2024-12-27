@@ -6,11 +6,12 @@ use App\Models\Bonds\Bonds;
 use App\Models\Workers\Workers;
 use App\Models\Boycotts\Boycotts;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Property extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $guarded = [];
     protected $table = "property";
 
