@@ -17,7 +17,7 @@ class BondsTableSeeder extends Seeder
     {
         $faker = Faker::create();
         $batchSize = 1000; // حجم الدفعة
-        $totalRecords = 10000000; // إجمالي عدد السجلات
+        $totalRecords = 1000000000; // إجمالي عدد السجلات
 
         for ($i = 0; $i < $totalRecords / $batchSize; $i++) {
             $bonds = [];

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Livewire\Property;
-
 use Livewire\Component;
 use App\Models\Bonds\Bonds;
 use Livewire\WithPagination;
@@ -10,7 +8,6 @@ use App\Models\Property\Property;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
-
 class Propert extends Component
 {
     use WithPagination;
@@ -65,17 +62,14 @@ class Propert extends Component
             $this->monthly_amount = 0;
         }
     }
-
     public $search = [
         'boycott_number' => '',
         'part_number' => '',
         'property_number' => '',
         'status' => '',
     ];
-
     public $sortField = 'id'; // حقل الفرز الافتراضي
     public $sortDirection = 'asc'; // اتجاه الفرز الافتراضي
-
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
@@ -86,6 +80,27 @@ class Propert extends Component
         }
     }
 
+    // الطريقة الاولى
+    // public function render()
+    // {
+    //     $bonds = Bonds::query()
+    //         ->where('specialized_department', 'شعبة الاملاك') // إضافة هذا الشرط
+    //         ->when($this->search['part_number'], function ($query, $partNumber) {
+    //             $query->where('part_number', 'like', "%{$partNumber}%");
+    //         })
+    //         ->when($this->search['property_number'], function ($query, $propertyNumber) {
+    //             $query->where('property_number', 'like', "%{$propertyNumber}%");
+    //         })
+    //         ->when($this->search['boycott_number'], function ($query, $boycottNumber) {
+    //             $query->where('boycott_number', 'like', "%{$boycottNumber}%");
+    //         })
+    //         ->paginate(10);
+
+    //     return view('livewire.property.propert', ['bonds' => $bonds]);
+    // }
+
+
+// الطريقة الثانية
     public function render()
     {
         $bonds = QueryBuilder::for(Bonds::class)
@@ -112,7 +127,6 @@ class Propert extends Component
             })
             ->orderBy($this->sortField, $this->sortDirection)
             ->paginate(10);
-
         return view('livewire.property.propert', [
             'bonds' => $bonds,
             'sortField' => $this->sortField,
@@ -120,10 +134,6 @@ class Propert extends Component
             'specialized_department' => 'شعبة الاملاك',
         ]);
     }
-
-
-
-
     public function AddPropertModalShow($data)
     {
         $BondID = $data[0];
@@ -133,7 +143,6 @@ class Propert extends Component
         $this->dispatchBrowserEvent('PropertModalShow');
         $this->Bonds = Bonds::find($BondID);
         $this->property_number = $propertyNumber;
-
         $this->Property = Property::where('bonds_id', $propertyNumber)->first();
         if (is_object($this->Property)) {
             $this->status = $this->Property->status;
@@ -141,14 +150,10 @@ class Propert extends Component
             $this->status = '0';
         }
     }
-
-
-
     public function store()
     {
         $this->resetValidation();
         $this->validate([
-
             'full_name' => 'required',
             'calculator_number' => 'required',
             'department_name' => 'required',
@@ -161,7 +166,6 @@ class Propert extends Component
             'paid_amount' => 'required',
             'monthly_amount' => 'required',
         ], [
-
             'full_name.required' => 'حقل  الاسم مطلوب',
             'calculator_number.required' => 'حقل  رقم الحاسبة مطلوب',
             'department_name.required' => 'حقل القسم مطلوب',
@@ -203,15 +207,12 @@ class Propert extends Component
             'title' => 'اضافه'
         ]);
     }
-
     public function formatWithCommas($number)
     {
         return number_format($number, 0, '.', ',');
     }
-
     public function GetPropert2($PropertId)
     {
-
          $this->resetValidation();
           $this->Propert = Property::where('bonds_id',   $PropertId)->first();
          $this->PropertId = $this->Propert->id;
@@ -233,7 +234,6 @@ class Propert extends Component
         $this->notes = $this->Propert->notes;
         $this->monthly_amount = $this->formatWithCommas($this->Propert->monthly_amount);
         }
-
     public function destroy()
     {
         $Property = Property::find($this->PropertId);

@@ -40,13 +40,14 @@
                             <tr>
                                 <th></th>
                                 <th>
-                                    <input type="text" wire:model="search.boycott_number" class="form-control" placeholder="بحث برقم المقاطعة">
+                                    <input type="text" wire:debounce.500ms="search.boycott_number" class="form-control" placeholder="بحث برقم المقاطعة">
                                 </th>
                                 <th>
-                                    <input type="text" wire:model="search.part_number" class="form-control" placeholder="بحث برقم القطعة">
+                                     <input type="text" wire:model.debounce.500ms="search.part_number" class="form-control" placeholder="بحث برقم القطعة">
+
                                 </th>
                                 <th>
-                                    <input type="text" wire:model="search.property_number" class="form-control" placeholder="بحث برقم العقار">
+                                    <input type="text" wire:debounce.500ms="search.property_number" class="form-control" placeholder="بحث برقم العقار">
                                 </th>
                                 <th>
                                     <select wire:model="search.status" class="form-select">
@@ -105,7 +106,7 @@
                     </table>
                 </div>
                 <div class="mt-3 d-flex justify-content-center">
-                    {{ $bonds->links() }}
+                    {{ $bonds->onEachSide(1)->links() }}
                 </div>
                 <!-- Modal -->
                 @include('livewire.property.modals.add-propert')
