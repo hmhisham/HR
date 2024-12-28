@@ -46,12 +46,12 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model='department_name' type="text" readonly
-                                                id="modalPropertdepartment_name" placeholder="القسم"
-                                                class="form-control @error('department_name') is-invalid is-filled @enderror" />
-                                            <label for="modalPropertdepartment_name">القسم</label>
+                                            <input wire:model='phone' type="text" readonly
+                                                id="modalPropertphone" placeholder="رقم الهاتف"
+                                                class="form-control @error('phone') is-invalid is-filled @enderror" />
+                                            <label for="modalPropertphone">رقم الهاتف</label>
                                         </div>
-                                        @error('department_name')
+                                        @error('phone')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>

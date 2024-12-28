@@ -19,7 +19,7 @@ class Propert extends Component
     public $PropertSearch, $Propert, $PropertId;
     public $user_id, $worker_id, $bonds_id, $from_date, $to_date, $months_count, $total_amount, $paid_amount, $property_status, $status, $notifications, $notes, $monthly_amount;
     public $workers = [];
-    public  $calculator_number, $Bond, $department_name, $email, $total_paid_amount, $full_name, $property_number, $property, $isdeleted;
+    public  $calculator_number, $Bond, $phone, $email, $total_paid_amount, $full_name, $property_number, $property, $isdeleted;
     public $Bonds = [];
     // الاستماع للأحداث
     protected $listeners = [
@@ -140,7 +140,7 @@ class Propert extends Component
         $this->validate([
             'full_name' => 'required',
             'calculator_number' => 'required',
-            'department_name' => 'required',
+            'phone' => 'required',
             'email' => 'required',
             'total_paid_amount' => 'required',
             'from_date' => 'required',
@@ -152,7 +152,7 @@ class Propert extends Component
         ], [
             'full_name.required' => 'حقل  الاسم مطلوب',
             'calculator_number.required' => 'حقل  رقم الحاسبة مطلوب',
-            'department_name.required' => 'حقل القسم مطلوب',
+            'phone.required' => 'حقل رقم الهاتف مطلوب',
             'email.required' => 'حقل email مطلوب',
             'total_paid_amount.required' => 'حقل مجموع المتبقي مطلوب',
             'from_date.required' => 'حقل من تاريخ مطلوب',
@@ -170,7 +170,7 @@ class Propert extends Component
             'user_id' => Auth::id(),
             'full_name' => $this->full_name,
             'calculator_number' => $this->calculator_number,
-            'department_name' => $this->department_name,
+            'phone' => $this->phone,
             'email' => $this->email,
             'total_paid_amount' => $this->total_paid_amount,
             'bonds_id' => $this->bonds_id,
@@ -199,7 +199,7 @@ class Propert extends Component
         $this->validate([
             'full_name' => 'required',
             'calculator_number' => 'required',
-            'department_name' => 'required',
+            'phone' => 'required',
             'email' => 'required',
             'total_paid_amount' => 'required',
             'from_date' => 'required',
@@ -211,7 +211,7 @@ class Propert extends Component
         ], [
             'full_name.required' => 'حقل  الاسم مطلوب',
             'calculator_number.required' => 'حقل  رقم الحاسبة مطلوب',
-            'department_name.required' => 'حقل القسم مطلوب',
+            'phone.required' => 'حقل رقم الهاتف مطلوب',
             'email.required' => 'حقل email مطلوب',
             'total_paid_amount.required' => 'حقل مجموع المتبقي مطلوب',
             'from_date.required' => 'حقل من تاريخ مطلوب',
@@ -230,7 +230,7 @@ class Propert extends Component
             'user_id' => Auth::id(),
             'full_name' => $this->full_name,
             'calculator_number' => $this->calculator_number,
-            'department_name' => $this->department_name,
+            'phone' => $this->phone,
             'email' => $this->email,
             'total_paid_amount' => $this->total_paid_amount,
             'bonds_id' => $this->bonds_id,
@@ -266,7 +266,7 @@ class Propert extends Component
         $this->user_id = $this->Propert->user_id;
         $this->full_name = $this->Propert->full_name;
         $this->calculator_number = $this->Propert->calculator_number;
-        $this->department_name = $this->Propert->department_name;
+        $this->phone = $this->Propert->phone;
         $this->total_paid_amount = $this->formatWithCommas($this->Propert->total_paid_amount);
         $this->email = $this->Propert->email;
         $this->bonds_id = $this->Propert->bonds_id;
