@@ -111,8 +111,9 @@
                                                 @endif
                                             @endcan
                                             @can('propert-edit')
-                                                @if (isset($bond->getPropert) && $bond->getPropert->status == 1)
-                                                    <button wire:click='GetPropert2({{ $bond->property_number }})'
+ 
+                                                @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 1)
+                                                    <button wire:click='GetPropert2({{  $bond->property_number }})'
                                                         class="btn btn-warning" data-bs-toggle="modal"
                                                         data-bs-target="#editpropertModal">
                                                         <span class="mdi mdi-home-edit-outline fs-5"></span>
@@ -120,10 +121,9 @@
                                                 @endif
                                             @endcan
                                             @can('propert-delete')
-                                                @if (isset($bond->getPropert) && $bond->getPropert->status == 1)
-                                                    <button wire:click='GetPropert2({{ $bond->property_number }})'
-                                                        class="btn btn-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#removepropertModal">
+                                                @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 1)
+                                                    <button wire:click='GetPropert2({{  $bond->property_number }})' class="btn btn-danger"
+                                                        data-bs-toggle="modal" data-bs-target="#removepropertModal">
                                                         <span class="mdi mdi-home-remove-outline fs-5"></span>
                                                     </button>
                                                 @endif

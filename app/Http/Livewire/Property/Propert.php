@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Livewire\Property;
+
 use Livewire\Component;
 use App\Models\Bonds\Bonds;
 use Livewire\WithPagination;
@@ -8,6 +10,7 @@ use App\Models\Property\Property;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+
 class Propert extends Component
 {
     use WithPagination;
@@ -16,7 +19,7 @@ class Propert extends Component
     public $PropertSearch, $Propert, $PropertId;
     public $user_id, $worker_id, $bonds_id, $from_date, $to_date, $months_count, $total_amount, $paid_amount, $property_status, $status, $notifications, $notes, $monthly_amount;
     public $workers = [];
-    public  $calculator_number, $department_name, $email, $total_paid_amount, $full_name, $property_number, $property;
+    public  $calculator_number, $department_name, $email, $total_paid_amount, $full_name, $property_number, $property , $isdeleted;
     public $Bonds = [];
     protected $listeners = [
         'SelectWorkerId',
@@ -100,7 +103,7 @@ class Propert extends Component
     // }
 
 
-// الطريقة الثانية
+    // الطريقة الثانية
     public function render()
     {
         $bonds = QueryBuilder::for(Bonds::class)
@@ -200,6 +203,7 @@ class Propert extends Component
             'notifications' => $this->notifications ?: '0',
             'notes' => $this->notes,
             'monthly_amount' => $this->monthly_amount,
+            'isdeleted' =>  '1',
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -241,10 +245,13 @@ class Propert extends Component
         $this->paid_amount = str_replace(',', '', $this->paid_amount);
         $this->monthly_amount = str_replace(',', '', $this->monthly_amount);
 
-        $this->property = Property::where('bonds_id',  $this->bonds_id )->first();
 
-                if ($this->bonds_id ) {
-            $this->property->update([
+         $this->Propert = Property::where('bonds_id', $this->bonds_id)
+        ->where('status', 1)
+        ->where('isdeleted', 1)
+        ->first();
+
+            $this->Propert->update([
                 'user_id' => Auth::id(),
                 'full_name' => $this->full_name,
                 'calculator_number' => $this->calculator_number,
@@ -258,17 +265,18 @@ class Propert extends Component
                 'total_amount' => $this->total_amount,
                 'paid_amount' => $this->paid_amount,
                 'property_status' => $this->property_status ?: 'محجوز',
-                  'status' =>  '1',
+                'status' =>  '1',
                 'notifications' => $this->notifications ?: '0',
                 'notes' => $this->notes,
                 'monthly_amount' => $this->monthly_amount,
+                'isdeleted' =>  '1',
             ]);
             $this->reset();
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم التعديل بنجاح',
                 'title' => 'اضافه'
             ]);
-        }
+
     }
 
 
@@ -276,39 +284,61 @@ class Propert extends Component
     {
         return number_format($number, 0, '.', ',');
     }
+
+
     public function GetPropert2($PropertId)
     {
-         $this->resetValidation();
-          $this->Propert = Property::where('bonds_id',   $PropertId)->first();
-         $this->PropertId = $this->Propert->id;
+
+        $this->resetValidation();
+        $this->Propert = Property::where('bonds_id', $PropertId)
+            ->where('status', 1)
+            ->where('isdeleted', 1)
+            ->first();
+
+        $this->PropertId = $this->Propert->id;
         $this->user_id = $this->Propert->user_id;
         $this->full_name = $this->Propert->full_name;
         $this->calculator_number = $this->Propert->calculator_number;
         $this->department_name = $this->Propert->department_name;
         $this->total_paid_amount = $this->formatWithCommas($this->Propert->total_paid_amount);
-         $this->email = $this->Propert->email;
+        $this->email = $this->Propert->email;
         $this->bonds_id = $this->Propert->bonds_id;
         $this->from_date = $this->Propert->from_date;
         $this->to_date = $this->Propert->to_date;
         $this->months_count = $this->Propert->months_count;
         $this->total_amount = $this->formatWithCommas($this->Propert->total_amount);
-         $this->paid_amount = $this->formatWithCommas($this->Propert->paid_amount);
+        $this->paid_amount = $this->formatWithCommas($this->Propert->paid_amount);
         $this->property_status = $this->Propert->property_status;
         $this->status = $this->Propert->status;
         $this->notifications = $this->Propert->notifications;
         $this->notes = $this->Propert->notes;
         $this->monthly_amount = $this->formatWithCommas($this->Propert->monthly_amount);
-        $this->property_number= $this->Propert->bonds_id;
-        }
+        $this->property_number = $this->Propert->bonds_id;
+
+    }
+
+
     public function destroy()
     {
-        $Property = Property::find($this->PropertId);
-        if ($Property) {
-            $Property->delete();
+        $this->resetValidation();
+
+
+
+        $this->Propert = Property::where('bonds_id', $this->bonds_id)
+        ->where('status', 1)
+        ->where('isdeleted', 1)
+        ->first();
+
+        if ($this->bonds_id) {
+            $this->Propert->update([
+
+                'status' =>  '0',
+                'isdeleted' =>  '0',
+            ]);
             $this->reset();
             $this->dispatchBrowserEvent('success', [
-                'message' => 'تم حذف البيانات بنجاح',
-                'title' => 'الحذف'
+                'message' => 'تم الحذف بنجاح',
+                'title' => 'حذف'
             ]);
         }
     }
