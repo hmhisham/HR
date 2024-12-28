@@ -115,8 +115,8 @@ class Boycott extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'boycott_number' => 'required|unique:boycotts,boycott_number,' . $this->BoycottId . ',id',
-            'boycott_name' => 'required|unique:boycotts,boycott_name,' . $this->BoycottId . ',id',
+            'boycott_number' => 'required|unique:boycotts,boycott_number,' . $this->BoycottId,
+            'boycott_name' => 'required|unique:boycotts,boycott_name,' . $this->BoycottId,
         ], [
             'boycott_number.required' => 'حقل رقم المقاطعة مطلوب',
             'boycott_number.unique' => 'رقم المقاطعة موجود',
