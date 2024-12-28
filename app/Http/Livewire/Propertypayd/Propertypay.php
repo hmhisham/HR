@@ -18,18 +18,21 @@ class Propertypay extends Component
     protected $Propertypayd = [];
     public $PropertypaySearch, $Propertypay, $PropertypayId, $pro;
     public $user_id, $bonds_id, $receipt_number, $receipt_date, $amount, $receipt_file, $notes, $isdeleted;
-
     // متغيرات البحث
     public $search = [
+        'bonds_id' => '',
         'receipt_number' => '',
         'receipt_date' => '',
         'amount' => '',
-        'bonds_id' => '',
+          'notes' => '',
     ];
+
     // حقل الفرز الافتراضي
     public $sortField = 'id';
+
     // اتجاه الفرز الافتراضي
     public $sortDirection = 'asc';
+
     // تغيير حقل الفرز أو اتجاه الفرز
     public function sortBy($field)
     {
@@ -44,25 +47,24 @@ class Propertypay extends Component
     public function render()
     {
         $this->Propertypayd = QueryBuilder::for(Propertypayd::class)
-            ->allowedFilters([
-                AllowedFilter::exact('user_id'),
-                AllowedFilter::exact('bonds_id'),
-                AllowedFilter::exact('receipt_number'),
-                AllowedFilter::exact('receipt_date'),
-                AllowedFilter::exact('amount'),
-                AllowedFilter::exact('receipt_file'),
-                AllowedFilter::exact('notes'),
-                AllowedFilter::exact('isdeleted'),
-            ])
-            ->where(function ($query) {
-                foreach ($this->search as $field => $value) {
-                    if (!empty($value)) {
-                        $query->where($field, 'like', '%' . $value . '%');
-                    }
+        ->allowedFilters([
+            AllowedFilter::partial('bonds_id'),
+            AllowedFilter::partial('receipt_number'),
+            AllowedFilter::partial('receipt_date'),
+            AllowedFilter::partial('amount'),
+            AllowedFilter::partial('notes'),
+        ])
+        ->where(function ($query) {
+            foreach ($this->search as $field => $value) {
+                if (!empty($value)) {
+                    $query->where($field, 'like', '%' . $value . '%');
                 }
-            })
-            ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(10);
+            }
+        })
+        ->orderBy($this->sortField, $this->sortDirection)
+        ->paginate(10);
+
+
 
         return view('livewire.propertypayd.propertypay', [
             'Propertypayd' => $this->Propertypayd,

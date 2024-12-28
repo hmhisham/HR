@@ -36,9 +36,9 @@
                                 </th>
                                 <th class="text-center">
                                     <a href="#" wire:click.prevent="sortBy('receipt_number')"
-                                        class="text-decoration-none text-dark">رقم الوصل</a>
-                                    @if ($sortField === 'receipt_number')
-                                        @if ($sortDirection === 'asc')
+                                        class="text-decoration-none text-dark d-flex justify-content-center">رقم الوصل</a>
+                                    @if (isset($sortField) && $sortField === 'receipt_number')
+                                        @if (isset($sortDirection) && $sortDirection === 'asc')
                                             ▲
                                         @else
                                             ▼
@@ -67,12 +67,23 @@
                                         @endif
                                     @endif
                                 </th>
+                                <th class="text-center">
+                                    <a href="#" wire:click.prevent="sortBy('notes')"
+                                        class="text-decoration-none text-dark">الملاحظات</a>
+                                    @if ($sortField === 'notes')
+                                        @if ($sortDirection === 'asc')
+                                            ▲
+                                        @else
+                                            ▼
+                                        @endif
+                                    @endif
+                                </th>
                                 <th class="text-center">العملية</th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th>
-                                    <input type="text" wire:debounce.500ms="search.bonds_id" class="form-control"
+                                    <input type="text" wire:model.debounce.500ms="search.bonds_id" class="form-control"
                                         placeholder="بحث بالأسم ">
                                 </th>
                                 <th>
@@ -80,21 +91,26 @@
                                         class="form-control" placeholder="بحث برقم الوصل">
                                 </th>
                                 <th>
-                                    <input type="text" wire:debounce.500ms="search.receipt_date" class="form-control"
-                                        placeholder="بحث بتاريخ الوصل ">
+                                    <input type="text" wire:model.debounce.500ms="search.receipt_date"
+                                        class="form-control" placeholder="بحث بتاريخ الوصل ">
                                 </th>
                                 <th>
-                                    <input type="text" wire:debounce.500ms="search.amount" class="form-control"
+                                    <input type="text" wire:model.debounce.500ms="search.amount" class="form-control"
                                         placeholder="بحث بالمبلغ  ">
+                                </th>
+                                <th>
+                                    <input type="text" wire:model.debounce.500ms="search.notes" class="form-control"
+                                        placeholder="بحث بالملاحظات  ">
                                 </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @php
-                                $i = $Propertypayd instanceof \Illuminate\Pagination\LengthAwarePaginator
-                                    ? $Propertypayd->perPage() * ($Propertypayd->currentPage() - 1) + 1
-                                    : 1;
+                                $i =
+                                    $Propertypayd instanceof \Illuminate\Pagination\LengthAwarePaginator
+                                        ? $Propertypayd->perPage() * ($Propertypayd->currentPage() - 1) + 1
+                                        : 1;
                             @endphp
 
                             @foreach ($Propertypayd as $Propay)
@@ -103,7 +119,8 @@
                                     <td class="text-center">{{ $Propay->bonds_id }}</td>
                                     <td class="text-center">{{ $Propay->receipt_number }}</td>
                                     <td class="text-center">{{ $Propay->receipt_date }}</td>
-                                    <td class="text-center">{{ $Propay->amount }} </td>
+                                    <td class="text-center">{{ number_format($Propay->amount, 0) }}</td>
+                                    <td class="text-center">{{ $Propay->notes }} </td>
                                     <td class="text-center">
                                         <!-- Add any action buttons here -->
                                     </td>
