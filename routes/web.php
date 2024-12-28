@@ -47,6 +47,7 @@ use App\Http\Controllers\Technicians\TechniciansController;
 use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
 use App\Http\Controllers\Idepartments\IdepartmentsController;
+use App\Http\Controllers\Propertypayd\PropertypaydController;
 use App\Http\Controllers\Typeholidays\TypeholidaysController;
 use App\Http\Controllers\Propertytypes\PropertytypesController;
 use App\Http\Controllers\Typesservices\TypesservicesController;
@@ -192,7 +193,8 @@ Route::get('boycotts/data', [BoycottsController::class, 'getData'])->name('boyco
     Route::RESOURCE('Property', PropertyController::class);
     Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
 
-
+    Route::  RESOURCE('Propertypayd', PropertypaydController::class);
+     Route::  GET('Propertypay-Show/{id}', [PropertypaydController::class,'PropertypayShow'])->name('Propertypay-Show');
 
     //===============المالية==================
 

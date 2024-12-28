@@ -140,8 +140,8 @@ class Propert extends Component
         $this->validate([
             'full_name' => 'required',
             'calculator_number' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
+            'phone' => ['required', 'regex:/^07[0-9]{9}$/'],
+            'email' => 'required|email',
             'total_paid_amount' => 'required',
             'from_date' => 'required',
             'to_date' => 'required',
@@ -150,14 +150,16 @@ class Propert extends Component
             'paid_amount' => 'required',
             'monthly_amount' => 'required',
         ], [
-            'full_name.required' => 'حقل  الاسم مطلوب',
-            'calculator_number.required' => 'حقل  رقم الحاسبة مطلوب',
+            'full_name.required' => 'حقل الاسم مطلوب',
+            'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'phone.required' => 'حقل رقم الهاتف مطلوب',
-            'email.required' => 'حقل email مطلوب',
+            'phone.regex' => 'رقم الهاتف غير صالح',
+            'email.required' => 'حقل البريد الإلكتروني مطلوب',
+            'email.email' => 'البريد الإلكتروني غير صالح',
             'total_paid_amount.required' => 'حقل مجموع المتبقي مطلوب',
             'from_date.required' => 'حقل من تاريخ مطلوب',
-            'to_date.required' => 'حقل الى تاريخ مطلوب',
-            'months_count.required' => 'حقل عدد الاشهر مطلوب',
+            'to_date.required' => 'حقل إلى تاريخ مطلوب',
+            'months_count.required' => 'حقل عدد الأشهر مطلوب',
             'total_amount.required' => 'حقل المبلغ الكلي مطلوب',
             'paid_amount.required' => 'حقل مجموع المسدد مطلوب',
             'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
@@ -196,11 +198,12 @@ class Propert extends Component
     public function update()
     {
         $this->resetValidation();
+
         $this->validate([
             'full_name' => 'required',
             'calculator_number' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
+            'phone' => ['required', 'regex:/^07[0-9]{9}$/'],
+            'email' => 'required|email',
             'total_paid_amount' => 'required',
             'from_date' => 'required',
             'to_date' => 'required',
@@ -209,18 +212,21 @@ class Propert extends Component
             'paid_amount' => 'required',
             'monthly_amount' => 'required',
         ], [
-            'full_name.required' => 'حقل  الاسم مطلوب',
-            'calculator_number.required' => 'حقل  رقم الحاسبة مطلوب',
+            'full_name.required' => 'حقل الاسم مطلوب',
+            'calculator_number.required' => 'حقل رقم الحاسبة مطلوب',
             'phone.required' => 'حقل رقم الهاتف مطلوب',
-            'email.required' => 'حقل email مطلوب',
+            'phone.regex' => 'رقم الهاتف غير صالح',
+            'email.required' => 'حقل البريد الإلكتروني مطلوب',
+            'email.email' => 'البريد الإلكتروني غير صالح',
             'total_paid_amount.required' => 'حقل مجموع المتبقي مطلوب',
             'from_date.required' => 'حقل من تاريخ مطلوب',
-            'to_date.required' => 'حقل الى تاريخ مطلوب',
-            'months_count.required' => 'حقل عدد الاشهر مطلوب',
+            'to_date.required' => 'حقل إلى تاريخ مطلوب',
+            'months_count.required' => 'حقل عدد الأشهر مطلوب',
             'total_amount.required' => 'حقل المبلغ الكلي مطلوب',
             'paid_amount.required' => 'حقل مجموع المسدد مطلوب',
             'monthly_amount.required' => 'حقل المبلغ الشهري مطلوب',
         ]);
+
         $this->total_paid_amount = str_replace(',', '', $this->total_paid_amount);
         $this->total_amount = str_replace(',', '', $this->total_amount);
         $this->paid_amount = str_replace(',', '', $this->paid_amount);

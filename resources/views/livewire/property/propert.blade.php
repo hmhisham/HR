@@ -102,8 +102,7 @@
                                         <div class="btn-group" role="group">
                                             @can('propert-create')
                                                 @if (!isset($bond->getPropert) || $bond->getPropert->status != 1)
-                                                    <button
-                                                        wire:click='AddPropertModalShow("{{ $bond->id }}")'
+                                                    <button wire:click='AddPropertModalShow("{{ $bond->id }}")'
                                                         class="btn btn-success" data-bs-toggle="modal"
                                                         data-bs-target="#addpropertModal">
                                                         <span class="mdi mdi-home-plus-outline fs-5"></span>
@@ -121,22 +120,31 @@
                                             @endcan
                                             @can('propert-delete')
                                                 @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 0)
-                                                    <button wire:click='GetPropert2({{ $bond->id }})'
-                                                        class="btn btn-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#removepropertModal">
+                                                    <button wire:click='GetPropert2({{ $bond->id }})' class="btn btn-danger"
+                                                        data-bs-toggle="modal" data-bs-target="#removepropertModal">
                                                         <span class="mdi mdi-home-remove-outline fs-5"></span>
                                                     </button>
                                                 @endif
                                             @endcan
-                                            @can('propert-Show')
+
+                                            @can('propert-show')
                                                 @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 0)
-                                                    <button wire:click=''
-                                                        class="btn btn-info" data-bs-toggle="modal"
-                                                        data-bs-target="#">
+                                                    <a href="{{ Route('Placement-Show', $bond->id) }}"
+                                                        class="p-0 px-1 btn btn-text-primary waves-effect">
                                                         <span class="mdi mdi-calculator fs-5"></span>
-                                                    </button>
+                                                    </a>
                                                 @endif
                                             @endcan
+
+                                            @can('propert-Show')
+                                                @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 0)
+                                                    <a href="{{ Route('Propertypayd.index', $bond->id) }}"
+                                                        class="btn btn-info">
+                                                        <span class="mdi mdi-calculator fs-5"></span>
+                                                    </a>
+                                                @endif
+                                            @endcan
+
                                         </div>
                                     </td>
                                 </tr>

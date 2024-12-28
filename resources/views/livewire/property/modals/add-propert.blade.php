@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='phone' type="text" 
+                                        <input wire:model='phone' type="text"
                                             id="modalPropertphone" placeholder="رقم الهاتف"
                                             class="form-control @error('phone') is-invalid is-filled @enderror" />
                                         <label for="modalPropertphone">رقم الهاتف</label>
