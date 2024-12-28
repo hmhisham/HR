@@ -30,6 +30,15 @@
 </head>
 
 <body>
+    <div id="preloader">
+        <div id="loading-wrapper" class="show">
+            <div id="loading-text">
+                <img src="{{ asset("assets/img/logo/GCPI.png") }}" style="width: 140px" alt="">
+            </div>
+            <div id="loading-content"></div>
+        </div>
+    </div>
+
 	<!-- Layout Content -->
     @yield('layoutContent')
 	<!--/ Layout Content -->

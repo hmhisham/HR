@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="{{ asset(mix('assets/vendor/libs/typeahead-js/typeahead.css')) }}" />
 <link rel="stylesheet" href="{{ asset(mix('assets/vendor/css/custom.css')) }}" />
 
+<link rel="stylesheet" href="{{ asset('assets/vendor/css/preloader.css') }}" />
+
 @yield('vendor-style')
 
 <!-- Page Styles -->
