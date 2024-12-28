@@ -109,12 +109,12 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div Class="row">
+                            <div class="row">
                                 <!-- المبلغ الشهري -->
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='monthly_amount' type="text"
-                                            id="modalPropertmonthly_amount" placeholder="المبلغ الشهري" readonly
+                                            id="modalPropertmonthly_amount" placeholder="المبلغ الشهري" disabled
                                             class="form-control @error('monthly_amount') is-invalid is-filled @enderror" />
                                         <label for="modalPropertmonthly_amount">المبلغ الشهري</label>
                                     </div>
@@ -127,8 +127,7 @@
                                         <input wire:model.defer='paid_amount' type="text"
                                             id="modalPropertpaid_amount" placeholder="مجموع المسدد"
                                             class="form-control @error('paid_amount') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)"
-                                            oninput="formatWithCommas(this)" />
+                                            onkeypress="return onlyNumberKey(event)" oninput="formatWithCommas(this)" disabled />
                                         <label for="modalPropertpaid_amount">مجموع المسدد</label>
                                     </div>
                                     @error('paid_amount')
@@ -140,8 +139,7 @@
                                         <input wire:model.defer='total_paid_amount' type="text"
                                             id="modalProperttotal_paid_amount" placeholder="مجموع المتبقي"
                                             class="form-control @error('total_paid_amount') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)"
-                                            oninput="formatWithCommas(this)" />
+                                            onkeypress="return onlyNumberKey(event)" oninput="formatWithCommas(this)" disabled />
                                         <label for="modalProperttotal_paid_amount">مجموع المتبقي</label>
                                     </div>
                                     @error('total_paid_amount')
@@ -152,7 +150,7 @@
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer="property_status" id="modalPropertproperty_status"
                                             class="form-control @error('property_status') is-invalid is-filled @enderror"
-                                            style="width: 100%;" required>
+                                            style="width: 100%;" required disabled>
                                             <option value="" disabled selected>اختر حالة العقار</option>
                                             <option value="محجوز">محجوز</option>
                                             <option value="رفع حجز">رفع حجز</option>
@@ -167,12 +165,7 @@
                             <div class="row">
                                 <!-- حالة العقار والإشعارات في المنتصف -->
                                 <div class="d-flex justify-content-center mb-3 col-12">
-                                    {{-- <div class="form-check form-switch me-5">
-                                        <input wire:model.defer="status"
-                                            class="form-check-input @error('status') is-invalid is-filled @enderror"
-                                            type="checkbox" id="modalPropertstatus">
-                                        <label class="form-check-label" for="modalPropertstatus">الحالة</label>
-                                    </div> --}}
+
                                     <div class="mb-3 col-12 form-check form-switch">
                                         <input wire:model.defer="notifications"
                                             class="form-check-input @error('notifications') is-invalid is-filled @enderror"

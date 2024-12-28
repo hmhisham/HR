@@ -19,22 +19,23 @@ class Propert extends Component
     public $PropertSearch, $Propert, $PropertId;
     public $user_id, $worker_id, $bonds_id, $from_date, $to_date, $months_count, $total_amount, $paid_amount, $property_status, $status, $notifications, $notes, $monthly_amount;
     public $workers = [];
-    public  $calculator_number, $department_name, $email, $total_paid_amount, $full_name, $property_number, $property , $isdeleted;
+    public  $calculator_number, $Bond, $department_name, $email, $total_paid_amount, $full_name, $property_number, $property, $isdeleted;
     public $Bonds = [];
+    // الاستماع للأحداث
     protected $listeners = [
         'SelectWorkerId',
     ];
+    // تفعيل flatpickr عند تحميل المكون
     public function hydrate()
     {
         $this->emit('flatpickr');
     }
+    // تحديث تاريخ الانتهاء وإعادة حساب عدد الأشهر
     public function updateToDate($value)
     {
         if ($value) {
             // إضافة 20 سنة على التاريخ المدخل
             $this->to_date = \Carbon\Carbon::parse($value)->addYears(20)->format('Y-m-d');
-            // بعد تحديث to_date، حساب الفرق بين التواريخ
-            // if (!empty($this->from_date) && !empty($this->to_date)) {
             try {
                 // تحويل النصوص إلى تواريخ باستخدام Carbon
                 $start = Carbon::parse($this->from_date);
@@ -45,7 +46,6 @@ class Propert extends Component
                 // في حالة حدوث خطأ في تحويل التواريخ
                 $this->months_count = null;
             }
-            // }
         }
     }
     // تحديث المبلغ الشهري عند تغيير عدد الأشهر أو المبلغ الكلي
@@ -65,14 +65,18 @@ class Propert extends Component
             $this->monthly_amount = 0;
         }
     }
+    // متغيرات البحث
     public $search = [
         'boycott_number' => '',
         'part_number' => '',
         'property_number' => '',
         'status' => '',
     ];
-    public $sortField = 'id'; // حقل الفرز الافتراضي
-    public $sortDirection = 'asc'; // اتجاه الفرز الافتراضي
+    // حقل الفرز الافتراضي
+    public $sortField = 'id';
+    // اتجاه الفرز الافتراضي
+    public $sortDirection = 'asc';
+    // تغيير حقل الفرز أو اتجاه الفرز
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
@@ -82,28 +86,7 @@ class Propert extends Component
             $this->sortDirection = 'asc';
         }
     }
-
-    // الطريقة الاولى
-    // public function render()
-    // {
-    //     $bonds = Bonds::query()
-    //         ->where('specialized_department', 'شعبة الاملاك') // إضافة هذا الشرط
-    //         ->when($this->search['part_number'], function ($query, $partNumber) {
-    //             $query->where('part_number', 'like', "%{$partNumber}%");
-    //         })
-    //         ->when($this->search['property_number'], function ($query, $propertyNumber) {
-    //             $query->where('property_number', 'like', "%{$propertyNumber}%");
-    //         })
-    //         ->when($this->search['boycott_number'], function ($query, $boycottNumber) {
-    //             $query->where('boycott_number', 'like', "%{$boycottNumber}%");
-    //         })
-    //         ->paginate(10);
-
-    //     return view('livewire.property.propert', ['bonds' => $bonds]);
-    // }
-
-
-    // الطريقة الثانية
+    // عرض البيانات
     public function render()
     {
         $bonds = QueryBuilder::for(Bonds::class)
@@ -137,22 +120,20 @@ class Propert extends Component
             'specialized_department' => 'شعبة الاملاك',
         ]);
     }
-    public function AddPropertModalShow($data)
+    // عرض نموذج إضافة عقار
+    public function AddPropertModalShow($bonds_id)
     {
-        $BondID = $data[0];
-        $propertyNumber = $data[1];
         $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('PropertModalShow');
-        $this->Bonds = Bonds::find($BondID);
-        $this->property_number = $propertyNumber;
-        $this->Property = Property::where('bonds_id', $propertyNumber)->first();
-        if (is_object($this->Property)) {
-            $this->status = $this->Property->status;
-        } else {
-            $this->status = '0';
-        }
+        $this->Bond = Bonds::find($bonds_id);
+        $this->bonds_id = $this->Bond->id;
+        $this->total_amount = 0;
+        $this->paid_amount = 0;
+        $this->total_paid_amount = 0;
+        $this->monthly_amount = 0;
     }
+    // تخزين بيانات العقار
     public function store()
     {
         $this->resetValidation();
@@ -192,7 +173,7 @@ class Propert extends Component
             'department_name' => $this->department_name,
             'email' => $this->email,
             'total_paid_amount' => $this->total_paid_amount,
-            'bonds_id' => $this->property_number,
+            'bonds_id' => $this->bonds_id,
             'from_date' => $this->from_date,
             'to_date' => $this->to_date,
             'months_count' => $this->months_count,
@@ -203,7 +184,7 @@ class Propert extends Component
             'notifications' => $this->notifications ?: '0',
             'notes' => $this->notes,
             'monthly_amount' => $this->monthly_amount,
-            'isdeleted' =>  '1',
+            'isdeleted' =>  '0',
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -211,7 +192,7 @@ class Propert extends Component
             'title' => 'اضافه'
         ]);
     }
-
+    // تحديث بيانات العقار
     public function update()
     {
         $this->resetValidation();
@@ -244,57 +225,43 @@ class Propert extends Component
         $this->total_amount = str_replace(',', '', $this->total_amount);
         $this->paid_amount = str_replace(',', '', $this->paid_amount);
         $this->monthly_amount = str_replace(',', '', $this->monthly_amount);
-
-
-         $this->Propert = Property::where('bonds_id', $this->bonds_id)
-        ->where('status', 1)
-        ->where('isdeleted', 1)
-        ->first();
-
-            $this->Propert->update([
-                'user_id' => Auth::id(),
-                'full_name' => $this->full_name,
-                'calculator_number' => $this->calculator_number,
-                'department_name' => $this->department_name,
-                'email' => $this->email,
-                'total_paid_amount' => $this->total_paid_amount,
-                'bonds_id' => $this->property_number,
-                'from_date' => $this->from_date,
-                'to_date' => $this->to_date,
-                'months_count' => $this->months_count,
-                'total_amount' => $this->total_amount,
-                'paid_amount' => $this->paid_amount,
-                'property_status' => $this->property_status ?: 'محجوز',
-                'status' =>  '1',
-                'notifications' => $this->notifications ?: '0',
-                'notes' => $this->notes,
-                'monthly_amount' => $this->monthly_amount,
-                'isdeleted' =>  '1',
-            ]);
-            $this->reset();
-            $this->dispatchBrowserEvent('success', [
-                'message' => 'تم التعديل بنجاح',
-                'title' => 'اضافه'
-            ]);
-
+        $this->Propert = Property::where('bonds_id', $this->bonds_id)->first();
+        $this->Propert->update([
+            'user_id' => Auth::id(),
+            'full_name' => $this->full_name,
+            'calculator_number' => $this->calculator_number,
+            'department_name' => $this->department_name,
+            'email' => $this->email,
+            'total_paid_amount' => $this->total_paid_amount,
+            'bonds_id' => $this->bonds_id,
+            'from_date' => $this->from_date,
+            'to_date' => $this->to_date,
+            'months_count' => $this->months_count,
+            'total_amount' => $this->total_amount,
+            'paid_amount' => $this->paid_amount,
+            'property_status' => $this->property_status ?: 'محجوز',
+            'status' =>  '1',
+            'notifications' => $this->notifications ?: '0',
+            'notes' => $this->notes,
+            'monthly_amount' => $this->monthly_amount,
+            'isdeleted' =>  '0',
+        ]);
+        $this->reset();
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'تم التعديل بنجاح',
+            'title' => 'اضافه'
+        ]);
     }
-
-
+    // تنسيق الأرقام بإضافة الفواصل
     public function formatWithCommas($number)
     {
         return number_format($number, 0, '.', ',');
     }
-
-
+    // جلب بيانات العقار
     public function GetPropert2($PropertId)
     {
-
         $this->resetValidation();
-        $this->Propert = Property::where('bonds_id', $PropertId)
-            ->where('status', 1)
-            ->where('isdeleted', 1)
-            ->first();
-
+        $this->Propert = Property::where('bonds_id', $PropertId)->first();
         $this->PropertId = $this->Propert->id;
         $this->user_id = $this->Propert->user_id;
         $this->full_name = $this->Propert->full_name;
@@ -314,26 +281,18 @@ class Propert extends Component
         $this->notes = $this->Propert->notes;
         $this->monthly_amount = $this->formatWithCommas($this->Propert->monthly_amount);
         $this->property_number = $this->Propert->bonds_id;
-
     }
-
-
+    // حذف العقار
     public function destroy()
     {
         $this->resetValidation();
-
-
-
         $this->Propert = Property::where('bonds_id', $this->bonds_id)
-        ->where('status', 1)
-        ->where('isdeleted', 1)
-        ->first();
-
+            ->where('isdeleted', 0)
+            ->first();
         if ($this->bonds_id) {
             $this->Propert->update([
-
                 'status' =>  '0',
-                'isdeleted' =>  '0',
+                'isdeleted' =>  '1',
             ]);
             $this->reset();
             $this->dispatchBrowserEvent('success', [

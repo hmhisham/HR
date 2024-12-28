@@ -57,12 +57,10 @@ class Bonds extends Model
     }
 
 
-
     public function getPropert()
     {
-    return $this->hasOne(Property::class, 'bonds_id', 'property_number')
+        return $this->hasOne(Property::class, 'bonds_id', 'id')
             ->where('status', 1)
-            ->where('isdeleted', 1);
-
+            ->where('isdeleted', 0);
     }
 }
