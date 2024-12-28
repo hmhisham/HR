@@ -1,8 +1,10 @@
 <?php
+
 namespace App\Http\Livewire\Propertytypes;
+
 use Livewire\Component;
 
- use Livewire\WithPagination;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Propertytypes\Propertytypes;
 
@@ -15,9 +17,9 @@ class Propertytype extends Component
     public $PropertytypeSearch, $Propertytype, $PropertytypeId;
     public $type_name;
 
-    Public function render()
+    public function render()
     {
-        $PropertytypeSearch ='%' . $this->PropertytypeSearch . '%';
+        $PropertytypeSearch = '%' . $this->PropertytypeSearch . '%';
         $Propertytypes = Propertytypes::where('type_name', 'LIKE', $PropertytypeSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
@@ -40,54 +42,61 @@ class Propertytype extends Component
     public function store()
     {
         $this->resetValidation();
-         $this->validate([
-            'type_name' => 'required' ,
+
+        $this->validate([
+            'type_name' => 'required|unique:propertytypes,type_name',
         ], [
             'type_name.required' => 'حقل اسم النوع مطلوب',
+            'type_name.unique' => 'نوع جنس العقار موجود بالفعل .. يرجى اختيار اسم آخر.',
         ]);
 
         Propertytypes::create([
             'user_id' => Auth::id(),
-            'type_name'=> $this->type_name,
+            'type_name' => $this->type_name,
         ]);
 
         $this->reset();
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
-            'title' => 'اضافه'
+            'title' => 'اضافه',
         ]);
     }
+
 
     public function GetPropertytype($PropertytypeId)
     {
         $this->resetValidation();
 
-        $this-> Propertytype  = Propertytypes::find($PropertytypeId);
-        $this-> PropertytypeId = $this->Propertytype->id;
-        $this->type_name= $this->Propertytype->type_name;
+        $this->Propertytype  = Propertytypes::find($PropertytypeId);
+        $this->PropertytypeId = $this->Propertytype->id;
+        $this->type_name = $this->Propertytype->type_name;
     }
 
     public function update()
     {
         $this->resetValidation();
-         $this->validate([
-            'type_name' => 'required:propertytypes' ,
+        $this->validate([
+            'type_name' => 'required|unique:propertytypes,type_name,' . $this->PropertytypeId,
         ], [
             'type_name.required' => 'حقل اسم النوع مطلوب',
+            'type_name.unique' => 'نوع جنس العقار موجود بالفعل .. يرجى اختيار اسم آخر.',
         ]);
 
         $Propertytypes = Propertytypes::find($this->PropertytypeId);
         $Propertytypes->update([
-            'user_id' => Auth::id() ,
-            'type_name'=> $this->type_name,
+            'user_id' => Auth::id(),
+            'type_name' => $this->type_name,
         ]);
 
         $this->reset();
-         $this->dispatchBrowserEvent('success', [
+
+        $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
-            'title' => 'تعديل'
+            'title' => 'تعديل',
         ]);
-     }
+    }
+
 
     public function destroy()
     {

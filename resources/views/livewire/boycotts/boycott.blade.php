@@ -1,15 +1,21 @@
-<div class="card">
-    <div class="card-header">
-        <div class="d-flex justify-content-between">
-            <div>
-                <input wire:model="BoycottSearch" type="text" class="form-control" placeholder="بحث...">
-            </div>
-            <div>
-                @can('boycott-create')
-                    <button wire:click='AddBoycottModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
-                        data-bs-toggle="modal" data-bs-target="#addboycottModal">أضــافــة</button>
-                    @include('livewire.boycotts.modals.add-boycott')
-                @endcan
+<div class="mt-n4">
+    <h4 class="mb-2">
+        <span class="text-muted fw-light">الاملاك والاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
+        المقاطعات
+    </h4>
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <input wire:model="BoycottSearch" type="text" class="form-control" placeholder="بحث...">
+                </div>
+                <div>
+                    @can('boycott-create')
+                        <button wire:click='AddBoycottModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
+                            data-bs-toggle="modal" data-bs-target="#addboycottModal">أضــافــة</button>
+                        @include('livewire.boycotts.modals.add-boycott')
+                    @endcan
+                </div>
             </div>
         </div>
         @can('boycott-list')
@@ -46,17 +52,16 @@
                             <td class="text-center">
                                 <div class="btn-group" role="group" aria-label="First group">
                                     @can('boycott-edit')
-                                        <button wire:click="GetBoycott({{ $boycott->id }})"
-                                                class="btn btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#editboycottModal">
-                                            <i class="tf-icons mdi mdi-pencil fs-5"></i>
+                                        <button wire:click="GetBoycott({{ $boycott->id }})" class="p-0 px-1 btn btn-text-success waves-effect"
+                                            data-bs-toggle="modal" data-bs-target="#editboycottModal">
+                                            <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                         </button>
                                     @endcan
                                     @can('boycott-delete')
                                         <button wire:click="GetBoycott({{ $boycott->id }})"
-                                                class="btn btn-danger {{ $boycott->active ? 'disabled' : '' }}"
-                                                data-bs-toggle="modal" data-bs-target="#removeboycottModal">
-                                            <i class="tf-icons mdi mdi-delete-outline fs-5"></i>
+                                            class="p-0 px-1 btn btn-text-danger waves-effect {{ $boycott->active ? 'disabled' : '' }}"
+                                            data-bs-toggle="modal" data-bs-target="#removeboycottModal">
+                                            <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                         </button>
                                     @endcan
                                 </div>
@@ -74,5 +79,4 @@
             <!-- Modal -->
         @endcan
     </div>
- 
 </div>

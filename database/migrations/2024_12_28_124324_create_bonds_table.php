@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('bonds', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable()->comment('رقم المستخدم');
-            $table->string('boycott_id')->nullable()->comment('رقم المقاطعة');
-            $table->string('part_number')->nullable()->comment('رقم القطعة');
-            $table->string('property_number')->nullable()->comment('رقم العقار');
+            $table->string('boycott_id')->nullable()->comment('رقم المقاطعة')->index();
+            $table->string('part_number')->nullable()->comment('رقم القطعة')->index();
+            $table->string('property_number')->nullable()->comment('رقم العقار')->index();
             $table->string('area_in_meters')->nullable()->comment('المساحة بالمتر');
             $table->string('area_in_olok')->nullable()->comment('المساحة بالأولك');
             $table->string('area_in_donum')->nullable()->comment('المساحة بالدونم');
@@ -34,13 +34,8 @@ return new class extends Migration
             $table->string('property_deed_image')->nullable()->comment('صورة السند العقاري');
             $table->text('notes')->nullable()->comment('ملاحظات');
             $table->boolean('visibility')->default(true)->comment('إمكانية ظهوره');
+
             $table->timestamps();
-
-               // إضافة الفهارس
-        $table->index('boycott_id');
-        $table->index('part_number');
-        $table->index('property_number');
-
         });
     }
 
@@ -49,10 +44,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('bonds', function (Blueprint $table) {
-            $table->dropIndex(['boycott_id']);
-            $table->dropIndex(['part_number']);
-            $table->dropIndex(['property_number']);
-        });
+        Schema::dropIfExists('bonds');
     }
 };
