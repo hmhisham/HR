@@ -207,6 +207,13 @@
                         class="btn btn-success me-sm-3 me-1">تعديل</button>
                      </button>
 
+
+
+                     <button wire:click='update' wire:loading.attr="disabled" type="button"
+                     class="btn btn-success me-sm-3 me-1">تعديل</button>
+                  </button>
+
+                  
                     <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                         aria-label="Close">تجاهل</button>
                 </div>

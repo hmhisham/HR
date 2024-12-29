@@ -4,8 +4,11 @@ namespace App\Http\Livewire\Propertypayd;
 
 use Livewire\Component;
 
-use Livewire\WithPagination;
+ use Livewire\WithPagination;
+use App\Mail\NotificationMail;
+use App\Models\Property\Property;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use App\Models\Propertypayd\Propertypayd;
@@ -14,9 +17,9 @@ class Propertypay extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-
+    public $Property = [];
     protected $Propertypayd = [];
-    public $PropertypaySearch, $Propertypay, $PropertypayId, $pro;
+    public $PropertypaySearch, $Propertypay, $PropertypayId, $pro , $propert , $email ;
     public $user_id, $bonds_id, $receipt_number, $receipt_date, $amount, $receipt_file, $notes, $isdeleted;
     // متغيرات البحث
     public $search = [
@@ -125,6 +128,9 @@ class Propertypay extends Component
     }
     public function AddPropertypayModalShow()
     {
+
+
+
         $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('PropertypayModalShow');
@@ -170,6 +176,7 @@ class Propertypay extends Component
 
     public function GetPropertypay($PropertypayId)
     {
+
         $this->resetValidation();
 
         $this->Propertypay  = Propertypayd::find($PropertypayId);
@@ -220,6 +227,21 @@ class Propertypay extends Component
             'isdeleted' => $this->isdeleted,
 
         ]);
+
+// ===============================
+
+$this->propert = Property::find($this->bonds_id);
+
+$this->email = $this->propert->email;
+
+// إرسال البريد الإلكتروني
+Mail::to($this->email)->send(new NotificationMail(
+    'الموانيء العراقية',
+    'مرحبا استاذ ' . $this->propert->full_name . ' تم دفع المبلغ ' . $this->amount . ' الخاص بالعقار  وحسب الوصل المرفق' . "\n" .
+    'الرجاء الاحتفاظ بالرسائل كذلك الاطلاع على التطبيق الخاص بك' . "\n" .
+    'شكراً لكم'
+));
+// ===============================
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',

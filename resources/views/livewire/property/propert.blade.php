@@ -127,14 +127,7 @@
                                                 @endif
                                             @endcan
 
-                                            @can('propert-show')
-                                                @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 0)
-                                                    <a href="{{ Route('Placement-Show', $bond->id) }}"
-                                                        class="p-0 px-1 btn btn-text-primary waves-effect">
-                                                        <span class="mdi mdi-calculator fs-5"></span>
-                                                    </a>
-                                                @endif
-                                            @endcan
+                                         
 
                                             @can('propert-Show')
                                                 @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 0)
