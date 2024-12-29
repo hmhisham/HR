@@ -148,16 +148,15 @@ class ShowBond extends Component
         }
     }
 
-    public function updatedFile() {
-        $this->filePreview = $this->property_deed_image->temporaryUrl();
-    }
-    public function upload() {
+    public function updatedPropertyDeedImage()
+    {
         $this->validate([
             'property_deed_image' => 'required|file|max:10240', // الحد الأقصى للحجم 10 ميجابايت
+        ], [
+            'property_deed_image.max'=> 'يجب ألا يزيد حجم ملف القطعة عن 1024 كيلوبايت.'
         ]);
 
-        $this->property_deed_image->store('public/Bonds');
-
+        $this->filePreview = $this->property_deed_image->temporaryUrl();
     }
 
     public function store()
@@ -187,7 +186,6 @@ class ShowBond extends Component
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
             'specialized_department' => 'required',
-            //'property_deed_image' => 'required',
             //'notes' => 'required',
             //'visibility' => 'required',
 
@@ -209,10 +207,20 @@ class ShowBond extends Component
             'mortgage_notes.required' => 'حقل إشارات التأمينات مطلوب',
             'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
-            //'property_deed_image.required' => 'حقل صورة السند العقاري مطلوب',
             //'notes.required' => 'حقل ملاحظات مطلوب',
             //'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
         ]);
+
+        if ($this->property_deed_image) {
+            $this->validate([
+                'property_deed_image' => 'required|file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+            ], [
+                'property_deed_image.required' => 'ملف السند العقاري مطلوب.',
+                'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
+            ]);
+
+            $this->property_deed_image->store('public/Bonds');
+        }
 
         Bonds::create([
             'user_id' => Auth::User()->id,
@@ -233,7 +241,7 @@ class ShowBond extends Component
             'mortgage_notes' => $this->mortgage_notes,
             'registered_office' => $this->registered_office,
             'specialized_department' => $this->specialized_department,
-            'property_deed_image' => $this->property_deed_image,
+            'property_deed_image' => $this->property_deed_image->hashName(),
             'notes' => $this->notes,
             'visibility' => $this->visibility,
         ]);
@@ -315,7 +323,6 @@ class ShowBond extends Component
             'mortgage_notes' => 'required:bonds',
             'registered_office' => 'required:bonds',
             'specialized_department' => 'required:bonds',
-            //'property_deed_image' => 'required:bonds',
             //'notes' => 'required:bonds',
             //'visibility' => 'required:bonds',
 
@@ -344,6 +351,24 @@ class ShowBond extends Component
         ]);
 
         $Bonds = Bonds::find($this->bondId);
+
+        if( $this->filePreview )
+        {
+            $this->validate([
+                'property_deed_image' => 'required|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+            ], [
+                'property_deed_image.required'=> 'ملف السند العقاري مطلوب.',
+                'property_deed_image.max'=> 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
+            ]);
+
+            if(file_exists(public_path('storage/Bonds/'.$this->part_number)))
+            {
+                unlink(public_path('storage/Bonds/'.$this->part_number));
+            }
+
+            $this->property_deed_image->store('public/Bonds');
+        }
+
         $Bonds->update([
             'user_id' => Auth::User()->id,
             'boycott_id' => $this->boycott_id,
@@ -363,7 +388,7 @@ class ShowBond extends Component
             'mortgage_notes' => $this->mortgage_notes,
             'registered_office' => $this->registered_office,
             'specialized_department' => $this->specialized_department,
-            'property_deed_image' => $this->property_deed_image,
+            'property_deed_image' => $this->property_deed_image->hashName(),
             'notes' => $this->notes,
             'visibility' => $this->visibility,
         ]);

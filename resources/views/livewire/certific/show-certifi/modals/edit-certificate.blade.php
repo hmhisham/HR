@@ -344,15 +344,14 @@
                                                         accept="application/pdf, .png, .jpg, .jpeg">
                                                     <label for="modalcertifinotes">اختر ملف الشهادة</label>
                                                 </div>
-
                                                 @error('Edit_certificate_file') <span class="error">{{ $message }}</span> @enderror
 
                                                 <div wire:loading.remove wire:target='Edit_certificate_file'>
                                                     @if ($Edit_certificate_file && !$certificateFilePreview)
                                                         @if(pathinfo($Edit_certificate_file, PATHINFO_EXTENSION) == strtolower('pdf'))
-                                                            <iframe src="{{ asset('storage/Certific/'.$calculator_number.'/'.$this->Edit_certificate_file) }}" class="mt-3" style="height: 320px; width: 100%"></iframe>
+                                                            <iframe src="{{ asset('storage/Certific/'.$calculator_number.'/'.$Edit_certificate_file) }}" class="mt-3" style="height: 320px; width: 100%"></iframe>
                                                         @else
-                                                            <img src="{{ asset('storage/Certific/'.$calculator_number.'/'.$this->Edit_certificate_file) }}" class="mt-3 rounded img-fluid" style="max-height: 150px; width: 100%">
+                                                            <img src="{{ asset('storage/Certific/'.$calculator_number.'/'.$Edit_certificate_file) }}" class="mt-3 rounded img-fluid" style="max-height: 150px; width: 100%">
                                                         @endif
                                                     @endif
                                                 </div>
@@ -385,9 +384,9 @@
                                                 <div wire:loading.remove wire:target='Edit_validity_ssuance_certificate_file'>
                                                     @if ($Edit_validity_ssuance_certificate_file && !$validitySsuanceFilePreview)
                                                         @if(pathinfo($Edit_validity_ssuance_certificate_file, PATHINFO_EXTENSION) == strtolower('pdf'))
-                                                            <iframe src="{{ asset('storage/Certific/'.$calculator_number.'/'.$this->Edit_validity_ssuance_certificate_file) }}" class="mt-3 " style="height: 320px; width: 100%"></iframe>
+                                                            <iframe src="{{ asset('storage/Certific/'.$calculator_number.'/'.$Edit_validity_ssuance_certificate_file) }}" class="mt-3 " style="height: 320px; width: 100%"></iframe>
                                                         @else
-                                                            <img src="{{ asset('storage/Certific/'.$calculator_number.'/'.$this->Edit_validity_ssuance_certificate_file) }}" class="mt-3 rounded img-fluid" style="max-height: 300px; width: 100%">
+                                                            <img src="{{ asset('storage/Certific/'.$calculator_number.'/'.$Edit_validity_ssuance_certificate_file) }}" class="mt-3 rounded img-fluid" style="max-height: 300px; width: 100%">
                                                         @endif
                                                     @endif
                                                 </div>
