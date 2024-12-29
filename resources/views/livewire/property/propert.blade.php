@@ -60,7 +60,7 @@
                             <tr>
                                 <th></th>
                                 <th>
-                                    <input type="text" wire:debounce.500ms="search.boycott_number" class="form-control"
+                                    <input type="text" wire:model.debounce.500ms="search.boycott_number" class="form-control"
                                         placeholder="بحث برقم المقاطعة">
                                 </th>
                                 <th>
@@ -69,11 +69,11 @@
 
                                 </th>
                                 <th>
-                                    <input type="text" wire:debounce.500ms="search.property_number" class="form-control"
+                                    <input type="text" wire:model.debounce.500ms="search.property_number" class="form-control"
                                         placeholder="بحث برقم العقار">
                                 </th>
                                 <th>
-                                    <select wire:model="search.status" class="form-select">
+                                    <select wire:model.debounce.500ms="search.status" class="form-select">
                                         <option value="">الكل</option>
                                         <option value="1">مستلمة</option>
                                         <option value="0">غير مستلمة</option>

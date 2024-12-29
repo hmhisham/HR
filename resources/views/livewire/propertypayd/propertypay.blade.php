@@ -3,10 +3,7 @@
     <div class="card">
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <input wire:model="PropertypaySearch" type="text" class="form-control" placeholder="بحث...">
-                    </div>
+                <div class="d-flex justify-content-end">
                     <div>
                         @can('propertypay-create')
                             <button wire:click='AddPropertypayModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
