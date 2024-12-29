@@ -21,6 +21,7 @@ class Bond extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Bonds = [];
+    public $bonds;
     public $boycotts = [];
     public $Boycott;
     public $department = [];
@@ -46,7 +47,6 @@ class Bond extends Component
         $this->emit('flatpickr');
     }
 
-    public $bonds;
     public function mount()
     {
         $this->department = Department::all();
@@ -54,9 +54,6 @@ class Bond extends Component
         $this->propertytypes = Propertytypes::all();
         $this->bonds = Bonds::with('getPropert')->get();
     }
-
-
-
 
     public function render()
     {
@@ -132,17 +129,13 @@ class Bond extends Component
         $this->boycott_id = $BoycottID;
     }
 
-    public function updatedFile()
-    {
-        $this->filePreview = $this->property_deed_image->temporaryUrl();
-    }
-    public function upload()
+    public function updatedPropertyDeedImage()
     {
         $this->validate([
             'property_deed_image' => 'required|file|max:10240', // الحد الأقصى للحجم 10 ميجابايت
         ]);
 
-        $this->property_deed_image->store('public/Bonds');
+        $this->filePreview = $this->property_deed_image->temporaryUrl();
     }
 
     public function store()
@@ -200,6 +193,17 @@ class Bond extends Component
             //'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
         ]);
 
+        if ($this->property_deed_image) {
+            $this->validate([
+                'property_deed_image' => 'required|file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+            ], [
+                'property_deed_image.required' => 'ملف القطعة مطلوب.',
+                'property_deed_image.max' => 'يجب ألا يزيد حجم ملف القطعة عن 1024 كيلوبايت.',
+            ]);
+
+            $this->property_deed_image->store('public/Bonds/' . $this->part_number);
+        }
+
         Bonds::create([
             'user_id' => Auth::User()->id,
             'boycott_id' => $this->boycott_id,
@@ -219,11 +223,11 @@ class Bond extends Component
             'mortgage_notes' => $this->mortgage_notes,
             'registered_office' => $this->registered_office,
             'specialized_department' => $this->specialized_department,
-            'property_deed_image' => $this->property_deed_image,
+            'property_deed_image' => $this->property_deed_image->getClientOriginalName(),
             'notes' => $this->notes,
             'visibility' => $this->visibility,
-
         ]);
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
