@@ -20,7 +20,7 @@ class NotificationMail extends Mailable
     }
 
     public function build()
-    {
+    {   
         return $this->subject($this->title)
                     ->view('emails.notification')
                     ->with([

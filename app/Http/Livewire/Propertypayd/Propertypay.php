@@ -27,7 +27,7 @@ class Propertypay extends Component
         'receipt_number' => '',
         'receipt_date' => '',
         'amount' => '',
-          'notes' => '',
+        'notes' => '',
     ];
 
     // حقل الفرز الافتراضي
@@ -66,8 +66,6 @@ class Propertypay extends Component
         })
         ->orderBy($this->sortField, $this->sortDirection)
         ->paginate(10);
-
-
 
         return view('livewire.propertypayd.propertypay', [
             'Propertypayd' => $this->Propertypayd,
@@ -128,9 +126,6 @@ class Propertypay extends Component
     }
     public function AddPropertypayModalShow()
     {
-
-
-
         $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('PropertypayModalShow');
@@ -146,14 +141,12 @@ class Propertypay extends Component
             'receipt_date' => 'required',
             'amount' => 'required',
             'receipt_file' => 'required',
-
         ], [
             'bonds_id.required' => 'حقل رقم العقار مطلوب',
             'receipt_number.required' => 'حقل رقم الإيصال مطلوب',
             'receipt_date.required' => 'حقل تاريخ الإيصال مطلوب',
             'amount.required' => 'حقل المبلغ مطلوب',
             'receipt_file.required' => 'حقل ملف الإيصال مطلوب',
-
         ]);
 
         Propertypayd::create([
@@ -165,7 +158,6 @@ class Propertypay extends Component
             'receipt_file' => $this->receipt_file,
             'notes' => $this->notes,
             'isdeleted' =>  '0',
-
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -176,7 +168,6 @@ class Propertypay extends Component
 
     public function GetPropertypay($PropertypayId)
     {
-
         $this->resetValidation();
 
         $this->Propertypay  = Propertypayd::find($PropertypayId);
@@ -203,7 +194,6 @@ class Propertypay extends Component
             'receipt_file' => 'required:propertypayd',
             'notes' => 'required:propertypayd',
             'isdeleted' => 'required:propertypayd',
-
         ], [
             'user_id.required' => 'حقل رقم المستخدم مطلوب',
             'bonds_id.required' => 'حقل رقم العقار مطلوب',
@@ -225,23 +215,22 @@ class Propertypay extends Component
             'receipt_file' => $this->receipt_file,
             'notes' => $this->notes,
             'isdeleted' => $this->isdeleted,
-
         ]);
 
-// ===============================
+        // ===============================
 
-$this->propert = Property::find($this->bonds_id);
+        $this->propert = Property::find($this->bonds_id);
 
-$this->email = $this->propert->email;
+        $this->email = $this->propert->email;
 
-// إرسال البريد الإلكتروني
-Mail::to($this->email)->send(new NotificationMail(
-    'الموانيء العراقية',
-    'مرحبا استاذ ' . $this->propert->full_name . ' تم دفع المبلغ ' . $this->amount . ' الخاص بالعقار  وحسب الوصل المرفق' . "\n" .
-    'الرجاء الاحتفاظ بالرسائل كذلك الاطلاع على التطبيق الخاص بك' . "\n" .
-    'شكراً لكم'
-));
-// ===============================
+        // إرسال البريد الإلكتروني
+        Mail::to($this->email)->send(new NotificationMail(
+            'الموانيء العراقية',
+            'مرحبا استاذ ' . $this->propert->full_name . ' تم دفع المبلغ ' . $this->amount . ' الخاص بالعقار  وحسب الوصل المرفق' . "\n" .
+            'الرجاء الاحتفاظ بالرسائل كذلك الاطلاع على التطبيق الخاص بك' . "\n" .
+            'شكراً لكم'
+        ));
+        // ===============================
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',

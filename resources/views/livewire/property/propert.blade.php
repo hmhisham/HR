@@ -1,9 +1,10 @@
-<div class="container mt-4">
-    <div class="card shadow-lg">
-        <div class="card-header bg-gradient-primary text-white">
-            <h5 class="mb-0">إدارة الأملاك</h5>
-        </div>
+<div class="mt-n4">
+    <h5 class="mb-2">
+        <span class="text-muted fw-light">قسم الاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
+        الاملاك
+    </h5>
 
+    <div class="card shadow-lg">
         <div class="card-body">
             @can('propert-list')
                 <div class="table-responsive">
@@ -127,12 +128,11 @@
                                                 @endif
                                             @endcan
 
-                                         
+
 
                                             @can('propert-Show')
                                                 @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 0)
-                                                    <a href="{{ Route('Propertypayd.index', $bond->id) }}"
-                                                        class="btn btn-info">
+                                                    <a href="{{ Route('Propertypayd.index', $bond->id) }}" class="btn btn-info">
                                                         <span class="mdi mdi-calculator fs-5"></span>
                                                     </a>
                                                 @endif

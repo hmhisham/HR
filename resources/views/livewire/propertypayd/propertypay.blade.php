@@ -1,5 +1,5 @@
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semibold">قائمة \ الدفع</h4>
+    <h4 class="mb-1 fw-semibold mb-2">قائمة الدفع</h4>
     <div class="card">
         <div class="card">
             <div class="card-header">
@@ -9,9 +9,6 @@
                             <button wire:click='AddPropertypayModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                                 data-bs-toggle="modal" data-bs-target="#addpropertypayModal">أضــافــة</button>
                             @include('livewire.propertypayd.modals.add-propertypay')
-
-
-
                         @endcan
                     </div>
                 </div>
@@ -123,16 +120,14 @@
                                     <td class="text-center">{{ $Propay->notes }} </td>
                                     <td class="text-center">
                                         <div class="btn-group" role="group">
-
                                             @can('propertypay-edit')
-                                            <button wire:click="GetPropertypay({{ $Propay->bonds_id }})"
-                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
-                                                data-bs-target="#editpropertypayModal">
-                                                <i class="tf-icons mdi mdi-pencil fs-3"></i>
-                                            </button>
-                                            @include('livewire.propertypayd.modals.edit-propertypay')
-                                        @endcan
-
+                                                <button wire:click="GetPropertypay({{ $Propay->bonds_id }})"
+                                                    class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                                    data-bs-target="#editpropertypayModal">
+                                                    <i class="tf-icons mdi mdi-pencil fs-3"></i>
+                                                </button>
+                                                @include('livewire.propertypayd.modals.edit-propertypay')
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>

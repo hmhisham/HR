@@ -1,4 +1,3 @@
-
 <!-- Edite Propertypay Modal -->
 <div wire:ignore.self class="modal fade" id="editpropertypayModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -6,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل\ الدفع</h3>
+                    <h3 class="pb-1 mb-2">تعديل الدفع</h3>
                     <p>نافذة التعديل</p>
                 </div>
                 <hr class="mt-n2">
@@ -16,7 +15,7 @@
                 <div wire:loading.remove>
                 <form id="editPropertypayModalForm" autocomplete="off">
                     <div class="row row-cols-1">
-                        <div class="col mb-3"> 
+                        <div class="col mb-3">
                          <div Class="row">
 
                 <div class="mb-3 col">
@@ -29,7 +28,7 @@
                     <small class='text-danger inputerror'> {{ $message }} </small>
                 @enderror
             </div>
-            
+
                 <div class="mb-3 col">
                 <div class="form-floating form-floating-outline">
                     <input wire:model.defer='bonds_id' type="text" id="modalPropertypaybonds_id" placeholder="رقم العقار"
@@ -52,7 +51,7 @@
                     <small class='text-danger inputerror'> {{ $message }} </small>
                 @enderror
             </div>
-            
+
                 <div class="mb-3 col">
                 <div class="form-floating form-floating-outline">
                     <input wire:model.defer='receipt_date' type="date" id="modalPropertypayreceipt_date" placeholder="تاريخ الإيصال"
@@ -63,7 +62,7 @@
                     <small class='text-danger inputerror'> {{ $message }} </small>
                 @enderror
             </div>
-            
+
                 <div class="mb-3 col">
                 <div class="form-floating form-floating-outline">
                     <input wire:model.defer='amount' type="text" id="modalPropertypayamount" placeholder="المبلغ"
@@ -86,7 +85,7 @@
                     <small class='text-danger inputerror'> {{ $message }} </small>
                 @enderror
             </div>
-            
+
                 <div class="mb-3 col">
                 <div class="form-floating form-floating-outline">
                     <input wire:model.defer='notes' type="text" id="modalPropertypaynotes" placeholder="ملاحظات"
@@ -97,7 +96,7 @@
                     <small class='text-danger inputerror'> {{ $message }} </small>
                 @enderror
             </div>
-            
+
                 <div class="mb-3 col">
                 <div class="form-floating form-floating-outline">
                     <input wire:model.defer='isdeleted' type="text" id="modalPropertypayisdeleted" placeholder="محذوف"
@@ -108,7 +107,7 @@
                     <small class='text-danger inputerror'> {{ $message }} </small>
                 @enderror
             </div>
-            
+
                     </div>
                 </div>  </div>
             </div>
