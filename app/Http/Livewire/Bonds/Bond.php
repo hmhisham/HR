@@ -11,6 +11,8 @@ use Illuminate\Validation\Rule;
 use App\Models\Boycotts\Boycotts;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Department\Department;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 use App\Models\Governorates\Governorates;
 use App\Models\Propertytypes\Propertytypes;
 
@@ -22,7 +24,7 @@ class Bond extends Component
 
     public $Bonds = [];
     public $bonds;
-    public $boycotts = [];
+    public $Boycotts = [];
     public $Boycott;
     public $department = [];
     public $governorates = [];
@@ -55,7 +57,7 @@ class Bond extends Component
         $this->bonds = Bonds::with('getPropert')->get();
     }
 
-    public function render()
+    /* public function render()
     {
         $bondSearch = '%' . $this->bondSearch . '%';
         $boycotts = Boycotts::where(function ($query) use ($bondSearch) {
@@ -68,6 +70,35 @@ class Bond extends Component
 
         return view('livewire.bonds.bond', [
             'links' => $links
+        ]);
+    } */
+
+    public $search = [
+        'boycott_number' => '',
+        'boycott_name' => '',
+    ];
+
+    public function render()
+    {
+        $boycotts = QueryBuilder::for(Boycotts::class)
+            ->allowedFilters([
+                AllowedFilter::callback('boycott_number', function ($query, $value) {
+                    $query->where('boycott_number', 'LIKE', '%' . $value . '%');
+                }),
+                AllowedFilter::partial('boycott_name'),
+            ])
+            ->where(function ($query) {
+                foreach ($this->search as $field => $value) {
+                    if (!empty($value)) {
+                        $query->where($field, 'LIKE', '%' . $value . '%');
+                    }
+                }
+            })
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
+
+        return view('livewire.bonds.bond', [
+            'boycotts' => $boycotts,
         ]);
     }
 

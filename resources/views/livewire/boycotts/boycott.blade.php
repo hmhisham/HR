@@ -1,14 +1,11 @@
 <div class="mt-n4">
-    <h4 class="mb-2">
-        <span class="text-muted fw-light">الاملاك والاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
-        المقاطعات
-    </h4>
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <div>
-                    <input wire:model="BoycottSearch" type="text" class="form-control" placeholder="بحث...">
-                </div>
+                <h4 class="mb-2">
+                    <span class="text-muted fw-light">الاملاك والاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
+                    المقاطعات
+                </h4>
                 <div>
                     @can('boycott-create')
                         <button wire:click='AddBoycottModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
@@ -30,11 +27,11 @@
                     <tr>
                         <th>#</th>
                         <th>
-                            <input type="text" wire:model="search.boycott_number" class="form-control"
+                            <input type="text" wire:model.debounce.500ms="search.boycott_number" class="form-control"
                                 placeholder="بحث برقم المقاطعة ..">
                         </th>
                         <th>
-                            <input type="text" wire:model="search.boycott_Name" class="form-control"
+                            <input type="text" wire:model.debounce.500ms="search.boycott_Name" class="form-control"
                                 placeholder="بحث اسم المقاطعة ..">
                         </th>
                         <th></th>
@@ -71,7 +68,7 @@
                 </tbody>
             </table>
             <div class="mt-2 d-flex justify-content-center">
-                {{ $boycotts->links() }}
+                {{ $boycotts->onEachSide(1)->links() }}
             </div>
             <!-- Modal -->
             @include('livewire.boycotts.modals.edit-boycott')

@@ -1,33 +1,44 @@
 <div class="mt-n4">
-    <h4 class="mb-2">
-        <span class="text-muted fw-light">الاملاك والاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
-        السندات العقارية
-    </h4>
     <div class="card">
         <div class="card-header">
-            <div class="d-flex justify-content-between">
-                <div>
-                    <input wire:model="bondSearch" type="text" class="form-control" placeholder="بحث...">
-                </div>
-            </div>
+            <h4 class="mb-2">
+                <span class="text-muted fw-light">الاملاك والاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
+                السندات العقارية
+            </h4>
         </div>
         @can('bond-list')
             <table class="table">
                 <thead class="table-light">
                     <tr>
                         <th>#</th>
-                        <th class="text-center">الاسم</th>
+                        <th class="text-center">رقم المقاطعة</th>
+                        <th class="text-center">اسم المقاطعة</th>
                         <th class="text-center">العدد</th>
-                        <th class="text-center"></th>
+                        <th >العملية</th>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            <input type="text" wire:model.debounce.500ms="search.boycott_number" class="form-control"
+                                placeholder="بحث برقم المقاطعة ..">
+                        </th>
+                        <th>
+                            <input type="text" wire:model.debounce.500ms="search.boycott_Name" class="form-control"
+                                placeholder="بحث اسم المقاطعة ..">
+                        </th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 0; ?>
+                    @php
+                        $i = $boycotts->perPage() * ($boycotts->currentPage() - 1) + 1;
+                    @endphp
                     @foreach ($boycotts as $boycott)
                         <tr>
-                            <?php $i++; ?>
-                            <td>{{ $i }}</td>
-                            <td class="text-center">{{ isset($boycott->boycott_number) && isset($boycott->boycott_name) ? $boycott->boycott_number . ' - ' . $boycott->boycott_name : '' }}</td>
+                            <td>{{ $i++ }}</td>
+                            <td class="text-center">{{ $boycott->boycott_number }}</td>
+                            <td class="text-center">{{ $boycott->boycott_name }}</td>
                             <td Class="text-center">
                                 {{ $boycott->GetBonds->count() }}
                             </td>
@@ -51,7 +62,7 @@
                 </tbody>
             </table>
             <div class="mt-2 d-flex justify-content-center">
-                {{ $links->links() }}
+                {{ $boycotts->onEachSide(1)->links() }}
             </div>
             <!-- Modal -->
             @include('livewire.bonds.modals.add-bond')
