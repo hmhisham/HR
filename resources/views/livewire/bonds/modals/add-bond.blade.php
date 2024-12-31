@@ -324,7 +324,7 @@
                                 </div>
 
                                 @error('property_deed_image')
-                                <span class="error">{{ $message }}</span>
+                                    <span class="error">{{ $message }}</span>
                                 @enderror
 
                                 <div wire:loading.remove wire:target='property_deed_image'>

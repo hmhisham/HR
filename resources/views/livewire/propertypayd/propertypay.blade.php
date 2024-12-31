@@ -1,9 +1,23 @@
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semibold mb-2">قائمة الدفع</h4>
+    <h5 class="mb-2">
+        <span class="text-muted fw-light">
+            قسم الاراضي <span class="mdi mdi-chevron-left mdi-24px"></span>
+            الاملاك <span class="mdi mdi-chevron-left mdi-24px"></span>
+        </span>
+        قوائم الدفع
+    </h5>
     <div class="card">
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-between">
+                    <div class="text-center mb-n5">
+                        <h5 class="fw-bolder border-bottom-2 mb-1">رقم العقار</h5>
+                        <h5 class="fw-bolder fs-2">{{ $PropertyNumber }}</h5>
+                    </div>
+                    <div class="text-center mb-n5">
+                        <h5 class="fw-bolder border-bottom-2 mb-1">اجمالي المبالغ المدفوعة</h5>
+                        <h5 class="fw-bolder fs-2">{{ number_format($TotalAmountsPaid) }}</h5>
+                    </div>
                     <div>
                         @can('propertypay-create')
                             <button wire:click='AddPropertypayModalShow' class="mb-3 add-new btn btn-primary mb-md-0"

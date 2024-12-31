@@ -193,7 +193,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Property', PropertyController::class);
     Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
 
-    Route::  RESOURCE('Propertypayd', PropertypaydController::class);
+    Route::  GET('Propertypayd/{id}', [PropertypaydController::class, 'Index'])->name('Propertypayd');
     Route::  GET('Propertypay-Show/{id}', [PropertypaydController::class,'PropertypayShow'])->name('Propertypay-Show');
 
     //===============المالية==================

@@ -4,23 +4,41 @@ namespace App\Http\Livewire\Propertypayd;
 
 use Livewire\Component;
 
- use Livewire\WithPagination;
+use App\Models\Bonds\Bonds;
+use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use App\Mail\NotificationMail;
 use App\Models\Property\Property;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Alkoumi\LaravelArabicNumbers\Numbers;
 use App\Models\Propertypayd\Propertypayd;
 
 class Propertypay extends Component
 {
+    use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+
+    public $Bond_ID, $Bond, $PropertyNumber, $filePreview;
+    public $TotalAmountsPaid, $TafqeetTotalAmountsPaid;
+    public $TotalAmount, $TafqeetTotalAmount;
+    public $ReceiptAmount, $TafqeetReceiptAmount;
     public $Property = [];
     protected $Propertypayd = [];
     public $PropertypaySearch, $Propertypay, $PropertypayId, $pro , $propert , $email ;
     public $user_id, $bonds_id, $receipt_number, $receipt_date, $amount, $receipt_file, $notes, $isdeleted;
+
+    protected $listeners = [
+        '',
+    ];
+    public function hydrate()
+    {
+        $this->emit('flatpickr');
+    }
+
     // متغيرات البحث
     public $search = [
         'bonds_id' => '',
@@ -47,6 +65,14 @@ class Propertypay extends Component
         }
     }
 
+    public function mount()
+    {
+        $this->PropertyNumber = Bonds::find($this->Bond_ID)->property_number;
+
+        $this->TotalAmountsPaid = Propertypayd::where('bonds_id', $this->Bond_ID)->sum('amount');
+        $this->TafqeetTotalAmountsPaid = Numbers::TafqeetMoney((int)$this->removeCommas($this->TotalAmountsPaid), 'IQD');
+    }
+
     public function render()
     {
         $this->Propertypayd = QueryBuilder::for(Propertypayd::class)
@@ -57,6 +83,7 @@ class Propertypay extends Component
             AllowedFilter::partial('amount'),
             AllowedFilter::partial('notes'),
         ])
+        ->where('bonds_id', $this->Bond_ID)
         ->where(function ($query) {
             foreach ($this->search as $field => $value) {
                 if (!empty($value)) {
@@ -72,7 +99,7 @@ class Propertypay extends Component
         ]);
     }
 
-    public function AddPropertypaydModalShow()
+    public function AddPropertypaydModalShow($id)
     {
         $this->reset();
         $this->resetValidation();
@@ -126,44 +153,88 @@ class Propertypay extends Component
     }
     public function AddPropertypayModalShow()
     {
-        $this->reset();
+        $this->resetExcept('Bond_ID', 'PropertyNumber');
         $this->resetValidation();
         $this->dispatchBrowserEvent('PropertypayModalShow');
+
+        $this->TotalAmountsPaid = Propertypayd::where('bonds_id', $this->Bond_ID)->sum('amount');
+        $this->TafqeetTotalAmountsPaid = Numbers::TafqeetMoney((int)$this->removeCommas($this->TotalAmountsPaid), 'IQD');
+
+        $this->TotalAmount = $this->TotalAmountsPaid;
+        $this->TafqeetTotalAmount = $this->TafqeetTotalAmountsPaid;
     }
 
+    public function removeCommas($number)
+    {
+        return str_replace(',', '', $number);
+    }
+    public function TafqeetAmount()
+    {
+        $this->ReceiptAmount = $this->removeCommas($this->amount);
+        $this->TotalAmount = $this->removeCommas($this->TotalAmountsPaid) + $this->removeCommas($this->ReceiptAmount);
+        $this->TafqeetTotalAmount = Numbers::TafqeetMoney((int)$this->removeCommas($this->TotalAmount), 'IQD');
+
+        $this->TafqeetReceiptAmount = Numbers::TafqeetMoney((int)$this->removeCommas($this->amount), 'IQD');
+    }
+
+    public function updatedReceiptFile()
+    {
+        $this->validate([
+            'receipt_file' => 'required|file|max:10240', // الحد الأقصى للحجم 10 ميجابايت
+        ],[
+            'receipt_file.required' => 'ملف الإيصال مطلوب.',
+            'receipt_file.max' => 'يجب ألا يزيد حجم ملف الإيصال عن 1024 كيلوبايت.',
+        ]);
+
+        $this->filePreview = $this->receipt_file->temporaryUrl();
+    }
 
     public function store()
     {
         $this->resetValidation();
         $this->validate([
-            'bonds_id' => 'required',
+            //'bonds_id' => 'required',
             'receipt_number' => 'required',
             'receipt_date' => 'required',
             'amount' => 'required',
-            'receipt_file' => 'required',
+            'receipt_file' => 'required|file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
         ], [
-            'bonds_id.required' => 'حقل رقم العقار مطلوب',
+            //'bonds_id.required' => 'حقل رقم العقار مطلوب',
             'receipt_number.required' => 'حقل رقم الإيصال مطلوب',
             'receipt_date.required' => 'حقل تاريخ الإيصال مطلوب',
             'amount.required' => 'حقل المبلغ مطلوب',
-            'receipt_file.required' => 'حقل ملف الإيصال مطلوب',
+            'receipt_file.required' => 'ملف الإيصال مطلوب.',
+            'receipt_file.max' => 'يجب ألا يزيد حجم ملف الإيصال عن 1024 كيلوبايت.',
         ]);
 
         Propertypayd::create([
             'user_id' => Auth::id(),
-            'bonds_id' => $this->bonds_id,
+            'bonds_id' => $this->Bond_ID,
             'receipt_number' => $this->receipt_number,
             'receipt_date' => $this->receipt_date,
-            'amount' => $this->amount,
-            'receipt_file' => $this->receipt_file,
+            'amount' => $this->removeCommas($this->amount),
+            'receipt_file' => $this->receipt_file->hashName(),
             'notes' => $this->notes,
             'isdeleted' =>  '0',
         ]);
-        $this->reset();
+
+        $this->propert = Property::where('bonds_id', $this->Bond_ID)->first();
+        $this->email = $this->propert->email;
+        // إرسال البريد الإلكتروني
+        Mail::to($this->email)->send(new NotificationMail(
+            'الموانيء العراقية',
+            'مرحبا استاذ ' . $this->propert->full_name . ' تم دفع المبلغ ' . $this->amount . ' الخاص بالعقار  وحسب الوصل المرفق' . "\n" .
+            'الرجاء الاحتفاظ بالرسائل كذلك الاطلاع على التطبيق الخاص بك' . "\n" .
+            'شكراً لكم'
+        ));
+
+        $this->resetExcept('Bond_ID', 'PropertyNumber');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
+
+        $this->mount();
     }
 
     public function GetPropertypay($PropertypayId)
@@ -184,6 +255,8 @@ class Propertypay extends Component
 
     public function update()
     {
+        $this->amount = str_replace(',', '', $this->amount);
+
         $this->resetValidation();
         $this->validate([
             'user_id' => 'required:propertypayd',
@@ -205,10 +278,21 @@ class Propertypay extends Component
             'isdeleted.required' => 'حقل محذوف مطلوب',
         ]);
 
+        if ($this->receipt_file) {
+            $this->validate([
+                'receipt_file' => 'required|file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+            ], [
+                'receipt_file.required' => 'ملف الإيصال مطلوب.',
+                'receipt_file.max' => 'يجب ألا يزيد حجم ملف الإيصال عن 1024 كيلوبايت.',
+            ]);
+
+            $this->receipt_file->store('public/Property/Payment-Receipts');
+        }
+
         $Propertypayd = Propertypayd::find($this->PropertypayId);
         $Propertypayd->update([
             'user_id' => $this->user_id,
-            'bonds_id' => $this->bonds_id,
+            'bonds_id' => $this->Bond_ID,
             'receipt_number' => $this->receipt_number,
             'receipt_date' => $this->receipt_date,
             'amount' => $this->amount,
@@ -219,9 +303,9 @@ class Propertypay extends Component
 
         // ===============================
 
-        $this->propert = Property::find($this->bonds_id);
+        $this->propert = Property::find($this->Bond_ID);
 
-        $this->email = $this->propert->email;
+        /* $this->email = $this->propert->email;
 
         // إرسال البريد الإلكتروني
         Mail::to($this->email)->send(new NotificationMail(
@@ -229,7 +313,7 @@ class Propertypay extends Component
             'مرحبا استاذ ' . $this->propert->full_name . ' تم دفع المبلغ ' . $this->amount . ' الخاص بالعقار  وحسب الوصل المرفق' . "\n" .
             'الرجاء الاحتفاظ بالرسائل كذلك الاطلاع على التطبيق الخاص بك' . "\n" .
             'شكراً لكم'
-        ));
+        )); */
         // ===============================
         $this->reset();
         $this->dispatchBrowserEvent('success', [

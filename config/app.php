@@ -199,6 +199,7 @@ return [
         App\Providers\JetstreamServiceProvider::class,
         App\Providers\MenuServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Alkoumi\LaravelArabicNumbers\LaravelArabicNumbersServiceProvider::class,
 
     ],
 

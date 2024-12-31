@@ -223,7 +223,7 @@ class Bond extends Component
             'mortgage_notes' => $this->mortgage_notes,
             'registered_office' => $this->registered_office,
             'specialized_department' => $this->specialized_department,
-            'property_deed_image' => $this->property_deed_image->getClientOriginalName(),
+            'property_deed_image' => $this->property_deed_image->hashName(),
             'notes' => $this->notes,
             'visibility' => $this->visibility,
         ]);
