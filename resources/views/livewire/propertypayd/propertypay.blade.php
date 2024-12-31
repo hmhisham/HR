@@ -1,17 +1,28 @@
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semibold">قائمة \ الدفع</h4>
+    <h5 class="mb-2">
+        <span class="text-muted fw-light">
+            قسم الاراضي <span class="mdi mdi-chevron-left mdi-24px"></span>
+            الاملاك <span class="mdi mdi-chevron-left mdi-24px"></span>
+        </span>
+        قوائم الدفع
+    </h5>
     <div class="card">
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-between">
+                    <div class="text-center mb-n5">
+                        <h5 class="fw-bolder border-bottom-2 mb-1">رقم العقار</h5>
+                        <h5 class="fw-bolder fs-2">{{ $PropertyNumber }}</h5>
+                    </div>
+                    <div class="text-center mb-n5">
+                        <h5 class="fw-bolder border-bottom-2 mb-1">اجمالي المبالغ المدفوعة</h5>
+                        <h5 class="fw-bolder fs-2">{{ number_format($TotalAmountsPaid) }}</h5>
+                    </div>
                     <div>
                         @can('propertypay-create')
                             <button wire:click='AddPropertypayModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                                 data-bs-toggle="modal" data-bs-target="#addpropertypayModal">أضــافــة</button>
                             @include('livewire.propertypayd.modals.add-propertypay')
-
-
-
                         @endcan
                     </div>
                 </div>
@@ -123,16 +134,14 @@
                                     <td class="text-center">{{ $Propay->notes }} </td>
                                     <td class="text-center">
                                         <div class="btn-group" role="group">
-
                                             @can('propertypay-edit')
-                                            <button wire:click="GetPropertypay({{ $Propay->bonds_id }})"
-                                                class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
-                                                data-bs-target="#editpropertypayModal">
-                                                <i class="tf-icons mdi mdi-pencil fs-3"></i>
-                                            </button>
-                                            @include('livewire.propertypayd.modals.edit-propertypay')
-                                        @endcan
-
+                                                <button wire:click="GetPropertypay({{ $Propay->bonds_id }})"
+                                                    class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                                    data-bs-target="#editpropertypayModal">
+                                                    <i class="tf-icons mdi mdi-pencil fs-3"></i>
+                                                </button>
+                                                @include('livewire.propertypayd.modals.edit-propertypay')
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>
