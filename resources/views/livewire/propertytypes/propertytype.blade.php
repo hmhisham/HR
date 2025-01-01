@@ -21,7 +21,7 @@
             <table class="table">
                 <thead class="table-light">
                     <tr>
-                        <th>#</th>
+                        <th>ت</th>
                         <th class="text-center">اسم النوع</th>
                         <th class="text-center">العملية</th>
                     </tr>

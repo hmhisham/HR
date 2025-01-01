@@ -305,17 +305,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='property_deed_image' type="file"
-                                            id="modalBondproperty_deed_image" placeholder="صورة السند العقاري"
-                                            class="form-control @error('property_deed_image') is-invalid is-filled @enderror" />
-                                        <label for="modalBondproperty_deed_image">صورة السند العقاري</label>
-                                    </div>
-                                    @error('property_deed_image')
-    <small class='text-danger inputerror'>{{ $message }}</small>
-@enderror
-                            </div>-->
+                        
                         <div class="col-4 text-center">
                             <div>
                                 <div class="form-floating form-floating-outline">
