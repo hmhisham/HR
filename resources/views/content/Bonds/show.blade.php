@@ -91,12 +91,12 @@
             }
 
             // تهيئة حقول التاريخ
-            initFlatpickr('#addDate', 'addbondModal');
-            initFlatpickr('#editDate', 'editbondModal');
+            initFlatpickr('#addDate','updateDate', '#addbondModal');
+            initFlatpickr('#editDate','updateDate', '#editbondModal');
 
             window.livewire.on('flatpickr', () => {
-                initFlatpickr('#addDate', 'addbondModal');
-                initFlatpickr('#editDate', 'editbondModal');
+                initFlatpickr('#addDate','updateDate', '#addbondModal');
+                initFlatpickr('#editDate','updateDate', '#editbondModal');
             });
         });
 

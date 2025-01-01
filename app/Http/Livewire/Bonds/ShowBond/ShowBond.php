@@ -42,6 +42,7 @@ class ShowBond extends Component
         'SelectGovernorate',
         'SelectDistrict',
         'SelectPropertyType',
+        'SelectDate'
     ];
 
     public function hydrate()
