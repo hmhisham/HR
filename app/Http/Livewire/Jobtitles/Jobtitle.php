@@ -20,11 +20,13 @@ class Jobtitle extends Component
     public function render()
     {
         $JobtitleSearch = '%' . $this->JobtitleSearch . '%';
-        $Jobtitles = Jobtitles::where('jobtitles_name', 'LIKE', $JobtitleSearch)
+        $serchID = Grades::where('grades_name', 'LIKE', $JobtitleSearch)->pluck('id');
 
-
+        $Jobtitles = Jobtitles::whereIn('grades_id', $serchID)
+            ->orWhere('jobtitles_name', 'LIKE', $JobtitleSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Jobtitles;
         $this->Jobtitles = collect($Jobtitles->items());
         return view('livewire.jobtitles.jobtitle', [
@@ -83,7 +85,7 @@ class Jobtitle extends Component
         $this->resetValidation();
         $this->validate([
             'grades_id' => 'required:jobtitles',
-            'jobtitles_name' => 'required|unique:jobtitles,jobtitles_name,'.$this->Jobtitle->id.',id',
+            'jobtitles_name' => 'required|unique:jobtitles,jobtitles_name,' . $this->Jobtitle->id . ',id',
 
         ], [
             'grades_id.required' => 'حقل الدرجة الوظيفية مطلوب',

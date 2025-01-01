@@ -33,12 +33,12 @@ class District extends Component
 
     public function render()
     {
-        $DistrictSearch = $this->DistrictSearch. '%';
-        $serchID = Governorates::where('governorate_name', 'LIKE','%' . $DistrictSearch . '%')->pluck('id');
+        $DistrictSearch = '%' . $this->DistrictSearch . '%';
+        $serchID = Governorates::where('governorate_name', 'LIKE', $DistrictSearch)->pluck('id');
 
         $Districts = Districts::whereIn('governorate_id', $serchID)
-            ->orWhere('district_number', 'LIKE', '%' . $DistrictSearch . '%')
-            ->orWhere('district_name', 'LIKE', '%' . $DistrictSearch . '%')
+            ->orWhere('district_number', 'LIKE', $DistrictSearch)
+            ->orWhere('district_name', 'LIKE', $DistrictSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
         $links = $Districts;

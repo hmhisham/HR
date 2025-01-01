@@ -21,7 +21,9 @@ class Technician extends Component
     public function render()
     {
         $TechnicianSearch = '%' . $this->TechnicianSearch . '%';
-        $Technicians = Technicians::where('grades_id', 'LIKE', $TechnicianSearch)
+        $serchID = Grades::where('grades_name', 'LIKE', $TechnicianSearch)->pluck('id');
+
+        $Technicians = Technicians::whereIn('grades_id', $serchID)
             ->orWhere('phase_emp', 'LIKE', $TechnicianSearch)
             ->orWhere('technicians_salary_grade', 'LIKE', $TechnicianSearch)
             ->orWhere('technicians_salary_stage', 'LIKE', $TechnicianSearch)
@@ -29,10 +31,9 @@ class Technician extends Component
             ->orWhere('technicians_salary', 'LIKE', $TechnicianSearch)
             ->orWhere('technicians_minimum_period', 'LIKE', $TechnicianSearch)
             ->orWhere('technicians_previous_salary', 'LIKE', $TechnicianSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Technicians;
         $this->Technicians = collect($Technicians->items());
         return view('livewire.technicians.technician', [

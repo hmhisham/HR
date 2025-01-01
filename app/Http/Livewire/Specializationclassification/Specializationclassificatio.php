@@ -20,10 +20,9 @@ class Specializationclassificatio extends Component
     {
         $SpecializationclassificatioSearch = '%' . $this->SpecializationclassificatioSearch . '%';
         $Specializationclassification = Specializationclassification::where('specializationclassification_name', 'LIKE', $SpecializationclassificatioSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Specializationclassification;
         $this->Specializationclassification = collect($Specializationclassification->items());
         return view('livewire.specializationclassification.specializationclassificatio', [
@@ -75,10 +74,8 @@ class Specializationclassificatio extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'specializationclassification_name' => 'required|unique:specializationclassification,specializationclassification_name,'.$this->Specializationclassificatio->id.',id',
-        ], [
-
-        ], [
+            'specializationclassification_name' => 'required|unique:specializationclassification,specializationclassification_name,' . $this->Specializationclassificatio->id . ',id',
+        ], [], [
             'specializationclassification_name.required' => 'حقل تصنيف التخصص مطلوب',
             'specializationclassification_name.unique' => 'الاسم موجود',
         ]);

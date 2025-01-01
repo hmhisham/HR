@@ -20,10 +20,9 @@ class Grade extends Component
     {
         $GradeSearch = '%' . $this->GradeSearch . '%';
         $Grades = Grades::where('grades_name', 'LIKE', $GradeSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+            
         $links = $Grades;
         $this->Grades = collect($Grades->items());
         return view('livewire.grades.grade', [

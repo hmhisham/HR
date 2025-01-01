@@ -20,7 +20,9 @@ class Scalea extends Component
     public function render()
     {
         $ScaleaSearch = '%' . $this->ScaleaSearch . '%';
-        $Scaleas = Scaleas::where('grades_id', 'LIKE', $ScaleaSearch)
+        $serchID = Grades::where('grades_name', 'LIKE', $ScaleaSearch)->pluck('id');
+
+        $Scaleas = Scaleas::whereIn('grades_id', $serchID)
             ->orWhere('phase_emp', 'LIKE', $ScaleaSearch)
             ->orWhere('scaleas_salary_grade', 'LIKE', $ScaleaSearch)
             ->orWhere('scaleas_salary_stage', 'LIKE', $ScaleaSearch)
@@ -28,10 +30,9 @@ class Scalea extends Component
             ->orWhere('scaleas_salary', 'LIKE', $ScaleaSearch)
             ->orWhere('scaleas_minimum_period', 'LIKE', $ScaleaSearch)
             ->orWhere('scaleas_previous_salary', 'LIKE', $ScaleaSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Scaleas;
         $this->Scaleas = collect($Scaleas->items());
         return view('livewire.scaleas.scalea', [

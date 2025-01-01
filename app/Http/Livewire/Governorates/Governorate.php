@@ -17,9 +17,9 @@ class Governorate extends Component
 
     public function render()
     {
-        $GovernorateSearch = $this->GovernorateSearch . '%';
-        $Governorates = Governorates::where('governorate_number', 'LIKE', '%' . $GovernorateSearch . '%')
-            ->orWhere('governorate_name', 'LIKE', '%' . $GovernorateSearch . '%')
+        $GovernorateSearch = '%' . $this->GovernorateSearch . '%';
+        $Governorates = Governorates::where('governorate_number', 'LIKE', $GovernorateSearch)
+            ->orWhere('governorate_name', 'LIKE', $GovernorateSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
@@ -79,8 +79,8 @@ class Governorate extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'governorate_number' => 'required|unique:governorates,governorate_number,'.$this->Governorate->id.',id',
-            'governorate_name' => 'required|unique:governorates,governorate_name,'.$this->Governorate->id.',id',
+            'governorate_number' => 'required|unique:governorates,governorate_number,' . $this->Governorate->id . ',id',
+            'governorate_name' => 'required|unique:governorates,governorate_name,' . $this->Governorate->id . ',id',
         ], [
             'governorate_number.required' => 'حقل رقم المحافظة مطلوب',
             'governorate_number.unique' => 'رقم المحافظة موجود',

@@ -20,10 +20,9 @@ class Training extends Component
     {
         $TrainingSearch = '%' . $this->TrainingSearch . '%';
         $Trainings = Trainings::where('trainings_name', 'LIKE', $TrainingSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+            
         $links = $Trainings;
         $this->Trainings = collect($Trainings->items());
         return view('livewire.trainings.training', [

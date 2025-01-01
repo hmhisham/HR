@@ -37,9 +37,16 @@ class Area extends Component
 
     public function render()
     {
-        $AreaSearch = $this->AreaSearch . '%';
-        $Areas = Areas::where('governorate_id', 'LIKE', $AreaSearch)
-            ->orWhere('district_id', 'LIKE', $AreaSearch)
+        $AreaSearch = '%' . $this->AreaSearch . '%';
+
+        $governorateIDs = Governorates::where('governorate_name', 'LIKE', $AreaSearch)
+            ->pluck('id');
+
+        $districtIDs = Districts::where('district_name', 'LIKE', $AreaSearch)
+            ->pluck('id');
+
+        $Areas = Areas::whereIn('governorate_id', $governorateIDs)
+            ->orWhereIn('district_id', $districtIDs)
             ->orWhere('area_id', 'LIKE', $AreaSearch)
             ->orWhere('area_name', 'LIKE', $AreaSearch)
             ->orderBy('id', 'ASC')
@@ -53,6 +60,7 @@ class Area extends Component
             'links' => $links
         ]);
     }
+
 
     public function chooseGovernorate($GovernorateID)
     {
@@ -99,7 +107,7 @@ class Area extends Component
             'area_name' => $this->area_name,
         ]);
 
-        $this->reset(['governorate_id','district_id','area_id','area_name']);
+        $this->reset(['governorate_id', 'district_id', 'area_id', 'area_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -149,7 +157,7 @@ class Area extends Component
             'area_name' => $this->area_name,
         ]);
 
-        $this->reset(['governorate_id','district_id','area_id','area_name']);
+        $this->reset(['governorate_id', 'district_id', 'area_id', 'area_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -160,7 +168,7 @@ class Area extends Component
     {
         $Areas = Areas::find($this->AreaId);
         $Areas->delete();
-        $this->reset(['governorate_id','district_id','area_id','area_name']);
+        $this->reset(['governorate_id', 'district_id', 'area_id', 'area_name']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

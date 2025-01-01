@@ -36,7 +36,12 @@ class Specialization extends Component
     public function render()
     {
         $SpecializationSearch = '%' . $this->SpecializationSearch . '%';
-        $Specializations = Specializations::where('specializations_name', 'LIKE', $SpecializationSearch)
+        $certificateIDs = Certificates::where('certificates_name', 'LIKE', $SpecializationSearch)->pluck('id');
+        $graduationIDs = Graduations::where('graduations_name', 'LIKE', $SpecializationSearch)->pluck('id');
+
+        $Specializations = Specializations::whereIn('certificates_id', $certificateIDs)
+            ->orWhereIn('graduations_id', $graduationIDs)
+            ->orWhere('specializations_name', 'LIKE', $SpecializationSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
@@ -62,7 +67,7 @@ class Specialization extends Component
 
     public function AddSpecializationModalShow()
     {
-        $this->reset(['certificates_id','graduations_id','specializations_name']);
+        $this->reset(['certificates_id', 'graduations_id', 'specializations_name']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('SpecializationModalShow');
     }
@@ -79,7 +84,7 @@ class Specialization extends Component
         $this->validate([
             'certificates_id' => 'required',
             'graduations_id' => 'required',
-            'specializations_name' => 'required|unique:specializations,specializations_name,NULL,id,graduations_id,' . $this->graduations_id.',certificates_id,'.$this->certificates_id,
+            'specializations_name' => 'required|unique:specializations,specializations_name,NULL,id,graduations_id,' . $this->graduations_id . ',certificates_id,' . $this->certificates_id,
         ], [
             'certificates_id.required' => 'حقل التحصيل الدراسي مطلوب',
             'graduations_id.required' => 'حقل جهة التخرج مطلوب',
@@ -118,7 +123,7 @@ class Specialization extends Component
         $this->validate([
             'certificates_id' => 'required',
             'graduations_id' => 'required',
-            'specializations_name' => 'required|unique:specializations,specializations_name,'.$this->Specialization->id.',id,graduations_id,' . $this->graduations_id.',certificates_id,'.$this->certificates_id,
+            'specializations_name' => 'required|unique:specializations,specializations_name,' . $this->Specialization->id . ',id,graduations_id,' . $this->graduations_id . ',certificates_id,' . $this->certificates_id,
         ], [
             'certificates_id.required' => 'حقل التحصيل الدراسي مطلوب',
             'graduations_id.required' => 'حقل جهة التخرج مطلوب',
