@@ -11,6 +11,8 @@ use Illuminate\Validation\Rule;
 use App\Models\Boycotts\Boycotts;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Department\Department;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 use App\Models\Governorates\Governorates;
 use App\Models\Propertytypes\Propertytypes;
 
@@ -58,38 +60,73 @@ class ShowBond extends Component
         $this->BoycottBonds = $this->Boycott->GetBonds;
     }
 
+    /*
     public function render()
     {
-        $bondSearch = '%' . $this->bondSearch . '%';
-        $Bonds = Bonds::where('boycott_id', 'LIKE', $bondSearch)
-            ->orWhere('part_number', 'LIKE', $bondSearch)
-            ->orWhere('property_number', 'LIKE', $bondSearch)
-            ->orWhere('area_in_meters', 'LIKE', $bondSearch)
-            ->orWhere('area_in_olok', 'LIKE', $bondSearch)
-            ->orWhere('area_in_donum', 'LIKE', $bondSearch)
-            ->orWhere('count', 'LIKE', $bondSearch)
-            ->orWhere('date', 'LIKE', $bondSearch)
-            ->orWhere('volume_number', 'LIKE', $bondSearch)
-            ->orWhere('bond_type', 'LIKE', $bondSearch)
-            ->orWhere('ownership', 'LIKE', $bondSearch)
-            ->orWhere('property_type', 'LIKE', $bondSearch)
-            ->orWhere('governorate', 'LIKE', $bondSearch)
-            ->orWhere('district', 'LIKE', $bondSearch)
-            ->orWhere('mortgage_notes', 'LIKE', $bondSearch)
-            ->orWhere('registered_office', 'LIKE', $bondSearch)
-            ->orWhere('specialized_department', 'LIKE', $bondSearch)
-            ->orWhere('property_deed_image', 'LIKE', $bondSearch)
-            ->orWhere('notes', 'LIKE', $bondSearch)
-            ->orWhere('visibility', 'LIKE', $bondSearch)
+        $bondsQuery = QueryBuilder::for(Bonds::class)
+            ->allowedFilters([
+                AllowedFilter::callback('part_number', function ($query, $value) {
+                    $query->where('part_number', 'LIKE', '%' . $value . '%');
+                }),
+                AllowedFilter::callback('property_number', function ($query, $value) {
+                    $query->where('property_number', 'LIKE', '%' . $value . '%');
+                }),
+                AllowedFilter::callback('mortgage_notes', function ($query, $value) {
+                    $query->where('mortgage_notes', 'LIKE', '%' . $value . '%');
+                }),
+                AllowedFilter::callback('specialized_department', function ($query, $value) {
+                    $query->where('specialized_department', 'LIKE', '%' . $value . '%');
+                }),
+            ]);
+        foreach ($this->search as $field => $value) {
+            if (!empty($value)) {
+                $bondsQuery->where($field, 'LIKE', '%' . $value . '%');
+            }
+        }
+        $bonds = $bondsQuery->orderBy('id', 'ASC')->paginate(10);
+        return view('livewire.bonds.show-bond.show-bond', ['bonds' => $bonds,]);
+    }*/
+
+    public $search = [
+        'part_number' => '',
+        'property_number' => '',
+        'mortgage_notes' => '',
+        'specialized_department' => '',
+    ];
+
+
+    public function render()
+    {
+        $bonds = QueryBuilder::for(Bonds::class)
+            ->allowedFilters([
+                AllowedFilter::callback('part_number', function ($query, $value) {
+                    $query->where('part_number', 'LIKE', '%' . $value . '%');
+                }),
+                AllowedFilter::callback('property_number', function ($query, $value) {
+                    $query->where('property_number', 'LIKE', '%' . $value . '%');
+                }),
+                AllowedFilter::callback('mortgage_notes', function ($query, $value) {
+                    $query->where('mortgage_notes', 'LIKE', '%' . $value . '%');
+                }),
+                AllowedFilter::callback('specialized_department', function ($query, $value) {
+                    $query->where('specialized_department', 'LIKE', '%' . $value . '%');
+                }),
+            ])
+            ->where(function ($query) {
+                foreach ($this->search as $field => $value) {
+                    if (!empty($value)) {
+                        $query->where($field, 'LIKE', '%' . $value . '%');
+                    }
+                }
+            })
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
-        $links = $Bonds;
-        $this->Bonds = collect($Bonds->items());
         return view('livewire.bonds.show-bond.show-bond', [
-            'links' => $links
+            'bonds' => $bonds,
         ]);
     }
+
 
     public function AddBondModal()
     {
@@ -153,7 +190,7 @@ class ShowBond extends Component
         $this->validate([
             'property_deed_image' => 'required|file|max:10240', // الحد الأقصى للحجم 10 ميجابايت
         ], [
-            'property_deed_image.max'=> 'يجب ألا يزيد حجم ملف القطعة عن 1024 كيلوبايت.'
+            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف القطعة عن 1024 كيلوبايت.'
         ]);
 
         $this->filePreview = $this->property_deed_image->temporaryUrl();
@@ -165,7 +202,7 @@ class ShowBond extends Component
         $this->validate([
             'part_number' => 'required',
             'property_number' => 'required',
-             'property_number' => [
+            'property_number' => [
                 'required',
                 Rule::unique('bonds')->ignore($this->bondId)->where(function ($query) {
                     return $query->where('part_number', $this->part_number)
@@ -352,18 +389,16 @@ class ShowBond extends Component
 
         $Bonds = Bonds::find($this->bondId);
 
-        if( $this->filePreview )
-        {
+        if ($this->filePreview) {
             $this->validate([
                 'property_deed_image' => 'required|max:1024', // الحد الأقصى للحجم 1 ميجابايت
             ], [
-                'property_deed_image.required'=> 'ملف السند العقاري مطلوب.',
-                'property_deed_image.max'=> 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
+                'property_deed_image.required' => 'ملف السند العقاري مطلوب.',
+                'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
             ]);
 
-            if(file_exists(public_path('storage/Bonds/'.$this->part_number)))
-            {
-                unlink(public_path('storage/Bonds/'.$this->part_number));
+            if (file_exists(public_path('storage/Bonds/' . $this->part_number))) {
+                unlink(public_path('storage/Bonds/' . $this->part_number));
             }
 
             $this->property_deed_image->store('public/Bonds');

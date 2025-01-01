@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('لوحة التحكم', 'Ports')
+@section('title','لوحة التحكم')
 
 @section('vendor-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
@@ -11,22 +11,22 @@
 
 @section('page-style')
     <!-- Page -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-statistics.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-analytics.css') }}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/cards-statistics.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/cards-analytics.css')}}">
 @endsection
 
 @section('vendor-script')
-    <script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
-    <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+    <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
+    <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+    <script src="{{asset('assets/vendor/libs/swiper/swiper.js')}}"></script>
+    <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 @endsection
 
 @section('page-script')
-    <script src="{{ asset('assets/js/dashboards-crm.js') }}"></script>
-    <script src="{{ asset('assets/js/charts-apex.js') }}"></script>
-
+    <script src="{{asset('assets/js/dashboards-crm.js')}}"></script>
+    <script src="{{asset('assets/js/charts-apex.js')}}"></script>
+    <script src="{{asset('assets/js/cards-statistics.js')}}"></script>
 @endsection
 
 @section('content')
@@ -36,7 +36,96 @@
             <div class="col-12">
                 <div class="card h-100">
 
+    <div class="row">
+        <div class="col-sm-6 col-lg-3">
+            <div class="card card-border-shadow-primary h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2 pb-1">
+                        <div class="avatar me-2">
+                            <span class="avatar-initial rounded bg-label-primary"><i
+                                    class="mdi mdi-bus-school mdi-20px"></i></span>
+                        </div>
+                        <h4 class="ms-1 mb-0 display-6">42</h4>
+                    </div>
+                    <p class="mb-0 text-heading">On route vehicles</p>
+                    <p class="mb-0">
+                        <span class="me-1">+18.2%</span>
+                        <small class="text-muted">than last week</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 mb-3">
+            <div class="card card-border-shadow-primary h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2 pb-1">
+                        <div class="avatar me-2">
+                            <span class="avatar-initial rounded bg-label-primary">
+                                <i class="mdi mdi-bus-school mdi-20px"></i>
+                            </span>
+                        </div>
+                        <h4 class="ms-1 mb-0 display-6">42</h4>
+                    </div>
+                    <p class="mb-0 text-heading">On route vehicles</p>
+                    <p class="mb-0">
+                        <span class="me-1">+18.2%</span>
+                        <small class="text-muted">than last week</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-12">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title m-0 me-2">قسم الاراضي</h5>
+                </div>
+                <div class="card-body">
                     <div class="row">
+
+                        <div class="col-lg-4 col-md-6 col-12 mb-3">
+                            <div class="card h-100">
+                                <div class="card-header d-flex align-items-center justify-content-between">
+                                    <h5 class="card-title m-0 me-2">اجناس الاراضي</h5>
+                                    <div class="dropdown">
+                                        <button class="btn p-0" type="button" id="paymentHistory" data-bs-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="mdi mdi-dots-vertical mdi-24px"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="paymentHistory">
+                                            <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
+                                            <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+                                            <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive text-nowrap">
+                                    @php
+                                        $PropertytypesCount = App\Models\Propertytypes\Propertytypes::all()->count();
+                                    @endphp
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-capitalize text-body fw-medium fs-6">نوع الجنس</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="border-top">
+                                            <tr>
+                                                <td class="d-flex">
+                                                    <div class="ms-2">
+                                                        <h6 class="mb-0 fw-semibold">{{ $PropertytypesCount }}</h6>
+                                                        <small class="text-muted">Credit Card</small>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -292,7 +381,7 @@
         </div>
         <!-- /Bar Chart -->
 
-     
+
 
         <!-- Line Chart -->
         <div class="col-12 mb-4">

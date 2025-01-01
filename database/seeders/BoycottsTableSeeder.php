@@ -16,8 +16,8 @@ class BoycottsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('ar_SA');
-        $batchSize = 5000;
-        $totalRecords = 5000;
+        $batchSize = 1000;
+        $totalRecords = 1000;
 
         $usedBoycottNumbers = [];
         $usedBoycottNames = [];

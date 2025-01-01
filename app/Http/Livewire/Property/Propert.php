@@ -15,6 +15,7 @@ class Propert extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+
     public $Property = [];
     public $PropertSearch, $Propert, $PropertId;
     public $user_id, $worker_id, $bonds_id, $from_date, $to_date, $months_count, $total_amount, $paid_amount, $property_status, $status, $notifications, $notes, $monthly_amount;
