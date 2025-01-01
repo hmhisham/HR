@@ -305,7 +305,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-4 text-center">
                             <div>
                                 <div class="form-floating form-floating-outline">
@@ -337,7 +337,6 @@
                             class="btn btn-primary me-sm-3 me-1">اضافة</button>
                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                             aria-label="Close">تجاهل</button>
-
                     </div>
                 </form>
             </div>
