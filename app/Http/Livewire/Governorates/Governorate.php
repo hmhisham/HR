@@ -18,8 +18,8 @@ class Governorate extends Component
     public function render()
     {
         $GovernorateSearch = $this->GovernorateSearch . '%';
-        $Governorates = Governorates::where('governorate_number', 'LIKE', $GovernorateSearch)
-            ->orWhere('governorate_name', 'LIKE', $GovernorateSearch)
+        $Governorates = Governorates::where('governorate_number', 'LIKE', '%' . $GovernorateSearch . '%')
+            ->orWhere('governorate_name', 'LIKE', '%' . $GovernorateSearch . '%')
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
