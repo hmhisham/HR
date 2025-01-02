@@ -19,7 +19,6 @@
 @section('content')
     @livewire('inputs.input')
 
-
 @endsection
 
 @section('vendor-script')
