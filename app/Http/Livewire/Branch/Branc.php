@@ -35,15 +35,24 @@ class Branc extends Component
 
     public function render()
     {
-        $BranchSearch = $this->BranchSearch . '%';
-        $Branch = Branch::where('section_id', 'LIKE', $BranchSearch)
+        $BranchSearch = '%' . $this->BranchSearch . '%';
+        $linkageIDs = Linkages::where('Linkages_name', 'LIKE', $BranchSearch)
+            ->pluck('id');
+
+        $sectionIDs = Sections::where('section_name', 'LIKE', $BranchSearch)
+            ->pluck('id');
+
+        $Branch = Branch::whereIn('linkage_id', $linkageIDs)
+            ->orWhereIn('section_id', $sectionIDs)
             ->orWhere('branch_name', 'LIKE', $BranchSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
+        $links = $Branch;
+
         $this->Branches = collect($Branch->items());
         return view('livewire.branch.branc', [
-            'links' => $Branch,
+            'links' => $links,
         ]);
     }
 

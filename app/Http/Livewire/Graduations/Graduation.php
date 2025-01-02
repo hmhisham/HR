@@ -20,12 +20,13 @@ class Graduation extends Component
     public function render()
     {
         $GraduationSearch = '%' . $this->GraduationSearch . '%';
-        $Graduations = Graduations::where('certificates_id', 'LIKE', $GraduationSearch)
+        $serchID = Certificates::where('certificates_name', 'LIKE', $GraduationSearch)->pluck('id');
+
+        $Graduations = Graduations::whereIn('certificates_id', $serchID)
             ->orWhere('graduations_name', 'LIKE', $GraduationSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Graduations;
         $this->Graduations = collect($Graduations->items());
         return view('livewire.graduations.graduation', [
@@ -84,7 +85,7 @@ class Graduation extends Component
         $this->resetValidation();
         $this->validate([
             'certificates_id' => 'required:graduations',
-            'graduations_name' => 'required|unique:graduations,graduations_name,'.$this->Graduation->id.',id',
+            'graduations_name' => 'required|unique:graduations,graduations_name,' . $this->Graduation->id . ',id',
 
         ], [
             'certificates_id.required' => 'حقل اسم الشهادة مطلوب',

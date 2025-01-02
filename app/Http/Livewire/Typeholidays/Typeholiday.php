@@ -20,10 +20,9 @@ class Typeholiday extends Component
     {
         $TypeholidaySearch = '%' . $this->TypeholidaySearch . '%';
         $Typeholidays = Typeholidays::where('typeholidays_name', 'LIKE', $TypeholidaySearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+            
         $links = $Typeholidays;
         $this->Typeholidays = collect($Typeholidays->items());
         return view('livewire.typeholidays.typeholiday', [

@@ -10,7 +10,7 @@
             <table class="table">
                 <thead class="table-light">
                     <tr>
-                        <th>#</th>
+                        <th>ت</th>
                         <th class="text-center">رقم المقاطعة</th>
                         <th class="text-center">اسم المقاطعة</th>
                         <th class="text-center">العدد</th>

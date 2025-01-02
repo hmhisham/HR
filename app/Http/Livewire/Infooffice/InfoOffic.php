@@ -18,7 +18,7 @@ class InfoOffic extends Component
 
     public function render()
     {
-        $InfoOfficSearch = $this->InfoOfficSearch . '%';
+        $InfoOfficSearch = '%' . $this->InfoOfficSearch . '%';
         $Infooffice = Infooffice::where('Infooffice_id', 'LIKE', $InfoOfficSearch)
             ->orWhere('Infooffice_name', 'LIKE', $InfoOfficSearch)
 

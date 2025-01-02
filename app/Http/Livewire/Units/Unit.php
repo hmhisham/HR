@@ -37,17 +37,27 @@ class Unit extends Component
     public function render()
     {
         $UnitSearch = '%' . $this->UnitSearch . '%';
-        $Units = Units::where('branch_id', 'LIKE', $UnitSearch)
+
+        $branchIDs = Branch::where('branch_name', 'LIKE', $UnitSearch)
+            ->pluck('id');
+
+        $sectionIDs = Sections::where('section_name', 'LIKE', $UnitSearch)
+            ->pluck('id');
+
+        $Units = Units::whereIn('section_id', $sectionIDs)
+            ->orWhereIn('branch_id', $branchIDs)
             ->orWhere('units_name', 'LIKE', $UnitSearch)
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
         $links = $Units;
         $this->Units = collect($Units->items());
+
         return view('livewire.units.unit', [
-            'links' => $links
+            'links' => $links,
         ]);
     }
+
 
     public function GetSection($Section_id)
     {
@@ -72,7 +82,7 @@ class Unit extends Component
         $this->validate([
             'section_id' => 'required:branch',
             'branch_id' => 'required:units',
-            'units_name' => 'required|unique:units,units_name,NULL,id,branch_id,'. $this->branch_id.',section_id,'.$this->section_id
+            'units_name' => 'required|unique:units,units_name,NULL,id,branch_id,' . $this->branch_id . ',section_id,' . $this->section_id
         ], [
             'section_id.required' => 'حقل القسم مطلوب',
             'branch_id.required' => 'حقل الشعبة مطلوب',
@@ -116,7 +126,7 @@ class Unit extends Component
             'section_id' => 'required',
             'branch_id' => 'required',
             //'units_name' => 'required|unique:units,units_name,NULL,id,branch_id,'. $this->branch_id.',section_id,'.$this->section_id
-            'units_name' => 'required|unique:units,units_name,' . $this->Unit->id . ',id,branch_id,' . $this->branch_id.',section_id,'.$this->section_id
+            'units_name' => 'required|unique:units,units_name,' . $this->Unit->id . ',id,branch_id,' . $this->branch_id . ',section_id,' . $this->section_id
         ], [
             'section_id.required' => 'حقل القسم مطلوب',
             'branch_id.required' => 'حقل الشعبة مطلوب',

@@ -42,7 +42,11 @@ class Precise extends Component
     public function render()
     {
         $PreciseSearch = '%' . $this->PreciseSearch . '%';
-        $Precises = Precises::where('specialtys_id', 'LIKE', $PreciseSearch)
+        $serchID = Specialtys::where('specialtys_code', 'LIKE', $PreciseSearch)
+            ->orWhere('specialtys_name', 'LIKE', $PreciseSearch)
+            ->pluck('id');
+
+        $Precises = Precises::whereIn('specialtys_id', $serchID)
             ->orWhere('precises_code', 'LIKE', $PreciseSearch)
             ->orWhere('precises_name', 'LIKE', $PreciseSearch)
             ->orderBy('id', 'ASC')
@@ -50,9 +54,11 @@ class Precise extends Component
 
         $links = $Precises;
         $this->Precises = collect($Precises->items());
+
+
         return view('livewire.precises.precise', [
             'specialtys' => Specialtys::get(),
-            'links' => $links
+            'links' => $links,
         ]);
     }
 

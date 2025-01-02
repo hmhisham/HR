@@ -174,7 +174,7 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='date' type="date" id="addDate" placeholder="التاريخ"
+                                        <input wire:ignore wire:model.defer='date' type="date" id="addDate" placeholder="التاريخ"
                                             class="form-control @error('date') is-invalid is-filled @enderror" />
                                         <label for="modalBonddate">التاريخ</label>
                                     </div>
@@ -200,7 +200,7 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='ownership' id="addBondownership"
-                                            class="form-select @error('ownership') is-invalid is-filled @enderror">
+                                            class="form-select select2 @error('ownership') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($department as $departmen)
                                             <option value="{{ $departmen->id }}">
@@ -218,7 +218,7 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='registered_office' id="addBondregistered_office"
-                                            class="form-select @error('registered_office') is-invalid is-filled @enderror">
+                                            class="form-select select2 @error('registered_office') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($department as $departmen)
                                             <option value="{{ $departmen->id }}">
@@ -258,8 +258,7 @@
                                             class="form-select @error('district') is-invalid is-filled @enderror">
                                             <option value=""></option>
                                             @foreach ($Districts as $District)
-                                            <option value="{{ $District->id }}">{{ $District->district_name }}
-                                            </option>
+                                            <option value="{{ $District->id }}">{{ $District->district_name }}</option>
                                             @endforeach
                                         </select>
                                         <label for="modalBonddistrict">القضاء</label>

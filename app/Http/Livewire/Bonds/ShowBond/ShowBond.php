@@ -42,6 +42,7 @@ class ShowBond extends Component
         'SelectGovernorate',
         'SelectDistrict',
         'SelectPropertyType',
+        'SelectDate'
     ];
 
     public function hydrate()
@@ -60,40 +61,12 @@ class ShowBond extends Component
         $this->BoycottBonds = $this->Boycott->GetBonds;
     }
 
-    /*
-    public function render()
-    {
-        $bondsQuery = QueryBuilder::for(Bonds::class)
-            ->allowedFilters([
-                AllowedFilter::callback('part_number', function ($query, $value) {
-                    $query->where('part_number', 'LIKE', '%' . $value . '%');
-                }),
-                AllowedFilter::callback('property_number', function ($query, $value) {
-                    $query->where('property_number', 'LIKE', '%' . $value . '%');
-                }),
-                AllowedFilter::callback('mortgage_notes', function ($query, $value) {
-                    $query->where('mortgage_notes', 'LIKE', '%' . $value . '%');
-                }),
-                AllowedFilter::callback('specialized_department', function ($query, $value) {
-                    $query->where('specialized_department', 'LIKE', '%' . $value . '%');
-                }),
-            ]);
-        foreach ($this->search as $field => $value) {
-            if (!empty($value)) {
-                $bondsQuery->where($field, 'LIKE', '%' . $value . '%');
-            }
-        }
-        $bonds = $bondsQuery->orderBy('id', 'ASC')->paginate(10);
-        return view('livewire.bonds.show-bond.show-bond', ['bonds' => $bonds,]);
-    }*/
-
     public $search = [
         'part_number' => '',
         'property_number' => '',
         'mortgage_notes' => '',
         'specialized_department' => '',
     ];
-
 
     public function render()
     {
@@ -102,29 +75,24 @@ class ShowBond extends Component
                 AllowedFilter::callback('part_number', function ($query, $value) {
                     $query->where('part_number', 'LIKE', '%' . $value . '%');
                 }),
-                AllowedFilter::callback('property_number', function ($query, $value) {
-                    $query->where('property_number', 'LIKE', '%' . $value . '%');
-                }),
-                AllowedFilter::callback('mortgage_notes', function ($query, $value) {
-                    $query->where('mortgage_notes', 'LIKE', '%' . $value . '%');
-                }),
-                AllowedFilter::callback('specialized_department', function ($query, $value) {
-                    $query->where('specialized_department', 'LIKE', '%' . $value . '%');
-                }),
+                AllowedFilter::partial('property_number'),
+                AllowedFilter::partial('mortgage_notes'),
+                AllowedFilter::partial('specialized_department'),
+
             ])
             ->where(function ($query) {
                 foreach ($this->search as $field => $value) {
                     if (!empty($value)) {
-                        $query->where($field, 'LIKE', '%' . $value . '%');
+                        $query->where($field, 'like', '%' . $value . '%');
                     }
                 }
             })
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
-        return view('livewire.bonds.show-bond.show-bond', [
-            'bonds' => $bonds,
-        ]);
+            return view('livewire.bonds.show-bond.show-bond', [
+                'bonds' => $bonds,
+            ]);
     }
 
 

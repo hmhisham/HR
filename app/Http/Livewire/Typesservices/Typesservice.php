@@ -20,10 +20,9 @@ class Typesservice extends Component
     {
         $TypesserviceSearch = '%' . $this->TypesserviceSearch . '%';
         $Typesservices = Typesservices::where('typesservices_name', 'LIKE', $TypesserviceSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+            
         $links = $Typesservices;
         $this->Typesservices = collect($Typesservices->items());
         return view('livewire.typesservices.typesservice', [

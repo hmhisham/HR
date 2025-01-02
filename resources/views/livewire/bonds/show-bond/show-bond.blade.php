@@ -83,9 +83,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{-- <div class="mt-2 d-flex justify-content-center">
+                <div class="mt-2 d-flex justify-content-center">
                     {{ $bonds->onEachSide(1)->links() }}
-                </div> --}}
+                </div>
             @else
                 <h1 class="text-center">لا توجد بيانات مضافة</h1>
             @endif
@@ -93,7 +93,6 @@
             @include('livewire.bonds.show-bond.modals.edit-bond')
             @include('livewire.bonds.show-bond.modals.remove-bond')
             <!-- Modal -->
-
         </div>
     </div>
 </div>

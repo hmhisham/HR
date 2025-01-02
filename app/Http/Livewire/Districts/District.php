@@ -33,7 +33,7 @@ class District extends Component
 
     public function render()
     {
-        $DistrictSearch = $this->DistrictSearch. '%';
+        $DistrictSearch = '%' . $this->DistrictSearch . '%';
         $serchID = Governorates::where('governorate_name', 'LIKE', $DistrictSearch)->pluck('id');
 
         $Districts = Districts::whereIn('governorate_id', $serchID)

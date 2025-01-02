@@ -20,7 +20,9 @@ class Scalem extends Component
     public function render()
     {
         $ScalemSearch = '%' . $this->ScalemSearch . '%';
-        $Scalems = Scalems::where('grades_id', 'LIKE', $ScalemSearch)
+        $serchID = Grades::where('grades_name', 'LIKE', $ScalemSearch)->pluck('id');
+
+        $Scalems = Scalems::whereIn('grades_id', $serchID)
             ->orWhere('phase_emp', 'LIKE', $ScalemSearch)
             ->orWhere('scalems_salary_grade', 'LIKE', $ScalemSearch)
             ->orWhere('scalems_salary_stage', 'LIKE', $ScalemSearch)
@@ -28,10 +30,9 @@ class Scalem extends Component
             ->orWhere('scalems_salary', 'LIKE', $ScalemSearch)
             ->orWhere('scalems_minimum_period', 'LIKE', $ScalemSearch)
             ->orWhere('scalems_previous_salary', 'LIKE', $ScalemSearch)
-
-
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Scalems;
         $this->Scalems = collect($Scalems->items());
         return view('livewire.scalems.scalem', [

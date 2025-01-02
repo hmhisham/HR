@@ -33,10 +33,12 @@ class Section extends Component
 
     public function render()
     {
-        $SectionSearch = $this->SectionSearch . '%';
-        $Sections = Sections::where('section_name', 'LIKE', $SectionSearch)->
-                                orderBy('id', 'ASC')->
-                                paginate(10);
+        $SectionSearch = '%' . $this->SectionSearch . '%';
+        $serchID = Linkages::where('Linkages_name', 'LIKE', $SectionSearch)->pluck('id');
+
+        $Sections = Sections::whereIn('linkage_id', $serchID)
+            ->orWhere('section_name', 'LIKE', $SectionSearch)
+            ->orderBy('id', 'ASC')->paginate(10);
 
         $links = $Sections;
         $this->Sections = collect($Sections->items());
@@ -64,7 +66,7 @@ class Section extends Component
         $this->validate([
             'linkage_id' => 'required',
             'section_name' => 'required|unique:sections,section_name',
-            'section_name' => 'required|unique:sections,section_name,NULL,id,linkage_id,'.$this->linkage_id,
+            'section_name' => 'required|unique:sections,section_name,NULL,id,linkage_id,' . $this->linkage_id,
 
         ], [
             'linkage_id.required' => 'حقل الارتباط مطلوب',
@@ -103,7 +105,7 @@ class Section extends Component
         $this->validate([
             'linkage_id' => 'required:sections',
             'section_name' => 'required|unique:sections',
-            'section_name' => 'required|unique:sections,section_name,' . $this->Section->id . ',id,linkage_id,'.$this->linkage_id
+            'section_name' => 'required|unique:sections,section_name,' . $this->Section->id . ',id,linkage_id,' . $this->linkage_id
 
         ], [
             'linkage_id.required' => 'حقل الارتباط مطلوب',
