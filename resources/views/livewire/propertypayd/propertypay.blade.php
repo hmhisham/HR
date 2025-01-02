@@ -15,8 +15,16 @@
                         <h5 class="fw-bolder fs-2">{{ $PropertyNumber }}</h5>
                     </div>
                     <div class="text-center mb-n5">
-                        <h5 class="fw-bolder border-bottom-2 mb-1">اجمالي المبالغ المدفوعة</h5>
+                        <h6 class="fw-bolder border-bottom-2 mb-1">المبلغ المستحق</h6>
+                        <h5 class="fw-bolder fs-2">{{ number_format($TotalAmount) }}</h5>
+                    </div>
+                    <div class="text-center mb-n5">
+                        <h6 class="fw-bolder border-bottom-2 mb-1">المبلغ المدفوع</h6>
                         <h5 class="fw-bolder fs-2">{{ number_format($TotalAmountsPaid) }}</h5>
+                    </div>
+                    <div class="text-center mb-n5">
+                        <h6 class="fw-bolder border-bottom-2 mb-1">المبلغ المتبقي</h6>
+                        <h5 class="fw-bolder fs-2">{{ number_format($TotalAmount - $TotalAmountsPaid) }}</h5>
                     </div>
                     <div>
                         @can('propertypay-create')

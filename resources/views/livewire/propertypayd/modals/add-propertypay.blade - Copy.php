@@ -20,7 +20,7 @@
                         <div class="container">
                             <div class="px-3">
                                 <div class="row">
-                                    <div class="col-lg-6 card-body border-end">
+                                    <div class="col-lg-7 card-body border-end">
                                         <h4 class="mb-2">بيانات الدفع</h4>
                                         <div class="row my-3">
                                             <div class="col-md mb-md-0 mb-3">
@@ -47,7 +47,7 @@
                                             </div>
                                         </div>
 
-                                        {{-- <div class="row my-3">
+                                        <div class="row my-3">
                                             <div class="col-md mb-md-0 mb-3 bg-lighter rounded py-4">
                                                 <div class="form-floating form-floating-outline bg-lighter rounded">
                                                     <input wire:model.defer='amount' wire:keyup='TafqeetAmount' type="text" id="ReceiptAmount"
@@ -61,7 +61,7 @@
                                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                                 @enderror
                                             </div>
-                                        </div> --}}
+                                        </div>
 
                                         <div class="row my-3">
                                             <div class="col-md mb-md-0 mb-3">
@@ -73,7 +73,7 @@
                                             </div>
                                         </div>
 
-                                        {{-- <div class="row my-3">
+                                        <div class="row my-3">
                                             <div class="col-md mb-md-0 mb-3 bg-lighter rounded py-4">
                                                 <div class="bg-lighter px-4 rounded mb-n3">
                                                     <p>مجموع المبالغ المدفوعة</p>
@@ -83,9 +83,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                         <div>
-                                        {{-- <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
                                                 <p class="mb-0">مبلغ الايصال</p>
                                                 <h6 class="mb-0">{{ number_format($ReceiptAmount) }}</h6>
                                             </div>
@@ -105,103 +105,17 @@
                                             </div>
                                             <div class="d-flex justify-content-end align-items-center mt-0 pb-1">
                                                 <sub class="fs-6 text-start"> {{ $TafqeetTotalAmount }}</sub>
-                                            </div> --}}
+                                            </div>
                                             {{-- <div class="d-grid mt-3">
                                                 <button class="btn btn-success">
                                                     <span class="me-2">Proceed with Payment</span>
                                                     <i class="mdi mdi-arrow-right scaleX-n1-rtl"></i>
                                                 </button>
                                             </div> --}}
-
-
-                                            <h4 class="mb-2">صورة الايصال</h4>
-
-                                            <div class="row my-3">
-                                                <div class="col-md mb-md-0 mb-3">
-                                                    <div class="form-floating form-floating-outline">
-                                                        <input wire:model="receipt_file" type="file" id="ReceiptAttachment"
-                                                            class="form-control @error('receipt_file') is-invalid is-filled @enderror"
-                                                            accept=".png, .jpg, .jpeg, .pdf">
-                                                        <label for="ReceiptAttachment">اختر ملف</label>
-                                                    </div>
-                                                    @error('receipt_file')
-                                                        <span class="error">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div wire:loading.remove wire:target='receipt_file'>
-                                                @if ($filePreview)
-                                                    @if ($receipt_file->getClientOriginalExtension() == strtolower('pdf'))
-                                                        <iframe src="{{ $filePreview }}" class="mt-3" style="height: 320px; width: 100%"></iframe>
-                                                    @else
-                                                        <img src="{{ $filePreview }}" class="mt-3 rounded img-fluid" style="height: 320px; width: 100%">
-                                                    @endif
-                                                @endif
-                                            </div>
-
-                                            <div wire:loading wire:target='receipt_file' class="text-center">
-                                                <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="width: 50%" alt="Timer Loading Animated 3D Icon">
-                                            </div>
-
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 card-body">
-                                        <div class="row mt-3">
-                                            <div class="col-md mb-md-0 mb-3 bg-lighter rounded-top py-4">
-                                                <div class="form-floating form-floating-outline bg-lighter rounded">
-                                                    <input wire:model.defer='amount' wire:keyup='TafqeetAmount' type="text" id="ReceiptAmount"
-                                                        class="form-control bg-lighter rounded fs-1 @error('amount') is-invalid is-filled @enderror"
-                                                        onkeypress="return onlyNumberKey(event)"
-                                                        oninput="formatWithCommas(this)"/>
-                                                    <label for="ReceiptAmount" class="bg-lighter {{-- rounded --}}">مبلغ الإيصال</label>
-                                                </div>
-                                                <small class='inputerror'> {{ $TafqeetReceiptAmount }} </small>
-                                                @error('amount')
-                                                    <small class='text-danger inputerror'> {{ $message }} </small>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="row mt-n3">
-                                            <div class="col-md mb-md-0 mb-3 bg-lighter rounded-bottom {{-- rounded --}} py-4">
-                                                <div class="bg-lighter px-4 {{-- rounded --}} mb-n3">
-                                                    <p>مجموع المبالغ المدفوعة</p>
-                                                    <div class="row align-items-center">
-                                                        <h1 class="col text-heading display-3">
-                                                            {{ number_format($TotalAmountsPaid) }}
-                                                        </h1>
-                                                        <div class="col fs-6 p-0"> {{ $TafqeetTotalAmountsPaid }}</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            {{-- <div class="d-flex justify-content-between align-items-center mt-3">
-                                                <p class="mb-0">مبلغ الايصال</p>
-                                                <h6 class="mb-0">{{ number_format($ReceiptAmount) }}</h6>
-                                            </div>
-                                            <hr /> --}}
-                                            <div class="d-flex justify-content-between align-items-center mt-3 pb-1">
-                                                <p class="mb-0">المجموع الكلي</p>
-                                                <h4 class="mb-0 text-dark fw-bolder">{{ number_format($TotalAmount) }}</h4>
-                                            </div>
-                                            <div class="align-items-center mt-0 pb-1">
-                                                <div class="fs-6 text-start"> {{ $TafqeetTotalAmount }}</div>
-                                            </div>
-
-                                            <hr class="bg-primary"/>
-                                            <div class="d-flex justify-content-between align-items-center mt-3 pb-1">
-                                                <p class="mb-0">المبلغ المتبقي</p>
-                                                <h4 class="mb-0 fw-bolder {{ $RemainingAmount < 0 ? 'text-danger':'text-dark' }}">{{ number_format($RemainingAmount) }}</h4>
-                                            </div>
-                                            <div class="align-items-center mt-0 pb-1">
-                                                <sub class="fs-6 text-start {{ $RemainingAmount < 0 ? 'text-danger':'text-dark' }}"> {{ $TafqeetRemainingAmount }}</sub>
-                                            </div>
-                                        </div>
-
-                                        {{-- <h4 class="mb-2">صورة الايصال</h4>
+                                    <div class="col-lg-5 card-body">
+                                        <h4 class="mb-2">صورة الايصال</h4>
 
                                         <div class="row my-3">
                                             <div class="col-md mb-md-0 mb-3">
@@ -215,9 +129,9 @@
                                                     <span class="error">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                        </div> --}}
+                                        </div>
 
-                                        {{-- <div wire:loading.remove wire:target='receipt_file'>
+                                        <div wire:loading.remove wire:target='receipt_file'>
                                             @if ($filePreview)
                                                 @if ($receipt_file->getClientOriginalExtension() == strtolower('pdf'))
                                                     <iframe src="{{ $filePreview }}" class="mt-3" style="height: 320px; width: 100%"></iframe>
@@ -229,13 +143,13 @@
 
                                         <div wire:loading wire:target='receipt_file' class="text-center">
                                             <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="width: 50%" alt="Timer Loading Animated 3D Icon">
-                                        </div> --}}
+                                        </div>
                                     </div>
 
                                     <hr class="my-0">
 
                                     <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                                        <button wire:click='store' wire:loading.attr="disabled" type="button" {{ $RemainingAmount < 0 ? 'disabled':'' }}
+                                        <button wire:click='store' wire:loading.attr="disabled" type="button"
                                             class="btn btn-primary me-sm-3 me-1">اضافة</button>
                                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                             aria-label="Close">تجاهل</button>

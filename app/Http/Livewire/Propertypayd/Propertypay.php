@@ -26,6 +26,7 @@ class Propertypay extends Component
     public $TotalAmountsPaid, $TafqeetTotalAmountsPaid;
     public $TotalAmount, $TafqeetTotalAmount;
     public $ReceiptAmount, $TafqeetReceiptAmount;
+    public $RemainingAmount, $TafqeetRemainingAmount;
     public $Property = [];
     protected $Propertypayd = [];
     public $PropertypaySearch, $Propertypay, $PropertypayId, $pro , $propert , $email ;
@@ -69,6 +70,7 @@ class Propertypay extends Component
     {
         $this->PropertyNumber = Bonds::find($this->Bond_ID)->property_number;
 
+        $this->TotalAmount = Property::where('bonds_id', $this->Bond_ID)->first()->total_amount;
         $this->TotalAmountsPaid = Propertypayd::where('bonds_id', $this->Bond_ID)->sum('amount');
         $this->TafqeetTotalAmountsPaid = Numbers::TafqeetMoney((int)$this->removeCommas($this->TotalAmountsPaid), 'IQD');
     }
@@ -99,12 +101,12 @@ class Propertypay extends Component
         ]);
     }
 
-    public function AddPropertypaydModalShow($id)
+    /* public function AddPropertypaydModalShow($id)
     {
         $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('PropertypaydModalShow');
-    }
+    } */
 
     public function storePropertypayd()
     {
@@ -157,11 +159,16 @@ class Propertypay extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('PropertypayModalShow');
 
+        $propert = Property::where('bonds_id', $this->Bond_ID)->first();
+
         $this->TotalAmountsPaid = Propertypayd::where('bonds_id', $this->Bond_ID)->sum('amount');
         $this->TafqeetTotalAmountsPaid = Numbers::TafqeetMoney((int)$this->removeCommas($this->TotalAmountsPaid), 'IQD');
 
         $this->TotalAmount = $this->TotalAmountsPaid;
         $this->TafqeetTotalAmount = $this->TafqeetTotalAmountsPaid;
+
+        $this->RemainingAmount = $propert->total_amount - ($this->TotalAmountsPaid + $this->amount);
+        $this->TafqeetRemainingAmount = Numbers::TafqeetMoney((int)$this->RemainingAmount, 'IQD');
     }
 
     public function removeCommas($number)
@@ -170,11 +177,16 @@ class Propertypay extends Component
     }
     public function TafqeetAmount()
     {
+        if($this->amount == '') { $this->amount = 0; }
         $this->ReceiptAmount = $this->removeCommas($this->amount);
         $this->TotalAmount = $this->removeCommas($this->TotalAmountsPaid) + $this->removeCommas($this->ReceiptAmount);
         $this->TafqeetTotalAmount = Numbers::TafqeetMoney((int)$this->removeCommas($this->TotalAmount), 'IQD');
 
         $this->TafqeetReceiptAmount = Numbers::TafqeetMoney((int)$this->removeCommas($this->amount), 'IQD');
+
+        $propert = Property::where('bonds_id', $this->Bond_ID)->first();
+        $this->RemainingAmount = $propert->total_amount - ($this->TotalAmountsPaid + $this->ReceiptAmount);
+        $this->TafqeetRemainingAmount = Numbers::TafqeetMoney((int)$this->RemainingAmount, 'IQD');
     }
 
     public function updatedReceiptFile()
@@ -193,13 +205,11 @@ class Propertypay extends Component
     {
         $this->resetValidation();
         $this->validate([
-            //'bonds_id' => 'required',
             'receipt_number' => 'required',
             'receipt_date' => 'required',
             'amount' => 'required',
             'receipt_file' => 'required|file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
         ], [
-            //'bonds_id.required' => 'حقل رقم العقار مطلوب',
             'receipt_number.required' => 'حقل رقم الإيصال مطلوب',
             'receipt_date.required' => 'حقل تاريخ الإيصال مطلوب',
             'amount.required' => 'حقل المبلغ مطلوب',
