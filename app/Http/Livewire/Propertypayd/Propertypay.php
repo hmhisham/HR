@@ -180,7 +180,7 @@ class Propertypay extends Component
     public function updatedReceiptFile()
     {
         $this->validate([
-            'receipt_file' => 'required|file|max:10240', // الحد الأقصى للحجم 10 ميجابايت
+            'receipt_file' => 'required|file|max:1024', // الحد الأقصى للحجم 10 ميجابايت
         ],[
             'receipt_file.required' => 'ملف الإيصال مطلوب.',
             'receipt_file.max' => 'يجب ألا يزيد حجم ملف الإيصال عن 1024 كيلوبايت.',
@@ -218,20 +218,30 @@ class Propertypay extends Component
             'isdeleted' =>  '0',
         ]);
 
-        $this->propert = Property::where('bonds_id', $this->Bond_ID)->first();
-        $this->email = $this->propert->email;
+        $propert = Property::where('bonds_id', $this->Bond_ID)->first();
+        $AmountPaid = Propertypayd::where('bonds_id', $this->Bond_ID)->sum('amount');
+        $RemainingAmount = $propert->total_amount - $AmountPaid;
+
+        $title = 'الموانيء العراقية';
+
         // إرسال البريد الإلكتروني
-        Mail::to($this->email)->send(new NotificationMail(
-            'الموانيء العراقية',
-            'مرحبا استاذ ' . $this->propert->full_name . ' تم دفع المبلغ ' . $this->amount . ' الخاص بالعقار  وحسب الوصل المرفق' . "\n" .
-            'الرجاء الاحتفاظ بالرسائل كذلك الاطلاع على التطبيق الخاص بك' . "\n" .
-            'شكراً لكم'
+        Mail::to($propert->email)->send(new NotificationMail(
+            $title,
+            $propert->full_name,
+            $this->receipt_number,
+            $this->receipt_date,
+            $this->amount,
+            $propert->total_amount,
+            $AmountPaid,
+            $RemainingAmount,
+            $this->PropertyNumber,
+            $this->Bond_ID,
         ));
 
         $this->resetExcept('Bond_ID', 'PropertyNumber');
         $this->dispatchBrowserEvent('success', [
-            'message' => 'تم الاضافه بنجاح',
-            'title' => 'اضافه'
+            'message' => 'تم الاضافة بنجاح',
+            'title' => 'اضافة'
         ]);
 
         $this->mount();

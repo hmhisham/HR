@@ -1,11 +1,12 @@
 <?php
 namespace App\Models\Propertypayd;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Property\Property;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Propertypayd extends Model
 {
-     use HasFactory;
+    use HasFactory;
     protected $guarded = [];
     protected $table = "propertypayd";
 }
