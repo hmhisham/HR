@@ -105,6 +105,7 @@ class Propert extends Component
                     });
                 }),
             ])
+            ->where('specialized_department', 'شعبة الاملاك')
             ->where(function ($query) {
                 foreach ($this->search as $field => $value) {
                     if (!empty($value)) {
