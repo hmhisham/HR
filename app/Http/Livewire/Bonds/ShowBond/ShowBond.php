@@ -393,7 +393,7 @@ class ShowBond extends Component
             'mortgage_notes' => $this->mortgage_notes,
             'registered_office' => $this->registered_office,
             'specialized_department' => $this->specialized_department,
-            'property_deed_image' => $this->property_deed_image->hashName(),
+            'property_deed_image' => $file,
             'notes' => $this->notes,
             'visibility' => $this->visibility,
         ]);
