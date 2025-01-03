@@ -1,36 +1,80 @@
-@extends('layouts/layoutMaster')
-
-@section('title', 'لوحة التحكم')
-
-@section('vendor-style')
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}" />
-@endsection
-
-@section('page-style')
-    <!-- Page -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-statistics.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-analytics.css') }}">
-@endsection
-
-@section('vendor-script')
-    <script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-@endsection
-
-@section('page-script')
-    <script src="{{ asset('assets/js/dashboards-crm.js') }}"></script>
-    <script src="{{ asset('assets/js/charts-apex.js') }}"></script>
-    <script src="{{ asset('assets/js/cards-statistics.js') }}"></script>
-@endsection
-
-
-@section('content')
+<div>
     <div class="row gy-4 mb-4">
+        <div class="row mb-3">
+            <div class="col-md-6 col-xl-4">
+                <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h5 class="m-0 card-title me-2">إحصائيات المشاريع</h5>
+                        <div class="dropdown">
+                            <button class="p-0 btn" type="button" id="projectStatus" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-dots-vertical mdi-24px"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="projectStatus">
+                                <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="p-0 m-0">
+                            <li class="pb-2 mb-3 d-flex justify-content-between">
+                                <h5 class="mb-0">الوصف</h5>
+                                <h5 class="mb-0">الاحصائية</h5>
+                            </li>
+                            <hr class="mt-n3">
+                            <li class="mb-2 d-flex px-0">
+                                <div class="flex-wrap gap-2 d-flex w-100 align-items-center justify-content-between badge bg-label-dark rounded-pill py-0">
+                                    <div class="me-2 mt-2 mb-n3">
+                                        <h6 class="fw-bolder text-start mb-0">المشاريع</h6>
+                                        <h4 class="text-dark">000</h4>
+                                    </div>
+                                    <div class="badge bg-dark rounded-pill fs-4 px-3">00</div>
+                                </div>
+                            </li>
+                            <li class="mb-2 d-flex">
+                                <div class="flex-wrap gap-2 d-flex w-100 align-items-center justify-content-between badge bg-label-primary rounded-pill py-0">
+                                    <div class="me-2 mt-2 mb-n3">
+                                        <h6 class="fw-bolder text-start text-primary mb-0">الغير منجزة</h6>
+                                        <h4 class="text-dark">00</h4>
+                                    </div>
+                                    <div class="badge bg-primary rounded-pill fw-bolder fs-4 px-3">00</div>
+                                </div>
+                            </li>
+                            <li class="mb-2 d-flex">
+                                <div class="flex-wrap gap-2 d-flex w-100 align-items-center justify-content-between  badge bg-label-success rounded-pill py-0">
+                                    <div class="me-2 mt-2 mb-n3">
+                                        <h6 class="fw-bolder text-start text-success mb-0">المنجزة</h6>
+                                        <h4 class="text-dark">00</h4>
+                                    </div>
+                                    <div class="badge bg-success rounded-pill fw-bolder fs-4 px-3">00</div>
+                                </div>
+                            </li>
+                            <li class="mb-2 d-flex">
+                                <div class="flex-wrap gap-2 d-flex w-100 align-items-center justify-content-between badge bg-label-warning rounded-pill py-0">
+                                    <div class="me-2 mt-2 mb-n3">
+                                        <h6 class="fw-bolder text-start text-warning mb-0">متلكئ</h6>
+                                        <h4 class="text-dark">00</h4>
+                                    </div>
+                                    <div class="badge bg-warning rounded-pill fw-bolder fs-4 px-3">00</div>
+                                </div>
+                            </li>
+                            <li class="d-flex">
+                                <div class="flex-wrap gap-2 d-flex w-100 align-items-center justify-content-between  badge bg-label-danger rounded-pill py-0">
+                                    <div class="me-2 mt-2 mb-n3">
+                                        <h6 class="fw-bolder text-danger mb-0">متوقف</h6>
+                                        <h4 class="text-dark">00</h4>
+                                    </div>
+                                    <div class="badge bg-danger rounded-pill fw-bolder fs-4 px-3">00</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- بطاقات الإحصائيات -->
         <div class="row">
             @php
@@ -189,14 +233,4 @@
             }
         </style>
     </div>
-@endsection
-
-@section('vendor-style')
-    @parent
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/remixicon/remixicon.css') }}" />
-@endsection
-
-@section('vendor-script')
-    @parent
-    <script src="{{ asset('assets/vendor/libs/remixicon/remixicon.js') }}"></script>
-@endsection
+</div>

@@ -13,7 +13,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('content.Owner.Dashboard.Dashboard');
+        return view('content.Dashboard.Dashboard-Property');
 
         /*if (Auth::check())
         {
