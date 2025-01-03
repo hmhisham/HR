@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="mb-3 col">
+                                <div class="col-12 col-sm-12 col-md-6 mb-3">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='district_number' type="text"
                                             id="modalDistrictsdistrict_number" placeholder="رقم القضاء"
@@ -44,7 +44,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3 col">
+                                <div class="col-12 col-sm-12 col-md-6 mb-3">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='district_name' type="text"
                                             id="modalDistrictsdistrict_name" placeholder="اسم القضاء"
@@ -62,7 +62,7 @@
 
                     <hr class="my-4">
 
-                    <div class="text-center mb-n4">
+                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
                         <button wire:click='store' wire:loading.attr="disabled" type="button"
                             class="btn btn-primary me-sm-3 me-1">إضافة</button>
                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"

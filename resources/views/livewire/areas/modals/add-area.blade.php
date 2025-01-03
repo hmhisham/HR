@@ -12,76 +12,72 @@
                 <hr class="mt-n2">
 
                 <form id="addareaModalForm" autocomplete="off">
-                    <div class="row row-cols-1">
-                        <div class="mb-3 col">
-                            <div class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='governorate_id' id="addGovernorate"
-                                            class="form-select @error('governorate_id') is-invalid is-filled @enderror">
-                                            <option value=""></option>
-                                            @foreach ($governorates as $governorate)
-                                                <option value="{{ $governorate->id }}">
-                                                    {{ $governorate->governorate_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="modalGovernoratesgovernorate_id">اسم المحافظة</label>
-                                    </div>
-                                    @error('governorate_id')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='district_id' id="addDistrict"
-                                            class="form-select @error('district_id') is-invalid is-filled @enderror">
-                                            <option value="">اختر اسم القضاء</option>
-                                            @foreach ($Districts as $District)
-                                                <option value="{{ $District->id }}">{{ $District->district_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <label for="modalAreasdistrict_id">اسم القضاء</label>
-                                    </div>
-                                    @error('district_id')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating form-floating-outline">
+                                <select wire:model.defer='governorate_id' id="addGovernorate"
+                                    class="form-select @error('governorate_id') is-invalid is-filled @enderror">
+                                    <option value=""></option>
+                                    @foreach ($governorates as $governorate)
+                                        <option value="{{ $governorate->id }}">
+                                            {{ $governorate->governorate_name }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="modalGovernoratesgovernorate_id">اسم المحافظة</label>
                             </div>
-                            <div class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='area_id' type="text" id="modalAreasarea_id"
-                                            placeholder="رقم الناحية"
-                                            class="form-control @error('area_id') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)" />
-                                        <label for="modalAreasarea_id">رقم الناحية</label>
-                                    </div>
-                                    @error('area_id')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='area_name' type="text" id="modalAreasarea_name"
-                                            placeholder="اسم الناحية"
-                                            class="form-control @error('area_name') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyArabicKey(event)" />
-                                        <label for="modalAreasarea_name">اسم الناحية</label>
-                                    </div>
-                                    @error('area_name')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
+                            @error('governorate_id')
+                                <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating form-floating-outline">
+                                <select wire:model.defer='district_id' id="addDistrict"
+                                    class="form-select @error('district_id') is-invalid is-filled @enderror">
+                                    <option value="">اختر اسم القضاء</option>
+                                    @foreach ($Districts as $District)
+                                        <option value="{{ $District->id }}">{{ $District->district_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <label for="modalAreasdistrict_id">اسم القضاء</label>
                             </div>
+                            @error('district_id')
+                                <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
                         </div>
-                        <hr class="my-0">
-                        <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                            <button wire:click='store' wire:loading.attr="disabled" type="button"
-                                class="btn btn-primary me-sm-3 me-1">اضافة</button>
-                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                aria-label="Close">تجاهل</button>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating form-floating-outline">
+                                <input wire:model.defer='area_id' type="text" id="modalAreasarea_id"
+                                    placeholder="رقم الناحية"
+                                    class="form-control @error('area_id') is-invalid is-filled @enderror"
+                                    onkeypress="return onlyNumberKey(event)" />
+                                <label for="modalAreasarea_id">رقم الناحية</label>
+                            </div>
+                            @error('area_id')
+                                <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
                         </div>
+                        <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating form-floating-outline">
+                                <input wire:model.defer='area_name' type="text" id="modalAreasarea_name"
+                                    placeholder="اسم الناحية"
+                                    class="form-control @error('area_name') is-invalid is-filled @enderror"
+                                    onkeypress="return onlyArabicKey(event)" />
+                                <label for="modalAreasarea_name">اسم الناحية</label>
+                            </div>
+                            @error('area_name')
+                                <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
+                        </div>
+                    </div>
+                    <hr class="my-0">
+                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                        <button wire:click='store' wire:loading.attr="disabled" type="button"
+                            class="btn btn-primary me-sm-3 me-1">اضافة</button>
+                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                            aria-label="Close">تجاهل</button>
                     </div>
                 </form>
             </div>

@@ -18,35 +18,31 @@
 
                 <div wire:loading.remove wire:target="GetGovernorate, update">
                     <form id="editGovernorateModalForm" autocomplete="off">
-                        <div class="row row-cols-1">
-                            <div class="col mb-3">
-                                <div Class="row">
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='governorate_number' type="text"
-                                                id="modalGovernorategovernorate_number" placeholder="رقم المحافظة"
-                                                class="form-control @error('governorate_number') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyNumberKey(event)" />
-                                            <label for="modalGovernorategovernorate_number">رقم المحافظة</label>
-                                        </div>
-                                        @error('governorate_number')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-                                    
-                                    <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='governorate_name' type="text"
-                                                id="modalGovernorategovernorate_name" placeholder="اسم المحافظة"
-                                                class="form-control @error('governorate_name') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyArabicKey(event)" />
-                                            <label for="modalGovernorategovernorate_name">اسم المحافظة</label>
-                                        </div>
-                                        @error('governorate_name')
-                                            <small class='text-danger inputerror'> {{ $message }} </small>
-                                        @enderror
-                                    </div>
+                        <div Class="row">
+                            <div class="col-12 col-sm-12 col-md-6 mb-3">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='governorate_number' type="text"
+                                        id="modalGovernorategovernorate_number" placeholder="رقم المحافظة"
+                                        class="form-control @error('governorate_number') is-invalid is-filled @enderror"
+                                        onkeypress="return onlyNumberKey(event)" />
+                                    <label for="modalGovernorategovernorate_number">رقم المحافظة</label>
                                 </div>
+                                @error('governorate_number')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+                            </div>
+
+                            <div class="col-12 col-sm-12 col-md-6 mb-3">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='governorate_name' type="text"
+                                        id="modalGovernorategovernorate_name" placeholder="اسم المحافظة"
+                                        class="form-control @error('governorate_name') is-invalid is-filled @enderror"
+                                        onkeypress="return onlyArabicKey(event)" />
+                                    <label for="modalGovernorategovernorate_name">اسم المحافظة</label>
+                                </div>
+                                @error('governorate_name')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
                             </div>
                         </div>
                         <hr class="my-0">
