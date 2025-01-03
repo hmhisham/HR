@@ -313,32 +313,42 @@
                             </div>
                         </div>
 
-                        <div class="text-center col-4">
-                            <div>
-                                <div class="form-floating form-floating-outline">
-                                    <input wire:model="property_deed_image" type="file"
-                                        class="form-control @error('property_deed_image') is-invalid is-filled @enderror"
-                                        accept="">
-                                    <label for="modalcertifinotes">اختر ملف السند</label>
-                                </div>
+                        <div class="col-4 text-center">
+                            <div class="form-floating form-floating-outline">
+                                <input type="file" wire:model="property_deed_image"
+                                    class="form-control @error('property_deed_image') is-invalid is-filled @enderror"
+                                    accept="application/pdf, .png, .jpg, .jpeg">
+                                <label for="modalcertifinotes">اختر ملف السند</label>
+                            </div>
+                            @error('property_deed_image')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
 
-                                @error('property_deed_image')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
-
-                                <div wire:loading.remove wire:target='property_deed_image'>
-                                    @if ($filePreview)
-                                        @if ($property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
-                                            <iframe src="{{ $filePreview }}" class="mt-3" style="height: 320px; width: 100%"></iframe>
-                                        @else
-                                            <img src="{{ $filePreview }}" class="mt-3 rounded img-fluid" style="max-height: 320px; width: 100%">
-                                        @endif
+                            <div wire:loading.remove wire:target='property_deed_image'>
+                                @if ($filePreview)
+                                    @if ($property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
+                                        <iframe src="{{ $filePreview }}" class="mt-3 "
+                                            style="height: 320px; width: 100%"></iframe>
+                                    @else
+                                        <img src="{{ $filePreview }}" class="mt-3 rounded img-fluid"
+                                            style="max-height: 350px; width: 100%">
                                     @endif
-                                </div>
+                                @endif
+                                @if ($property_deed_image and $filePreview == '')
+                                    @if (pathinfo($property_deed_image, PATHINFO_EXTENSION) == strtolower('pdf'))
+                                        <iframe
+                                            src="{{ asset('storage/Bonds/' . $part_number . '/' . $property_deed_image) }}"
+                                            class="mt-3 " style="height: 350px; width: 100%"></iframe>
+                                    @else
+                                        <img src="{{ asset('storage/Bonds/' . $part_number . '/' . $property_deed_image) }}"
+                                            class="mt-3 rounded img-fluid" style="max-height: 350px; width: 100%">
+                                    @endif
+                                @endif
+                            </div>
 
-                                <div wire:loading wire:target='property_deed_image'>
-                                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 200px" alt="Timer Loading Animated 3D Icon">
-                                </div>
+                            <div wire:loading wire:target='property_deed_image'>
+                                <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}"
+                                    style="height: 200px" alt="Timer Loading Animated 3D Icon">
                             </div>
                         </div>
                     </div>
