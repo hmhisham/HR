@@ -29,10 +29,10 @@
                     'title' => 'الأملاك والاراضي',
                     'value' => $propertyCount,
                     'icon' => 'mdi-chart-line',
-                    'bgClass' => 'bg-label-purple',
+                    'bgClass' => 'bg-label-dark',
                     'hoverColor' => '#e2d9f3',
                     'change' => '+' . $propertyCount ,
-                    'changeClass' => 'text-purple',
+                    'changeClass' => 'text-dark',
                     'period' => 'عرض الأملاك',
                     'route' => 'Boycotts.index'
                 ],
@@ -75,7 +75,7 @@
         @foreach ($stats as $stat)
             <div class="col-xl-2 col-md-3 col-sm-6">
                 <div class="card h-100 shadow-sm hover-card" style="--hover-bg-color: {{ $stat['hoverColor'] }};">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
                             <div class="avatar">
                                 <div class="avatar-initial {{ $stat['bgClass'] }} rounded">
@@ -90,9 +90,9 @@
                         <div class="card-info mt-4 pt-1">
                             <h5 class="mb-2">{{ $stat['value'] }}</h5>
                             <p>{{ $stat['title'] }}</p>
-                            <div class="badge bg-label-secondary rounded-pill">
-                                <a href="{{ route($stat['route']) }}" class="{{ $stat['changeClass'] }}">{{ $stat['period'] }}</a>
-                            </div>
+                        </div>
+                        <div class="card-info mt-4 pt-1 mt-auto ">
+                            <a href="{{ route($stat['route']) }}" class="{{ $stat['changeClass'] }}">{{ $stat['period'] }}</a>
                         </div>
                     </div>
                 </div>
