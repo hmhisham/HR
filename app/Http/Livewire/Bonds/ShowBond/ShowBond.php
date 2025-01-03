@@ -286,6 +286,7 @@ class ShowBond extends Component
             $this->registered_office = $this->bond->registered_office;
             $this->specialized_department = $this->bond->specialized_department;
             $this->property_deed_image = $this->bond->property_deed_image;
+            //$this->property_deed_image = public_path('storage/Bonds/'.$this->bond->property_deed_image);
             $this->notes = $this->bond->notes;
             $this->visibility = $this->bond->visibility;
 

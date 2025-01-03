@@ -187,6 +187,12 @@ class Propertypay extends Component
         $propert = Property::where('bonds_id', $this->Bond_ID)->first();
         $this->RemainingAmount = $propert->total_amount - ($this->TotalAmountsPaid + $this->ReceiptAmount);
         $this->TafqeetRemainingAmount = Numbers::TafqeetMoney((int)$this->RemainingAmount, 'IQD');
+
+        $this->resetValidation();
+        /* $this->validate([
+            'amount' => 'regex:/^[0-9][0-9][.,][0-9]*$/|max:1000',
+        ]); */
+
     }
 
     public function updatedReceiptFile()
