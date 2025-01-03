@@ -38,7 +38,7 @@
                 ],
                 [
                     'title' => 'عدد المستفيدين',
-                    'value' => $beneficiariesCount ?? '',
+                    'value' => '0',
                     'icon' => 'mdi-account-multiple',
                     'bgClass' => 'bg-label-warning',
                     'hoverColor' => '#fff3cd',
@@ -49,7 +49,7 @@
                 ],
                 [
                     'title' => 'العقارات المؤجرة',
-                    'value' => '',
+                    'value' => '0',
                     'icon' => 'mdi-home-city',
                     'bgClass' => 'bg-label-danger',
                     'hoverColor' => '#f8d7da',
@@ -60,7 +60,7 @@
                 ],
                 [
                     'title' => 'المتخلفين من الدفع',
-                    'value' => '',
+                    'value' => '0',
                     'icon' => 'mdi-check-circle',
                     'bgClass' => 'bg-label-info',
                     'hoverColor' => '#d1ecf1',
@@ -109,8 +109,7 @@
         }
     </style>
 
-    <!--/ بطاقات الإحصائيات -->
-    <div class="col-12">
+     <div class="col-12">
     </div>
 
     <!--  المتأخرين من الدفع-->
@@ -328,8 +327,8 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div>
-                        <h5 class="card-title mb-0">Last Updates</h5>
-                        <small class="text-muted">Commercial Networks</small>
+                        <h5 class="card-title mb-0">العمل اليومي</h5>
+                        <small class="text-muted">قسم الأملاك و الأراضي</small>
                     </div>
                     <div class="dropdown">
                         <button type="button" class="btn dropdown-toggle px-0" data-bs-toggle="dropdown"
@@ -356,35 +355,7 @@
         </div>
         <!--/ Line Area Chart -->
 
-        <!-- رسم بياني: Bar Chart -->
-        <div class="col-12 mb-4">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-md-center align-items-start">
-                    <h5 class="card-title mb-0">Data Science</h5>
-                    <div class="dropdown">
-                        <button type="button" class="btn dropdown-toggle p-0" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="mdi mdi-calendar-month-outline"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a href="javascript:void(0);" class="dropdown-item">Today</a></li>
-                            <li><a href="javascript:void(0);" class="dropdown-item">Yesterday</a></li>
-                            <li><a href="javascript:void(0);" class="dropdown-item">Last 7 Days</a></li>
-                            <li><a href="javascript:void(0);" class="dropdown-item">Last 30 Days</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a href="javascript:void(0);" class="dropdown-item">Current Month</a></li>
-                            <li><a href="javascript:void(0);" class="dropdown-item">Last Month</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div id="barChart"></div>
-                </div>
-            </div>
-        </div>
-        <!--/ Bar Chart -->
+
     </div>
     <!--/ الرسوم البيانية -->
 
