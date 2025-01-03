@@ -11,9 +11,8 @@
                     'hoverColor' => '#d4edda',
                     'change' => '+' . $boycottsCount,
                     'changeClass' => 'text-success',
-                'period' => 'عرض المقاطعات'  ,
-                // route('Boycotts.index')
-
+                    'period' => 'عرض المقاطعات'  ,
+                    'route' => 'Boycotts.index'
                 ],
                 [
                     'title' => 'السندات العقارية',
@@ -24,6 +23,7 @@
                     'change' => '+'. $bondsCount,
                     'changeClass' => 'text-primary',
                     'period' => 'عرض السندات',
+                    'route' => 'Boycotts.index'
                 ],
                 [
                     'title' => 'الأملاك والاراضي',
@@ -34,6 +34,7 @@
                     'change' => '+' . $propertyCount ,
                     'changeClass' => 'text-purple',
                     'period' => 'عرض الأملاك',
+                    'route' => 'Boycotts.index'
                 ],
                 [
                     'title' => 'عدد المستفيدين',
@@ -44,6 +45,7 @@
                     'change' => '+',
                     'changeClass' => 'text-warning',
                     'period' => 'المستفيدين',
+                    'route' => 'Boycotts.index'
                 ],
                 [
                     'title' => 'العقارات المؤجرة',
@@ -54,6 +56,7 @@
                     'change' => '+',
                     'changeClass' => 'text-danger',
                     'period' => 'العقارات المؤجرة',
+                    'route' => 'Boycotts.index'
                 ],
                 [
                     'title' => 'المتخلفين من الدفع',
@@ -64,6 +67,7 @@
                     'change' => '+',
                     'changeClass' => 'text-info',
                     'period' => 'عرض البيانات',
+                    'route' => 'Boycotts.index'
                 ],
             ];
         @endphp
@@ -86,7 +90,9 @@
                         <div class="card-info mt-4 pt-1">
                             <h5 class="mb-2">{{ $stat['value'] }}</h5>
                             <p>{{ $stat['title'] }}</p>
-                            <div class="badge bg-label-secondary rounded-pill">{{ $stat['period'] }}</div>
+                            <div class="badge bg-label-secondary rounded-pill">
+                                <a href="{{ route($stat['route']) }}" class="{{ $stat['changeClass'] }}">{{ $stat['period'] }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
