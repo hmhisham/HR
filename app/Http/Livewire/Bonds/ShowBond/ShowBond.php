@@ -351,7 +351,6 @@ class ShowBond extends Component
             'mortgage_notes.required' => 'حقل إشارات التأمينات مطلوب',
             'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
-            //'property_deed_image.required' => 'حقل صورة السند العقاري مطلوب',
             //'notes.required' => 'حقل ملاحظات مطلوب',
             //'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
         ]);
@@ -366,8 +365,8 @@ class ShowBond extends Component
                 'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
             ]);
 
-            if (file_exists(public_path('storage/Bonds/' . $this->part_number . $this->property_deed_image))) {
-                unlink(public_path('storage/Bonds/' . $this->part_number . $this->property_deed_image));
+            if (file_exists(public_path('storage/Bonds/' . $this->part_number .'/'. $Bonds->property_deed_image))) {
+                unlink(public_path('storage/Bonds/' . $this->part_number .'/'. $Bonds->property_deed_image));
             }
 
             $this->property_deed_image->store('public/Bonds/' . $this->part_number);
