@@ -59,7 +59,7 @@ class ShowBond extends Component
 
         $this->Boycott = Boycotts::find($this->boycott_id);
         $this->BoycottBonds = $this->Boycott ? $this->Boycott->GetBonds : [];
-    }
+     }
 
     public $search = [
         'part_number' => '',

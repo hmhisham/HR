@@ -54,7 +54,7 @@
                         @php
                             $i = $bonds->perPage() * ($bonds->currentPage() - 1) + 1;
                         @endphp
-                        @foreach ($bonds as $bond)
+                        @foreach ($BoycottBonds as $bond)
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td class="text-center">{{ $bond->part_number }}</td>
