@@ -10,35 +10,32 @@
                 </div>
                 <hr class="mt-n2">
                 <form id="addinfoofficModalForm" autocomplete="off">
-                    <div class="row row-cols-1  ">
-                        <div class="col mb-3">
-                            <div Class="row">
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='Infooffice_id' type="text"
-                                            id="modalInfoofficeInfooffice_id" placeholder="رقم"
-                                            class="form-control @error('Infooffice_id') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)" />
-                                        <label for="modalInfoofficeInfooffice_id">رقم</label>
-                                    </div>
-                                    @error('Infooffice_id')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='Infooffice_name' type="text"
-                                            id="modalInfoofficeInfooffice_name" placeholder="مكتب معلومات بطاقة السكن"
-                                            class="form-control @error('Infooffice_name') is-invalid is-filled @enderror" onkeypress="return onlyArabicKey(event)"/>
-                                        <label for="modalInfoofficeInfooffice_name">مكتب معلومات بطاقة السكن</label>
-                                    </div>
-                                    @error('Infooffice_name')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-
+                    <div Class="row">
+                        <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating form-floating-outline">
+                                <input wire:model.defer='Infooffice_id' type="text" id="modalInfoofficeInfooffice_id"
+                                    placeholder="رقم"
+                                    class="form-control @error('Infooffice_id') is-invalid is-filled @enderror"
+                                    onkeypress="return onlyNumberKey(event)" />
+                                <label for="modalInfoofficeInfooffice_id">رقم</label>
                             </div>
+                            @error('Infooffice_id')
+                                <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
                         </div>
+                        <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating form-floating-outline">
+                                <input wire:model.defer='Infooffice_name' type="text"
+                                    id="modalInfoofficeInfooffice_name" placeholder="مكتب معلومات بطاقة السكن"
+                                    class="form-control @error('Infooffice_name') is-invalid is-filled @enderror"
+                                    onkeypress="return onlyArabicKey(event)" />
+                                <label for="modalInfoofficeInfooffice_name">مكتب معلومات بطاقة السكن</label>
+                            </div>
+                            @error('Infooffice_name')
+                                <small class='text-danger inputerror'> {{ $message }} </small>
+                            @enderror
+                        </div>
+
                     </div>
                     <hr class="my-0">
                     <div class="text-center col-12 demo-vertical-spacing mb-n4">

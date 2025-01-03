@@ -15,10 +15,8 @@
                     جار حفظ البيانات...</h5>
                 <div wire:loading.remove>
                     <form id="editInfoOfficModalForm" autocomplete="off">
-                        <div class="row row-cols-1">
-                            <div class="col mb-3">
                                 <div Class="row">
-                                    <div class="mb-3 col">
+                                    <div class="col-12 col-sm-12 col-md-6 mb-3">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='Infooffice_id' type="text"
                                                 id="modalInfoofficeInfooffice_id" placeholder="رقم"
@@ -30,7 +28,7 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-                                    <div class="mb-3 col">
+                                    <div class="col-12 col-sm-12 col-md-6 mb-3">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='Infooffice_name' type="text"
                                                 id="modalInfoOfficInfooffice_name"
@@ -44,8 +42,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
-                        </div>
                         <hr class="my-0">
                         <div class="text-center col-12 demo-vertical-spacing mb-n4">
                             <button wire:click='update' wire:loading.attr="disabled" type="button"
