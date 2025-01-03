@@ -334,8 +334,7 @@
                                                 style="max-height: 350px; width: 100%">
                                         @endif
                                     @endif
-
-                                    @if($property_deed_image)
+                                    @if($property_deed_image and $filePreview == '')
                                         @if (pathinfo($property_deed_image, PATHINFO_EXTENSION) == strtolower('pdf'))
                                             <iframe src="{{ asset('storage/Bonds/'.$property_deed_image) }}" class="mt-3 "
                                                 style="height: 350px; width: 100%"></iframe>
