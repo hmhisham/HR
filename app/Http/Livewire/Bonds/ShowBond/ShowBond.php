@@ -58,7 +58,7 @@ class ShowBond extends Component
         $this->propertytypes = Propertytypes::all();
 
         $this->Boycott = Boycotts::find($this->boycott_id);
-        $this->BoycottBonds = $this->Boycott->GetBonds;
+        $this->BoycottBonds = $this->Boycott ? $this->Boycott->GetBonds : [];
     }
 
     public $search = [
@@ -224,7 +224,7 @@ class ShowBond extends Component
                 'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
             ]);
 
-            $this->property_deed_image->store('public/Bonds');
+            $this->property_deed_image->store('public/Bonds/' . $this->part_number);
         }
 
         Bonds::create([
@@ -366,11 +366,11 @@ class ShowBond extends Component
                 'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
             ]);
 
-            if (file_exists(public_path('storage/Bonds/' . $this->part_number))) {
-                unlink(public_path('storage/Bonds/' . $this->part_number));
+            if (file_exists(public_path('storage/Bonds/' . $this->part_number . $this->property_deed_image))) {
+                unlink(public_path('storage/Bonds/' . $this->part_number . $this->property_deed_image));
             }
 
-            $this->property_deed_image->store('public/Bonds');
+            $this->property_deed_image->store('public/Bonds/' . $this->part_number);
         }
 
         $Bonds->update([
@@ -408,7 +408,7 @@ class ShowBond extends Component
 
     public function destroy()
     {
-        $Bonds = Bonds::find($this->BondId);
+        $Bonds = Bonds::find($this->bondId);
 
         if ($Bonds) {
 

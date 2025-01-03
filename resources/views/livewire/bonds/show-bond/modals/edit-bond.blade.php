@@ -334,19 +334,21 @@
                                                 style="max-height: 350px; width: 100%">
                                         @endif
                                     @endif
-                                    @if($property_deed_image and $filePreview == '')
+                                    @if ($property_deed_image and $filePreview == '')
                                         @if (pathinfo($property_deed_image, PATHINFO_EXTENSION) == strtolower('pdf'))
-                                            <iframe src="{{ asset('storage/Bonds/'.$property_deed_image) }}" class="mt-3 "
-                                                style="height: 350px; width: 100%"></iframe>
+                                            <iframe
+                                                src="{{ asset('storage/Bonds/' . $part_number . '/' . $property_deed_image) }}"
+                                                class="mt-3 " style="height: 350px; width: 100%"></iframe>
                                         @else
-                                            <img src="{{ asset('storage/Bonds/'.$property_deed_image) }}" class="mt-3 rounded img-fluid"
-                                                style="max-height: 350px; width: 100%">
+                                            <img src="{{ asset('storage/Bonds/' . $part_number . '/' . $property_deed_image) }}"
+                                                class="mt-3 rounded img-fluid" style="max-height: 350px; width: 100%">
                                         @endif
                                     @endif
                                 </div>
 
                                 <div wire:loading wire:target='property_deed_image'>
-                                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 200px" alt="Timer Loading Animated 3D Icon">
+                                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}"
+                                        style="height: 200px" alt="Timer Loading Animated 3D Icon">
                                 </div>
                             </div>
                         </div>
