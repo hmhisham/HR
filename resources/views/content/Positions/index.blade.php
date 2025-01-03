@@ -83,7 +83,8 @@
             function initSelect2(selector, eventName, parentModal) {
                 $(selector).select2({
                     placeholder: 'اختيار',
-                    dropdownParent: $(parentModal)
+                    dropdownParent: $(parentModal),
+                    minimumInputLength: 3
                 });
                 $(selector).on('change', function(e) {
                     console.log(`Value changed to: ${e.target.value}`);
