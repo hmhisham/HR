@@ -76,7 +76,7 @@
         </div>
 
         <!-- بطاقات الإحصائيات -->
-        <div class="row">
+        <div class="row gy-4">
             @php
                 $stats = [
                     [
