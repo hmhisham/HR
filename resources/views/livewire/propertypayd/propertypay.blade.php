@@ -43,17 +43,6 @@
                             <tr>
                                 <th>#</th>
                                 <th class="text-center">
-                                    <a href="#" wire:click.prevent="sortBy('bonds_id')"
-                                        class="text-decoration-none text-dark">اسم الموظف</a>
-                                    @if ($sortField === 'bonds_id')
-                                        @if ($sortDirection === 'asc')
-                                            ▲
-                                        @else
-                                            ▼
-                                        @endif
-                                    @endif
-                                </th>
-                                <th class="text-center">
                                     <a href="#" wire:click.prevent="sortBy('receipt_number')"
                                         class="text-decoration-none text-dark d-flex justify-content-center">رقم الوصل</a>
                                     @if (isset($sortField) && $sortField === 'receipt_number')
@@ -101,10 +90,10 @@
                             </tr>
                             <tr>
                                 <th></th>
-                                <th>
+                                {{-- <th>
                                     <input type="text" wire:model.debounce.500ms="search.bonds_id" class="form-control"
                                         placeholder="بحث بالأسم ">
-                                </th>
+                                </th> --}}
                                 <th>
                                     <input type="text" wire:model.debounce.500ms="search.receipt_number"
                                         class="form-control" placeholder="بحث برقم الوصل">
@@ -135,7 +124,6 @@
                             @foreach ($Propertypayd as $Propay)
                                 <tr>
                                     <td>{{ $i++ }}</td>
-                                    <td class="text-center">{{ $Propay->bonds_id }}</td>
                                     <td class="text-center">{{ $Propay->receipt_number }}</td>
                                     <td class="text-center">{{ $Propay->receipt_date }}</td>
                                     <td class="text-center">{{ number_format($Propay->amount, 0) }}</td>

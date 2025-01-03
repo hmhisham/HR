@@ -12,6 +12,17 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>#</th>
+                                <th class="">
+                                    <a href="#" wire:click.prevent="sortBy('bonds_id')"
+                                        class="text-decoration-none text-dark">اسم الموظف</a>
+                                    @if ($sortField === 'bonds_id')
+                                        @if ($sortDirection === 'asc')
+                                            ▲
+                                        @else
+                                            ▼
+                                        @endif
+                                    @endif
+                                </th>
                                 <th class="text-center">
                                     <a href="#" wire:click.prevent="sortBy('boycott_number')"
                                         class="text-decoration-none text-dark">رقم المقاطعة</a>
@@ -70,32 +81,36 @@
                                 <th class="text-center">العملية</th>
                             </tr>
                             <tr>
-                                <th></th>
-                                <th>
+                                <th class="px-0"></th>
+                                <th class="px-0">
+                                    <input type="text" wire:model.debounce.500ms="search.bonds_id" class="form-control"
+                                        placeholder="بحث بالأسم ">
+                                </th>
+                                <th class="px-0">
                                     <input type="text" wire:model.debounce.500ms="search.boycott_number"
                                         class="form-control" placeholder="بحث برقم المقاطعة">
                                 </th>
-                                <th>
+                                <th class="px-0">
                                     <input type="text" wire:model.debounce.500ms="search.boycott_name"
                                         class="form-control" placeholder="بحث باسم المقاطعة">
                                 </th>
-                                <th>
+                                <th class="px-0">
                                     <input type="text" wire:model.debounce.500ms="search.part_number"
                                         class="form-control" placeholder="بحث برقم القطعة">
 
                                 </th>
-                                <th>
+                                <th class="px-0">
                                     <input type="text" wire:model.debounce.500ms="search.property_number"
                                         class="form-control" placeholder="بحث برقم العقار">
                                 </th>
-                                <th>
+                                <th class="px-0">
                                     <select wire:model.debounce.500ms="search.status" class="form-select">
                                         <option value="">الكل</option>
                                         <option value="1">مستلمة</option>
                                         <option value="0">غير مستلمة</option>
                                     </select>
                                 </th>
-                                <th></th>
+                                <th class="px-0"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,6 +120,9 @@
                             @foreach ($bonds as $bond)
                                 <tr>
                                     <td>{{ $i++ }}</td>
+                                    <td class="">
+                                        {{ $bond->getPropert ? $bond->getPropert->full_name : '' }}
+                                    </td>
                                     <td class="text-center">
                                         {{ $bond->Getboycott ? $bond->Getboycott->boycott_number : '' }}
                                     </td>
@@ -113,8 +131,7 @@
                                     </td>
                                     <td class="text-center">{{ $bond->part_number }}</td>
                                     <td class="text-center">{{ $bond->property_number }}</td>
-                                    <td
-                                        class="text-center {{ $bond->getPropert ? ($bond->getPropert->status == 1 ? 'text-success' : 'text-danger') : 'text-danger' }}">
+                                    <td class="text-center {{ $bond->getPropert ? ($bond->getPropert->status == 1 ? 'text-success' : 'text-danger') : 'text-danger' }}">
                                         {{ $bond->getPropert && $bond->getPropert->status !== null ? ($bond->getPropert->status == 1 ? 'مستلمة' : 'غير مستلمة') : 'غير مستلمة' }}
                                     </td>
                                     <td class="text-center">
@@ -131,25 +148,25 @@
                                             @can('propert-edit')
                                                 @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 0)
                                                     <button wire:click='GetPropert2({{ $bond->id }})'
-                                                        class="btn btn-warning" data-bs-toggle="modal"
+                                                        class="btn btn-warning px-2 py-0" data-bs-toggle="modal"
                                                         data-bs-target="#editpropertModal">
-                                                        <span class="mdi mdi-home-edit-outline fs-5"></span>
+                                                        <span class="mdi mdi-home-edit-outline fs-3"></span>
                                                     </button>
                                                 @endif
                                             @endcan
                                             @can('propert-delete')
                                                 @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 0)
                                                     <button wire:click='GetPropert2({{ $bond->id }})'
-                                                        class="btn btn-danger" data-bs-toggle="modal"
+                                                        class="btn btn-danger px-2 py-0" data-bs-toggle="modal"
                                                         data-bs-target="#removepropertModal">
-                                                        <span class="mdi mdi-home-remove-outline fs-5"></span>
+                                                        <span class="mdi mdi-home-remove-outline fs-3"></span>
                                                     </button>
                                                 @endif
                                             @endcan
                                             @can('propert-Show')
                                                 @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 0)
-                                                    <a href="{{ Route('Propertypayd', $bond->id) }}" class="btn btn-info">
-                                                        <span class="mdi mdi-calculator fs-5"></span>
+                                                    <a href="{{ Route('Propertypayd', $bond->id) }}" class="btn btn-info px-2 py-0">
+                                                        <span class="mdi mdi-calculator fs-3"></span>
                                                     </a>
                                                 @endif
                                             @endcan
