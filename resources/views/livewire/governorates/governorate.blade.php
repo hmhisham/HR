@@ -19,7 +19,6 @@
             </div>
         </div>
 
-
         <div class="card-body">
             @can('governorate-list')
                 <div class="table-responsive">
