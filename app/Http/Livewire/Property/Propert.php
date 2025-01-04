@@ -128,8 +128,18 @@ class Propert extends Component
                                 $query->where('boycott_name', 'like', '%' . $value . '%');
                             });
 
+                        } elseif ($field === 'status') {
+                            $query->whereHas('getProperty', function ($query) use ($value) {
+                                if ($value === '1') {
+                                    $query->where('status', 1);
+                                } elseif ($value === '00') {
+                                    $query->where('status', 0);
+                                } elseif ($value === 'all') {
+                                    $query->whereIn('status', [0, 1]);
+                                }
+                            });
                         } else {
-                            $query->where($field, 'like', '%' . $value . '%');
+                          $query->where($field, 'like', '%' . $value . '%');
                         }
                     }
                 }

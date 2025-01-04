@@ -60,14 +60,14 @@ class Bonds extends Model
     public function getPropert()
     {
         return $this->hasOne(Property::class, 'bonds_id', 'id')
-            ->where('status', 1)
+          ->where('status', 1)
             ->where('isdeleted', 0);
     }
-
-
+ 
     public function getProperty()
 {
     return $this->belongsTo(Property::class,   'id' , 'bonds_id');
+
 }
 
 

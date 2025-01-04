@@ -105,11 +105,12 @@
                                 </th>
                                 <th class="px-0">
                                     <select wire:model.debounce.500ms="search.status" class="form-select">
-                                        <option value="">الكل</option>
+                                        <option value="all">الكل</option>
                                         <option value="1">مستلمة</option>
-                                        <option value="0">غير مستلمة</option>
+                                        <option value="00">غير مستلمة</option>
                                     </select>
                                 </th>
+
                                 <th class="px-0"></th>
                             </tr>
                         </thead>
