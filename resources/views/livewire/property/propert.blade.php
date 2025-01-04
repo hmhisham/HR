@@ -83,11 +83,11 @@
                             <tr>
                                 <th class="px-0"></th>
                                 <th class="px-0">
-                                    <input type="text" wire:model.debounce.500ms="search.bonds_id" class="form-control"
+                                    <input type="text" wire:model.debounce.500ms="search.full_name" class="form-control"
                                         placeholder="بحث بالأسم ">
                                 </th>
                                 <th class="px-0">
-                                    <input type="text" wire:model.debounce.500ms="search.boycott_number"
+                                    <input type="text" wire:model.debounce.500ms="search.boycott_id"
                                         class="form-control" placeholder="بحث برقم المقاطعة">
                                 </th>
                                 <th class="px-0">

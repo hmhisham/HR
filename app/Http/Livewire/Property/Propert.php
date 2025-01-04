@@ -92,8 +92,13 @@ class Propert extends Component
     {
         $bonds = QueryBuilder::for(Bonds::class)
             ->allowedFilters([
+                AllowedFilter::callback('full_name', function ($query, $value) {
+                    $query->whereHas('getProperty', function ($query) use ($value) {
+                        $query->where('full_name', 'like', '%' . $value . '%');
+                    });
+                }),
                 AllowedFilter::callback('boycott_number', function ($query, $value) {
-                    $query->whereHas('getBoycott', function ($query) use ($value) {
+                    $query->whereHas('getBoycotts', function ($query) use ($value) {
                         $query->where('boycott_number', 'like', '%' . $value . '%');
                     });
                 }),
@@ -110,19 +115,31 @@ class Propert extends Component
             ->where(function ($query) {
                 foreach ($this->search as $field => $value) {
                     if (!empty($value)) {
-                        $query->where($field, 'like', '%' . $value . '%');
+                        if ($field === 'full_name') {
+                            $query->whereHas('getProperty', function ($query) use ($value) {
+                                $query->where('full_name', 'like', '%' . $value . '%');
+                            });
+                        } elseif ($field === 'boycott_number') {
+                            $query->whereHas('getBoycotts', function ($query) use ($value) {
+                                $query->where('boycott_number', 'like', '%' . $value . '%');
+                            });
+                        } else {
+                            $query->where($field, 'like', '%' . $value . '%');
+                        }
                     }
                 }
             })
             ->orderBy($this->sortField, $this->sortDirection)
             ->paginate(10);
+
         return view('livewire.property.propert', [
             'bonds' => $bonds,
             'sortField' => $this->sortField,
             'sortDirection' => $this->sortDirection,
-            'specialized_department' => 'شعبة الاملاك',
         ]);
     }
+
+
     // عرض نموذج إضافة عقار
     public function AddPropertModalShow($bonds_id)
     {
