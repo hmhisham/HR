@@ -123,6 +123,11 @@ class Propert extends Component
                             $query->whereHas('getBoycotts', function ($query) use ($value) {
                                 $query->where('boycott_number', 'like', '%' . $value . '%');
                             });
+                        } elseif ($field === 'boycott_name') {
+                            $query->whereHas('getBoycotts', function ($query) use ($value) {
+                                $query->where('boycott_name', 'like', '%' . $value . '%');
+                            });
+
                         } else {
                             $query->where($field, 'like', '%' . $value . '%');
                         }

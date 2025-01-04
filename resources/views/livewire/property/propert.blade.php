@@ -87,7 +87,7 @@
                                         placeholder="بحث بالأسم ">
                                 </th>
                                 <th class="px-0">
-                                    <input type="text" wire:model.debounce.500ms="search.boycott_id"
+                                    <input type="text" wire:model.debounce.500ms="search.boycott_number"
                                         class="form-control" placeholder="بحث برقم المقاطعة">
                                 </th>
                                 <th class="px-0">
@@ -123,12 +123,16 @@
                                     <td class="">
                                         {{ $bond->getPropert ? $bond->getPropert->full_name : '' }}
                                     </td>
+
+
                                     <td class="text-center">
                                         {{ $bond->Getboycott ? $bond->Getboycott->boycott_number : '' }}
                                     </td>
                                     <td class="text-center">
                                         {{ $bond->Getboycott ? $bond->Getboycott->boycott_name : '' }}
                                     </td>
+
+
                                     <td class="text-center">{{ $bond->part_number }}</td>
                                     <td class="text-center">{{ $bond->property_number }}</td>
                                     <td class="text-center {{ $bond->getPropert ? ($bond->getPropert->status == 1 ? 'text-success' : 'text-danger') : 'text-danger' }}">

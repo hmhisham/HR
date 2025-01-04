@@ -74,7 +74,7 @@ class Bonds extends Model
 
 public function getBoycotts()
 {
-    return $this->hasMany(Boycotts::class, 'boycott_number' ,  'boycott_id'); // Adjust the foreign key as per your schema
+    return $this->hasMany(Boycotts::class, 'id' ,  'boycott_id');
 }
 
 
