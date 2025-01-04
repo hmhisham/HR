@@ -82,28 +82,28 @@
                             </tr>
                             <tr>
                                 <th class="px-0"></th>
-                                <th class="px-0">
+                                <th class="px-1">
                                     <input type="text" wire:model.debounce.500ms="search.full_name" class="form-control"
                                         placeholder="بحث بالأسم ">
                                 </th>
-                                <th class="px-0">
+                                <th class="px-1">
                                     <input type="text" wire:model.debounce.500ms="search.boycott_number"
                                         class="form-control" placeholder="بحث برقم المقاطعة">
                                 </th>
-                                <th class="px-0">
+                                <th class="px-1">
                                     <input type="text" wire:model.debounce.500ms="search.boycott_name"
                                         class="form-control" placeholder="بحث باسم المقاطعة">
                                 </th>
-                                <th class="px-0">
+                                <th class="px-1">
                                     <input type="text" wire:model.debounce.500ms="search.part_number"
                                         class="form-control" placeholder="بحث برقم القطعة">
 
                                 </th>
-                                <th class="px-0">
+                                <th class="px-1">
                                     <input type="text" wire:model.debounce.500ms="search.property_number"
                                         class="form-control" placeholder="بحث برقم العقار">
                                 </th>
-                                <th class="px-0">
+                                <th class="px-1">
                                     <select wire:model.debounce.500ms="search.status" class="form-select">
                                         <option value="all">الكل</option>
                                         <option value="1">مستلمة</option>
