@@ -130,13 +130,19 @@
                                     <td class="text-center">{{ $Propay->notes }} </td>
                                     <td class="text-center">
                                         <div class="btn-group" role="group">
-                                            @can('propertypay-edit')
-                                                <button wire:click="GetPropertypay({{ $Propay->bonds_id }})"
-                                                    class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal"
+                                            @can('propert-edit')
+                                                <button wire:click='GetPropertypay({{ $Propay->id }})'
+                                                    class="btn btn-text-success px-0 py-0" data-bs-toggle="modal"
                                                     data-bs-target="#editpropertypayModal">
-                                                    <i class="tf-icons mdi mdi-pencil fs-3"></i>
+                                                    <span class="mdi mdi-text-box-edit-outline fs-3"></span>
                                                 </button>
-                                                @include('livewire.propertypayd.modals.edit-propertypay')
+                                            @endcan
+                                            @can('propert-delete')
+                                                <button wire:click='GetPropertypay({{ $Propay->id }})'
+                                                    class="btn btn-text-danger px-0 py-0" data-bs-toggle="modal"
+                                                    data-bs-target="#removepropertModal">
+                                                    <span class="mdi mdi-text-box-remove-outline fs-3"></span>
+                                                </button>
                                             @endcan
                                         </div>
                                     </td>
@@ -150,6 +156,7 @@
                         {{ $Propertypayd->onEachSide(1)->links() }}
                     @endif
                 </div>
+                @include('livewire.propertypayd.modals.edit-propertypay')
             @endcan
         </div>
     </div>

@@ -31,6 +31,7 @@ class Propertypay extends Component
     protected $Propertypayd = [];
     public $PropertypaySearch, $Propertypay, $PropertypayId, $pro , $propert , $email ;
     public $user_id, $bonds_id, $receipt_number, $receipt_date, $amount, $receipt_file, $notes, $isdeleted;
+    public $part_number;
 
     protected $listeners = [
         '',
@@ -223,6 +224,10 @@ class Propertypay extends Component
             'receipt_file.max' => 'يجب ألا يزيد حجم ملف الإيصال عن 1024 كيلوبايت.',
         ]);
 
+        if ($this->receipt_file) {
+            $this->receipt_file->store('public/Property/Payment-Receipts');
+        }
+
         Propertypayd::create([
             'user_id' => Auth::id(),
             'bonds_id' => $this->Bond_ID,
@@ -273,10 +278,27 @@ class Propertypay extends Component
         $this->bonds_id = $this->Propertypay->bonds_id;
         $this->receipt_number = $this->Propertypay->receipt_number;
         $this->receipt_date = $this->Propertypay->receipt_date;
-        $this->amount = $this->Propertypay->amount;
+        $this->amount = number_format($this->Propertypay->amount);
         $this->receipt_file = $this->Propertypay->receipt_file;
         $this->notes = $this->Propertypay->notes;
         $this->isdeleted = $this->Propertypay->isdeleted;
+
+        $bond = Bonds::find($this->bonds_id);
+        $this->part_number = $bond->part_number;
+
+        $this->filePreview = '';
+        $this->TafqeetReceiptAmount = Numbers::TafqeetMoney((int)$this->removeCommas($this->amount), 'IQD');
+
+        $this->TotalAmountsPaid = Propertypayd::where('bonds_id', $this->Bond_ID)->sum('amount') - $this->removeCommas($this->amount);
+        $this->TafqeetTotalAmountsPaid = Numbers::TafqeetMoney((int)$this->removeCommas($this->TotalAmountsPaid), 'IQD');
+
+        $this->TotalAmount = Propertypayd::where('bonds_id', $this->Bond_ID)->sum('amount');
+        $this->TafqeetTotalAmount = Numbers::TafqeetMoney((int)$this->removeCommas($this->TotalAmount), 'IQD');
+
+        $this->RemainingAmount = Property::where('bonds_id', $this->Bond_ID)->first()->total_amount - $this->TotalAmount;
+        $this->TafqeetRemainingAmount = Numbers::TafqeetMoney((int)$this->removeCommas($this->RemainingAmount), 'IQD');
+
+        $this->dispatchBrowserEvent('editPropertypayModalShow');
     }
 
     public function update()
@@ -285,26 +307,18 @@ class Propertypay extends Component
 
         $this->resetValidation();
         $this->validate([
-            'user_id' => 'required:propertypayd',
-            'bonds_id' => 'required:propertypayd',
-            'receipt_number' => 'required:propertypayd',
-            'receipt_date' => 'required:propertypayd',
-            'amount' => 'required:propertypayd',
-            'receipt_file' => 'required:propertypayd',
-            'notes' => 'required:propertypayd',
-            'isdeleted' => 'required:propertypayd',
+            'receipt_number' => 'required',
+            'receipt_date' => 'required',
+            'amount' => 'required',
         ], [
-            'user_id.required' => 'حقل رقم المستخدم مطلوب',
-            'bonds_id.required' => 'حقل رقم العقار مطلوب',
             'receipt_number.required' => 'حقل رقم الإيصال مطلوب',
             'receipt_date.required' => 'حقل تاريخ الإيصال مطلوب',
             'amount.required' => 'حقل المبلغ مطلوب',
-            'receipt_file.required' => 'حقل ملف الإيصال مطلوب',
-            'notes.required' => 'حقل ملاحظات مطلوب',
-            'isdeleted.required' => 'حقل محذوف مطلوب',
         ]);
 
-        if ($this->receipt_file) {
+        $Propertypayd = Propertypayd::find($this->PropertypayId);
+
+        if ($this->filePreview) {
             $this->validate([
                 'receipt_file' => 'required|file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
             ], [
@@ -312,40 +326,59 @@ class Propertypay extends Component
                 'receipt_file.max' => 'يجب ألا يزيد حجم ملف الإيصال عن 1024 كيلوبايت.',
             ]);
 
+            if (file_exists(public_path('storage/Property/Payment-Receipts/' . $Propertypayd->receipt_file))) {
+                unlink(public_path('storage/Property/Payment-Receipts/' . $Propertypayd->receipt_file));
+            }
+
             $this->receipt_file->store('public/Property/Payment-Receipts');
+            $fileName = $this->receipt_file->hashName();
+        }else {
+            $fileName = $this->receipt_file;
         }
 
-        $Propertypayd = Propertypayd::find($this->PropertypayId);
+
         $Propertypayd->update([
             'user_id' => $this->user_id,
             'bonds_id' => $this->Bond_ID,
             'receipt_number' => $this->receipt_number,
             'receipt_date' => $this->receipt_date,
             'amount' => $this->amount,
-            'receipt_file' => $this->receipt_file,
+            'receipt_file' => $fileName,
             'notes' => $this->notes,
             'isdeleted' => $this->isdeleted,
         ]);
 
         // ===============================
 
-        $this->propert = Property::find($this->Bond_ID);
+        $propert = Property::where('bonds_id', $this->Bond_ID)->first();
+        $AmountPaid = Propertypayd::where('bonds_id', $this->Bond_ID)->sum('amount');
+        $RemainingAmount = $propert->total_amount - $AmountPaid;
 
-        /* $this->email = $this->propert->email;
+        $title = 'الموانيء العراقية';
 
         // إرسال البريد الإلكتروني
-        Mail::to($this->email)->send(new NotificationMail(
-            'الموانيء العراقية',
-            'مرحبا استاذ ' . $this->propert->full_name . ' تم دفع المبلغ ' . $this->amount . ' الخاص بالعقار  وحسب الوصل المرفق' . "\n" .
-            'الرجاء الاحتفاظ بالرسائل كذلك الاطلاع على التطبيق الخاص بك' . "\n" .
-            'شكراً لكم'
-        )); */
+        Mail::to($propert->email)->send(new NotificationMail(
+            $title,
+            $propert->full_name,
+            $this->receipt_number,
+            $this->receipt_date,
+            $this->amount,
+            $propert->total_amount,
+            $AmountPaid,
+            $RemainingAmount,
+            $this->PropertyNumber,
+            $this->Bond_ID,
+        ));
+
         // ===============================
-        $this->reset();
+
+        $this->resetExcept('Bond_ID');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
+
+        $this->mount();
     }
 
     public function destroy()

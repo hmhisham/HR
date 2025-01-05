@@ -188,16 +188,17 @@
                                                 <h4 class="mb-0 text-dark fw-bolder">{{ number_format($TotalAmount) }}</h4>
                                             </div>
                                             <div class="align-items-center mt-0 pb-1">
-                                                <div class="fs-6 text-start"> {{ $TafqeetTotalAmount }}</div>
+                                                <div class="fs-6 text-end"> {{ $TafqeetTotalAmount }}</div>
                                             </div>
 
-                                            <hr class="bg-primary"/>
+                                            <hr class="bg-dark"/>
+
                                             <div class="d-flex justify-content-between align-items-center mt-3 pb-1">
                                                 <p class="mb-0">المبلغ المتبقي</p>
                                                 <h4 class="mb-0 fw-bolder {{ $RemainingAmount < 0 ? 'text-danger':'text-dark' }}">{{ number_format($RemainingAmount) }}</h4>
                                             </div>
                                             <div class="align-items-center mt-0 pb-1">
-                                                <sub class="fs-6 text-start {{ $RemainingAmount < 0 ? 'text-danger':'text-dark' }}"> {{ $TafqeetRemainingAmount }}</sub>
+                                                <sub class="fs-6 text-end {{ $RemainingAmount < 0 ? 'text-danger':'text-dark' }}"> {{ $TafqeetRemainingAmount }}</sub>
                                             </div>
                                         </div>
 

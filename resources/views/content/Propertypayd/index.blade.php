@@ -97,9 +97,10 @@
         })
 
         window.addEventListener('PropertypayModalShow', event => {
-            setTimeout(() => {
-             $('#id').focus();
-               }, 100);
+            $('#ReceiptNumber').select();
+        })
+        window.addEventListener('editPropertypayModalShow', event => {
+            $('#editReceiptNumber').select();
         })
 
         window.addEventListener('success', event => {
@@ -108,7 +109,7 @@
             $('#removepropertypayModal').modal('hide');
             Toast.fire({
                 icon: 'success',
-                title: event.detail.message
+                title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
 
@@ -116,10 +117,9 @@
             $('#removepropertypayModal').modal('hide');
             Toast.fire({
                 icon: 'error',
-                title: event.detail.message,
+                title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
-
         })
     </script>
 @endsection

@@ -17,7 +17,6 @@
 
                 <div wire:loading.remove wire:target="GetPropert2,update">
                     <form id="editPropertModalForm" autocomplete="off">
-
                         <div class="row row-cols-1">
                             <div class="col mb-3">
                                 <div class="row">
@@ -200,22 +199,18 @@
                                 </div>
                             </div>
                         </div>
+                    </form>
+
+                    <hr class="my-0">
+
+                    <div class="text-center col-12 demo-vertical-spacing mb-n4">
+                        <button wire:click='update' wire:loading.attr="disabled" type="button"
+                            class="btn btn-success me-sm-3 me-1">تعديل</button>
+                        </button>
+                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                            aria-label="Close">تجاهل</button>
+                    </div>
                 </div>
-                <hr class="my-0">
-                <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                    <button wire:click='update' wire:loading.attr="disabled" type="button"
-                        class="btn btn-success me-sm-3 me-1">تعديل</button>
-                     </button>
-
-
-
-
-
-
-                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                        aria-label="Close">تجاهل</button>
-                </div>
-                </form>
             </div>
         </div>
     </div>

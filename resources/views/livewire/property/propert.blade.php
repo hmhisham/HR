@@ -166,11 +166,10 @@
                                             @can('propert-Show')
                                                 @if (isset($bond->getPropert) && $bond->getPropert->status == 1 && $bond->getPropert->isdeleted == 0)
                                                     <a href="{{ Route('Propertypayd', $bond->id) }}" class="btn btn-info px-2 py-0">
-                                                        <span class="mdi mdi-calculator fs-3"></span>
+                                                        <span class="mdi mdi-text-box-plus-outline fs-3"></span>
                                                     </a>
                                                 @endif
                                             @endcan
-
                                         </div>
                                     </td>
                                 </tr>
