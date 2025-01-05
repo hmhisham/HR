@@ -190,7 +190,7 @@ class ShowBond extends Component
             'district' => 'required',
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
-            'specialized_department' => 'required',
+            //'specialized_department' => 'required',
             //'notes' => 'required',
             //'visibility' => 'required',
 
@@ -211,7 +211,7 @@ class ShowBond extends Component
             'district.required' => 'حقل القضاء مطلوب',
             'mortgage_notes.required' => 'حقل إشارات التأمينات مطلوب',
             'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
-            'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
+            //'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             //'notes.required' => 'حقل ملاحظات مطلوب',
             //'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
         ]);
@@ -327,7 +327,7 @@ class ShowBond extends Component
             'district' => 'required:bonds',
             'mortgage_notes' => 'required:bonds',
             'registered_office' => 'required:bonds',
-            'specialized_department' => 'required:bonds',
+            //'specialized_department' => 'required:bonds',
             //'notes' => 'required:bonds',
             //'visibility' => 'required:bonds',
 
@@ -349,7 +349,7 @@ class ShowBond extends Component
             'district.required' => 'حقل القضاء مطلوب',
             'mortgage_notes.required' => 'حقل إشارات التأمينات مطلوب',
             'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
-            'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
+            //'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             //'notes.required' => 'حقل ملاحظات مطلوب',
             //'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
         ]);

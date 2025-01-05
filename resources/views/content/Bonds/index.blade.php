@@ -207,14 +207,6 @@
             }
         }
 
-        //اختبار الحقل ان يكون ثلاث فقط ولا يتجاوز 999 دونم
-        function validateDonumInput(evt) {
-            const input = evt.target;
-            if (input.value.length > 3) {
-                input.value = input.value.slice(0, 3);
-            }
-        }
-
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
