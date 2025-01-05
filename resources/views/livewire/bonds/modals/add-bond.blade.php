@@ -149,8 +149,7 @@
                                         <input wire:model.defer='area_in_donum' type="text" id="modalBondarea_in_donum"
                                             placeholder="المساحة بالدونم"
                                             class="form-control @error('area_in_donum') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)"
-                                            oninput="validateDonumInput(event)" />
+                                            onkeypress="return onlyNumberKey(event)"  />
                                         <label for="modalBondarea_in_donum">المساحة بالدونم</label>
                                     </div>
                                     @error('area_in_donum')

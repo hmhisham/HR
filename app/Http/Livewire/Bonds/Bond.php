@@ -177,7 +177,7 @@ class Bond extends Component
             'part_number' => 'required',
             'property_number' => 'required',
             'property_number' => [
-                'required',
+                
                 Rule::unique('bonds')->ignore($this->bondId)->where(function ($query) {
                     return $query->where('part_number', $this->part_number)
                         ->where('boycott_id', $this->boycott_id);
@@ -196,7 +196,7 @@ class Bond extends Component
             'district' => 'required',
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
-            'specialized_department' => 'required',
+            //'specialized_department' => 'required',
             //'property_deed_image' => 'required',
             //'notes' => 'required',
             //'visibility' => 'required',
@@ -219,7 +219,7 @@ class Bond extends Component
             'district.required' => 'حقل القضاء مطلوب',
             'mortgage_notes.required' => 'حقل إشارات التأمينات مطلوب',
             'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
-            'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
+            //'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             //'property_deed_image.required' => 'حقل صورة السند العقاري مطلوب',
             //'notes.required' => 'حقل ملاحظات مطلوب',
             //'visibility.required' => 'حقل إمكانية ظهوره مطلوب',

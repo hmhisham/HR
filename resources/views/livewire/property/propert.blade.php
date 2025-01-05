@@ -82,34 +82,35 @@
                             </tr>
                             <tr>
                                 <th class="px-0"></th>
-                                <th class="px-0">
-                                    <input type="text" wire:model.debounce.500ms="search.bonds_id" class="form-control"
+                                <th class="px-1">
+                                    <input type="text" wire:model.debounce.500ms="search.full_name" class="form-control"
                                         placeholder="بحث بالأسم ">
                                 </th>
-                                <th class="px-0">
+                                <th class="px-1">
                                     <input type="text" wire:model.debounce.500ms="search.boycott_number"
                                         class="form-control" placeholder="بحث برقم المقاطعة">
                                 </th>
-                                <th class="px-0">
+                                <th class="px-1">
                                     <input type="text" wire:model.debounce.500ms="search.boycott_name"
                                         class="form-control" placeholder="بحث باسم المقاطعة">
                                 </th>
-                                <th class="px-0">
+                                <th class="px-1">
                                     <input type="text" wire:model.debounce.500ms="search.part_number"
                                         class="form-control" placeholder="بحث برقم القطعة">
 
                                 </th>
-                                <th class="px-0">
+                                <th class="px-1">
                                     <input type="text" wire:model.debounce.500ms="search.property_number"
                                         class="form-control" placeholder="بحث برقم العقار">
                                 </th>
-                                <th class="px-0">
+                                <th class="px-1">
                                     <select wire:model.debounce.500ms="search.status" class="form-select">
-                                        <option value="">الكل</option>
+                                        <option value="all">الكل</option>
                                         <option value="1">مستلمة</option>
-                                        <option value="0">غير مستلمة</option>
+                                        <option value="00">غير مستلمة</option>
                                     </select>
                                 </th>
+
                                 <th class="px-0"></th>
                             </tr>
                         </thead>
@@ -123,12 +124,16 @@
                                     <td class="">
                                         {{ $bond->getPropert ? $bond->getPropert->full_name : '' }}
                                     </td>
+
+
                                     <td class="text-center">
                                         {{ $bond->Getboycott ? $bond->Getboycott->boycott_number : '' }}
                                     </td>
                                     <td class="text-center">
                                         {{ $bond->Getboycott ? $bond->Getboycott->boycott_name : '' }}
                                     </td>
+
+
                                     <td class="text-center">{{ $bond->part_number }}</td>
                                     <td class="text-center">{{ $bond->property_number }}</td>
                                     <td class="text-center {{ $bond->getPropert ? ($bond->getPropert->status == 1 ? 'text-success' : 'text-danger') : 'text-danger' }}">

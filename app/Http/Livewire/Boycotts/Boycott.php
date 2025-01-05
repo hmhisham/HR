@@ -139,12 +139,11 @@ class Boycott extends Component
         $this->resetValidation();
         $this->validate([
             'boycott_number' => 'required|unique:boycotts,boycott_number',
-            'boycott_name' => 'required|unique:boycotts,boycott_name',
+            'boycott_name' => 'required',
         ], [
             'boycott_number.required' => 'حقل رقم المقاطعة مطلوب',
             'boycott_number.unique' => 'رقم المقاطعة موجود',
             'boycott_name.required' => 'حقل اسم المقاطعة مطلوب',
-            'boycott_name.unique' => 'اسم المقاطعة موجود',
         ]);
 
         Boycotts::create([
@@ -155,8 +154,8 @@ class Boycott extends Component
 
         $this->reset();
         $this->dispatchBrowserEvent('success', [
-            'message' => 'تم الاضافه بنجاح',
-            'title' => 'اضافه'
+            'message' => 'تم الاضافة بنجاح',
+            'title' => 'اضافة'
         ]);
     }
 
@@ -175,12 +174,11 @@ class Boycott extends Component
         $this->resetValidation();
         $this->validate([
             'boycott_number' => 'required|unique:boycotts,boycott_number,' . $this->Boycott->id . ',id',
-            'boycott_name' => 'required|unique:boycotts,boycott_name,' . $this->Boycott->id . ',id',
+            'boycott_name' => 'required',
         ], [
             'boycott_number.required' => 'حقل رقم المقاطعة مطلوب',
             'boycott_number.unique' => 'رقم المقاطعة موجود',
             'boycott_name.required' => 'حقل اسم المقاطعة مطلوب',
-            'boycott_name.unique' => 'اسم المقاطعة موجود',
         ]);
 
         $Boycotts = Boycotts::find($this->BoycottId);
