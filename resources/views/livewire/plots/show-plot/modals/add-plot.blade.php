@@ -23,19 +23,22 @@
                             </div>
                         </div>
                     </div>
+
+                    <hr class="">
+
                     <div Class="row">
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <input wire:model.defer='plot_name' type="text" id="modalplotplot_name"
                                     placeholder="رقم القطعة"
-                                    class="form-control @error('plot_name') is-invalid is-filled @enderror" />
+                                    class="form-control @error('plot_name') is-invalid is-filled @enderror"
+                                    onkeypress="return onlyNumberKey(event)" />
                                 <label for="modalplotplot_name">رقم القطعة</label>
                             </div>
                             @error('plot_name')
                                 <small class='text-danger inputerror'> {{ $message }} </small>
                             @enderror
                         </div>
-
                     </div>
                     <hr class="my-0">
                     <div class="text-center col-12 demo-vertical-spacing mb-n4">
