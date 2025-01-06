@@ -177,7 +177,7 @@ class Bond extends Component
             'part_number' => 'required',
             'property_number' => 'required',
             'property_number' => [
-                
+
                 Rule::unique('bonds')->ignore($this->bondId)->where(function ($query) {
                     return $query->where('part_number', $this->part_number)
                         ->where('boycott_id', $this->boycott_id);

@@ -205,8 +205,9 @@
                                 </ul>
                             </li>
 
-                            <li class="menu-item {{ request()->is('Bonds', 'Bond-Show/*', 'Boycotts','Property','Propertytypes') ? 'open active' : '' }}">
-                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <li
+                                class="menu-item {{ request()->is('Provinces', 'Plots', 'Plot-Show/*', 'Boycotts', 'Bonds', 'Bond-Show/*', 'Property', 'Propertytypes') ? 'open active' : '' }}">
+                                <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-earth'></i>
                                     <span class="menu-title">قسم الاراضي</span>
                                 </a>
@@ -218,9 +219,28 @@
                                     </li>
                                 </ul>
                                 <ul class="menu-sub">
+                                    <li Class="menu-item {{ request()->Is('Provinces') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Provinces.index') }}" Class="menu-link">
+                                            <div>المقاطعات</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="menu-sub">
+                                    <li Class="menu-item {{ request()->Is('Plots') ? 'active' : '' }}">
+                                        <a href = "{{ Route('Plots.index') }}" Class="menu-link">
+                                            <div>القطعة</div>
+                                        </a>
+                                    </li>
+                                    <li Class="menu-item {{ request()->Is('Plot-Show/*') ? 'active' : 'hidden' }}">
+                                        <a href = "javascript:void(0)" Class="menu-link">
+                                            <div>عرض القطعة</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="menu-sub">
                                     <li Class="menu-item {{ request()->Is('Boycotts') ? 'active' : '' }}">
                                         <a href = "{{ Route('Boycotts.index') }}" Class="menu-link">
-                                            <div>المقاطعات</div>
+                                            <div>المقاطعات القديم</div>
                                         </a>
                                     </li>
                                 </ul>

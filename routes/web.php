@@ -6,6 +6,7 @@ use App\Models\Workers\Workers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Areas\AreasController;
 use App\Http\Controllers\Bonds\BondsController;
+use App\Http\Controllers\Plots\PlotsController;
 use App\Http\Controllers\Units\UnitsController;
 use App\Http\Controllers\Wives\WivesController;
 use App\Http\Controllers\Branch\BranchController;
@@ -35,6 +36,7 @@ use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Penalties\PenaltiesController;
 use App\Http\Controllers\Positions\PositionsController;
+use App\Http\Controllers\Provinces\ProvincesController;
 use App\Http\Controllers\Trainings\TrainingsController;
 use App\Http\Controllers\Department\DepartmentController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
@@ -181,9 +183,16 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //جنس العقار
     Route::RESOURCE('Propertytypes', PropertytypesController::class);
     //المقاطعات
+    Route::RESOURCE('Provinces', ProvincesController::class);
+    //القطعة الاصغر من المقاطعة
+    Route::RESOURCE('Plots', PlotsController::class);
+    Route::GET('Plot-Show/{id}', [PlotsController::class, 'PlotShow'])->name('Plot-Show');
+
+
+
+    //المقاطعات
     Route::RESOURCE('Boycotts', BoycottsController::class);
     Route::get('boycotts/data', [BoycottsController::class, 'getData'])->name('boycotts.data');
-
 
     //السندات العقارية
     Route::RESOURCE('Bonds', BondsController::class);
@@ -193,8 +202,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Property', PropertyController::class);
     Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
 
-    Route::  GET('Propertypayd/{id}', [PropertypaydController::class, 'Index'])->name('Propertypayd');
-    Route::  GET('Propertypay-Show/{id}', [PropertypaydController::class,'PropertypayShow'])->name('Propertypay-Show');
+    Route::GET('Propertypayd/{id}', [PropertypaydController::class, 'Index'])->name('Propertypayd');
+    Route::GET('Propertypay-Show/{id}', [PropertypaydController::class, 'PropertypayShow'])->name('Propertypay-Show');
 
     //===============المالية==================
 

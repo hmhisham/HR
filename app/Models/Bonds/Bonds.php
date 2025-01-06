@@ -63,7 +63,7 @@ class Bonds extends Model
           ->where('status', 1)
             ->where('isdeleted', 0);
     }
- 
+
     public function getProperty()
 {
     return $this->belongsTo(Property::class,   'id' , 'bonds_id');
