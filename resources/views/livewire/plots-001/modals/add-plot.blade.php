@@ -1,5 +1,5 @@
 <!-- Add plot Modal -->
-<div wire:ignore.self class="modal fade" id="addplotModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="addplotModal{{ $Province->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -8,7 +8,9 @@
                     <h3 class="pb-1 mb-2">اضافة قطعة جديد</h3>
                     <p>نافذة الأضافة </p>
                 </div>
+
                 <hr class="mt-n2">
+
                 <form id="addplotModalForm" autocomplete="off">
                     <div class="row bg-label-primary">
                         <div class="col">

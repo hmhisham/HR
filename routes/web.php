@@ -1,6 +1,5 @@
 <?php
 
-//use App\Http\Livewire\Workers\Worker;
 use Illuminate\Http\Request;
 use App\Models\Workers\Workers;
 use Illuminate\Support\Facades\Route;
@@ -186,7 +185,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //المقاطعات
     Route::RESOURCE('Provinces', ProvincesController::class);
     //القطعة الاصغر من المقاطعة
-    Route::RESOURCE('Plots', PlotsController::class);
+    Route::GET('Plots', [PlotsController::class, 'index'])->name('Plots');
     Route::GET('Plot-Show/{id}', [PlotsController::class, 'PlotShow'])->name('Plot-Show');
 
 

@@ -7,8 +7,6 @@ use Livewire\WithPagination;
 use App\Models\Plots\Plots;
 use App\Models\Provinces\Provinces;
 use Illuminate\Support\Facades\Auth;
-use Spatie\QueryBuilder\QueryBuilder;
-use Spatie\QueryBuilder\AllowedFilter;
 
 class Plot extends Component
 {
@@ -21,17 +19,17 @@ class Plot extends Component
     public $user_id, $province_id, $plot_name;
     public $search = ['province_number' => '', 'province_name' => ''];
 
-    public function updated($propertyName)
+    /* public function updated($propertyName)
     {
         $this->resetPage();
-    }
+    } */
 
     public function render()
     {
-        $searchNumber = '%' . $this->search['province_number'] . '%';
-        $searchName = '%' . $this->search['province_name'] . '%';
+        /* $searchNumber = '%' . $this->search['province_number'] . '%';
+        $searchName = '%' . $this->search['province_name'] . '%'; */
 
-        $Provinces = Provinces::query()
+        /* $Provinces = Provinces::query()
             ->when($this->search['province_number'], function ($query) use ($searchNumber) {
                 $query->where('province_number', 'LIKE', $searchNumber);
             })
@@ -39,24 +37,25 @@ class Plot extends Component
                 $query->orWhere('province_name', 'LIKE', $searchName);
             })
             ->orderBy('id', 'ASC')
-            ->paginate(10);
+            ->paginate(10); */
 
-        $links = $Provinces;
-        $this->Provinces = collect($Provinces->items());
+        $this->Provinces = Provinces::all();
+
+        /* $links = $Provinces;
+        $this->Provinces = collect($Provinces->items()); */
 
         return view('livewire.plots.plot', [
-            'Provinces' => $Provinces,
-            'links' => $links
+            /* 'Provinces' => $Provinces, */
+            /* 'links' => $links */
         ]);
     }
 
-    public function AddPlotModal($ProvinceID)
+    public function AddPlot($ProvinceID)
     {
         $this->reset('province_id', 'plot_name');
         $this->resetValidation();
         $this->dispatchBrowserEvent('AddPlotModal');
 
-        $this->Province = Provinces::find($ProvinceID);
         $this->province_id = $ProvinceID;
     }
 
@@ -75,11 +74,11 @@ class Plot extends Component
             'plot_name' => $this->plot_name,
         ]);
 
-        $this->reset();
-        $this->dispatchBrowserEvent('success', [
+        //$this->reset();
+        /* $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
-        ]);
+        ]); */
     }
 
     public function GetPlot($plotId)
