@@ -15,11 +15,13 @@ class emaillist extends Component
     public $emaillistSearch, $emaillist, $emaillistId;
     public $department, $email, $notes;
     public $search = ['department' => '', 'email' => '', 'notes' => ''];
+
     public function render()
     {
         $departmentSearch = '%' . $this->search['department'] . '%';
         $emailSearch = '%' . $this->search['email'] . '%';
         $notesSearch = '%' . $this->search['notes'] . '%';
+
         $Emaillists = Emaillists::query()
             ->when($this->search['department'], function ($query) use ($departmentSearch) {
                 $query->where('department', 'LIKE', $departmentSearch);
@@ -35,23 +37,16 @@ class emaillist extends Component
             ->paginate(10);
         $links = $Emaillists;
         $this->Emaillists = collect($Emaillists->items());
+        
         return view('livewire.emaillists.emaillist', [
             'Emaillists' => $Emaillists,
             'links' => $links
         ]);
     }
 
-
-
-
-
-
-
-
-
     public function AddemaillistModalShow()
     {
-        $this->reset();
+        $this->reset(['department', 'email', 'notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('emaillistModalShow');
     }
@@ -60,12 +55,11 @@ class emaillist extends Component
         $this->resetValidation();
         $this->validate([
             'department' => 'required',
-            'email' => 'required|email',
-            'notes' => 'required',
+            'email' => 'required|email|unique:users,email',
         ], [
             'department.required' => 'حقل القسم مطلوب',
             'email.required' => 'حقل البريد الإلكتروني مطلوب',
-            'notes.required' => 'حقل ملاحظات مطلوب',
+            'email.unique' => 'البريد الإلكتروني موجود مسبقا',
         ]);
         Emaillists::create([
             'user_id' => Auth::id(),
@@ -93,10 +87,11 @@ class emaillist extends Component
         $this->resetValidation();
         $this->validate([
             'department' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
         ], [
             'department.required' => 'حقل القسم مطلوب',
             'email.required' => 'حقل البريد الإلكتروني مطلوب',
+            'email.unique' => 'البريد الإلكتروني موجود مسبقا',
         ]);
         $Emaillists = Emaillists::find($this->emaillistId);
         $Emaillists->update([
@@ -105,7 +100,7 @@ class emaillist extends Component
             'email' => $this->email,
             'notes' => $this->notes,
         ]);
-        $this->reset();
+        $this->reset(['department', 'email', 'notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'

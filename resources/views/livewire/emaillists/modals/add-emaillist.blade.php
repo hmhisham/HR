@@ -29,7 +29,8 @@
                             <div class="form-floating form-floating-outline">
                                 <input wire:model.defer='email' type="email" id="modalemaillistemail"
                                     placeholder="البريد الإلكتروني"
-                                    class="form-control @error('email') is-invalid is-filled @enderror" />
+                                    class="form-control @error('email') is-invalid is-filled @enderror"
+                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required />
                                 <label for="modalemaillistemail">البريد الإلكتروني</label>
                             </div>
                             @error('email')

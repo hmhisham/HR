@@ -35,13 +35,16 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        function onlyNumberKey(evt) {
-            // Only ASCII character in that range allowed
-            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-            if (ASCIICode < 48 || ASCIICode > 57)
-                return false;
-            return true;
-        }
+        document.querySelector('form').addEventListener('submit', function(event) {
+            const emailInput = document.getElementById('modalemaillistemail');
+            const email = emailInput.value;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (!emailPattern.test(email)) {
+                alert('الرجاء إدخال بريد إلكتروني صحيح.');
+                event.preventDefault(); // يمنع إرسال النموذج إذا كان البريد الإلكتروني غير صحيح
+            }
+        });
 
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;

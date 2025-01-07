@@ -1,14 +1,11 @@
 <div class="mt-n4">
-    <h4 class="mb-2">
-        <span class="text-muted fw-light">الاعدادات<span class="mdi mdi-chevron-left mdi-24px"></span></span>
-        البريد الالكتروني
-    </h4>
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <div>
-                    <input wire:model="emaillistSearch" type="text" class="form-control" placeholder="بحث...">
-                </div>
+                <h4 class="mb-2">
+                    <span class="text-muted fw-light">الاعدادات<span class="mdi mdi-chevron-left mdi-24px"></span></span>
+                    البريد الالكتروني
+                </h4>
                 <div>
                     @can('emaillist-create')
                         <button wire:click='AddemaillistModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
