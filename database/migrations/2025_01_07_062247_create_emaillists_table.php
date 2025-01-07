@@ -11,10 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
+     
         Schema::create('emaillists', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->nullable()->comment('رقم المستخدم');
+            $table->string('department')->nullable()->comment('القسم');
+            $table->string('email')->nullable()->comment('البريد الإلكتروني');
+            $table->text('notes')->nullable()->comment('ملاحظات');
             $table->timestamps();
+            $table->index('department');
+            $table->index('email');
         });
+
+
     }
 
     /**
