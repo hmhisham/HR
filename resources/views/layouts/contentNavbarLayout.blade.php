@@ -298,7 +298,7 @@
 
                             {{-- الإعدادات --}}
                             <li
-                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department') ? 'open active' : '' }}">
+                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department' ,'Emaillists') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -463,6 +463,14 @@
                                             <div>حالة الخدمة</div>
                                         </a>
                                     </li>
+
+                                    <li Class="menu-item {{ request()->Is('Emaillists') ? 'active' : '' }}">
+                                        <a href="{{ Route('Emaillists.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>البريد الألكتروني</div>
+                                        </a>
+                                    </li>
+
 
                                 </ul>
                             </li>

@@ -39,6 +39,7 @@ use App\Http\Controllers\Positions\PositionsController;
 use App\Http\Controllers\Provinces\ProvincesController;
 use App\Http\Controllers\Trainings\TrainingsController;
 use App\Http\Controllers\Department\DepartmentController;
+use App\Http\Controllers\Emaillists\EmaillistsController;
 use App\Http\Controllers\Infooffice\InfoofficeController;
 use App\Http\Controllers\Jobleavers\JobleaversController;
 use App\Http\Controllers\Placements\PlacementsController;
@@ -205,6 +206,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::GET('Propertypayd/{id}', [PropertypaydController::class, 'Index'])->name('Propertypayd');
     Route::GET('Propertypay-Show/{id}', [PropertypaydController::class, 'PropertypayShow'])->name('Propertypay-Show');
 
+    Route::  RESOURCE('Emaillists', EmaillistsController::class);
     //===============المالية==================
 
     //اليومية
@@ -215,7 +217,6 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Idepartments', IdepartmentsController::class);
     //انواع القيود
     Route::RESOURCE('Itypes', ItypesController::class);
-
 
 
     //استدعاء اسم الموظف في حق الموظف
