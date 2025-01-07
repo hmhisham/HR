@@ -8,24 +8,26 @@
                     <h3 class="pb-1 mb-2">حذف المقاطعة</h3>
                     <p>نافذة الحذف</p>
                 </div>
+
                 <hr class="mt-n2">
+
                 <h5 wire:loading wire:target="GetProvince"
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حذف البيانات...</h5>
 
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="GetProvince, destroy">
                     <form id="removeProvinceModalForm" onsubmit="return false" autocomplete="off">
                         <div class="row">
                             <div class="col text-center">
                                 <div class="">
-                                    <label for="modalProvinceprovince_number">رقم المقاطعة</label>
+                                    <label class="border-bottom-2 w-100">رقم المقاطعة</label>
                                     <div class="form-control-plaintext mt-n2">{{ $province_number }}</div>
                                 </div>
                             </div>
                             <div class="col text-center">
                                 <div class="">
-                                    <label for="modalProvinceprovince_name">اسم المقاطعة</label>
+                                    <label class="border-bottom-2 w-100">اسم المقاطعة</label>
                                     <div class="form-control-plaintext mt-n2">{{ $province_name }}</div>
                                 </div>
                             </div>

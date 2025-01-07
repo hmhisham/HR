@@ -33,12 +33,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                            $i = $links->perPage() * ($links->currentPage() - 1) + 1;
-                        @endphp
-                     @foreach ($Provinces as $Province)
+                    {{-- @php
+                        $i = $links->perPage() * ($links->currentPage() - 1) + 1;
+                    @endphp --}}
+                    @foreach ($Provinces as $Province)
                         <tr>
-                            <td>{{ $i++ }}</td>
+                            <td></td>
                             <td class="text-center">{{ $Province->province_number }}</td>
                             <td class="text-center">{{ $Province->province_name }}</td>
                             <td class="text-center">{{ $Province->GetPlots->count() }}</td>
@@ -50,22 +50,23 @@
                                     </a>
                                 @endcan
                                 @can('plot-create')
-                                    <button wire:click='AddPlotModal({{ $Province->id }})'
+                                    <button wire:click='AddPlot({{ $Province->id }})'
                                         class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
-                                        data-bs-target="#addplotModal">
+                                        data-bs-target="#addplotModal{{ $Province->id }}">
                                         <span class="tf-icons mdi mdi-school fs-3"></span>
                                     </button>
+                                    @include('livewire.plots.modals.add-plot')
                                 @endcan
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            <div class="mt-2 d-flex justify-content-center">
+            {{-- <div class="mt-2 d-flex justify-content-center">
                 {{ $links->onEachSide(1)->links() }}
-            </div>
+            </div> --}}
             <!-- Modal -->
-            @include('livewire.plots.modals.add-plot')
+
             <!-- Modal -->
         @endcan
     </div>

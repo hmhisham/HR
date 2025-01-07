@@ -227,8 +227,8 @@
                                 </ul>
                                 <ul class="menu-sub">
                                     <li Class="menu-item {{ request()->Is('Plots') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Plots.index') }}" Class="menu-link">
-                                            <div>القطعة</div>
+                                        <a href = "{{ Route('Plots') }}" Class="menu-link">
+                                            <div>قطع الاراضي</div>
                                         </a>
                                     </li>
                                     <li Class="menu-item {{ request()->Is('Plot-Show/*') ? 'active' : 'hidden' }}">
