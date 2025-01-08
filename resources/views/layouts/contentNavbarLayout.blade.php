@@ -206,18 +206,11 @@
                             </li>
 
                             <li
-                                class="menu-item {{ request()->is('Provinces', 'Plots', 'Plot-Show/*', 'Boycotts', 'Bonds', 'Bond-Show/*', 'Property', 'Propertytypes') ? 'open active' : '' }}">
+                                class="menu-item {{ request()->is('Provinces', 'Plots', 'Plot-Show/*', 'Boycotts', 'Bonds', 'Bond-Show/*', 'Property') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-earth'></i>
                                     <span class="menu-title">قسم الاراضي</span>
                                 </a>
-                                <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Propertytypes') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Propertytypes.index') }}" Class="menu-link">
-                                            <div>جنس العقار</div>
-                                        </a>
-                                    </li>
-                                </ul>
                                 <ul class="menu-sub">
                                     <li Class="menu-item {{ request()->Is('Provinces') ? 'active' : '' }}">
                                         <a href = "{{ Route('Provinces.index') }}" Class="menu-link">
@@ -298,7 +291,7 @@
 
                             {{-- الإعدادات --}}
                             <li
-                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department' ,'Emaillists','Utilizationtypes') ? 'open active' : '' }}">
+                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department' ,'Emaillists','Utilizationtypes','Propertycategory','Propertytypes') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -481,6 +474,12 @@
                                         <a href="{{ Route('Utilizationtypes.index') }}" Class="menu-link">
                                             <i Class=''></i>
                                             <div>انواع الاستغلال للعقار</div>
+                                        </a>
+                                    </li>
+                                    <li Class="menu-item {{ request()->Is('Propertytypes') ? 'active' : '' }}">
+                                        <a href="{{ Route('Propertytypes.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>جنس العقار</div>
                                         </a>
                                     </li>
                                 </ul>
