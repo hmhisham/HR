@@ -1,5 +1,5 @@
 @extends('layouts/layoutMaster')
-@section('title', 'Emaillists')
+@section('title', 'Utilizationtypes')
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel = "stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
@@ -13,7 +13,7 @@
 @endsection
 @section('content')
 
-    @livewire('emaillists.emaillist')
+    @livewire('utilizationtypes.utilizationtype')
 
 @endsection
 
@@ -56,16 +56,16 @@
             }
         })
 
-        window.addEventListener('emaillistModalShow', event => {
+        window.addEventListener('UtilizationtypeModalShow', event => {
             setTimeout(() => {
                 $('#id').focus();
             }, 100);
         })
 
         window.addEventListener('success', event => {
-            $('#addemaillistModal').modal('hide');
-            $('#editemaillistModal').modal('hide');
-            $('#removeemaillistModal').modal('hide');
+            $('#addutilizationtypeModal').modal('hide');
+            $('#editutilizationtypeModal').modal('hide');
+            $('#removeutilizationtypeModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.title + '<hr>' + event.detail.message,
@@ -73,12 +73,13 @@
         })
 
         window.addEventListener('error', event => {
-            $('#removeemaillistModal').modal('hide');
+            $('#removeutilizationtypeModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
+
         })
     </script>
 @endsection

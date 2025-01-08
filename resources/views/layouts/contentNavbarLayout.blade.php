@@ -298,7 +298,7 @@
 
                             {{-- الإعدادات --}}
                             <li
-                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department' ,'Emaillists') ? 'open active' : '' }}">
+                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department' ,'Emaillists','Utilizationtypes') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                     <span class="menu-title">الاعدادات</span>
@@ -475,6 +475,12 @@
                                         <a href="{{ Route('Propertycategory.index') }}" Class="menu-link">
                                             <i Class=''></i>
                                             <div>انواع العقارات</div>
+                                        </a>
+                                    </li>
+                                    <li Class="menu-item {{ request()->Is('Utilizationtypes') ? 'active' : '' }}">
+                                        <a href="{{ Route('Utilizationtypes.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>انواع الاستغلال للعقار</div>
                                         </a>
                                     </li>
                                 </ul>
