@@ -54,6 +54,7 @@ use App\Http\Controllers\Typeholidays\TypeholidaysController;
 use App\Http\Controllers\Propertytypes\PropertytypesController;
 use App\Http\Controllers\Typesservices\TypesservicesController;
 use App\Http\Controllers\Specializations\SpecializationsController;
+use App\Http\Controllers\Propertycategory\PropertycategoryController;
 use App\Http\Controllers\Users\UsersAccounts\UsersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Roles\AccountRolesController;
 use App\Http\Controllers\PrivateEmployeeFiles\PrivateEmployeeFilesController;
@@ -201,11 +202,13 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //الاملاك
     Route::RESOURCE('Property', PropertyController::class);
     Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
-
+// الدفع في نافذة الاملاك
     Route::GET('Propertypayd/{id}', [PropertypaydController::class, 'Index'])->name('Propertypayd');
     Route::GET('Propertypay-Show/{id}', [PropertypaydController::class, 'PropertypayShow'])->name('Propertypay-Show');
-
+// البريد الالكتروني للاقسام
     Route::  RESOURCE('Emaillists', EmaillistsController::class);
+// اناع القيود
+    Route::  RESOURCE('Propertycategory', PropertycategoryController::class);
     //===============المالية==================
 
     //اليومية
