@@ -92,7 +92,7 @@ class emaillist extends Component
         $this->resetValidation();
         $this->validate([
             'department' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:emaillists,email,' . $this->emaillist->id,
         ], [
             'department.required' => 'حقل القسم مطلوب',
             'email.required' => 'حقل البريد الإلكتروني مطلوب',

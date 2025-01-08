@@ -20,6 +20,7 @@ class propertycategor extends Component
     {
         $categorySearch = '%' . $this->search['category'] . '%';
         $notesSearch = '%' . $this->search['notes'] . '%';
+
         $Propertycategory = Propertycategory::query()
             ->when($this->search['category'], function ($query) use ($categorySearch) {
                 $query->where('category', 'LIKE', $categorySearch);
@@ -29,6 +30,7 @@ class propertycategor extends Component
             })
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Propertycategory;
         $this->Propertycategory = collect($Propertycategory->items());
         return View('livewire.propertycategory.propertycategor', [
@@ -39,7 +41,7 @@ class propertycategor extends Component
 
     public function AddpropertycategorModalShow()
     {
-        $this->reset();
+        $this->reset(['category', 'notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('propertycategorModalShow');
     }
@@ -48,16 +50,17 @@ class propertycategor extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'category' => 'required|unique:propertycategories,category,' . $this->propertycategorId,
+            'category' => 'required|unique:propertycategory,category',
         ], [
             'category.required' => 'حقل نوع العقار مطلوب',
+            'category.unique' => 'حقل نوع العقار موجود مسبقا',
         ]);
         Propertycategory::create([
-            'user_id' => Auth::User()->id,
+            'user_id' => Auth::id(),
             'category' => $this->category,
             'notes' => $this->notes,
         ]);
-        $this->reset();
+        $this->reset(['category', 'notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -75,17 +78,18 @@ class propertycategor extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'category' => 'required|unique:propertycategories,category,' . $this->propertycategorId,
+            'category' => 'required|unique:propertycategory,category,' . $this->propertycategor->id . ',id',
         ], [
             'category.required' => 'حقل نوع العقار مطلوب',
+            'category.unique' => 'حقل نوع العقار موجود مسبقا',
         ]);
         $Propertycategory = Propertycategory::find($this->propertycategorId);
         $Propertycategory->update([
-            'user_id' => Auth::User()->id,
+            'user_id' => Auth::id(),
             'category' => $this->category,
             'notes' => $this->notes,
         ]);
-        $this->reset();
+        $this->reset(['category', 'notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'

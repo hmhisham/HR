@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">\ نوع العقارحذف</h3>
+                    <h3 class="pb-1 mb-2">حذف نوع العقار</h3>
                     <p>نافذة الحذف</p>
                 </div>
                 <hr class="mt-n2">
@@ -30,7 +30,6 @@
                             <button type="reset" class="flex-fill btn btn-outline-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">تجاهل</button>
                         </div>
-
                     </form>
                 </div>
             </div>
