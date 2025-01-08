@@ -471,7 +471,12 @@
                                         </a>
                                     </li>
 
-
+                                    <li Class="menu-item {{ request()->Is('Propertycategory') ? 'active' : '' }}">
+                                        <a href="{{ Route('Propertycategory.index') }}" Class="menu-link">
+                                            <i Class=''></i>
+                                            <div>انواع العقارات</div>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 
