@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->nullable()->comment('رقم المستخدم');
             $table->integer('province_id')->nullable()->comment('رقم واسم المقاطعة');
-            $table->string('plot_name')->nullable()->comment('رقم القطعة');
+            $table->string('plot_number')->nullable()->comment('رقم القطعة');
+            $table->string('property_deed_image')->nullable()->comment('صورة السند العقاري');
+            $table->string('property_map_image')->nullable()->comment('صوره الخارطة العقارية');
             $table->timestamps();
-            $table->index('plot_name');
+            $table->index('plot_number');
         });
     }
 
