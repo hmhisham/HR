@@ -185,7 +185,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Provinces', ProvincesController::class);
     //القطعة الاصغر من المقاطعة
     Route::GET('Plots', [PlotsController::class, 'index'])->name('Plots');
-    Route::GET('Plot-Show/{id}', [PlotsController::class, 'PlotShow'])->name('Plot-Show');
+    Route::GET('Show-Plot/{Provinceid}', [PlotsController::class, 'ShowPlot'])->name('showPlots');
 
 
 

@@ -11,4 +11,11 @@ class PlotsController extends Controller
     {
         return view('content.Plots.index');
     }
+
+    public function ShowPlot($Provinceid)
+    {
+        return view('content.Plots.show', [
+            'Provinceid' => $Provinceid
+        ]);
+    }
 }

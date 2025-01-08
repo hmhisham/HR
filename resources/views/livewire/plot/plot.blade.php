@@ -5,15 +5,15 @@
                 <span class="text-muted fw-light">قسم الاراضي <span class="mdi mdi-chevron-left mdi-24px"></span></span>
                 قطع الاراضي
             </h5>
-            <div>
+            {{-- <div>
                 @can('province-create')
                     <button wire:click='AddProvinceModal' class="mb-3 add-new btn btn-primary mb-md-0"
                         data-bs-toggle="modal" data-bs-target="#addProvinceModal">أضــافــة</button>
                     @include('livewire.plot.modals.add-province')
                 @endcan
-            </div>
+            </div> --}}
         </div>
-        @can('precise-list')
+        @can('province-list')
             <table class="table">
                 <thead class="table-light">
                     <tr>
@@ -34,17 +34,22 @@
                             <td>{{ count($Province->GetPlots) }}</td>
                             <td Class="text-center">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    @can('precise-edit')
+                                    {{-- @can('province-edit')
                                         <button wire:click='GetProvince({{ $Province->id }}, false)' class="btn rounded-pill btn-icon btn-outline-primary waves-effect p-0"
                                             data-bs-toggle="modal" data-bs-target="#editProvinceModal">
                                             <span class="mdi mdi-text-box-edit-outline mdi-24px"></span>
                                         </button>
-                                    @endcan
-                                    @can('precise-edit')
+                                    @endcan --}}
+                                    @can('plot-create')
                                         <button wire:click='GetProvince({{ $Province->id }}, true)' class="btn rounded-pill btn-icon btn-outline-primary waves-effect p-0"
                                             data-bs-toggle="modal" data-bs-target="#addPlotToProvinceModal">
                                             <span class="mdi mdi-text-box-plus-outline mdi-24px"></span>
                                         </button>
+                                    @endcan
+                                    @can('plot-show')
+                                        <a href="{{ Route('showPlots', $Province->id) }}" class="btn rounded-pill btn-icon btn-outline-primary waves-effect p-0">
+                                            <span class="mdi mdi-eye-outline mdi-24px"></span>
+                                        </a>
                                     @endcan
                                 </div>
                             </td>
