@@ -64,14 +64,14 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="mt-2 d-flex justify-content-center">
+                        {{ $links->links() }}
+                    </div>
+                    <!-- Modal -->
+                    @include('livewire.districts.modals.edit-district')
+                    @include('livewire.districts.modals.remove-district')
+                    <!-- Modal -->
                 </div>
-                <div class="mt-2 d-flex justify-content-center">
-                    {{ $links->links() }}
-                </div>
-                <!-- Modal -->
-                @include('livewire.districts.modals.edit-district')
-                @include('livewire.districts.modals.remove-district')
-                <!-- Modal -->
             @endcan
         </div>
     </div>

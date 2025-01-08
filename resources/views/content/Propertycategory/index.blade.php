@@ -1,5 +1,5 @@
 @extends('layouts/layoutMaster')
-@section('title', 'Provinces')
+@section('title', 'Propertycategory')
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel = "stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
@@ -13,7 +13,7 @@
 @endsection
 @section('content')
 
-    @livewire('provinces.province')
+    @livewire('propertycategory.propertycategor')
 
 @endsection
 
@@ -56,16 +56,16 @@
             }
         })
 
-        window.addEventListener('ProvinceModalShow', event => {
+        window.addEventListener('propertycategorModalShow', event => {
             setTimeout(() => {
                 $('#id').focus();
             }, 100);
         })
 
         window.addEventListener('success', event => {
-            $('#addprovinceModal').modal('hide');
-            $('#editprovinceModal').modal('hide');
-            $('#removeprovinceModal').modal('hide');
+            $('#addpropertycategorModal').modal('hide');
+            $('#editpropertycategorModal').modal('hide');
+            $('#removepropertycategorModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.title + '<hr>' + event.detail.message,
@@ -73,12 +73,13 @@
         })
 
         window.addEventListener('error', event => {
-            $('#removeprovinceModal').modal('hide');
+            $('#removepropertycategorModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
+
         })
     </script>
 @endsection
