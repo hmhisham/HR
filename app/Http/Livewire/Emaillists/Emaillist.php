@@ -37,7 +37,7 @@ class emaillist extends Component
             ->paginate(10);
         $links = $Emaillists;
         $this->Emaillists = collect($Emaillists->items());
-        
+
         return view('livewire.emaillists.emaillist', [
             'Emaillists' => $Emaillists,
             'links' => $links
@@ -50,6 +50,7 @@ class emaillist extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('emaillistModalShow');
     }
+
     public function store()
     {
         $this->resetValidation();
@@ -59,8 +60,10 @@ class emaillist extends Component
         ], [
             'department.required' => 'حقل القسم مطلوب',
             'email.required' => 'حقل البريد الإلكتروني مطلوب',
+            'email.email' => 'الرجاء إدخال بريد إلكتروني صحيح.',
             'email.unique' => 'البريد الإلكتروني موجود مسبقا',
         ]);
+
         Emaillists::create([
             'user_id' => Auth::id(),
             'department' => $this->department,
@@ -73,6 +76,7 @@ class emaillist extends Component
             'title' => 'اضافه'
         ]);
     }
+
     public function Getemaillist($emaillistId)
     {
         $this->resetValidation();
@@ -82,6 +86,7 @@ class emaillist extends Component
         $this->email = $this->emaillist->email;
         $this->notes = $this->emaillist->notes;
     }
+
     public function update()
     {
         $this->resetValidation();
@@ -91,6 +96,7 @@ class emaillist extends Component
         ], [
             'department.required' => 'حقل القسم مطلوب',
             'email.required' => 'حقل البريد الإلكتروني مطلوب',
+            'email.email' => 'الرجاء إدخال بريد إلكتروني صحيح.',
             'email.unique' => 'البريد الإلكتروني موجود مسبقا',
         ]);
         $Emaillists = Emaillists::find($this->emaillistId);
@@ -106,6 +112,7 @@ class emaillist extends Component
             'title' => 'تعديل'
         ]);
     }
+
     public function destroy()
     {
         $Emaillists = Emaillists::find($this->emaillistId);
