@@ -35,17 +35,6 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        document.querySelector('form').addEventListener('submit', function(event) {
-            const emailInput = document.getElementById('modalemaillistemail');
-            const email = emailInput.value;
-            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-            if (!emailPattern.test(email)) {
-                alert('الرجاء إدخال بريد إلكتروني صحيح.');
-                event.preventDefault(); // يمنع إرسال النموذج إذا كان البريد الإلكتروني غير صحيح
-            }
-        });
-
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
             // نطاق رموز الحروف العربية والفراغ
