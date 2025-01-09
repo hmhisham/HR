@@ -58,6 +58,10 @@
                 </tbody>
             </table>
 
+            <div class="mt-2 d-flex justify-content-center">
+                {{ $links->links() }}
+            </div>
+            
             @include('livewire.plot.modals.edit-province')
             @include('livewire.plot.modals.add-plot-province')
         @endcan

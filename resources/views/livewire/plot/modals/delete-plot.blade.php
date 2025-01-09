@@ -23,9 +23,10 @@
 
                 <div wire:loading.remove wire:target="destroy, GetPlot">
                     <div Class="row mb-4">
-                        <div class="col text-center">
-                            <label class="w-100">رقم وأسم المقاطعة</label>
-                            <h5>{{ $this->Province->province_number }} - {{ $this->Province->province_name }}</h5>
+                        <div class="col text-center alert alert-outline-dark mb-0 pb-0">
+                            <label class="w-100 mb-1">رقم وأسم المقاطعة</label>
+                            <hr class="m-0 mb-1">
+                            <h5 class="">{{ $this->Province->province_number }} - {{ $this->Province->province_name }}</h5>
                         </div>
                     </div>
 

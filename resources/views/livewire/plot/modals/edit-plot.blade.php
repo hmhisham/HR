@@ -1,6 +1,6 @@
 <!-- Add Province Modal -->
 <div wire:ignore.self class="modal fade" id="editPlotModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
@@ -23,15 +23,16 @@
 
                 <div wire:loading.remove wire:target="update, GetPlot">
                     <div Class="row mb-4">
-                        <div class="col text-center">
-                            <label class="w-100">رقم وأسم المقاطعة</label>
-                            <h5>{{ $this->Province->province_number }} - {{ $this->Province->province_name }}</h5>
+                        <div class="col text-center alert alert-outline-dark mb-0 pb-0">
+                            <label class="w-100 mb-1">رقم وأسم المقاطعة</label>
+                            <hr class="m-0 mb-1">
+                            <h5 class="">{{ $this->Province->province_number }} - {{ $this->Province->province_name }}</h5>
                         </div>
                     </div>
 
                     <form id="addprovinceModalForm" autocomplete="off">
                         <div Class="row">
-                            <div class="mb-3 col">
+                            <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='plot_number' type="text"
                                         id="editPlot_number" placeholder="رقم القطعة"
@@ -42,6 +43,76 @@
                                 @error('plot_number')
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
+                            </div>
+
+                            <div class="col mb-3" style="height: 350px;">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='property_deed_image' type="file"
+                                        id="property_deed_image" accept=".jpeg,.png,.jpg,.pdf"
+                                        class="form-control @error('property_deed_image') is-invalid is-filled @enderror" />
+                                    <label for="property_deed_image">صورة السند العقاري</label>
+                                </div>
+                                @error('property_deed_image')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+
+                                <div class="d-flex justify-content-center text-center">
+                                    <div wire:loading wire:target='property_deed_image' class="mt-3">
+                                        <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 150px" alt="">
+                                    </div>
+                                    <div wire:loading.remove wire:target='property_deed_image' class="mt-3">
+                                        @if ($filePreviewDeep)
+                                            @if ($property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
+                                                <iframe src="{{ $filePreviewDeep }}" type="application/pdf" width="100%" height="300px"></iframe>
+                                            @else
+                                                <img src="{{ $filePreviewDeep }}" alt="Selected Image" class="img-fluid" width="100%" height="300px" />
+                                            @endif
+                                        @endif
+
+                                        @if($previewPropertyDeedImage && !$filePreviewDeep)
+                                            @if (pathinfo($previewPropertyDeedImage, PATHINFO_EXTENSION) == strtolower('pdf'))
+                                                <embed src="{{ asset('storage/Plots/'.$plot_number.'/'.$previewPropertyDeedImage) }}" type="application/pdf" width="100%" height="300px" />
+                                            @else
+                                                <img src="{{ asset('storage/Plots/'.$plot_number.'/'.$previewPropertyDeedImage) }}" alt="Selected Image" class="img-fluid" width="100%" height="300px" />
+                                            @endif
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col mb-3" style="height: 350px;">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='property_map_image' type="file"
+                                        id="property_map_image" accept=".jpeg,.png,.jpg,.pdf"
+                                        class="form-control @error('property_map_image') is-invalid is-filled @enderror" />
+                                    <label for="property_map_image">صوره الخارطة العقارية</label>
+                                </div>
+                                @error('property_map_image')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+
+                                <div class="d-flex justify-content-center text-center">
+                                    <div wire:loading wire:target='property_map_image' class="mt-3">
+                                        <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 150px" alt="">
+                                    </div>
+                                    <div wire:loading.remove wire:target='property_map_image' class="mt-3">
+                                        @if ($filePreviewMap)
+                                            @if ($property_map_image->getClientOriginalExtension() == strtolower('pdf'))
+                                                <embed src="{{ $filePreviewMap }}" type="application/pdf" width="100%" height="300px" />
+                                            @else
+                                                <img src="{{ $filePreviewMap }}" alt="Selected Image" class="img-fluid" width="100%" height="300px" />
+                                            @endif
+                                        @endif
+
+                                        @if($previewPropertyMapImage && !$filePreviewMap)
+                                            @if (pathinfo($previewPropertyMapImage, PATHINFO_EXTENSION) == strtolower('pdf'))
+                                                <embed src="{{ asset('storage/Plots/'.$plot_number.'/'.$previewPropertyMapImage) }}" type="application/pdf" width="100%" height="300px" />
+                                            @else
+                                                <img src="{{ asset('storage/Plots/'.$plot_number.'/'.$previewPropertyMapImage) }}" alt="Selected Image" class="img-fluid" width="100%" height="300px" />
+                                            @endif
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

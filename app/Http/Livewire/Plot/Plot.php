@@ -4,11 +4,17 @@ namespace App\Http\Livewire\Plot;
 
 use Livewire\Component;
 use App\Models\Plots\Plots;
+use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use App\Models\Provinces\Provinces;
 use Illuminate\Support\Facades\Auth;
 
 class Plot extends Component
 {
+    use WithFileUploads;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public $Provinces = [];
     public $Province, $ProvinceId;
     public $province_number, $province_name;
@@ -21,7 +27,15 @@ class Plot extends Component
 
     public function render()
     {
-        return view('livewire.plot.plot');
+        $Provinces = Provinces::orderBy('id', 'ASC')
+            ->paginate(10);
+
+        $links = $Provinces;
+        $this->Provinces = collect($Provinces->items());
+
+        return view('livewire.plot.plot', [
+            'links' => $links,
+        ]);
     }
 
     public function AddProvinceModal()
