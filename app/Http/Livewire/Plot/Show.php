@@ -96,7 +96,8 @@ class Show extends Component
             'property_map_image' => $this->property_map_image->hashName(),
         ]);
 
-        $this->reset('plot_number', 'property_deed_image', 'property_map_image');
+        $this->reset('plot_number', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap');
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافة بنجاح',
             'title' => 'اضافة'
@@ -155,8 +156,6 @@ class Show extends Component
         ]);
 
         $this->reset('plot_number', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap');
-        $this->filePreviewDeep = null;
-        $this->filePreviewMap = null;
 
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
