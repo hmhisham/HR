@@ -44,14 +44,14 @@
                                         @can('plot-show')
                                             <a href="{{ Route('showPlots', $Province->id) }}"
                                                 class="p-0 px-1 btn btn-text-primary waves-effect">
-                                                <span class="mdi mdi-eye-outline mdi-24px"></span>
+                                                <span class="mdi mdi-eye-outline fs-3"></span>
                                             </a>
                                         @endcan
                                         @can('plot-create')
                                             <button wire:click='GetProvince({{ $Province->id }}, true)'
                                                 class="p-0 px-1 btn btn-text-primary waves-effect"
                                                 data-bs-toggle="modal" data-bs-target="#addPlotToProvinceModal">
-                                                <span class="mdi mdi-text-box-plus-outline mdi-24px"></span>
+                                                <span class="mdi mdi-text-box-plus-outline fs-3"></span>
                                             </button>
                                         @endcan
                                     </div>

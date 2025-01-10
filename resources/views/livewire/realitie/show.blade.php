@@ -67,7 +67,7 @@
                                             <button wire:click="GetRealitie({{ $Realitie->id }})"
                                                 class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editRealitieModal">
-                                                <i class="tf-icons mdi mdi-pencil mdi-24px"></i>
+                                                <i class="tf-icons mdi mdi-pencil fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('realitie-delete')
