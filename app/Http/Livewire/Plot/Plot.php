@@ -98,7 +98,7 @@ class Plot extends Component
             'plot_number' => [
                 'required',
                 Rule::unique('plots')->where(function ($query) {
-                    return $query->where('province_id', $this->Province->id);
+                    return $query->where('province_id', $this->ProvinceId);
                 }),
             ],
             'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
