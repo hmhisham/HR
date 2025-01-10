@@ -168,9 +168,10 @@
         })
 
         window.addEventListener('success', event => {
-            $('#addrealitieModal').modal('hide');
-            $('#editrealitieModal').modal('hide');
-            $('#removerealitieModal').modal('hide');
+            $('#addRealitieToPlotModal').modal('hide');
+            $('#addRealitieModal').modal('hide');
+            $('#editRealitieModal').modal('hide');
+            $('#deleteRealitieModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.title + '<hr>' + event.detail.message,
@@ -178,7 +179,7 @@
         })
 
         window.addEventListener('error', event => {
-            $('#removerealitieModal').modal('hide');
+            $('#deleteRealitieModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.title + '<hr>' + event.detail.message,

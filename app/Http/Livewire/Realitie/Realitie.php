@@ -73,18 +73,38 @@ class Realitie extends Component
         }
     }
 
+    public $search = ['province_number' => '', 'province_name' => '', 'plot_number' => '',];
+
     public function render()
     {
+        $searchNumber = '%' . $this->search['province_number'] . '%';
+        $searchName = '%' . $this->search['province_name'] . '%';
+        $searchPlotNumber = '%' . $this->search['plot_number'] . '%';
+
         $Plots = Plots::with(['GetProvinces', 'GetRealities'])
+            ->when($this->search['province_number'], function ($query) use ($searchNumber) {
+                $query->whereHas('GetProvinces', function ($q) use ($searchNumber) {
+                    $q->where('province_number', 'LIKE', $searchNumber);
+                });
+            })
+            ->when($this->search['province_name'], function ($query) use ($searchName) {
+                $query->whereHas('GetProvinces', function ($q) use ($searchName) {
+                    $q->where('province_name', 'LIKE', $searchName);
+                });
+            })
+            ->when($this->search['plot_number'], function ($query) use ($searchPlotNumber) {
+                $query->where('plot_number', 'LIKE', $searchPlotNumber);
+            })
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Plots;
         $this->Plots = collect($Plots->items());
+
         return view('livewire.realitie.realitie', [
             'links' => $links,
         ]);
     }
-
 
     public function GetPlot($PlotId, $province_number, $province_name, $plot_number)
     {
@@ -196,33 +216,4 @@ class Realitie extends Component
         ]);
         $this->mount();
     }
-    /*
-    public function GetRealitie($RealitieId)
-    {
-        $this->resetValidation();
-
-        $this->Realitie  = Realities::find($RealitieId);
-        $this->RealitieId = $this->Realitie->id;
-        $this->id = $this->Realitie->id;
-        $this->province_id = $this->Realitie->province_id;
-        $this->plot_id = $this->Realitie->plot_id;
-        $this->property_number = $this->Realitie->property_number;
-        $this->area_in_meters = $this->Realitie->area_in_meters;
-        $this->area_in_olok = $this->Realitie->area_in_olok;
-        $this->area_in_donum = $this->Realitie->area_in_donum;
-        $this->count = $this->Realitie->count;
-        $this->date = $this->Realitie->date;
-        $this->volume_number = $this->Realitie->volume_number;
-        $this->bond_type = $this->Realitie->bond_type;
-        $this->ownership = $this->Realitie->ownership;
-        $this->property_type = $this->Realitie->property_type;
-        $this->governorate = $this->Realitie->governorate;
-        $this->district = $this->Realitie->district;
-        $this->mortgage_notes = $this->Realitie->mortgage_notes;
-        $this->registered_office = $this->Realitie->registered_office;
-        $this->specialized_department = $this->Realitie->specialized_department;
-        $this->property_deed_image = $this->Realitie->property_deed_image;
-        $this->notes = $this->Realitie->notes;
-        $this->visibility = $this->Realitie->visibility;
-    } */
 }
