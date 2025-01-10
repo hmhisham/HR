@@ -16,7 +16,7 @@
 
                 <div wire:loading.remove>
                     <form id="editRealitieModalForm" autocomplete="off">
-                       
+
                         <div Class="row">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
@@ -223,18 +223,6 @@
                                     <label for="modalRealitieproperty_deed_image">صورة السند العقاري</label>
                                 </div>
                                 @error('property_deed_image')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col">
-                                <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='property_map_image' type="text"
-                                        id="modalRealitieproperty_map_image" placeholder="صورة الخارطة العقارية"
-                                        class="form-control @error('property_map_image') is-invalid is-filled @enderror" />
-                                    <label for="modalRealitieproperty_map_image">صورة الخارطة العقارية</label>
-                                </div>
-                                @error('property_map_image')
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>

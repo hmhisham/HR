@@ -9,6 +9,8 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Models\Realities\Realities;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Governorates\Governorates;
+use App\Models\Propertytypes\Propertytypes;
 
 class Realitie extends Component
 {
@@ -17,27 +19,59 @@ class Realitie extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Plots = [];
+    public $governorates = [];
+    public $Districts = [];
+    public $propertytypes = [];
     public $Plot, $PlotId;
     public $province_number, $province_name, $plot_number;
-    public $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $property_deed_image, $property_map_image, $notes, $visibility;
+    public $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $notes;
+    public $filePreview, $property_deed_image;
+    public $visibility = false;
 
-    /* public function mount()
+    protected $listeners = [
+        'SelectGovernorate',
+        'SelectDistrict',
+        'SelectPropertyType',
+        'SelectDate'
+    ];
+
+    public function hydrate()
+    {
+        $this->emit('select2');
+        $this->emit('flatpickr');
+    }
+
+    public function mount()
     {
         $this->Plot = Plots::all();
+        $this->governorates = Governorates::all();
+        $this->propertytypes = Propertytypes::all();
     }
- */
-    /* public function render()
+    //المحافظة
+    public function SelectGovernorate($GovernorateID)
     {
-        $Plots = Plots::orderBy('id', 'ASC')
-            ->paginate(10);
+        $this->governorate = $GovernorateID;
+        $Governorate = Governorates::find($GovernorateID);
+        $this->Districts = $Governorate->GetDistrict;
+        $this->reset('district');
+    }
 
-        $links = $Plots;
-        $this->Plots = collect($Plots->items());
+    //الاقضية
+    public function SelectDistrict($DistrictID)
+    {
+        $this->district = $DistrictID;
+    }
 
-        return view('livewire.realitie.realitie', [
-            'links' => $links,
-        ]);
-    } */
+    //نوع السند
+    public function SelectPropertyType($PropertyTypeID)
+    {
+        $property_type = Propertytypes::find($PropertyTypeID);
+        if ($property_type) {
+            $this->property_type = $PropertyTypeID;
+        } else {
+            $this->property_type = null;
+        }
+    }
 
     public function render()
     {
@@ -46,25 +80,40 @@ class Realitie extends Component
             ->paginate(10);
         $links = $Plots;
         $this->Plots = collect($Plots->items());
-        return view('livewire.realitie.realitie', ['links' => $links,]);
+        return view('livewire.realitie.realitie', [
+            'links' => $links,
+        ]);
     }
 
 
-    public function GetPlot($PlotId)
+    public function GetPlot($PlotId, $province_number, $province_name, $plot_number)
     {
         $this->resetValidation();
 
         $this->Plot = Plots::find($PlotId);
         $this->PlotId = $this->Plot->id;
-        $this->plot_number = $this->Plot->plot_number;
+        $this->plot_number = $plot_number;
+        $this->province_number = $province_number;
+        $this->province_name = $province_name;
     }
 
     public function addRealitieToPlot($PlotID)
     {
-        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'property_map_image', 'notes', 'visibility');
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
         $this->resetValidation();
         $this->dispatchBrowserEvent('addRealitieToPlotModal');
+    }
 
+    public function updatedPropertyDeedImage()
+    {
+        $this->validate([
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
+        ], [
+            'property_deed_image.required' => 'ملف القطعة مطلوب.',
+            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف القطعة عن 1024 كيلوبايت.',
+            'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
+        ]);
+        $this->filePreview = $this->property_deed_image->temporaryUrl();
     }
 
 
@@ -72,9 +121,6 @@ class Realitie extends Component
     {
         $this->resetValidation();
         $this->validate([
-            /* 'id' => 'required',
-            'province_id' => 'required',
-            'plot_id' => 'required',
             'property_number' => 'required',
             'area_in_meters' => 'required',
             'area_in_olok' => 'required',
@@ -90,13 +136,7 @@ class Realitie extends Component
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
             'specialized_department' => 'required',
-            'property_deed_image' => 'required',
-            'property_map_image' => 'required',
-            'notes' => 'required',
-            'visibility' => 'required', */], [
-            /*  'id.required' => 'حقل  مطلوب',
-            'province_id.required' => 'حقل رقم المقاطعة مطلوب',
-            'plot_id.required' => 'حقل رقم القطعة مطلوب',
+        ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'area_in_meters.required' => 'حقل المساحة بالمتر مطلوب',
             'area_in_olok.required' => 'حقل المساحة بالأولك مطلوب',
@@ -112,15 +152,23 @@ class Realitie extends Component
             'mortgage_notes.required' => 'حقل إشارات التأمينات مطلوب',
             'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
-            'property_deed_image.required' => 'حقل صورة السند العقاري مطلوب',
-            'property_map_image.required' => 'حقل صورة الخارطة العقارية مطلوب',
-            'notes.required' => 'حقل ملاحظات مطلوب',
-            'visibility.required' => 'حقل إمكانية ظهوره مطلوب', */]);
+        ]);
+
+        if ($this->property_deed_image) {
+            $this->validate([
+                'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
+            ], [
+                'property_deed_image.required' => 'ملف القطعة مطلوب.',
+                'property_deed_image.max' => 'يجب ألا يزيد حجم ملف القطعة عن 1024 كيلوبايت.',
+                'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
+            ]);
+
+            $this->property_deed_image->store('public/Realities/' . $this->property_number);
+        }
 
         Realities::create([
             'user_id' => Auth::User()->id,
-            'province_id' => $this->province_id,
-            'plot_id' => $this->plot_id,
+            'plot_id' => $this->PlotId,
             'property_number' => $this->property_number,
             'area_in_meters' => $this->area_in_meters,
             'area_in_olok' => $this->area_in_olok,
@@ -136,13 +184,12 @@ class Realitie extends Component
             'mortgage_notes' => $this->mortgage_notes,
             'registered_office' => $this->registered_office,
             'specialized_department' => $this->specialized_department,
-            'property_deed_image' => $this->property_deed_image,
-            'property_map_image' => $this->property_map_image,
+            'property_deed_image' => $this->property_deed_image->hashName(),
             'notes' => $this->notes,
             'visibility' => $this->visibility,
 
         ]);
-        $this->reset();
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility', 'filePreview');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -175,7 +222,6 @@ class Realitie extends Component
         $this->registered_office = $this->Realitie->registered_office;
         $this->specialized_department = $this->Realitie->specialized_department;
         $this->property_deed_image = $this->Realitie->property_deed_image;
-        $this->property_map_image = $this->Realitie->property_map_image;
         $this->notes = $this->Realitie->notes;
         $this->visibility = $this->Realitie->visibility;
     } */

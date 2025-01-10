@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('area_in_olok')->nullable()->comment('المساحة بالأولك');
             $table->string('area_in_donum')->nullable()->comment('المساحة بالدونم');
             $table->string('count')->nullable()->comment('العدد');
-            $table->date('date')->nullable()->comment('التاريخ');
+            $table->string('date')->nullable()->comment('التاريخ');
             $table->string('volume_number')->nullable()->comment('رقم الجلد');
             $table->string('bond_type')->nullable()->comment('نوع السند');
             $table->string('ownership')->nullable()->comment('العائدية');

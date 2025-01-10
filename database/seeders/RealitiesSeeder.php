@@ -14,12 +14,7 @@ class RealitiesSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-        $uniquePropertyNumbers = [];
-
-        while (count($uniquePropertyNumbers) < 10) {
-            $propertyNumber = $faker->unique()->numerify('PROP-#####');
-            $uniquePropertyNumbers[] = $propertyNumber;
-        }
+        $uniquePropertyNumbers = range(1, 10); // أرقام من 1 إلى 100
 
         foreach ($uniquePropertyNumbers as $propertyNumber) {
             foreach (range(1, 5) as $province_id) {
@@ -28,12 +23,12 @@ class RealitiesSeeder extends Seeder
                         'user_id' => 4,  // تعيين رقم المستخدم إلى 4
                         'province_id' => $province_id,  // تعيين رقم المقاطعة
                         'plot_id' => $plot_id,  // تعيين رقم القطعة
-                        'property_number' => $propertyNumber,
+                        'property_number' => $propertyNumber,  // تعيين property_number
                         'area_in_meters' => $faker->randomFloat(2, 50, 500),
                         'area_in_olok' => $faker->randomFloat(2, 1, 10),
                         'area_in_donum' => $faker->randomFloat(2, 1, 5),
                         'count' => $faker->randomDigitNotNull,
-                        'date' => $faker->date(),
+                        'date' => $faker->date('Y-m'),
                         'volume_number' => $faker->numerify('VOL-#####'),
                         'bond_type' => $faker->word,
                         'ownership' => $faker->word,

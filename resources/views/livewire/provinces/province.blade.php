@@ -3,10 +3,10 @@
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4 class="mb-2">
+                <h5 class="mb-2">
                     <span class="text-muted fw-light">الاملاك والاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
                     المقاطعات
-                </h4>
+                </h5>
                 <div>
                     @can('province-create')
                         <button wire:click='AddProvinceModalShow' class="mb-3 add-new btn btn-primary mb-md-0"

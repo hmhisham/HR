@@ -1,12 +1,12 @@
 <?php
 namespace App\Http\Livewire\Realities\ShowRealitie;
 use Livewire\Component;
-  
+
  use Livewire\WithPagination;
 use App\Models\Realities\Realities;
 use App\Models\Plots\Plots;
 use Illuminate\Support\Facades\Auth;
- 
+
 class ShowRealitie extends Component
 {
     use WithPagination;
@@ -17,7 +17,7 @@ class ShowRealitie extends Component
     public $plot = [];
     public $Plot;
     public $RealitieSearch, $Realitie, $RealitieId;
-    public $id,$province_id,$plot_id,$property_number,$area_in_meters,$area_in_olok,$area_in_donum,$count,$date,$volume_number,$bond_type,$ownership,$property_type,$governorate,$district,$mortgage_notes,$registered_office,$specialized_department,$property_deed_image,$property_map_image,$notes,$visibility;
+    public $id,$province_id,$plot_id,$property_number,$area_in_meters,$area_in_olok,$area_in_donum,$count,$date,$volume_number,$bond_type,$ownership,$property_type,$governorate,$district,$mortgage_notes,$registered_office,$specialized_department,$property_deed_image,$notes,$visibility;
 
         Public Function mount()
     {
@@ -50,13 +50,12 @@ class ShowRealitie extends Component
 ->orWhere('registered_office', 'LIKE', $RealitieSearch)
 ->orWhere('specialized_department', 'LIKE', $RealitieSearch)
 ->orWhere('property_deed_image', 'LIKE', $RealitieSearch)
-->orWhere('property_map_image', 'LIKE', $RealitieSearch)
 ->orWhere('notes', 'LIKE', $RealitieSearch)
 ->orWhere('visibility', 'LIKE', $RealitieSearch)
-; }) 
- 
+; })
+
          ->orderBy('id', 'ASC')
-         ->paginate(10); 
+         ->paginate(10);
         return view('livewire.realities.show-realitie.show-realitie', [
             'PlotRealities' => $Realities,
             'links' => $Realities
@@ -65,7 +64,7 @@ class ShowRealitie extends Component
 
     public function AddRealitieModal()
     {
-        $this->reset('id','province_id','plot_id','property_number','area_in_meters','area_in_olok','area_in_donum','count','date','volume_number','bond_type','ownership','property_type','governorate','district','mortgage_notes','registered_office','specialized_department','property_deed_image','property_map_image','notes','visibility'
+        $this->reset('id','province_id','plot_id','property_number','area_in_meters','area_in_olok','area_in_donum','count','date','volume_number','bond_type','ownership','property_type','governorate','district','mortgage_notes','registered_office','specialized_department','property_deed_image','notes','visibility'
         );
         $this->resetValidation();
         $this->dispatchBrowserEvent('AddRealitieModal');
@@ -74,7 +73,7 @@ class ShowRealitie extends Component
         $this->plot_id =$this-> plot_id;
     }
 
- 
+
     public function store()
     {
         $this->resetValidation();
@@ -97,35 +96,31 @@ class ShowRealitie extends Component
 'registered_office' => 'required' ,
 'specialized_department' => 'required' ,
 'property_deed_image' => 'required' ,
-'property_map_image' => 'required' ,
 'notes' => 'required' ,
 'visibility' => 'required' ,
 
                  ], [
-                'id.required' => 'حقل  مطلوب', 
-                'province_id.required' => 'حقل رقم المقاطعة مطلوب', 
-                'plot_id.required' => 'حقل رقم القطعة مطلوب', 
-                'property_number.required' => 'حقل رقم العقار مطلوب', 
-                'area_in_meters.required' => 'حقل المساحة بالمتر مطلوب', 
-                'area_in_olok.required' => 'حقل المساحة بالأولك مطلوب', 
-                'area_in_donum.required' => 'حقل المساحة بالدونم مطلوب', 
-                'count.required' => 'حقل العدد مطلوب', 
-                'date.required' => 'حقل التاريخ مطلوب', 
-                'volume_number.required' => 'حقل رقم الجلد مطلوب', 
-                'bond_type.required' => 'حقل نوع السند مطلوب', 
-                'ownership.required' => 'حقل العائدية مطلوب', 
-                'property_type.required' => 'حقل جنس العقار مطلوب', 
-                'governorate.required' => 'حقل المحافظة مطلوب', 
-                'district.required' => 'حقل القضاء مطلوب', 
-                'mortgage_notes.required' => 'حقل إشارات التأمينات مطلوب', 
-                'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب', 
-                'specialized_department.required' => 'حقل الشعبة المختصة مطلوب', 
-                'property_deed_image.required' => 'حقل صورة السند العقاري مطلوب', 
-                'property_map_image.required' => 'حقل صورة الخارطة العقارية مطلوب', 
-                'notes.required' => 'حقل ملاحظات مطلوب', 
+                'id.required' => 'حقل  مطلوب',
+                'province_id.required' => 'حقل رقم المقاطعة مطلوب',
+                'plot_id.required' => 'حقل رقم القطعة مطلوب',
+                'property_number.required' => 'حقل رقم العقار مطلوب',
+                'area_in_meters.required' => 'حقل المساحة بالمتر مطلوب',
+                'area_in_olok.required' => 'حقل المساحة بالأولك مطلوب',
+                'area_in_donum.required' => 'حقل المساحة بالدونم مطلوب',
+                'count.required' => 'حقل العدد مطلوب',
+                'date.required' => 'حقل التاريخ مطلوب',
+                'volume_number.required' => 'حقل رقم الجلد مطلوب',
+                'bond_type.required' => 'حقل نوع السند مطلوب',
+                'ownership.required' => 'حقل العائدية مطلوب',
+                'property_type.required' => 'حقل جنس العقار مطلوب',
+                'governorate.required' => 'حقل المحافظة مطلوب',
+                'district.required' => 'حقل القضاء مطلوب',
+                'mortgage_notes.required' => 'حقل إشارات التأمينات مطلوب',
+                'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
+                'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
+                'property_deed_image.required' => 'حقل صورة السند العقاري مطلوب',
+                'notes.required' => 'حقل ملاحظات مطلوب',
                 'visibility.required' => 'حقل إمكانية ظهوره مطلوب',  ]);
-                                 
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
 
 
         Realities::create([
@@ -149,7 +144,6 @@ class ShowRealitie extends Component
 'registered_office'=> $this->registered_office,
 'specialized_department'=> $this->specialized_department,
 'property_deed_image'=> $this->property_deed_image,
-'property_map_image'=> $this->property_map_image,
 'notes'=> $this->notes,
 'visibility'=> $this->visibility,
 
@@ -186,12 +180,11 @@ class ShowRealitie extends Component
       $this->registered_office= $this->Realitie->registered_office;
       $this->specialized_department= $this->Realitie->specialized_department;
       $this->property_deed_image= $this->Realitie->property_deed_image;
-      $this->property_map_image= $this->Realitie->property_map_image;
       $this->notes= $this->Realitie->notes;
       $this->visibility= $this->Realitie->visibility;
 
-    }  
-          
+    }
+
  public function update()
 {
         $this->resetValidation();
@@ -214,7 +207,6 @@ class ShowRealitie extends Component
 'registered_office' => 'required:realities' ,
 'specialized_department' => 'required:realities' ,
 'property_deed_image' => 'required:realities' ,
-'property_map_image' => 'required:realities' ,
 'notes' => 'required:realities' ,
 'visibility' => 'required:realities' ,
 
@@ -238,10 +230,9 @@ class ShowRealitie extends Component
                 'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
                 'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
                 'property_deed_image.required' => 'حقل صورة السند العقاري مطلوب',
-                'property_map_image.required' => 'حقل صورة الخارطة العقارية مطلوب',
                 'notes.required' => 'حقل ملاحظات مطلوب',
                 'visibility.required' => 'حقل إمكانية ظهوره مطلوب', ]);
-                                 
+
              $Realities = Realities::find($this->RealitieId);     $Realities->update([
  'user_id' => Auth::User()->id,
 'id'=> $this->id,
@@ -263,7 +254,6 @@ class ShowRealitie extends Component
 'registered_office'=> $this->registered_office,
 'specialized_department'=> $this->specialized_department,
 'property_deed_image'=> $this->property_deed_image,
-'property_map_image'=> $this->property_map_image,
 'notes'=> $this->notes,
 'visibility'=> $this->visibility,
 
@@ -275,7 +265,7 @@ class ShowRealitie extends Component
         ]);
     $this->mount();
 }
-                         
+
 public function destroy()
 {
     $Realities = Realities::find($this->RealitieId);
