@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل قطعة أرض</h3>
+                    <h3 class="pb-1 mb-2">تعديل بيانات القطعة</h3>
                 </div>
 
                 <hr class="mt-n2">
@@ -17,16 +17,29 @@
                     جار حفظ البيانات
                 </h5> --}}
 
-                <div wire:loading wire:target="update, GetPlot" wire:loading.class="d-flex justify-content-center">
+               {{--  <div wire:loading wire:target="update, GetPlot" wire:loading.class="d-flex justify-content-center">
                     <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 150px" alt="">
-                </div>
+                </div> --}}
 
                 <div wire:loading.remove wire:target="update, GetPlot">
-                    <div Class="row mb-4">
+                    {{-- <div Class="row mb-4">
                         <div class="col text-center alert alert-outline-dark mb-0 pb-0">
                             <label class="w-100 mb-1">رقم وأسم المقاطعة</label>
                             <hr class="m-0 mb-1">
                             <h5 class="">{{ $this->Province->province_number }} - {{ $this->Province->province_name }}</h5>
+                        </div>
+                    </div> --}}
+
+                    <div class="row">
+                        <div class="mb-3 col text-center">
+                            <div class="form-floating form-floating-outline">
+                                <div class="alert alert-success" role="alert">
+                                    <h5 class="pb-1 mb-2"><strong>رقم واسم المقاطعة:</strong> <span
+                                            style="color: red;">{{ $this->Province->province_number ?? '' }} -
+                                            {{ $this->Province->province_name ?? '' }}</span>
+                                    </h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

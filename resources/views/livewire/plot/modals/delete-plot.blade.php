@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">حذف قطعة أرض</h3>
+                    <h3 class="pb-1 mb-2">حذف بيانات القطعة</h3>
                 </div>
 
                 <hr class="mt-n2">
@@ -17,32 +17,41 @@
                     جار حفظ البيانات
                 </h5> --}}
 
-                <div wire:loading wire:target="destroy, GetPlot" wire:loading.class="d-flex justify-content-center">
-                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 150px" alt="">
+                {{-- <div wire:loading wire:target="destroy, GetPlot" wire:loading.class="d-flex justify-content-center">
+                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 150px"
+                        alt="">
                 </div>
-
+ --}}
                 <div wire:loading.remove wire:target="destroy, GetPlot">
-                    <div Class="row mb-4">
+                    {{--  <div Class="row mb-4">
                         <div class="col text-center alert alert-outline-dark mb-0 pb-0">
                             <label class="w-100 mb-1">رقم وأسم المقاطعة</label>
                             <hr class="m-0 mb-1">
                             <h5 class="">{{ $this->Province->province_number }} - {{ $this->Province->province_name }}</h5>
                         </div>
+                    </div> --}}
+                    <div class="row">
+                        <div class="mb-3 col text-center">
+                            <div class="form-floating form-floating-outline">
+                                <div class="alert alert-danger" role="alert">
+                                    <h5 class="pb-1 mb-2"><strong>رقم واسم المقاطعة:</strong> <span
+                                            style="color: red;">{{ $this->Province->province_number ?? '' }} -
+                                            {{ $this->Province->province_name ?? '' }}</span>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <form id="addprovinceModalForm" autocomplete="off">
                         <div Class="row">
-                            <div class="mb-3 col">
-                                <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='plot_number' type="text"
-                                        id="editPlot_number" placeholder="رقم القطعة"
-                                        class="form-control @error('plot_number') is-invalid is-filled @enderror"
-                                        onkeypress="return onlyNumberKey(event)" />
-                                    <label for="plot_number">رقم القطعة</label>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <div class="text-danger">
+                                        <label for="modalUnitunits_name">رقم القطعة</label>
+                                        <div class="form-control-plaintext mt-n2">{{ $plot_number }}</div>
+                                    </div>
                                 </div>
-                                @error('plot_number')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
-                                @enderror
                             </div>
                         </div>
 

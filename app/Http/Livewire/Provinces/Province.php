@@ -18,11 +18,6 @@ class Province extends Component
     public $user_id, $province_number, $province_name;
     public $search = ['province_number' => '', 'province_name' => ''];
 
-    /* public function updated($propertyName)
-    {
-        $this->resetPage();
-    } */
-
     public function render()
     {
         $searchNumber = '%' . $this->search['province_number'] . '%';

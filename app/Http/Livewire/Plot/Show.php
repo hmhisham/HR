@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire\Plot;
 
-use Storage;
+/* use Storage; */
+
 use Livewire\Component;
 use App\Models\Plots\Plots;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use Illuminate\Validation\Rule;
 use App\Models\Provinces\Provinces;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class Show extends Component
 {
@@ -27,7 +30,8 @@ class Show extends Component
         $this->Province = Provinces::find($this->Provinceid);
     }
 
-    public function render()
+
+    /* public function render()
     {
         $Plots = Plots::where('province_id', $this->Provinceid)
             ->orderBy('id', 'ASC')
@@ -38,6 +42,27 @@ class Show extends Component
 
         return view('livewire.plot.show', [
             'links' => $links,
+        ]);
+    } */
+
+    public $search = ['plot_number' => ''];
+
+    public function render()
+    {
+        $searchPlotNumber = '%' . $this->search['plot_number'] . '%';
+        $Plots = Plots::query()
+            ->where('province_id', $this->Provinceid)
+            ->when($this->search['plot_number'], function ($query) use ($searchPlotNumber) {
+                $query->where('plot_number', 'LIKE', $searchPlotNumber);
+            })
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
+
+        $links = $Plots;
+        $this->Plots = collect($Plots->items());
+        return view('livewire.plot.show', [
+            'links' => $links,
+            'Plots' => $Plots,
         ]);
     }
 
@@ -74,11 +99,17 @@ class Show extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'plot_number' => 'required',
+            'plot_number' => [
+                'required',
+                Rule::unique('plots')->where(function ($query) {
+                    return $query->where('province_id', $this->Province->id);
+                }),
+            ],
             'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
             'property_map_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
+            'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
             'property_deed_image.required' => 'الملف مطلوب',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
             'property_map_image.required' => 'الملف مطلوب',
@@ -123,12 +154,20 @@ class Show extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'plot_number' => 'required',
+            'plot_number' => [
+                'required',
+                Rule::unique('plots')->where(function ($query) {
+                    return $query->where('province_id', $this->Province->id);
+                }),
+            ],
             'property_deed_image' => $this->filePreviewDeep ? 'required|file|mimes:jpeg,png,jpg,pdf' : 'nullable|file|mimes:jpeg,png,jpg,pdf',
             'property_map_image' => $this->filePreviewMap ? 'required|file|mimes:jpeg,png,jpg,pdf' : 'nullable|file|mimes:jpeg,png,jpg,pdf',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
+            'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
+            'property_deed_image.required' => 'الملف مطلوب',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
+            'property_map_image.required' => 'الملف مطلوب',
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 

@@ -36,6 +36,7 @@ use App\Http\Controllers\JobTitles\JobTitlesController;
 use App\Http\Controllers\Penalties\PenaltiesController;
 use App\Http\Controllers\Positions\PositionsController;
 use App\Http\Controllers\Provinces\ProvincesController;
+use App\Http\Controllers\Realities\RealitiesController;
 use App\Http\Controllers\Trainings\TrainingsController;
 use App\Http\Controllers\Department\DepartmentController;
 use App\Http\Controllers\Emaillists\EmaillistsController;
@@ -189,6 +190,9 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //القطعة الاصغر من المقاطعة
     Route::GET('Plots', [PlotsController::class, 'index'])->name('Plots');
     Route::GET('Show-Plot/{Provinceid}', [PlotsController::class, 'ShowPlot'])->name('showPlots');
+    //العقار الاصغر من القطعة
+    Route::GET('Realities', [RealitiesController::class, 'index'])->name('Realities');
+    Route::GET('Show-Realitie/{Plotid}', [RealitiesController::class, 'ShowRealitie'])->name('showRealities');
 
 
 

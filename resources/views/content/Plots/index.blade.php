@@ -47,15 +47,6 @@
             return true;
         }
 
-        function onlyArabicKey(evt) {
-            var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
-            // نطاق رموز الحروف العربية والفراغ
-            if ((ASCIICode >= 1569 && ASCIICode <= 1610) || ASCIICode === 32) {
-                return true;
-            }
-            return false;
-        }
-
         window.addEventListener('ProvinceModalShow', event => {
             $('#province_number').focus();
         })
@@ -83,7 +74,6 @@
                 title: event.detail.title + '<hr>' + event.detail.message,
                 timer: 5000,
             })
-
         })
     </script>
 @endsection

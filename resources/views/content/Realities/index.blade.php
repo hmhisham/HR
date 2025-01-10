@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Plots')
+@section('title', 'السند العقاري')
 
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
@@ -15,8 +15,8 @@
 @endsection
 
 @section('content')
+    @livewire('realitie.realitie')
 
-    @livewire('plots.plot')
 
 @endsection
 
@@ -37,16 +37,7 @@
     <script src=" {{ asset('assets/js/app-user-list.js') }}"></script>
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
-    
     <script>
-        function onlyNumberKey(evt) {
-            // Only ASCII character in that range allowed
-            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-            if (ASCIICode < 48 || ASCIICode > 57)
-                return false;
-            return true;
-        }
-
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -59,22 +50,24 @@
             }
         })
 
-        /* window.addEventListener('AddPlotModal', event => {
+        window.addEventListener('RealitieModalShow', event => {
+            setTimeout(() => {
+                $('#id').focus();
+            }, 100);
+        })
 
-        }) */
-
-        /* window.addEventListener('success', event => {
-            $('#addplotModal').modal('hide');
-            $('#editplotModal').modal('hide');
-            $('#removeplotModal').modal('hide');
+        window.addEventListener('success', event => {
+            $('#addrealitieModal').modal('hide');
+            $('#editrealitieModal').modal('hide');
+            $('#removerealitieModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.title + '<hr>' + event.detail.message,
             })
-        }) */
+        })
 
         window.addEventListener('error', event => {
-            $('#removeplotModal').modal('hide');
+            $('#removerealitieModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.title + '<hr>' + event.detail.message,
