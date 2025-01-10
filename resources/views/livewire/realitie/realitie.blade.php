@@ -47,16 +47,16 @@
                                 <td Class="text-center">{{ count($Plot->GetRealities) }}</td>
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        {{-- @can('realitie-show')
-                                            <a href="{{ Route('showRealities', $Plot->id) }}"
-                                                class="btn rounded-pill btn-icon btn-outline-primary waves-effect p-0">
+                                        @can('realitie-show')
+                                            {{-- <a href="{{ Route('showRealities', $Plot->id) }}"
+                                                class="p-0 px-1 btn btn-text-primary waves-effect">
                                                 <span class="mdi mdi-eye-outline mdi-24px"></span>
-                                            </a>
-                                        @endcan --}}
+                                            </a> --}}
+                                        @endcan
                                         @can('realitie-create')
                                             <button
                                                 wire:click="GetPlot({{ $Plot->id }}, '{{ $Plot->GetProvinces->province_number }}', '{{ $Plot->GetProvinces->province_name }}', '{{ $Plot->plot_number }}')"
-                                                class="btn rounded-pill btn-icon btn-outline-primary waves-effect p-0"
+                                                class="p-0 px-1 btn btn-text-primary waves-effect"
                                                 data-bs-toggle="modal" data-bs-target="#addRealitieToPlotModal">
                                                 <span class="mdi mdi-text-box-plus-outline mdi-24px"></span>
                                             </button>

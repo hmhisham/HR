@@ -43,13 +43,13 @@
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @can('plot-show')
                                             <a href="{{ Route('showPlots', $Province->id) }}"
-                                                class="btn rounded-pill btn-icon btn-outline-primary waves-effect p-0">
+                                                class="p-0 px-1 btn btn-text-primary waves-effect">
                                                 <span class="mdi mdi-eye-outline mdi-24px"></span>
                                             </a>
                                         @endcan
                                         @can('plot-create')
                                             <button wire:click='GetProvince({{ $Province->id }}, true)'
-                                                class="btn rounded-pill btn-icon btn-outline-primary waves-effect p-0"
+                                                class="p-0 px-1 btn btn-text-primary waves-effect"
                                                 data-bs-toggle="modal" data-bs-target="#addPlotToProvinceModal">
                                                 <span class="mdi mdi-text-box-plus-outline mdi-24px"></span>
                                             </button>

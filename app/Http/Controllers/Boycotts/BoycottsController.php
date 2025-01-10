@@ -11,7 +11,7 @@ class BoycottsController extends Controller
     public function index()
     {
         return view('content.Boycotts.index');
-    }
+    }/* 
     public function getData()
     {
         $boycotts = Boycotts::select(['id', 'boycott_number', 'boycott_name']);
@@ -22,7 +22,7 @@ class BoycottsController extends Controller
             })
             ->rawColumns(['action']) // Ensure HTML isn't escaped
             ->make(true);
-    }
+    } */
 
 
 }

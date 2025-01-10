@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Realities\ShowRealitie;
+namespace App\Http\Livewire\Realitie;
 
 use Livewire\Component;
 
@@ -9,40 +9,56 @@ use App\Models\Realities\Realities;
 use App\Models\Plots\Plots;
 use Illuminate\Support\Facades\Auth;
 
-class ShowRealitie extends Component
+class Show extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $Realities = [];
-    protected $PlotRealities = [];
-    public $plot = [];
+    public $Plotid;
     public $Plot;
+    public $Realities = [];
     public $RealitieSearch, $Realitie, $RealitieId;
-    public $id, $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $property_deed_image, $notes, $visibility;
+    public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $property_deed_image, $notes, $visibility;
+    public $filePreview;
 
     public function mount()
     {
-        $this->Plot = Plots::find($this->plot_id);
+        $this->Plot = Plots::find($this->Plotid);
     }
+
+
+    public $search = ['property_number' => '', 'bond_type' => '', 'mortgage_notes' => '', 'visibility' => '',];
 
     public function render()
     {
-        $RealitieSearch = '%' . $this->RealitieSearch . '%';
-        $Realities = Realities::where('plot_id', $this->plot_id)
-            ->where(function ($query) use ($RealitieSearch) {
-                $query->where('property_number', 'LIKE', $RealitieSearch)
-                    ->orWhere('bond_type', 'LIKE', $RealitieSearch)
-                    ->orWhere('mortgage_notes', 'LIKE', $RealitieSearch)
-                    ->orWhere('specialized_department', 'LIKE', $RealitieSearch)
-                    ->orWhere('visibility', 'LIKE', $RealitieSearch);
-            })
+        $searchPropertyNumber = '%' . $this->search['property_number'] . '%';
+        $searchBondType = '%' . $this->search['bond_type'] . '%';
+        $searchMortgageNotes = $this->search['mortgage_notes'];
+        $searchVisibility = $this->search['visibility'];
 
+        $Realities = Realities::query()
+            ->where('plot_id', $this->Plotid)
+            ->when($this->search['property_number'], function ($query) use ($searchPropertyNumber) {
+                $query->where('property_number', 'LIKE', $searchPropertyNumber);
+            })
+            ->when($this->search['bond_type'], function ($query) use ($searchBondType) {
+                $query->orWhere('bond_type', 'LIKE', $searchBondType);
+            })
+            ->when($this->search['mortgage_notes'], function ($query) use ($searchMortgageNotes) {
+                $query->orWhere('mortgage_notes', $searchMortgageNotes);
+            })
+            ->when($this->search['visibility'] !== '', function ($query) use ($searchVisibility) {
+                $query->orWhere('visibility', $searchVisibility);
+            })
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
+        $links = $Realities;
+        $this->Realities = collect($Realities->items());
+
         return view('livewire.realitie.show', [
-            'PlotRealities' => $Realities,
-            'links' => $Realities
+            'links' => $links,
+            'Realities' => $Realities,
         ]);
     }
 
@@ -51,11 +67,18 @@ class ShowRealitie extends Component
         $this->reset('province_id', 'plot_id', 'property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
         $this->resetValidation();
         $this->dispatchBrowserEvent('AddRealitieModal');
-
-        $this->Plot = Plots::find($this->plot_id);
-        $this->plot_id = $this->plot_id;
     }
 
+    public function updatedRealitieImage()
+    {
+        $this->validate([
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
+        ], [
+            'property_deed_image.required' => 'الملف مطلوب',
+            'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
+        ]);
+        $this->filePreview = $this->property_deed_image->temporaryUrl();
+    }
 
     public function store()
     {
@@ -76,9 +99,7 @@ class ShowRealitie extends Component
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
             'specialized_department' => 'required',
-            'property_deed_image' => 'required',
-            'notes' => 'required',
-            'visibility' => 'required',
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
 
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
@@ -96,16 +117,16 @@ class ShowRealitie extends Component
             'mortgage_notes.required' => 'حقل إشارات التأمينات مطلوب',
             'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
-            'property_deed_image.required' => 'حقل صورة السند العقاري مطلوب',
-            'notes.required' => 'حقل ملاحظات مطلوب',
-            'visibility.required' => 'حقل إمكانية ظهوره مطلوب',
+            'property_deed_image.required' => 'ملف السند العقاري مطلوب.',
+            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
+            'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
+        $this->property_deed_image->store('public/Realities/' . $this->property_number);
 
         Realities::create([
             'user_id' => Auth::User()->id,
-            'province_id' => $this->province_id,
-            'plot_id' => $this->plot_id,
+            'plot_id' => $this->Plotid,
             'property_number' => $this->property_number,
             'area_in_meters' => $this->area_in_meters,
             'area_in_olok' => $this->area_in_olok,
@@ -126,7 +147,7 @@ class ShowRealitie extends Component
             'visibility' => $this->visibility,
 
         ]);
-        $this->reset('province_id', 'plot_id', 'property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -135,13 +156,11 @@ class ShowRealitie extends Component
 
     public function GetRealitie($RealitieId)
     {
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
         $this->resetValidation();
+        $this->dispatchBrowserEvent('editRealitieModalShow');
 
         $this->Realitie  = Realities::find($RealitieId);
-        $this->RealitieId = $this->Realitie->id;
-        $this->id = $this->Realitie->id;
-        $this->province_id = $this->Realitie->province_id;
-        $this->plot_id = $this->Realitie->plot_id;
         $this->property_number = $this->Realitie->property_number;
         $this->area_in_meters = $this->Realitie->area_in_meters;
         $this->area_in_olok = $this->Realitie->area_in_olok;
@@ -160,9 +179,11 @@ class ShowRealitie extends Component
         $this->property_deed_image = $this->Realitie->property_deed_image;
         $this->notes = $this->Realitie->notes;
         $this->visibility = $this->Realitie->visibility;
+
+        $this->dispatchBrowserEvent('editRealitieModalShow');
     }
 
-    public function update()
+    /* public function update()
     {
         $this->resetValidation();
         $this->validate([
@@ -232,7 +253,7 @@ class ShowRealitie extends Component
             'visibility' => $this->visibility,
 
         ]);
-        $this->reset('province_id', 'plot_id', 'property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -253,5 +274,5 @@ class ShowRealitie extends Component
             ]);
             $this->mount();
         }
-    }
+    } */
 }

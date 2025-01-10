@@ -14,14 +14,6 @@
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
 @endsection
 
-@section('page-style')
-    <style>
-        .border-bottom-2 {
-            border-bottom: 2px solid !important;
-        }
-    </style>
-@endsection
-
 @section('content')
 
     @livewire('realitie.show', ['Plotid' => $Plotid])
@@ -65,9 +57,10 @@
         })
 
         window.addEventListener('success', event => {
-            $('#addrealitieModal').modal('hide');
-            $('#editrealitieModal').modal('hide');
-            $('#removerealitieModal').modal('hide');
+            $('#addRealitieToPlotModal').modal('hide');
+            $('#addRealitieModal').modal('hide');
+            $('#editRealitieModal').modal('hide');
+            $('#deleteRealitieModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.title + '<hr>' + event.detail.message,
@@ -75,7 +68,7 @@
         })
 
         window.addEventListener('error', event => {
-            $('#removerealitieModal').modal('hide');
+            $('#deleteRealitieModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.title + '<hr>' + event.detail.message,

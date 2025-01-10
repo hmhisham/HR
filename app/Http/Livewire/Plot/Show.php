@@ -30,21 +30,6 @@ class Show extends Component
         $this->Province = Provinces::find($this->Provinceid);
     }
 
-
-    /* public function render()
-    {
-        $Plots = Plots::where('province_id', $this->Provinceid)
-            ->orderBy('id', 'ASC')
-            ->paginate(10);
-
-        $links = $Plots;
-        $this->Plots = collect($Plots->items());
-
-        return view('livewire.plot.show', [
-            'links' => $links,
-        ]);
-    } */
-
     public $search = ['plot_number' => ''];
 
     public function render()

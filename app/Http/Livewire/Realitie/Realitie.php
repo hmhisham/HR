@@ -125,7 +125,7 @@ class Realitie extends Component
         $this->dispatchBrowserEvent('addRealitieToPlotModal');
     }
 
-    public function updatedPropertyDeedImage()
+    public function updatedRealitieImage()
     {
         $this->validate([
             'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
@@ -180,8 +180,8 @@ class Realitie extends Component
             'mortgage_notes.required' => 'حقل إشارات التأمينات مطلوب',
             'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
-            'property_deed_image.required' => 'ملف القطعة مطلوب.',
-            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف القطعة عن 1024 كيلوبايت.',
+            'property_deed_image.required' => 'ملف السند العقاري مطلوب.',
+            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
