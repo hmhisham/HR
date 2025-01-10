@@ -162,6 +162,7 @@ class Realitie extends Component
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
             'specialized_department' => 'required',
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'property_number.unique' => 'رقم السند موجود بالفعل في هذه القطعة',
@@ -179,19 +180,12 @@ class Realitie extends Component
             'mortgage_notes.required' => 'حقل إشارات التأمينات مطلوب',
             'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
+            'property_deed_image.required' => 'ملف القطعة مطلوب.',
+            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف القطعة عن 1024 كيلوبايت.',
+            'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
-        if ($this->property_deed_image) {
-            $this->validate([
-                'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
-            ], [
-                'property_deed_image.required' => 'ملف القطعة مطلوب.',
-                'property_deed_image.max' => 'يجب ألا يزيد حجم ملف القطعة عن 1024 كيلوبايت.',
-                'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
-            ]);
-
-            $this->property_deed_image->store('public/Realities/' . $this->property_number);
-        }
+        $this->property_deed_image->store('public/Realities/' . $this->property_number);
 
         Realities::create([
             'user_id' => Auth::User()->id,

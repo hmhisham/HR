@@ -24,7 +24,7 @@
 
 @section('content')
 
-    @livewire('realitie.show', ['Provinceid' => $Provinceid])
+    @livewire('realitie.show', ['Plotid' => $Plotid])
 
 @endsection
 

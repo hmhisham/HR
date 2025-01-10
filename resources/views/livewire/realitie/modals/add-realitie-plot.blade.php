@@ -6,28 +6,6 @@
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
                     <h3 class="pb-1 mb-2">اضافة سند عقاري جديد </h3>
-                    {{-- <div class="mb-3 col text-center">
-                        <!-- عرض Spinner أثناء التحميل -->
-                        <div wire:loading wire:loading.class="d-flex justify-content-center">
-                            <div class="spinner-border spinner-border-lg text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        </div>
-                        <!-- عرض بيانات المقاطعة والقطعة بعد انتهاء التحميل -->
-                        <div wire:loading.remove>
-                            <div class="form-floating form-floating-outline">
-                                <div class="alert alert-info" role="alert">
-                                    <h5 class="pb-1 mb-2">
-                                        <strong>رقم واسم المقاطعة:</strong>
-                                        <span style="color: red;">{{ $province_number ?? '' }} - {{ $province_name ?? '' }}</span>
-                                        <strong style="margin: 0 30px;">|</strong>
-                                        <strong>رقم القطعة:</strong>
-                                        <span style="color: red;">{{ $plot_number ?? '' }}</span>
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="row">
                         <div wire:loading.remove wire:target='addRealitieToPlotModal' class="text-center">
                             <div class="alert alert-info" role="alert">

@@ -47,7 +47,7 @@
                                 <td Class="text-center">{{ count($Plot->GetRealities) }}</td>
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                       {{--  @can('realitie-show')
+                                        {{-- @can('realitie-show')
                                             <a href="{{ Route('showRealities', $Plot->id) }}"
                                                 class="btn rounded-pill btn-icon btn-outline-primary waves-effect p-0">
                                                 <span class="mdi mdi-eye-outline mdi-24px"></span>
