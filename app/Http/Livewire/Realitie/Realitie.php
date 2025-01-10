@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Plots\Plots;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use Illuminate\Validation\Rule;
 use App\Models\Realities\Realities;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Governorates\Governorates;
@@ -141,7 +142,12 @@ class Realitie extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'property_number' => 'required',
+            'property_number' => [
+                'required',
+                Rule::unique('realities')->where(function ($query) {
+                    return $query->where('plot_id', $this->PlotId);
+                }),
+            ],
             'area_in_meters' => 'required',
             'area_in_olok' => 'required',
             'area_in_donum' => 'required',
@@ -158,6 +164,7 @@ class Realitie extends Component
             'specialized_department' => 'required',
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
+            'property_number.unique' => 'رقم السند موجود بالفعل في هذه القطعة',
             'area_in_meters.required' => 'حقل المساحة بالمتر مطلوب',
             'area_in_olok.required' => 'حقل المساحة بالأولك مطلوب',
             'area_in_donum.required' => 'حقل المساحة بالدونم مطلوب',
