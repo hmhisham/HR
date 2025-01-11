@@ -48,11 +48,12 @@
                                         <div class="btn-group" role="group" aria-label="First group">
                                             @can('area-edit')
                                                 <button wire:click="GetArea({{ $Area->id }})"
-                                                    class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
+                                                    class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
                                                     data-bs-target="#editareaModal">
-                                                    <i class="tf-icons mdi mdi-pencil fs-3"></i>
+                                                    <i class="mdi mdi-text-box-plus-outline fs-3"></i>
                                                 </button>
                                             @endcan
+                                            <strong style="margin: 0 10px;">|</strong>
                                             @can('area-delete')
                                                 <button wire:click="GetArea({{ $Area->id }})"
                                                     class="p-0 px-1 btn btn-text-danger waves-effect {{ $Area->active ? 'disabled' : '' }}"

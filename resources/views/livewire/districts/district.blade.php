@@ -46,11 +46,12 @@
                                         <div class="btn-group" role="group" aria-label="First group">
                                             @can('district-edit')
                                                 <button wire:click="GetDistrict({{ $District->id }})"
-                                                    class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
+                                                    class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
                                                     data-bs-target="#editdistrictModal">
-                                                    <i class="tf-icons mdi mdi-pencil fs-3"></i>
+                                                    <i class="mdi mdi-text-box-plus-outline fs-3"></i>
                                                 </button>
                                             @endcan
+                                            <strong style="margin: 0 10px;">|</strong>
                                             @can('district-delete')
                                                 <button wire:click="GetDistrict({{ $District->id }})"
                                                     class="p-0 px-1 btn btn-text-danger waves-effect {{ $District->active ? 'disabled' : '' }}"
