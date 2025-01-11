@@ -17,7 +17,7 @@
                 <div wire:loading.remove wire:target="destroy, GetRealitie">
                     <div class="row">
                         <div wire:loading.remove wire:target='addRealitieToPlotModal' class="text-center">
-                            <div class="alert alert-info" role="alert">
+                            <div class="alert alert-danger" role="alert">
                                 <h5 class="pb-1 mb-2">
                                     <strong>رقم واسم المقاطعة:</strong>
                                     <span style="color: red;">{{ $this->province_number }} -
