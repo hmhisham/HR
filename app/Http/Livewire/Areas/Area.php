@@ -20,11 +20,10 @@ class Area extends Component
     public $AreaSearch, $Area, $AreaId;
     public $governorate_id, $district_id, $area_id, $area_name;
     public $GovernorateName, $DistrictsName;
+    public $search = ['governorate_name' => '', 'district_name' => '', 'area_id' => '', 'area_name' => ''];
 
-    protected $listeners = [
-        'chooseGovernorate',
-        'chooseDistrict',
-    ];
+    protected $listeners = ['chooseGovernorate', 'chooseDistrict',];
+
     public function hydrate()
     {
         $this->emit('select2');
@@ -37,18 +36,28 @@ class Area extends Component
 
     public function render()
     {
-        $AreaSearch = '%' . $this->AreaSearch . '%';
+        $searchGovernorateName = '%' . $this->search['governorate_name'] . '%';
+        $searchDistrictName = '%' . $this->search['district_name'] . '%';
+        $searchAreaId = '%' . $this->search['area_id'] . '%';
+        $searchAreaName = '%' . $this->search['area_name'] . '%';
 
-        $governorateIDs = Governorates::where('governorate_name', 'LIKE', $AreaSearch)
-            ->pluck('id');
-
-        $districtIDs = Districts::where('district_name', 'LIKE', $AreaSearch)
-            ->pluck('id');
-
-        $Areas = Areas::whereIn('governorate_id', $governorateIDs)
-            ->orWhereIn('district_id', $districtIDs)
-            ->orWhere('area_id', 'LIKE', $AreaSearch)
-            ->orWhere('area_name', 'LIKE', $AreaSearch)
+        $Areas = Areas::query()
+            ->when($this->search['governorate_name'], function ($query) use ($searchGovernorateName) {
+                $query->whereHas('GetGovernorate', function ($q) use ($searchGovernorateName) {
+                    $q->where('governorate_name', 'LIKE', $searchGovernorateName);
+                });
+            })
+            ->when($this->search['district_name'], function ($query) use ($searchDistrictName) {
+                $query->whereHas('GetDistrict', function ($q) use ($searchDistrictName) {
+                    $q->where('district_name', 'LIKE', $searchDistrictName);
+                });
+            })
+            ->when($this->search['area_id'], function ($query) use ($searchAreaId) {
+                $query->orWhere('area_id', 'LIKE', $searchAreaId);
+            })
+            ->when($this->search['area_name'], function ($query) use ($searchAreaName) {
+                $query->orWhere('area_name', 'LIKE', $searchAreaName);
+            })
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
@@ -56,11 +65,11 @@ class Area extends Component
         $this->Areas = collect($Areas->items());
 
         return view('livewire.areas.area', [
-            'governorates' => Governorates::get(),
-            'links' => $links
+            'Areas' => $Areas,
+            'links' => $links,
+            'governorates' => Governorates::get()
         ]);
     }
-
 
     public function chooseGovernorate($GovernorateID)
     {
@@ -69,6 +78,7 @@ class Area extends Component
         $this->Districts = $Governorate->GetDistrict;
         $this->reset('district_id');
     }
+
     public function chooseDistrict($DistrictID)
     {
         $this->district_id = $DistrictID;
@@ -76,7 +86,7 @@ class Area extends Component
 
     public function AddAreaModalShow()
     {
-        $this->reset();
+        $this->reset(['governorate_id', 'district_id', 'area_id', 'area_name']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('AreaModalShow');
     }

@@ -90,7 +90,7 @@ class Utilizationtype extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'utilization_type' => 'required|unique:utilizationtypes',
+            'utilization_type' => 'required|unique:utilizationtypes,utilization_type,' . $this->UtilizationtypeId,
 
         ], [
             'utilization_type.required' => 'حقل نوع الاستغلال مطلوب',

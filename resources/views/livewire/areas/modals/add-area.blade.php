@@ -13,7 +13,7 @@
 
                 <form id="addareaModalForm" autocomplete="off">
                     <div class="row">
-                        <div class="col-12 col-sm-12 col-md-6 mb-3">
+                        <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='governorate_id' id="addGovernorate"
                                     class="form-select @error('governorate_id') is-invalid is-filled @enderror">
@@ -29,7 +29,7 @@
                                 <small class='text-danger inputerror'> {{ $message }} </small>
                             @enderror
                         </div>
-                        <div class="col-12 col-sm-12 col-md-6 mb-3">
+                        <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='district_id' id="addDistrict"
                                     class="form-select @error('district_id') is-invalid is-filled @enderror">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-sm-12 col-md-6 mb-3">
+                        <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <input wire:model.defer='area_id' type="text" id="modalAreasarea_id"
                                     placeholder="رقم الناحية"
@@ -59,7 +59,7 @@
                                 <small class='text-danger inputerror'> {{ $message }} </small>
                             @enderror
                         </div>
-                        <div class="col-12 col-sm-12 col-md-6 mb-3">
+                        <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <input wire:model.defer='area_name' type="text" id="modalAreasarea_name"
                                     placeholder="اسم الناحية"

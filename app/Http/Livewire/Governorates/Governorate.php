@@ -12,27 +12,37 @@ class Governorate extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Governorates = [];
-    public $GovernorateSearch, $Governorate, $GovernorateId;
+    public $Governorate, $GovernorateId;
     public $governorate_number, $governorate_name;
+    public $search = ['governorate_number' => '', 'governorate_name' => ''];
 
     public function render()
     {
-        $GovernorateSearch = '%' . $this->GovernorateSearch . '%';
-        $Governorates = Governorates::where('governorate_number', 'LIKE', $GovernorateSearch)
-            ->orWhere('governorate_name', 'LIKE', $GovernorateSearch)
+        $searchNumber = '%' . $this->search['governorate_number'] . '%';
+        $searchName = '%' . $this->search['governorate_name'] . '%';
+
+        $Governorates = Governorates::query()
+            ->when($this->search['governorate_number'], function ($query) use ($searchNumber) {
+                $query->where('governorate_number', 'LIKE', $searchNumber);
+            })
+            ->when($this->search['governorate_name'], function ($query) use ($searchName) {
+                $query->orWhere('governorate_name', 'LIKE', $searchName);
+            })
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
         $links = $Governorates;
         $this->Governorates = collect($Governorates->items());
+
         return view('livewire.governorates.governorate', [
+            'Governorates' => $Governorates,
             'links' => $links
         ]);
     }
 
     public function AddGovernorateModalShow()
     {
-        $this->reset();
+        $this->reset('governorate_number', 'governorate_name');
         $this->resetValidation();
         $this->dispatchBrowserEvent('GovernorateModalShow');
     }
@@ -55,7 +65,7 @@ class Governorate extends Component
             'governorate_name' => $this->governorate_name,
         ]);
 
-        $this->reset();
+        $this->reset('governorate_number', 'governorate_name');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -94,7 +104,7 @@ class Governorate extends Component
             'governorate_name' => $this->governorate_name,
         ]);
 
-        $this->reset();
+        $this->reset('governorate_number', 'governorate_name');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
@@ -104,7 +114,7 @@ class Governorate extends Component
     {
         $Governorates = Governorates::find($this->GovernorateId);
         $Governorates->delete();
-        $this->reset();
+        $this->reset('governorate_number', 'governorate_name');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم حذف البيانات  بنجاح',
             'title' => 'الحذف '

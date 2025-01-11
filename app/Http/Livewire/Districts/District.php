@@ -15,12 +15,12 @@ class District extends Component
 
     public $Governorates = [];
     public $Districts = [];
-    public $DistrictSearch, $District, $DistrictId;
+    public $District, $DistrictId;
     public $GovernorateName, $governorate_id,   $district_number, $district_name;
+    public $search = ['governorate_name' => '', 'district_number' => '', 'district_name' => ''];
 
-    protected $listeners = [
-        'GetGovernorate'
-    ];
+    protected $listeners = ['GetGovernorate'];
+
     public function hydrate()
     {
         $this->emit('select2');
@@ -33,18 +33,30 @@ class District extends Component
 
     public function render()
     {
-        $DistrictSearch = '%' . $this->DistrictSearch . '%';
-        $serchID = Governorates::where('governorate_name', 'LIKE', $DistrictSearch)->pluck('id');
+        $searchGovernorateName = '%' . $this->search['governorate_name'] . '%';
+        $searchDistrictNumber = '%' . $this->search['district_number'] . '%';
+        $searchDistrictName = '%' . $this->search['district_name'] . '%';
 
-        $Districts = Districts::whereIn('governorate_id', $serchID)
-            ->orWhere('district_number', 'LIKE', $DistrictSearch)
-            ->orWhere('district_name', 'LIKE', $DistrictSearch)
+        $Districts = Districts::query()
+            ->when($this->search['governorate_name'], function ($query) use ($searchGovernorateName) {
+                $query->whereHas('Getgovernorate', function ($q) use ($searchGovernorateName) {
+                    $q->where('governorate_name', 'LIKE', $searchGovernorateName);
+                });
+            })
+            ->when($this->search['district_number'], function ($query) use ($searchDistrictNumber) {
+                $query->orWhere('district_number', 'LIKE', $searchDistrictNumber);
+            })
+            ->when($this->search['district_name'], function ($query) use ($searchDistrictName) {
+                $query->orWhere('district_name', 'LIKE', $searchDistrictName);
+            })
             ->orderBy('id', 'ASC')
             ->paginate(10);
+
         $links = $Districts;
         $this->Districts = collect($Districts->items());
 
         return view('livewire.districts.district', [
+            'Districts' => $Districts,
             'links' => $links
         ]);
     }
@@ -94,7 +106,6 @@ class District extends Component
     public function GetDistrict($DistrictId)
     {
         $this->reset('governorate_id', 'district_number', 'district_name');
-
         $this->resetValidation();
 
         $this->District  = Districts::find($DistrictId);
@@ -102,7 +113,6 @@ class District extends Component
         $this->governorate_id = $this->District->governorate_id;
         $this->district_number = $this->District->district_number;
         $this->district_name = $this->District->district_name;
-
         $this->GovernorateName = $this->District->GetGovernorate->governorate_name;
     }
 

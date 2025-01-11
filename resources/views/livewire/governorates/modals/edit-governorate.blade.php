@@ -19,7 +19,7 @@
                 <div wire:loading.remove wire:target="GetGovernorate, update">
                     <form id="editGovernorateModalForm" autocomplete="off">
                         <div Class="row">
-                            <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='governorate_number' type="text"
                                         id="modalGovernorategovernorate_number" placeholder="رقم المحافظة"
@@ -32,7 +32,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='governorate_name' type="text"
                                         id="modalGovernorategovernorate_name" placeholder="اسم المحافظة"

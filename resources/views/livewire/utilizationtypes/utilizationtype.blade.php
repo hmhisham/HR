@@ -54,7 +54,7 @@
                                             <button wire:click="GetUtilizationtype({{ $Utilizationtype->id }})"
                                                 class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editutilizationtypeModal">
-                                                <i class="mdi mdi-text-box-plus-outline fs-3"></i>
+                                                <i class="mdi mdi-text-box-edit-outline fs-3"></i>
                                             </button>
                                         @endcan
                                         <strong style="margin: 0 10px;">|</strong>

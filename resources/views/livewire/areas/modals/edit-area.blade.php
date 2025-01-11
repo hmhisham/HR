@@ -19,7 +19,7 @@
                 <div wire:loading.remove wire:target="GetArea, update">
                     <form id="editAreaModalForm" autocomplete="off">
                         <div class="row">
-                            <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='governorate_id' id="editGovernorate"
                                         class="form-select
@@ -38,7 +38,7 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>
-                            <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='district_id' id="editDistrict"
                                         class="form-select @error('district_id') is-invalid is-filled @enderror">
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='area_id' type="text" id="area_id"
                                         placeholder="رقم الناحية"
@@ -69,7 +69,7 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>
-                            <div class="col-12 col-sm-12 col-md-6 mb-3">
+                            <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='area_name' type="text" id="modalAreaarea_name"
                                         placeholder="اسم الناحية"
