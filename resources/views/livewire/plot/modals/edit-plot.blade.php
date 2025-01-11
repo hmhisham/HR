@@ -58,10 +58,10 @@
                                 @enderror
                             </div>
 
-                            <div class="col mb-3" style="height: 350px;">
+                            <div class="col-4 text-center">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='property_deed_image' type="file"
-                                        id="property_deed_image" accept=".jpeg,.png,.jpg,.pdf"
+                                    <input wire:model.defer='property_deed_image' type="file" id="property_deed_image"
+                                        accept=".jpeg,.png,.jpg,.pdf"
                                         class="form-control @error('property_deed_image') is-invalid is-filled @enderror" />
                                     <label for="property_deed_image">صورة السند العقاري</label>
                                 </div>
@@ -71,22 +71,17 @@
 
                                 <div class="d-flex justify-content-center text-center">
                                     <div wire:loading wire:target='property_deed_image' class="mt-3">
-                                        <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 150px" alt="">
+                                        <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}"
+                                            style="height: 150px" alt="">
                                     </div>
                                     <div wire:loading.remove wire:target='property_deed_image' class="mt-3">
-                                        @if ($filePreviewDeep)
-                                            @if ($property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
-                                                <iframe src="{{ $filePreviewDeep }}" type="application/pdf" width="100%" height="300px"></iframe>
-                                            @else
-                                                <img src="{{ $filePreviewDeep }}" alt="Selected Image" class="img-fluid" width="100%" height="300px" />
-                                            @endif
-                                        @endif
-
-                                        @if($previewPropertyDeedImage && !$filePreviewDeep)
-                                            @if (pathinfo($previewPropertyDeedImage, PATHINFO_EXTENSION) == strtolower('pdf'))
-                                                <embed src="{{ asset('storage/Plots/'.$plot_number.'/'.$previewPropertyDeedImage) }}" type="application/pdf" width="100%" height="300px" />
-                                            @else
-                                                <img src="{{ asset('storage/Plots/'.$plot_number.'/'.$previewPropertyDeedImage) }}" alt="Selected Image" class="img-fluid" width="100%" height="300px" />
+                                        @if ($property_deed_image && $property_deed_image instanceof \Livewire\TemporaryUploadedFile)
+                                            @if ($property_deed_image->getMimeType() == 'application/pdf')
+                                                <embed src="{{ $property_deed_image->temporaryUrl() }}"
+                                                    type="application/pdf" width="100%" height="300px" />
+                                            @elseif (Str::startsWith($property_deed_image->getMimeType(), 'image/'))
+                                                <img src="{{ $property_deed_image->temporaryUrl() }}" alt="Selected Image"
+                                                    class="img-fluid" width="100%" height="300px" />
                                             @endif
                                         @endif
                                     </div>

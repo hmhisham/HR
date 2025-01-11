@@ -330,8 +330,8 @@
                             </div>
                             <div class="col-4 text-center">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='property_deed_image' type="file" id="property_deed_image"
-                                        accept=".jpeg,.png,.jpg,.pdf"
+                                    <input wire:model.defer='property_deed_image' type="file"
+                                        id="property_deed_image" accept=".jpeg,.png,.jpg,.pdf"
                                         class="form-control @error('property_deed_image') is-invalid is-filled @enderror" />
                                     <label for="property_deed_image">صورة السند العقاري</label>
                                 </div>
@@ -349,8 +349,9 @@
                                             <embed src="{{ $property_deed_image->temporaryUrl() }}"
                                                 type="application/pdf" width="100%" height="300px" />
                                         @elseif ($property_deed_image && Str::startsWith($property_deed_image->getMimeType(), 'image/'))
-                                            <img src="{{ $property_deed_image->temporaryUrl() }}" alt="Selected Image"
-                                                class="img-fluid" width="100%" height="300px" />
+                                            <img src="{{ $property_deed_image->temporaryUrl() }}"
+                                                alt="Selected Image" class="img-fluid" width="100%"
+                                                height="300px" />
                                         @endif
                                     </div>
                                 </div>
