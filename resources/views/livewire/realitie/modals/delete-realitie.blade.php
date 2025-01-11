@@ -9,15 +9,37 @@
                     <p>نافذة الحذف</p>
                 </div>
                 <hr class="mt-n2">
-                <h5 wire:loading wire:target="GetRealitie"
+                {{-- <h5 wire:loading wire:target="GetRealitie"
                     wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار حذف البيانات...</h5>
+                    جار حذف البيانات...</h5> --}}
 
-                <div wire:loading.remove>
+                <div wire:loading.remove wire:target="destroy, GetRealitie">
+                    <div class="row">
+                        <div wire:loading.remove wire:target='addRealitieToPlotModal' class="text-center">
+                            <div class="alert alert-info" role="alert">
+                                <h5 class="pb-1 mb-2">
+                                    <strong>رقم واسم المقاطعة:</strong>
+                                    <span style="color: red;">{{ $this->province_number }} -
+                                        {{ $this->province_name }}</span>
+                                    <strong style="margin: 0 20px;">|</strong>
+                                    <strong>رقم القطعة:</strong>
+                                    <span style="color: red;">{{ $this->plot_number }}</span>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+
                     <form id="removeRealitieModalForm" onsubmit="return false" autocomplete="off">
-                        <div class="row">
-
+                        <div Class="row">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <div class="text-danger">
+                                        <label for="modalRealitieproperty_number">رقم السند العقاري</label>
+                                        <div class="form-control-plaintext mt-n2">{{ $property_number }}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr class="my-0">
                         <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
@@ -31,4 +53,5 @@
             </div>
         </div>
     </div>
-    <!--/ Delete Realitie Modal -->
+</div>
+<!--/ Delete Realitie Modal -->

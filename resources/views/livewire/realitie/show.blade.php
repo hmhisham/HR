@@ -2,8 +2,9 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <h5 class="mb-2">
-                <span class="text-muted fw-light">السندات العقارية<span class="mdi mdi-chevron-left mdi-24px"></span></span>
-                عرض البيانات الخاصة بالسند العقاري للـ : {{ $this->Plot->plot_number }}
+                <span class="text-muted fw-light">السندات العقارية<span
+                        class="mdi mdi-chevron-left mdi-24px"></span></span>
+                عرض البيانات الخاصة بالسند العقاري رقم : {{ $this->Plot->plot_number }}
             </h5>
             <div>
                 @can('realitie-create')
@@ -20,31 +21,38 @@
                         <tr>
                             <th>#</th>
                             <th class="text-center">رقم السند العقاري</th>
-                            <th class="text-center">نوع السند</th>
+                            <th class="text-center">العدد</th>
                             <th class="text-center">إشارات التأمينات</th>
+                            <th class="text-center">الجلد</th>
                             <th class="text-center">إمكانية ظهوره</th>
                             <th class="text-center">العملية</th>
                         </tr>
                         <tr>
+
                             <th>#</th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.property_number"
                                     class="form-control" placeholder="بحث برقم السند العقاري ..">
                             </th>
                             <th>
-                                <input type="text" wire:model.debounce.300ms="search.bond_type" class="form-control"
-                                    placeholder="بحث نوع السند ..">
+                                <input type="text" wire:model.debounce.300ms="search.count" class="form-control"
+                                    placeholder="بحث بالعدد ..">
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-control">
-                                    <option value="">اختر إشارة التأمينات</option>
+                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-select">
+                                    <option value="">اختر</option>
                                     <option value="رفع الحجز">رفع الحجز</option>
-                                    <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف بالعقار الا بموافقة الموانئ</option>
+                                    <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف بالعقار الا بموافقة
+                                        الموانئ</option>
                                 </select>
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.visibility" class="form-control">
-                                    <option value="">اختر إمكانية الظهور</option>
+                                <input type="text" wire:model.debounce.300ms="search.volume_number" class="form-control"
+                                    placeholder="بحث بالجلد ..">
+                            </th>
+                            <th>
+                                <select wire:model.debounce.300ms="search.visibility" class="form-select">
+                                    <option value="">اختر</option>
                                     <option value="1">نعم</option>
                                     <option value="0">لا</option>
                                 </select>
@@ -58,8 +66,9 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td class="text-center">{{ $Realitie->property_number }}</td>
-                                <td class="text-center">{{ $Realitie->bond_type }}</td>
+                                <td class="text-center">{{ $Realitie->count }}</td>
                                 <td class="text-center">{{ $Realitie->mortgage_notes }}</td>
+                                <td class="text-center">{{ $Realitie->volume_number }}</td>
                                 <td class="text-center">{{ $Realitie->visibility ? 'نعم' : 'لا' }}</td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
@@ -84,7 +93,7 @@
                     </tbody>
                 </table>
                 <div class="mt-2 d-flex justify-content-center">
-                    {{ $links->links() }}
+                    {{ $links->onEachSide(0)->links() }}
                 </div>
                 <!-- Modal -->
                 @include('livewire.realitie.modals.edit-realitie')

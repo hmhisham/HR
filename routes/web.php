@@ -193,6 +193,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //العقار الاصغر من القطعة
     Route::GET('Realities', [RealitiesController::class, 'index'])->name('Realities');
     Route::GET('Show-Realitie/{Plotid}', [RealitiesController::class, 'ShowRealitie'])->name('showRealities');
+    
 
 
 
