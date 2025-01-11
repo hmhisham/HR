@@ -330,8 +330,8 @@
                             </div>
                             <div class="col-4 text-center">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='property_deed_image' type="file"
-                                        id="property_deed_image" accept=".jpeg,.png,.jpg,.pdf"
+                                    <input wire:model.defer='property_deed_image' type="file" id="property_deed_image"
+                                        accept=".jpeg,.png,.jpg,.pdf"
                                         class="form-control @error('property_deed_image') is-invalid is-filled @enderror" />
                                     <label for="property_deed_image">صورة السند العقاري</label>
                                 </div>
@@ -345,13 +345,22 @@
                                             style="height: 150px" alt="">
                                     </div>
                                     <div wire:loading.remove wire:target='property_deed_image' class="mt-3">
-                                        @if ($property_deed_image && $property_deed_image->getMimeType() == 'application/pdf')
-                                            <embed src="{{ $property_deed_image->temporaryUrl() }}"
-                                                type="application/pdf" width="100%" height="300px" />
-                                        @elseif ($property_deed_image && Str::startsWith($property_deed_image->getMimeType(), 'image/'))
-                                            <img src="{{ $property_deed_image->temporaryUrl() }}"
-                                                alt="Selected Image" class="img-fluid" width="100%"
-                                                height="300px" />
+                                        @if ($filePreview)
+                                            @if ($property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
+                                                <embed src="{{ $filePreview }}" type="application/pdf" width="100%" height="300px" />
+                                            @else
+                                                <img src="{{ $filePreview }}" alt="Selected Image" class="img-fluid" width="100%" height="300px" />
+                                            @endif
+                                        @endif
+
+                                        @if ($previewRealitieDeedImage && !$filePreview)
+                                            @if (pathinfo($previewRealitieDeedImage, PATHINFO_EXTENSION) == strtolower('pdf'))
+                                                <embed src="{{ asset('storage/Realities/' . $property_number . '/' . $previewRealitieDeedImage) }}"
+                                                    type="application/pdf" width="100%" height="300px" />
+                                            @else
+                                                <img src="{{ asset('storage/Realities/' . $property_number . '/' . $previewRealitieDeedImage) }}"
+                                                    alt="Selected Image" class="img-fluid" width="100%" height="300px" />
+                                            @endif
                                         @endif
                                     </div>
                                 </div>

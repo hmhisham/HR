@@ -31,7 +31,7 @@ class Show extends Component
     public $RealitieSearch, $Realitie, $RealitieId;
     public $province_number, $province_name, $plot_number;
     public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department,  $notes;
-    public $filePreview, $property_deed_image;
+    public $filePreview, $property_deed_image, $previewRealitieDeedImage;
     public $visibility = false;
 
     protected $listeners = [
@@ -252,7 +252,7 @@ class Show extends Component
         $this->mortgage_notes = $this->Realitie->mortgage_notes;
         $this->registered_office = $this->Realitie->registered_office;
         $this->specialized_department = $this->Realitie->specialized_department;
-        $this->property_deed_image = $this->Realitie->property_deed_image;
+        $this->previewRealitieDeedImage = $this->Plot->property_deed_image;
         $this->notes = $this->Realitie->notes;
         $this->visibility = $this->Realitie->visibility;
 
