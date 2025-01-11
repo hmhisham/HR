@@ -73,7 +73,7 @@
                 </table>
             </div>
             <div class="mt-2 d-flex justify-content-center">
-                {{ $links->onEachSide(1)->links() }}
+                {{ $links->onEachSide(0)->links() }}
             </div>
             <!-- Modal -->
             @include('livewire.utilizationtypes.modals.edit-utilizationtype')

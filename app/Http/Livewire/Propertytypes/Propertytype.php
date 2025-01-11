@@ -14,23 +14,30 @@ class Propertytype extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Propertytypes = [];
-    public $PropertytypeSearch, $Propertytype, $PropertytypeId;
+    public $Propertytype, $PropertytypeId;
     public $type_name;
+
+    public $search = ['type_name' => ''];
 
     public function render()
     {
-        $PropertytypeSearch = '%' . $this->PropertytypeSearch . '%';
-        $Propertytypes = Propertytypes::where('type_name', 'LIKE', $PropertytypeSearch)
+        $typeNameSearch = '%' . $this->search['type_name'] . '%';
+
+        $Propertytypes = Propertytypes::query()
+            ->when($this->search['type_name'], function ($query) use ($typeNameSearch) {
+                $query->where('type_name', 'LIKE', $typeNameSearch);
+            })
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
         $links = $Propertytypes;
         $this->Propertytypes = collect($Propertytypes->items());
+
         return view('livewire.propertytypes.propertytype', [
+            'Propertytypes' => $Propertytypes,
             'links' => $links
         ]);
     }
-
     public function AddPropertytypeModalShow()
     {
         $this->reset();

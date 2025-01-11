@@ -75,10 +75,8 @@
                     {{ $links->onEachSide(0)->links() }}
                 </div>
             </div>
-            <!-- Modal -->
             @include('livewire.propertycategory.modals.edit-propertycategor')
             @include('livewire.propertycategory.modals.remove-propertycategor')
-            <!-- Modal -->
         @endcan
     </div>
 </div>

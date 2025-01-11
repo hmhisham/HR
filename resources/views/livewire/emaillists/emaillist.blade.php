@@ -20,14 +20,14 @@
                 <table class="table">
                     <thead class="table-light">
                         <tr>
-                            <th>#</th>
+                            <th>ت</th>
                             <th class="text-center">القسم</th>
                             <th class="text-center">البريد الإلكتروني</th>
                             <th class="text-center">ملاحظات</th>
                             <th class="text-center">العملية</th>
                         </tr>
                         <tr>
-                            <th></th>
+                            <th>#</th>
                             <th class="text-center">
                                 <input type="text" wire:model.debounce.300ms="search.department"
                                     class="form-control text-center" placeholder="بحث بالقسم">
@@ -77,9 +77,9 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-            <div class="mt-2 d-flex justify-content-center">
-                {{ $links->onEachSide(0)->links() }}
+                <div class="mt-2 d-flex justify-content-center">
+                    {{ $links->onEachSide(0)->links() }}
+                </div>
             </div>
             <!-- Modal -->
             @include('livewire.emaillists.modals.edit-emaillist')
