@@ -53,6 +53,7 @@
                                                 <span class="mdi mdi-eye-outline fs-3"></span>
                                             </a>
                                         @endcan
+                                        <strong style="margin: 0 10px;">|</strong>
                                         @can('realitie-create')
                                             <button
                                                 wire:click="GetPlot({{ $Plot->id }}, '{{ $Plot->GetProvinces->province_number }}', '{{ $Plot->GetProvinces->province_name }}', '{{ $Plot->plot_number }}')"

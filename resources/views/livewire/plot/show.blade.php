@@ -44,11 +44,12 @@
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @can('plot-edit')
                                             <button wire:click='GetPlot({{ $Plot->id }})'
-                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
+                                                class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editPlotModal">
-                                                <span class="mdi mdi-text-box-edit-outline fs-3"></span>
+                                                <span class="mdi mdi-text-box-plus-outline fs-3"></span>
                                             </button>
                                         @endcan
+                                        <strong style="margin: 0 10px;">|</strong>
                                         @can('plot-delete')
                                             <button wire:click='GetPlot({{ $Plot->id }})'
                                                 class="p-0 px-1 btn btn-text-danger waves-effect" data-bs-toggle="modal"

@@ -182,9 +182,15 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::RESOURCE('Services', ServicesController::class);
     Route::GET('Service-Show/{id}', [ServicesController::class, 'ServiceShow'])->name('Service-Show');
 
-    //===============الاراضي==================
+    //===============الاملاك والاراضي==================
     //جنس العقار
     Route::RESOURCE('Propertytypes', PropertytypesController::class);
+    // البريد الالكتروني للاقسام
+    Route::RESOURCE('Emaillists', EmaillistsController::class);
+    // انواع القيود
+    Route::RESOURCE('Propertycategory', PropertycategoryController::class);
+    //نوع الاستغلال
+    Route::RESOURCE('Utilizationtypes', UtilizationtypesController::class);
     //المقاطعات
     Route::RESOURCE('Provinces', ProvincesController::class);
     //القطعة الاصغر من المقاطعة
@@ -193,7 +199,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //العقار الاصغر من القطعة
     Route::GET('Realities', [RealitiesController::class, 'index'])->name('Realities');
     Route::GET('Show-Realitie/{Plotid}', [RealitiesController::class, 'ShowRealitie'])->name('showRealities');
-    
+
 
 
 
@@ -211,12 +217,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     // الدفع في نافذة الاملاك
     Route::GET('Propertypayd/{id}', [PropertypaydController::class, 'Index'])->name('Propertypayd');
     Route::GET('Propertypay-Show/{id}', [PropertypaydController::class, 'PropertypayShow'])->name('Propertypay-Show');
-    // البريد الالكتروني للاقسام
-    Route::RESOURCE('Emaillists', EmaillistsController::class);
-    // اناع القيود
-    Route::RESOURCE('Propertycategory', PropertycategoryController::class);
-    //نوع الاستغلال
-    Route::RESOURCE('Utilizationtypes', UtilizationtypesController::class);
+
     //===============المالية==================
 
     //اليومية

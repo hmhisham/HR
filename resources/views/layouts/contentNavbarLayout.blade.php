@@ -74,7 +74,7 @@
                                 </a>
                             </li>
 
-                            @can('employees')
+                           {{--  @can('employees')
                                 <li
                                     class="menu-item {{ request()->is('Workers', 'AddWorker', 'Thanks', 'Penalties', 'Jobleavers', 'Dispatch', 'Certific', 'Holidays', 'Wives', 'Childrens', 'Placements', 'Positions', 'Services', 'Inputs', 'Itypes') ? 'open active' : '' }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -203,7 +203,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
                             <li class="menu-item {{ request()->is('Provinces', 'Plots', 'Show-Plot/*','Realities','Show-Realitie/*', 'Boycotts', 'Bonds', 'Bond-Show/*', 'Property') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -269,7 +269,7 @@
                                 </ul>
                             </li>
 
-                            <li class="menu-item {{ request()->is('Coaches', 'Courses') ? 'open active' : '' }}">
+                            {{-- <li class="menu-item {{ request()->is('Coaches', 'Courses') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <i class='menu-icon tf-icons mdi mdi-account-tie-voice-outline'></i>
                                     <span class="menu-title">التدريب و التطوير</span>
@@ -290,15 +290,15 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
                             {{-- Files Upload --}}
-                            <li class="menu-item {{ request()->is('Private-Employee-Files') ? 'active' : '' }}">
+                           {{--  <li class="menu-item {{ request()->is('Private-Employee-Files') ? 'active' : '' }}">
                                 <a href="{{ Route('PrivateEmployeeFiles') }}" class="menu-link">
                                     <i class="menu-icon tf-icons mdi mdi-file-cloud-outline"></i>
                                     <div>{{ trans('sidebar.PrivateEmployeeFiles') }}</div>
                                 </a>
-                            </li>
+                            </li> --}}
 
                             {{-- الإعدادات --}}
                             <li
@@ -329,7 +329,7 @@
                                             <div>النواحي</div>
                                         </a>
                                     </li>
-                                    {{-- مكتب معلومات بطاة السكن --}}
+                                    {{--
                                     <li Class="menu-item {{ request()->Is('Infooffice') ? 'active' : '' }}">
                                         <a href="{{ Route('Infooffice.index') }}" Class="menu-link">
                                             <i class=""></i>
@@ -337,42 +337,42 @@
                                         </a>
                                     </li>
 
-                                    {{-- الارتباط --}}
+
                                     <li Class="menu-item {{ request()->Is('Linkages') ? 'active' : '' }}">
                                         <a href="{{ Route('Linkages.index') }}" Class="menu-link">
                                             <i class=""></i>
                                             <div>الارتباط</div>
                                         </a>
                                     </li>
-                                    {{-- الاقسام --}}
+
                                     <li Class="menu-item {{ request()->Is('Sections') ? 'active' : '' }}">
                                         <a href="{{ Route('Sections.index') }}" Class="menu-link">
                                             <i Class=''></i>
                                             <div>الاقسام</div>
                                         </a>
                                     </li>
-                                    {{-- الشعب --}}
+
                                     <li Class="menu-item {{ request()->Is('Branch') ? 'active' : '' }}">
                                         <a href="{{ Route('Branch.index') }}" Class="menu-link">
                                             <i Class=''></i>
                                             <div>الشعب</div>
                                         </a>
                                     </li>
-                                    {{-- الوحدات --}}
+
                                     <li Class="menu-item {{ request()->Is('Units') ? 'active' : '' }}">
                                         <a href="{{ Route('Units.index') }}" Class="menu-link">
                                             <i Class=''></i>
                                             <div>الوحدات</div>
                                         </a>
                                     </li>
-                                    {{-- الدوائر --}}
+
                                     <li Class="menu-item {{ request()->Is('Department') ? 'active' : '' }}">
                                         <a href="{{ Route('Department.index') }}" Class="menu-link">
                                             <i Class=''></i>
                                             <div>الدوائر</div>
                                         </a>
                                     </li>
-                                    {{-- الشهادة --}}
+
                                     <li Class="menu-item {{ request()->Is('Certificates') ? 'active' : '' }}">
                                         <a href="{{ Route('Certificates.index') }}" Class="menu-link">
                                             <i Class=''></i>
@@ -380,35 +380,34 @@
                                         </a>
                                     </li>
 
-                                    {{-- التخرج --}}
                                     <li Class="menu-item {{ request()->Is('Graduations') ? 'active' : '' }}">
                                         <a href="{{ Route('Graduations.index') }}" Class="menu-link">
                                             <i Class=''></i>
                                             <div>جهة التخرج</div>
                                         </a>
                                     </li>
-                                    {{-- الاختصاص --}}
+
                                     <li Class="menu-item {{ request()->Is('Specializations') ? 'active' : '' }}">
                                         <a href="{{ Route('Specializations.index') }}" Class="menu-link">
                                             <i Class=''></i>
                                             <div>الاختصاص</div>
                                         </a>
                                     </li>
-                                    {{-- التخصص العام --}}
+
                                     <li Class="menu-item {{ request()->Is('Specialtys') ? 'active' : '' }}">
                                         <a href="{{ Route('Specialtys.index') }}" Class="menu-link">
                                             <i Class=''></i>
                                             <div>التخصص العام</div>
                                         </a>
                                     </li>
-                                    {{-- التخصص الدقيق --}}
+
                                     <li Class="menu-item {{ request()->Is('Precises') ? 'active' : '' }}">
                                         <a href="{{ Route('Precises.index') }}" Class="menu-link">
                                             <i Class=''></i>
                                             <div>التخصص الدقيق</div>
                                         </a>
                                     </li>
-                                    {{-- تصنيف التخصص --}}
+
                                     <li Class="menu-item {{ request()->Is('Specializationclassification') ? 'active' : '' }}">
                                         <a href="{{ Route('Specializationclassification.index') }}" Class="menu-link">
                                             <i Class=''></i>
@@ -466,7 +465,7 @@
                                             <i Class=''></i>
                                             <div>حالة الخدمة</div>
                                         </a>
-                                    </li>
+                                    </li> --}}
 
                                     <li Class="menu-item {{ request()->Is('Emaillists') ? 'active' : '' }}">
                                         <a href="{{ Route('Emaillists.index') }}" Class="menu-link">
