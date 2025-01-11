@@ -184,11 +184,13 @@ class Realitie extends Component
             'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
-
+        $plot = Plots::find($this->PlotId);
+        $province_id = $plot->province_id;
         $this->property_deed_image->store('public/Realities/' . $this->property_number);
 
         Realities::create([
             'user_id' => Auth::User()->id,
+            'province_id' => $province_id,
             'plot_id' => $this->PlotId,
             'property_number' => $this->property_number,
             'area_in_meters' => $this->area_in_meters,

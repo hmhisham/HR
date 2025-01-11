@@ -4,7 +4,11 @@
             <h5 class="mb-2">
                 <span class="text-muted fw-light">السندات العقارية<span
                         class="mdi mdi-chevron-left mdi-24px"></span></span>
-                عرض البيانات الخاصة بالسند العقاري رقم : {{ $this->Plot->plot_number }}
+                </span>
+                عرض بيانات القطعة : <span class="text-danger">{{ $this->Plot->plot_number }}</span>
+                <strong style="margin: 0 30px;">|</strong>
+                ضمن المقاطعة : <span class="text-danger">{{ $this->Province->province_number }} -
+                    {{ $this->Province->province_name }}</span>
             </h5>
             <div>
                 @can('realitie-create')
