@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->nullable()->comment('رقم المستخدم');
             $table->string('province_id')->nullable()->comment('رقم المقاطعة');
-            $table->string('plot_id')->nullable()->comment('رقم القطغة');
+            $table->string('plot_id')->nullable()->comment('رقم القطعة');
             $table->string('property_number')->nullable()->comment('رقم العقار');
             $table->string('area_in_meters')->nullable()->comment('المساحة بالمتر');
             $table->string('area_in_olok')->nullable()->comment('المساحة بالأولك');

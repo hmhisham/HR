@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('calculator_number')->nullable()->comment('رقم الحاسبة');
             $table->string('phone')->nullable()->comment('رقم الهاتف');
             $table->string('email')->nullable()->comment('الايميل');
-            $table->integer('bonds_id')->nullable()->comment('رقم العقار');
+            $table->integer('realities_id')->nullable()->comment('رقم العقار');
             $table->date('from_date')->nullable()->comment('من تاريخ');
             $table->date('to_date')->nullable()->comment('الى تاريخ');
             $table->integer('months_count')->nullable()->comment('عدد الاشهر');
