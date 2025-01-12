@@ -91,9 +91,9 @@
                             <h5 class="mb-2">{{ $stat['value'] }}</h5>
                             <p>{{ $stat['title'] }}</p>
                         </div>
-                        <div class="card-info mt-4 pt-1 mt-auto ">
+                        {{-- <div class="card-info mt-4 pt-1 mt-auto ">
                             <a href="{{ route($stat['route']) }}" class="{{ $stat['changeClass'] }}">{{ $stat['period'] }}</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
