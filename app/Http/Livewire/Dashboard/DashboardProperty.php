@@ -17,8 +17,8 @@ class DashboardProperty extends Component
 
     public function mount()
     {
-        $this->boycottsCount = Boycotts::count();
-        $this->bondsCount = Bonds::count();
+       /*  $this->boycottsCount = Boycotts::count();
+        $this->bondsCount = Bonds::count(); */
         $this->propertyCount = Property::where('isdeleted', 0)->count();
     }
 }
