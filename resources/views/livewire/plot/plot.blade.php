@@ -1,10 +1,10 @@
 <div class="mt-n4">
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <h5 class="mb-2">
+            <h4 class="mb-2">
                 <span class="text-muted fw-light">الاملاك والاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
                 القطع
-            </h5>
+            </h4>
         </div>
         @can('province-list')
             <div class="table-responsive">

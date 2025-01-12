@@ -53,10 +53,10 @@ class Area extends Component
                 });
             })
             ->when($this->search['area_id'], function ($query) use ($searchAreaId) {
-                $query->orWhere('area_id', 'LIKE', $searchAreaId);
+                $query->Where('area_id', 'LIKE', $searchAreaId);
             })
             ->when($this->search['area_name'], function ($query) use ($searchAreaName) {
-                $query->orWhere('area_name', 'LIKE', $searchAreaName);
+                $query->Where('area_name', 'LIKE', $searchAreaName);
             })
             ->orderBy('id', 'ASC')
             ->paginate(10);

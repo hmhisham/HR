@@ -1,7 +1,7 @@
 <div class="mt-n4">
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <h5 class="mb-2">
+            <h4 class="mb-2">
                 <span class="text-muted fw-light">السندات العقارية<span
                         class="mdi mdi-chevron-left mdi-24px"></span></span>
                 </span>
@@ -32,7 +32,6 @@
                             <th class="text-center">العملية</th>
                         </tr>
                         <tr>
-
                             <th>#</th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.property_number"

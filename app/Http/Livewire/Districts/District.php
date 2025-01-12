@@ -44,10 +44,10 @@ class District extends Component
                 });
             })
             ->when($this->search['district_number'], function ($query) use ($searchDistrictNumber) {
-                $query->orWhere('district_number', 'LIKE', $searchDistrictNumber);
+                $query->Where('district_number', 'LIKE', $searchDistrictNumber);
             })
             ->when($this->search['district_name'], function ($query) use ($searchDistrictName) {
-                $query->orWhere('district_name', 'LIKE', $searchDistrictName);
+                $query->Where('district_name', 'LIKE', $searchDistrictName);
             })
             ->orderBy('id', 'ASC')
             ->paginate(10);

@@ -26,7 +26,7 @@ class Governorate extends Component
                 $query->where('governorate_number', 'LIKE', $searchNumber);
             })
             ->when($this->search['governorate_name'], function ($query) use ($searchName) {
-                $query->orWhere('governorate_name', 'LIKE', $searchName);
+                $query->Where('governorate_name', 'LIKE', $searchName);
             })
             ->orderBy('id', 'ASC')
             ->paginate(10);
