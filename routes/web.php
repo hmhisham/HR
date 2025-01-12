@@ -201,15 +201,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::GET('Show-Realitie/{Plotid}', [RealitiesController::class, 'ShowRealitie'])->name('showRealities');
 
 
-
-
-    //المقاطعات
-    Route::RESOURCE('Boycotts', BoycottsController::class);
-    Route::get('boycotts/data', [BoycottsController::class, 'getData'])->name('boycotts.data');
-
-    //السندات العقارية
-    Route::RESOURCE('Bonds', BondsController::class);
-    Route::GET('Bond-Show/{id}', [BondsController::class, 'BondShow'])->name('Bond-Show');
+    
 
     //الاملاك
     Route::RESOURCE('Property', PropertyController::class);

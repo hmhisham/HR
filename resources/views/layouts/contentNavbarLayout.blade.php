@@ -241,26 +241,6 @@
                                         </a>
                                     </li>
                                 </ul>
-                                {{-- القديم --}}
-                                <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Boycotts') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Boycotts.index') }}" Class="menu-link">
-                                            <div>المقاطعات القديم</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Bonds') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Bonds.index') }}" Class="menu-link">
-                                            <div>السندات العقارية</div>
-                                        </a>
-                                    </li>
-                                    <li Class="menu-item {{ request()->Is('Bond-Show/*') ? 'active' : 'hidden' }}">
-                                        <a href = "javascript:void(0)" Class="menu-link">
-                                            <div>عرض السندات العقارية</div>
-                                        </a>
-                                    </li>
-                                </ul>
                                 <ul class="menu-sub">
                                     <li Class="menu-item {{ request()->Is('Property') ? 'active' : '' }}">
                                         <a href = "{{ Route('Property.index') }}" Class="menu-link">
