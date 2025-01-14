@@ -58,6 +58,25 @@
                                 @enderror
                             </div>
 
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='specialized_department'
+                                        id="modalPlorspecialized_department"
+                                        class="form-select @error('specialized_department') is-invalid is-filled @enderror">
+                                        <option value="">اختر</option>
+                                        <option value="شعبة العقارات">شعبة العقارات</option>
+                                        <option value="شعبة الاملاك">شعبة الاملاك</option>
+                                        <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
+                                    </select>
+                                    <label for="modalPlotspecialized_department">الشعبة المختصة</label>
+                                </div>
+                                @error('specialized_department')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div Class="row">
                             <div class="col-4 text-center">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='property_deed_image' type="file"
@@ -108,8 +127,8 @@
                                     <div wire:loading.remove wire:target='property_map_image' class="mt-3">
                                         @if ($filePreviewMap)
                                             @if ($property_map_image->getClientOriginalExtension() == strtolower('pdf'))
-                                                <embed src="{{ $filePreviewMap }}" type="application/pdf" width="100%"
-                                                    height="300px" />
+                                                <embed src="{{ $filePreviewMap }}" type="application/pdf"
+                                                    width="100%" height="300px" />
                                             @else
                                                 <img src="{{ $filePreviewMap }}" alt="Selected Image" class="img-fluid"
                                                     width="100%" height="300px" />

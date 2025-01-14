@@ -22,7 +22,7 @@ class Show extends Component
     public $Provinceid;
     public $Province;
     public $Plots = [];
-    public $plot_number, $Plot, $property_deed_image, $property_map_image;
+    public $plot_number, $specialized_department, $Plot, $property_deed_image, $property_map_image;
     public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
 
     public function mount()
@@ -30,15 +30,19 @@ class Show extends Component
         $this->Province = Provinces::find($this->Provinceid);
     }
 
-    public $search = ['plot_number' => ''];
+    public $search = ['plot_number' => '', 'specialized_department' => ''];
 
     public function render()
     {
         $searchPlotNumber = '%' . $this->search['plot_number'] . '%';
+        $searchSpecializedDepartment = '%' . $this->search['specialized_department'] . '%';
         $Plots = Plots::query()
             ->where('province_id', $this->Provinceid)
             ->when($this->search['plot_number'], function ($query) use ($searchPlotNumber) {
                 $query->where('plot_number', 'LIKE', $searchPlotNumber);
+            })
+            ->when($this->search['specialized_department'], function ($query) use ($searchSpecializedDepartment) {
+                $query->where('specialized_department', 'LIKE', $searchSpecializedDepartment);
             })
             ->orderBy('id', 'ASC')
             ->paginate(10);
@@ -53,7 +57,7 @@ class Show extends Component
 
     public function addPlotModal()
     {
-        $this->reset('plot_number', 'property_deed_image', 'property_map_image');
+        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image');
         $this->resetValidation();
         $this->dispatchBrowserEvent('PlotModalShow');
     }
@@ -108,11 +112,12 @@ class Show extends Component
             'user_id' => Auth::User()->id,
             'province_id' => $this->Province->id,
             'plot_number' => $this->plot_number,
+            'specialized_department' => $this->specialized_department,
             'property_deed_image' => $this->property_deed_image->hashName(),
             'property_map_image' => $this->property_map_image->hashName(),
         ]);
 
-        $this->reset('plot_number', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap');
+        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap');
 
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافة بنجاح',
@@ -123,12 +128,13 @@ class Show extends Component
 
     public function GetPlot($Plotid)
     {
-        $this->reset('plot_number', 'property_deed_image', 'property_map_image');
+        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image');
         $this->resetValidation();
         $this->dispatchBrowserEvent('editPlotModalShow');
 
         $this->Plot = Plots::find($Plotid);
         $this->plot_number = $this->Plot->plot_number;
+        $this->specialized_department = $this->Plot->specialized_department;
         $this->previewPropertyDeedImage = $this->Plot->property_deed_image;
         $this->previewPropertyMapImage = $this->Plot->property_map_image;
 

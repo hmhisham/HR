@@ -64,7 +64,7 @@ class Plot extends Component
 
     public function addPlotToProvince($ProvinceId)
     {
-        $this->reset('plot_number', 'property_deed_image', 'property_map_image');
+        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image');
         $this->dispatchBrowserEvent('addPlotToProvinceModal');
     }
 
@@ -119,11 +119,12 @@ class Plot extends Component
             'user_id' => Auth::user()->id,
             'province_id' => $this->Province->id,
             'plot_number' => $this->plot_number,
+            'specialized_department' => $this->specialized_department,
             'property_deed_image' => $this->property_deed_image->hashName(),
             'property_map_image' => $this->property_map_image->hashName(),
         ]);
 
-        $this->reset('plot_number', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap');
+        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تمت الإضافة بنجاح',
             'title' => 'إضافة'

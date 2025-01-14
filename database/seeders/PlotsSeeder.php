@@ -12,6 +12,8 @@ class PlotsSeeder extends Seeder
      */
     public function run(): void
     {
+        $departments = ['شعبة الأملاك', 'شعبة العقارات', 'شعبة إسكان الموانئ'];
+
         foreach (range(1, 5) as $province_id) {
             foreach (range(1, 2) as $plot_number) {
                 DB::table('plots')->insert([
@@ -20,6 +22,7 @@ class PlotsSeeder extends Seeder
                     'plot_number' => $plot_number,  // تعيين رقم القطعة
                     'property_deed_image' => '81FLMcUIxuRI0DkgtbgvTLSjW1MkfCuqbxbk8eru.png',  // صورة السند العقاري
                     'property_map_image' => 'F8pcpIdaCusR5HeNpRVJo8FIIc7pdpfXchSNT8BH.png',  // صورة الخارطة العقارية
+                    'specialized_department' => $departments[array_rand($departments)],  // الشعبة المختصة
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

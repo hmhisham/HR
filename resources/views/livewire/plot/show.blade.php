@@ -23,6 +23,7 @@
                         <tr>
                             <th>ت</th>
                             <th Class="text-center">رقم القطعة</th>
+                            <th Class="text-center">الشعبة المختصة</th>
                             <th Class="text-center">العملية</th>
                         </tr>
                         <tr>
@@ -30,6 +31,10 @@
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.plot_number" class="form-control"
                                     placeholder="بحث برقم المقاطعة ..">
+                            </th>
+                            <th>
+                                <input type="text" wire:model.debounce.300ms="search.specialized_department" class="form-control"
+                                    placeholder="بحث باسم الشعبة ..">
                             </th>
                             <th></th>
                         </tr>
@@ -40,6 +45,7 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td Class="text-center">{{ $Plot->plot_number }}</td>
+                                <td Class="text-center">{{ $Plot->specialized_department }}</td>
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @can('plot-edit')
