@@ -74,12 +74,25 @@
                                     <small class='text-danger inputerror'>{{ $message }}</small>
                                 @enderror
                             </div>
+
+                            <div class="mb-3 col">
+                                <div class="form-check form-switch">
+                                    <input wire:model.defer='visibility' type="checkbox" id="modalPlotvisibility"
+                                        class="form-check-input @error('visibility') is-invalid is-filled @enderror" />
+                                    <label for="modalPlotvisibility" class="form-check-label">إمكانية
+                                        ظهوره</label>
+                                </div>
+                                @error('visibility')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
                         </div>
 
                         <div Class="row">
                             <div class="col mb-3" style="height: 350px;">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='property_deed_image' type="file" id="property_deed_image" accept=".jpeg,.png,.jpg,.pdf"
+                                    <input wire:model.defer='property_deed_image' type="file"
+                                        id="property_deed_image" accept=".jpeg,.png,.jpg,.pdf"
                                         class="form-control @error('property_deed_image') is-invalid is-filled @enderror" />
                                     <label for="property_deed_image">صورة السند العقاري</label>
                                 </div>
@@ -89,24 +102,29 @@
 
                                 <div class="d-flex justify-content-center text-center">
                                     <div wire:loading wire:target='property_deed_image' class="mt-3">
-                                        <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 150px" alt="">
+                                        <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}"
+                                            style="height: 150px" alt="">
                                     </div>
                                     <div wire:loading.remove wire:target='property_deed_image' class="mt-3">
                                         @if ($filePreviewDeep)
                                             @if ($property_deed_image && $property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
-                                                <embed src="{{ $filePreviewDeep }}" type="application/pdf" width="100%" height="300px" />
+                                                <embed src="{{ $filePreviewDeep }}" type="application/pdf"
+                                                    width="100%" height="300px" />
                                             @else
-                                                <img src="{{ $filePreviewDeep }}" alt="Selected Image" class="img-fluid" width="100%" height="300px" />
+                                                <img src="{{ $filePreviewDeep }}" alt="Selected Image" class="img-fluid"
+                                                    width="100%" height="300px" />
                                             @endif
                                         @endif
 
                                         @if ($previewPropertyDeedImage && empty($filePreviewDeep))
                                             @if (pathinfo($previewPropertyDeedImage, PATHINFO_EXTENSION) == strtolower('pdf'))
-                                                <embed src="{{ asset('storage/Plots/' . $plot_number . '/' . $previewPropertyDeedImage) }}" type="application/pdf"
-                                                    width="100%" height="300px" />
+                                                <embed
+                                                    src="{{ asset('storage/Plots/' . $plot_number . '/' . $previewPropertyDeedImage) }}"
+                                                    type="application/pdf" width="100%" height="300px" />
                                             @else
-                                                <img src="{{ asset('storage/Plots/' . $plot_number . '/' . $previewPropertyDeedImage) }}" alt="Selected Image"
-                                                    class="img-fluid" width="100%" height="300px" />
+                                                <img src="{{ asset('storage/Plots/' . $plot_number . '/' . $previewPropertyDeedImage) }}"
+                                                    alt="Selected Image" class="img-fluid" width="100%"
+                                                    height="300px" />
                                             @endif
                                         @endif
                                     </div>
@@ -136,8 +154,8 @@
                                                 <embed src="{{ $filePreviewMap }}" type="application/pdf"
                                                     width="100%" height="300px" />
                                             @else
-                                                <img src="{{ $filePreviewMap }}" alt="Selected Image" class="img-fluid"
-                                                    width="100%" height="300px" />
+                                                <img src="{{ $filePreviewMap }}" alt="Selected Image"
+                                                    class="img-fluid" width="100%" height="300px" />
                                             @endif
                                         @endif
 

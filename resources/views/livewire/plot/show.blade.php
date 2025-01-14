@@ -24,6 +24,7 @@
                             <th>ت</th>
                             <th Class="text-center">رقم القطعة</th>
                             <th Class="text-center">الشعبة المختصة</th>
+                            <th class="text-center">إمكانية ظهوره</th>
                             <th Class="text-center">العملية</th>
                         </tr>
                         <tr>
@@ -40,6 +41,13 @@
                                     <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
                                 </select>
                             </th>
+                            <th>
+                                <select wire:model.debounce.300ms="search.visibility" class="form-select">
+                                    <option value="">اختر</option>
+                                    <option value="1">نعم</option>
+                                    <option value="0">لا</option>
+                                </select>
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -50,6 +58,7 @@
                                 <td>{{ $i++ }}</td>
                                 <td Class="text-center">{{ $Plot->plot_number }}</td>
                                 <td Class="text-center">{{ $Plot->specialized_department }}</td>
+                                <td class="text-center">{{ $Plot->visibility ? 'نعم' : 'لا' }}</td>
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @can('plot-edit')
