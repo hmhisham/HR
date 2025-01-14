@@ -77,7 +77,7 @@
                         </div>
 
                         <div Class="row">
-                            <div class="col-4 text-center">
+                            <div class="col mb-3" style="height: 350px;">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='property_deed_image' type="file"
                                         id="property_deed_image" accept=".jpeg,.png,.jpg,.pdf"
