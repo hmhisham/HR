@@ -33,8 +33,12 @@
                                     placeholder="بحث برقم المقاطعة ..">
                             </th>
                             <th>
-                                <input type="text" wire:model.debounce.300ms="search.specialized_department" class="form-control"
-                                    placeholder="بحث باسم الشعبة ..">
+                                <select wire:model.debounce.300ms="search.specialized_department" class="form-select">
+                                    <option value="">اختر</option>
+                                    <option value="شعبة العقارات">شعبة العقارات</option>
+                                    <option value="شعبة الاملاك">شعبة الاملاك</option>
+                                    <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
+                                </select>
                             </th>
                             <th></th>
                         </tr>

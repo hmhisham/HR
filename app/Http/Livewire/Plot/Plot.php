@@ -18,7 +18,7 @@ class Plot extends Component
 
     public $Provinces = [];
     public $Province, $ProvinceId;
-    public $province_number, $province_name;
+    public $specialized_department, $province_number, $province_name;
     public $plot_number, $Plot, $property_deed_image, $property_map_image;
     public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
 
@@ -60,6 +60,8 @@ class Plot extends Component
         $this->ProvinceId = $this->Province->id;
         $this->province_number = $this->Province->province_number;
         $this->province_name = $this->Province->province_name;
+        $this->previewPropertyDeedImage = $this->Province->property_deed_image;
+        $this->previewPropertyMapImage = $this->Province->property_map_image;
     }
 
     public function addPlotToProvince($ProvinceId)
