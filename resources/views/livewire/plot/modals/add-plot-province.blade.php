@@ -57,6 +57,37 @@
                                 @enderror
                             </div>
 
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='specialized_department'
+                                        id="modalPlorspecialized_department"
+                                        class="form-select @error('specialized_department') is-invalid is-filled @enderror">
+                                        <option value="">اختر</option>
+                                        <option value="شعبة العقارات">شعبة العقارات</option>
+                                        <option value="شعبة الاملاك">شعبة الاملاك</option>
+                                        <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
+                                    </select>
+                                    <label for="modalPlotspecialized_department">الشعبة المختصة</label>
+                                </div>
+                                @error('specialized_department')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col">
+                                <div class="form-check form-switch">
+                                    <input wire:model.defer='visibility' type="checkbox"
+                                        id="modalPlotvisibility"
+                                        class="form-check-input @error('visibility') is-invalid is-filled @enderror" />
+                                    <label for="modalPlotvisibility" class="form-check-label">إمكانية
+                                        ظهوره</label>
+                                </div>
+                                @error('visibility')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div Class="row">
                             <div class="col mb-3" style="height: 350px;">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='property_deed_image' type="file"

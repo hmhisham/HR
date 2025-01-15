@@ -255,7 +255,7 @@ class Show extends Component
         $this->mortgage_notes = $this->Realitie->mortgage_notes;
         $this->registered_office = $this->Realitie->registered_office;
         $this->specialized_department = $this->Realitie->specialized_department;
-        $this->previewRealitieDeedImage = $this->Plot->property_deed_image;
+        $this->previewRealitieDeedImage = $this->Realitie->property_deed_image;
         $this->notes = $this->Realitie->notes;
         $this->visibility = $this->Realitie->visibility;
 

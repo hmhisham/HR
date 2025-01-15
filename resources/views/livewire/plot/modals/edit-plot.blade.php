@@ -58,7 +58,38 @@
                                 @enderror
                             </div>
 
-                            <div class="col-4 text-center">
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='specialized_department'
+                                        id="modalPlorspecialized_department"
+                                        class="form-select @error('specialized_department') is-invalid is-filled @enderror">
+                                        <option value="">اختر</option>
+                                        <option value="شعبة العقارات">شعبة العقارات</option>
+                                        <option value="شعبة الاملاك">شعبة الاملاك</option>
+                                        <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
+                                    </select>
+                                    <label for="modalPlotspecialized_department">الشعبة المختصة</label>
+                                </div>
+                                @error('specialized_department')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col">
+                                <div class="form-check form-switch">
+                                    <input wire:model.defer='visibility' type="checkbox" id="modalPlotvisibility"
+                                        class="form-check-input @error('visibility') is-invalid is-filled @enderror" />
+                                    <label for="modalPlotvisibility" class="form-check-label">إمكانية
+                                        ظهوره</label>
+                                </div>
+                                @error('visibility')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div Class="row">
+                            <div class="col mb-3" style="height: 350px;">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='property_deed_image' type="file"
                                         id="property_deed_image" accept=".jpeg,.png,.jpg,.pdf"
@@ -75,12 +106,23 @@
                                             style="height: 150px" alt="">
                                     </div>
                                     <div wire:loading.remove wire:target='property_deed_image' class="mt-3">
-                                        @if ($property_deed_image && $property_deed_image instanceof \Livewire\TemporaryUploadedFile)
-                                            @if ($property_deed_image->getMimeType() == 'application/pdf')
-                                                <embed src="{{ $property_deed_image->temporaryUrl() }}"
+                                        @if ($filePreviewDeep)
+                                            @if ($property_deed_image && $property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
+                                                <embed src="{{ $filePreviewDeep }}" type="application/pdf"
+                                                    width="100%" height="300px" />
+                                            @else
+                                                <img src="{{ $filePreviewDeep }}" alt="Selected Image" class="img-fluid"
+                                                    width="100%" height="300px" />
+                                            @endif
+                                        @endif
+
+                                        @if ($previewPropertyDeedImage && empty($filePreviewDeep))
+                                            @if (pathinfo($previewPropertyDeedImage, PATHINFO_EXTENSION) == strtolower('pdf'))
+                                                <embed
+                                                    src="{{ asset('storage/Plots/' . $plot_number . '/' . $previewPropertyDeedImage) }}"
                                                     type="application/pdf" width="100%" height="300px" />
-                                            @elseif (Str::startsWith($property_deed_image->getMimeType(), 'image/'))
-                                                <img src="{{ $property_deed_image->temporaryUrl() }}"
+                                            @else
+                                                <img src="{{ asset('storage/Plots/' . $plot_number . '/' . $previewPropertyDeedImage) }}"
                                                     alt="Selected Image" class="img-fluid" width="100%"
                                                     height="300px" />
                                             @endif
@@ -88,6 +130,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="col mb-3" style="height: 350px;">
                                 <div class="form-floating form-floating-outline">
@@ -108,11 +151,11 @@
                                     <div wire:loading.remove wire:target='property_map_image' class="mt-3">
                                         @if ($filePreviewMap)
                                             @if ($property_map_image->getClientOriginalExtension() == strtolower('pdf'))
-                                                <embed src="{{ $filePreviewMap }}" type="application/pdf" width="100%"
-                                                    height="300px" />
-                                            @else
-                                                <img src="{{ $filePreviewMap }}" alt="Selected Image" class="img-fluid"
+                                                <embed src="{{ $filePreviewMap }}" type="application/pdf"
                                                     width="100%" height="300px" />
+                                            @else
+                                                <img src="{{ $filePreviewMap }}" alt="Selected Image"
+                                                    class="img-fluid" width="100%" height="300px" />
                                             @endif
                                         @endif
 

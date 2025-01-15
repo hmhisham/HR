@@ -6,7 +6,7 @@
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
                     <h3 class="pb-1 mb-2">تعديل السندات العقارية</h3>
-                    <p>نافذة التعديل</p>
+                    {{-- <p>نافذة التعديل</p> --}}
                 </div>
                 <hr class="mt-n2">
                 {{-- <h5 wire:loading wire:target="GetRealitie"
@@ -369,7 +369,7 @@
                         <hr class="my-0">
                         <div class="text-center col-12 demo-vertical-spacing mb-n4">
                             <button wire:click='update' wire:loading.attr="disabled" type="button"
-                                class="btn btn-success me-sm-3 me-1">تعديل</button>
+                                class="btn btn-primary me-sm-3 me-1">تعديل</button>
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">تجاهل</button>
                         </div>

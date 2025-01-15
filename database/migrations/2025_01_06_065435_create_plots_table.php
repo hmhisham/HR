@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('plot_number')->nullable()->comment('رقم القطعة');
             $table->string('property_deed_image')->nullable()->comment('صورة السند العقاري');
             $table->string('property_map_image')->nullable()->comment('صوره الخارطة العقارية');
+            $table->string('specialized_department')->nullable()->comment('الشعبة المختصة');
+            $table->boolean('visibility')->default(true)->comment('إمكانية ظهوره');
             $table->timestamps();
             $table->index('plot_number');
         });

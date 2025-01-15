@@ -23,6 +23,8 @@
                         <tr>
                             <th>ت</th>
                             <th Class="text-center">رقم القطعة</th>
+                            <th Class="text-center">الشعبة المختصة</th>
+                            <th class="text-center">إمكانية ظهوره</th>
                             <th Class="text-center">العملية</th>
                         </tr>
                         <tr>
@@ -30,6 +32,21 @@
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.plot_number" class="form-control"
                                     placeholder="بحث برقم المقاطعة ..">
+                            </th>
+                            <th>
+                                <select wire:model.debounce.300ms="search.specialized_department" class="form-select">
+                                    <option value="">اختر</option>
+                                    <option value="شعبة العقارات">شعبة العقارات</option>
+                                    <option value="شعبة الاملاك">شعبة الاملاك</option>
+                                    <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
+                                </select>
+                            </th>
+                            <th>
+                                <select wire:model.debounce.300ms="search.visibility" class="form-select">
+                                    <option value="">اختر</option>
+                                    <option value="1">نعم</option>
+                                    <option value="0">لا</option>
+                                </select>
                             </th>
                             <th></th>
                         </tr>
@@ -40,13 +57,15 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td Class="text-center">{{ $Plot->plot_number }}</td>
+                                <td Class="text-center">{{ $Plot->specialized_department }}</td>
+                                <td class="text-center">{{ $Plot->visibility ? 'نعم' : 'لا' }}</td>
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @can('plot-edit')
                                             <button wire:click='GetPlot({{ $Plot->id }})'
                                                 class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
                                                 data-bs-target="#editPlotModal">
-                                                <span class="mdi mdi-text-box-plus-outline fs-3"></span>
+                                                <span class="mdi mdi-text-box-edit-outline fs-3"></span>
                                             </button>
                                         @endcan
                                         <strong style="margin: 0 10px;">|</strong>

@@ -19,12 +19,16 @@ class ProvincesTableSeeder extends Seeder
         $arabicNames = [
             'الداودية', 'النجيبية', 'البيبان', 'اراضي الصبخ'
         ];
+        $section = [
+            '4'
+        ];
 
         foreach (range(1, 1000) as $index) {
             Provinces::create([
                 'user_id' => 4,
                 'province_number' => $faker->unique()->numberBetween(1, 1000),
                 'province_name' => $faker->randomElement($arabicNames),
+                'section_id' => $faker->randomElement($section),
             ]);
         }
     }

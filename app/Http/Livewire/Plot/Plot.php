@@ -18,9 +18,10 @@ class Plot extends Component
 
     public $Provinces = [];
     public $Province, $ProvinceId;
-    public $province_number, $province_name;
+    public $specialized_department, $province_number, $province_name;
     public $plot_number, $Plot, $property_deed_image, $property_map_image;
     public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
+    public $visibility = false;
 
     /*  public function mount()
     {
@@ -60,11 +61,13 @@ class Plot extends Component
         $this->ProvinceId = $this->Province->id;
         $this->province_number = $this->Province->province_number;
         $this->province_name = $this->Province->province_name;
+        $this->previewPropertyDeedImage = $this->Province->property_deed_image;
+        $this->previewPropertyMapImage = $this->Province->property_map_image;
     }
 
     public function addPlotToProvince($ProvinceId)
     {
-        $this->reset('plot_number', 'property_deed_image', 'property_map_image');
+        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image','visibility');
         $this->dispatchBrowserEvent('addPlotToProvinceModal');
     }
 
@@ -119,11 +122,13 @@ class Plot extends Component
             'user_id' => Auth::user()->id,
             'province_id' => $this->Province->id,
             'plot_number' => $this->plot_number,
+            'specialized_department' => $this->specialized_department,
+            'visibility' => $this->visibility,
             'property_deed_image' => $this->property_deed_image->hashName(),
             'property_map_image' => $this->property_map_image->hashName(),
         ]);
 
-        $this->reset('plot_number', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap');
+        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap','visibility');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تمت الإضافة بنجاح',
             'title' => 'إضافة'
