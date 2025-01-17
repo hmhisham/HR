@@ -101,7 +101,7 @@
                 </div>
                 <!-- Modal -->
                 @include('livewire.realities.modals.edit-realitie')
-                @include('livewire.realities.modals.delete-realitie')
+                @include('livewire.realities.modals.remove-realitie')
                 <!-- Modal -->
             </div>
         @endcan

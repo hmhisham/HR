@@ -131,7 +131,7 @@
                                             <input wire:model.defer='area_in_donum' type="text"
                                                 id="modalRealitiarea_in_donum" placeholder="المساحة بالدونم"
                                                 class="form-control @error('area_in_donum') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyNumberKey(event)"/>
+                                                onkeypress="return onlyNumberKey(event)" />
                                             <label for="modalRealitiarea_in_donum">المساحة بالدونم</label>
                                         </div>
                                         @error('area_in_donum')
@@ -201,43 +201,59 @@
                                                 id="modalRealitieregistered_office"
                                                 class="form-control @error('registered_office') is-invalid is-filled @enderror">
                                                 <option value="">اختر الدائرة المسجل لديها</option>
-                                                <option value="مديرية التسجيل العقاري الاولى">مديرية التسجيل العقاري الاولى
+                                                <option value="مديرية التسجيل العقاري الاولى">مديرية التسجيل العقاري
+                                                    الاولى
                                                 </option>
                                                 <option value="مديرية التسجيل العقاري الثانية">مديرية التسجيل العقاري
                                                     الثانية</option>
-                                                <option value="ملاحظية التسجيل العقاري في شط العرب">ملاحظية التسجيل العقاري
+                                                <option value="ملاحظية التسجيل العقاري في شط العرب">ملاحظية التسجيل
+                                                    العقاري
                                                     في شط العرب</option>
-                                                <option value="ملاحظية التسجيل العقاري في الزبير">ملاحظية التسجيل العقاري
+                                                <option value="ملاحظية التسجيل العقاري في الزبير">ملاحظية التسجيل
+                                                    العقاري
                                                     في الزبير</option>
                                                 <option value="ملاحظية التسجيل العقاري في ابي الخصيب">ملاحظية التسجيل
                                                     العقاري في ابي الخصيب</option>
-                                                <option value="ملاحظية التسجيل العقاري في سفوان">ملاحظية التسجيل العقاري في
+                                                <option value="ملاحظية التسجيل العقاري في سفوان">ملاحظية التسجيل
+                                                    العقاري في
                                                     سفوان</option>
-                                                <option value="ملاحظية التسجيل العقاري في الصادق">ملاحظية التسجيل العقاري
+                                                <option value="ملاحظية التسجيل العقاري في الصادق">ملاحظية التسجيل
+                                                    العقاري
                                                     في الصادق</option>
-                                                <option value="ملاحظية التسجيل العقاري في المدينة">ملاحظية التسجيل العقاري
+                                                <option value="ملاحظية التسجيل العقاري في المدينة">ملاحظية التسجيل
+                                                    العقاري
                                                     في المدينة</option>
-                                                <option value="ملاحظية التسجيل العقاري في القرنة">ملاحظية التسجيل العقاري
+                                                <option value="ملاحظية التسجيل العقاري في القرنة">ملاحظية التسجيل
+                                                    العقاري
                                                     في القرنة</option>
-                                                <option value="ملاحظية التسجيل العقاري في الهارثة">ملاحظية التسجيل العقاري
+                                                <option value="ملاحظية التسجيل العقاري في الهارثة">ملاحظية التسجيل
+                                                    العقاري
                                                     في الهارثة</option>
-                                                <option value="ملاحظية التسجيل العقاري في الفاو">ملاحظية التسجيل العقاري في
+                                                <option value="ملاحظية التسجيل العقاري في الفاو">ملاحظية التسجيل
+                                                    العقاري في
                                                     الفاو</option>
-                                                <option value="ملاحظية التسجيل العقاري في الدير">ملاحظية التسجيل العقاري في
+                                                <option value="ملاحظية التسجيل العقاري في الدير">ملاحظية التسجيل
+                                                    العقاري في
                                                     الدير</option>
-                                                <option value="ملاحظية التسجيل العقاري في ام قصر">ملاحظية التسجيل العقاري
+                                                <option value="ملاحظية التسجيل العقاري في ام قصر">ملاحظية التسجيل
+                                                    العقاري
                                                     في ام قصر</option>
-                                                <option value="ملاحظية التسجيل العقاري في النشوة">ملاحظية التسجيل العقاري
+                                                <option value="ملاحظية التسجيل العقاري في النشوة">ملاحظية التسجيل
+                                                    العقاري
                                                     في النشوة</option>
-                                                <option value="ملاحظية التسجيل العقاري في السيبة">ملاحظية التسجيل العقاري
+                                                <option value="ملاحظية التسجيل العقاري في السيبة">ملاحظية التسجيل
+                                                    العقاري
                                                     في السيبة</option>
-                                                <option value="ملاحظية التسجيل العقاري في الثغر">ملاحظية التسجيل العقاري في
+                                                <option value="ملاحظية التسجيل العقاري في الثغر">ملاحظية التسجيل
+                                                    العقاري في
                                                     الثغر</option>
                                                 <option value="ملاحظية التسجيل العقاري في الشهيد عز الدين سليم">ملاحظية
                                                     التسجيل العقاري في الشهيد عز الدين سليم</option>
-                                                <option value="ملاحظية التسجيل العقاري في المصطفى (الزوين)">ملاحظية التسجيل
+                                                <option value="ملاحظية التسجيل العقاري في المصطفى (الزوين)">ملاحظية
+                                                    التسجيل
                                                     العقاري في المصطفى (الزوين)</option>
-                                                <option value="ملاحظية التسجيل العقاري في الشافي">ملاحظية التسجيل العقاري
+                                                <option value="ملاحظية التسجيل العقاري في الشافي">ملاحظية التسجيل
+                                                    العقاري
                                                     في الشافي</option>
                                             </select>
                                             <label for="modalRealitieregistered_office">الدائرة المسجل لديها</label>
@@ -284,7 +300,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3 col">
+                                    {{-- <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='specialized_department'
                                                 id="modalRealitispecialized_department"
@@ -299,7 +315,26 @@
                                         @error('specialized_department')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
+                                    </div> --}}
+
+                                    <div class="mb-3 col">
+                                        <div class="form-floating form-floating-outline">
+                                            <select wire:model.defer='specialized_department'
+                                                id="editRealitiespecialized_department"
+                                                class="form-select @error('specialized_department') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                @foreach ($branches as $branch)
+                                                    <option value="{{ $branch->id }}">{{ $branch->branch_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <label for="modalRealitiespecialized_department">الشعبة المختصة</label>
+                                        </div>
+                                        @error('specialized_department')
+                                            <small class='text-danger inputerror'>{{ $message }}</small>
+                                        @enderror
                                     </div>
+
                                     <div class="mb-3 col">
                                         <div class="form-check form-switch">
                                             <input wire:model.defer='visibility' type="checkbox"
@@ -330,8 +365,8 @@
                             </div>
                             <div class="col-4 text-center">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='property_deed_image' type="file" id="property_deed_image"
-                                        accept=".jpeg,.png,.jpg,.pdf"
+                                    <input wire:model.defer='property_deed_image' type="file"
+                                        id="property_deed_image" accept=".jpeg,.png,.jpg,.pdf"
                                         class="form-control @error('property_deed_image') is-invalid is-filled @enderror" />
                                     <label for="property_deed_image">صورة السند العقاري</label>
                                 </div>
@@ -347,19 +382,23 @@
                                     <div wire:loading.remove wire:target='property_deed_image' class="mt-3">
                                         @if ($filePreview)
                                             @if ($property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
-                                                <embed src="{{ $filePreview }}" type="application/pdf" width="100%" height="300px" />
+                                                <embed src="{{ $filePreview }}" type="application/pdf"
+                                                    width="100%" height="300px" />
                                             @else
-                                                <img src="{{ $filePreview }}" alt="Selected Image" class="img-fluid" width="100%" height="300px" />
+                                                <img src="{{ $filePreview }}" alt="Selected Image"
+                                                    class="img-fluid" width="100%" height="300px" />
                                             @endif
                                         @endif
 
                                         @if ($previewRealitieDeedImage && !$filePreview)
                                             @if (pathinfo($previewRealitieDeedImage, PATHINFO_EXTENSION) == strtolower('pdf'))
-                                                <embed src="{{ asset('storage/Realities/' . $property_number . '/' . $previewRealitieDeedImage) }}"
+                                                <embed
+                                                    src="{{ asset('storage/Realities/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $property_number . '/' . $previewRealitieDeedImage) }}"
                                                     type="application/pdf" width="100%" height="300px" />
                                             @else
-                                                <img src="{{ asset('storage/Realities/' . $property_number . '/' . $previewRealitieDeedImage) }}"
-                                                    alt="Selected Image" class="img-fluid" width="100%" height="300px" />
+                                                <img src="{{ asset('storage/Realities/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $property_number . '/' . $previewRealitieDeedImage) }}"
+                                                    alt="Selected Image" class="img-fluid" width="100%"
+                                                    height="300px" />
                                             @endif
                                         @endif
                                     </div>

@@ -142,11 +142,13 @@ class Plot extends Component
                     return $query->where('province_id', $this->ProvinceId);
                 }),
             ],
+            'specialized_department' => 'required',
             'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
             'property_map_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
             'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
+            'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             'property_deed_image.required' => 'الملف مطلوب',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
             'property_map_image.required' => 'الملف مطلوب',

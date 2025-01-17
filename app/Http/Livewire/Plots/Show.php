@@ -32,10 +32,8 @@ class Show extends Component
     {
         $this->Province = Provinces::find($this->Provinceid);
         if ($this->Province) {
-            // استخدام العلاقة Getsection للوصول إلى القسم (Section)
             $section = $this->Province->Getsection;
             if ($section) {
-                // استخدام العلاقة GetBranch للحصول على الفروع المرتبطة بالقسم
                 $this->branches = $section->GetBranch;
             }
         }
@@ -124,11 +122,13 @@ class Show extends Component
                     return $query->where('province_id', $this->Province->id);
                 }),
             ],
+            'specialized_department' => 'required',
             'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
             'property_map_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
             'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
+            'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             'property_deed_image.required' => 'الملف مطلوب',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
             'property_map_image.required' => 'الملف مطلوب',
@@ -181,11 +181,13 @@ class Show extends Component
                     return $query->where('province_id', $this->Province->id);
                 })->ignore($this->Plot->id),
             ],
+            'specialized_department' => 'required',
             'property_deed_image' => $this->filePreviewDeep ? 'required|file|mimes:jpeg,png,jpg,pdf' : 'nullable|file|mimes:jpeg,png,jpg,pdf',
             'property_map_image' => $this->filePreviewMap ? 'required|file|mimes:jpeg,png,jpg,pdf' : 'nullable|file|mimes:jpeg,png,jpg,pdf',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
             'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
+            'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             'property_deed_image.required' => 'الملف مطلوب',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
             'property_map_image.required' => 'الملف مطلوب',

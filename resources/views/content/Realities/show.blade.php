@@ -86,8 +86,6 @@
             });
         });
 
-
-
         $(document).ready(function() {
             function initSelect2(selector, eventName, parentModal) {
                 $(selector).select2({
@@ -95,7 +93,6 @@
                     dropdownParent: $(parentModal)
                 });
                 $(selector).on('change', function(e) {
-                    console.log(`Value changed to: ${e.target.value}`);
                     livewire.emit(eventName, e.target.value);
                 });
             }
@@ -103,13 +100,16 @@
             initSelect2('#editRealitiegovernorate', 'SelectGovernorate', '#editRealitieModal');
             initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealitieModal');
             initSelect2('#editRealitiedistrict', 'SelectDistrict', '#editRealitieModal');
+            initSelect2('#addRealitiespecialized_department', 'SelectSpecializedDepartment', '#addRealitieModal');
+            initSelect2('#editRealitiespecialized_department', 'SelectSpecializedDepartment', '#editRealitieModal');
 
             window.livewire.on('select2', () => {
-                console.log("Reinitializing Select2");
                 initSelect2('#addRealitiegovernorate', 'SelectGovernorate', '#addRealitieModal');
                 initSelect2('#editRealitiegovernorate', 'SelectGovernorate', '#editRealitieModal');
                 initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealitieModal');
                 initSelect2('#editRealitiedistrict', 'SelectDistrict', '#editRealitieModal');
+                initSelect2('#addRealitiespecialized_department', 'SelectSpecializedDepartment','#addRealitieModal');
+                initSelect2('#editRealitiespecialized_department', 'SelectSpecializedDepartment','#editRealitieModal');
             });
         });
 

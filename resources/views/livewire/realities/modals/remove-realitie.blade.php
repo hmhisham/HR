@@ -9,11 +9,6 @@
                     <p>نافذة الحذف</p>
                 </div>
                 <hr class="mt-n2">
-                {{-- <h5 wire:loading wire:target="GetRealitie"
-                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار حذف البيانات...</h5> --}}
-
                 <div wire:loading.remove wire:target="destroy, GetRealitie">
                     <div class="row">
                         <div wire:loading.remove wire:target='addRealitieToPlotModal' class="text-center">

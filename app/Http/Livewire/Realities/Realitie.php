@@ -125,10 +125,6 @@ class Realitie extends Component
         $links = $Plots;
         $this->Plots = collect($Plots->items());
 
-        if ($this->section_id) {
-            $this->branch = $this->getBranchesBySectionId($this->section_id);
-        }
-
         return view('livewire.realities.realitie', [
             'links' => $links,
         ]);
@@ -145,7 +141,7 @@ class Realitie extends Component
 
         $this->Plot = Plots::find($PlotId);
         $this->PlotId = $this->Plot->id;
-        $this->plot_number = $plot_number;
+        $this->plot_number = $this->Plot->plot_number;
         $this->province_number = $province_number;
         $this->province_name = $province_name;
         $this->Province = Provinces::find($ProvinceId);
@@ -223,7 +219,7 @@ class Realitie extends Component
         ]);
         $plot = Plots::find($this->PlotId);
         $province_id = $plot->province_id;
-        $this->property_deed_image->store('public/Realities/' . $this->property_number);
+        $this->property_deed_image->store('public/Realities/' . $this->Province->province_number . '/' . $this->Plot->plot_number . '/' . $this->property_number);
 
         Realities::create([
             'user_id' => Auth::User()->id,
