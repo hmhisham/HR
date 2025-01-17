@@ -4,12 +4,10 @@
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
-                <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة سند عقاري جديد </h3>
-                </div>
-                <hr class="mt-n2">
+
                 <div wire:loading.remove wire:target="store, GetRealitie">
-                    <div class="row">
+                    <div class="mb-4 text-center mt-n4">
+                        <h3 class="pb-1 mb-2">اضافة سند عقاري جديد </h3>
                         <div wire:loading.remove wire:target='addRealitieToPlotModal' class="text-center">
                             <div class="alert alert-info" role="alert">
                                 <h5 class="pb-1 mb-2">

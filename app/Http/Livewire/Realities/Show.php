@@ -188,8 +188,8 @@ class Show extends Component
             'district' => 'required',
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
-            'specialized_department' => 'required',
-            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
+/*             'specialized_department' => 'required',
+ */            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
 
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
@@ -216,7 +216,7 @@ class Show extends Component
         $plot = Plots::find($this->Plotid);
         $province_id = $plot->province_id;
         $this->property_deed_image->store('public/Realities/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $this->property_number);
-        dd($this->specialized_department);
+
         Realities::create([
             'user_id' => Auth::User()->id,
             'province_id' => $province_id,
@@ -299,8 +299,8 @@ class Show extends Component
             'district' => 'required:realities',
             'mortgage_notes' => 'required:realities',
             'registered_office' => 'required:realities',
-            'specialized_department' => 'required:realities',
-            'property_deed_image' => $this->filePreview ? 'required|file|mimes:jpeg,png,jpg,pdf|max:1024' : 'nullable|file|mimes:jpeg,png,jpg,pdf|max:1024',
+/*             'specialized_department' => 'required:realities',
+ */            'property_deed_image' => $this->filePreview ? 'required|file|mimes:jpeg,png,jpg,pdf|max:1024' : 'nullable|file|mimes:jpeg,png,jpg,pdf|max:1024',
 
 
         ], [

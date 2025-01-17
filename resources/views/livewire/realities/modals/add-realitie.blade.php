@@ -315,7 +315,7 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='specialized_department' id="addRealitiespecialized_department"
+                                            <select wire:model='specialized_department' id="addRealitiespecialized_department"
                                                 class="form-select @error('specialized_department') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($branches as $branch)
