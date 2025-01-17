@@ -56,7 +56,7 @@
                                         <strong style="margin: 0 10px;">|</strong>
                                         @can('realitie-create')
                                             <button
-                                                wire:click="GetPlot({{ $Plot->id }}, '{{ $Plot->GetProvinces->province_number }}', '{{ $Plot->GetProvinces->province_name }}', '{{ $Plot->plot_number }}')"
+                                                wire:click="GetPlot({{ $Plot->id }}, '{{ $Plot->GetProvinces->province_number }}', '{{ $Plot->GetProvinces->province_name }}', '{{ $Plot->GetProvinces->section_id }}','{{ $Plot->plot_number }}')"
                                                 class="p-0 px-1 btn btn-text-primary waves-effect"
                                                 data-bs-toggle="modal" data-bs-target="#addRealitieToPlotModal">
                                                 <span class="mdi mdi-text-box-plus-outline fs-3"></span>

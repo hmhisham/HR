@@ -100,10 +100,13 @@
             }
             initSelect2('#addRealitiegovernorate', 'SelectGovernorate', '#addRealitieToPlotModal');
             initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealitieToPlotModal');
+            initSelect2('#addRealitiespecialized_department', 'SelectSpecializedDepartment', '#addRealitieToPlotModal');
 
             window.livewire.on('select2', () => {
                 initSelect2('#addRealitiegovernorate', 'SelectGovernorate', '#addRealitieToPlotModal');
                 initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealitieToPlotModal');
+                initSelect2('#addRealitiespecialized_department', 'SelectSpecializedDepartment', '#addRealitieToPlotModal');
+
             });
         });
 

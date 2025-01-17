@@ -6,8 +6,10 @@ use Livewire\Component;
 
 use App\Models\Plots\Plots;
 use Livewire\WithPagination;
+use App\Models\Branch\Branch;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
+use App\Models\Provinces\Provinces;
 use App\Models\Realities\Realities;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Governorates\Governorates;
@@ -23,8 +25,10 @@ class Realitie extends Component
     public $governorates = [];
     public $Districts = [];
     public $propertytypes = [];
+    public $branch = [];
+    public $Province, $ProvinceId;
     public $Plot, $PlotId;
-    public $province_number, $province_name, $plot_number;
+    public $province_number, $province_name, $plot_number, $section_id;
     public $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $notes;
     public $filePreview, $property_deed_image;
     public $visibility = false;
@@ -34,7 +38,8 @@ class Realitie extends Component
         'SelectGovernorate',
         'SelectDistrict',
         'SelectPropertyType',
-        'SelectDate'
+        'SelectDate',
+        'SelectSpecializedDepartment'
     ];
 
     public function hydrate()
@@ -48,6 +53,7 @@ class Realitie extends Component
         $this->Plot = Plots::all();
         $this->governorates = Governorates::all();
         $this->propertytypes = Propertytypes::all();
+        $this->branch = Branch::all();
     }
     //المحافظة
     public function SelectGovernorate($GovernorateID)
@@ -74,11 +80,21 @@ class Realitie extends Component
             $this->property_type = null;
         }
     }
+    //الشعبة
+    public function SelectSpecializedDepartment($SpecializedDepartmentID)
+    {
+        $specialized_department = Branch::find($SpecializedDepartmentID);
+        if ($specialized_department && $specialized_department->section_id == $this->section_id) {
+            $this->specialized_department = $SpecializedDepartmentID;
+        } else {
+            $this->specialized_department = null;
+        }
+    }
 
     public function updatedSearch($value, $key)
     {
         // إعادة تعيين الصفحة إلى الأولى فقط إذا كان البحث قد تغير
-        if (in_array($key, ['province_number', 'province_name','plot_number'])) {
+        if (in_array($key, ['province_number', 'province_name', 'plot_number'])) {
             $this->resetPage();
         }
     }
@@ -109,12 +125,21 @@ class Realitie extends Component
         $links = $Plots;
         $this->Plots = collect($Plots->items());
 
+        if ($this->section_id) {
+            $this->branch = $this->getBranchesBySectionId($this->section_id);
+        }
+
         return view('livewire.realities.realitie', [
             'links' => $links,
         ]);
     }
 
-    public function GetPlot($PlotId, $province_number, $province_name, $plot_number)
+    public function getBranchesBySectionId($sectionId)
+    {
+        return Branch::where('section_id', $sectionId)->get();
+    }
+
+    public function GetPlot($PlotId, $province_number, $province_name, $plot_number, $ProvinceId)
     {
         $this->resetValidation();
 
@@ -123,6 +148,11 @@ class Realitie extends Component
         $this->plot_number = $plot_number;
         $this->province_number = $province_number;
         $this->province_name = $province_name;
+        $this->Province = Provinces::find($ProvinceId);
+        $this->ProvinceId = $this->Province->id;
+        $this->section_id = $this->Province->section_id;
+
+        $this->branch = $this->getBranchesBySectionId($this->section_id);
     }
 
     public function addRealitieToPlot($PlotID)
