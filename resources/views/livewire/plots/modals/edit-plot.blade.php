@@ -95,10 +95,10 @@
                                         @if ($previewPropertyDeedImage && empty($filePreviewDeep))
                                             @if (pathinfo($previewPropertyDeedImage, PATHINFO_EXTENSION) == strtolower('pdf'))
                                                 <embed
-                                                    src="{{ asset('storage/Plots/' . $plot_number . '/' . $previewPropertyDeedImage) }}"
+                                                    src="{{ asset('storage/Plots/' . $this->Province->province_number . '/' . $plot_number . '/' . $previewPropertyDeedImage) }}"
                                                     type="application/pdf" width="100%" height="300px" />
                                             @else
-                                                <img src="{{ asset('storage/Plots/' . $plot_number . '/' . $previewPropertyDeedImage) }}"
+                                                <img src="{{ asset('storage/Plots/' . $this->Province->province_number . '/' . $plot_number . '/' . $previewPropertyDeedImage) }}"
                                                     alt="Selected Image" class="img-fluid" width="100%"
                                                     height="300px" />
                                             @endif
@@ -137,10 +137,10 @@
                                         @if ($previewPropertyMapImage && !$filePreviewMap)
                                             @if (pathinfo($previewPropertyMapImage, PATHINFO_EXTENSION) == strtolower('pdf'))
                                                 <embed
-                                                    src="{{ asset('storage/Plots/' . $plot_number . '/' . $previewPropertyMapImage) }}"
+                                                    src="{{ asset('storage/Plots/' . $this->Province->province_number . '/' . $plot_number . '/' . $previewPropertyMapImage) }}"
                                                     type="application/pdf" width="100%" height="300px" />
                                             @else
-                                                <img src="{{ asset('storage/Plots/' . $plot_number . '/' . $previewPropertyMapImage) }}"
+                                                <img src="{{ asset('storage/Plots/' . $this->Province->province_number . '/' . $plot_number . '/' . $previewPropertyMapImage) }}"
                                                     alt="Selected Image" class="img-fluid" width="100%"
                                                     height="300px" />
                                             @endif

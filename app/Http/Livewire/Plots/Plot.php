@@ -153,8 +153,8 @@ class Plot extends Component
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
-        $this->property_deed_image->store('public/Plots/' . $this->plot_number);
-        $this->property_map_image->store('public/Plots/' . $this->plot_number);
+        $this->property_deed_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
+        $this->property_map_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
 
         Plots::create([
             'user_id' => Auth::user()->id,

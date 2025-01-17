@@ -44,7 +44,7 @@ class Show extends Component
     public function updatedSearch($value, $key)
     {
         // إعادة تعيين الصفحة إلى الأولى فقط إذا كان البحث قد تغير
-        if (in_array($key, ['plot_number', 'specialized_department','visibility'])) {
+        if (in_array($key, ['plot_number', 'specialized_department', 'visibility'])) {
             $this->resetPage();
         }
     }
@@ -135,8 +135,8 @@ class Show extends Component
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
-        $this->property_deed_image->store('public/Plots/' . $this->plot_number);
-        $this->property_map_image->store('public/Plots/' . $this->plot_number);
+        $this->property_deed_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
+        $this->property_map_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
 
         Plots::create([
             'user_id' => Auth::User()->id,
@@ -169,7 +169,6 @@ class Show extends Component
         $this->visibility = $this->Plot->visibility;
         $this->previewPropertyDeedImage = $this->Plot->property_deed_image;
         $this->previewPropertyMapImage = $this->Plot->property_map_image;
-
     }
 
     public function update()
@@ -194,19 +193,22 @@ class Show extends Component
         ]);
 
         if ($this->filePreviewDeep) {
-            Storage::delete('public/Plots/' . $this->Plot->plot_number . '/' . $this->Plot->property_deed_image);
-            $this->property_deed_image->store('public/Plots/' . $this->plot_number);
+            Storage::delete('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $this->Plot->property_deed_image);
+            $this->property_deed_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
             $fileDeepImage = $this->property_deed_image->hashName();
         }
 
         if ($this->filePreviewMap) {
-            Storage::delete('public/Plots/' . $this->Plot->plot_number . '/' . $this->Plot->property_map_image);
-            $this->property_map_image->store('public/Plots/' . $this->plot_number);
+            Storage::delete('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $this->Plot->property_map_image);
+            $this->property_map_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
             $fileMapImage = $this->property_map_image->hashName();
         }
 
         if ($this->Plot->plot_number !== $this->plot_number) {
-            Storage::move('public/Plots/' . $this->Plot->plot_number, 'public/Plots/' . $this->plot_number);
+            Storage::move(
+                'public/Plots/' . $this->Province->province_number . '/' . $this->Plot->plot_number,
+                'public/Plots/' . $this->Province->province_number . '/' . $this->plot_number
+            );
         }
 
         $this->Plot->update([
@@ -231,7 +233,7 @@ class Show extends Component
     {
         $this->Plot->delete();
 
-        Storage::deleteDirectory('public/Plots/' . $this->plot_number);
+        Storage::deleteDirectory('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
         $this->mount();
 
         $this->dispatchBrowserEvent('success', [
