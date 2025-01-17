@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Realitie;
+namespace App\Http\Livewire\Realities;
 
 use Livewire\Component;
 
@@ -28,6 +28,7 @@ class Realitie extends Component
     public $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $notes;
     public $filePreview, $property_deed_image;
     public $visibility = false;
+    public $search = ['province_number' => '', 'province_name' => '', 'plot_number' => '',];
 
     protected $listeners = [
         'SelectGovernorate',
@@ -74,7 +75,13 @@ class Realitie extends Component
         }
     }
 
-    public $search = ['province_number' => '', 'province_name' => '', 'plot_number' => '',];
+    public function updatedSearch($value, $key)
+    {
+        // إعادة تعيين الصفحة إلى الأولى فقط إذا كان البحث قد تغير
+        if (in_array($key, ['province_number', 'province_name','plot_number'])) {
+            $this->resetPage();
+        }
+    }
 
     public function render()
     {
@@ -102,7 +109,7 @@ class Realitie extends Component
         $links = $Plots;
         $this->Plots = collect($Plots->items());
 
-        return view('livewire.realitie.realitie', [
+        return view('livewire.realities.realitie', [
             'links' => $links,
         ]);
     }

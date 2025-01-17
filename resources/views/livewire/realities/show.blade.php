@@ -14,7 +14,7 @@
                 @can('realitie-create')
                     <button wire:click='addRealitieModal' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal"
                         data-bs-target="#addRealitieModal">أضــافــة</button>
-                    @include('livewire.realitie.modals.add-realitie')
+                    @include('livewire.realities.modals.add-realitie')
                 @endcan
             </div>
         </div>
@@ -35,14 +35,14 @@
                             <th>#</th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.property_number"
-                                    class="form-control" placeholder="بحث برقم السند العقاري ..">
+                                    class="form-control" placeholder="بحث برقم السند العقاري .." wire:key="search_property_number">
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.count" class="form-control"
-                                    placeholder="بحث بالعدد ..">
+                                    placeholder="بحث بالعدد .." wire:key="search_count">
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-select">
+                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-select" wire:key="search_mortgage_notes">
                                     <option value="">اختر</option>
                                     <option value="رفع الحجز">رفع الحجز</option>
                                     <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف بالعقار الا بموافقة
@@ -51,10 +51,10 @@
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.volume_number" class="form-control"
-                                    placeholder="بحث بالجلد ..">
+                                    placeholder="بحث بالجلد .." wire:key="search_volume_number">
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.visibility" class="form-select">
+                                <select wire:model.debounce.300ms="search.visibility" class="form-select" wire:key="search_visibility">
                                     <option value="">اختر</option>
                                     <option value="1">نعم</option>
                                     <option value="0">لا</option>
@@ -97,11 +97,11 @@
                     </tbody>
                 </table>
                 <div class="mt-2 d-flex justify-content-center">
-                    {{ $links->onEachSide(0)->links() }}
+                    {{ $links->onEachSide(1)->links() }}
                 </div>
                 <!-- Modal -->
-                @include('livewire.realitie.modals.edit-realitie')
-                @include('livewire.realitie.modals.delete-realitie')
+                @include('livewire.realities.modals.edit-realitie')
+                @include('livewire.realities.modals.delete-realitie')
                 <!-- Modal -->
             </div>
         @endcan

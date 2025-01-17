@@ -19,7 +19,7 @@
 
 @section('content')
 
-    @livewire('realitie.show', ['Provinceid' => $Provinceid, 'Plotid' => $Plotid])
+    @livewire('realities.show', ['Provinceid' => $Provinceid, 'Plotid' => $Plotid])
 
 @endsection
 

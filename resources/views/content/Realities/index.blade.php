@@ -19,7 +19,7 @@
 
 @section('content')
 
-    @livewire('realitie.realitie')
+    @livewire('realities.realitie')
 
 @endsection
 
@@ -95,7 +95,6 @@
                     dropdownParent: $(parentModal)
                 });
                 $(selector).on('change', function(e) {
-                    console.log(`Value changed to: ${e.target.value}`);
                     livewire.emit(eventName, e.target.value);
                 });
             }
@@ -103,7 +102,6 @@
             initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealitieToPlotModal');
 
             window.livewire.on('select2', () => {
-                console.log("Reinitializing Select2");
                 initSelect2('#addRealitiegovernorate', 'SelectGovernorate', '#addRealitieToPlotModal');
                 initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealitieToPlotModal');
             });

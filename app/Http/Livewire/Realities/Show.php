@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Realitie;
+namespace App\Http\Livewire\Realities;
 
 use Livewire\Component;
 
@@ -33,6 +33,8 @@ class Show extends Component
     public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department,  $notes;
     public $filePreview, $property_deed_image, $previewRealitieDeedImage;
     public $visibility = false;
+    public $search = ['property_number' => '', 'count' => '', 'mortgage_notes' => '', 'volume_number' => '', 'visibility' => '',];
+
 
     protected $listeners = [
         'SelectGovernorate',
@@ -92,8 +94,13 @@ class Show extends Component
         }
     }
 
-
-    public $search = ['property_number' => '', 'count' => '', 'mortgage_notes' => '', 'volume_number' => '', 'visibility' => '',];
+    public function updatedSearch($value, $key)
+    {
+        // إعادة تعيين الصفحة إلى الأولى فقط إذا كان البحث قد تغير
+        if (in_array($key, ['property_number', 'count', 'mortgage_notes', 'volume_number', 'visibility'])) {
+            $this->resetPage();
+        }
+    }
 
     public function render()
     {
@@ -126,7 +133,7 @@ class Show extends Component
         $links = $Realities;
         $this->Realities = collect($Realities->items());
 
-        return view('livewire.realitie.show', [
+        return view('livewire.realities.show', [
             'links' => $links,
             'Realities' => $Realities,
         ]);

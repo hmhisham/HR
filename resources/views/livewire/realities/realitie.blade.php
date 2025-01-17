@@ -22,15 +22,15 @@
                             <th>#</th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.province_number"
-                                    class="form-control" placeholder="بحث برقم المقاطعة ..">
+                                    class="form-control" placeholder="بحث برقم المقاطعة .." wire:key="search_province_number">
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.province_name" class="form-control"
-                                    placeholder="بحث اسم المقاطعة ..">
+                                    placeholder="بحث اسم المقاطعة .." wire:key="search_province_name">
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.plot_number" class="form-control"
-                                    placeholder="بحث برقم القطعة ..">
+                                    placeholder="بحث برقم القطعة .." wire:key="search_plot_number">
                             </th>
                             <th></th>
                             <th></th>
@@ -70,9 +70,9 @@
                 </table>
             </div>
             <div class="mt-2 d-flex justify-content-center">
-                {{ $links->onEachSide(0)->links() }}
+                {{ $links->onEachSide(1)->links() }}
             </div>
-            @include('livewire.realitie.modals.add-realitie-plot')
+            @include('livewire.realities.modals.add-realitie-plot')
         @endcan
     </div>
 </div>
