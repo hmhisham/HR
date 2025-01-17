@@ -4,7 +4,8 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h4 class="mb-2">
-                    <span class="text-muted fw-light">الاملاك والاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
+                    <span class="text-muted fw-light">الاملاك والاراضي<span
+                            class="mdi mdi-chevron-left mdi-24px"></span></span>
                     المقاطعات
                 </h4>
                 <div>
@@ -30,12 +31,15 @@
                             <th>#</th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.province_number"
-                                    class="form-control" placeholder="بحث برقم المقاطعة ..">
+                                    class="form-control" placeholder="بحث برقم المقاطعة .."
+                                    wire:key="search_province_number">
+
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.province_name" class="form-control"
-                                    placeholder="بحث اسم المقاطعة ..">
+                                    placeholder="بحث اسم المقاطعة .." wire:key="search_province_name">
                             </th>
+
                             <th></th>
                         </tr>
                     </thead>

@@ -35,7 +35,7 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        $(document).ready(function() {
+       /*  $(document).ready(function() {
             function initSelect2(selector, eventName, parentModal) {
                 $(selector).select2({
                     placeholder: 'اختيار',
@@ -55,8 +55,16 @@
                 initSelect2('#addProvincesection_id', 'SelectSectionId', '#addprovinceModal');
                 initSelect2('#editProvincesection_id', 'SelectSectionId', '#editprovinceModal');
             });
-        });
+        }); */
 
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode < 48 || ASCIICode > 57)
+                return false;
+            return true;
+        }
+        
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
             // نطاق رموز الحروف العربية والفراغ

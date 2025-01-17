@@ -31,13 +31,21 @@ class Province extends Component
     {
         $this->sections = Sections::all();
     }
-    public function SelectSectionId($SectionIdID)
+    /* public function SelectSectionId($SectionIdID)
     {
         $section_id = Sections::find($SectionIdID);
         if ($section_id) {
             $this->section_id = $SectionIdID;
         } else {
             $this->section_id = null;
+        }
+    } */
+
+    public function updatedSearch($value, $key)
+    {
+        // إعادة تعيين الصفحة إلى الأولى فقط إذا كان البحث قد تغير
+        if (in_array($key, ['province_number', 'province_name'])) {
+            $this->resetPage();
         }
     }
 
@@ -51,7 +59,7 @@ class Province extends Component
                 $query->where('province_number', 'LIKE', $searchNumber);
             })
             ->when($this->search['province_name'], function ($query) use ($searchName) {
-                $query->orWhere('province_name', 'LIKE', $searchName);
+                $query->where('province_name', 'LIKE', $searchName);
             })
             ->orderBy('id', 'ASC')
             ->paginate(10);
@@ -79,13 +87,13 @@ class Province extends Component
         $this->validate([
             'province_number' => 'required|unique:provinces,province_number',
             'province_name' => 'required',
-            'section_id' => 'required',
+            /* 'section_id' => 'required', */
 
         ], [
             'province_number.required' => 'حقل رقم المقاطعة مطلوب',
             'province_number.unique' => 'رقم المقاطعة موجود',
             'province_name.required' => 'حقل اسم المقاطعة مطلوب',
-            'section_id.required' => 'حقل اسم القسم مطلوب',
+            /* 'section_id.required' => 'حقل اسم القسم مطلوب', */
         ]);
 
 
@@ -93,7 +101,8 @@ class Province extends Component
             'user_id' => Auth::User()->id,
             'province_number' => $this->province_number,
             'province_name' => $this->province_name,
-            'section_id' => $this->section_id,
+            /* 'section_id' => $this->section_id, */
+            'section_id' => 4,
 
         ]);
         $this->reset();
@@ -111,7 +120,7 @@ class Province extends Component
         $this->ProvinceId = $this->Province->id;
         $this->province_number = $this->Province->province_number;
         $this->province_name = $this->Province->province_name;
-        $this->section_id = $this->Province->section_id;
+        /* $this->section_id = $this->Province->section_id; */
     }
 
     public function update()
@@ -120,13 +129,13 @@ class Province extends Component
         $this->validate([
             'province_number' => 'required|unique:provinces,province_number,' . $this->Province->id . ',id',
             'province_name' => 'required:provinces',
-            'section_id' => 'required:provinces',
+            /* 'section_id' => 'required:provinces', */
 
         ], [
             'province_number.required' => 'حقل رقم المقاطعة مطلوب',
             'province_number.unique' => 'رقم المقاطعة موجود',
             'province_name.required' => 'حقل اسم المقاطعة مطلوب',
-            'section_id.required' => 'حقل اسم القسم مطلوب',
+            /*  'section_id.required' => 'حقل اسم القسم مطلوب', */
         ]);
 
         $Provinces = Provinces::find($this->ProvinceId);
@@ -134,7 +143,8 @@ class Province extends Component
             'user_id' => Auth::User()->id,
             'province_number' => $this->province_number,
             'province_name' => $this->province_name,
-            'section_id' => $this->section_id,
+            /* 'section_id' => $this->section_id, */
+            'section_id' => 4,
 
         ]);
         $this->reset();

@@ -41,7 +41,7 @@
                         </div>
 
                     </div>
-                    <div Class="row">
+                   {{--  <div Class="row">
                         <div class="mb-3 col">
                             <div class="form-floating form-floating-outline">
                                 <select wire:model.defer='section_id' id="addProvincesection_id"
@@ -57,7 +57,7 @@
                                 <small class='text-danger inputerror'>{{ $message }}</small>
                             @enderror
                         </div>
-                    </div>
+                    </div> --}}
 
                     <hr class="my-0">
 
