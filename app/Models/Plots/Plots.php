@@ -2,6 +2,7 @@
 
 namespace App\Models\Plots;
 
+use App\Models\Branch\Branch;
 use App\Models\Provinces\Provinces;
 use App\Models\Realities\Realities;
 use Illuminate\Database\Eloquent\Model;
@@ -21,5 +22,10 @@ class Plots extends Model
     public function GetProvinces()
     {
         return $this->belongsTo(Provinces::class, 'province_id');
+    }
+
+    public function Getbranc()
+    {
+        return $this->belongsTo(Branch::class, 'specialized_department');
     }
 }

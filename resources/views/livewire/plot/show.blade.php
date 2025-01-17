@@ -33,12 +33,20 @@
                                 <input type="text" wire:model.debounce.300ms="search.plot_number" class="form-control"
                                     placeholder="بحث برقم المقاطعة ..">
                             </th>
-                            <th>
+                            {{-- <th>
                                 <select wire:model.debounce.300ms="search.specialized_department" class="form-select">
                                     <option value="">اختر</option>
                                     <option value="شعبة العقارات">شعبة العقارات</option>
                                     <option value="شعبة الاملاك">شعبة الاملاك</option>
                                     <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
+                                </select>
+                            </th> --}}
+                            <th>
+                                <select wire:model.debounce.300ms="search.specialized_department" class="form-select">
+                                    <option value="">اختر</option>
+                                    @foreach ($branches as $branch)
+                                        <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                                    @endforeach
                                 </select>
                             </th>
                             <th>
@@ -57,7 +65,7 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td Class="text-center">{{ $Plot->plot_number }}</td>
-                                <td Class="text-center">{{ $Plot->specialized_department }}</td>
+                                <td class="text-center">{{ $Plot->Getbranc ? $Plot->Getbranc->branch_name : '' }}</td>
                                 <td class="text-center">{{ $Plot->visibility ? 'نعم' : 'لا' }}</td>
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">

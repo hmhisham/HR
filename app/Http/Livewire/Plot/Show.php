@@ -22,6 +22,7 @@ class Show extends Component
     public $Provinceid;
     public $Province;
     public $Plots = [];
+    public $branches = [];
     public $plot_number, $specialized_department, $Plot, $property_deed_image, $property_map_image;
     public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
     public $visibility = false;
@@ -29,9 +30,17 @@ class Show extends Component
     public function mount()
     {
         $this->Province = Provinces::find($this->Provinceid);
+        if ($this->Province) {
+            // استخدام العلاقة Getsection للوصول إلى القسم (Section)
+            $section = $this->Province->Getsection;
+            if ($section) {
+                // استخدام العلاقة GetBranch للحصول على الفروع المرتبطة بالقسم
+                $this->branches = $section->GetBranch;
+            }
+        }
     }
 
-    public $search = ['plot_number' => '', 'specialized_department' => '','visibility' => '',];
+    public $search = ['plot_number' => '', 'specialized_department' => '', 'visibility' => '',];
 
     public function render()
     {
@@ -55,6 +64,14 @@ class Show extends Component
 
         $links = $Plots;
         $this->Plots = collect($Plots->items());
+
+        if ($this->Province) {
+            $section = $this->Province->Getsection;
+            if ($section) {
+                $this->branches = $section->GetBranch;
+            }
+        }
+
         return view('livewire.plot.show', [
             'links' => $links,
             'Plots' => $Plots,
@@ -125,12 +142,12 @@ class Show extends Component
         ]);
 
         $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
-
+        $this->mount();
+        
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافة بنجاح',
             'title' => 'اضافة'
         ]);
-        $this->mount();
     }
 
     public function GetPlot($Plotid)

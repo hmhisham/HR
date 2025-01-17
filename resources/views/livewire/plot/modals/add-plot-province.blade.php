@@ -57,7 +57,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col">
+                            {{-- <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='specialized_department'
                                         id="modalPlorspecialized_department"
@@ -72,12 +72,27 @@
                                 @error('specialized_department')
                                     <small class='text-danger inputerror'>{{ $message }}</small>
                                 @enderror
+                            </div> --}}
+
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='specialized_department' id="addPlotspecialized_department"
+                                        class="form-select @error('specialized_department') is-invalid is-filled @enderror">
+                                        <option value=""></option>
+                                        @foreach ($branch as $branc)
+                                            <option value="{{ $branc->id }}">{{ $branc->branch_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="modalPlotspecialized_department">الشعبة المختصة</label>
+                                </div>
+                                @error('specialized_department')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="mb-3 col">
                                 <div class="form-check form-switch">
-                                    <input wire:model.defer='visibility' type="checkbox"
-                                        id="modalPlotvisibility"
+                                    <input wire:model.defer='visibility' type="checkbox" id="modalPlotvisibility"
                                         class="form-check-input @error('visibility') is-invalid is-filled @enderror" />
                                     <label for="modalPlotvisibility" class="form-check-label">إمكانية
                                         ظهوره</label>

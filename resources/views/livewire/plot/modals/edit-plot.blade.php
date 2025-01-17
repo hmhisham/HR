@@ -58,7 +58,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col">
+                            {{-- <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='specialized_department'
                                         id="modalPlorspecialized_department"
@@ -67,6 +67,22 @@
                                         <option value="شعبة العقارات">شعبة العقارات</option>
                                         <option value="شعبة الاملاك">شعبة الاملاك</option>
                                         <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
+                                    </select>
+                                    <label for="modalPlotspecialized_department">الشعبة المختصة</label>
+                                </div>
+                                @error('specialized_department')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div> --}}
+
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <select wire:model.defer='specialized_department' id="editPlotspecialized_department"
+                                        class="form-select @error('specialized_department') is-invalid is-filled @enderror">
+                                        <option value=""></option>
+                                        @foreach ($branches as $branch)
+                                            <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                                        @endforeach
                                     </select>
                                     <label for="modalPlotspecialized_department">الشعبة المختصة</label>
                                 </div>

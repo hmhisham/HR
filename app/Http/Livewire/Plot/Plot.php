@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Plot;
 use Livewire\Component;
 use App\Models\Plots\Plots;
 use Livewire\WithPagination;
+use App\Models\Branch\Branch;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use App\Models\Provinces\Provinces;
@@ -17,16 +18,33 @@ class Plot extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Provinces = [];
+    public $branch = [];
     public $Province, $ProvinceId;
-    public $specialized_department, $province_number, $province_name;
+    public $specialized_department, $province_number, $province_name, $section_id;
     public $plot_number, $Plot, $property_deed_image, $property_map_image;
     public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
     public $visibility = false;
 
-    /*  public function mount()
+    protected $listeners = [
+        'SelectSpecializedDepartment',
+    ];
+    public function hydrate()
     {
-        $this->Provinces = Provinces::all();
-    } */
+        $this->emit('select2');
+    }
+    public function mount()
+    {
+        $this->branch = Branch::all();
+    }
+    public function SelectSpecializedDepartment($SpecializedDepartmentID)
+    {
+        $specialized_department = Branch::find($SpecializedDepartmentID);
+        if ($specialized_department && $specialized_department->section_id == $this->section_id) {
+            $this->specialized_department = $SpecializedDepartmentID;
+        } else {
+            $this->specialized_department = null;
+        }
+    }
 
     public $search = ['province_number' => '', 'province_name' => ''];
 
@@ -47,10 +65,20 @@ class Plot extends Component
 
         $links = $Provinces;
         $this->Provinces = collect($Provinces->items());
+
+        if ($this->section_id) {
+            $this->branch = $this->getBranchesBySectionId($this->section_id);
+        }
+
         return view('livewire.plot.plot', [
             'Provinces' => $Provinces,
             'links' => $links,
         ]);
+    }
+
+    public function getBranchesBySectionId($sectionId)
+    {
+        return Branch::where('section_id', $sectionId)->get();
     }
 
     public function GetProvince($ProvinceId)
@@ -61,13 +89,16 @@ class Plot extends Component
         $this->ProvinceId = $this->Province->id;
         $this->province_number = $this->Province->province_number;
         $this->province_name = $this->Province->province_name;
+        $this->section_id = $this->Province->section_id;
         $this->previewPropertyDeedImage = $this->Province->property_deed_image;
         $this->previewPropertyMapImage = $this->Province->property_map_image;
+
+        $this->branch = $this->getBranchesBySectionId($this->section_id);
     }
 
     public function addPlotToProvince($ProvinceId)
     {
-        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image','visibility');
+        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'visibility');
         $this->dispatchBrowserEvent('addPlotToProvinceModal');
     }
 
@@ -128,11 +159,13 @@ class Plot extends Component
             'property_map_image' => $this->property_map_image->hashName(),
         ]);
 
-        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap','visibility');
+        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تمت الإضافة بنجاح',
             'title' => 'إضافة'
         ]);
+
+
         $this->mount();
     }
 }

@@ -39,6 +39,26 @@
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
 
     <script>
+        $(document).ready(function() {
+                function initSelect2(selector, eventName, parentModal) {
+                    $(selector).select2({
+                        placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    livewire.emit(eventName, e.target.value);
+                });
+            }
+            // add and edit Branch
+            initSelect2('#addPlotspecialized_department', 'SelectSpecializedDepartment', '#addplotModal');
+            initSelect2('#editPlotspecialized_department', 'SelectSpecializedDepartment', '#editplotModal');
+            window.livewire.on('select2', () => {
+                Console.log("Reinitializing Select2");
+                initSelect2('#addPlotspecialized_department', 'SelectSpecializedDepartment', '#addplotModal');
+                initSelect2('#editPlotspecialized_department', 'SelectSpecializedDepartment', '#editplotModal');
+            });
+        });
+
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
@@ -47,6 +67,18 @@
             return true;
         }
 
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-start',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
         window.addEventListener('PlotModalShow', event => {
             $('#plot_number').focus();
         })
@@ -54,7 +86,11 @@
             $('#editPlot_number').focus();
         })
 
+        window.addEventListener('message', event => {
+            alert()
+        })
         window.addEventListener('success', event => {
+            alert()
             $('#addPlotModal').modal('hide');
             $('#editPlotModal').modal('hide');
             $('#deletePlotModal').modal('hide');

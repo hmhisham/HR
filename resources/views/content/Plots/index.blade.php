@@ -39,6 +39,25 @@
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
 
     <script>
+        $(document).ready(function() {
+            Function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    Console.log(`Value changed to: ${e.target.value}`);
+                    livewire.emit(eventName, e.target.value);
+                });
+            }
+            // add and edit Branch
+            initSelect2('#addPlotspecialized_department', 'SelectSpecializedDepartment', '#addPlotToProvinceModal');
+            window.livewire.on('select2', () => {
+                Console.log("Reinitializing Select2");
+                initSelect2('#addPlotspecialized_department', 'SelectSpecializedDepartment','#addPlotToProvinceModal');
+            });
+        });
+
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
@@ -57,23 +76,34 @@
             $('#plot_number').focus();
         })
 
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-start',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        window.addEventListener('ProvinceModalShow', event => {
+            setTimeout(() => {
+                $('#id').focus();
+            }, 100);
+        })
+
         window.addEventListener('success', event => {
-            $('#addpreciseModal').modal('hide');
+            $('#addPlotToProvinceModal').modal('hide');
+            $('#editprovinceModal').modal('hide');
+            $('#removeprovinceModal').modal('hide');
+            dd()
             Toast.fire({
                 icon: 'success',
                 title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
-        window.addEventListener('error', event => {
-            $('#addProvinceModal').modal('hide');
-            $('#editProvinceModal').modal('hide');
-            $('#addPlotToProvinceModal').modal('hide');
 
-            Toast.fire({
-                icon: 'error',
-                title: event.detail.title + '<hr>' + event.detail.message,
-                timer: 5000,
-            })
-        })
     </script>
 @endsection

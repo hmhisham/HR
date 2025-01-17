@@ -9,6 +9,7 @@ use App\Http\Controllers\Plots\PlotsController;
 use App\Http\Controllers\Units\UnitsController;
 use App\Http\Controllers\Wives\WivesController;
 use App\Http\Controllers\Branch\BranchController;
+use App\Http\Controllers\Estate\EstateController;
 use App\Http\Controllers\Grades\GradesController;
 use App\Http\Controllers\Iaccts\IacctsController;
 use App\Http\Controllers\Inputs\InputsController;
@@ -201,7 +202,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::GET('Show-Realitie/{Plotid}', [RealitiesController::class, 'ShowRealitie'])->name('showRealities');
 
 
-    
+
 
     //الاملاك
     Route::RESOURCE('Property', PropertyController::class);

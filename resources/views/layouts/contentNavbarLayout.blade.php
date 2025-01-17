@@ -206,7 +206,7 @@
                             </li> --}}
 
                             <li
-                                class="menu-item {{ request()->is('Provinces', 'Plots', 'Show-Plot/*', 'Realities', 'Show-Realitie/*', 'Boycotts', 'Bonds', 'Bond-Show/*', 'Property') ? 'open active' : '' }}">
+                                class="menu-item {{ request()->is('Provinces', 'Plots', 'Show-Plot/*', 'Realities', 'Show-Realitie/*', 'Boycotts', 'Bonds', 'Bond-Show/*', 'Property','Estate') ? 'open active' : '' }}">
                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class='menu-icon tf-icons'
                                         style="width: 22px;">
@@ -250,7 +250,7 @@
                                 <ul class="menu-sub">
                                     <li Class="menu-item {{ request()->Is('Property') ? 'active' : '' }}">
                                         <a href = "{{ Route('Property.index') }}" Class="menu-link">
-                                            <div>الأملاك</div>
+                                            <div>الاملاك القديم عوفه</div>
                                         </a>
                                     </li>
                                 </ul>
