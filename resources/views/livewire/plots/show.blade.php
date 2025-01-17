@@ -11,7 +11,7 @@
                 @can('plot-create')
                     <button wire:click='addPlotModal' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal"
                         data-bs-target="#addPlotModal">أضــافــة</button>
-                    @include('livewire.plot.modals.add-plot')
+                    @include('livewire.plots.modals.add-plot')
                 @endcan
             </div>
         </div>
@@ -31,18 +31,11 @@
                             <th>#</th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.plot_number" class="form-control"
-                                    placeholder="بحث برقم المقاطعة ..">
+                                    placeholder="بحث برقم المقاطعة .." wire:key="search_plot_number">
                             </th>
-                            {{-- <th>
-                                <select wire:model.debounce.300ms="search.specialized_department" class="form-select">
-                                    <option value="">اختر</option>
-                                    <option value="شعبة العقارات">شعبة العقارات</option>
-                                    <option value="شعبة الاملاك">شعبة الاملاك</option>
-                                    <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
-                                </select>
-                            </th> --}}
                             <th>
-                                <select wire:model.debounce.300ms="search.specialized_department" class="form-select">
+                                <select wire:model.debounce.300ms="search.specialized_department" class="form-select"
+                                    wire:key="search_specialized_department">
                                     <option value="">اختر</option>
                                     @foreach ($branches as $branch)
                                         <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
@@ -50,7 +43,8 @@
                                 </select>
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.visibility" class="form-select">
+                                <select wire:model.debounce.300ms="search.visibility" class="form-select"
+                                    wire:key="search_visibility">
                                     <option value="">اختر</option>
                                     <option value="1">نعم</option>
                                     <option value="0">لا</option>
@@ -80,7 +74,7 @@
                                         @can('plot-delete')
                                             <button wire:click='GetPlot({{ $Plot->id }})'
                                                 class="p-0 px-1 btn btn-text-danger waves-effect" data-bs-toggle="modal"
-                                                data-bs-target="#deletePlotModal">
+                                                data-bs-target="#removePlotModal">
                                                 <span class="mdi mdi-delete-outline fs-3"></span>
                                             </button>
                                         @endcan
@@ -92,10 +86,10 @@
                 </table>
             </div>
             <div class="mt-2 d-flex justify-content-center">
-                {{ $links->onEachSide(0)->links() }}
+                {{ $links->onEachSide(1)->links() }}
             </div>
-            @include('livewire.plot.modals.edit-plot')
-            @include('livewire.plot.modals.delete-plot')
+            @include('livewire.plots.modals.edit-plot')
+            @include('livewire.plots.modals.remove-plot')
         @endcan
     </div>
 </div>

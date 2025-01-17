@@ -12,10 +12,10 @@ class PlotsSeeder extends Seeder
      */
     public function run(): void
     {
-        $departments = ['شعبة الأملاك', 'شعبة العقارات', 'شعبة إسكان الموانئ'];
+        $departments = ['15', '16', '17','18'];
 
-        foreach (range(1, 5) as $province_id) {
-            foreach (range(1, 2) as $plot_number) {
+        foreach (range(1, 2) as $province_id) {
+            foreach (range(1, 12) as $plot_number) {
                 DB::table('plots')->insert([
                     'user_id' => 4,  // تعيين رقم المستخدم إلى 4
                     'province_id' => $province_id,  // تعيين رقم المقاطعة

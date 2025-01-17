@@ -1,53 +1,27 @@
 <!-- Add Province Modal -->
-<div wire:ignore.self class="modal fade" id="addPlotModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="addPlotToProvinceModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
-                <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">اضافة قطعة أرض جديدة</h3>
-                    <p>نافذة الأضافة </p>
-                </div>
-
-                <hr class="mt-n2">
-
-                {{-- <h5 wire:loading wire:target="GetProvince" wire:loading.class="d-flex justify-content-center">
-                    جار معالجة البيانات...
-                </h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center">
-                    جار حفظ البيانات
-                </h5> --}}
-
-                {{-- <div wire:loading wire:target="store" wire:loading.class="d-flex justify-content-center">
-                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 150px"
-                        alt="">
-                </div> --}}
-
-                <div wire:loading.remove wire:target="store">
-                    {{-- <div Class="row mb-4">
-                        <div class="col text-center alert alert-outline-dark mb-0 pb-0">
-                            <label class="w-100 mb-1">رقم وأسم المقاطعة</label>
-                            <hr class="m-0 mb-1">
-                            <h5 class="">{{ $this->Province->province_number }} -
-                                {{ $this->Province->province_name }}</h5>
-                        </div>
-                    </div> --}}
-                    <div class="row">
+                <div wire:loading.remove wire:target="GetProvince, update">
+                    <div class="mb-4 text-center mt-n4">
+                        <h4 class="pb-1 mb-2">اضافة قطعة جديدة</h4>
                         <div class="mb-3 col text-center">
                             <div class="form-floating form-floating-outline">
                                 <div class="alert alert-info" role="alert">
                                     <h5 class="pb-1 mb-2"><strong>رقم واسم المقاطعة:</strong> <span
-                                            style="color: red;">{{ $this->Province->province_number ?? '' }} -
-                                            {{ $this->Province->province_name ?? '' }}</span>
+                                            style="color: red;">{{ $province_number ?? '' }} -
+                                            {{ $province_name ?? '' }}</span>
                                     </h5>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <form id="addprovinceModalForm" autocomplete="off">
+                    <form id="addPlotProvinceModalForm" autocomplete="off">
                         <div Class="row">
-                            <div class="col mb-3">
+                            <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='plot_number' type="text" id="plot_number"
                                         placeholder="رقم القطعة"
@@ -60,30 +34,13 @@
                                 @enderror
                             </div>
 
-                            {{-- <div class="mb-3 col">
-                                <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='specialized_department'
-                                        id="modalPlorspecialized_department"
-                                        class="form-select @error('specialized_department') is-invalid is-filled @enderror">
-                                        <option value="">اختر</option>
-                                        <option value="شعبة العقارات">شعبة العقارات</option>
-                                        <option value="شعبة الاملاك">شعبة الاملاك</option>
-                                        <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
-                                    </select>
-                                    <label for="modalPlotspecialized_department">الشعبة المختصة</label>
-                                </div>
-                                @error('specialized_department')
-                                    <small class='text-danger inputerror'>{{ $message }}</small>
-                                @enderror
-                            </div> --}}
-
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <select wire:model.defer='specialized_department' id="addPlotspecialized_department"
                                         class="form-select @error('specialized_department') is-invalid is-filled @enderror">
                                         <option value=""></option>
-                                        @foreach ($branches as $branch)
-                                            <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                                        @foreach ($branch as $branc)
+                                            <option value="{{ $branc->id }}">{{ $branc->branch_name }}</option>
                                         @endforeach
                                     </select>
                                     <label for="modalPlotspecialized_department">الشعبة المختصة</label>
@@ -133,7 +90,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col mb-3" style="height: 350px;">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='property_map_image' type="file" id="property_map_image"

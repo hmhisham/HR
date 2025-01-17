@@ -5,7 +5,7 @@
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">حذف المقاطعة</h3>
+                    <h4 class="pb-1 mb-2">حذف المقاطعة</h4>
                     <p>نافذة الحذف</p>
                 </div>
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Plot;
+namespace App\Http\Livewire\Plots;
 
 use Livewire\Component;
 use App\Models\Plots\Plots;
@@ -24,6 +24,7 @@ class Plot extends Component
     public $plot_number, $Plot, $property_deed_image, $property_map_image;
     public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
     public $visibility = false;
+    public $search = ['province_number' => '', 'province_name' => ''];
 
     protected $listeners = [
         'SelectSpecializedDepartment',
@@ -46,7 +47,13 @@ class Plot extends Component
         }
     }
 
-    public $search = ['province_number' => '', 'province_name' => ''];
+    public function updatedSearch($value, $key)
+    {
+        // إعادة تعيين الصفحة إلى الأولى فقط إذا كان البحث قد تغير
+        if (in_array($key, ['province_number', 'province_name'])) {
+            $this->resetPage();
+        }
+    }
 
     public function render()
     {
@@ -70,7 +77,7 @@ class Plot extends Component
             $this->branch = $this->getBranchesBySectionId($this->section_id);
         }
 
-        return view('livewire.plot.plot', [
+        return view('livewire.plots.plot', [
             'Provinces' => $Provinces,
             'links' => $links,
         ]);
@@ -164,7 +171,6 @@ class Plot extends Component
             'message' => 'تمت الإضافة بنجاح',
             'title' => 'إضافة'
         ]);
-
 
         $this->mount();
     }

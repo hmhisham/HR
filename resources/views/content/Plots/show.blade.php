@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'عرض قطع الاراضي')
+@section('title', 'عرض القطعة')
 
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
@@ -16,7 +16,7 @@
 
 @section('content')
 
-    @livewire('plot.show', ['Provinceid' => $Provinceid])
+    @livewire('plots.show', ['Provinceid' => $Provinceid])
 
 @endsection
 
@@ -40,9 +40,9 @@
 
     <script>
         $(document).ready(function() {
-                function initSelect2(selector, eventName, parentModal) {
-                    $(selector).select2({
-                        placeholder: 'اختيار',
+            function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
                     dropdownParent: $(parentModal)
                 });
                 $(selector).on('change', function(e) {
@@ -53,9 +53,10 @@
             initSelect2('#addPlotspecialized_department', 'SelectSpecializedDepartment', '#addplotModal');
             initSelect2('#editPlotspecialized_department', 'SelectSpecializedDepartment', '#editplotModal');
             window.livewire.on('select2', () => {
-                Console.log("Reinitializing Select2");
-                initSelect2('#addPlotspecialized_department', 'SelectSpecializedDepartment', '#addplotModal');
-                initSelect2('#editPlotspecialized_department', 'SelectSpecializedDepartment', '#editplotModal');
+                initSelect2('#addPlotspecialized_department', 'SelectSpecializedDepartment',
+                    '#addplotModal');
+                initSelect2('#editPlotspecialized_department', 'SelectSpecializedDepartment',
+                    '#editplotModal');
             });
         });
 
@@ -79,32 +80,17 @@
             }
         })
 
-        window.addEventListener('PlotModalShow', event => {
-            $('#plot_number').focus();
-        })
-        window.addEventListener('editPlotModalShow', event => {
-            $('#editPlot_number').focus();
-        })
-
-        window.addEventListener('message', event => {
-            alert()
-        })
         window.addEventListener('success', event => {
-            alert()
             $('#addPlotModal').modal('hide');
             $('#editPlotModal').modal('hide');
-            $('#deletePlotModal').modal('hide');
-
+            $('#removePlotModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
         window.addEventListener('error', event => {
-            $('#addPlotModal').modal('hide');
-            $('#editPlotModal').modal('hide');
-            $('#deletePlotModal').modal('hide');
-
+            $('#removePlotModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.title + '<hr>' + event.detail.message,

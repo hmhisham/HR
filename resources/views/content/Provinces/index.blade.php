@@ -1,5 +1,5 @@
 @extends('layouts/layoutMaster')
-@section('title', 'Provinces')
+@section('title', 'المقاطعات')
 @section('vendor-style')
     <link rel="stylesheet"href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel = "stylesheet"href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
@@ -64,7 +64,7 @@
                 return false;
             return true;
         }
-        
+
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
             // نطاق رموز الحروف العربية والفراغ

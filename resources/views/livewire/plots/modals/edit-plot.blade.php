@@ -1,36 +1,12 @@
-<!-- Add Province Modal -->
+<!-- Add Plot Modal -->
 <div wire:ignore.self class="modal fade" id="editPlotModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
-                <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">تعديل بيانات القطعة</h3>
-                </div>
-
-                <hr class="mt-n2">
-
-                {{-- <h5 wire:loading wire:target="GetProvince" wire:loading.class="d-flex justify-content-center">
-                    جار معالجة البيانات...
-                </h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center">
-                    جار حفظ البيانات
-                </h5> --}}
-
-                {{--  <div wire:loading wire:target="update, GetPlot" wire:loading.class="d-flex justify-content-center">
-                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 150px" alt="">
-                </div> --}}
-
                 <div wire:loading.remove wire:target="update, GetPlot">
-                    {{-- <div Class="row mb-4">
-                        <div class="col text-center alert alert-outline-dark mb-0 pb-0">
-                            <label class="w-100 mb-1">رقم وأسم المقاطعة</label>
-                            <hr class="m-0 mb-1">
-                            <h5 class="">{{ $this->Province->province_number }} - {{ $this->Province->province_name }}</h5>
-                        </div>
-                    </div> --}}
-
-                    <div class="row">
+                    <div class="mb-4 text-center mt-n4">
+                        <h4 class="pb-1 mb-2">تعديل بيانات القطعة</h4>
                         <div class="mb-3 col text-center">
                             <div class="form-floating form-floating-outline">
                                 <div class="alert alert-success" role="alert">
@@ -43,7 +19,7 @@
                         </div>
                     </div>
 
-                    <form id="addprovinceModalForm" autocomplete="off">
+                    <form id="editPloteModalForm" autocomplete="off">
                         <div Class="row">
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
@@ -58,26 +34,10 @@
                                 @enderror
                             </div>
 
-                            {{-- <div class="mb-3 col">
-                                <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='specialized_department'
-                                        id="modalPlorspecialized_department"
-                                        class="form-select @error('specialized_department') is-invalid is-filled @enderror">
-                                        <option value="">اختر</option>
-                                        <option value="شعبة العقارات">شعبة العقارات</option>
-                                        <option value="شعبة الاملاك">شعبة الاملاك</option>
-                                        <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
-                                    </select>
-                                    <label for="modalPlotspecialized_department">الشعبة المختصة</label>
-                                </div>
-                                @error('specialized_department')
-                                    <small class='text-danger inputerror'>{{ $message }}</small>
-                                @enderror
-                            </div> --}}
-
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='specialized_department' id="editPlotspecialized_department"
+                                    <select wire:model.defer='specialized_department'
+                                        id="editPlotspecialized_department"
                                         class="form-select @error('specialized_department') is-invalid is-filled @enderror">
                                         <option value=""></option>
                                         @foreach ($branches as $branch)
@@ -127,8 +87,8 @@
                                                 <embed src="{{ $filePreviewDeep }}" type="application/pdf"
                                                     width="100%" height="300px" />
                                             @else
-                                                <img src="{{ $filePreviewDeep }}" alt="Selected Image" class="img-fluid"
-                                                    width="100%" height="300px" />
+                                                <img src="{{ $filePreviewDeep }}" alt="Selected Image"
+                                                    class="img-fluid" width="100%" height="300px" />
                                             @endif
                                         @endif
 
@@ -146,7 +106,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="col mb-3" style="height: 350px;">
                                 <div class="form-floating form-floating-outline">
@@ -205,4 +164,4 @@
         </div>
     </div>
 </div>
-<!--/ Add Province Modal -->
+<!--/ Add Plot Modal -->

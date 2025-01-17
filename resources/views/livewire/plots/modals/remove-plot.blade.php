@@ -1,36 +1,12 @@
 <!-- Add Province Modal -->
-<div wire:ignore.self class="modal fade" id="deletePlotModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="removePlotModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
-                <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">حذف بيانات القطعة</h3>
-                </div>
-
-                <hr class="mt-n2">
-
-                {{-- <h5 wire:loading wire:target="GetProvince" wire:loading.class="d-flex justify-content-center">
-                    جار معالجة البيانات...
-                </h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center">
-                    جار حفظ البيانات
-                </h5> --}}
-
-                {{-- <div wire:loading wire:target="destroy, GetPlot" wire:loading.class="d-flex justify-content-center">
-                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 150px"
-                        alt="">
-                </div>
- --}}
                 <div wire:loading.remove wire:target="destroy, GetPlot">
-                    {{--  <div Class="row mb-4">
-                        <div class="col text-center alert alert-outline-dark mb-0 pb-0">
-                            <label class="w-100 mb-1">رقم وأسم المقاطعة</label>
-                            <hr class="m-0 mb-1">
-                            <h5 class="">{{ $this->Province->province_number }} - {{ $this->Province->province_name }}</h5>
-                        </div>
-                    </div> --}}
-                    <div class="row">
+                    <div class="mb-4 text-center mt-n4">
+                        <h4 class="pb-1 mb-2">حذف بيانات القطعة</h4>
                         <div class="mb-3 col text-center">
                             <div class="form-floating form-floating-outline">
                                 <div class="alert alert-danger" role="alert">
@@ -43,7 +19,7 @@
                         </div>
                     </div>
 
-                    <form id="addprovinceModalForm" autocomplete="off">
+                    <form id="removePlotModalForm" autocomplete="off">
                         <div Class="row">
                             <div class="row">
                                 <div class="col text-center">
@@ -69,4 +45,4 @@
         </div>
     </div>
 </div>
-<!--/ Add Province Modal -->
+<!--/ remove Plot Modal -->

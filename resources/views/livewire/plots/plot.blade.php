@@ -2,7 +2,8 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <h4 class="mb-2">
-                <span class="text-muted fw-light">الاملاك والاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
+                <span class="text-muted fw-light">الاملاك والاراضي<span
+                        class="mdi mdi-chevron-left mdi-24px"></span></span>
                 القطع
             </h4>
         </div>
@@ -21,11 +22,12 @@
                             <th>#</th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.province_number"
-                                    class="form-control" placeholder="بحث برقم المقاطعة ..">
+                                    class="form-control" placeholder="بحث برقم المقاطعة .."
+                                    wire:key="search_province_number">
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.province_name" class="form-control"
-                                    placeholder="بحث اسم المقاطعة ..">
+                                    placeholder="بحث اسم المقاطعة .." wire:key="search_province_name">
                             </th>
                             <th></th>
                             <th></th>
@@ -50,8 +52,8 @@
                                         <strong style="margin: 0 10px;">|</strong>
                                         @can('plot-create')
                                             <button wire:click='GetProvince({{ $Province->id }}, true)'
-                                                class="p-0 px-1 btn btn-text-primary waves-effect"
-                                                data-bs-toggle="modal" data-bs-target="#addPlotToProvinceModal">
+                                                class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#addPlotToProvinceModal">
                                                 <span class="mdi mdi-text-box-plus-outline fs-3"></span>
                                             </button>
                                         @endcan
@@ -63,9 +65,9 @@
                 </table>
             </div>
             <div class="mt-2 d-flex justify-content-center">
-                {{ $links->onEachSide(0)->links() }}
+                {{ $links->onEachSide(1)->links() }}
             </div>
-            @include('livewire.plot.modals.add-plot-province')
+            @include('livewire.plots.modals.add-plot-province')
         @endcan
     </div>
 </div>

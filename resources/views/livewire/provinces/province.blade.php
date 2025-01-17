@@ -33,13 +33,11 @@
                                 <input type="text" wire:model.debounce.300ms="search.province_number"
                                     class="form-control" placeholder="بحث برقم المقاطعة .."
                                     wire:key="search_province_number">
-
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.province_name" class="form-control"
                                     placeholder="بحث اسم المقاطعة .." wire:key="search_province_name">
                             </th>
-
                             <th></th>
                         </tr>
                     </thead>

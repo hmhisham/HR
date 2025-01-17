@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Plot;
+namespace App\Http\Livewire\Plots;
 
 /* use Storage; */
 
@@ -26,6 +26,7 @@ class Show extends Component
     public $plot_number, $specialized_department, $Plot, $property_deed_image, $property_map_image;
     public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
     public $visibility = false;
+    public $search = ['plot_number' => '', 'specialized_department' => '', 'visibility' => '',];
 
     public function mount()
     {
@@ -40,7 +41,13 @@ class Show extends Component
         }
     }
 
-    public $search = ['plot_number' => '', 'specialized_department' => '', 'visibility' => '',];
+    public function updatedSearch($value, $key)
+    {
+        // إعادة تعيين الصفحة إلى الأولى فقط إذا كان البحث قد تغير
+        if (in_array($key, ['plot_number', 'specialized_department','visibility'])) {
+            $this->resetPage();
+        }
+    }
 
     public function render()
     {
@@ -72,7 +79,7 @@ class Show extends Component
             }
         }
 
-        return view('livewire.plot.show', [
+        return view('livewire.plots.show', [
             'links' => $links,
             'Plots' => $Plots,
         ]);
@@ -143,7 +150,7 @@ class Show extends Component
 
         $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
         $this->mount();
-        
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافة بنجاح',
             'title' => 'اضافة'
@@ -163,7 +170,6 @@ class Show extends Component
         $this->previewPropertyDeedImage = $this->Plot->property_deed_image;
         $this->previewPropertyMapImage = $this->Plot->property_map_image;
 
-        $this->dispatchBrowserEvent('editPlotModalShow');
     }
 
     public function update()
@@ -213,24 +219,24 @@ class Show extends Component
         ]);
 
         $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
+        $this->mount();
 
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
         ]);
-        $this->mount();
     }
 
     public function destroy()
     {
         $this->Plot->delete();
 
-        Storage::deleteDirectory('public/Plots/' . $this->Plot->plot_number);
+        Storage::deleteDirectory('public/Plots/' . $this->plot_number);
+        $this->mount();
 
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الحذف بنجاح',
             'title' => 'حذف'
         ]);
-        $this->mount();
     }
 }
