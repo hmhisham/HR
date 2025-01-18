@@ -64,8 +64,9 @@
                                                 <i class="mdi mdi-text-box-edit-outline fs-3"></i>
                                             </button>
                                         @endcan
-                                        <strong style="margin: 0 10px;">|</strong>
+
                                         @can('district-delete')
+                                            <strong style="margin: 0 10px;">|</strong>
                                             <button wire:click="GetDistrict({{ $District->id }})"
                                                 class="p-0 px-1 btn btn-text-danger waves-effect {{ $District->active ? 'disabled' : '' }}"
                                                 data-bs-toggle="modal" data-bs-target="#removedistrictModal">

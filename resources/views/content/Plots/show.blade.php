@@ -39,6 +39,78 @@
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
 
     <script>
+        function printImages(deedImageUrl, mapImageUrl) {
+            // إنشاء iframe مخفي
+            const iframe = document.createElement('iframe');
+            iframe.style.position = 'fixed';
+            iframe.style.top = '-1000px'; // إخفاء iframe خارج الشاشة
+            iframe.style.left = '-1000px';
+            iframe.style.width = '1px';
+            iframe.style.height = '1px';
+            iframe.style.border = 'none';
+
+            // محتوى HTML للصور مع علامة مائية
+            const content = `
+        <html>
+            <head>
+                <title>طباعة الصور</title>
+                <style>
+                    body { font-family: Arial, sans-serif; }
+                    .image-container {
+                        position: relative;
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
+                    img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                    .watermark {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        font-size: 40px;
+                        font-weight: bold;
+                        color: rgba(0, 0, 0, 0.2); /* لون شبه شفاف */
+                        pointer-events: none; /* تجنب التفاعل مع العلامة المائية */
+                        user-select: none; /* منع تحديد النص */
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="image-container">
+                    <h2>صورة السند</h2>
+                    <div style="position: relative;">
+                        <img src="${deedImageUrl}" alt="صورة السند">
+                        <div class="watermark">خاص بشعبة الخرائط والمرتسمات</div>
+                    </div>
+                </div>
+                <div class="image-container">
+                    <h2>صورة الخريطة</h2>
+                    <div style="position: relative;">
+                        <img src="${mapImageUrl}" alt="صورة الخريطة">
+                        <div class="watermark">خاص بشعبة الخرائط والمرتسمات</div>
+                    </div>
+                </div>
+            </body>
+        </html>
+    `;
+
+            // إضافة iframe إلى body
+            document.body.appendChild(iframe);
+
+            // كتابة المحتوى في iframe
+            iframe.contentDocument.write(content);
+            iframe.contentDocument.close();
+
+            // طباعة iframe بعد تحميل الصور
+            iframe.onload = function() {
+                iframe.contentWindow.print();
+                document.body.removeChild(iframe); // إزالة iframe بعد الطباعة
+            };
+        }
+
         $(document).ready(function() {
             function initSelect2(selector, eventName, parentModal) {
                 $(selector).select2({

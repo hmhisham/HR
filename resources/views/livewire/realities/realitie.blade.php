@@ -2,7 +2,8 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <h4 class="mb-2">
-                <span class="text-muted fw-light">الاملاك والاراضي<span class="mdi mdi-chevron-left mdi-24px"></span></span>
+                <span class="text-muted fw-light">الاملاك والاراضي<span
+                        class="mdi mdi-chevron-left mdi-24px"></span></span>
                 السندات العقارية
             </h4>
         </div>
@@ -22,7 +23,8 @@
                             <th>#</th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.province_number"
-                                    class="form-control" placeholder="بحث برقم المقاطعة .." wire:key="search_province_number">
+                                    class="form-control" placeholder="بحث برقم المقاطعة .."
+                                    wire:key="search_province_number">
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.province_name" class="form-control"
@@ -53,12 +55,13 @@
                                                 <span class="mdi mdi-eye-outline fs-3"></span>
                                             </a>
                                         @endcan
-                                        <strong style="margin: 0 10px;">|</strong>
+
                                         @can('realitie-create')
+                                            <strong style="margin: 0 10px;">|</strong>
                                             <button
                                                 wire:click="GetPlot({{ $Plot->id }}, '{{ $Plot->GetProvinces->province_number }}', '{{ $Plot->GetProvinces->province_name }}', '{{ $Plot->GetProvinces->section_id }}','{{ $Plot->plot_number }}')"
-                                                class="p-0 px-1 btn btn-text-primary waves-effect"
-                                                data-bs-toggle="modal" data-bs-target="#addRealitieToPlotModal">
+                                                class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#addRealitieToPlotModal">
                                                 <span class="mdi mdi-text-box-plus-outline fs-3"></span>
                                             </button>
                                         @endcan
