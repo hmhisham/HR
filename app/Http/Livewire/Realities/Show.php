@@ -154,7 +154,7 @@ class Show extends Component
         $this->dispatchBrowserEvent('addRealitieModal');
     }
 
-    public function updatedRealitieImage()
+    /* public function updatedRealitieImage()
     {
         $this->validate([
             'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
@@ -163,6 +163,19 @@ class Show extends Component
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
         $this->filePreview = $this->property_deed_image->temporaryUrl();
+    } */
+
+    public function updatedPropertyDeedImage()
+    {
+        $this->validate([
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
+        ], [
+            'property_deed_image.required' => 'الملف مطلوب',
+            'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
+        ]);
+
+        $this->filePreview = $this->property_deed_image->temporaryUrl();
+        $this->previewRealitieDeedImage = null;
     }
 
     public function store()
@@ -188,9 +201,8 @@ class Show extends Component
             'district' => 'required',
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
-/*             'specialized_department' => 'required',
- */            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
-
+            'specialized_department' => 'required',
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'property_number.unique' => 'رقم العقار موجود مسبقًا ضمن هذه القطعة',
@@ -215,7 +227,7 @@ class Show extends Component
 
         $plot = Plots::find($this->Plotid);
         $province_id = $plot->province_id;
-        $this->property_deed_image->store('public/Realities/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $this->property_number);
+        $this->property_deed_image->store('public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->property_number);
 
         Realities::create([
             'user_id' => Auth::User()->id,
@@ -251,11 +263,14 @@ class Show extends Component
 
     public function GetRealitie($RealitieId)
     {
+
         $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'filePreview', 'notes', 'visibility');
         $this->resetValidation();
         $this->dispatchBrowserEvent('editRealitieModalShow');
 
-        $this->Realitie  = Realities::find($RealitieId);
+        $this->Realitie = Realities::find($RealitieId);
+        $this->RealitieId = $RealitieId;
+        $this->plot_id = $this->Realitie->plot_id;
         $this->property_number = $this->Realitie->property_number;
         $this->area_in_meters = $this->Realitie->area_in_meters;
         $this->area_in_olok = $this->Realitie->area_in_olok;
@@ -299,10 +314,8 @@ class Show extends Component
             'district' => 'required:realities',
             'mortgage_notes' => 'required:realities',
             'registered_office' => 'required:realities',
-/*             'specialized_department' => 'required:realities',
- */            'property_deed_image' => $this->filePreview ? 'required|file|mimes:jpeg,png,jpg,pdf|max:1024' : 'nullable|file|mimes:jpeg,png,jpg,pdf|max:1024',
-
-
+            'specialized_department' => 'required:realities',
+            'property_deed_image' => $this->filePreview ? 'required|file|mimes:jpeg,png,jpg,pdf|max:1024' : 'nullable|file|mimes:jpeg,png,jpg,pdf|max:1024',
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'property_number.unique' => 'رقم العقار موجود مسبقًا ضمن هذه القطعة',
@@ -329,13 +342,16 @@ class Show extends Component
         $province_id = $plot->province_id;
 
         if ($this->filePreview) {
-            Storage::delete('public/Realities/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $this->Realitie->property_number . '/' . $this->Realitie->property_deed_image);
-            $this->property_deed_image->store('public/Realities/' . $this->property_number);
+            Storage::delete('public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->Realitie->property_number . '/' . $this->Realitie->property_deed_image);
+            $this->property_deed_image->store('public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->property_number);
             $fileDeepImage = $this->property_deed_image->hashName();
         }
 
         if ($this->Realitie->property_number !== $this->property_number) {
-            Storage::move('public/Realities/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $this->Realitie->property_number, 'public/Realities/' . $this->property_number);
+            Storage::move(
+                'public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->Realitie->property_number,
+                'public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->property_number
+            );
         }
 
         $Realities = Realities::find($this->RealitieId);
@@ -376,7 +392,7 @@ class Show extends Component
 
         $this->Realitie->delete();
 
-        Storage::deleteDirectory('public/Realities/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $this->Realitie->property_number);
+        Storage::deleteDirectory('public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->property_number);
 
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الحذف بنجاح',

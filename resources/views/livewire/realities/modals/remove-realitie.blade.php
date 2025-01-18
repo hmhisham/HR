@@ -17,7 +17,7 @@
                                     <strong>رقم واسم المقاطعة:</strong>
                                     <span style="color: red;">{{ $this->province_number }} -
                                         {{ $this->province_name }}</span>
-                                    <strong style="margin: 0 20px;">|</strong>
+                                    <strong style="margin: 0 5px;">|</strong>
                                     <strong>رقم القطعة:</strong>
                                     <span style="color: red;">{{ $this->plot_number }}</span>
                                 </h5>
