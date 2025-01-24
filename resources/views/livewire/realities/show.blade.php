@@ -9,14 +9,14 @@
                 <strong style="margin: 0 30px;">|</strong>
                 ضمن المقاطعة : <span class="text-danger">{{ $this->Province->province_number }} -
                     {{ $this->Province->province_name }}</span>
-            </h5>
-            <div>
-                @can('realitie-create')
-                    <button wire:click='addRealitieModal' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal"
-                        data-bs-target="#addRealitieModal">أضــافــة</button>
-                    @include('livewire.realities.modals.add-realitie')
-                @endcan
-            </div>
+                </h5>
+                <div>
+                    @can('realitie-create')
+                        <button wire:click='addRealitieModal' class="mb-3 add-new btn btn-primary mb-md-0"
+                            data-bs-toggle="modal" data-bs-target="#addRealitieModal">أضــافــة</button>
+                        @include('livewire.realities.modals.add-realitie')
+                    @endcan
+                </div>
         </div>
         @can('realitie-list')
             <div class="table-responsive">
@@ -35,14 +35,16 @@
                             <th>#</th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.property_number"
-                                    class="form-control" placeholder="بحث برقم السند العقاري .." wire:key="search_property_number">
+                                    class="form-control" placeholder="بحث برقم السند العقاري .."
+                                    wire:key="search_property_number">
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.count" class="form-control"
                                     placeholder="بحث بالعدد .." wire:key="search_count">
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-select" wire:key="search_mortgage_notes">
+                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-select"
+                                    wire:key="search_mortgage_notes">
                                     <option value="">اختر</option>
                                     <option value="رفع الحجز">رفع الحجز</option>
                                     <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف بالعقار الا بموافقة
@@ -54,7 +56,8 @@
                                     placeholder="بحث بالجلد .." wire:key="search_volume_number">
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.visibility" class="form-select" wire:key="search_visibility">
+                                <select wire:model.debounce.300ms="search.visibility" class="form-select"
+                                    wire:key="search_visibility">
                                     <option value="">اختر</option>
                                     <option value="1">نعم</option>
                                     <option value="0">لا</option>
@@ -82,12 +85,22 @@
                                                 <i class="mdi mdi-text-box-edit-outline fs-3"></i>
                                             </button>
                                         @endcan
-                                        <strong style="margin: 0 10px;">|</strong>
+
                                         @can('realitie-delete')
+                                            <strong style="margin: 0 10px;">|</strong>
                                             <button wire:click="GetRealitie({{ $Realitie->id }})"
                                                 class="p-0 px-1 btn btn-text-danger waves-effect {{ $Realitie->active ? 'disabled' : '' }}"
                                                 data-bs-toggle="modal" data-bs-target="#deleteRealitieModal">
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
+                                            </button>
+                                        @endcan
+
+                                        @can('realitie-print')
+                                            <strong style="margin: 0 10px;">|</strong>
+                                            <button
+                                                onclick="printImages('{{ Storage::url('Realities/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Realitie->property_number . '/' . $Realitie->property_deed_image) }}')"
+                                                class="p-0 px-1 btn btn-text-secondary waves-effect">
+                                                <span class="mdi mdi-printer-outline fs-3"></span>
                                             </button>
                                         @endcan
                                     </div>

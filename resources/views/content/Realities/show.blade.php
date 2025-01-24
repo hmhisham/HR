@@ -44,6 +44,71 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        function printImages(deedImageUrl) {
+            // إنشاء iframe مخفي
+            const iframe = document.createElement('iframe');
+            iframe.style.position = 'fixed';
+            iframe.style.top = '-1000px'; // إخفاء iframe خارج الشاشة
+            iframe.style.left = '-1000px';
+            iframe.style.width = '1px';
+            iframe.style.height = '1px';
+            iframe.style.border = 'none';
+
+            // محتوى HTML للصور مع علامة مائية
+            const content = `
+        <html>
+            <head>
+                <title>طباعة السند العقاري</title>
+                <style>
+                    body { font-family: Arial, sans-serif; }
+                    .image-container {
+                        position: relative;
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
+                    img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                    .watermark {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        font-size: 40px;
+                        font-weight: bold;
+                        color: rgba(0, 0, 0, 0.2); /* لون شبه شفاف */
+                        pointer-events: none; /* تجنب التفاعل مع العلامة المائية */
+                        user-select: none; /* منع تحديد النص */
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="image-container">
+                    <h2>صورة السند العقاري</h2>
+                    <div style="position: relative;">
+                        <img src="${deedImageUrl}" alt="صورة السند العقاري">
+                        <div class="watermark">خاص بشعبة الخرائط والمرتسمات</div>
+                    </div>
+                </div>
+            </body>
+        </html>
+    `;
+
+            // إضافة iframe إلى body
+            document.body.appendChild(iframe);
+
+            // كتابة المحتوى في iframe
+            iframe.contentDocument.write(content);
+            iframe.contentDocument.close();
+
+            // طباعة iframe بعد تحميل الصور
+            iframe.onload = function() {
+                iframe.contentWindow.print();
+                document.body.removeChild(iframe); // إزالة iframe بعد الطباعة
+            };
+        }
+
         $(document).ready(function() {
             function initFlatpickr(selector, eventName) {
                 $(selector).flatpickr({
@@ -100,16 +165,12 @@
             initSelect2('#editRealitiegovernorate', 'SelectGovernorate', '#editRealitieModal');
             initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealitieModal');
             initSelect2('#editRealitiedistrict', 'SelectDistrict', '#editRealitieModal');
-            initSelect2('#addRealitiespecialized_department', 'SelectSpecializedDepartment', '#addRealitieModal');
-            initSelect2('#editRealitiespecialized_department', 'SelectSpecializedDepartment', '#editRealitieModal');
 
             window.livewire.on('select2', () => {
                 initSelect2('#addRealitiegovernorate', 'SelectGovernorate', '#addRealitieModal');
                 initSelect2('#editRealitiegovernorate', 'SelectGovernorate', '#editRealitieModal');
                 initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealitieModal');
                 initSelect2('#editRealitiedistrict', 'SelectDistrict', '#editRealitieModal');
-                initSelect2('#addRealitiespecialized_department', 'SelectSpecializedDepartment','#addRealitieModal');
-                initSelect2('#editRealitiespecialized_department', 'SelectSpecializedDepartment','#editRealitieModal');
             });
         });
 

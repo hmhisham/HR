@@ -266,7 +266,7 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='governorate' id="editRealitigovernorate"
+                                            <select wire:model.defer='governorate' id="editRealitiegovernorate"
                                                 class="form-select @error('governorate') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($governorates as $governorate)
@@ -275,7 +275,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <label for="modalRealitigovernorate">المحافظة</label>
+                                            <label for="modalRealitiegovernorate">المحافظة</label>
                                         </div>
                                         @error('governorate')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
@@ -284,7 +284,7 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='district' id="editRealitidistrict"
+                                            <select wire:model.defer='district' id="editRealitiedistrict"
                                                 class="form-select @error('district') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($Districts as $District)
@@ -293,29 +293,12 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <label for="modalRealitidistrict">القضاء</label>
+                                            <label for="modalRealitiedistrict">القضاء</label>
                                         </div>
                                         @error('district')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
-
-                                    {{-- <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='specialized_department'
-                                                id="modalRealitispecialized_department"
-                                                class="form-select @error('specialized_department') is-invalid is-filled @enderror">
-                                                <option value="">اختر</option>
-                                                <option value="شعبة العقارات">شعبة العقارات</option>
-                                                <option value="شعبة الاملاك">شعبة الاملاك</option>
-                                                <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
-                                            </select>
-                                            <label for="modalRealitispecialized_department">الشعبة المختصة</label>
-                                        </div>
-                                        @error('specialized_department')
-                                            <small class='text-danger inputerror'>{{ $message }}</small>
-                                        @enderror
-                                    </div> --}}
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
@@ -381,10 +364,10 @@
                                     </div>
                                     <div wire:loading.remove wire:target='property_deed_image' class="mt-3">
                                         @if ($filePreview)
-                                            @if ($property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
+                                            @if ($property_deed_image && $property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
                                                 <embed src="{{ $filePreview }}" type="application/pdf"
                                                     width="100%" height="300px" />
-                                            @else
+                                            @elseif ($property_deed_image)
                                                 <img src="{{ $filePreview }}" alt="Selected Image"
                                                     class="img-fluid" width="100%" height="300px" />
                                             @endif
@@ -393,10 +376,10 @@
                                         @if ($previewRealitieDeedImage && !$filePreview)
                                             @if (pathinfo($previewRealitieDeedImage, PATHINFO_EXTENSION) == strtolower('pdf'))
                                                 <embed
-                                                    src="{{ asset('storage/Realities/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $property_number . '/' . $previewRealitieDeedImage) }}"
+                                                    src="{{ asset('storage/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $property_number . '/' . $previewRealitieDeedImage) }}"
                                                     type="application/pdf" width="100%" height="300px" />
                                             @else
-                                                <img src="{{ asset('storage/Realities/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $property_number . '/' . $previewRealitieDeedImage) }}"
+                                                <img src="{{ asset('storage/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $property_number . '/' . $previewRealitieDeedImage) }}"
                                                     alt="Selected Image" class="img-fluid" width="100%"
                                                     height="300px" />
                                             @endif

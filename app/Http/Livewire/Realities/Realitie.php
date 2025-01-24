@@ -181,7 +181,7 @@ class Realitie extends Component
                     return $query->where('plot_id', $this->PlotId);
                 }),
             ],
-            'area_in_meters' => 'required',
+           /*  'area_in_meters' => 'required',
             'area_in_olok' => 'required',
             'area_in_donum' => 'required',
             'count' => 'required',
@@ -195,7 +195,7 @@ class Realitie extends Component
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
             'specialized_department' => 'required',
-            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024', */
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'property_number.unique' => 'رقم السند موجود بالفعل في هذه القطعة',
@@ -219,7 +219,7 @@ class Realitie extends Component
         ]);
         $plot = Plots::find($this->PlotId);
         $province_id = $plot->province_id;
-        $this->property_deed_image->store('public/Realities/' . $this->Province->province_number . '/' . $this->Plot->plot_number . '/' . $this->property_number);
+        $this->property_deed_image->store('public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->property_number);
 
         Realities::create([
             'user_id' => Auth::User()->id,
@@ -247,7 +247,7 @@ class Realitie extends Component
         ]);
         $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility', 'filePreview');
         $this->mount();
-        
+
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
