@@ -104,7 +104,7 @@
                                                 @endif
                                             @endcan
                                             @can('real-property-rent')
-                                                @if ($buyer_tenant->buyer_tenant_type =='tenant' && $RealEstateStatement != 'مستأجر')
+                                                @if ($buyer_tenant->buyer_tenant_type =='tenant')
                                                     <button wire:click="GetRealProperty({{ $Reality->id }})"
                                                         class="p-0 px-1 btn btn-text-primary waves-effect {{ $Reality->active ? 'disabled' : '' }}"
                                                         data-bs-toggle="modal" data-bs-target="#tenantRealPropertyModal">
