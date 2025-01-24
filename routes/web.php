@@ -4,12 +4,10 @@ use Illuminate\Http\Request;
 use App\Models\Workers\Workers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Areas\AreasController;
-use App\Http\Controllers\Bonds\BondsController;
 use App\Http\Controllers\Plots\PlotsController;
 use App\Http\Controllers\Units\UnitsController;
 use App\Http\Controllers\Wives\WivesController;
 use App\Http\Controllers\Branch\BranchController;
-use App\Http\Controllers\Estate\EstateController;
 use App\Http\Controllers\Grades\GradesController;
 use App\Http\Controllers\Iaccts\IacctsController;
 use App\Http\Controllers\Inputs\InputsController;
@@ -20,14 +18,12 @@ use App\Http\Controllers\Courses\CoursesController;
 use App\Http\Controllers\Scaleas\ScaleasController;
 use App\Http\Controllers\Scalems\ScalemsController;
 use App\Http\Controllers\Workers\WorkersController;
-use App\Http\Controllers\Boycotts\BoycottsController;
 use App\Http\Controllers\Certific\CertificController;
 use App\Http\Controllers\Dispatch\DispatchController;
 use App\Http\Controllers\Holidays\HolidaysController;
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\Linkages\LinkagesController;
 use App\Http\Controllers\Precises\PrecisesController;
-use App\Http\Controllers\Property\PropertyController;
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Services\ServicesController;
 use App\Http\Controllers\Childrens\ChildrensController;
@@ -52,6 +48,7 @@ use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
 use App\Http\Controllers\Idepartments\IdepartmentsController;
 use App\Http\Controllers\Propertypayd\PropertypaydController;
+use App\Http\Controllers\RealProperty\RealPropertyController;
 use App\Http\Controllers\Typeholidays\TypeholidaysController;
 use App\Http\Controllers\Propertytypes\PropertytypesController;
 use App\Http\Controllers\Typesservices\TypesservicesController;
@@ -200,13 +197,16 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //العقار الاصغر من القطعة
     Route::GET('Realities', [RealitiesController::class, 'index'])->name('Realities');
     Route::GET('Show-Realitie/{Plotid}', [RealitiesController::class, 'ShowRealitie'])->name('showRealities');
+    //العقار الاصغر من القطعة
+    Route::GET('Real-Property', [RealPropertyController::class, 'index'])->name('RealProperty');
+    Route::GET('Show-Real-Property/{Plotid}', [RealPropertyController::class, 'ShowRealProperty'])->name('ShowRealProperty');
 
 
 
 
     //الاملاك
-    Route::RESOURCE('Property', PropertyController::class);
-    Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
+    //Route::RESOURCE('Property', PropertyController::class);
+    //Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
     // الدفع في نافذة الاملاك
     Route::GET('Propertypayd/{id}', [PropertypaydController::class, 'Index'])->name('Propertypayd');
     Route::GET('Propertypay-Show/{id}', [PropertypaydController::class, 'PropertypayShow'])->name('Propertypay-Show');

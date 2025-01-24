@@ -5,6 +5,7 @@ namespace App\Models\Realities;
 use App\Models\Plots\Plots;
 use App\Models\Branch\Branch;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\RealProperty\RealEstateBondsSaleRental;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Realities extends Model
@@ -21,5 +22,10 @@ class Realities extends Model
     public function Getbranc()
     {
         return $this->belongsTo(Branch::class, 'specialized_department');
+    }
+
+    Public function GetRealEstateBondsSaleRental()
+    {
+        return $this->belongsTo(RealEstateBondsSaleRental::class, 'property_number' );
     }
 }
