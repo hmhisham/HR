@@ -73,7 +73,7 @@
                                 <td class="text-center">{{ $Reality->mortgage_notes }}</td>
                                 <td class="text-center">{{ $Reality->volume_number }}</td>
                                 <td class="text-center">{{ $Reality->visibility ? 'نعم' : 'لا' }}</td>
-                                <td class="text-center">
+                                <td class="text-end">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @php
                                             $buyer_tenant = App\Models\RealProperty\BuyerTenant::where('property_number', $Reality->property_number)->first();
@@ -90,7 +90,7 @@
                                                 <button wire:click="GetRealProperty({{ $Reality->id }})"
                                                     class="p-0 px-1 btn btn-text-primary waves-effect"
                                                     data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
-                                                    <i class="mdi mdi-account-plus-outline fs-2"></i>
+                                                    <i class="mdi mdi-account-plus-outline fs-3"></i>
                                                 </button>
                                             @endcan
                                         @else
@@ -104,15 +104,30 @@
                                                 @endif
                                             @endcan
                                             @can('real-property-rent')
-                                                @if ($buyer_tenant->buyer_tenant_type =='tenant')
+                                                @if ($buyer_tenant->buyer_tenant_type == 'buyer' || $buyer_tenant->buyer_tenant_type == 'tenant')
                                                     <button wire:click="GetRealProperty({{ $Reality->id }})"
                                                         class="p-0 px-1 btn btn-text-primary waves-effect {{ $Reality->active ? 'disabled' : '' }}"
-                                                        data-bs-toggle="modal" data-bs-target="#tenantRealPropertyModal">
-                                                        <i class="tf-icons mdi mdi-text-box-multiple-outline fs-3"></i>
+                                                        data-bs-toggle="modal" data-bs-target="#saleTenantReceiptModal">
+                                                        <i class="mdi mdi-file-document-plus-outline fs-3"></i>
                                                     </button>
                                                 @endif
                                             @endcan
+
+                                            <a href="{{ route('ShowBuyerTenant', [$Reality->property_number, $buyer_tenant->id]) }}"
+                                                class="p-0 px-1 btn btn-text-primary waves-effect">
+                                                <i class="mdi mdi-eye-outline fs-2"></i>
+                                            </a>
                                             <button wire:click="GetRealProperty({{ $Reality->id }})"
+                                                class="p-0 px-1 btn btn-text-success waves-effect"
+                                                data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
+                                                <i class="mdi mdi-text-box-edit-outline fs-3"></i>
+                                            </button>
+                                            <button wire:click="GetRealProperty({{ $Reality->id }})"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect"
+                                                data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
+                                                <i class="mdi mdi-delete-outline fs-3"></i>
+                                            </button>
+                                            {{-- <button wire:click="GetRealProperty({{ $Reality->id }})"
                                                 class="p-0 px-1 btn btn-text-success waves-effect"
                                                 data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
                                                 <i class="mdi mdi-account-edit-outline fs-2"></i>
@@ -121,7 +136,7 @@
                                                 class="p-0 px-1 btn btn-text-danger waves-effect"
                                                 data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
                                                 <i class="mdi mdi-account-remove-outline fs-2"></i>
-                                            </button>
+                                            </button> --}}
                                         @endif
                                     </div>
                                 </td>
@@ -135,6 +150,7 @@
 
                 <!-- Modal -->
                 @include('livewire.real-properties.modals.add-buyer-tenant')
+                @include('livewire.real-properties.modals.sale-tenant-receipt')
                 @include('livewire.real-properties.modals.sale-real-property')
                 @include('livewire.real-properties.modals.tenant-real-property')
                 {{-- @include('livewire.realities.modals.edit-realitie')

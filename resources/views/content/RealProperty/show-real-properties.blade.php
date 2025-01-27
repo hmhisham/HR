@@ -97,11 +97,17 @@
             initflatpickrFromTo('#to_date', 'SelectToDate', '#saleRealPropertyModal');
             initflatpickrFromTo('#tenant_from_date', 'SelectFromDate', '#tenantRealPropertyModal');
             initflatpickrFromTo('#tenant_to_date', 'SelectToDate', '#tenantRealPropertyModal');
+            initflatpickrFromTo('#receipt_date', 'SelectReceiptDate', '#saleTenantReceiptModal');
+            initflatpickrFromTo('#receipt_from_date', 'SelectReceiptFromDate', '#saleTenantReceiptModal');
+            initflatpickrFromTo('#receipt_to_date', 'SelectReceiptToDate', '#saleTenantReceiptModal');
             window.livewire.on('flatpickr', () => {
                 initflatpickrFromTo('#from_date', 'SelectFromDate', '#saleRealPropertyModal');
                 initflatpickrFromTo('#to_date', 'SelectToDate', '#saleRealPropertyModal');
                 initflatpickrFromTo('#tenant_from_date', 'SelectFromDate', '#tenantRealPropertyModal');
-            initflatpickrFromTo('#tenant_to_date', 'SelectToDate', '#tenantRealPropertyModal');
+                initflatpickrFromTo('#tenant_to_date', 'SelectToDate', '#tenantRealPropertyModal');
+                initflatpickrFromTo('#receipt_date', 'SelectReceiptDate', '#saleTenantReceiptModal');
+                initflatpickrFromTo('#receipt_from_date', 'SelectReceiptFromDate', '#saleTenantReceiptModal');
+                initflatpickrFromTo('#receipt_to_date', 'SelectReceiptToDate', '#saleTenantReceiptModal');
             });
         });
 
@@ -231,6 +237,7 @@
         window.addEventListener('success', event => {
             $('#addBuyerTenantModal').modal('hide');
             $('#saleRealPropertyModal').modal('hide');
+            $('#saleTenantReceiptModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.title + '<hr>' + event.detail.message,

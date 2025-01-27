@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\RealProperty\BuyerTenant;
 use App\Models\Governorates\Governorates;
 use App\Models\Propertytypes\Propertytypes;
+use App\Models\RealProperty\SaleTenantReceipts;
 use App\Models\RealProperty\RealEstateBondsSaleRental;
 
 class ShowRealProperties extends Component
@@ -31,10 +32,11 @@ class ShowRealProperties extends Component
     public $propertytypes = [];
     public $Districts = [];
     public $branches = [];
-    public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department,  $notes;
+    public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $notes;
     public $filePreview, $property_deed_image, $previewRealitieDeedImage;
-    public $BuyerTenant, $buyer, $tenant, $chooseBuyerTenant, $buyer_tenant_name, $buyer_calculator_number, $buyer_tenant_phone_number, $buyer_tenant_email, $buyer_tenant_type;
+    public $BuyerTenant, $buyer, $tenant, $chooseBuyerTenant, $buyer_tenant_name, $buyer_calculator_number, $buyer_tenant_phone_number, $buyer_tenant_email, $buyer_tenant_type, $buyer_tenant_notes;
     public $from_date, $to_date, $number_of_months, $insurance_amount, $sale_amount, $net_amount, $monthly_amount, $real_estate_status, $company_department_email, $alert_duration, $real_estate_statement, $real_estate_bonds_number, $buyer_tenant_calculator_number;
+    public $receipt_number, $receipt_date, $receipt_payer_name, $receipt_payment_amount, $receipt_from_date, $receipt_to_date, $receipt_attach, $receipt_notes;
     public $notifications = 0;
     public $visibility = 'false';
     public $search = ['property_number' => '', 'count' => '', 'mortgage_notes' => '', 'volume_number' => '', 'visibility' => '',];
@@ -45,7 +47,7 @@ class ShowRealProperties extends Component
         'SelectGovernorate',
         'SelectDistrict',
         'SelectPropertyType',
-        'SelectDate'
+        'SelectReceiptDate'
     ];
 
     public function hydrate()
@@ -208,6 +210,12 @@ class ShowRealProperties extends Component
         }
     }
 
+    //تاريخ الوصل
+    public function SelectReceiptDate($receiptDate)
+    {
+        $this->receipt_date = $receiptDate;
+    }
+
     public function store()
     {
         $this->resetValidation();
@@ -320,6 +328,132 @@ class ShowRealProperties extends Component
 
         $this->BuyerTenant = BuyerTenant::where('property_number', $this->property_number)->first();
     }
+
+    public function SaleTenant()
+    {
+        $this->resetValidation();
+        $Validation = $this->validate([
+            /* 'property_number' => [
+                'required',
+                Rule::unique('realities')->where(function ($query) {
+                    return $query->where('plot_id', $this->Plotid);
+                }),
+            ], */
+            'buyer_tenant_name' => 'required',
+            'buyer_calculator_number' => 'required',
+            'buyer_tenant_phone_number' => 'required',
+            'buyer_tenant_email' => 'required',
+        ], [
+            'buyer_tenant_name.required' => 'أسم المشتري أو المستأجر مطلوب',
+            'buyer_calculator_number.required' => 'رقم الحاسبة للمشتري مطلوب',
+            'buyer_tenant_phone_number.required' => 'رقم هاتف المشتري أو المستأجر مطلوب',
+            'buyer_tenant_email.required' => 'البريد الالكتروني للمشتري أو المستأجر مطلوب',
+        ]);
+
+        $Validation['user_id'] = Auth::User()->id;
+        $Validation['property_number'] = $this->property_number;
+        $Validation['notes'] = $this->buyer_tenant_notes;
+        $Validation['buyer_tenant_type'] = $this->chooseBuyerTenant;
+
+        $BuyerTenant = BuyerTenant::create($Validation);
+
+
+        $this->resetValidation();
+        $Validation = $this->validate([
+            /* 'property_number' => [
+                'required',
+                Rule::unique('realities')->where(function ($query) {
+                    return $query->where('plot_id', $this->Plotid);
+                }),
+            ], */
+            'from_date' => 'required',
+            'to_date' => 'required',
+            'number_of_months' => 'required',
+            'insurance_amount' => 'required',
+            'sale_amount' => 'required',
+            'net_amount' => 'required',
+            'monthly_amount' => 'required',
+            'alert_duration' => 'required',
+            'company_department_email' => 'required',
+            'real_estate_status' => 'required',
+            'notifications' => 'required',
+
+        ], [
+            'from_date.required' => 'رقم السند العقاري مطلوب',
+            'to_date.required' => 'أسم المشتري أو المستأجر مطلوب',
+            'number_of_months.required' => 'رقم الحاسبة للمشتري أو المستأجر مطلوب',
+            'insurance_amount.required' => 'رقم هاتف المشتري أو المستأجر مطلوب',
+            'sale_amount.required' => 'بيان العقار مطلوب',
+            'net_amount.required' => 'مبلغ التأمين مطلوب',
+            'monthly_amount.required' => 'مبلغ الرسو مطلوب',
+            'alert_duration.required' => 'المبلغ الصافي	مطلوب',
+            'company_department_email.required' => 'حالة العقار مطلوب',
+            'real_estate_status.required' => 'الاشعارات مطلوب',
+            'notifications.required' => 'الاشعارات مطلوب',
+        ]);
+
+        $Validation['user_id'] = Auth::User()->id;
+        $Validation['buyer_tenant_id'] = $BuyerTenant->id;
+        $Validation['property_number'] = $this->property_number;
+        if($this->chooseBuyerTenant == 'buyer'){
+            $Validation['real_estate_statement'] = 'مباع';
+        }else{
+            $Validation['real_estate_statement'] = 'مستأجر';
+        }
+        $Validation['notes'] = $this->notes;
+
+        RealEstateBondsSaleRental::create($Validation);
+
+        $this->reset('chooseBuyerTenant', 'buyer_tenant_name', 'buyer_calculator_number', 'buyer_tenant_phone_number', 'buyer_tenant_email', 'buyer_tenant_notes');
+
+        $this->reset('from_date', 'to_date', 'property_number', 'company_department_email', 'number_of_months', 'monthly_amount', 'alert_duration',
+            'real_estate_statement', 'insurance_amount', 'sale_amount', 'net_amount', 'real_estate_status', 'notifications', 'notes');
+
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'تمت الاضافة بنجاح',
+            'title' => 'اضافة'
+        ]);
+    }
+
+    public function ReceiptStore()
+    {
+        $this->resetValidation();
+        $Validation = $this->validate([
+            'receipt_number' => 'required',
+            'receipt_date' => 'required',
+            'receipt_payer_name' => 'required',
+            'receipt_payment_amount' => 'required',
+            'receipt_from_date' => 'required',
+            'receipt_to_date' => 'required',
+            //'attach' => 'required',
+        ], [
+            'receipt_number.required' => 'أسم المشتري أو المستأجر مطلوب',
+            'receipt_date.required' => 'أسم المشتري أو المستأجر مطلوب',
+            'receipt_payer_name.required' => 'أسم المشتري أو المستأجر مطلوب',
+            'receipt_payment_amount.required' => 'أسم المشتري أو المستأجر مطلوب',
+            'receipt_from_date.required' => 'أسم المشتري أو المستأجر مطلوب',
+            'receipt_to_date.required' => 'أسم المشتري أو المستأجر مطلوب',
+            //'attach.required' => 'أسم المشتري أو المستأجر مطلوب',
+        ]);
+
+        $Validation['receipt_attach'] = Auth::User()->id;
+        $Validation['user_id'] = Auth::User()->id;
+        $Validation['buyer_tenant_id'] = $this->BuyerTenant->id;
+        $Validation['property_number'] = $this->property_number;
+        $Validation['receipt_notes'] = $this->receipt_notes;
+        $Validation['receipt_type'] = $this->BuyerTenant->buyer_tenant_type == 'buyer' ? 'بيع':'ايجار';
+
+        SaleTenantReceipts::create($Validation);
+
+        $this->reset('receipt_number', 'receipt_date', 'receipt_payer_name', 'receipt_payment_amount', 'receipt_from_date', 'receipt_to_date', 'notes');
+
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'تمت الاضافة بنجاح',
+            'title' => 'اضافة'
+        ]);
+    }
+
+
 
     public function storeBuyerTenant()
     {
