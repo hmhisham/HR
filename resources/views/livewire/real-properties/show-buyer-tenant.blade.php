@@ -109,14 +109,14 @@
                                         @can('tenant-receipt-edit')
                                             <button wire:click="GetSaleTenantReceipt({{ $SaleTenantReceipt->id }})"
                                                 class="p-0 px-1 btn btn-text-success waves-effect"
-                                                data-bs-toggle="modal" data-bs-target="#editTenantReceiptModal">
+                                                data-bs-toggle="modal" data-bs-target="#editSaleTenantReceiptModal">
                                                 <i class="mdi mdi-text-box-edit-outline fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('tenant-receipt-delete')
                                         <button wire:click="GetSaleTenantReceipt({{ $SaleTenantReceipt->id }})"
                                             class="p-0 px-1 btn btn-text-danger waves-effect"
-                                            data-bs-toggle="modal" data-bs-target="#removeTenantReceiptModal">
+                                            data-bs-toggle="modal" data-bs-target="#removeSaleTenantReceiptModal">
                                             <i class="mdi mdi-delete-outline fs-3"></i>
                                         </button>
                                         @endcan
@@ -131,7 +131,7 @@
                 </div>
 
                 <!-- Modal -->
-                {{-- @include('livewire.real-properties.modals.add-buyer-tenant') --}}
+                @include('livewire.real-properties.modals.edit-sale-tenant-receipt')
                 <!-- Modal -->
             </div>
         @endcan

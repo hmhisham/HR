@@ -50,6 +50,39 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+        $(document).ready(function() {
+            function initflatpickrFromTo(selector, eventName, parentModal) {
+                $(selector).flatpickr({
+                    placeholder: 'اختر التاريخ',
+                    dropdownParent: $(parentModal),
+                    dir: 'rtl',
+                    width: '100%',
+                    locale: {
+                        months: {
+                            shorthand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                                'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                            ],
+                            longhand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                                'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                            ]
+                        }
+                    },
+                });
+                $(selector).on('change', function(e) {
+                    Livewire.emit(eventName, e.target.value);
+                });
+            }
+            initflatpickrFromTo('#edit_receipt_date', 'SelectReceiptDate', '#editSaleTenantReceiptModal');
+            initflatpickrFromTo('#edit_receipt_from_date', 'SelectReceiptFromDate', '#editSaleTenantReceiptModal');
+            initflatpickrFromTo('#edit_receipt_to_date', 'SelectReceiptToDate', '#editSaleTenantReceiptModal');
+            window.livewire.on('flatpickr', () => {
+                initflatpickrFromTo('#edit_receipt_date', 'SelectReceiptDate', '#editSaleTenantReceiptModal');
+                initflatpickrFromTo('#edit_receipt_from_date', 'SelectReceiptFromDate', '#editSaleTenantReceiptModal');
+                initflatpickrFromTo('#edit_receipt_to_date', 'SelectReceiptToDate', '#editSaleTenantReceiptModal');
+            });
+        });
+
+
         /* اضافة تاريخ امر التنسيب */
         $(document).ready(function() {
             window.initAddPlacementOrderDateDrop = () => {
@@ -176,14 +209,12 @@
             $('#addplacementModal').modal('hide');
             $('#editplacementModal').modal('hide');
             $('#removeplacementModal').modal('hide');
+            $('#editSaleTenantReceiptModal').modal('hide');
             Toast.fire({
                 icon: 'success',
                 title: event.detail.title + '<hr>' + event.detail.message,
             })
         })
-
-
-
 
         window.addEventListener('error', event => {
             $('#removeplacementModal').modal('hide');
