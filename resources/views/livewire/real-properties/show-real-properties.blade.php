@@ -10,13 +10,13 @@
                 ضمن المقاطعة : <span class="text-danger">{{ $Province->province_number }} -
                     {{ $Province->province_name }}</span>
             </h5>
-            <div>
+            {{-- <div>
                 @can('real-property-create')
                     <button wire:click='addRealProperty' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal"
                         data-bs-target="#addRealPropertyModal">أضــافــة</button>
                     @include('livewire.real-properties.modals.add-real-property')
                 @endcan
-            </div>
+            </div> --}}
         </div>
         @can('real-property-list')
             <div class="table-responsive">
@@ -117,7 +117,7 @@
                                                 class="p-0 px-1 btn btn-text-primary waves-effect">
                                                 <i class="mdi mdi-eye-outline fs-2"></i>
                                             </a>
-                                            <button wire:click="GetRealProperty({{ $Reality->id }})"
+                                            {{-- <button wire:click="GetRealProperty({{ $Reality->id }})"
                                                 class="p-0 px-1 btn btn-text-success waves-effect"
                                                 data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
                                                 <i class="mdi mdi-text-box-edit-outline fs-3"></i>
@@ -126,7 +126,7 @@
                                                 class="p-0 px-1 btn btn-text-danger waves-effect"
                                                 data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
                                                 <i class="mdi mdi-delete-outline fs-3"></i>
-                                            </button>
+                                            </button> --}}
                                             {{-- <button wire:click="GetRealProperty({{ $Reality->id }})"
                                                 class="p-0 px-1 btn btn-text-success waves-effect"
                                                 data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">

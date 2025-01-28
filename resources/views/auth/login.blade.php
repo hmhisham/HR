@@ -98,7 +98,7 @@
 
            <!-- /Left Section -->
            <div class="p-3 pb-2 d-none d-lg-flex col-lg-7 col-xl-8 align-items-center justify-content-center">
-            <img src="{{asset('assets/img/illustrations/GCPI.png') }}"
+            <img src="{{asset('assets/img/illustrations/gcpi3.png') }}"
                 class="auth-cover-illustration w-95" alt="auth-illustration"
                 data-app-light-img="illustrations/GCPI.png"
                 data-app-dark-img="illustrations/GCPI.png" />
