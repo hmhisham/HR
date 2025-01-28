@@ -20,7 +20,7 @@
 
 @section('content')
 
-    @livewire('real-property.show-buyer-tenant', [
+    @livewire('real-properties.show-buyer-tenant', [
         'RealPropertyNumber' => $RealPropertyNumber,
         'BuyerTenantid' => $BuyerTenantid,
     ])
@@ -366,8 +366,5 @@
                 initEditUnitDrop();
             });
         });
-
-
-
     </script>
-@endsection --}}
+@endsection

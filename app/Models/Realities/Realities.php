@@ -4,6 +4,7 @@ namespace App\Models\Realities;
 
 use App\Models\Plots\Plots;
 use App\Models\Branch\Branch;
+use App\Models\Provinces\Provinces;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\RealProperty\RealEstateBondsSaleRental;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,6 +14,11 @@ class Realities extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = "realities";
+
+    public function GetProvinces()
+    {
+        return $this->belongsTo(Provinces::class, 'province_id');
+    }
 
     public function GetPlots()
     {
