@@ -83,7 +83,7 @@
                                         @can('plot-print')
                                             <strong style="margin: 0 10px;">|</strong>
                                             <button
-                                                onclick="printImages('{{ Storage::url('Plots/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Plot->property_deed_image) }}', '{{ Storage::url('Plots/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Plot->property_map_image) }}')"
+                                                onclick="printFiles(['{{ Storage::url('Plots/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Plot->property_deed_image) }}','{{ Storage::url('Plots/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Plot->property_map_image) }}'])"
                                                 class="p-0 px-1 btn btn-text-secondary waves-effect">
                                                 <span class="mdi mdi-printer-outline fs-3"></span>
                                             </button>

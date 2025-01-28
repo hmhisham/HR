@@ -104,9 +104,9 @@ class Show extends Component
     public function updatedPropertyMapImage()
     {
         $this->validate([
-            'property_map_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
+            'property_map_image' => 'file|mimes:jpeg,png,jpg,pdf',
         ], [
-            'property_map_image.required' => 'الملف مطلوب',
+            //'property_map_image.required' => 'الملف مطلوب',
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
         $this->filePreviewMap = $this->property_map_image->temporaryUrl();
@@ -124,14 +124,14 @@ class Show extends Component
             ],
             'specialized_department' => 'required',
             'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
-            'property_map_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
+            'property_map_image' => 'file|mimes:jpeg,png,jpg,pdf',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
             'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             'property_deed_image.required' => 'الملف مطلوب',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
-            'property_map_image.required' => 'الملف مطلوب',
+            //'property_map_image.required' => 'الملف مطلوب',
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
@@ -183,14 +183,14 @@ class Show extends Component
             ],
             'specialized_department' => 'required',
             'property_deed_image' => $this->filePreviewDeep ? 'required|file|mimes:jpeg,png,jpg,pdf' : 'nullable|file|mimes:jpeg,png,jpg,pdf',
-            'property_map_image' => $this->filePreviewMap ? 'required|file|mimes:jpeg,png,jpg,pdf' : 'nullable|file|mimes:jpeg,png,jpg,pdf',
+            'property_map_image' => $this->filePreviewMap ? 'file|mimes:jpeg,png,jpg,pdf' : 'nullable|file|mimes:jpeg,png,jpg,pdf',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
             'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             'property_deed_image.required' => 'الملف مطلوب',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
-            'property_map_image.required' => 'الملف مطلوب',
+            //'property_map_image.required' => 'الملف مطلوب',
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 

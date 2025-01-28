@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Governorates\Governorates;
 use App\Models\Propertytypes\Propertytypes;
+use App\Models\Propertycategory\Propertycategory;
 
 class Show extends Component
 {
@@ -29,9 +30,10 @@ class Show extends Component
     public $Districts = [];
     public $propertytypes = [];
     public $branches = [];
+    public $propertycategory = [];
     public $RealitieSearch, $Realitie, $RealitieId;
     public $province_number, $province_name, $plot_number;
-    public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department,  $notes;
+    public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $propertycategory_id, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department,  $notes;
     public $filePreview, $property_deed_image, $previewRealitieDeedImage;
     public $visibility = false;
     public $search = ['property_number' => '', 'count' => '', 'mortgage_notes' => '', 'volume_number' => '', 'visibility' => '',];
@@ -41,7 +43,8 @@ class Show extends Component
         'SelectGovernorate',
         'SelectDistrict',
         'SelectPropertyType',
-        'SelectDate'
+        'SelectDate',
+        'SelectPropertycategoryId',
     ];
 
     public function hydrate()
@@ -67,6 +70,7 @@ class Show extends Component
 
         $this->governorates = Governorates::all();
         $this->propertytypes = Propertytypes::all();
+        $this->propertycategory = Propertycategory::all();
 
         $this->Province = Provinces::find($this->Provinceid);
         if ($this->Province) {
@@ -100,6 +104,17 @@ class Show extends Component
             $this->property_type = $PropertyTypeID;
         } else {
             $this->property_type = null;
+        }
+    }
+
+    //نوع العقار
+    public function SelectPropertycategoryId($PropertycategoryIdID)
+    {
+        $propertycategory_id = Propertycategory::find($PropertycategoryIdID);
+        if ($propertycategory_id) {
+            $this->propertycategory_id = $PropertycategoryIdID;
+        } else {
+            $this->propertycategory_id = null;
         }
     }
 
@@ -149,7 +164,7 @@ class Show extends Component
     }
     public function addRealitieModal()
     {
-        $this->reset('province_id', 'plot_id', 'property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
+        $this->reset('province_id', 'plot_id', 'property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
         $this->resetValidation();
         $this->dispatchBrowserEvent('addRealitieModal');
     }
@@ -194,7 +209,7 @@ class Show extends Component
             'count' => 'required',
             'date' => 'required',
             'volume_number' => 'required',
-            'bond_type' => 'required',
+            'propertycategory_id' => 'required',
             'ownership' => 'required',
             'property_type' => 'required',
             'governorate' => 'required',
@@ -212,7 +227,7 @@ class Show extends Component
             'count.required' => 'حقل العدد مطلوب',
             'date.required' => 'حقل التاريخ مطلوب',
             'volume_number.required' => 'حقل رقم الجلد مطلوب',
-            'bond_type.required' => 'حقل نوع السند مطلوب',
+            'propertycategory_id.required' => 'حقل نوع السند مطلوب',
             'ownership.required' => 'حقل العائدية مطلوب',
             'property_type.required' => 'حقل جنس العقار مطلوب',
             'governorate.required' => 'حقل المحافظة مطلوب',
@@ -240,7 +255,7 @@ class Show extends Component
             'count' => $this->count,
             'date' => $this->date,
             'volume_number' => $this->volume_number,
-            'bond_type' => $this->bond_type,
+            'propertycategory_id' => $this->propertycategory_id,
             'ownership' => $this->ownership,
             'property_type' => $this->property_type,
             'governorate' => $this->governorate,
@@ -253,7 +268,7 @@ class Show extends Component
             'visibility' => $this->visibility,
 
         ]);
-        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -264,7 +279,7 @@ class Show extends Component
     public function GetRealitie($RealitieId)
     {
 
-        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'filePreview', 'notes', 'visibility');
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'filePreview', 'notes', 'visibility');
         $this->resetValidation();
         $this->dispatchBrowserEvent('editRealitieModalShow');
 
@@ -278,7 +293,7 @@ class Show extends Component
         $this->count = $this->Realitie->count;
         $this->date = $this->Realitie->date;
         $this->volume_number = $this->Realitie->volume_number;
-        $this->bond_type = $this->Realitie->bond_type;
+        $this->propertycategory_id = $this->Realitie->propertycategory_id;
         $this->ownership = $this->Realitie->ownership;
         $this->property_type = $this->Realitie->property_type;
         $this->governorate = $this->Realitie->governorate;
@@ -307,7 +322,7 @@ class Show extends Component
             'count' => 'required:realities',
             'date' => 'required:realities',
             'volume_number' => 'required:realities',
-            'bond_type' => 'required:realities',
+            'propertycategory_id' => 'required:realities',
             'ownership' => 'required:realities',
             'property_type' => 'required:realities',
             'governorate' => 'required:realities',
@@ -325,7 +340,7 @@ class Show extends Component
             'count.required' => 'حقل العدد مطلوب',
             'date.required' => 'حقل التاريخ مطلوب',
             'volume_number.required' => 'حقل رقم الجلد مطلوب',
-            'bond_type.required' => 'حقل نوع السند مطلوب',
+            'propertycategory_id.required' => 'حقل نوع السند مطلوب',
             'ownership.required' => 'حقل العائدية مطلوب',
             'property_type.required' => 'حقل جنس العقار مطلوب',
             'governorate.required' => 'حقل المحافظة مطلوب',
@@ -366,7 +381,7 @@ class Show extends Component
             'count' => $this->count,
             'date' => $this->date,
             'volume_number' => $this->volume_number,
-            'bond_type' => $this->bond_type,
+            'propertycategory_id' => $this->propertycategory_id,
             'ownership' => $this->ownership,
             'property_type' => $this->property_type,
             'governorate' => $this->governorate,
@@ -379,7 +394,7 @@ class Show extends Component
             'visibility' => $this->visibility,
 
         ]);
-        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'filePreview', 'notes', 'visibility');
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'filePreview', 'notes', 'visibility');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('count')->nullable()->comment('العدد');
             $table->string('date')->nullable()->comment('التاريخ');
             $table->string('volume_number')->nullable()->comment('رقم الجلد');
-            $table->string('bond_type')->nullable()->comment('نوع السند');
+            $table->string('propertycategory_id')->nullable()->comment('نوع العقار');
             $table->string('ownership')->nullable()->comment('العائدية');
             $table->string('property_type')->nullable()->comment('جنس العقار');
             $table->string('governorate')->nullable()->comment('المحافظة');
