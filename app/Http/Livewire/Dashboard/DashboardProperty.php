@@ -14,8 +14,6 @@ class DashboardProperty extends Component
         $this->RealitiesCount = DB::table('realities')->count(); // عدد السندات
         $this->RealPropertyCount = DB::table('real_property')->count(); // عدد الأملاك
         $this->PlotsCount = DB::table('Plots')->count(); // عدد القطع
-
-
         // جلب بيانات المخطط البياني
         $this->chartData = $this->getChartData();
     }
