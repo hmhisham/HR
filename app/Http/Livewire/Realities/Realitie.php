@@ -14,6 +14,7 @@ use App\Models\Realities\Realities;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Governorates\Governorates;
 use App\Models\Propertytypes\Propertytypes;
+use App\Models\Propertycategory\Propertycategory;
 
 class Realitie extends Component
 {
@@ -26,10 +27,11 @@ class Realitie extends Component
     public $Districts = [];
     public $propertytypes = [];
     public $branch = [];
+    public $propertycategory = [];
     public $Province, $ProvinceId;
     public $Plot, $PlotId;
     public $province_number, $province_name, $plot_number, $section_id;
-    public $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $bond_type, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $notes;
+    public $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $propertycategory_id, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $notes;
     public $filePreview, $property_deed_image;
     public $visibility = false;
     public $search = ['province_number' => '', 'province_name' => '', 'plot_number' => '',];
@@ -39,7 +41,8 @@ class Realitie extends Component
         'SelectDistrict',
         'SelectPropertyType',
         'SelectDate',
-        'SelectSpecializedDepartment'
+        'SelectSpecializedDepartment',
+        'SelectPropertycategoryId',
     ];
 
     public function hydrate()
@@ -54,6 +57,7 @@ class Realitie extends Component
         $this->governorates = Governorates::all();
         $this->propertytypes = Propertytypes::all();
         $this->branch = Branch::all();
+        $this->propertycategory = Propertycategory::all();
     }
     //المحافظة
     public function SelectGovernorate($GovernorateID)
@@ -78,6 +82,16 @@ class Realitie extends Component
             $this->property_type = $PropertyTypeID;
         } else {
             $this->property_type = null;
+        }
+    }
+    //نوع العقار
+    public function SelectPropertycategoryId($PropertycategoryIdID)
+    {
+        $propertycategory_id = Propertycategory::find($PropertycategoryIdID);
+        if ($propertycategory_id) {
+            $this->propertycategory_id = $PropertycategoryIdID;
+        } else {
+            $this->propertycategory_id = null;
         }
     }
     //الشعبة
@@ -144,7 +158,8 @@ class Realitie extends Component
         $this->plot_number = $this->Plot->plot_number;
         $this->province_number = $province_number;
         $this->province_name = $province_name;
-        $this->Province = Provinces::find($ProvinceId);
+        //$this->Province = Provinces::find($ProvinceId);
+        $this->Province = Provinces::where('province_number', $province_number)->first();
         $this->ProvinceId = $this->Province->id;
         $this->section_id = $this->Province->section_id;
 
@@ -153,7 +168,7 @@ class Realitie extends Component
 
     public function addRealitieToPlot($PlotID)
     {
-        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');
         $this->resetValidation();
         $this->dispatchBrowserEvent('addRealitieToPlotModal');
     }
@@ -187,7 +202,7 @@ class Realitie extends Component
             'count' => 'required',
             'date' => 'required',
             'volume_number' => 'required',
-            'bond_type' => 'required',
+            'propertycategory_id' => 'required',
             'ownership' => 'required',
             'property_type' => 'required',
             'governorate' => 'required',
@@ -205,7 +220,7 @@ class Realitie extends Component
             'count.required' => 'حقل العدد مطلوب',
             'date.required' => 'حقل التاريخ مطلوب',
             'volume_number.required' => 'حقل رقم الجلد مطلوب',
-            'bond_type.required' => 'حقل نوع السند مطلوب',
+            'propertycategory_id.required' => 'حقل نوع السند مطلوب',
             'ownership.required' => 'حقل العائدية مطلوب',
             'property_type.required' => 'حقل جنس العقار مطلوب',
             'governorate.required' => 'حقل المحافظة مطلوب',
@@ -232,7 +247,7 @@ class Realitie extends Component
             'count' => $this->count,
             'date' => $this->date,
             'volume_number' => $this->volume_number,
-            'bond_type' => $this->bond_type,
+            'propertycategory_id' => $this->propertycategory_id,
             'ownership' => $this->ownership,
             'property_type' => $this->property_type,
             'governorate' => $this->governorate,
@@ -245,7 +260,7 @@ class Realitie extends Component
             'visibility' => $this->visibility,
 
         ]);
-        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'bond_type', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility', 'filePreview');
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility', 'filePreview');
         $this->mount();
 
         $this->dispatchBrowserEvent('success', [

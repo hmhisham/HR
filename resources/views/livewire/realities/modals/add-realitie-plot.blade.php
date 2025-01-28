@@ -38,19 +38,19 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-
+                                    
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer="bond_type" id="modalRealitiebond_type"
-                                                class="form-select @error('bond_type') is-invalid is-filled @enderror">
-                                                <option value="">اختر</option>
-                                                <option value="قديم">قديم</option>
-                                                <option value="تسجيل مجدد">تسجيل مجدد</option>
+                                            <select wire:model.defer='propertycategory_id' id="addRealitiepropertycategory_id" class="form-select @error('propertycategory_id') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                @foreach ($propertycategory as $propertycategor)
+                                                    <option value="{{ $propertycategor->id }}">{{ $propertycategor->category }}</option>
+                                                @endforeach
                                             </select>
-                                            <label for="modalRealitiebond_type">نوع السند</label>
+                                            <label for="modalRealitiepropertycategory_id">نوع العقار</label>
                                         </div>
-                                        @error('bond_type')
-                                            <small class="text-danger inputerror">{{ $message }}</small>
+                                        @error('propertycategory_id')
+                                            <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
                                 </div>

@@ -37,6 +37,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.js"></script>
 @endsection
 
 @section('page-script')
@@ -44,69 +45,27 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        function printImages(deedImageUrl) {
-            // إنشاء iframe مخفي
-            const iframe = document.createElement('iframe');
-            iframe.style.position = 'fixed';
-            iframe.style.top = '-1000px'; // إخفاء iframe خارج الشاشة
-            iframe.style.left = '-1000px';
-            iframe.style.width = '1px';
-            iframe.style.height = '1px';
-            iframe.style.border = 'none';
+        function printFile(fileUrl) {
+            const fileExtension = fileUrl.split('.').pop().toLowerCase();
+            const isPDF = fileExtension === 'pdf';
 
-            // محتوى HTML للصور مع علامة مائية
-            const content = `
-        <html>
-            <head>
-                <title>طباعة السند العقاري</title>
-                <style>
-                    body { font-family: Arial, sans-serif; }
-                    .image-container {
-                        position: relative;
-                        text-align: center;
-                        margin-bottom: 20px;
+            if (isPDF) {
+                printJS({
+                    printable: fileUrl,
+                    type: 'pdf',
+                    onError: function(error) {
+                        alert("خطأ في طباعة ملف PDF: " + error.message);
                     }
-                    img {
-                        max-width: 100%;
-                        height: auto;
+                });
+            } else {
+                printJS({
+                    printable: fileUrl,
+                    type: 'image',
+                    onError: function(error) {
+                        alert("خطأ في طباعة ملف PDF: " + error.message);
                     }
-                    .watermark {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        font-size: 40px;
-                        font-weight: bold;
-                        color: rgba(0, 0, 0, 0.2); /* لون شبه شفاف */
-                        pointer-events: none; /* تجنب التفاعل مع العلامة المائية */
-                        user-select: none; /* منع تحديد النص */
-                    }
-                </style>
-            </head>
-            <body>
-                <div class="image-container">
-                    <h2>صورة السند العقاري</h2>
-                    <div style="position: relative;">
-                        <img src="${deedImageUrl}" alt="صورة السند العقاري">
-                        <div class="watermark">خاص بشعبة الخرائط والمرتسمات</div>
-                    </div>
-                </div>
-            </body>
-        </html>
-    `;
-
-            // إضافة iframe إلى body
-            document.body.appendChild(iframe);
-
-            // كتابة المحتوى في iframe
-            iframe.contentDocument.write(content);
-            iframe.contentDocument.close();
-
-            // طباعة iframe بعد تحميل الصور
-            iframe.onload = function() {
-                iframe.contentWindow.print();
-                document.body.removeChild(iframe); // إزالة iframe بعد الطباعة
-            };
+                });
+            }
         }
 
         $(document).ready(function() {
