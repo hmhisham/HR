@@ -130,7 +130,7 @@
                 labels: labels,
                 datasets: [
                     {
-                        label: 'عدد السندات اليومية',
+                        label: 'السندات اليومية',
                         data: realitiesData,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)', // لون الخلفية
                         borderColor: 'rgba(255, 99, 132, 1)', // لون الخط
@@ -142,7 +142,7 @@
                         pointHoverBorderColor: 'rgba(255, 99, 132, 1)', // لون حدود النقاط عند التمرير
                     },
                     {
-                        label: 'عدد الأملاك اليومية',
+                        label: 'الأملاك اليومية',
                         data: realPropertyData,
                         backgroundColor: 'rgba(54, 162, 235, 0.2)', // لون الخلفية
                         borderColor: 'rgba(54, 162, 235, 1)', // لون الخط
