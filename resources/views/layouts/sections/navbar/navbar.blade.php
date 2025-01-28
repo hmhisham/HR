@@ -60,10 +60,9 @@
 					@endif --}}
 
 					<!-- Language -->
-					<li class="nav-item dropdown-language dropdown me-1 me-xl-0">
+					{{-- <li class="nav-item dropdown-language dropdown me-1 me-xl-0">
 						<a class="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow"
 							href="javascript:void(0);" data-bs-toggle="dropdown">
-							{{-- <i class='mdi mdi-translate mdi-24px'></i> --}}
 							@if (app()->getLocale() == 'ar')
 								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAACT0lEQVR4nO2Wy2sTURjFD2j/AB/1D3BrrcWUtkJgcj9i1u6EEkQ32YmvFHHTRRoaRRBRCoJB0xS0ClUKdlXFGrWK1BqamZRIrWlihSbpJAN1m09usKWSZJrHBAU9cJjLfcxvvnPvMAP8l4nmgLY4cEwFzmjAgLRsx4E+OQarpQI9KjCqAT80gKt4QwNCC0B308AocEAFxlSgaAL8zXKuCoQ/A+2NVtmlASu1Ais8QHIB6KwLGgc6NEBvFLoNXogBR2qF7lOBb81Ctzm1AOypJeIxC6GbDplC5Z7Uc5DqjL2rKjg5fDWQHByMtMSBa8MVocy8K6sb67m8wa1wVjd0ySgD53JGX6ugWzaM3nKwbpyqZfEzdZYTq6lSe3z+RemazmZ4dinGI2+eckbPm1XtLgNn88aAGXBtPc8T0Vf8eP4lzyQ+ceJ7mm/MPCqNvf+i8eWpO3x+8pZ53HnDWwnsrbZgaHqU3eNDfCJ8hY8HLzLdPce3X09w/0Mfr2TW+OD1k+wMXuCzkzf5+eKcGfhSOVg33JUmy+iC76b4wcfpUsWbVtPL/CQa4dVsdqvv7VKMPywvmkRd6P8zh6tQ6Pl7Xicpn98f8Hg8kVbY5/cHUE1Op/MwERWJiC12UVGUDpiJiMJWg4UQ97GTXC7XXiJKWwhN2e32nT+LUkKIQ0SkWwAtEFF9fyFE1ElEX5sAy9SOohHZ7fb2X3tez4ErCiFCiqLsR7NSFKVb3kwIsWESqxy713CVZrLZbG0Oh6OXiE4LIbzSsi37FEXZbboY/7p+ArPRNUUu/+PdAAAAAElFTkSuQmCC">
 							@else
@@ -83,7 +82,7 @@
 									<span class="align-middle">English</span>
 								</a>
 							</li>
-							{{-- <li>
+							<li>
 								<a class="dropdown-item" href="{{url('lang/fr')}}" data-language="fr">
 									<span class="align-middle">French</span>
 								</a>
@@ -97,9 +96,9 @@
 								<a class="dropdown-item" href="{{url('lang/pt')}}" data-language="pt">
 									<span class="align-middle">Portuguese</span>
 								</a>
-							</li> --}}
+							</li>
 						</ul>
-					</li>
+					</li> --}}
 					<!--/ Language -->
 
 					<!-- Style Switcher -->
