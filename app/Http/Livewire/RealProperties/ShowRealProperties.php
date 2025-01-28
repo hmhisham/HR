@@ -166,8 +166,8 @@ class ShowRealProperties extends Component
         {
             $Percent_5 = ($this->sale_amount - $this->insurance_amount) * 0.05;
             $Percent_2 = $Percent_5 * 0.02;
-            $this->net_amount = ceil(($this->sale_amount - $Percent_5) / 20);
-            $this->monthly_amount = ceil($this->net_amount / 12);
+            $this->net_amount = ceil($this->sale_amount - $Percent_5);
+            $this->monthly_amount = ceil($this->net_amount / $this->number_of_months);
         }elseif($this->sale_amount <= $this->insurance_amount){
             $this->net_amount = 0;
             $this->monthly_amount = 0;
