@@ -40,35 +40,24 @@
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
 
     <script>
-        function printFiles(fileUrls) {
-            fileUrls.forEach((fileUrl, index) => {
-                const fileExtension = fileUrl.split('.').pop().toLowerCase();
-                const isPDF = fileExtension === 'pdf';
+        async function printFiles(fileUrls) {
+            for (const fileUrl of fileUrls) {
+                try {
+                    const fileExtension = fileUrl.split('.').pop().toLowerCase();
+                    const isPDF = fileExtension === 'pdf';
 
-                if (isPDF) {
-                    printJS({
-                        printable: fileUrl,
-                        type: 'pdf',
-                        onError: function(error) {
-                            alert("خطأ في طباعة ملف PDF: " + error.message);
-                        }
+                    await new Promise((resolve, reject) => {
+                        printJS({
+                            printable: fileUrl,
+                            type: isPDF ? 'pdf' : 'image',
+                            onPrintDialogClose: resolve,
+                            onError: reject
+                        });
                     });
-                } else {
-                    printJS({
-                        printable: fileUrl,
-                        type: 'image',
-                        onError: function(error) {
-                            alert("خطأ في طباعة الصورة: " + error.message);
-                        }
-                    });
+                } catch (error) {
+                    alert(`خطأ في طباعة الملف: ${fileUrl} - ${error.message}`);
                 }
-                if (index < fileUrls.length - 1) {
-                    window.print();
-                    window.onafterprint = function() {
-                        window.onafterprint = null;
-                    };
-                }
-            });
+            }
         }
 
         $(document).ready(function() {
