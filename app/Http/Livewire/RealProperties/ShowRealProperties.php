@@ -36,7 +36,7 @@ class ShowRealProperties extends Component
     public $filePreview, $property_deed_image, $previewRealitieDeedImage;
     public $BuyerTenant, $buyer, $tenant, $chooseBuyerTenant, $buyer_tenant_name, $buyer_calculator_number, $buyer_tenant_phone_number, $buyer_tenant_email, $buyer_tenant_type, $buyer_tenant_notes;
     public $from_date, $to_date, $number_of_months, $insurance_amount, $sale_amount, $net_amount, $monthly_amount, $real_estate_status, $company_department_email, $alert_duration, $real_estate_statement, $real_estate_bonds_number, $buyer_tenant_calculator_number;
-    public $receipt_number, $receipt_date, $receipt_payer_name, $receipt_payment_amount, $receipt_from_date, $receipt_to_date, $receipt_attach, $receipt_notes;
+    public $receipt_number, $receipt_date, $receipt_payer_name, $receipt_payment_amount, $receipt_from_date, $receipt_to_date, $receipt_attach, $receipt_notes, $attachFile;
     public $notifications = 0;
     public $visibility = 'false';
     public $search = ['property_number' => '', 'count' => '', 'mortgage_notes' => '', 'volume_number' => '', 'visibility' => '',];
@@ -325,6 +325,7 @@ class ShowRealProperties extends Component
         $this->visibility = $this->Realitie->visibility;
 
         $this->reset('chooseBuyerTenant', 'buyer_tenant_name', 'buyer_calculator_number', 'buyer_tenant_phone_number', 'buyer_tenant_email', 'notes');
+        $this->reset('receipt_number', 'receipt_date', 'receipt_payer_name', 'receipt_payment_amount', 'receipt_from_date', 'receipt_to_date', 'attachFile');
 
         $this->BuyerTenant = BuyerTenant::where('property_number', $this->property_number)->first();
     }
@@ -415,6 +416,16 @@ class ShowRealProperties extends Component
         ]);
     }
 
+    public function updatedAttachFile() {
+        //$this->attachFile = $this->attachFile->temporaryUrl();
+
+        $this->validate([
+            'receipt_attach' => 'file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
+        ], [
+            'receipt_attach.max'=> 'يجب ألا يزيد حجم ملف الشهادة عن 1024 كيلوبايت.'
+        ]);
+    }
+
     public function ReceiptStore()
     {
         $this->resetValidation();
@@ -425,25 +436,29 @@ class ShowRealProperties extends Component
             'receipt_payment_amount' => 'required',
             'receipt_from_date' => 'required',
             'receipt_to_date' => 'required',
-            //'attach' => 'required',
+            'receipt_attach' => 'required',
         ], [
-            'receipt_number.required' => 'أسم المشتري أو المستأجر مطلوب',
-            'receipt_date.required' => 'أسم المشتري أو المستأجر مطلوب',
-            'receipt_payer_name.required' => 'أسم المشتري أو المستأجر مطلوب',
-            'receipt_payment_amount.required' => 'أسم المشتري أو المستأجر مطلوب',
-            'receipt_from_date.required' => 'أسم المشتري أو المستأجر مطلوب',
-            'receipt_to_date.required' => 'أسم المشتري أو المستأجر مطلوب',
-            //'attach.required' => 'أسم المشتري أو المستأجر مطلوب',
+            'receipt_number.required' => 'رقم الايصال مطلوب',
+            'receipt_date.required' => 'تاريخ الايصال مطلوب',
+            'receipt_payer_name.required' => 'أسم المسدد مطلوب',
+            'receipt_payment_amount.required' => 'المبلغ المدفوع مطلوب',
+            'receipt_from_date.required' => 'الحقل مطلوب',
+            'receipt_to_date.required' => 'الحقل مطلوب',
+            'receipt_attach.required' => 'ملف الايصال مطلوب',
         ]);
 
-        $Validation['receipt_attach'] = Auth::User()->id;
-        $Validation['user_id'] = Auth::User()->id;
         $Validation['buyer_tenant_id'] = $this->BuyerTenant->id;
         $Validation['property_number'] = $this->property_number;
         $Validation['receipt_notes'] = $this->receipt_notes;
         $Validation['receipt_type'] = $this->BuyerTenant->buyer_tenant_type == 'buyer' ? 'بيع':'ايجار';
+        $Validation['receipt_attach'] = $this->receipt_attach->hashName();
 
-        SaleTenantReceipts::create($Validation);
+        $attachFile = $this->receipt_attach->store('public/Real-Property/Payment-Receipts/'.$this->property_number.'/'.$this->BuyerTenantid);
+
+        if($attachFile)
+        {
+            SaleTenantReceipts::create($Validation);
+        }
 
         $this->reset('receipt_number', 'receipt_date', 'receipt_payer_name', 'receipt_payment_amount', 'receipt_from_date', 'receipt_to_date', 'notes');
 

@@ -143,6 +143,36 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col mb-3" style="height: 350px;">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='receipt_attach' type="file"
+                                        id="receipt_attach" accept=".jpeg,.png,.jpg,.pdf"
+                                        class="form-control @error('receipt_attach') is-invalid is-filled @enderror" />
+                                    <label for="receipt_attach">اختر ملف الايصال</label>
+                                </div>
+                                @error('receipt_attach')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+
+                                <div class="d-flex justify-content-center text-center">
+                                    <div wire:loading wire:target='receipt_attach' class="mt-3">
+                                        <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}"
+                                            style="height: 150px" alt="">
+                                    </div>
+                                    <div wire:loading.remove wire:target='receipt_attach' class="mt-3">
+                                        @if ($receipt_attach && $receipt_attach->getMimeType() == 'application/pdf')
+                                            <embed src="{{ $receipt_attach->temporaryUrl() }}"
+                                                type="application/pdf" width="100%" height="300px" />
+                                        @elseif ($receipt_attach && Str::startsWith($receipt_attach->getMimeType(), 'image/'))
+                                            <img src="{{ $receipt_attach->temporaryUrl() }}" alt="Selected Image"
+                                                class="img-fluid" width="100%" height="300px" />
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <hr class="my-0">
 
                         <div class="text-center col-12 demo-vertical-spacing mb-n4">
