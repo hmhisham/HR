@@ -23,7 +23,7 @@ class AccountRoles extends Component
     {
         if (Auth::User()->hasRole('OWNER'))
         {
-            $this->Permissions = Permission::orderBy('name', 'ASC')->get();
+            $this->Permissions = Permission::all();
         }else{
             $this->Permissions = Permission::whereNotIn('name', [
                 'permissions',
@@ -31,7 +31,7 @@ class AccountRoles extends Component
                 'permission-create',
                 'permission-edit',
                 'permission-delete',
-            ])->orderBy('name', 'ASC')->get();
+            ])->get();
         }
 
     }

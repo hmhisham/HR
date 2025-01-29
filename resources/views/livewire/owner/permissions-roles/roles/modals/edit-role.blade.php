@@ -51,6 +51,7 @@
 											<span class="switch-off"></span>
 										</span>
 										<span class="switch-label text-dark fw-bolder">{{ $Permission->name }}</span>
+										<span class="switch-label text-dark fw-bolder">{{ $Permission->explain_name }}</span>
 									</label>
 								</div>
 							@endforeach

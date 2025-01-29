@@ -8,7 +8,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <div>
-                    <input wire:model="PermissionSearch" type="text" class="form-control" placeholder="بحث...">
+                    <input wire:model="PermissionSearch" wire:keyup='Search' type="text" class="form-control" placeholder="بحث...">
                 </div>
                 <div>
                     @can('permission-create')
@@ -28,7 +28,6 @@
                     <thead class="table-light">
                         <tr>
                             <th>الأسم</th>
-                            <th>الشرح</th>
                             <th>معين إلى</th>
                             <th class="text-center">تاريخ الإنشاء</th>
                             <th class="text-center">الاجراءات</th>
@@ -38,7 +37,6 @@
                         @foreach ($Permissions as $Permission)
                             <tr>
                                 <td>{{ $Permission->name }}</td>
-                                <td>{{ $Permission->explain_name }}</td>
                                 <td>
                                     @php $i = 0; @endphp
                                     @foreach ($Permission->roles as $role)
@@ -56,15 +54,11 @@
                                     <div class="btn-group" role="group" aria-label="First group">
                                         {{-- <button wire:click="show({{ $Permission->id }})" class="p-0 px-1 btn btn-outline-primary waves-effect" data-bs-toggle="modal" data-bs-target="#ShowPermission"><i class="tf-icons mdi mdi-eye-lock-outline fs-3"></i></button> --}}
                                         @can('permission-edit')
-                                            <button wire:click="GetPermission({{ $Permission->id }})" class="btn btn-text-success waves-effect waves-light rounded-circle p-0 px-1" data-bs-toggle="modal" data-bs-target="#editPermissionModal">
-                                                <i class="tf-icons mdi mdi-shield-edit fs-3"></i>
-                                            </button>
+                                            <button wire:click="GetPermission({{ $Permission->id }})" class="p-0 px-1 btn btn-outline-success waves-effect rounded-circle" data-bs-toggle="modal" data-bs-target="#editPermissionModal"><i class="tf-icons mdi mdi-pen-lock fs-3"></i></button>
                                         @endcan
                                         @can('permission-delete')
                                             @if ( Auth::User()->hasRole('OWNER') )
-                                                <button wire:click="GetPermission({{ $Permission->id }})" class="btn btn-text-danger waves-effect rounded-circle p-0 px-1" data-bs-toggle="modal" data-bs-target="#removePermissionModal">
-                                                    <i class="tf-icons mdi mdi-shield-remove fs-3"></i>
-                                                </button>
+                                                <button wire:click="GetPermission({{ $Permission->id }})" class="p-0 px-1 btn btn-outline-danger waves-effect rounded-circle" data-bs-toggle="modal" data-bs-target="#removePermissionModal"><i class="tf-icons mdi mdi-lock-remove-outline fs-3"></i></button>
                                             @endif
                                         @endcan
                                     </div>

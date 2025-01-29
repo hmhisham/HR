@@ -10,23 +10,37 @@ class AccountPermissions extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-
+    
     public $Permissions = [];
     public $PermissionSearch;
-    public $name, $explain_name, $PermissionID;
+    public $name, $PermissionID;
+
+    public function mount()
+    {
+        $this->Permissions = Permission::all();
+    }
 
     public function render()
     {
-        $Permissions = Permission::WHERE('name', 'LIKE', $this->PermissionSearch . '%')->
-            orderBy('name', 'ASC')->
-            paginate(10);
-
+        $Permissions = Permission::paginate(10);
         $links = $Permissions;
         $this->Permissions = collect($Permissions->items());
 
         return view('livewire.owner.permissions-roles.permissions.account-permissions', [
-            'links' => $links
+            'links' => $links 
         ]);
+    }
+
+    public function Search()
+    {
+        if($this->PermissionSearch != ''){
+            $this->Permissions = Permission::WHERE('name', 'LIKE', $this->PermissionSearch . '%')->get();
+            if(count($this->Permissions) == 0){
+                $this->dispatchBrowserEvent('PermissionNotFond');
+            }
+        }else{
+            $this->mount();
+        }
     }
 
     public function AddPermissionModalShow()
@@ -51,7 +65,6 @@ class AccountPermissions extends Component
 
         Permission::create([
             'name' => $this->name,
-            'explain_name' => $this->explain_name,
             'guard_name' => 'web'
         ]);
 
@@ -66,9 +79,8 @@ class AccountPermissions extends Component
         $this->resetValidation();
 
         $this->PermissionID = $PermissionID;
-        $Permission = Permission::find($PermissionID);
-        $this->name = $Permission->name;
-        $this->explain_name = $Permission->explain_name;
+        $PermissionName = Permission::find($PermissionID)->name;
+        $this->name = $PermissionName;
     }
 
     public function update()
@@ -84,8 +96,7 @@ class AccountPermissions extends Component
 
         $Permission = Permission::find($this->PermissionID);
         $Permission->update([
-            'name' => $this->name,
-            'explain_name' => $this->explain_name
+            'name' => $this->name
         ]);
 
         $this->reset();
@@ -93,6 +104,15 @@ class AccountPermissions extends Component
 
         $this->dispatchBrowserEvent('PermissionUpdateSuccess');
     }
+
+    /* public function remove($PermissionID)
+    {
+        $this->resetValidation();
+
+        $this->PermissionID = $PermissionID;
+        $PermissionName = Permission::find($PermissionID)->name;
+        $this->name = $PermissionName;
+    } */
 
     public function destroy()
     {

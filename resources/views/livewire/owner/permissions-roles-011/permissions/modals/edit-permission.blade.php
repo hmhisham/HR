@@ -1,7 +1,7 @@
 <!-- Edit Permission Modal -->
 <div wire:ignore.self class="modal fade" id="editPermissionModal" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content px-4 py-3">
+		<div class="p-3 modal-content p-md-5">
 			<button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
 			<div class="modal-body p-md-0">
 				<div class="mb-4 text-center">
@@ -12,11 +12,12 @@
 					<h6 class="mb-2 alert-heading">تحذير</h6>
 					<p class="mb-0">من خلال تحرير اسم التصريح ، قد تكسر وظائف تصاريح النظام. يرجى التأكد من أنك متأكد تمامًا قبل المتابعة.</p>
 				</div>
-
-                <hr class="mt-n2">
-
 				<form id="editPermissionForm" class="pt-2 row" onsubmit="return false">
-					<div class="mb-3 col-6">
+					{{-- <h6 wire:loading class="text-center">جار معالجة البيانات...</h6>
+                    <div wire:loading.remove>
+                        <div type="text" class="text-center form-control fw-bolder h6">{{ $name }}</div>
+                    </div> --}}
+					<div class="mb-3 col-sm-9">
 						<div class="form-floating form-floating-outline">
 							<input wire:model='name' type="text" id="editPermissionName" name="editPermissionName" class="form-control @if(strlen($name) > 0) is-filled @endif @error('name') is-invalid is-filled @enderror""
 								placeholder="اسم التصريح" tabindex="-1" />
@@ -26,24 +27,17 @@
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
 					</div>
-                    <div class="mb-2 col-6">
-						<div class="form-floating form-floating-outline">
-							<input wire:model='explain_name' type="text" id="explain_name" placeholder="شرح التصريح" autofocus
-								class="form-control @if(strlen($explain_name) > 0) is-filled @endif @error('explain_name') is-invalid is-filled @enderror"/>
-							<label for="explain_name">شرح التصريح</label>
+					<div class="mt-1 mb-3 col-sm-3">
+						<button wire:click='update' type="submit" class="mt-1 btn btn-primary mt-sm-0">تعديل</button>
+					</div>
+					{{-- <div class="col-12">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="editCorePermission" />
+							<label class="form-check-label" for="editCorePermission">
+								Set as core permission
+							</label>
 						</div>
-						@error('explain_name')
-                            <small class='text-danger inputerror'> {{ $message }} </small>
-                        @enderror
-					</div>
-
-                    <hr class="mb-n2">
-
-					<div class="text-center col-12 demo-vertical-spacing">
-						<button wire:click='update' type="submit" class="btn btn-primary me-sm-3 me-1">تعديل التصريح</button>
-						<button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-							aria-label="Close">تجاهل</button>
-					</div>
+					</div> --}}
 				</form>
 			</div>
 		</div>

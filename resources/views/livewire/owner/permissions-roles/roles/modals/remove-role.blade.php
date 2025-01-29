@@ -24,11 +24,11 @@
 					<div class="mb-3 col-12">
 						<h5>صلاحيات الدور</h5>
 						<div class="d-flex justify-content-center">
-							<div class="mx-1 text-nowrap fw-semibold">صلاحيات المسؤول 
+							{{-- <div class="mx-1 text-nowrap fw-semibold">صلاحيات المسؤول
 								<i class="mdi mdi-information-outline" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="يسمح بالوصول الكامل إلى النظام"></i>
-							</div>
-							<div class="mx-1"> 
+							</div> --}}
+							{{-- <div class="mx-1">
 								<label class="switch switch-primary">
 									<input wire:click='CheckAll' type="checkbox" class="switch-input" id="selectAll" {{ $CheckAll }} disabled/>
 									<span class="switch-toggle-slider">
@@ -37,7 +37,7 @@
 									</span>
 									<span class="switch-label">تحديد كل الأدوار</span>
 								</label>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 					<div class="col-12">
@@ -51,6 +51,7 @@
 											<span class="switch-off"></span>
 										</span>
 										<span class="switch-label text-dark fw-bolder">{{ $Permission->name }}</span>
+                                        <span class="switch-label text-dark fw-bolder">{{ $Permission->explain_name }}</span>
 									</label>
 								</div>
 							@endforeach
