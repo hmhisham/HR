@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 use App\Models\Branch\Branch;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
+use App\Models\Tracking\Tracking;
 use App\Models\Provinces\Provinces;
 use Illuminate\Support\Facades\Auth;
 
@@ -167,6 +168,16 @@ class Plot extends Component
             'property_deed_image' => $this->property_deed_image->hashName(),
             'property_map_image' => $this->property_map_image->hashName(),
         ]);
+
+        // =================================
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'القطع',
+            'operation_type' => 'اضافة',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+        ]);
+        // ==================================
 
         $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
         $this->dispatchBrowserEvent('success', [

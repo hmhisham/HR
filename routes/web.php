@@ -26,6 +26,7 @@ use App\Http\Controllers\Linkages\LinkagesController;
 use App\Http\Controllers\Precises\PrecisesController;
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Services\ServicesController;
+use App\Http\Controllers\Tracking\TrackingController;
 use App\Http\Controllers\Childrens\ChildrensController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
@@ -224,7 +225,8 @@ Route::get('show-buyer-tenant/{RealPropertyNumber}/{BuyerTenantId}', [RealProper
     //انواع القيود
     Route::RESOURCE('Itypes', ItypesController::class);
 
-
+// التتبع
+    Route::  RESOURCE('Tracking', TrackingController::class);
     //استدعاء اسم الموظف في حق الموظف
     /*Route::get('/api/workers', function (Request $request) {
         $search = $request->input('q');

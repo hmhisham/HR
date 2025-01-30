@@ -9,6 +9,7 @@ use App\Models\Plots\Plots;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
+use App\Models\Tracking\Tracking;
 use App\Models\Provinces\Provinces;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -221,7 +222,15 @@ class Show extends Component
             'property_deed_image' => $fileDeepImage ?? $this->Plot->property_deed_image,
             'property_map_image' => $fileMapImage ?? $this->Plot->property_map_image,
         ]);
-
+    // =================================
+    Tracking::create([
+        'user_id' => Auth::id(),
+        'page_name' => 'القطع',
+        'operation_type' => 'تعديل',
+        'operation_time' => now()->format('Y-m-d H:i:s'),
+        'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+    ]);
+    // ==================================
         $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
         $this->mount();
 
@@ -233,11 +242,24 @@ class Show extends Component
 
     public function destroy()
     {
+
+            // =================================
+    Tracking::create([
+        'user_id' => Auth::id(),
+        'page_name' => 'القطع',
+        'operation_type' => 'حذف',
+        'operation_time' => now()->format('Y-m-d H:i:s'),
+        'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+    ]);
+    // ==================================
+    
         $this->Plot->delete();
 
-        Storage::deleteDirectory('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
-        $this->mount();
 
+
+        Storage::deleteDirectory('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
+
+        $this->mount();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الحذف بنجاح',
             'title' => 'حذف'

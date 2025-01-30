@@ -1,52 +1,51 @@
 <div>
     <div class="row gy-4 mb-4">
         @php
-            $stats = [
-                [
-                    'title' => 'عدد المقاطعات',
-                    'value' => $ProvincesCount,
-                    'icon' => 'mdi-account-multiple',
-                    'bgClass' => 'bg-label-success',
-                    'hoverColor' => '#d4edda',
-                    'change' => $ProvincesCount,
-                    'changeClass' => 'text-success',
-                    'period' => 'عرض المقاطعات',
-                    // 'route' => 'Provinces.index'
-                ],
-                [
-                    'title' => 'عدد القطع',
-                    'value' => $PlotsCount,
-                    'icon' => 'mdi-ship-wheel',
-                    'bgClass' => 'bg-label-primary',
-                    'hoverColor' => '#cce5ff',
-                    'change' => $PlotsCount,
-                    'changeClass' => 'text-primary',
-                    'period' => 'عرض القطع',
-                    'route' => 'Plots.index',
-                ],
-                [
-                    'title' => 'عدد السندات',
-                    'value' => $RealitiesCount,
-                    'icon' => 'mdi-anchor',
-                    'bgClass' => 'bg-label-warning',
-                    'hoverColor' => '#fff3cd',
-                    'change' => $RealitiesCount,
-                    'changeClass' => 'text-warning',
-                    'period' => 'عرض السندات',
-                    'route' => 'Realities.index',
-                ],
-                [
-                    'title' => ' عدد الاملاك',
-                    'value' => $RealPropertyCount,
-                    'icon' => 'mdi-chart-line',
-                    'bgClass' => 'bg-label-dark',
-                    'hoverColor' => '#e2d9f3',
-                    'change' => $RealPropertyCount,
-                    'changeClass' => 'text-dark',
-                    'period' => 'عدد الاملاك',
-                    'route' => 'Real-Property.index',
-                ],
-            ];
+         $stats = [
+        [
+            'title' => 'عدد المقاطعات',
+            'value' => $ProvincesCount,
+            'icon' => 'mdi-map-marker', // أيقونة جديدة
+            'bgClass' => 'bg-label-success',
+            'hoverColor' => '#d4edda',
+            'change' => $ProvincesCount,
+            'changeClass' => 'text-success',
+            'period' => 'عرض المقاطعات',
+        ],
+        [
+            'title' => 'عدد القطع',
+            'value' => $PlotsCount,
+            'icon' => 'mdi-grid', // أيقونة جديدة
+            'bgClass' => 'bg-label-primary',
+            'hoverColor' => '#cce5ff',
+            'change' => $PlotsCount,
+            'changeClass' => 'text-primary',
+            'period' => 'عرض القطع',
+            'route' => 'Plots.index',
+        ],
+        [
+            'title' => 'عدد السندات',
+            'value' => $RealitiesCount,
+            'icon' => 'mdi-file-document', // أيقونة جديدة
+            'bgClass' => 'bg-label-warning',
+            'hoverColor' => '#fff3cd',
+            'change' => $RealitiesCount,
+            'changeClass' => 'text-warning',
+            'period' => 'عرض السندات',
+            'route' => 'Realities.index',
+        ],
+        [
+            'title' => ' عدد الاملاك',
+            'value' => $RealPropertyCount,
+            'icon' => 'mdi-home', // أيقونة جديدة
+            'bgClass' => 'bg-label-dark',
+            'hoverColor' => '#e2d9f3',
+            'change' => $RealPropertyCount,
+            'changeClass' => 'text-dark',
+            'period' => 'عدد الاملاك',
+            'route' => 'Real-Property.index',
+        ],
+    ];
         @endphp
 
         @foreach ($stats as $stat)

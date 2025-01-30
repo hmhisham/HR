@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 use App\Models\Branch\Branch;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
+use App\Models\Tracking\Tracking;
 use App\Models\Provinces\Provinces;
 use App\Models\Realities\Realities;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +33,7 @@ class Realitie extends Component
     public $Plot, $PlotId;
     public $province_number, $province_name, $plot_number, $section_id;
     public $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $propertycategory_id, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $notes;
-    public $filePreview, $property_deed_image;
+    public $filePreview, $property_deed_image,     $province_id, $plot_id, $bond_type;
     public $visibility = false;
     public $search = ['province_number' => '', 'province_name' => '', 'plot_number' => '',];
 
@@ -196,7 +197,7 @@ class Realitie extends Component
                     return $query->where('plot_id', $this->PlotId);
                 }),
             ],
-           /*  'area_in_meters' => 'required',
+            /*  'area_in_meters' => 'required',
             'area_in_olok' => 'required',
             'area_in_donum' => 'required',
             'count' => 'required',
@@ -260,6 +261,18 @@ class Realitie extends Component
             'visibility' => $this->visibility,
 
         ]);
+
+        // =================================
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'السند العقاري',
+            'operation_type' => 'اضافة',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+            'details' => "رقم المقاطعة: " . $this->province_id . ' - '  . " \nرقم القطعة: " . $this->plot_id . ' - '  . " \nرقم العقار: " . $this->property_number . ' - '  . " \nالمساحة بالمتر: " . $this->area_in_meters . ' - '  . " \nالمساحة بالأولك: " . $this->area_in_olok . ' - '  . " \nالمساحة بالدونم: " . $this->area_in_donum . ' - '  . " \nالعدد: " . $this->count . ' - '  . " \nالتاريخ: " . $this->date . ' - '  . " \nرقم الجلد: " . $this->volume_number . ' - '  . " \nنوع السند: " . $this->bond_type . ' - '  . " \nالعائدية: " . $this->ownership . ' - '  . " \nجنس العقار: " . $this->property_type . ' - '  . " \nالمحافظة: " . $this->governorate . ' - '  . " \nالقضاء: " . $this->district . ' - '  . " \nإشارات التأمينات: " . $this->mortgage_notes . ' - '  . " \nالدائرة المسجل لديها: " . $this->registered_office . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nملاحظات: " . $this->notes . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+        ]);
+        // ==================================
+
+
         $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility', 'filePreview');
         $this->mount();
 
@@ -267,6 +280,5 @@ class Realitie extends Component
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
         ]);
-
     }
 }
