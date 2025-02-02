@@ -58,13 +58,56 @@
                     }
                 });
             } else {
-                printJS({
-                    printable: fileUrl,
-                    type: 'image',
-                    onError: function(error) {
-                        alert("خطأ في طباعة ملف PDF: " + error.message);
-                    }
-                });
+                const img = new Image();
+                img.src = fileUrl;
+
+                img.onload = () => {
+                    const printWindow = window.open('', '_blank');
+                    printWindow.document.write(`
+                <html>
+                    <head>
+                        <title>طباعة</title>
+                        <style>
+                            body {
+                                margin: 0;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100vh;
+                            }
+                            img {
+                                max-width: 100%;
+                                max-height: 100%;
+                                width: auto;
+                                height: auto;
+                            }
+                            @media print {
+                                @page {
+                                    size: A4;
+                                    margin: 0;
+                                }
+                                img {
+                                    width: 100%;
+                                    height: auto;
+                                }
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <img src="${fileUrl}" alt="صورة للطباعة">
+                    </body>
+                </html>
+            `);
+                    printWindow.document.close();
+                    printWindow.onload = () => {
+                        printWindow.print();
+                        printWindow.close();
+                    };
+                };
+
+                img.onerror = (error) => {
+                    alert(`خطأ في تحميل الصورة: ${error.message}`);
+                };
             }
         }
 

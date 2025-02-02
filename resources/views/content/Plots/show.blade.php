@@ -46,16 +46,76 @@
                     const fileExtension = fileUrl.split('.').pop().toLowerCase();
                     const isPDF = fileExtension === 'pdf';
 
-                    await new Promise((resolve, reject) => {
-                        printJS({
-                            printable: fileUrl,
-                            type: isPDF ? 'pdf' : 'image',
-                            onPrintDialogClose: resolve,
-                            onError: reject
+                    if (isPDF) {
+                        // طباعة ملفات PDF كما هي
+                        await new Promise((resolve, reject) => {
+                            printJS({
+                                printable: fileUrl,
+                                type: 'pdf',
+                                onPrintDialogClose: resolve,
+                                onError: reject
+                            });
                         });
-                    });
+                    } else {
+                        // طباعة الصور بحجم ورقة A4
+                        await new Promise((resolve, reject) => {
+                            // إنشاء عنصر صورة مؤقت
+                            const img = new Image();
+                            img.src = fileUrl;
+                            img.onload = () => {
+                                // إنشاء نافذة طباعة مؤقتة
+                                const printWindow = window.open('', '_blank');
+                                printWindow.document.write(`
+                            <html>
+                                <head>
+                                    <title>طباعة</title>
+                                    <style>
+                                        body {
+                                            margin: 0;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            height: 100vh;
+                                        }
+                                        img {
+                                            max-width: 100%;
+                                            max-height: 100%;
+                                            width: auto;
+                                            height: auto;
+                                        }
+                                        @media print {
+                                            @page {
+                                                size: A4;
+                                                margin: 0;
+                                            }
+                                            img {
+                                                width: 100%;
+                                                height: auto;
+                                            }
+                                        }
+                                    </style>
+                                </head>
+                                <body>
+                                    <img src="${fileUrl}" alt="صورة للطباعة">
+                                </body>
+                            </html>
+                        `);
+                                printWindow.document.close();
+
+                                // استدعاء الطباعة بعد تحميل النافذة
+                                printWindow.onload = () => {
+                                    printWindow.print();
+                                    printWindow.close();
+                                    resolve();
+                                };
+                            };
+                            img.onerror = (error) => {
+                                reject(`الصورة الثانية غير موجودة: ${error.message}`);
+                            };
+                        });
+                    }
                 } catch (error) {
-                    alert(`خطأ في طباعة الملف: ${fileUrl} - ${error.message}`);
+                    alert(`الملف الثاني غير موجود: ${fileUrl} - ${error.message}`);
                 }
             }
         }
