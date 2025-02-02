@@ -42,10 +42,14 @@
                                 </label>
                             </div>
                         </div>
+                        <!-- حقل البحث -->
+                        <div class="mt-3">
+                            <input type="text" wire:model="searchPermission" class="form-control" placeholder="ابحث عن صلاحية...">
+                        </div>
                     </div>
                     <div class="col-12">
                         <div class="row">
-                            @foreach ($Permissions as $Permission)
+                            @foreach ($this->filteredPermissions as $Permission)
                                 <div class="mb-3 col-3">
                                     <label class="switch switch-primary">
                                         <input wire:model.defer='SetPermission.{{ $Permission->id }}'

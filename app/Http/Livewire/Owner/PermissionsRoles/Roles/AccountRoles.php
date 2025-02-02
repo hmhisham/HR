@@ -19,7 +19,7 @@ class AccountRoles extends Component
     public $TickAll, $CheckAll;
     public $SetPermission = [];
 
-    public function mount()
+    /* public function mount()
     {
         if (Auth::User()->hasRole('OWNER'))
         {
@@ -34,6 +34,30 @@ class AccountRoles extends Component
             ])->orderBy('name', 'ASC')->get();
         }
 
+    } */
+
+    public $searchPermission = '';
+
+    public function mount()
+    {
+        if (Auth::User()->hasRole('OWNER')) {
+            $this->Permissions = $this->filteredPermissions;
+        } else {
+            $this->Permissions = Permission::whereNotIn('name', [
+                'permissions',
+                'permission-list',
+                'permission-create',
+                'permission-edit',
+                'permission-delete',
+            ])->orderBy('name', 'ASC')->get();
+        }
+    }
+
+    public function getFilteredPermissionsProperty()
+    {
+        return Permission::where('name', 'like', '%' . $this->searchPermission . '%')
+            ->orWhere('explain_name', 'like', '%' . $this->searchPermission . '%')
+            ->get();
     }
 
     public function render()
