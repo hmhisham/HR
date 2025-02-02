@@ -96,7 +96,7 @@
                                     <td class="text-center">{{ $Trackin->operation_time }}</td>
                                     <td class="text-center">{{ $Trackin->details }}</td>
 
-                                    <td class="text-center">
+                                    {{-- <td class="text-center">
                                         <div class="btn-group" role="group" aria-label="First group">
                                             @can('trackin-edit')
                                                 <button wire:click="GetTrackin({{ $Trackin->id }})"
@@ -114,7 +114,7 @@
                                                 </button>
                                             @endcan
                                         </div>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>
@@ -123,10 +123,10 @@
                         {{ $links->onEachSide(0)->links() }}
                     </div>
                 </div>
-                <!-- Modal -->
+                {{-- <!-- Modal -->
                 @include('livewire.tracking.modals.edit-trackin')
                 @include('livewire.tracking.modals.remove-trackin')
-                <!-- Modal -->
+                <!-- Modal --> --}}
             @endcan
         </div>
     </div>
