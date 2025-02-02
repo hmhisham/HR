@@ -41,10 +41,13 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='propertycategory_id' id="addRealitiepropertycategory_id" class="form-select @error('propertycategory_id') is-invalid is-filled @enderror">
+                                            <select wire:model.defer='propertycategory_id'
+                                                id="addRealitiepropertycategory_id"
+                                                class="form-select @error('propertycategory_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($propertycategory as $propertycategor)
-                                                    <option value="{{ $propertycategor->id }}">{{ $propertycategor->category }}</option>
+                                                    <option value="{{ $propertycategor->id }}">
+                                                        {{ $propertycategor->category }}</option>
                                                 @endforeach
                                             </select>
                                             <label for="modalRealitiepropertycategory_id">نوع العقار</label>
@@ -201,6 +204,8 @@
                                                 <option value="مديرية التسجيل العقاري الثانية">مديرية التسجيل
                                                     العقاري
                                                     الثانية</option>
+                                                <option value="مديرية التسجيل العقاري الثالثة">مديرية التسجيل العقاري
+                                                    الثالثة</option>
                                                 <option value="ملاحظية التسجيل العقاري في شط العرب">ملاحظية التسجيل
                                                     العقاري
                                                     في شط العرب</option>
@@ -318,10 +323,13 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='specialized_department' id="addRealitiespecialized_department" class="form-select @error('specialized_department') is-invalid is-filled @enderror">
+                                            <select wire:model.defer='specialized_department'
+                                                id="addRealitiespecialized_department"
+                                                class="form-select @error('specialized_department') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($branch as $branc)
-                                                    <option value="{{ $branc->id }}">{{ $branc->branch_name }}</option>
+                                                    <option value="{{ $branc->id }}">{{ $branc->branch_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             <label for="modalRealitiespecialized_department">الشعبة المختصة</label>
