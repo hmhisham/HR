@@ -187,8 +187,13 @@
                                             <select wire:model.defer='ownership' id="modalRealitieownership"
                                                 class="form-control @error('ownership') is-invalid is-filled @enderror">
                                                 <option value="">اختر العائدية</option>
-                                                <option value="الشركة العامة لموانئ العراق">الشركة العامة لموانئ العراق
+                                                <option value="الشركة العامة لموانئ العراق">الشركة العامة لموانئ
+                                                    العراق
                                                 </option>
+                                                <option value="المنشاة العامة لموانئ العراق">المنشاة العامة لموانئ
+                                                    العراق</option>
+                                                <option value="المؤسسة العامة للموانئ العراقية">المؤسسة العامة للموانئ
+                                                    العراقية</option>
                                                 <option value="مديرية بلدية البصرة">مديرية بلدية البصرة</option>
                                             </select>
                                             <label for="modalRealitieownership">العائدية</label>
