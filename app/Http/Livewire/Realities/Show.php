@@ -35,7 +35,7 @@ class Show extends Component
     public $RealitieSearch, $Realitie, $RealitieId;
     public $province_number, $province_name, $plot_number;
     public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $propertycategory_id, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department,  $notes;
-    public $filePreview, $property_deed_image, $previewRealitieDeedImage   ,    $bond_type;
+    public $filePreview, $property_deed_image, $previewRealitieDeedImage,    $bond_type;
     public $visibility = false;
     public $search = ['property_number' => '', 'count' => '', 'mortgage_notes' => '', 'volume_number' => '', 'visibility' => '',];
 
@@ -270,20 +270,13 @@ class Show extends Component
 
         ]);
 
+        // =================================
         Tracking::create([
             'user_id' => Auth::id(),
             'page_name' => 'السند العقاري',
             'operation_type' => 'اضافة',
             'operation_time' => now()->format('Y-m-d H:i:s'),
-            'details' => $this->$province_id . ' - ' . $this->PlotId
-
-                . ' - ' . $this->property_number . ' - ' . $this->area_in_meters . ' - ' . $this->area_in_olok
-                . ' - ' . $this->area_in_donum . ' - ' . $this->count . ' - ' . $this->date
-                . ' - ' . $this->volume_number . ' - ' . $this->propertycategory_id . ' - ' . $this->ownership
-                . ' - ' . $this->property_type . ' - ' . $this->governorate . ' - ' . $this->district
-                . ' - ' . $this->mortgage_notes . ' - ' . $this->registered_office . ' - ' . $this->specialized_department
-                . ' - ' . $this->property_deed_image->hashName() . ' - ' . $this->notes . ' - ' . $this->visibility,
-
+            'details' => "رقم المقاطعة: " . $this->province_id . ' - '  . " \nرقم القطعة: " . $this->plot_id . ' - '  . " \nرقم العقار: " . $this->property_number . ' - '  . " \nالمساحة بالمتر: " . $this->area_in_meters . ' - '  . " \nالمساحة بالأولك: " . $this->area_in_olok . ' - '  . " \nالمساحة بالدونم: " . $this->area_in_donum . ' - '  . " \nالعدد: " . $this->count . ' - '  . " \nالتاريخ: " . $this->date . ' - '  . " \nرقم الجلد: " . $this->volume_number . ' - '  . " \nنوع السند: " . $this->bond_type . ' - '  . " \nالعائدية: " . $this->ownership . ' - '  . " \nجنس العقار: " . $this->property_type . ' - '  . " \nالمحافظة: " . $this->governorate . ' - '  . " \nالقضاء: " . $this->district . ' - '  . " \nإشارات التأمينات: " . $this->mortgage_notes . ' - '  . " \nالدائرة المسجل لديها: " . $this->registered_office . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nملاحظات: " . $this->notes . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
         ]);
         // ==================================
 
@@ -414,8 +407,8 @@ class Show extends Component
 
         ]);
 
-        // =================================
-        Tracking::create([
+         // =================================
+         Tracking::create([
             'user_id' => Auth::id(),
             'page_name' => 'السند العقاري',
             'operation_type' => 'تعديل',
@@ -423,7 +416,6 @@ class Show extends Component
             'details' => "رقم المقاطعة: " . $this->province_id . ' - '  . " \nرقم القطعة: " . $this->plot_id . ' - '  . " \nرقم العقار: " . $this->property_number . ' - '  . " \nالمساحة بالمتر: " . $this->area_in_meters . ' - '  . " \nالمساحة بالأولك: " . $this->area_in_olok . ' - '  . " \nالمساحة بالدونم: " . $this->area_in_donum . ' - '  . " \nالعدد: " . $this->count . ' - '  . " \nالتاريخ: " . $this->date . ' - '  . " \nرقم الجلد: " . $this->volume_number . ' - '  . " \nنوع السند: " . $this->bond_type . ' - '  . " \nالعائدية: " . $this->ownership . ' - '  . " \nجنس العقار: " . $this->property_type . ' - '  . " \nالمحافظة: " . $this->governorate . ' - '  . " \nالقضاء: " . $this->district . ' - '  . " \nإشارات التأمينات: " . $this->mortgage_notes . ' - '  . " \nالدائرة المسجل لديها: " . $this->registered_office . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nملاحظات: " . $this->notes . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
         ]);
         // ==================================
-
         $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'filePreview', 'notes', 'visibility');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
@@ -436,16 +428,15 @@ class Show extends Component
     {
 
 
-
-        // =================================
-        Tracking::create([
-            'user_id' => Auth::id(),
-            'page_name' => 'السند العقاري',
-            'operation_type' => 'حذف',
-            'operation_time' => now()->format('Y-m-d H:i:s'),
-            'details' => "رقم المقاطعة: " . $this->province_id . ' - '  . " \nرقم القطعة: " . $this->plot_id . ' - '  . " \nرقم العقار: " . $this->property_number . ' - '  . " \nالمساحة بالمتر: " . $this->area_in_meters . ' - '  . " \nالمساحة بالأولك: " . $this->area_in_olok . ' - '  . " \nالمساحة بالدونم: " . $this->area_in_donum . ' - '  . " \nالعدد: " . $this->count . ' - '  . " \nالتاريخ: " . $this->date . ' - '  . " \nرقم الجلد: " . $this->volume_number . ' - '  . " \nنوع السند: " . $this->bond_type . ' - '  . " \nالعائدية: " . $this->ownership . ' - '  . " \nجنس العقار: " . $this->property_type . ' - '  . " \nالمحافظة: " . $this->governorate . ' - '  . " \nالقضاء: " . $this->district . ' - '  . " \nإشارات التأمينات: " . $this->mortgage_notes . ' - '  . " \nالدائرة المسجل لديها: " . $this->registered_office . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nملاحظات: " . $this->notes . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
-        ]);
-        // ==================================
+    // =================================
+    Tracking::create([
+        'user_id' => Auth::id(),
+        'page_name' => 'السند العقاري',
+        'operation_type' => 'حذف',
+        'operation_time' => now()->format('Y-m-d H:i:s'),
+        'details' => "رقم المقاطعة: " . $this->province_id . ' - '  . " \nرقم القطعة: " . $this->plot_id . ' - '  . " \nرقم العقار: " . $this->property_number . ' - '  . " \nالمساحة بالمتر: " . $this->area_in_meters . ' - '  . " \nالمساحة بالأولك: " . $this->area_in_olok . ' - '  . " \nالمساحة بالدونم: " . $this->area_in_donum . ' - '  . " \nالعدد: " . $this->count . ' - '  . " \nالتاريخ: " . $this->date . ' - '  . " \nرقم الجلد: " . $this->volume_number . ' - '  . " \nنوع السند: " . $this->bond_type . ' - '  . " \nالعائدية: " . $this->ownership . ' - '  . " \nجنس العقار: " . $this->property_type . ' - '  . " \nالمحافظة: " . $this->governorate . ' - '  . " \nالقضاء: " . $this->district . ' - '  . " \nإشارات التأمينات: " . $this->mortgage_notes . ' - '  . " \nالدائرة المسجل لديها: " . $this->registered_office . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nملاحظات: " . $this->notes . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+    ]);
+    // ==================================
         $this->Realitie->delete();
         Storage::deleteDirectory('public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->property_number);
 
