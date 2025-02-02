@@ -38,7 +38,7 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-                                    
+
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='propertycategory_id' id="addRealitiepropertycategory_id" class="form-select @error('propertycategory_id') is-invalid is-filled @enderror">

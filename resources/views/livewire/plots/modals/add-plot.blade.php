@@ -64,7 +64,7 @@
                         </div>
 
                         <div Class="row">
-                            <div class="col mb-3" style="height: 350px;">
+                            <div class="col mb-3 text-center">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='property_deed_image' type="file"
                                         id="property_deed_image" accept=".jpeg,.png,.jpg,.pdf"
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
 
-                            <div class="col mb-3" style="height: 350px;">
+                            <div class="col mb-3 text-center">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='property_map_image' type="file" id="property_map_image"
                                         accept=".jpeg,.png,.jpg,.pdf"

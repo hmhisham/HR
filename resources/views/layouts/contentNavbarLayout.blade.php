@@ -74,7 +74,7 @@
                                 </a>
                             </li>
 
-                            {{--  @can('employees')
+                            @can('employees')
                                 <li
                                     class="menu-item {{ request()->is('Workers', 'AddWorker', 'Thanks', 'Penalties', 'Jobleavers', 'Dispatch', 'Certific', 'Holidays', 'Wives', 'Childrens', 'Placements', 'Positions', 'Services', 'Inputs', 'Itypes') ? 'open active' : '' }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -83,424 +83,533 @@
                                     </a>
 
                                     <ul class="menu-sub">
-                                        <li Class="menu-item {{ request()->Is('Workers') ? 'active' : '' }}">
-                                            <a href="{{ Route('Workers') }}" Class="menu-link">
-                                                <div>المعلومات العامة</div>
-                                            </a>
-                                        </li>
-                                        <li Class="menu-item {{ request()->Is('AddWorker') ? 'active' : 'hidden' }}">
-                                            <a href="{{ Route('AddWorker') }}" Class="menu-link">
-                                                <div>إضافة موظف</div>
-                                            </a>
-                                        </li>
-                                        <li Class="menu-item {{ request()->Is('Wives') ? 'active' : '' }}">
-                                            <a href="{{ Route('Wives.index') }}" Class="menu-link">
-                                                <i Class=''></i>
-                                                <div>بيانات الزوج/ـة</div>
-                                            </a>
-                                        </li>
-                                        <li Class="menu-item {{ request()->Is('Childrens') ? 'active' : '' }}">
-                                            <a href="{{ Route('Childrens.index') }}" Class="menu-link">
-                                                <i Class=''></i>
-                                                <div>بيانات الاطفال</div>
-                                            </a>
-                                        </li>
-                                        <li Class="menu-item {{ request()->Is('Certific') ? 'active' : '' }}">
-                                            <a href = "{{ Route('Certific.index') }}" Class="menu-link">
-                                                <div>الشهادات</div>
-                                            </a>
-                                        </li>
-                                        <li Class="menu-item {{ request()->Is('Placements') ? 'active' : '' }}">
-                                            <a href = "{{ Route('Placements.index') }}" Class="menu-link">
-                                                <div>التنسيب</div>
-                                            </a>
-                                        </li>
-                                        <li Class="menu-item {{ request()->Is('Positions') ? 'active' : '' }}">
-                                            <a href = "{{ Route('Positions.index') }}" Class="menu-link">
-                                                <div>المنصب</div>
-                                            </a>
-                                        </li>
-                                        <li Class="menu-item {{ request()->Is('Thanks') ? 'active' : '' }}">
-                                            <a href="{{ Route('Thanks.index') }}" Class="menu-link">
-                                                <div>الشكر و التقدير</div>
-                                            </a>
-                                        </li>
-
-                                        <li Class="menu-item {{ request()->Is('Penalties') ? 'active' : '' }}">
-                                            <a href = "{{ Route('Penalties.index') }}" Class="menu-link">
-                                                <div>العقوبات</div>
-                                            </a>
-                                        </li>
-
-                                        <li Class="menu-item {{ request()->Is('Jobleavers') ? 'active' : '' }}">
-                                            <a href = "{{ Route('Jobleavers.index') }}" Class="menu-link">
-                                                <div>تاركي العمل</div>
-                                            </a>
-                                        </li>
-
-                                        <li Class="menu-item {{ request()->Is('Services') ? 'active' : '' }}">
-                                            <a href = "{{ Route('Services.index') }}" Class="menu-link">
-                                                <div>خلاصة الخدمة</div>
-                                            </a>
-                                        </li>
-
-                                        <li Class="menu-item {{ request()->Is('Dispatch') ? 'active' : '' }}">
-                                            <a href = "{{ Route('Dispatch.index') }}" Class="menu-link">
-                                                <div>الأيفادات</div>
-                                            </a>
-                                        </li>
-
-                                        <li Class="menu-item {{ request()->Is('Holidays') ? 'active' : '' }}">
-                                            <a href = "{{ Route('Holidays.index') }}" Class="menu-link">
-                                                <div>الاجازات</div>
-                                            </a>
-                                        </li>
-
-                                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-                                            <a href="" Class="menu-link">
-                                                <div>العلاوات</div>
-                                            </a>
-                                        </li>
-
-                                        <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-                                            <a href="" Class="menu-link">
-                                                <i Class=''></i>
-                                                <div>الترفيعات</div>
-                                            </a>
-                                        </li>
+                                        @can('workers')
+                                            <li Class="menu-item {{ request()->Is('Workers') ? 'active' : '' }}">
+                                                <a href="{{ Route('Workers') }}" Class="menu-link">
+                                                    <i class=""></i>
+                                                    <div>المعلومات العامة</div>
+                                                </a>
+                                            </li>
+                                            <li Class="menu-item {{ request()->Is('AddWorker') ? 'active' : 'hidden' }}">
+                                                <a href="{{ Route('AddWorker') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>إضافة موظف</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('wives')
+                                            <li Class="menu-item {{ request()->Is('Wives') ? 'active' : '' }}">
+                                                <a href="{{ Route('Wives.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>بيانات الزوج/ـة</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('childrens')
+                                            <li Class="menu-item {{ request()->Is('Childrens') ? 'active' : '' }}">
+                                                <a href="{{ Route('Childrens.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>بيانات الاطفال</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('certific')
+                                            <li Class="menu-item {{ request()->Is('Certific') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Certific.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الشهادات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('placements')
+                                            <li Class="menu-item {{ request()->Is('Placements') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Placements.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>التنسيب</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('positions')
+                                            <li Class="menu-item {{ request()->Is('Positions') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Positions.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>المنصب</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('thanks')
+                                            <li Class="menu-item {{ request()->Is('Thanks') ? 'active' : '' }}">
+                                                <a href="{{ Route('Thanks.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الشكر و التقدير</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('penalties')
+                                            <li Class="menu-item {{ request()->Is('Penalties') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Penalties.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>العقوبات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('jobleavers')
+                                            <li Class="menu-item {{ request()->Is('Jobleavers') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Jobleavers.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>تاركي العمل</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('services')
+                                            <li Class="menu-item {{ request()->Is('Services') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Services.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>خلاصة الخدمة</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('dispatch')
+                                            <li Class="menu-item {{ request()->Is('Dispatch') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Dispatch.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الأيفادات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('holidays')
+                                            <li Class="menu-item {{ request()->Is('Holidays') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Holidays.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الاجازات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('empInfoBank')
+                                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                                                <a href="" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>العلاوات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('empInfoBank')
+                                            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
+                                                <a href="" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الترفيعات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
                                     </ul>
                                 </li>
                             @endcan
+                            @can('financial')
+                                <li
+                                    class="menu-item {{ request()->is('Salaries', 'Inputs', 'Itypes', 'Iaccts', 'Idepartments') ? 'open active' : '' }}">
+                                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                        <i class='menu-icon tf-icons mdi mdi-calculator'></i>
+                                        <span class="menu-title">القسم المالي</span>
+                                    </a>
+                                    <ul class="menu-sub">
+                                        @can('itypes')
+                                            <li Class="menu-item {{ request()->Is('Itypes') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Itypes.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>انواع القيود</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('iaccts')
+                                            <li Class="menu-item {{ request()->Is('Iaccts') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Iaccts.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الدليل المحاسبي</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('idepartments')
+                                            <li Class="menu-item {{ request()->Is('Idepartments') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Idepartments.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>دليل الاقسام</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('inputs')
+                                            <li Class="menu-item {{ request()->Is('Inputs') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Inputs.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>ادخال اليومية</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                </li>
+                            @endcan
+                            @can('landproperty')
+                                <li
+                                    class="menu-item {{ request()->is('Provinces', 'Plots', 'Show-Plot/*', 'Realities', 'Show-Realitie/*', 'Boycotts', 'Bonds', 'Bond-Show/*', 'Real-Property', 'Show-Real-Property/*', 'Estate') ? 'open active' : '' }}">
+                                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                        <i class='menu-icon tf-icons mdi mdi-map-outline'></i>
+                                        <span class="menu-title">قسم الاملاك و الاراضي</span>
+                                    </a>
+                                    <ul class="menu-sub">
+                                        @can('provinces')
+                                            <li Class="menu-item {{ request()->Is('Provinces') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Provinces.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>المقاطعات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('plots')
+                                            <li Class="menu-item {{ request()->Is('Plots') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Plots') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>القطع</div>
+                                                </a>
+                                            </li>
 
-                            <li
-                                class="menu-item {{ request()->is('Salaries', 'Inputs', 'Itypes', 'Iaccts', 'Idepartments') ? 'open active' : '' }}">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class='menu-icon tf-icons mdi mdi-calculator'></i>
-                                    <span class="menu-title">القسم المالي</span>
-                                </a>
-                                <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Itypes') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Itypes.index') }}" Class="menu-link">
-                                            <div>انواع القيود</div>
-                                        </a>
-                                    </li>
+                                            <li Class="menu-item {{ request()->Is('Show-Plot/*') ? 'active' : 'hidden' }}">
+                                                <a href = "javascript:void(0)" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>عرض القطعة</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('realities')
+                                            <li Class="menu-item {{ request()->Is('Realities') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Realities') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>السند العقاري</div>
+                                                </a>
+                                            </li>
 
-                                    <li Class="menu-item {{ request()->Is('Iaccts') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Iaccts.index') }}" Class="menu-link">
-                                            <div>الدليل المحاسبي</div>
-                                        </a>
-                                    </li>
+                                            <li Class="menu-item {{ request()->Is('Show-Realitie/*') ? 'active' : 'hidden' }}">
+                                                <a href = "javascript:void(0)" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>عرض السند العقاري</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('realProperty')
+                                            <li Class="menu-item {{ request()->Is('Real-Property') ? 'active' : '' }}">
+                                                <a href = "{{ Route('RealProperty') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الاملاك</div>
+                                                </a>
+                                            </li>
 
-                                    <li Class="menu-item {{ request()->Is('Idepartments') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Idepartments.index') }}" Class="menu-link">
-                                            <div>دليل الاقسام</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Inputs') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Inputs.index') }}" Class="menu-link">
-                                            <div>ادخال اليومية</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li> --}}
-
-                            <li class="menu-item {{ request()->is('Provinces', 'Plots', 'Show-Plot/*', 'Realities', 'Show-Realitie/*', 'Boycotts', 'Bonds', 'Bond-Show/*', 'Real-Property', 'Show-Real-Property/*','Estate') ? 'open active' : '' }}">
-
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class='menu-icon tf-icons mdi mdi-map-outline'></i>
-                                    <span class="menu-title">قسم الاملاك و الاراضي</span>
-                                </a>
-
-
-                                <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Provinces') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Provinces.index') }}" Class="menu-link">
-                                            <div>المقاطعات</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Plots') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Plots') }}" Class="menu-link">
-                                            <div>القطع</div>
-                                        </a>
-                                    </li>
-                                    <li Class="menu-item {{ request()->Is('Show-Plot/*') ? 'active' : 'hidden' }}">
-                                        <a href = "javascript:void(0)" Class="menu-link">
-                                            <div>عرض القطعة</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Realities') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Realities') }}" Class="menu-link">
-                                            <div>السند العقاري</div>
-                                        </a>
-                                    </li>
-                                    <li Class="menu-item {{ request()->Is('Show-Realitie/*') ? 'active' : 'hidden' }}">
-                                        <a href = "javascript:void(0)" Class="menu-link">
-                                            <div>عرض السند العقاري</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Real-Property') ? 'active' : '' }}">
-                                        <a href = "{{ Route('RealProperty') }}" Class="menu-link">
-                                            <div>الاملاك</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Show-Real-Property/*') ? 'active' : 'hidden' }}">
-                                        <a href = "#" Class="menu-link">
-                                            <div>عرض الاملاك</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                {{-- <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Property') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Property.index') }}" Class="menu-link">
-                                            <div>الاملاك القديم عوفه</div>
-                                        </a>
-                                    </li>
-                                </ul> --}}
-                            </li>
-
-                            {{-- <li class="menu-item {{ request()->is('Coaches', 'Courses') ? 'open active' : '' }}">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class='menu-icon tf-icons mdi mdi-account-tie-voice-outline'></i>
-                                    <span class="menu-title">التدريب و التطوير</span>
-                                </a>
-                                <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Coaches') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Coaches.index') }}" Class="menu-link">
-
-                                            <div>المدربين</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="menu-sub">
-                                    <li Class="menu-item {{ request()->Is('Courses') ? 'active' : '' }}">
-                                        <a href = "{{ Route('Courses.index') }}" Class="menu-link">
-
-                                            <div>الدورات</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li> --}}
-
-                            {{-- Files Upload --}}
-                            {{--  <li class="menu-item {{ request()->is('Private-Employee-Files') ? 'active' : '' }}">
-                                <a href="{{ Route('PrivateEmployeeFiles') }}" class="menu-link">
-                                    <i class="menu-icon tf-icons mdi mdi-file-cloud-outline"></i>
-                                    <div>{{ trans('sidebar.PrivateEmployeeFiles') }}</div>
-                                </a>
-                            </li> --}}
-
-                            {{-- الإعدادات --}}
-                            <li
-                                class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes','Tracking') ? 'open active' : '' }}">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
-                                    <span class="menu-title">الاعدادات</span>
-                                </a>
-                                <ul class="menu-sub">
-                                    {{-- المحافظات --}}
-                                    <li class="menu-item {{ request()->is('Governorates') ? 'active' : '' }}">
-                                        <a href="{{ Route('Governorates.index') }}" Class="menu-link">
-                                            <i class=""></i>
-                                            <Div>المحافظات</div>
-                                        </a>
-                                    </li>
-                                    {{-- الأقضية --}}
-                                    <li class="menu-item {{ request()->Is('Districts') ? 'active' : '' }}">
-                                        <a href="{{ Route('Districts.index') }}" Class="menu-link">
-                                            <i class=""></i>
-                                            <div>الأقضية</div>
-                                        </a>
-                                    </li>
-                                    {{-- النواحي --}}
-                                    <li class="menu-item {{ request()->Is('Areas') ? 'active' : '' }}">
-                                        <a href="{{ Route('Areas.index') }}" Class="menu-link">
-                                            <i class=""></i>
-                                            <div>النواحي</div>
-                                        </a>
-                                    </li>
-                                    {{--
-                                    <li Class="menu-item {{ request()->Is('Infooffice') ? 'active' : '' }}">
-                                        <a href="{{ Route('Infooffice.index') }}" Class="menu-link">
-                                            <i class=""></i>
-                                            <div>مكتب المعلومات</div>
-                                        </a>
-                                    </li>
-                                    --}}
-
-                                    <li Class="menu-item {{ request()->Is('Linkages') ? 'active' : '' }}">
-                                        <a href="{{ Route('Linkages.index') }}" Class="menu-link">
-                                            <i class=""></i>
-                                            <div>الارتباط</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Sections') ? 'active' : '' }}">
-                                        <a href="{{ Route('Sections.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>الاقسام</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Branch') ? 'active' : '' }}">
-                                        <a href="{{ Route('Branch.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>الشعب</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Units') ? 'active' : '' }}">
-                                        <a href="{{ Route('Units.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>الوحدات</div>
-                                        </a>
-                                    </li>
-                                    {{--
-                                    <li Class="menu-item {{ request()->Is('Department') ? 'active' : '' }}">
-                                        <a href="{{ Route('Department.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>الدوائر</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Certificates') ? 'active' : '' }}">
-                                        <a href="{{ Route('Certificates.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>الشهادة</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Graduations') ? 'active' : '' }}">
-                                        <a href="{{ Route('Graduations.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>جهة التخرج</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Specializations') ? 'active' : '' }}">
-                                        <a href="{{ Route('Specializations.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>الاختصاص</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Specialtys') ? 'active' : '' }}">
-                                        <a href="{{ Route('Specialtys.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>التخصص العام</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Precises') ? 'active' : '' }}">
-                                        <a href="{{ Route('Precises.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>التخصص الدقيق</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Specializationclassification') ? 'active' : '' }}">
-                                        <a href="{{ Route('Specializationclassification.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>تصنيف التخصص</div>
-                                        </a>
-                                    </li>
-                                    <li Class="menu-item {{ request()->Is('Grades') ? 'active' : '' }}">
-                                        <a href="{{ Route('Grades.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>الدرجات</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Jobtitles') ? 'active' : '' }}">
-                                        <a href="{{ Route('Jobtitles.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>العنوان الوظيفي</div>
-                                        </a>
-                                    </li>
-                                    <li Class="menu-item {{ request()->Is('Scalems') ? 'active' : '' }}">
-                                        <a href="{{ Route('Scalems.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>سلم رواتب الملاك</div>
-                                        </a>
-                                    </li>
-                                    <li Class="menu-item {{ request()->Is('Scaleas') ? 'active' : '' }}">
-                                        <a href="{{ Route('Scaleas.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>سلم رواتب العقد الاداري</div>
-                                        </a>
-                                    </li>
-                                    <li Class="menu-item {{ request()->Is('Technicians') ? 'active' : '' }}">
-                                        <a href="{{ Route('Technicians.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>سلم رواتب العقد الفني</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Trainings') ? 'active' : '' }}">
-                                        <a href="{{ Route('Trainings.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>مجال التدريب</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Typeholidays') ? 'active' : '' }}">
-                                        <a href="{{ Route('Typeholidays.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>نوع الاجازة</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Typesservices') ? 'active' : '' }}">
-                                        <a href="{{ Route('Typesservices.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>حالة الخدمة</div>
-                                        </a>
-                                    </li> --}}
-
-                                    <li Class="menu-item {{ request()->Is('Emaillists') ? 'active' : '' }}">
-                                        <a href="{{ Route('Emaillists.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>البريد الألكتروني</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Propertycategory') ? 'active' : '' }}">
-                                        <a href="{{ Route('Propertycategory.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>انواع العقارات</div>
-                                        </a>
-                                    </li>
-                                    <li Class="menu-item {{ request()->Is('Utilizationtypes') ? 'active' : '' }}">
-                                        <a href="{{ Route('Utilizationtypes.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>انواع الاستغلال للعقار</div>
-                                        </a>
-                                    </li>
-                                    <li Class="menu-item {{ request()->Is('Propertytypes') ? 'active' : '' }}">
-                                        <a href="{{ Route('Propertytypes.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>جنس العقار</div>
-                                        </a>
-                                    </li>
-
-                                    <li Class="menu-item {{ request()->Is('Tracking') ? 'active' : '' }}">
-                                        <a href="{{ Route('Tracking.index') }}" Class="menu-link">
-                                            <i Class=''></i>
-                                            <div>التتبع</div>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li>
-
+                                            <li Class="menu-item {{ request()->Is('Show-Real-Property/*') ? 'active' : 'hidden' }}">
+                                                <a href = "#" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>عرض الاملاك</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                </li>
+                            @endcan
+                            @can('training')
+                                <li class="menu-item {{ request()->is('Coaches', 'Courses') ? 'open active' : '' }}">
+                                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                        <i class='menu-icon tf-icons mdi mdi-account-tie-voice-outline'></i>
+                                        <span class="menu-title">التدريب و التطوير</span>
+                                    </a>
+                                    <ul class="menu-sub">
+                                        @can('coaches')
+                                            <li Class="menu-item {{ request()->Is('Coaches') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Coaches.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>المدربين</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('courses')
+                                            <li Class="menu-item {{ request()->Is('Courses') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Courses.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الدورات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                </li>
+                            @endcan
+                            @can('files')
+                                {{-- Files Upload --}}
+                                <li class="menu-item {{ request()->is('Private-Employee-Files') ? 'active' : '' }}">
+                                    <a href="{{ Route('PrivateEmployeeFiles') }}" class="menu-link">
+                                        <i class="menu-icon tf-icons mdi mdi-file-cloud-outline"></i>
+                                        <div>{{ trans('sidebar.PrivateEmployeeFiles') }}</div>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('settings')
+                                {{-- الإعدادات --}}
+                                <li
+                                    class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking') ? 'open active' : '' }}">
+                                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                        <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
+                                        <span class="menu-title">الاعدادات</span>
+                                    </a>
+                                    <ul class="menu-sub">
+                                        @can('governorates')
+                                            {{-- المحافظات --}}
+                                            <li class="menu-item {{ request()->is('Governorates') ? 'active' : '' }}">
+                                                <a href="{{ Route('Governorates.index') }}" Class="menu-link">
+                                                    <i class=""></i>
+                                                    <div>المحافظات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('districts')
+                                            {{-- الأقضية --}}
+                                            <li class="menu-item {{ request()->Is('Districts') ? 'active' : '' }}">
+                                                <a href="{{ Route('Districts.index') }}" Class="menu-link">
+                                                    <i class=""></i>
+                                                    <div>الأقضية</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('areas')
+                                            {{-- النواحي --}}
+                                            <li class="menu-item {{ request()->Is('Areas') ? 'active' : '' }}">
+                                                <a href="{{ Route('Areas.index') }}" Class="menu-link">
+                                                    <i class=""></i>
+                                                    <div>النواحي</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('infooffice')
+                                            {{-- مكتب المعلومات --}}
+                                            <li Class="menu-item {{ request()->Is('Infooffice') ? 'active' : '' }}">
+                                                <a href="{{ Route('Infooffice.index') }}" Class="menu-link">
+                                                    <i class=""></i>
+                                                    <div>مكتب المعلومات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('linkages')
+                                            {{-- الارتباط --}}
+                                            <li Class="menu-item {{ request()->Is('Linkages') ? 'active' : '' }}">
+                                                <a href="{{ Route('Linkages.index') }}" Class="menu-link">
+                                                    <i class=""></i>
+                                                    <div>الارتباط</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('sections')
+                                            {{-- الاقسام --}}
+                                            <li Class="menu-item {{ request()->Is('Sections') ? 'active' : '' }}">
+                                                <a href="{{ Route('Sections.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الاقسام</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('branch')
+                                            {{-- الشعب --}}
+                                            <li Class="menu-item {{ request()->Is('Branch') ? 'active' : '' }}">
+                                                <a href="{{ Route('Branch.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الشعب</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('units')
+                                            {{-- الوحدات --}}
+                                            <li Class="menu-item {{ request()->Is('Units') ? 'active' : '' }}">
+                                                <a href="{{ Route('Units.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الوحدات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('department')
+                                            {{-- الدوائر --}}
+                                            <li Class="menu-item {{ request()->Is('Department') ? 'active' : '' }}">
+                                                <a href="{{ Route('Department.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الدوائر</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('certificates')
+                                            {{-- الشهادة --}}
+                                            <li Class="menu-item {{ request()->Is('Certificates') ? 'active' : '' }}">
+                                                <a href="{{ Route('Certificates.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الشهادة</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('graduations')
+                                            {{-- جهة التخرج --}}
+                                            <li Class="menu-item {{ request()->Is('Graduations') ? 'active' : '' }}">
+                                                <a href="{{ Route('Graduations.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>جهة التخرج</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('specializations')
+                                            {{-- الاختصاص --}}
+                                            <li Class="menu-item {{ request()->Is('Specializations') ? 'active' : '' }}">
+                                                <a href="{{ Route('Specializations.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الاختصاص</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('specialtys')
+                                            {{-- التخصص العام --}}
+                                            <li Class="menu-item {{ request()->Is('Specialtys') ? 'active' : '' }}">
+                                                <a href="{{ Route('Specialtys.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>التخصص العام</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('precises')
+                                            {{-- التخصص الدقيق --}}
+                                            <li Class="menu-item {{ request()->Is('Precises') ? 'active' : '' }}">
+                                                <a href="{{ Route('Precises.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>التخصص الدقيق</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('specializationclassification')
+                                            {{-- تصنيف التخصص --}}
+                                            <li Class="menu-item {{ request()->Is('Specializationclassification') ? 'active' : '' }}">
+                                                <a href="{{ Route('Specializationclassification.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>تصنيف التخصص</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('grades')
+                                            {{-- الدرجات --}}
+                                            <li Class="menu-item {{ request()->Is('Grades') ? 'active' : '' }}">
+                                                <a href="{{ Route('Grades.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>الدرجات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('jobtitles')
+                                            {{-- العنوان الوظيفي --}}
+                                            <li Class="menu-item {{ request()->Is('Jobtitles') ? 'active' : '' }}">
+                                                <a href="{{ Route('Jobtitles.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>العنوان الوظيفي</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('scalems')
+                                            {{-- سلم رواتب الملاك --}}
+                                            <li Class="menu-item {{ request()->Is('Scalems') ? 'active' : '' }}">
+                                                <a href="{{ Route('Scalems.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>سلم رواتب الملاك</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('scaleas')
+                                            {{-- سلم رواتب العقد الاداري --}}
+                                            <li Class="menu-item {{ request()->Is('Scaleas') ? 'active' : '' }}">
+                                                <a href="{{ Route('Scaleas.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>سلم رواتب العقد الاداري</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('technicians')
+                                            {{-- سلم رواتب العقد الفني --}}
+                                            <li Class="menu-item {{ request()->Is('Technicians') ? 'active' : '' }}">
+                                                <a href="{{ Route('Technicians.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>سلم رواتب العقد الفني</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('trainings')
+                                            {{-- مجال التدريب --}}
+                                            <li Class="menu-item {{ request()->Is('Trainings') ? 'active' : '' }}">
+                                                <a href="{{ Route('Trainings.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>مجال التدريب</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('typeholidays')
+                                            {{-- نوع الاجازة --}}
+                                            <li Class="menu-item {{ request()->Is('Typeholidays') ? 'active' : '' }}">
+                                                <a href="{{ Route('Typeholidays.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>نوع الاجازة</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('typesservices')
+                                            {{-- حالة الخدمة --}}
+                                            <li Class="menu-item {{ request()->Is('Typesservices') ? 'active' : '' }}">
+                                                <a href="{{ Route('Typesservices.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>حالة الخدمة</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('emaillists')
+                                            {{-- البريد الالكتروني --}}
+                                            <li Class="menu-item {{ request()->Is('Emaillists') ? 'active' : '' }}">
+                                                <a href="{{ Route('Emaillists.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>البريد الألكتروني</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('propertycategory')
+                                            {{-- انواع العقارات --}}
+                                            <li Class="menu-item {{ request()->Is('Propertycategory') ? 'active' : '' }}">
+                                                <a href="{{ Route('Propertycategory.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>انواع العقارات</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('utilizationtypes')
+                                            {{-- انواع الاستغلال للعقار --}}
+                                            <li Class="menu-item {{ request()->Is('Utilizationtypes') ? 'active' : '' }}">
+                                                <a href="{{ Route('Utilizationtypes.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>انواع الاستغلال للعقار</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('propertytypes')
+                                            {{-- جنس العقار --}}
+                                            <li Class="menu-item {{ request()->Is('Propertytypes') ? 'active' : '' }}">
+                                                <a href="{{ Route('Propertytypes.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>جنس العقار</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('tracking')
+                                            {{-- التتبع --}}
+                                            <li Class="menu-item {{ request()->Is('Tracking') ? 'active' : '' }}">
+                                                <a href="{{ Route('Tracking.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>التتبع</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                </li>
+                            @endcan
                             {{-- المستخدمين --}}
                             @can('users')
                                 <li
