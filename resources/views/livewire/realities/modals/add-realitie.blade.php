@@ -43,10 +43,13 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='propertycategory_id' id="addRealitiepropertycategory_id" class="form-select @error('propertycategory_id') is-invalid is-filled @enderror">
+                                            <select wire:model.defer='propertycategory_id'
+                                                id="addRealitiepropertycategory_id"
+                                                class="form-select @error('propertycategory_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($propertycategory as $propertycategor)
-                                                    <option value="{{ $propertycategor->id }}">{{ $propertycategor->category }}</option>
+                                                    <option value="{{ $propertycategor->id }}">
+                                                        {{ $propertycategor->category }}</option>
                                                 @endforeach
                                             </select>
                                             <label for="modalRealitiepropertycategory_id">نوع العقار</label>
@@ -179,8 +182,13 @@
                                             <select wire:model.defer='ownership' id="modalRealitieownership"
                                                 class="form-control @error('ownership') is-invalid is-filled @enderror">
                                                 <option value="">اختر العائدية</option>
-                                                <option value="الشركة العامة لموانئ العراق">الشركة العامة لموانئ العراق
+                                                <option value="الشركة العامة لموانئ العراق">الشركة العامة لموانئ
+                                                    العراق
                                                 </option>
+                                                <option value="المنشأة العامة لموانئ العراق">المنشأة العامة لموانئ
+                                                    العراق</option>
+                                                <option value="المؤسسة العامة للموانئ العراقية">المؤسسة العامة للموانئ
+                                                    العراقية</option>
                                                 <option value="مديرية بلدية البصرة">مديرية بلدية البصرة</option>
                                             </select>
                                             <label for="modalRealitieownership">العائدية</label>
@@ -201,12 +209,11 @@
                                                 </option>
                                                 <option value="مديرية التسجيل العقاري الثانية">مديرية التسجيل العقاري
                                                     الثانية</option>
+                                                <option value="مديرية التسجيل العقاري الثالثة">مديرية التسجيل العقاري
+                                                    الثالثة</option>
                                                 <option value="ملاحظية التسجيل العقاري في شط العرب">ملاحظية التسجيل
                                                     العقاري
                                                     في شط العرب</option>
-                                                <option value="ملاحظية التسجيل العقاري في الزبير">ملاحظية التسجيل
-                                                    العقاري
-                                                    في الزبير</option>
                                                 <option value="ملاحظية التسجيل العقاري في ابي الخصيب">ملاحظية التسجيل
                                                     العقاري في ابي الخصيب</option>
                                                 <option value="ملاحظية التسجيل العقاري في سفوان">ملاحظية التسجيل

@@ -124,7 +124,7 @@ class Plot extends Component
     public function updatedPropertyMapImage()
     {
         $this->validate([
-            'property_map_image' => 'file|mimes:jpeg,png,jpg,pdf',
+            'property_deed_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf',
         ], [
             //'property_map_image.required' => 'الملف مطلوب',
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
@@ -145,7 +145,7 @@ class Plot extends Component
             ],
             'specialized_department' => 'required',
             'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
-            'property_map_image' => 'file|mimes:jpeg,png,jpg,pdf',
+            'property_deed_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
             'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
@@ -157,7 +157,11 @@ class Plot extends Component
         ]);
 
         $this->property_deed_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
-        $this->property_map_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
+        $propertyMapImageHashName = null;
+        if ($this->property_map_image) {
+            $this->property_map_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
+            $propertyMapImageHashName = $this->property_map_image->hashName();
+        }
 
         Plots::create([
             'user_id' => Auth::user()->id,
@@ -166,7 +170,7 @@ class Plot extends Component
             'specialized_department' => $this->specialized_department,
             'visibility' => $this->visibility,
             'property_deed_image' => $this->property_deed_image->hashName(),
-            'property_map_image' => $this->property_map_image->hashName(),
+            'property_map_image' => $propertyMapImageHashName,
         ]);
 
         // =================================
