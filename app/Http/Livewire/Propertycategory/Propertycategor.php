@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Propertycategory;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\Tracking\Tracking;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Propertycategory\Propertycategory;
 
@@ -60,6 +61,15 @@ class propertycategor extends Component
             'category' => $this->category,
             'notes' => $this->notes,
         ]);
+
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'انواع العقارات',
+            'operation_type' => 'اضافة',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+                      'details' =>   " \nنوع العقار: " . $this->category . ' - '  . " \nملاحظات: " . $this->notes  , ]);
+
+
         $this->reset(['category', 'notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
@@ -89,6 +99,13 @@ class propertycategor extends Component
             'category' => $this->category,
             'notes' => $this->notes,
         ]);
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'انواع العقارات',
+            'operation_type' => 'تعديل',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+                      'details' =>   " \nنوع العقار: " . $this->category . ' - '  . " \nملاحظات: " . $this->notes  , ]);
+
         $this->reset(['category', 'notes']);
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
@@ -99,6 +116,14 @@ class propertycategor extends Component
     {
         $Propertycategory = Propertycategory::find($this->propertycategorId);
         if ($Propertycategory) {
+
+            Tracking::create([
+                'user_id' => Auth::id(),
+                'page_name' => 'انواع العقارات',
+                'operation_type' => 'حذف',
+                'operation_time' => now()->format('Y-m-d H:i:s'),
+                          'details' =>   " \nنوع العقار: " . $this->category . ' - '  . " \nملاحظات: " . $this->notes  , ]);
+
             $Propertycategory->delete();
             $this->reset();
             $this->dispatchBrowserEvent('success', [
