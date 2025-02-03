@@ -113,6 +113,25 @@ class Show extends Component
         $this->filePreviewMap = $this->property_map_image->temporaryUrl();
     }
 
+    public function printt($Plotid)
+    {
+        $this->Plot = Plots::find($Plotid);
+        $this->plot_number = $this->Plot->plot_number;
+        $this->specialized_department = $this->Plot->specialized_department;
+        $this->visibility = $this->Plot->visibility;
+        $this->previewPropertyDeedImage = $this->Plot->property_deed_image;
+        $this->previewPropertyMapImage = $this->Plot->property_map_image;
+        // =================================
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'القطع',
+            'operation_type' => 'طباعة',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->previewPropertyDeedImage . ' - '  . " \nصوره الخارطة العقارية: " . $this->previewPropertyMapImage . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department ,
+        ]);
+        // ==================================
+    }
+
     public function store()
     {
         $this->resetValidation();
@@ -152,6 +171,16 @@ class Show extends Component
             'property_deed_image' => $this->property_deed_image->hashName(),
             'property_map_image' => $propertyMapImageHashName,
         ]);
+
+                // =================================
+                Tracking::create([
+                    'user_id' => Auth::id(),
+                    'page_name' => 'القطع',
+                    'operation_type' => 'اضافة',
+                    'operation_time' => now()->format('Y-m-d H:i:s'),
+                    'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+                ]);
+                // ==================================
 
         $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
         $this->mount();
@@ -226,15 +255,15 @@ class Show extends Component
             'property_deed_image' => $fileDeepImage ?? $this->Plot->property_deed_image,
             'property_map_image' => $fileMapImage ?? $this->Plot->property_map_image,
         ]);
-    // =================================
-    Tracking::create([
-        'user_id' => Auth::id(),
-        'page_name' => 'القطع',
-        'operation_type' => 'تعديل',
-        'operation_time' => now()->format('Y-m-d H:i:s'),
-        'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
-    ]);
-    // ==================================
+        // =================================
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'القطع',
+            'operation_type' => 'تعديل',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+        ]);
+        // ==================================
         $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
         $this->mount();
 
@@ -247,15 +276,15 @@ class Show extends Component
     public function destroy()
     {
 
-            // =================================
-    Tracking::create([
-        'user_id' => Auth::id(),
-        'page_name' => 'القطع',
-        'operation_type' => 'حذف',
-        'operation_time' => now()->format('Y-m-d H:i:s'),
-        'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
-    ]);
-    // ==================================
+        // =================================
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'القطع',
+            'operation_type' => 'حذف',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+        ]);
+        // ==================================
 
         $this->Plot->delete();
 
