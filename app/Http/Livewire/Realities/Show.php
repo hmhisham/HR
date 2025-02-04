@@ -318,6 +318,38 @@ class Show extends Component
         $this->visibility = $this->Realitie->visibility;
     }
 
+    public function printt($RealitieId)
+    {
+     
+        $this->Realitie = Realities::find($RealitieId);
+        $this->RealitieId = $RealitieId;
+        $this->plot_id = $this->Realitie->plot_id;
+        $this->property_number = $this->Realitie->property_number;
+        $this->area_in_meters = $this->Realitie->area_in_meters;
+        $this->area_in_olok = $this->Realitie->area_in_olok;
+        $this->area_in_donum = $this->Realitie->area_in_donum;
+        $this->count = $this->Realitie->count;
+        $this->date = $this->Realitie->date;
+        $this->volume_number = $this->Realitie->volume_number;
+        $this->propertycategory_id = $this->Realitie->propertycategory_id;
+        $this->ownership = $this->Realitie->ownership;
+        $this->property_type = $this->Realitie->property_type;
+        $this->governorate = $this->Realitie->governorate;
+        $this->district = $this->Realitie->district;
+        $this->mortgage_notes = $this->Realitie->mortgage_notes;
+        $this->registered_office = $this->Realitie->registered_office;
+        $this->specialized_department = $this->Realitie->specialized_department;
+        $this->previewRealitieDeedImage = $this->Realitie->property_deed_image;
+        $this->notes = $this->Realitie->notes;
+        $this->visibility = $this->Realitie->visibility;
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'السندات العقارية',
+            'operation_type' => 'طباعة',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+            'details' =>   " \nرقم القطعة: " . $this->plot_id . ' - '  . " \nرقم العقار: " . $this->property_number . ' - '  . " \nالمساحة بالمتر: " . $this->area_in_meters . ' - '  . " \nالمساحة بالأولك: " . $this->area_in_olok . ' - '  . " \nالمساحة بالدونم: " . $this->area_in_donum . ' - '  . " \nالعدد: " . $this->count . ' - '  . " \nالتاريخ: " . $this->date . ' - '  . " \nرقم الجلد: " . $this->volume_number . ' - '  . " \nنوع العقار: " . $this->propertycategory_id . ' - '  . " \nالعائدية: " . $this->ownership . ' - '  . " \nجنس العقار: " . $this->property_type . ' - '  . " \nالمحافظة: " . $this->governorate . ' - '  . " \nالقضاء: " . $this->district . ' - '  . " \nإشارات التأمينات: " . $this->mortgage_notes . ' - '  . " \nالدائرة المسجل لديها: " . $this->registered_office . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nملاحظات: " . $this->notes . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+        ]);
+    }
     public function update()
     {
         $this->resetValidation();
@@ -407,8 +439,8 @@ class Show extends Component
 
         ]);
 
-         // =================================
-         Tracking::create([
+        // =================================
+        Tracking::create([
             'user_id' => Auth::id(),
             'page_name' => 'السند العقاري',
             'operation_type' => 'تعديل',
@@ -426,17 +458,15 @@ class Show extends Component
 
     public function destroy()
     {
-
-
-    // =================================
-    Tracking::create([
-        'user_id' => Auth::id(),
-        'page_name' => 'السند العقاري',
-        'operation_type' => 'حذف',
-        'operation_time' => now()->format('Y-m-d H:i:s'),
-        'details' => "رقم المقاطعة: " . $this->province_id . ' - '  . " \nرقم القطعة: " . $this->plot_id . ' - '  . " \nرقم العقار: " . $this->property_number . ' - '  . " \nالمساحة بالمتر: " . $this->area_in_meters . ' - '  . " \nالمساحة بالأولك: " . $this->area_in_olok . ' - '  . " \nالمساحة بالدونم: " . $this->area_in_donum . ' - '  . " \nالعدد: " . $this->count . ' - '  . " \nالتاريخ: " . $this->date . ' - '  . " \nرقم الجلد: " . $this->volume_number . ' - '  . " \nنوع السند: " . $this->bond_type . ' - '  . " \nالعائدية: " . $this->ownership . ' - '  . " \nجنس العقار: " . $this->property_type . ' - '  . " \nالمحافظة: " . $this->governorate . ' - '  . " \nالقضاء: " . $this->district . ' - '  . " \nإشارات التأمينات: " . $this->mortgage_notes . ' - '  . " \nالدائرة المسجل لديها: " . $this->registered_office . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nملاحظات: " . $this->notes . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
-    ]);
-    // ==================================
+        // =================================
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'السند العقاري',
+            'operation_type' => 'حذف',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+            'details' => "رقم المقاطعة: " . $this->province_id . ' - '  . " \nرقم القطعة: " . $this->plot_id . ' - '  . " \nرقم العقار: " . $this->property_number . ' - '  . " \nالمساحة بالمتر: " . $this->area_in_meters . ' - '  . " \nالمساحة بالأولك: " . $this->area_in_olok . ' - '  . " \nالمساحة بالدونم: " . $this->area_in_donum . ' - '  . " \nالعدد: " . $this->count . ' - '  . " \nالتاريخ: " . $this->date . ' - '  . " \nرقم الجلد: " . $this->volume_number . ' - '  . " \nنوع السند: " . $this->bond_type . ' - '  . " \nالعائدية: " . $this->ownership . ' - '  . " \nجنس العقار: " . $this->property_type . ' - '  . " \nالمحافظة: " . $this->governorate . ' - '  . " \nالقضاء: " . $this->district . ' - '  . " \nإشارات التأمينات: " . $this->mortgage_notes . ' - '  . " \nالدائرة المسجل لديها: " . $this->registered_office . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nملاحظات: " . $this->notes . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+        ]);
+        // ==================================
         $this->Realitie->delete();
         Storage::deleteDirectory('public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->property_number);
 
@@ -446,4 +476,6 @@ class Show extends Component
         ]);
         /* $this->mount(); */
     }
+
+
 }
