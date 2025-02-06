@@ -27,6 +27,9 @@ class Plot extends Component
     public $visibility = false;
     public $search = ['province_number' => '', 'province_name' => ''];
 
+    public $latitude;
+    public $longitude;
+
     protected $listeners = [
         'SelectSpecializedDepartment',
     ];
@@ -68,7 +71,7 @@ class Plot extends Component
             ->when($this->search['province_name'], function ($query) use ($searchName) {
                 $query->orWhere('province_name', 'LIKE', $searchName);
             })
-            ->orderBy('id', 'ASC')
+            ->orderByRaw('CAST(province_number AS UNSIGNED) ASC')
             ->paginate(10);
 
         $links = $Provinces;
@@ -89,7 +92,12 @@ class Plot extends Component
         return Branch::where('section_id', $sectionId)->get();
     }
 
-    public function GetProvince($ProvinceId)
+    public function initMap()
+{
+    $this->dispatchBrowserEvent('init-map');
+}
+
+    public function GetProvince($ProvinceId, $openModal = false)
     {
         $this->resetValidation();
 
@@ -102,6 +110,10 @@ class Plot extends Component
         $this->previewPropertyMapImage = $this->Province->property_map_image;
 
         $this->branch = $this->getBranchesBySectionId($this->section_id);
+
+        if ($openModal) {
+            $this->dispatchBrowserEvent('init-map');
+        }
     }
 
     public function addPlotToProvince($ProvinceId)

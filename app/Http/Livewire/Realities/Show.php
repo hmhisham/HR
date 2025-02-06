@@ -152,7 +152,7 @@ class Show extends Component
             ->when($this->search['visibility'] !== '', function ($query) use ($searchVisibility) {
                 $query->where('visibility', $searchVisibility);
             })
-            ->orderBy('id', 'ASC')
+            ->orderByRaw('CAST(property_number AS UNSIGNED) ASC')
             ->paginate(10);
 
         $links = $Realities;
@@ -163,6 +163,7 @@ class Show extends Component
             'Realities' => $Realities,
         ]);
     }
+
     public function addRealitieModal()
     {
         $this->reset('province_id', 'plot_id', 'property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility');

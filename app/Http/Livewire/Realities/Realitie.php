@@ -121,20 +121,20 @@ class Realitie extends Component
         $searchPlotNumber = '%' . $this->search['plot_number'] . '%';
 
         $Plots = Plots::with(['GetProvinces', 'GetRealities'])
+            ->join('provinces', 'plots.province_id', '=', 'provinces.id')
             ->when($this->search['province_number'], function ($query) use ($searchNumber) {
-                $query->whereHas('GetProvinces', function ($q) use ($searchNumber) {
-                    $q->where('province_number', 'LIKE', $searchNumber);
-                });
+                $query->where('provinces.province_number', 'LIKE', $searchNumber);
             })
             ->when($this->search['province_name'], function ($query) use ($searchName) {
-                $query->whereHas('GetProvinces', function ($q) use ($searchName) {
-                    $q->where('province_name', 'LIKE', $searchName);
-                });
+                $query->where('provinces.province_name', 'LIKE', $searchName);
             })
             ->when($this->search['plot_number'], function ($query) use ($searchPlotNumber) {
-                $query->where('plot_number', 'LIKE', $searchPlotNumber);
+                $query->where('plots.plot_number', 'LIKE', $searchPlotNumber);
             })
-            ->orderBy('id', 'ASC')
+
+            ->orderByRaw('CAST(provinces.province_number AS UNSIGNED) ASC')
+            ->orderByRaw('CAST(plots.plot_number AS UNSIGNED) ASC')
+            ->select('plots.*')
             ->paginate(10);
 
         $links = $Plots;

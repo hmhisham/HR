@@ -65,7 +65,7 @@ class Show extends Component
             ->when($this->search['visibility'] !== '', function ($query) use ($searchVisibility) {
                 $query->where('visibility', $searchVisibility);
             })
-            ->orderBy('id', 'ASC')
+            ->orderByRaw('CAST(plot_number AS UNSIGNED) ASC')
             ->paginate(10);
 
         $links = $Plots;

@@ -27,7 +27,7 @@ class Propertytype extends Component
             ->when($this->search['type_name'], function ($query) use ($typeNameSearch) {
                 $query->where('type_name', 'LIKE', $typeNameSearch);
             })
-            ->orderBy('id', 'ASC')
+            ->orderBy('type_name', 'ASC')
             ->paginate(10);
 
         $links = $Propertytypes;

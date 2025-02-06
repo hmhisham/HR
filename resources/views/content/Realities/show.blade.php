@@ -116,8 +116,10 @@
                 $(selector).flatpickr({
                     placeholder: 'التاريخ',
                     altInput: true,
-                    altFormat: "Y-m",
+                    allowInput: true,
                     dateFormat: "Y-m",
+                    altFormat: "F Y",
+                    yearSelectorType: "input",
                     locale: {
                         months: {
                             shorthand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
@@ -132,21 +134,17 @@
                         new monthSelectPlugin({
                             shorthand: true,
                             dateFormat: "Y-m",
-                            altFormat: "Y-m",
+                            altFormat: "F Y",
                             theme: "light"
                         })
                     ],
                     onChange: function(selectedDates, dateStr, instance) {
-                        console.log(dateStr);
                         livewire.emit(eventName, dateStr);
                     }
                 });
             }
-
-            // تهيئة حقول التاريخ
             initFlatpickr('#addDate', 'updateDate', '#addRealitieToPlotModal');
             initFlatpickr('#editDate', 'updateDate', '#editRealitieToPlotModal');
-
             window.livewire.on('flatpickr', () => {
                 initFlatpickr('#addDate', 'updateDate', '#addRealitieToPlotModal');
                 initFlatpickr('#editDate', 'updateDate', '#editRealitieToPlotModal');

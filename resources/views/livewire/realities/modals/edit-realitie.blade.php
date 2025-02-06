@@ -158,7 +158,7 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:ignore wire:model.defer='date' type="date" id="editDate"
+                                            <input wire:ignore wire:model.defer='date' type="text" id="editDate"
                                                 placeholder="التاريخ"
                                                 class="form-control @error('date') is-invalid is-filled @enderror" />
                                             <label for="modalRealitidate">التاريخ</label>
@@ -194,6 +194,7 @@
                                                     العراق</option>
                                                 <option value="المؤسسة العامة للموانئ العراقية">المؤسسة العامة للموانئ
                                                     العراقية</option>
+                                                <option value="مصلحة الموانئ العراقية">مصلحة الموانئ العراقية</option>
                                                 <option value="مديرية بلدية البصرة">مديرية بلدية البصرة</option>
                                             </select>
                                             <label for="modalRealitieownership">العائدية</label>

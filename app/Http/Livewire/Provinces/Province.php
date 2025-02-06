@@ -62,7 +62,7 @@ class Province extends Component
             ->when($this->search['province_name'], function ($query) use ($searchName) {
                 $query->where('province_name', 'LIKE', $searchName);
             })
-            ->orderBy('id', 'ASC')
+            ->orderByRaw('CAST(province_number AS UNSIGNED) ASC')
             ->paginate(10);
 
         $links = $Provinces;

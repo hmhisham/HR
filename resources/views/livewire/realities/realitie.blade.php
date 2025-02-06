@@ -39,7 +39,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; ?>
+                        @php
+                            $i = $links->perPage() * ($links->currentPage() - 1) + 1;
+                        @endphp
                         @foreach ($Plots as $Plot)
                             <tr>
                                 <td>{{ $i++ }}</td>

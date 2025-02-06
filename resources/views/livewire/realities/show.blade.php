@@ -67,7 +67,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; ?>
+                        @php
+                            $i = $links->perPage() * ($links->currentPage() - 1) + 1;
+                        @endphp
                         @foreach ($Realities as $Realitie)
                             <tr>
                                 <td>{{ $i++ }}</td>

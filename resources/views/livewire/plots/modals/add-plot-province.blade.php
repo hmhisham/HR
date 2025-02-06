@@ -62,6 +62,32 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer="latitude" type="text" id="latitude" placeholder="Latitude"
+                                        class="form-control @error('latitude') is-invalid is-filled @enderror" />
+                                    <label for="latitude">خط (العرض)</label>
+                                </div>
+                                @error('latitude')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer="longitude" type="text" id="longitude" placeholder="Longitude"
+                                        class="form-control @error('longitude') is-invalid is-filled @enderror" />
+                                    <label for="longitude">خط (الطول)</label>
+                                </div>
+                                @error('longitude')
+                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3 col">
+                            <label for="map" class="form-label">تحديد الموقع على الخريطة</label>
+                            <div wire:ignore id="map" style="height: 300px; width: 100%; border: 1px solid #ddd;"></div>
+                        </div>
                         <div Class="row">
                             <div class="col mb-3 text-center">
                                 <div class="form-floating form-floating-outline">
