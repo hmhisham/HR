@@ -99,7 +99,7 @@
 
                                         @can('realitie-print')
                                             <strong style="margin: 0 10px;">|</strong>
-                                            <button
+                                            <button wire:click="printt({{ $Realitie->id }})"
                                                 onclick="printFile('{{ Storage::url('Realities/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Realitie->property_number . '/' . $Realitie->property_deed_image) }}')"
                                                 class="p-0 px-1 btn btn-text-secondary waves-effect">
                                                 <span class="mdi mdi-printer-outline fs-3"></span>
