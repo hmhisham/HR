@@ -62,7 +62,7 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='property_type' id="modalRealitieproperty_type"
+                                            <select wire:model.defer='property_type' id="addRealitieproperty_type"
                                                 class="form-select @error('property_type') is-invalid is-filled @enderror">
                                                 <option value="">اختر</option>
                                                 @foreach ($propertytypes as $propertytype)

@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use App\Models\Tracking\Tracking;
+use App\Models\Districts\Districts;
 use App\Models\Provinces\Provinces;
 use App\Models\Realities\Realities;
 use Illuminate\Support\Facades\Auth;
@@ -317,11 +318,13 @@ class Show extends Component
         $this->previewRealitieDeedImage = $this->Realitie->property_deed_image;
         $this->notes = $this->Realitie->notes;
         $this->visibility = $this->Realitie->visibility;
+
+        $this->Districts = Districts::where('governorate_id', $this->governorate)->get();
     }
 
     public function printt($RealitieId)
     {
-     
+
         $this->Realitie = Realities::find($RealitieId);
         $this->RealitieId = $RealitieId;
         $this->plot_id = $this->Realitie->plot_id;
@@ -375,7 +378,9 @@ class Show extends Component
             'mortgage_notes' => 'required:realities',
             'registered_office' => 'required:realities',
             'specialized_department' => 'required:realities',
-            'property_deed_image' => $this->filePreview ? 'required|file|mimes:jpeg,png,jpg,pdf|max:1024' : 'nullable|file|mimes:jpeg,png,jpg,pdf|max:1024',
+            'property_deed_image' => $this->Realitie->property_deed_image && !$this->filePreview
+            ? 'nullable|file|mimes:jpeg,png,jpg,pdf|max:1024'
+            : 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'property_number.unique' => 'رقم العقار موجود مسبقًا ضمن هذه القطعة',
@@ -477,6 +482,4 @@ class Show extends Component
         ]);
         /* $this->mount(); */
     }
-
-
 }
