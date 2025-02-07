@@ -62,7 +62,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer="latitude" type="text" id="latitude" placeholder="Latitude"
@@ -87,7 +87,7 @@
                         <div class="mb-3 col">
                             <label for="map" class="form-label">تحديد الموقع على الخريطة</label>
                             <div wire:ignore id="map" style="height: 300px; width: 100%; border: 1px solid #ddd;"></div>
-                        </div>
+                        </div> --}}
                         <div Class="row">
                             <div class="col mb-3 text-center">
                                 <div class="form-floating form-floating-outline">
