@@ -48,7 +48,17 @@
                                 <td Class="text-center">{{ $Plot->GetProvinces->province_number }}</td>
                                 <td Class="text-center">{{ $Plot->GetProvinces->province_name }}</td>
                                 <td Class="text-center">{{ $Plot->plot_number }}</td>
-                                <td Class="text-center">{{ count($Plot->GetRealities) }}</td>
+                                <td class="text-center">
+                                    @if (count($Plot->GetRealities) == 0)
+                                        <div class="avatar me-2 avatar-busy">
+                                            <span class="avatar-initial rounded-circle bg-label-danger">{{ count($Plot->GetRealities) }}</span>
+                                        </div>
+                                    @else
+                                        <div class="avatar me-2 avatar-offline">
+                                            <span class="avatar-initial rounded-circle bg-label-primary">{{ count($Plot->GetRealities) }}</span>
+                                        </div>
+                                    @endif
+                                </td>
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @can('realitie-show')

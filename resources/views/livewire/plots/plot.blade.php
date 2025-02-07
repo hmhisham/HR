@@ -13,10 +13,10 @@
                     <thead class="table-light">
                         <tr>
                             <th>ت</th>
-                            <th Class="text-center">رقم المقاطعة</th>
-                            <th Class="text-center">أسم المقاطعة</th>
-                            <th Class="text-center">عدد القطع</th>
-                            <th Class="text-center">العملية</th>
+                            <th class="text-center">رقم المقاطعة</th>
+                            <th class="text-center">أسم المقاطعة</th>
+                            <th>عدد القطع</th>
+                            <th class="text-center">العملية</th>
                         </tr>
                         <tr>
                             <th>#</th>
@@ -40,10 +40,20 @@
                         @foreach ($Provinces as $Province)
                             <tr>
                                 <td>{{ $i++ }}</td>
-                                <td Class="text-center">{{ $Province->province_number }}</td>
-                                <td Class="text-center">{{ $Province->province_name }}</td>
-                                <td Class="text-center">{{ count($Province->GetPlots) }}</td>
-                                <td Class="text-center">
+                                <td class="text-center">{{ $Province->province_number }}</td>
+                                <td class="text-center">{{ $Province->province_name }}</td>
+                                <td class="text-center">
+                                    @if (count($Province->GetPlots) == 0)
+                                        <div class="avatar me-2 avatar-busy">
+                                            <span class="avatar-initial rounded-circle bg-label-danger">{{ count($Province->GetPlots) }}</span>
+                                        </div>
+                                    @else
+                                        <div class="avatar me-2 avatar-offline">
+                                            <span class="avatar-initial rounded-circle bg-label-primary">{{ count($Province->GetPlots) }}</span>
+                                        </div>
+                                    @endif
+                                </td>
+                                <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @can('plot-show')
                                             <a href="{{ Route('showPlots', $Province->id) }}"
