@@ -36,10 +36,10 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='property_number' type="text"
-                                                id="modalRealitiproperty_number" placeholder="رقم العقار"
+                                                id="modalRealitieproperty_number" placeholder="رقم العقار"
                                                 class="form-control @error('property_number') is-invalid is-filled @enderror"
                                                 onkeypress="return onlyNumberKey(event)" />
-                                            <label for="modalRealitiproperty_number">رقم العقار</label>
+                                            <label for="modalRealitieproperty_number">رقم العقار</label>
                                         </div>
                                         @error('property_number')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -76,7 +76,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <label for="modalRealitiproperty_type">جنس العقار</label>
+                                            <label for="modalRealitieproperty_type">جنس العقار</label>
                                         </div>
                                         @error('property_type')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
@@ -85,7 +85,7 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer="mortgage_notes" id="modalRealitimortgage_notes"
+                                            <select wire:model.defer="mortgage_notes" id="modalRealitiemortgage_notes"
                                                 class="form-select @error('mortgage_notes') is-invalid is-filled @enderror">
                                                 <option value="">اختر</option>
                                                 <option value="رفع الحجز">رفع الحجز</option>
@@ -93,7 +93,7 @@
                                                     بالعقار الا
                                                     بموافقة الموانئ</option>
                                             </select>
-                                            <label for="modalRealitimortgage_notes">اشارة التأمينات</label>
+                                            <label for="modalRealitiemortgage_notes">اشارة التأمينات</label>
                                         </div>
                                         @error('mortgage_notes')
                                             <small class="text-danger inputerror">{{ $message }}</small>
@@ -104,11 +104,11 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='area_in_meters' type="text"
-                                                id="modalRealitiarea_in_meters" placeholder="المساحة بالمتر"
+                                                id="modalRealitiearea_in_meters" placeholder="المساحة بالمتر"
                                                 class="form-control @error('area_in_meters') is-invalid is-filled @enderror"
                                                 onkeypress="return onlyNumberKey(event)"
                                                 oninput="validateMeterInput(event)" />
-                                            <label for="modalRealitiarea_in_meters">المساحة بالمتر</label>
+                                            <label for="modalRealitiearea_in_meters">المساحة بالمتر</label>
                                         </div>
                                         @error('area_in_meters')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -118,11 +118,11 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='area_in_olok' type="text"
-                                                id="modalRealitiarea_in_olok" placeholder="المساحة بالأولك"
+                                                id="modalRealitiearea_in_olok" placeholder="المساحة بالأولك"
                                                 class="form-control @error('area_in_olok') is-invalid is-filled @enderror"
                                                 onkeypress="return onlyNumberKey(event)"
                                                 oninput="validateOlokInput(event)" />
-                                            <label for="modalRealitiarea_in_olok">المساحة بالأولك</label>
+                                            <label for="modalRealitiearea_in_olok">المساحة بالأولك</label>
                                         </div>
                                         @error('area_in_olok')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -132,10 +132,10 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='area_in_donum' type="text"
-                                                id="modalRealitiarea_in_donum" placeholder="المساحة بالدونم"
+                                                id="modalRealitiearea_in_donum" placeholder="المساحة بالدونم"
                                                 class="form-control @error('area_in_donum') is-invalid is-filled @enderror"
                                                 onkeypress="return onlyNumberKey(event)" />
-                                            <label for="modalRealitiarea_in_donum">المساحة بالدونم</label>
+                                            <label for="modalRealitiearea_in_donum">المساحة بالدونم</label>
                                         </div>
                                         @error('area_in_donum')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -145,11 +145,11 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='count' type="text" id="modalRealiticount"
+                                            <input wire:model.defer='count' type="text" id="modalRealitiecount"
                                                 placeholder="العدد"
                                                 class="form-control @error('count') is-invalid is-filled @enderror"
                                                 onkeypress="return onlyNumberKey(event)" />
-                                            <label for="modalRealiticount">العدد</label>
+                                            <label for="modalRealitiecount">العدد</label>
                                         </div>
                                         @error('count')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -161,7 +161,7 @@
                                             <input wire:ignore wire:model.defer='date' type="text" id="editDate"
                                                 placeholder="التاريخ"
                                                 class="form-control @error('date') is-invalid is-filled @enderror" />
-                                            <label for="modalRealitidate">التاريخ</label>
+                                            <label for="modalRealitiedate">التاريخ</label>
                                         </div>
                                         @error('date')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
@@ -171,10 +171,10 @@
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model.defer='volume_number' type="text"
-                                                id="modalRealitivolume_number" placeholder="رقم الجلد"
+                                                id="modalRealitievolume_number" placeholder="رقم الجلد"
                                                 class="form-control @error('volume_number') is-invalid is-filled @enderror"
                                                 onkeypress="return onlyNumberKey(event)" />
-                                            <label for="modalRealitivolume_number">رقم الجلد</label>
+                                            <label for="modalRealitievolume_number">رقم الجلد</label>
                                         </div>
                                         @error('volume_number')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -329,9 +329,9 @@
                                     <div class="mb-3 col">
                                         <div class="form-check form-switch">
                                             <input wire:model.defer='visibility' type="checkbox"
-                                                id="modalRealitivisibility"
+                                                id="modalRealitievisibility"
                                                 class="form-check-input @error('visibility') is-invalid is-filled @enderror" />
-                                            <label for="modalRealitivisibility" class="form-check-label">إمكانية
+                                            <label for="modalRealitievisibility" class="form-check-label">إمكانية
                                                 ظهوره</label>
                                         </div>
                                         @error('visibility')
@@ -342,11 +342,11 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='notes' type="text" id="modalRealitinotes"
+                                            <input wire:model.defer='notes' type="text" id="modalRealitienotes"
                                                 placeholder="ملاحظات"
                                                 class="form-control @error('notes') is-invalid is-filled @enderror"
                                                 onkeypress="return onlyArabicKey(event)" />
-                                            <label for="modalRealitinotes">ملاحظات</label>
+                                            <label for="modalRealitienotes">ملاحظات</label>
                                         </div>
                                         @error('notes')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
