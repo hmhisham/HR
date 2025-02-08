@@ -115,6 +115,7 @@
             function initFlatpickr(selector, eventName) {
                 $(selector).flatpickr({
                     placeholder: 'التاريخ',
+                    dir: 'rtl',
                     altInput: true,
                     altFormat: "Y-m",
                     dateFormat: "Y-m",
