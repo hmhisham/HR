@@ -52,6 +52,8 @@ class RealProperties extends Component
             ->when($this->search['plot_number'], function ($query) use ($searchPlotNumber) {
                 $query->where('plot_number', 'LIKE', $searchPlotNumber);
             })
+            ->where('specialized_department', 17)
+            ->where('visibility', '1')
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
