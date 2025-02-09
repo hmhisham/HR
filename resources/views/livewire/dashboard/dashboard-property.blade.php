@@ -49,7 +49,7 @@
         @endphp
 
         @foreach ($stats as $stat)
-            <div class="col-xl-3 col-md-4 col-sm-6">
+            <div class="col-xl-3 col-md-3 col-sm-6">
                 <div class="card h-100 shadow-lg hover-card"
                     style="--hover-bg-color: {{ $stat['hoverColor'] }}; @if (isset($stat['backgroundImage'])) background-image: {{ $stat['backgroundImage'] }}; background-size: cover; @endif">
                     <div class="card-body d-flex flex-column align-items-center p-3">
