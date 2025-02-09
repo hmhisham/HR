@@ -177,8 +177,10 @@
                 initSelect2('#editRealitiedistrict', 'SelectDistrict', '#editRealitieModal');
                 initSelect2('#addRealitieproperty_type', 'SelectPropertyType', '#addRealitieModal');
                 initSelect2('#editRealitieproperty_type', 'SelectPropertyType', '#editRealitieModal');
-                initSelect2('#addRealitiepropertycategory_id', 'SelectPropertycategoryId', '#addRealitieModal');
-                initSelect2('#editRealitiepropertycategory_id', 'SelectPropertycategoryId', '#editRealitieModal');
+                initSelect2('#addRealitiepropertycategory_id', 'SelectPropertycategoryId',
+                    '#addRealitieModal');
+                initSelect2('#editRealitiepropertycategory_id', 'SelectPropertycategoryId',
+                    '#editRealitieModal');
             });
         });
 
@@ -217,6 +219,15 @@
                 input.value = 25;
             }
         }
+
+        //jQuery لاختيار الكل
+        $('#select-all-button').on('click', function() {
+            fetch('/get-all-realities')
+                .then(response => response.json())
+                .then(data => {
+                    Livewire.emit('selectAllRecords', data);
+                });
+        });
 
         const Toast = Swal.mixin({
             toast: true,

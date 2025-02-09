@@ -17,12 +17,46 @@
                 @endcan
             </div>
         </div>
+        @can('realitie-selectall')
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <!-- حقل تحديد الشعبة المختصة -->
+                <div class="col-2">
+                    <div class="form-floating form-floating-outline">
+                        <select wire:model="selectedBranch" id="bulkBranch" class="form-select">
+                            <option value="">اختر الشعبة</option>
+                            @foreach ($branches as $branch)
+                                <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                            @endforeach
+                        </select>
+                        <label for="bulkBranch" class="form-label">الشعبة المختصة</label>
+                    </div>
+                </div>
+
+                <!-- حقل تحديد إمكانية الظهور -->
+                <div class="col-2">
+                    <div class="form-floating form-floating-outline">
+                        <select wire:model="selectedVisibility" id="bulkVisibility" class="form-select">
+                            <option value="">اختر</option>
+                            <option value="1">نعم</option>
+                            <option value="0">لا</option>
+                        </select>
+                        <label for="bulkVisibility" class="form-label">إمكانية الظهور</label>
+                    </div>
+                </div>
+
+                <!-- زر تحديث دفعة واحدة -->
+                <div>
+                    <button wire:click="updateBatch" class="btn btn-primary">تحديث دفعة واحدة</button>
+                </div>
+            </div>
+        @endcan
         @can('realitie-list')
             <div class="table-responsive">
                 <table class="table">
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
+                            <th Class="text-center">تحديد</th>
                             <th class="text-center">رقم السند العقاري</th>
                             <th class="text-center">العدد</th>
                             <th class="text-center">إشارات التأمينات</th>
@@ -34,6 +68,9 @@
                         </tr>
                         <tr>
                             <th>#</th>
+                            <th class="text-center">
+                                <input type="checkbox" wire:model="selectAll" class="form-check-input">
+                            </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.property_number"
                                     class="form-control" placeholder="بحث برقم السند العقاري .."
@@ -91,18 +128,21 @@
                         @foreach ($Realities as $Realitie)
                             <tr>
                                 <td>{{ $i++ }}</td>
+                                <td class="text-center">
+                                    <input type="checkbox" wire:model="selectedRealities" value="{{ $Realitie->id }}"
+                                        class="form-check-input">
+                                </td>
                                 <td class="text-center">{{ $Realitie->property_number }}</td>
                                 <td class="text-center">{{ $Realitie->count }}</td>
                                 <td class="text-center">{{ $Realitie->mortgage_notes }}</td>
                                 <td class="text-center">{{ $Realitie->volume_number }}</td>
                                 <td class="text-center">
-                                    <span class="badge rounded-pill
-                                        @if($Realitie->Getbranc)
-                                            @if($Realitie->Getbranc->branch_name == "الاسكان") bg-label-primary
-                                            @elseif($Realitie->Getbranc->branch_name == "العقارات") bg-label-warning
-                                            @elseif($Realitie->Getbranc->branch_name == "املاك الاقضية والنواحي") bg-label-info
-                                            @elseif($Realitie->Getbranc->branch_name == "الخرائط والمرتسمات") bg-label-danger
-                                            @endif
+                                    <span
+                                        class="badge rounded-pill
+                                        @if ($Realitie->Getbranc) @if ($Realitie->Getbranc->branch_name == 'الاسكان') bg-label-primary
+                                            @elseif($Realitie->Getbranc->branch_name == 'العقارات') bg-label-warning
+                                            @elseif($Realitie->Getbranc->branch_name == 'املاك الاقضية والنواحي') bg-label-info
+                                            @elseif($Realitie->Getbranc->branch_name == 'الخرائط والمرتسمات') bg-label-danger @endif
                                         me-1
                                         @endif">
                                         {{ $Realitie->Getbranc ? $Realitie->Getbranc->branch_name : '' }}
@@ -110,7 +150,8 @@
                                 </td>
                                 <td class="text-center">{{ $Realitie->visibility ? 'نعم' : 'لا' }}</td>
                                 <td class="text-center">
-                                    <span class="{{ $Realitie->property_deed_image ? 'badge rounded-pill bg-label-primary me-1' : 'badge rounded-pill bg-label-danger me-1' }}">
+                                    <span
+                                        class="{{ $Realitie->property_deed_image ? 'badge rounded-pill bg-label-primary me-1' : 'badge rounded-pill bg-label-danger me-1' }}">
                                         {{ $Realitie->property_deed_image ? 'مرفقة' : 'غير مرفقة' }}
                                     </span>
                                 </td>

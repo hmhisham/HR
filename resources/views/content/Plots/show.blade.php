@@ -140,6 +140,15 @@
                     '#editplotModal');
             });
         });
+        
+        //jQuery لاختيار الكل
+        $('#select-all-button').on('click', function() {
+            fetch('/get-all-plots')
+                .then(response => response.json())
+                .then(data => {
+                    Livewire.emit('selectAllRecords', data);
+                });
+        });
 
         function onlyNumberKey(evt) {
             // Only ASCII character in that range allowed

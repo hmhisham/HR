@@ -15,13 +15,46 @@
                 @endcan
             </div>
         </div>
+        @can('plot-selectall')
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <!-- حقل تحديد الشعبة المختصة -->
+                <div class="col-2">
+                    <div class="form-floating form-floating-outline">
+                        <select wire:model="selectedBranch" id="bulkBranch" class="form-select">
+                            <option value="">اختر الشعبة</option>
+                            @foreach ($branches as $branch)
+                                <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                            @endforeach
+                        </select>
+                        <label for="bulkBranch" class="form-label">الشعبة المختصة</label>
+                    </div>
+                </div>
 
+                <!-- حقل تحديد إمكانية الظهور -->
+                <div class="col-2">
+                    <div class="form-floating form-floating-outline">
+                        <select wire:model="selectedVisibility" id="bulkVisibility" class="form-select">
+                            <option value="">اختر</option>
+                            <option value="1">نعم</option>
+                            <option value="0">لا</option>
+                        </select>
+                        <label for="bulkVisibility" class="form-label">إمكانية الظهور</label>
+                    </div>
+                </div>
+
+                <!-- زر تحديث دفعة واحدة -->
+                <div>
+                    <button wire:click="updateBatch" class="btn btn-primary">تحديث دفعة واحدة</button>
+                </div>
+            </div>
+        @endcan
         @can('plot-list')
             <div class="table-responsive">
                 <table class="table">
                     <thead class="table-light">
                         <tr>
                             <th>ت</th>
+                            <th Class="text-center">تحديد</th>
                             <th Class="text-center">رقم القطعة</th>
                             <th Class="text-center">الشعبة المختصة</th>
                             <th class="text-center">إمكانية ظهوره</th>
@@ -30,6 +63,9 @@
                         </tr>
                         <tr>
                             <th>#</th>
+                            <th class="text-center">
+                                <input type="checkbox" wire:model="selectAll" class="form-check-input">
+                            </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.plot_number" class="form-control"
                                     placeholder="بحث برقم المقاطعة .." wire:key="search_plot_number">
@@ -69,15 +105,18 @@
                         @foreach ($Plots as $Plot)
                             <tr>
                                 <td>{{ $i++ }}</td>
+                                <td class="text-center">
+                                    <input type="checkbox" wire:model="selectedPlots" value="{{ $Plot->id }}"
+                                        class="form-check-input">
+                                </td>
                                 <td Class="text-center">{{ $Plot->plot_number }}</td>
                                 <td class="text-center">
-                                    <span class="badge rounded-pill
-                                        @if($Plot->Getbranc)
-                                            @if($Plot->Getbranc->branch_name == "الاسكان") bg-label-primary
-                                            @elseif($Plot->Getbranc->branch_name == "العقارات") bg-label-warning
-                                            @elseif($Plot->Getbranc->branch_name == "املاك الاقضية والنواحي") bg-label-info
-                                            @elseif($Plot->Getbranc->branch_name == "الخرائط والمرتسمات") bg-label-danger
-                                            @endif
+                                    <span
+                                        class="badge rounded-pill
+                                        @if ($Plot->Getbranc) @if ($Plot->Getbranc->branch_name == 'الاسكان') bg-label-primary
+                                            @elseif($Plot->Getbranc->branch_name == 'العقارات') bg-label-warning
+                                            @elseif($Plot->Getbranc->branch_name == 'املاك الاقضية والنواحي') bg-label-info
+                                            @elseif($Plot->Getbranc->branch_name == 'الخرائط والمرتسمات') bg-label-danger @endif
                                         me-1
                                         @endif">
                                         {{ $Plot->Getbranc ? $Plot->Getbranc->branch_name : '' }}
@@ -85,7 +124,8 @@
                                 </td>
                                 <td class="text-center">{{ $Plot->visibility ? 'نعم' : 'لا' }}</td>
                                 <td class="text-center">
-                                    <span class="{{ $Plot->property_deed_image ? 'badge rounded-pill bg-label-primary me-1' : 'badge rounded-pill bg-label-danger me-1' }}">
+                                    <span
+                                        class="{{ $Plot->property_deed_image ? 'badge rounded-pill bg-label-primary me-1' : 'badge rounded-pill bg-label-danger me-1' }}">
                                         {{ $Plot->property_deed_image ? 'مرفقة' : 'غير مرفقة' }}
                                     </span>
                                 </td>
@@ -98,7 +138,6 @@
                                                 <span class="mdi mdi-text-box-edit-outline fs-3"></span>
                                             </button>
                                         @endcan
-
                                         @can('plot-delete')
                                             <strong style="margin: 0 10px;">|</strong>
                                             <button wire:click='GetPlot({{ $Plot->id }})'
@@ -107,7 +146,6 @@
                                                 <span class="mdi mdi-delete-outline fs-3"></span>
                                             </button>
                                         @endcan
-
                                         @can('plot-print')
                                             <strong style="margin: 0 10px;">|</strong>
                                             <button wire:click='printt({{ $Plot->id }})'

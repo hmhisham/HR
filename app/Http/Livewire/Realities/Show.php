@@ -38,6 +38,10 @@ class Show extends Component
     public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $propertycategory_id, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department,  $notes;
     public $filePreview, $property_deed_image, $previewRealitieDeedImage,    $bond_type;
     public $visibility = false;
+    public $selectedRealities = [];
+    public $selectedBranch;
+    public $selectedVisibility;
+    public $selectAll = false;
     public $search = ['property_number' => '', 'count' => '', 'mortgage_notes' => '', 'volume_number' => '', 'specialized_department' => '', 'visibility' => '', 'property_deed_image' => ''];
 
 
@@ -191,17 +195,6 @@ class Show extends Component
         $this->dispatchBrowserEvent('addRealitieModal');
     }
 
-    /* public function updatedRealitieImage()
-    {
-        $this->validate([
-            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
-        ], [
-            'property_deed_image.required' => 'الملف مطلوب',
-            'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
-        ]);
-        $this->filePreview = $this->property_deed_image->temporaryUrl();
-    } */
-
     public function updatedPropertyDeedImage()
     {
         $this->validate([
@@ -213,6 +206,62 @@ class Show extends Component
 
         $this->filePreview = $this->property_deed_image->temporaryUrl();
         $this->previewRealitieDeedImage = null;
+    }
+
+    //تحديث السجلات المحددة
+    public function updateBatch()
+    {
+        if (empty($this->selectedRealities)) {
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'يرجى تحديد سجل واحد على الأقل',
+                'title' => 'تحديد'
+            ]);
+            return;
+        }
+        foreach ($this->selectedRealities as $realitieId) {
+            $realitie = Realities::find($realitieId);
+            if ($realitie) {
+                $data = [];
+                if ($this->selectedBranch !== null && $this->selectedBranch !== '') {
+                    $data['specialized_department'] = $this->selectedBranch;
+                }
+                if ($this->selectedVisibility !== null && $this->selectedVisibility !== '') {
+                    $data['visibility'] = $this->selectedVisibility;
+                }
+                if (!empty($data)) {
+                    $realitie->update($data);
+                }
+            }
+        }
+        $this->selectedRealities = [];
+        $this->selectedBranch = '';
+        $this->selectedVisibility = '';
+        $this->dispatchBrowserEvent('success', ['message' => 'تم تحديث السجلات المحددة بنجاح', 'title' => 'تعديل']);
+    }
+
+    // تحديد الكل
+    public function updatedSelectAll($value)
+    {
+        if ($value) {
+            // الحصول على جميع العناصر من قاعدة البيانات بدلاً من الصفحة الحالية فقط
+            $allRealities = Realities::where('plot_id', $this->Plotid)->pluck('id')->toArray();
+            $this->selectedRealities = $allRealities;
+        } else {
+            $this->selectedRealities = [];
+        }
+    }
+
+    // إذا كانت جميع الصفوف محددة، نقوم بتحديد مربع "تحديد الكل"
+    public function updatedSelectedRealities()
+    {
+        $allRealities = Realities::where('plot_id', $this->Plotid)->pluck('id')->toArray();
+        $this->selectAll = count($this->selectedRealities) === count($allRealities);
+    }
+
+    public function selectAllRecords($allRealities)
+    {
+        $this->selectedRealities = $allRealities;
+        $this->selectAll = true;
     }
 
     public function store()
