@@ -4,19 +4,18 @@
             <h4 class="mb-2">
                 <span class="text-muted fw-light">السندات العقارية<span
                         class="mdi mdi-chevron-left mdi-24px"></span></span>
-                </span>
                 عرض بيانات القطعة : <span class="text-danger">{{ $this->Plot->plot_number }}</span>
                 <strong style="margin: 0 30px;">|</strong>
                 ضمن المقاطعة : <span class="text-danger">{{ $this->Province->province_number }} -
                     {{ $this->Province->province_name }}</span>
-                </h5>
-                <div>
-                    @can('realitie-create')
-                        <button wire:click='addRealitieModal' class="mb-3 add-new btn btn-primary mb-md-0"
-                            data-bs-toggle="modal" data-bs-target="#addRealitieModal">أضــافــة</button>
-                        @include('livewire.realities.modals.add-realitie')
-                    @endcan
-                </div>
+            </h4>
+            <div>
+                @can('realitie-create')
+                    <button wire:click='addRealitieModal' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal"
+                        data-bs-target="#addRealitieModal">أضــافــة</button>
+                    @include('livewire.realities.modals.add-realitie')
+                @endcan
+            </div>
         </div>
         @can('realitie-list')
             <div class="table-responsive">
@@ -28,7 +27,9 @@
                             <th class="text-center">العدد</th>
                             <th class="text-center">إشارات التأمينات</th>
                             <th class="text-center">الجلد</th>
+                            <th class="text-center">الشعبة المختصة</th>
                             <th class="text-center">إمكانية ظهوره</th>
+                            <th class="text-center">الصورة</th>
                             <th class="text-center">العملية</th>
                         </tr>
                         <tr>
@@ -56,11 +57,28 @@
                                     placeholder="بحث بالجلد .." wire:key="search_volume_number">
                             </th>
                             <th>
+                                <select wire:model.debounce.300ms="search.specialized_department" class="form-select"
+                                    wire:key="search_specialized_department">
+                                    <option value="">اختر</option>
+                                    @foreach ($branches as $branch)
+                                        <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                                    @endforeach
+                                </select>
+                            </th>
+                            <th>
                                 <select wire:model.debounce.300ms="search.visibility" class="form-select"
                                     wire:key="search_visibility">
                                     <option value="">اختر</option>
                                     <option value="1">نعم</option>
                                     <option value="0">لا</option>
+                                </select>
+                            </th>
+                            <th>
+                                <select wire:model.debounce.300ms="search.property_deed_image" class="form-select"
+                                    wire:key="search_property_deed_image">
+                                    <option value="">اختر</option>
+                                    <option value="مرفقة">مرفقة</option>
+                                    <option value="غير مرفقة">غير مرفقة</option>
                                 </select>
                             </th>
                             <th></th>
@@ -77,7 +95,25 @@
                                 <td class="text-center">{{ $Realitie->count }}</td>
                                 <td class="text-center">{{ $Realitie->mortgage_notes }}</td>
                                 <td class="text-center">{{ $Realitie->volume_number }}</td>
+                                <td class="text-center">
+                                    <span class="badge rounded-pill
+                                        @if($Realitie->Getbranc)
+                                            @if($Realitie->Getbranc->branch_name == "الاسكان") bg-label-primary
+                                            @elseif($Realitie->Getbranc->branch_name == "العقارات") bg-label-warning
+                                            @elseif($Realitie->Getbranc->branch_name == "املاك الاقضية والنواحي") bg-label-info
+                                            @elseif($Realitie->Getbranc->branch_name == "الخرائط والمرتسمات") bg-label-danger
+                                            @endif
+                                        me-1
+                                        @endif">
+                                        {{ $Realitie->Getbranc ? $Realitie->Getbranc->branch_name : '' }}
+                                    </span>
+                                </td>
                                 <td class="text-center">{{ $Realitie->visibility ? 'نعم' : 'لا' }}</td>
+                                <td class="text-center">
+                                    <span class="{{ $Realitie->property_deed_image ? 'badge rounded-pill bg-label-primary me-1' : 'badge rounded-pill bg-label-danger me-1' }}">
+                                        {{ $Realitie->property_deed_image ? 'مرفقة' : 'غير مرفقة' }}
+                                    </span>
+                                </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('realitie-edit')

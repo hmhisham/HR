@@ -75,7 +75,8 @@
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
-
+                                </div>
+                                <div class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer="mortgage_notes" id="modalRealitiemortgage_notes"
@@ -306,23 +307,6 @@
                                         @enderror
                                     </div>
 
-                                    {{-- <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='specialized_department'
-                                                id="modalRealitiespecialized_department"
-                                                class="form-select @error('specialized_department') is-invalid is-filled @enderror">
-                                                <option value="">اختر</option>
-                                                <option value="شعبة العقارات">شعبة العقارات</option>
-                                                <option value="شعبة الاملاك">شعبة الاملاك</option>
-                                                <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
-                                            </select>
-                                            <label for="modalRealitiespecialized_department">الشعبة المختصة</label>
-                                        </div>
-                                        @error('specialized_department')
-                                            <small class='text-danger inputerror'>{{ $message }}</small>
-                                        @enderror
-                                    </div> --}}
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='specialized_department'
@@ -341,16 +325,21 @@
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3 col">
-                                        <div class="form-check form-switch">
-                                            <input wire:model.defer='visibility' type="checkbox"
+                                    <div class="mb-3 col d-flex align-items-center" style="gap: 30px;">
+                                        <label class="switch switch-square switch-danger me-2">
+                                            <input wire:model="visibility" type="checkbox"
                                                 id="modalRealitievisibility"
-                                                class="form-check-input @error('visibility') is-invalid is-filled @enderror" />
-                                            <label for="modalRealitievisibility" class="form-check-label">إمكانية
-                                                ظهوره</label>
-                                        </div>
+                                                class="switch-input @error('visibility') is-invalid is-filled @enderror" />
+                                            <span class="switch-toggle-slider">
+                                                <span class="switch-on">نعم</span>
+                                                <span class="switch-off">لا</span>
+                                            </span>
+                                        </label>
+                                        <span class="switcher-label ms-2">
+                                            {{ $visibility ? 'السند مرئي' : 'السند غير مرئي' }}
+                                        </span>
                                         @error('visibility')
-                                            <small class='text-danger inputerror'>{{ $message }}</small>
+                                            <small class='text-danger inputerror ms-2'>{{ $message }}</small>
                                         @enderror
                                     </div>
                                 </div>

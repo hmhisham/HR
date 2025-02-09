@@ -105,7 +105,7 @@ class ShowRealProperties extends Component
             ->when($this->search['visibility'] !== '', function ($query) use ($searchVisibility) {
                 $query->where('visibility', $searchVisibility);
             })
-            ->where('specialized_department', 17)
+            ->where('specialized_department', 15)
             ->where('visibility', '1')
             ->orderBy('id', 'ASC')
             ->paginate(10);

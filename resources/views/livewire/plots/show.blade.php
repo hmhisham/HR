@@ -25,6 +25,7 @@
                             <th Class="text-center">رقم القطعة</th>
                             <th Class="text-center">الشعبة المختصة</th>
                             <th class="text-center">إمكانية ظهوره</th>
+                            <th class="text-center">الصورة</th>
                             <th Class="text-center">العملية</th>
                         </tr>
                         <tr>
@@ -50,6 +51,14 @@
                                     <option value="0">لا</option>
                                 </select>
                             </th>
+                            <th>
+                                <select wire:model.debounce.300ms="search.property_deed_image" class="form-select"
+                                    wire:key="search_property_deed_image">
+                                    <option value="">اختر</option>
+                                    <option value="مرفقة">مرفقة</option>
+                                    <option value="غير مرفقة">غير مرفقة</option>
+                                </select>
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -61,8 +70,25 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td Class="text-center">{{ $Plot->plot_number }}</td>
-                                <td class="text-center">{{ $Plot->Getbranc ? $Plot->Getbranc->branch_name : '' }}</td>
+                                <td class="text-center">
+                                    <span class="badge rounded-pill
+                                        @if($Plot->Getbranc)
+                                            @if($Plot->Getbranc->branch_name == "الاسكان") bg-label-primary
+                                            @elseif($Plot->Getbranc->branch_name == "العقارات") bg-label-warning
+                                            @elseif($Plot->Getbranc->branch_name == "املاك الاقضية والنواحي") bg-label-info
+                                            @elseif($Plot->Getbranc->branch_name == "الخرائط والمرتسمات") bg-label-danger
+                                            @endif
+                                        me-1
+                                        @endif">
+                                        {{ $Plot->Getbranc ? $Plot->Getbranc->branch_name : '' }}
+                                    </span>
+                                </td>
                                 <td class="text-center">{{ $Plot->visibility ? 'نعم' : 'لا' }}</td>
+                                <td class="text-center">
+                                    <span class="{{ $Plot->property_deed_image ? 'badge rounded-pill bg-label-primary me-1' : 'badge rounded-pill bg-label-danger me-1' }}">
+                                        {{ $Plot->property_deed_image ? 'مرفقة' : 'غير مرفقة' }}
+                                    </span>
+                                </td>
                                 <td Class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @can('plot-edit')

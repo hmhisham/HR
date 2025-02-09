@@ -27,7 +27,7 @@ class Show extends Component
     public $plot_number, $specialized_department, $Plot, $property_deed_image, $property_map_image;
     public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
     public $visibility = false;
-    public $search = ['plot_number' => '', 'specialized_department' => '', 'visibility' => '',];
+    public $search = ['plot_number' => '', 'specialized_department' => '', 'visibility' => '', 'property_deed_image' => ''];
 
     public function mount()
     {
@@ -43,7 +43,7 @@ class Show extends Component
     public function updatedSearch($value, $key)
     {
         // إعادة تعيين الصفحة إلى الأولى فقط إذا كان البحث قد تغير
-        if (in_array($key, ['plot_number', 'specialized_department', 'visibility'])) {
+        if (in_array($key, ['plot_number', 'specialized_department', 'visibility','property_deed_image'])) {
             $this->resetPage();
         }
     }
@@ -53,6 +53,7 @@ class Show extends Component
         $searchPlotNumber = '%' . $this->search['plot_number'] . '%';
         $searchSpecializedDepartment = '%' . $this->search['specialized_department'] . '%';
         $searchVisibility = $this->search['visibility'];
+        $searchPropertyDeedImage = $this->search['property_deed_image'];
 
         $Plots = Plots::query()
             ->where('province_id', $this->Provinceid)
@@ -64,6 +65,13 @@ class Show extends Component
             })
             ->when($this->search['visibility'] !== '', function ($query) use ($searchVisibility) {
                 $query->where('visibility', $searchVisibility);
+            })
+            ->when($searchPropertyDeedImage !== '', function ($query) use ($searchPropertyDeedImage) {
+                if ($searchPropertyDeedImage == 'مرفقة') {
+                    $query->whereNotNull('property_deed_image');
+                } elseif ($searchPropertyDeedImage == 'غير مرفقة') {
+                    $query->whereNull('property_deed_image');
+                }
             })
             ->orderByRaw('CAST(plot_number AS UNSIGNED) ASC')
             ->paginate(10);

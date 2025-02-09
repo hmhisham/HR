@@ -9,11 +9,6 @@
                     {{-- <p>نافذة التعديل</p> --}}
                 </div>
                 <hr class="mt-n2">
-                {{-- <h5 wire:loading wire:target="GetRealitie"
-                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
-                    جار حفظ البيانات...</h5> --}}
-
                 <div wire:loading.remove wire:target="update, GetRealitie">
                     <div class="row">
                         <div wire:loading.remove wire:target='addRealitieToPlotModal' class="text-center">
@@ -82,7 +77,8 @@
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
-
+                                </div>
+                                <div class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer="mortgage_notes" id="modalRealitiemortgage_notes"
@@ -326,16 +322,21 @@
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3 col">
-                                        <div class="form-check form-switch">
-                                            <input wire:model.defer='visibility' type="checkbox"
+                                    <div class="mb-3 col d-flex align-items-center" style="gap: 30px;">
+                                        <label class="switch switch-square switch-danger me-2">
+                                            <input wire:model="visibility" type="checkbox"
                                                 id="modalRealitievisibility"
-                                                class="form-check-input @error('visibility') is-invalid is-filled @enderror" />
-                                            <label for="modalRealitievisibility" class="form-check-label">إمكانية
-                                                ظهوره</label>
-                                        </div>
+                                                class="switch-input @error('visibility') is-invalid is-filled @enderror" />
+                                            <span class="switch-toggle-slider">
+                                                <span class="switch-on">نعم</span>
+                                                <span class="switch-off">لا</span>
+                                            </span>
+                                        </label>
+                                        <span class="switcher-label ms-2">
+                                            {{ $visibility ? 'السند مرئي' : 'السند غير مرئي' }}
+                                        </span>
                                         @error('visibility')
-                                            <small class='text-danger inputerror'>{{ $message }}</small>
+                                            <small class='text-danger inputerror ms-2'>{{ $message }}</small>
                                         @enderror
                                     </div>
                                 </div>

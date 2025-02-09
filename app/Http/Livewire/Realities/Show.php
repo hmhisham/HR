@@ -38,7 +38,7 @@ class Show extends Component
     public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $propertycategory_id, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department,  $notes;
     public $filePreview, $property_deed_image, $previewRealitieDeedImage,    $bond_type;
     public $visibility = false;
-    public $search = ['property_number' => '', 'count' => '', 'mortgage_notes' => '', 'volume_number' => '', 'visibility' => '',];
+    public $search = ['property_number' => '', 'count' => '', 'mortgage_notes' => '', 'volume_number' => '', 'specialized_department' => '', 'visibility' => '', 'property_deed_image' => ''];
 
 
     protected $listeners = [
@@ -123,7 +123,7 @@ class Show extends Component
     public function updatedSearch($value, $key)
     {
         // إعادة تعيين الصفحة إلى الأولى فقط إذا كان البحث قد تغير
-        if (in_array($key, ['property_number', 'count', 'mortgage_notes', 'volume_number', 'visibility'])) {
+        if (in_array($key, ['property_number', 'count', 'mortgage_notes', 'volume_number', 'visibility','property_deed_image'])) {
             $this->resetPage();
         }
     }
@@ -134,7 +134,9 @@ class Show extends Component
         $searchCount = '%' . $this->search['count'] . '%';
         $searchMortgageNotes = $this->search['mortgage_notes'];
         $searchVolumeNumber = '%' . $this->search['volume_number'] . '%';
+        $searchSpecializedDepartment = '%' . $this->search['specialized_department'] . '%';
         $searchVisibility = $this->search['visibility'];
+        $searchPropertyDeedImage = $this->search['property_deed_image'];
 
         $Realities = Realities::query()
             ->where('plot_id', $this->Plotid)
@@ -150,14 +152,31 @@ class Show extends Component
             ->when($this->search['volume_number'], function ($query) use ($searchVolumeNumber) {
                 $query->where('volume_number', 'LIKE', $searchVolumeNumber);
             })
+            ->when($this->search['specialized_department'], function ($query) use ($searchSpecializedDepartment) {
+                $query->where('specialized_department', 'LIKE', $searchSpecializedDepartment);
+            })
             ->when($this->search['visibility'] !== '', function ($query) use ($searchVisibility) {
                 $query->where('visibility', $searchVisibility);
+            })
+            ->when($searchPropertyDeedImage !== '', function ($query) use ($searchPropertyDeedImage) {
+                if ($searchPropertyDeedImage == 'مرفقة') {
+                    $query->whereNotNull('property_deed_image');
+                } elseif ($searchPropertyDeedImage == 'غير مرفقة') {
+                    $query->whereNull('property_deed_image');
+                }
             })
             ->orderByRaw('CAST(property_number AS UNSIGNED) ASC')
             ->paginate(10);
 
         $links = $Realities;
         $this->Realities = collect($Realities->items());
+
+        if ($this->Province) {
+            $section = $this->Province->Getsection;
+            if ($section) {
+                $this->branches = $section->GetBranch;
+            }
+        }
 
         return view('livewire.realities.show', [
             'links' => $links,
@@ -379,8 +398,8 @@ class Show extends Component
             'registered_office' => 'required:realities',
             'specialized_department' => 'required:realities',
             'property_deed_image' => $this->Realitie->property_deed_image && !$this->filePreview
-            ? 'nullable|file|mimes:jpeg,png,jpg,pdf|max:1024'
-            : 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
+                ? 'nullable|file|mimes:jpeg,png,jpg,pdf|max:1024'
+                : 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'property_number.unique' => 'رقم العقار موجود مسبقًا ضمن هذه القطعة',
