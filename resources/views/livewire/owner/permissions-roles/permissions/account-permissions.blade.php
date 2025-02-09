@@ -1,20 +1,22 @@
 <div class="mt-n4">
-    <h4 class="mb-1fw-semiboyld">قائمة التصاريح</h4>
-
-    <p class="mb-4">التصاريح التي يمكنك استخدامها وتعيينها للمستخدمين وحسب الادوار ازاء كل منها.</p>
-
     <!-- Search & Add -->
     <div class="card">
         <div class="card-header">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- العمود الأول: العنوان والفقرة -->
                 <div>
-                    <input wire:model="PermissionSearch" type="text" class="form-control" placeholder="بحث...">
+                    <h4 class="mb-2">
+                        <span class="text-muted fw-light">التصاريح <span class="mdi mdi-chevron-left mdi-24px"></span></span>
+                        قائمة التصاريح
+                    </h4>
+                    <p class="mb-0">التصاريح التي يمكنك استخدامها وتعيينها للمستخدمين وحسب الادوار ازاء كل منها.</p>
                 </div>
+
+                <!-- العمود الثاني: الزر -->
                 <div>
                     @can('permission-create')
-                        <button wire:click='AddPermissionModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
+                        <button wire:click='AddPermissionModalShow' class="add-new btn btn-primary mb-md-0"
                             data-bs-toggle="modal" data-bs-target="#addPermissionModal">أضف تصريح</button>
-
                         @include('livewire.owner.permissions-roles.permissions.modals.add-permission')
                     @endcan
                 </div>
@@ -50,9 +52,9 @@
                     <tbody>
                         @foreach ($Permissions as $Permission)
                             <tr>
-                                <td>{{ $Permission->name }}</td>
-                                <td>{{ $Permission->explain_name }}</td>
-                                <td>
+                                <td class="text-center">{{ $Permission->name }}</td>
+                                <td class="text-center">{{ $Permission->explain_name }}</td>
+                                <td class="text-center">
                                     @php $i = 0; @endphp
                                     @foreach ($Permission->roles as $role)
                                         @php ++$i; @endphp
