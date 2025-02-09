@@ -4,7 +4,7 @@
             <h4 class="mb-2">
                 <span class="text-muted fw-light">الاملاك والاراضي<span
                         class="mdi mdi-chevron-left mdi-24px"></span></span>
-                عرض بيانات القطعة : <span class="text-danger">{{ $this->Province->province_number }} -
+                عرض بيانات المقاطعة : <span class="text-danger">{{ $this->Province->province_number }} -
                     {{ $this->Province->province_name }}</span>
             </h4>
             <div>
