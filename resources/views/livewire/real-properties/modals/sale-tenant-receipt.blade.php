@@ -163,10 +163,10 @@
                                     <div wire:loading.remove wire:target='receipt_attach' class="mt-3">
                                         @if ($receipt_attach && $receipt_attach->getMimeType() == 'application/pdf')
                                             <embed src="{{ $receipt_attach->temporaryUrl() }}"
-                                                type="application/pdf" width="100%" height="300px" />
+                                                type="application/pdf" style="height: 300px" />
                                         @elseif ($receipt_attach && Str::startsWith($receipt_attach->getMimeType(), 'image/'))
                                             <img src="{{ $receipt_attach->temporaryUrl() }}" alt="Selected Image"
-                                                class="img-fluid" width="100%" height="300px" />
+                                                class="img-fluid" style="height: 300px" />
                                         @endif
                                     </div>
                                 </div>
