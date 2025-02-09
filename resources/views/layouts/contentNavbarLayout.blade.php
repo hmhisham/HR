@@ -297,7 +297,7 @@
                                             <li Class="menu-item {{ request()->Is('Real-Property') ? 'active' : '' }}">
                                                 <a href = "{{ Route('RealProperty') }}" Class="menu-link">
                                                     <i Class=""></i>
-                                                    <div>الاملاك</div>
+                                                    <div>الاسكان</div>
                                                 </a>
                                             </li>
 

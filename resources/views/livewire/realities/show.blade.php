@@ -17,39 +17,41 @@
                 @endcan
             </div>
         </div>
-        @can('realitie-selectall')
-            <div class="d-flex align-items-center gap-3 mb-3">
-                <!-- حقل تحديد الشعبة المختصة -->
-                <div class="col-2">
-                    <div class="form-floating form-floating-outline">
-                        <select wire:model="selectedBranch" id="bulkBranch" class="form-select">
-                            <option value="">اختر الشعبة</option>
-                            @foreach ($branches as $branch)
-                                <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
-                            @endforeach
-                        </select>
-                        <label for="bulkBranch" class="form-label">الشعبة المختصة</label>
+        <div class="card-body">
+            @can('realitie-selectall')
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <!-- حقل تحديد الشعبة المختصة -->
+                    <div class="col-2">
+                        <div class="form-floating form-floating-outline">
+                            <select wire:model="selectedBranch" id="bulkBranch" class="form-select">
+                                <option value="">اختر الشعبة</option>
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                                @endforeach
+                            </select>
+                            <label for="bulkBranch" class="form-label">الشعبة المختصة</label>
+                        </div>
+                    </div>
+
+                    <!-- حقل تحديد إمكانية الظهور -->
+                    <div class="col-2">
+                        <div class="form-floating form-floating-outline">
+                            <select wire:model="selectedVisibility" id="bulkVisibility" class="form-select">
+                                <option value="">اختر</option>
+                                <option value="1">نعم</option>
+                                <option value="0">لا</option>
+                            </select>
+                            <label for="bulkVisibility" class="form-label">إمكانية الظهور</label>
+                        </div>
+                    </div>
+
+                    <!-- زر تحديث دفعة واحدة -->
+                    <div>
+                        <button wire:click="updateBatch" class="btn btn-primary">تحديث دفعة واحدة</button>
                     </div>
                 </div>
-
-                <!-- حقل تحديد إمكانية الظهور -->
-                <div class="col-2">
-                    <div class="form-floating form-floating-outline">
-                        <select wire:model="selectedVisibility" id="bulkVisibility" class="form-select">
-                            <option value="">اختر</option>
-                            <option value="1">نعم</option>
-                            <option value="0">لا</option>
-                        </select>
-                        <label for="bulkVisibility" class="form-label">إمكانية الظهور</label>
-                    </div>
-                </div>
-
-                <!-- زر تحديث دفعة واحدة -->
-                <div>
-                    <button wire:click="updateBatch" class="btn btn-primary">تحديث دفعة واحدة</button>
-                </div>
-            </div>
-        @endcan
+            @endcan
+        </div>
         @can('realitie-list')
             <div class="table-responsive">
                 <table class="table">
