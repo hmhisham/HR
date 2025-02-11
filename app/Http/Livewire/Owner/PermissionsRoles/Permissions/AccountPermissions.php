@@ -14,12 +14,42 @@ class AccountPermissions extends Component
     public $Permissions = [];
     public $PermissionSearch;
     public $name, $explain_name, $PermissionID;
+    public $search = ['name' => '', 'explain_name' => ''];
+
+    public function updatedSearch($value, $key)
+    {
+        if (in_array($key, ['name', 'explain_name'])) {
+            $this->resetPage();
+        }
+    }
 
     public function render()
     {
-        $Permissions = Permission::WHERE('name', 'LIKE', $this->PermissionSearch . '%')->
-            orderBy('name', 'ASC')->
-            paginate(10);
+        $searchName = '%' . $this->search['name'] . '%';
+        $searchExplainName = '%' . $this->search['explain_name'] . '%';
+
+        $Permissions = Permission::query()
+            ->when($this->search['name'], function ($query) use ($searchName) {
+                $query->where('name', 'LIKE', $searchName);
+            })
+            ->when($this->search['explain_name'], function ($query) use ($searchExplainName) {
+                $query->where('explain_name', 'LIKE', $searchExplainName);
+            })
+            ->orderBy('name', 'ASC')
+            ->paginate(10);
+
+        $links = $Permissions;
+        $this->Permissions = collect($Permissions->items());
+
+        return view('livewire.owner.permissions-roles.permissions.account-permissions', [
+            'Permissions' => $Permissions,
+            'links' => $links
+        ]);
+    }
+
+    /*  public function render()
+    {
+        $Permissions = Permission::WHERE('name', 'LIKE', $this->PermissionSearch . '%')->orderBy('name', 'ASC')->paginate(10);
 
         $links = $Permissions;
         $this->Permissions = collect($Permissions->items());
@@ -27,7 +57,7 @@ class AccountPermissions extends Component
         return view('livewire.owner.permissions-roles.permissions.account-permissions', [
             'links' => $links
         ]);
-    }
+    } */
 
     public function AddPermissionModalShow()
     {
@@ -41,13 +71,15 @@ class AccountPermissions extends Component
     {
         $this->resetValidation();
 
-        $this->validate([
-            'name' => 'required|unique:permissions,name',
-        ],
-        [
-            'name.required' => 'أسم التصريح مطلوب',
-            'name.unique' => 'أسم التصريج مستخدم سابقاً',
-        ]);
+        $this->validate(
+            [
+                'name' => 'required|unique:permissions,name',
+            ],
+            [
+                'name.required' => 'أسم التصريح مطلوب',
+                'name.unique' => 'أسم التصريج مستخدم سابقاً',
+            ]
+        );
 
         Permission::create([
             'name' => $this->name,
@@ -74,13 +106,15 @@ class AccountPermissions extends Component
     public function update()
     {
         $this->resetValidation();
-        $this->validate([
-            'name' => 'required|unique:permissions,name,'.$this->PermissionID,
-        ],
-        [
-            'name.required' => 'أسم التصريح مطلوب',
-            'name.unique' => 'أسم التصريح مستخدم سابقاً',
-        ]);
+        $this->validate(
+            [
+                'name' => 'required|unique:permissions,name,' . $this->PermissionID,
+            ],
+            [
+                'name.required' => 'أسم التصريح مطلوب',
+                'name.unique' => 'أسم التصريح مستخدم سابقاً',
+            ]
+        );
 
         $Permission = Permission::find($this->PermissionID);
         $Permission->update([

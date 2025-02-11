@@ -27,7 +27,11 @@ class Show extends Component
     public $plot_number, $specialized_department, $Plot, $property_deed_image, $property_map_image;
     public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
     public $visibility = false;
-    public $search = ['plot_number' => '', 'specialized_department' => '', 'visibility' => '',];
+    public $selectedPlots = [];
+    public $selectedBranch;
+    public $selectedVisibility;
+    public $selectAll = false;
+    public $search = ['plot_number' => '', 'specialized_department' => '', 'visibility' => '', 'property_deed_image' => ''];
 
     public function mount()
     {
@@ -43,7 +47,7 @@ class Show extends Component
     public function updatedSearch($value, $key)
     {
         // إعادة تعيين الصفحة إلى الأولى فقط إذا كان البحث قد تغير
-        if (in_array($key, ['plot_number', 'specialized_department', 'visibility'])) {
+        if (in_array($key, ['plot_number', 'specialized_department', 'visibility', 'property_deed_image'])) {
             $this->resetPage();
         }
     }
@@ -53,6 +57,7 @@ class Show extends Component
         $searchPlotNumber = '%' . $this->search['plot_number'] . '%';
         $searchSpecializedDepartment = '%' . $this->search['specialized_department'] . '%';
         $searchVisibility = $this->search['visibility'];
+        $searchPropertyDeedImage = $this->search['property_deed_image'];
 
         $Plots = Plots::query()
             ->where('province_id', $this->Provinceid)
@@ -64,6 +69,13 @@ class Show extends Component
             })
             ->when($this->search['visibility'] !== '', function ($query) use ($searchVisibility) {
                 $query->where('visibility', $searchVisibility);
+            })
+            ->when($searchPropertyDeedImage !== '', function ($query) use ($searchPropertyDeedImage) {
+                if ($searchPropertyDeedImage == 'مرفقة') {
+                    $query->whereNotNull('property_deed_image');
+                } elseif ($searchPropertyDeedImage == 'غير مرفقة') {
+                    $query->whereNull('property_deed_image');
+                }
             })
             ->orderByRaw('CAST(plot_number AS UNSIGNED) ASC')
             ->paginate(10);
@@ -113,6 +125,63 @@ class Show extends Component
         $this->filePreviewMap = $this->property_map_image->temporaryUrl();
     }
 
+    //تحديث السجلات المحددة
+    public function updateBatch()
+    {
+        if (empty($this->selectedPlots)) {
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'يرجى تحديد سجل واحد على الأقل',
+                'title' => 'تحديد'
+            ]);
+            return;
+        }
+        foreach ($this->selectedPlots as $plotId) {
+            $plot = Plots::find($plotId);
+            if ($plot) {
+                $data = [];
+                if ($this->selectedBranch !== null && $this->selectedBranch !== '') {
+                    $data['specialized_department'] = $this->selectedBranch;
+                }
+                if ($this->selectedVisibility !== null && $this->selectedVisibility !== '') {
+                    $data['visibility'] = $this->selectedVisibility;
+                }
+                if (!empty($data)) {
+                    $plot->update($data);
+                }
+            }
+        }
+        $this->selectedPlots = [];
+        $this->selectedBranch = '';
+        $this->selectedVisibility = '';
+        $this->dispatchBrowserEvent('success', ['message' => 'تم تحديث السجلات المحددة بنجاح', 'title' => 'تعديل']);
+    }
+
+    // تحديد الكل
+    public function updatedSelectAll($value)
+    {
+        if ($value) {
+            // الحصول على جميع العناصر من قاعدة البيانات بدلاً من الصفحة الحالية فقط
+            $allPlots = Plots::where('province_id', $this->Provinceid)->pluck('id')->toArray();
+            $this->selectedPlots = $allPlots;
+        } else {
+            $this->selectedPlots = [];
+        }
+    }
+
+    // إذا كانت جميع الصفوف محددة، نقوم بتحديد مربع "تحديد الكل"
+    public function updatedSelectedPlots()
+    {
+        $allPlots = Plots::where('province_id', $this->Provinceid)->pluck('id')->toArray();
+        $this->selectAll = count($this->selectedPlots) === count($allPlots);
+    }
+
+    public function selectAllRecords($allPlots)
+    {
+        $this->selectedPlots = $allPlots;
+        $this->selectAll = true;
+    }
+
+    //تتبع الطباعة
     public function printt($Plotid)
     {
         $this->Plot = Plots::find($Plotid);
@@ -127,7 +196,7 @@ class Show extends Component
             'page_name' => 'القطع',
             'operation_type' => 'طباعة',
             'operation_time' => now()->format('Y-m-d H:i:s'),
-            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->previewPropertyDeedImage . ' - '  . " \nصوره الخارطة العقارية: " . $this->previewPropertyMapImage . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department ,
+            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->previewPropertyDeedImage . ' - '  . " \nصوره الخارطة العقارية: " . $this->previewPropertyMapImage . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department,
         ]);
         // ==================================
     }
@@ -172,15 +241,15 @@ class Show extends Component
             'property_map_image' => $propertyMapImageHashName,
         ]);
 
-                // =================================
-                Tracking::create([
-                    'user_id' => Auth::id(),
-                    'page_name' => 'القطع',
-                    'operation_type' => 'اضافة',
-                    'operation_time' => now()->format('Y-m-d H:i:s'),
-                    'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
-                ]);
-                // ==================================
+        // =================================
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'القطع',
+            'operation_type' => 'اضافة',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+        ]);
+        // ==================================
 
         $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
         $this->mount();
