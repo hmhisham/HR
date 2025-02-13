@@ -192,6 +192,17 @@
             return true;
         }
 
+        function onlyNumberKey1(evt) {
+    // Only ASCII character in that range allowed
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+
+    // Allow numbers (0-9) and dot (.)
+    if ((ASCIICode < 48 || ASCIICode > 57) && ASCIICode !== 46) {
+        return false;
+    }
+    return true;
+}
+
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
             // نطاق رموز الحروف العربية والفراغ
@@ -201,7 +212,7 @@
             return false;
         }
 
-        //اختبار الحقل ان يكون مرتبتين فقط ولا يتجاوز 99 متر
+       /*  //اختبار الحقل ان يكون مرتبتين فقط ولا يتجاوز 99 متر
         function validateMeterInput(evt) {
             const input = evt.target;
             if (input.value.length > 2) {
@@ -218,7 +229,7 @@
             if (value > 25) {
                 input.value = 25;
             }
-        }
+        } */
 
         //jQuery لاختيار الكل
         $('#select-all-button').on('click', function() {

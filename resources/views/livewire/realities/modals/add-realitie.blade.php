@@ -102,7 +102,7 @@
                                             <input wire:model.defer='area_in_meters' type="text"
                                                 id="modalRealitiearea_in_meters" placeholder="المساحة بالمتر"
                                                 class="form-control @error('area_in_meters') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyNumberKey(event)"
+                                                onkeypress="return onlyNumberKey1(event)"
                                                 oninput="validateMeterInput(event)" />
                                             <label for="modalRealitiearea_in_meters">المساحة بالمتر</label>
                                         </div>
@@ -116,7 +116,7 @@
                                             <input wire:model.defer='area_in_olok' type="text"
                                                 id="modalRealitiearea_in_olok" placeholder="المساحة بالأولك"
                                                 class="form-control @error('area_in_olok') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyNumberKey(event)"
+                                                onkeypress="return onlyNumberKey1(event)"
                                                 oninput="validateOlokInput(event)" />
                                             <label for="modalRealitiearea_in_olok">المساحة بالأولك</label>
                                         </div>
@@ -130,7 +130,7 @@
                                             <input wire:model.defer='area_in_donum' type="text"
                                                 id="modalRealitiearea_in_donum" placeholder="المساحة بالدونم"
                                                 class="form-control @error('area_in_donum') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyNumberKey(event)" />
+                                                onkeypress="return onlyNumberKey1(event)" />
                                             <label for="modalRealitiearea_in_donum">المساحة بالدونم</label>
                                         </div>
                                         @error('area_in_donum')
