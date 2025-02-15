@@ -2,9 +2,11 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <h4 class="mb-2">
-                <span class="text-muted fw-light">الاملاك والاراضي<span
-                        class="mdi mdi-chevron-left mdi-24px"></span></span>
-                عرض بيانات المقاطعة : <span class="text-danger">{{ $this->Province->province_number }} -
+                <a href="{{ route('Plots') }}" class="text-muted fw-light">
+                    القطع
+                    <span class="mdi mdi-chevron-left mdi-24px"></span>
+                </a>
+                عرض بيانات المقاطعة :<span class="text-danger">{{ $this->Province->province_number }} -
                     {{ $this->Province->province_name }}</span>
             </h4>
             <div>

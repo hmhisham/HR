@@ -162,10 +162,10 @@ class Show extends Component
             ->when($this->search['visibility'] !== '', function ($query) use ($searchVisibility) {
                 $query->where('visibility', $searchVisibility);
             })
-            ->when($searchPropertyDeedImage !== '', function ($query) use ($searchPropertyDeedImage) {
-                if ($searchPropertyDeedImage == 'مرفقة') {
+            ->when(!empty($this->search['property_deed_image']), function ($query) use ($searchPropertyDeedImage) {
+                if ($searchPropertyDeedImage === 'مرفقة') {
                     $query->whereNotNull('property_deed_image');
-                } elseif ($searchPropertyDeedImage == 'غير مرفقة') {
+                } elseif ($searchPropertyDeedImage === 'غير مرفقة') {
                     $query->whereNull('property_deed_image');
                 }
             })
