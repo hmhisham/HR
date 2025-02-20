@@ -198,9 +198,10 @@ class Show extends Component
     public function updatedPropertyDeedImage()
     {
         $this->validate([
-            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:5120',
         ], [
             'property_deed_image.required' => 'الملف مطلوب',
+            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 5120 كيلوبايت.',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
@@ -288,7 +289,7 @@ class Show extends Component
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
             'specialized_department' => 'required',
-            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:5120',
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'property_number.unique' => 'رقم العقار موجود مسبقًا ضمن هذه القطعة',
@@ -307,7 +308,7 @@ class Show extends Component
             'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             'property_deed_image.required' => 'ملف السند العقاري مطلوب.',
-            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
+            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 5120 كيلوبايت.',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
@@ -447,8 +448,8 @@ class Show extends Component
             'registered_office' => 'required:realities',
             'specialized_department' => 'required:realities',
             'property_deed_image' => $this->Realitie->property_deed_image && !$this->filePreview
-                ? 'nullable|file|mimes:jpeg,png,jpg,pdf|max:1024'
-                : 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
+                ? 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120'
+                : 'required|file|mimes:jpeg,png,jpg,pdf|max:5120',
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'property_number.unique' => 'رقم العقار موجود مسبقًا ضمن هذه القطعة',
@@ -467,7 +468,7 @@ class Show extends Component
             'registered_office.required' => 'حقل الدائرة المسجل لديها مطلوب',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             'property_deed_image.required' => 'ملف السند العقاري مطلوب.',
-            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 1024 كيلوبايت.',
+            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 5120 كيلوبايت.',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 

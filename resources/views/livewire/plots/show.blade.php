@@ -150,10 +150,24 @@
                                                 <span class="mdi mdi-delete-outline fs-3"></span>
                                             </button>
                                         @endcan
-                                        @can('plot-print')
+                                        {{-- @can('plot-print')
                                             <strong style="margin: 0 10px;">|</strong>
                                             <button wire:click='printt({{ $Plot->id }})'
                                                 onclick="printFiles(['{{ Storage::url('Plots/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Plot->property_deed_image) }}','{{ Storage::url('Plots/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Plot->property_map_image) }}'])"
+                                                class="p-0 px-1 btn btn-text-secondary waves-effect">
+                                                <span class="mdi mdi-printer-outline fs-3"></span>
+                                            </button>
+                                        @endcan --}}
+                                        @can('plot-print')
+                                            <strong style="margin: 0 10px;">|</strong>
+                                            <button
+                                                @if ($Plot->property_deed_image || $Plot->property_map_image) wire:click='printt({{ $Plot->id }})' onclick="printFiles(['{{ Storage::url('Plots/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Plot->property_deed_image) }}','{{ Storage::url('Plots/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Plot->property_map_image) }}'])"
+                                                @else
+                                                    onclick="Toast.fire({
+                                                        icon: 'error',
+                                                        title: 'خطأ',
+                                                        html: 'الملفات غير مرفقة مع السند العقاري بالقطعة المراد طباعتها.',
+                                                    });" @endif
                                                 class="p-0 px-1 btn btn-text-secondary waves-effect">
                                                 <span class="mdi mdi-printer-outline fs-3"></span>
                                             </button>

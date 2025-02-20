@@ -106,9 +106,10 @@ class Show extends Component
     public function updatedPropertyDeedImage()
     {
         $this->validate([
-            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:5120',
         ], [
             'property_deed_image.required' => 'الملف مطلوب',
+            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 5120 كيلوبايت.',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
         $this->filePreviewDeep = $this->property_deed_image->temporaryUrl();
@@ -117,9 +118,10 @@ class Show extends Component
     public function updatedPropertyMapImage()
     {
         $this->validate([
-            'property_deed_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf',
+            'property_deed_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120',
         ], [
             //'property_map_image.required' => 'الملف مطلوب',
+            'property_map_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 30720 كيلوبايت.',
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
         $this->filePreviewMap = $this->property_map_image->temporaryUrl();
@@ -212,15 +214,17 @@ class Show extends Component
                 }),
             ],
             'specialized_department' => 'required',
-            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
-            'property_deed_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf',
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:5120',
+            'property_map_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
             'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             'property_deed_image.required' => 'الملف مطلوب',
+            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 5120 كيلوبايت.',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
             //'property_map_image.required' => 'الملف مطلوب',
+            'property_map_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 30720 كيلوبايت.',
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
@@ -285,15 +289,17 @@ class Show extends Component
                 })->ignore($this->Plot->id),
             ],
             'specialized_department' => 'required',
-            'property_deed_image' => $this->filePreviewDeep ? 'required|file|mimes:jpeg,png,jpg,pdf' : 'nullable|file|mimes:jpeg,png,jpg,pdf',
-            'property_map_image' => $this->filePreviewMap ? 'nullable|file|mimes:jpeg,png,jpg,pdf' : 'nullable|file|mimes:jpeg,png,jpg,pdf',
+            'property_deed_image' => $this->filePreviewDeep ? 'required|file|mimes:jpeg,png,jpg,pdf|max:5120' : 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120',
+            'property_map_image' => $this->filePreviewMap ? 'nullable|file|mimes:jpeg,png,jpg,pdf|max:30720' : 'nullable|file|mimes:jpeg,png,jpg,pdf|max:30720',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
             'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
             'property_deed_image.required' => 'الملف مطلوب',
+            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 5120 كيلوبايت.',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
             //'property_map_image.required' => 'الملف مطلوب',
+            'property_map_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 30720 كيلوبايت.',
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 

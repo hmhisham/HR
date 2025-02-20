@@ -6,15 +6,15 @@
                     السندات العقارية
                     <span class="mdi mdi-chevron-left mdi-24px"></span>
                 </a>
-                عرض بيانات القطعة :  <span class="text-danger">{{ $this->Plot->plot_number }}</span>
+                عرض بيانات القطعة : <span class="text-danger">{{ $this->Plot->plot_number }}</span>
                 <strong style="margin: 0 30px;">|</strong>
                 ضمن المقاطعة : <span class="text-danger">{{ $this->Province->province_number }} -
                     {{ $this->Province->province_name }}</span>
             </h4>
             <div>
                 @can('realitie-create')
-                    <button wire:click='addRealitieModal' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal"
-                        data-bs-target="#addRealitieModal">أضــافــة</button>
+                    <button wire:click='addRealitieModal' class="mb-3 add-new btn btn-primary mb-md-0"
+                        data-bs-toggle="modal" data-bs-target="#addRealitieModal">أضــافــة</button>
                     @include('livewire.realities.modals.add-realitie')
                 @endcan
             </div>
@@ -178,10 +178,24 @@
                                             </button>
                                         @endcan
 
-                                        @can('realitie-print')
+                                        {{--  @can('realitie-print')
                                             <strong style="margin: 0 10px;">|</strong>
                                             <button wire:click="printt({{ $Realitie->id }})"
                                                 onclick="printFile('{{ Storage::url('Realities/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Realitie->property_number . '/' . $Realitie->property_deed_image) }}')"
+                                                class="p-0 px-1 btn btn-text-secondary waves-effect">
+                                                <span class="mdi mdi-printer-outline fs-3"></span>
+                                            </button>
+                                        @endcan --}}
+                                        @can('realitie-print')
+                                            <strong style="margin: 0 10px;">|</strong>
+                                            <button
+                                                @if ($Realitie->property_deed_image) wire:click="printt({{ $Realitie->id }})"onclick="printFile('{{ Storage::url('Realities/' . $Province->province_number . '/' . $Plot->plot_number . '/' . $Realitie->property_number . '/' . $Realitie->property_deed_image) }}')"
+                                                @else
+                                                    onclick="Toast.fire({
+                                                        icon: 'error',
+                                                        title: 'خطأ',
+                                                        html: 'الملف غير مرفق مع العقار المراد طباعته.',
+                                                    });" @endif
                                                 class="p-0 px-1 btn btn-text-secondary waves-effect">
                                                 <span class="mdi mdi-printer-outline fs-3"></span>
                                             </button>

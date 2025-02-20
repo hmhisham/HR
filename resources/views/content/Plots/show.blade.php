@@ -31,7 +31,10 @@
     <script src=" {{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
 @endsection
 
 @section('page-script')
@@ -41,29 +44,85 @@
 
     <script>
         async function printFiles(fileUrls) {
+            // دالة مساعدة لتنسيق الأرقام وإضافة الأصفار
+            function padZero(value, length = 2) {
+                return String(value).padStart(length, '0');
+            }
+
+            // إنشاء نص أمان يتضمن ID المستخدم والتاريخ والوقت
+            const now = new Date();
+            const userId = '{{ Auth::id() }}'; // الحصول على ID المستخدم من Laravel
+            const formattedDate =
+                `${(userId)}${padZero(now.getDate())}${padZero(now.getMonth() + 1)}${String(now.getFullYear()).slice(-2)}${padZero(now.getHours())}${padZero(now.getMinutes())}`;
+            const securityText = formattedDate;
+
             for (const fileUrl of fileUrls) {
                 try {
                     const fileExtension = fileUrl.split('.').pop().toLowerCase();
                     const isPDF = fileExtension === 'pdf';
 
                     if (isPDF) {
-                        // طباعة ملفات PDF كما هي
+                        // طباعة ملفات PDF بعد إضافة النص الأمني
                         await new Promise((resolve, reject) => {
-                            printJS({
-                                printable: fileUrl,
-                                type: 'pdf',
-                                onPrintDialogClose: resolve,
-                                onError: reject
-                            });
+                            fetch(fileUrl)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error(`خطأ في تحميل ملف PDF: ${response.statusText}`);
+                                    }
+                                    return response.arrayBuffer();
+                                })
+                                .then(async (pdfData) => {
+                                    try {
+                                        // تحميل ملف PDF باستخدام pdf-lib
+                                        const pdfDoc = await PDFLib.PDFDocument.load(pdfData);
+                                        // إضافة النص الأمني لكل صفحة
+                                        const pages = pdfDoc.getPages();
+                                        pages.forEach(page => {
+                                            const {
+                                                width,
+                                                height
+                                            } = page.getSize();
+                                            // إضافة النص الأمني في الجزء السفلي
+                                            page.drawText(securityText, {
+                                                x: 105, // المسافة من اليسار
+                                                y: height - 64, // المسافة من الأعلى
+                                                size: 12, // حجم الخط
+                                            });
+                                        });
+
+                                        // حفظ ملف PDF المعدل
+                                        const modifiedPdfBytes = await pdfDoc.save();
+                                        const modifiedPdfBlob = new Blob([modifiedPdfBytes], {
+                                            type: 'application/pdf'
+                                        });
+                                        const modifiedPdfUrl = URL.createObjectURL(modifiedPdfBlob);
+
+                                        // طباعة الملف المعدل مباشرةً
+                                        printJS({
+                                            printable: modifiedPdfUrl,
+                                            type: 'pdf',
+                                            onPrintDialogClose: () => {
+                                                console.log("تم إغلاق نافذة الطباعة.");
+                                                URL.revokeObjectURL(
+                                                    modifiedPdfUrl); // تنظيف الرابط المؤقت
+                                                resolve();
+                                            },
+                                            onError: reject
+                                        });
+                                    } catch (error) {
+                                        reject(`خطأ في معالجة ملف PDF: ${error.message}`);
+                                    }
+                                })
+                                .catch(error => {
+                                    reject(`خطأ في تحميل ملف PDF: ${error.message}`);
+                                });
                         });
                     } else {
-                        // طباعة الصور بحجم ورقة A4
+                        // طباعة الصور بحجم ورقة A4 مع إضافة النص الأمني
                         await new Promise((resolve, reject) => {
-                            // إنشاء عنصر صورة مؤقت
                             const img = new Image();
                             img.src = fileUrl;
                             img.onload = () => {
-                                // إنشاء نافذة طباعة مؤقتة
                                 const printWindow = window.open('', '_blank');
                                 printWindow.document.write(`
                             <html>
@@ -76,12 +135,21 @@
                                             justify-content: center;
                                             align-items: center;
                                             height: 100vh;
+                                            position: relative;
                                         }
                                         img {
                                             max-width: 100%;
                                             max-height: 100%;
                                             width: auto;
                                             height: auto;
+                                        }
+                                        .security-footer {
+                                            position: absolute;
+                                            top: 70px; /* المسافة من الأعلى */
+                                            left: 195px; /* المسافة من اليسار */
+                                            transform: translateX(-50%);
+                                            font-size: 16px;
+                                            color: #000; /* أسود فقط */
                                         }
                                         @media print {
                                             @page {
@@ -92,11 +160,15 @@
                                                 width: 100%;
                                                 height: auto;
                                             }
+                                            .security-footer {
+                                                display: block;
+                                            }
                                         }
                                     </style>
                                 </head>
                                 <body>
-                                    <img src="${fileUrl}" alt="صورة للطباعة">
+                                    <img src="${fileUrl}" alt="Image for printing">
+                                    <div class="security-footer">${securityText}</div>
                                 </body>
                             </html>
                         `);
@@ -110,12 +182,18 @@
                                 };
                             };
                             img.onerror = (error) => {
-                                reject(`الصورة الثانية غير موجودة: ${error.message}`);
+                                reject(`خطأ في تحميل الصورة: ${error.message}`);
                             };
                         });
                     }
                 } catch (error) {
-                    alert(`الملف الثاني غير موجود: ${fileUrl} - ${error.message}`);
+                    //alert(`خطأ في معالجة الملف: ${fileUrl} - ${error.message}`);
+                    //alert(`الملف غير مرفق مع السند العقاري بالقطعة المراد طباعتها: ${fileUrl}`);
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'خطأ',
+                        html: `الملف غير مرفق مع السند العقاري بالقطعة المراد طباعتها:<br>`,
+                    });
                 }
             }
         }
@@ -140,7 +218,7 @@
                     '#editplotModal');
             });
         });
-        
+
         //jQuery لاختيار الكل
         $('#select-all-button').on('click', function() {
             fetch('/get-all-plots')
