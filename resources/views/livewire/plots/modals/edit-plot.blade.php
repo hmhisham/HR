@@ -51,21 +51,27 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col">
-                                <div class="form-check form-switch">
-                                    <input wire:model.defer='visibility' type="checkbox" id="modalPlotvisibility"
-                                        class="form-check-input @error('visibility') is-invalid is-filled @enderror" />
-                                    <label for="modalPlotvisibility" class="form-check-label">إمكانية
-                                        ظهوره</label>
-                                </div>
+                            <div class="mb-3 col d-flex align-items-center" style="gap: 30px;">
+                                <label class="switch switch-square switch-danger me-2">
+                                    <input wire:model="visibility" type="checkbox"
+                                        id="modalPlotvisibility"
+                                        class="switch-input @error('visibility') is-invalid is-filled @enderror" />
+                                    <span class="switch-toggle-slider">
+                                        <span class="switch-on">نعم</span>
+                                        <span class="switch-off">لا</span>
+                                    </span>
+                                </label>
+                                <span class="switcher-label ms-2">
+                                    {{ $visibility ? 'مرئي' : 'غير مرئي' }}
+                                </span>
                                 @error('visibility')
-                                    <small class='text-danger inputerror'>{{ $message }}</small>
+                                    <small class='text-danger inputerror ms-2'>{{ $message }}</small>
                                 @enderror
                             </div>
                         </div>
 
                         <div Class="row">
-                            <div class="col mb-3" style="height: 350px;">
+                            <div class="col mb-3 text-center">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='property_deed_image' type="file"
                                         id="property_deed_image" accept=".jpeg,.png,.jpg,.pdf"
@@ -107,7 +113,7 @@
                                 </div>
                             </div>
 
-                            <div class="col mb-3" style="height: 350px;">
+                            <div class="col mb-3 text-center">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='property_map_image' type="file" id="property_map_image"
                                         accept=".jpeg,.png,.jpg,.pdf"

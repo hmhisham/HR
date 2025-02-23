@@ -3,15 +3,15 @@
 @section('title', 'السند العقاري')
 
 @section('vendor-style')
-    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
-    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
-    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
-    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/select2/select2.css') }}" />
-    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
-    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
-    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
-    <link rel="stylesheet" href=" {{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
@@ -49,8 +49,10 @@
                 $(selector).flatpickr({
                     placeholder: 'التاريخ',
                     altInput: true,
-                    altFormat: "Y-m",
+                    allowInput: true,
                     dateFormat: "Y-m",
+                    altFormat: "F Y",
+                    yearSelectorType: "input",
                     locale: {
                         months: {
                             shorthand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
@@ -65,28 +67,22 @@
                         new monthSelectPlugin({
                             shorthand: true,
                             dateFormat: "Y-m",
-                            altFormat: "Y-m",
+                            altFormat: "F Y",
                             theme: "light"
                         })
                     ],
                     onChange: function(selectedDates, dateStr, instance) {
-                        console.log(dateStr);
                         livewire.emit(eventName, dateStr);
                     }
                 });
             }
-
-            // تهيئة حقول التاريخ
-            initFlatpickr('#addDate', 'updateDate', '#addRealitieToPlotModal');
-            initFlatpickr('#editDate', 'updateDate', '#editRealitieToPlotModal');
-
+            initFlatpickr('#addDate', 'updateDate');
+            initFlatpickr('#editDate', 'updateDate');
             window.livewire.on('flatpickr', () => {
-                initFlatpickr('#addDate', 'updateDate', '#addRealitieToPlotModal');
-                initFlatpickr('#editDate', 'updateDate', '#editRealitieToPlotModal');
+                initFlatpickr('#addDate', 'updateDate');
+                initFlatpickr('#editDate', 'updateDate');
             });
         });
-
-
 
         $(document).ready(function() {
             function initSelect2(selector, eventName, parentModal) {
@@ -100,10 +96,14 @@
             }
             initSelect2('#addRealitiegovernorate', 'SelectGovernorate', '#addRealitieToPlotModal');
             initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealitieToPlotModal');
+            initSelect2('#addRealitieproperty_type', 'SelectPropertyType', '#addRealitieToPlotModal');
+            initSelect2('#addRealitiepropertycategory_id', 'SelectPropertycategoryId', '#addRealitieToPlotModal');
 
             window.livewire.on('select2', () => {
                 initSelect2('#addRealitiegovernorate', 'SelectGovernorate', '#addRealitieToPlotModal');
                 initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealitieToPlotModal');
+                initSelect2('#addRealitieproperty_type', 'SelectPropertyType', '#addRealitieToPlotModal');
+                initSelect2('#addRealitiepropertycategory_id', 'SelectPropertycategoryId', '#addRealitieToPlotModal');
             });
         });
 
@@ -115,6 +115,17 @@
             return true;
         }
 
+        function onlyNumberKey1(evt) {
+    // Only ASCII character in that range allowed
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+
+    // Allow numbers (0-9) and dot (.)
+    if ((ASCIICode < 48 || ASCIICode > 57) && ASCIICode !== 46) {
+        return false;
+    }
+    return true;
+}
+
         function onlyArabicKey(evt) {
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
             // نطاق رموز الحروف العربية والفراغ
@@ -124,7 +135,7 @@
             return false;
         }
 
-        //اختبار الحقل ان يكون مرتبتين فقط ولا يتجاوز 99 متر
+       /*  //اختبار الحقل ان يكون مرتبتين فقط ولا يتجاوز 99 متر
         function validateMeterInput(evt) {
             const input = evt.target;
             if (input.value.length > 2) {
@@ -142,7 +153,7 @@
                 input.value = 25;
             }
         }
-
+ */
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',

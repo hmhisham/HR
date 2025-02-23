@@ -105,6 +105,8 @@ class ShowRealProperties extends Component
             ->when($this->search['visibility'] !== '', function ($query) use ($searchVisibility) {
                 $query->where('visibility', $searchVisibility);
             })
+            ->where('specialized_department', 15)
+            ->where('visibility', '1')
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
@@ -452,8 +454,9 @@ class ShowRealProperties extends Component
         $Validation['receipt_notes'] = $this->receipt_notes;
         $Validation['receipt_type'] = $this->BuyerTenant->buyer_tenant_type == 'buyer' ? 'بيع':'ايجار';
         $Validation['receipt_attach'] = $this->receipt_attach->hashName();
+        $Validation['user_id'] = Auth::User()->id;
 
-        $attachFile = $this->receipt_attach->store('public/Real-Property/Payment-Receipts/'.$this->property_number.'/'.$this->BuyerTenantid);
+        $attachFile = $this->receipt_attach->store('public/Real-Property/Payment-Receipts/'.$this->property_number.'/'.$this->BuyerTenant->id);
 
         if($attachFile)
         {

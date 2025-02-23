@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Propertytypes;
 use Livewire\Component;
 
 use Livewire\WithPagination;
+use App\Models\Tracking\Tracking;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Propertytypes\Propertytypes;
 
@@ -27,7 +28,7 @@ class Propertytype extends Component
             ->when($this->search['type_name'], function ($query) use ($typeNameSearch) {
                 $query->where('type_name', 'LIKE', $typeNameSearch);
             })
-            ->orderBy('id', 'ASC')
+            ->orderBy('type_name', 'ASC')
             ->paginate(10);
 
         $links = $Propertytypes;
@@ -60,6 +61,14 @@ class Propertytype extends Component
         Propertytypes::create([
             'user_id' => Auth::id(),
             'type_name' => $this->type_name,
+        ]);
+
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'جنس العقار',
+            'operation_type' => 'اضافة',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+            'details' =>   " \nاسم النوع: " . $this->type_name,
         ]);
 
         $this->reset();
@@ -96,6 +105,14 @@ class Propertytype extends Component
             'type_name' => $this->type_name,
         ]);
 
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'جنس العقار',
+            'operation_type' => 'اضافة',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+            'details' =>   " \nاسم النوع: " . $this->type_name,
+        ]);
+
         $this->reset();
 
         $this->dispatchBrowserEvent('success', [
@@ -111,6 +128,14 @@ class Propertytype extends Component
 
         if ($Propertytypes) {
             $Propertytypes->delete();
+
+            Tracking::create([
+                'user_id' => Auth::id(),
+                'page_name' => 'جنس العقار',
+                'operation_type' => 'اضافة',
+                'operation_time' => now()->format('Y-m-d H:i:s'),
+                'details' =>   " \nاسم النوع: " . $this->type_name,
+            ]);
 
             $this->reset();
             $this->dispatchBrowserEvent('success', [

@@ -38,13 +38,16 @@
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
-                                    
+
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='propertycategory_id' id="addRealitiepropertycategory_id" class="form-select @error('propertycategory_id') is-invalid is-filled @enderror">
+                                            <select wire:model.defer='propertycategory_id'
+                                                id="addRealitiepropertycategory_id"
+                                                class="form-select @error('propertycategory_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($propertycategory as $propertycategor)
-                                                    <option value="{{ $propertycategor->id }}">{{ $propertycategor->category }}</option>
+                                                    <option value="{{ $propertycategor->id }}">
+                                                        {{ $propertycategor->category }}</option>
                                                 @endforeach
                                             </select>
                                             <label for="modalRealitiepropertycategory_id">نوع العقار</label>
@@ -57,7 +60,7 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='property_type' id="modalRealitieproperty_type"
+                                            <select wire:model.defer='property_type' id="addRealitieproperty_type"
                                                 class="form-select @error('property_type') is-invalid is-filled @enderror">
                                                 <option value="">اختر</option>
                                                 @foreach ($propertytypes as $propertytype)
@@ -72,7 +75,8 @@
                                             <small class='text-danger inputerror'>{{ $message }}</small>
                                         @enderror
                                     </div>
-
+                                </div>
+                                <div class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer="mortgage_notes" id="modalRealitiemortgage_notes"
@@ -110,7 +114,7 @@
                                             <input wire:model.defer='area_in_olok' type="text"
                                                 id="modalRealitiearea_in_olok" placeholder="المساحة بالأولك"
                                                 class="form-control @error('area_in_olok') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyNumberKey(event)"
+                                                onkeypress="return onlyNumberKey1(event)"
                                                 oninput="validateOlokInput(event)" />
                                             <label for="modalRealitiearea_in_olok">المساحة بالأولك</label>
                                         </div>
@@ -124,7 +128,7 @@
                                             <input wire:model.defer='area_in_donum' type="text"
                                                 id="modalRealitiearea_in_donum" placeholder="المساحة بالدونم"
                                                 class="form-control @error('area_in_donum') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyNumberKey(event)" />
+                                                onkeypress="return onlyNumberKey1(event)" />
                                             <label for="modalRealitiearea_in_donum">المساحة بالدونم</label>
                                         </div>
                                         @error('area_in_donum')
@@ -138,7 +142,7 @@
                                             <input wire:model.defer='count' type="text" id="modalRealitiecount"
                                                 placeholder="العدد"
                                                 class="form-control @error('count') is-invalid is-filled @enderror"
-                                                onkeypress="return onlyNumberKey(event)" />
+                                                onkeypress="return onlyNumberKey1(event)" />
                                             <label for="modalRealitiecount">العدد</label>
                                         </div>
                                         @error('count')
@@ -148,7 +152,7 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:ignore wire:model.defer='date' type="date" id="addDate"
+                                            <input wire:ignore wire:model.defer='date' type="text" id="addDate"
                                                 placeholder="التاريخ"
                                                 class="form-control @error('date') is-invalid is-filled @enderror" />
                                             <label for="modalRealitiedate">التاريخ</label>
@@ -180,6 +184,11 @@
                                                 <option value="الشركة العامة لموانئ العراق">الشركة العامة لموانئ
                                                     العراق
                                                 </option>
+                                                <option value="المنشأة العامة لموانئ العراق">المنشأة العامة لموانئ
+                                                    العراق</option>
+                                                <option value="المؤسسة العامة للموانئ العراقية">المؤسسة العامة للموانئ
+                                                    العراقية</option>
+                                                <option value="مصلحة الموانئ العراقية">مصلحة الموانئ العراقية</option>
                                                 <option value="مديرية بلدية البصرة">مديرية بلدية البصرة</option>
                                             </select>
                                             <label for="modalRealitieownership">العائدية</label>
@@ -201,12 +210,11 @@
                                                 <option value="مديرية التسجيل العقاري الثانية">مديرية التسجيل
                                                     العقاري
                                                     الثانية</option>
+                                                <option value="مديرية التسجيل العقاري الثالثة">مديرية التسجيل العقاري
+                                                    الثالثة</option>
                                                 <option value="ملاحظية التسجيل العقاري في شط العرب">ملاحظية التسجيل
                                                     العقاري
                                                     في شط العرب</option>
-                                                <option value="ملاحظية التسجيل العقاري في الزبير">ملاحظية التسجيل
-                                                    العقاري
-                                                    في الزبير</option>
                                                 <option value="ملاحظية التسجيل العقاري في ابي الخصيب">ملاحظية
                                                     التسجيل
                                                     العقاري في ابي الخصيب</option>
@@ -299,29 +307,15 @@
                                         @enderror
                                     </div>
 
-                                    {{-- <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='specialized_department'
-                                                id="modalRealitiespecialized_department"
-                                                class="form-select @error('specialized_department') is-invalid is-filled @enderror">
-                                                <option value="">اختر</option>
-                                                <option value="شعبة العقارات">شعبة العقارات</option>
-                                                <option value="شعبة الاملاك">شعبة الاملاك</option>
-                                                <option value="شعبة اسكان المؤاني">شعبة اسكان المؤاني</option>
-                                            </select>
-                                            <label for="modalRealitiespecialized_department">الشعبة المختصة</label>
-                                        </div>
-                                        @error('specialized_department')
-                                            <small class='text-danger inputerror'>{{ $message }}</small>
-                                        @enderror
-                                    </div> --}}
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='specialized_department' id="addRealitiespecialized_department" class="form-select @error('specialized_department') is-invalid is-filled @enderror">
+                                            <select wire:model.defer='specialized_department'
+                                                id="addRealitiespecialized_department"
+                                                class="form-select @error('specialized_department') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($branch as $branc)
-                                                    <option value="{{ $branc->id }}">{{ $branc->branch_name }}</option>
+                                                    <option value="{{ $branc->id }}">{{ $branc->branch_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             <label for="modalRealitiespecialized_department">الشعبة المختصة</label>
@@ -331,16 +325,21 @@
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3 col">
-                                        <div class="form-check form-switch">
-                                            <input wire:model.defer='visibility' type="checkbox"
+                                    <div class="mb-3 col d-flex align-items-center" style="gap: 30px;">
+                                        <label class="switch switch-square switch-danger me-2">
+                                            <input wire:model="visibility" type="checkbox"
                                                 id="modalRealitievisibility"
-                                                class="form-check-input @error('visibility') is-invalid is-filled @enderror" />
-                                            <label for="modalRealitievisibility" class="form-check-label">إمكانية
-                                                ظهوره</label>
-                                        </div>
+                                                class="switch-input @error('visibility') is-invalid is-filled @enderror" />
+                                            <span class="switch-toggle-slider">
+                                                <span class="switch-on">نعم</span>
+                                                <span class="switch-off">لا</span>
+                                            </span>
+                                        </label>
+                                        <span class="switcher-label ms-2">
+                                            {{ $visibility ? 'السند مرئي' : 'السند غير مرئي' }}
+                                        </span>
                                         @error('visibility')
-                                            <small class='text-danger inputerror'>{{ $message }}</small>
+                                            <small class='text-danger inputerror ms-2'>{{ $message }}</small>
                                         @enderror
                                     </div>
                                 </div>

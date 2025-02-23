@@ -6,6 +6,7 @@ use Livewire\Component;
 
 use Livewire\WithPagination;
 use App\Models\Sections\Sections;
+use App\Models\Tracking\Tracking;
 use App\Models\Provinces\Provinces;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,7 +62,7 @@ class Province extends Component
             ->when($this->search['province_name'], function ($query) use ($searchName) {
                 $query->where('province_name', 'LIKE', $searchName);
             })
-            ->orderBy('id', 'ASC')
+            ->orderByRaw('CAST(province_number AS UNSIGNED) ASC')
             ->paginate(10);
 
         $links = $Provinces;
@@ -105,6 +106,16 @@ class Province extends Component
             'section_id' => 4,
 
         ]);
+
+        // =================================
+        Tracking::create([
+            'user_id' => Auth::id(), // معرف المستخدم الحالي
+            'page_name' => 'المقاطعات', // اسم الصفحة
+            'operation_type' => 'اضافة', // نوع العملية
+            'operation_time' => now()->format('Y-m-d H:i:s'), // الوقت الحالي
+            'details' => "رقم المقاطعة: " . $this->province_number . ' - '  . "\nاسم المقاطعة: " . $this->province_name,
+        ]);
+        // ==================================
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
@@ -147,6 +158,18 @@ class Province extends Component
             'section_id' => 4,
 
         ]);
+
+            // =================================
+                    Tracking::create([
+                'user_id' => Auth::id(),
+                'page_name' => 'المقاطعات',
+                'operation_type' => 'تعديل',
+                'operation_time' => now()->format('Y-m-d H:i:s'),
+                'details' => "رقم المقاطعة: " . $this->province_number . ' - '  . "\nاسم المقاطعة: " . $this->province_name,
+            ]);
+            // ==================================
+
+
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
@@ -160,6 +183,17 @@ class Province extends Component
 
         if ($Provinces) {
             $Provinces->delete();
+
+                // =================================
+                Tracking::create([
+                    'user_id' => Auth::id(),
+                    'page_name' => 'المقاطعات',
+                    'operation_type' => 'حذف',
+                    'operation_time' => now()->format('Y-m-d H:i:s'),
+                    'details' => "رقم المقاطعة: " . $this->province_number . ' - '  . "\nاسم المقاطعة: " . $this->province_name,
+                ]);
+                // ==================================
+
             $this->reset();
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم حذف البيانات بنجاح',

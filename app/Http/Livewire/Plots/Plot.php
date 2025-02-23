@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 use App\Models\Branch\Branch;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
+use App\Models\Tracking\Tracking;
 use App\Models\Provinces\Provinces;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,6 +26,9 @@ class Plot extends Component
     public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
     public $visibility = false;
     public $search = ['province_number' => '', 'province_name' => ''];
+
+    public $latitude;
+    public $longitude;
 
     protected $listeners = [
         'SelectSpecializedDepartment',
@@ -67,7 +71,7 @@ class Plot extends Component
             ->when($this->search['province_name'], function ($query) use ($searchName) {
                 $query->orWhere('province_name', 'LIKE', $searchName);
             })
-            ->orderBy('id', 'ASC')
+            ->orderByRaw('CAST(province_number AS UNSIGNED) ASC')
             ->paginate(10);
 
         $links = $Provinces;
@@ -88,7 +92,12 @@ class Plot extends Component
         return Branch::where('section_id', $sectionId)->get();
     }
 
-    public function GetProvince($ProvinceId)
+    public function initMap()
+{
+    $this->dispatchBrowserEvent('init-map');
+}
+
+    public function GetProvince($ProvinceId, $openModal = false)
     {
         $this->resetValidation();
 
@@ -101,6 +110,10 @@ class Plot extends Component
         $this->previewPropertyMapImage = $this->Province->property_map_image;
 
         $this->branch = $this->getBranchesBySectionId($this->section_id);
+
+        if ($openModal) {
+            $this->dispatchBrowserEvent('init-map');
+        }
     }
 
     public function addPlotToProvince($ProvinceId)
@@ -123,7 +136,7 @@ class Plot extends Component
     public function updatedPropertyMapImage()
     {
         $this->validate([
-            'property_map_image' => 'file|mimes:jpeg,png,jpg,pdf',
+            'property_deed_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf',
         ], [
             //'property_map_image.required' => 'الملف مطلوب',
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
@@ -144,7 +157,7 @@ class Plot extends Component
             ],
             'specialized_department' => 'required',
             'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf',
-            'property_map_image' => 'file|mimes:jpeg,png,jpg,pdf',
+            'property_deed_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
             'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
@@ -156,7 +169,11 @@ class Plot extends Component
         ]);
 
         $this->property_deed_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
-        $this->property_map_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
+        $propertyMapImageHashName = null;
+        if ($this->property_map_image) {
+            $this->property_map_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
+            $propertyMapImageHashName = $this->property_map_image->hashName();
+        }
 
         Plots::create([
             'user_id' => Auth::user()->id,
@@ -165,8 +182,18 @@ class Plot extends Component
             'specialized_department' => $this->specialized_department,
             'visibility' => $this->visibility,
             'property_deed_image' => $this->property_deed_image->hashName(),
-            'property_map_image' => $this->property_map_image->hashName(),
+            'property_map_image' => $propertyMapImageHashName,
         ]);
+
+        // =================================
+        Tracking::create([
+            'user_id' => Auth::id(),
+            'page_name' => 'القطع',
+            'operation_type' => 'اضافة',
+            'operation_time' => now()->format('Y-m-d H:i:s'),
+            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+        ]);
+        // ==================================
 
         $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
         $this->dispatchBrowserEvent('success', [

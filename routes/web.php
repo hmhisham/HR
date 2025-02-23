@@ -26,6 +26,7 @@ use App\Http\Controllers\Linkages\LinkagesController;
 use App\Http\Controllers\Precises\PrecisesController;
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Services\ServicesController;
+use App\Http\Controllers\Tracking\TrackingController;
 use App\Http\Controllers\Childrens\ChildrensController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
@@ -201,8 +202,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::GET('Real-Property', [RealPropertyController::class, 'index'])->name('RealProperty');
     Route::GET('Show-Real-Property/{Plotid}', [RealPropertyController::class, 'ShowRealProperty'])->name('ShowRealProperty');
     //Route::GET('show-buyer-tenant/{RealPropertyNumber}/{BuyerTenantid}', [RealPropertyController::class, 'ShowBuyerTenant'])->name('ShowBuyerTenant');
-// في ملف web.php أو routes.php
-Route::get('show-buyer-tenant/{RealPropertyNumber}/{BuyerTenantId}', [RealPropertyController::class, 'ShowBuyerTenant'])->name('ShowBuyerTenant');
+    // في ملف web.php أو routes.php
+    Route::get('show-buyer-tenant/{RealPropertyNumber}/{BuyerTenantId}', [RealPropertyController::class, 'ShowBuyerTenant'])->name('ShowBuyerTenant');
 
 
 
@@ -224,7 +225,9 @@ Route::get('show-buyer-tenant/{RealPropertyNumber}/{BuyerTenantId}', [RealProper
     //انواع القيود
     Route::RESOURCE('Itypes', ItypesController::class);
 
-
+    // التتبع
+    Route::RESOURCE('Tracking', TrackingController::class);
+    
     //استدعاء اسم الموظف في حق الموظف
     /*Route::get('/api/workers', function (Request $request) {
         $search = $request->input('q');
