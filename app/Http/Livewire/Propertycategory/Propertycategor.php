@@ -7,7 +7,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Propertycategory\Propertycategory;
 
-class propertycategor extends Component
+class Propertycategor extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';

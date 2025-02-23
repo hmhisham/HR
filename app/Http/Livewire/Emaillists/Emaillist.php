@@ -7,7 +7,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Emaillists\Emaillists;
 
-class emaillist extends Component
+class Emaillist extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
