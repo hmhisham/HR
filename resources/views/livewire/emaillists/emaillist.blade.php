@@ -8,19 +8,15 @@
                 </h4>
                 <div>
                     @can('emaillist-create')
+                        {{-- التصدير تجريبي --}}
+                        <button onclick="exportSelectedRows()" class="btn btn-success">
+                            تصدير الصفوف المحددة إلى Excel
+                        </button>
+                        {{-- التصدير تجريبي --}}
 
-                    {{-- التصدير تجريبي --}}
-                    <button onclick="window.location.href='{{ url('/export-emails') }}'" class="btn btn-success">
-                        تصدير إلى Excel
-                    </button>
-                    {{-- التصدير تجريبي --}}
-
-                    
                         <button wire:click='AddemaillistModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                             data-bs-toggle="modal" data-bs-target="#addemaillistModal">أضــافــة</button>
                         @include('livewire.emaillists.modals.add-emaillist')
-
-
                     @endcan
                 </div>
             </div>
@@ -30,6 +26,7 @@
                 <table class="table">
                     <thead class="table-light">
                         <tr>
+                            <th> </th>
                             <th>ت</th>
                             <th class="text-center">القسم</th>
                             <th class="text-center">البريد الإلكتروني</th>
@@ -37,6 +34,7 @@
                             <th class="text-center">العملية</th>
                         </tr>
                         <tr>
+                            <th> </th>
                             <th>#</th>
                             <th class="text-center">
                                 <input type="text" wire:model.debounce.300ms="search.department"
@@ -59,11 +57,13 @@
                         @endphp
                         @foreach ($Emaillists as $emaillist)
                             <tr>
+                                <td>
+                                    <input type="checkbox" value="{{ $emaillist->id }}">
+                                </td>
                                 <td>{{ $i++ }}</td>
                                 <td class="text-center">{{ $emaillist->department }}</td>
                                 <td class="text-center">{{ $emaillist->email }}</td>
                                 <td class="text-center">{{ $emaillist->notes }}</td>
-
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('emaillist-edit')
@@ -98,4 +98,25 @@
             <!-- Modal -->
         @endcan
     </div>
+
+    <script>
+        function exportSelectedRows() {
+            // جمع معرّفات الصفوف المحددة
+            const selectedIds = [];
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                selectedIds.push(checkbox.value);
+            });
+
+            // إذا لم يتم تحديد أي صفوف
+        if (selectedIds.length === 0) {
+            alert('يرجى تحديد صفوف لتصديرها.');
+            return;
+        }
+
+            // إرسال معرّفات الصفوف إلى الرابط
+            window.location.href = "{{ url('/export-emails') }}?selected_ids=" + selectedIds.join(',');
+        }
+    </script>
+
+
 </div>

@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Livewire\Emaillists;
-
+use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Emaillists\Emaillists;
+use App\Exports\EmailListsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Emaillist extends Component
 {
@@ -43,6 +45,13 @@ class Emaillist extends Component
             'links' => $links
         ]);
     }
+
+    public function exportEmails(Request $request)
+{
+    $selectedIds = explode(',', $request->query('selected_ids'));
+    return Excel::download(new EmailListsExport($selectedIds), 'emaillists.xlsx');
+}
+
 
     public function AddemaillistModalShow()
     {

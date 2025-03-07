@@ -260,8 +260,11 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     });
 });
 
-Route::get('/export-emails', function () {
-    return Excel::download(new EmailListsExport, 'emaillists.xlsx');
+Route::get('/export-emails', function (Illuminate\Http\Request $request) {
+    $selectedIds = $request->query('selected_ids', []); // الحصول على selected_ids من الرابط
+    $selectedIds = explode(',', $selectedIds); // تحويل النص إلى مصفوفة
+
+    return Excel::download(new EmailListsExport($selectedIds), 'emaillists.xlsx');
 });
 
 // locale
