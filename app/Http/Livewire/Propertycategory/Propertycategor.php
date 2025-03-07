@@ -8,7 +8,7 @@ use App\Models\Tracking\Tracking;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Propertycategory\Propertycategory;
 
-class propertycategor extends Component
+class Propertycategor extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
