@@ -8,9 +8,19 @@
                 </h4>
                 <div>
                     @can('emaillist-create')
+
+                    {{-- التصدير تجريبي --}}
+                    <button onclick="window.location.href='{{ url('/export-emails') }}'" class="btn btn-success">
+                        تصدير إلى Excel
+                    </button>
+                    {{-- التصدير تجريبي --}}
+
+                    
                         <button wire:click='AddemaillistModalShow' class="mb-3 add-new btn btn-primary mb-md-0"
                             data-bs-toggle="modal" data-bs-target="#addemaillistModal">أضــافــة</button>
                         @include('livewire.emaillists.modals.add-emaillist')
+
+
                     @endcan
                 </div>
             </div>

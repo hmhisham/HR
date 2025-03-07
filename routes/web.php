@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Models\Workers\Workers;
+use App\Exports\EmailListsExport;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Areas\AreasController;
 use App\Http\Controllers\Plots\PlotsController;
@@ -63,6 +64,7 @@ use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
 use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsController;
 use App\Http\Controllers\Specializationclassification\SpecializationclassificationController;
+use Maatwebsite\Excel\Facades\Excel;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -227,7 +229,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
 
     // التتبع
     Route::RESOURCE('Tracking', TrackingController::class);
-    
+
     //استدعاء اسم الموظف في حق الموظف
     /*Route::get('/api/workers', function (Request $request) {
         $search = $request->input('q');
@@ -256,6 +258,10 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
             ]
         ]);
     });
+});
+
+Route::get('/export-emails', function () {
+    return Excel::download(new EmailListsExport, 'emaillists.xlsx');
 });
 
 // locale
