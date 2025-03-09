@@ -143,6 +143,7 @@ class Show extends Component
         $searchPropertyDeedImage = $this->search['property_deed_image'];
 
         $Realities = Realities::query()
+        ->with(['Getgovernorate', 'Getdistrict', 'GetpropertyType'])
             ->where('plot_id', $this->Plotid)
             ->when($this->search['property_number'], function ($query) use ($searchPropertyNumber) {
                 $query->where('property_number', 'LIKE', $searchPropertyNumber);

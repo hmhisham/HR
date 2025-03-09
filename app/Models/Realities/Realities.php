@@ -4,8 +4,11 @@ namespace App\Models\Realities;
 
 use App\Models\Plots\Plots;
 use App\Models\Branch\Branch;
+use App\Models\Districts\Districts;
 use App\Models\Provinces\Provinces;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Governorates\Governorates;
+use App\Models\Propertytypes\Propertytypes;
 use App\Models\Propertycategory\Propertycategory;
 use App\Models\RealProperty\RealEstateBondsSaleRental;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,5 +42,20 @@ class Realities extends Model
     public function Getpropertycategor()
     {
         return $this->belongsTo(Propertycategory::class, 'propertycategory_id');
+    }
+
+    public function Getgovernorate()
+    {
+        return $this->belongsTo(Governorates::class, 'governorate');
+    }
+
+    public function Getdistrict()
+    {
+        return $this->belongsTo(Districts::class, 'district');
+    }
+
+    public function GetpropertyType()
+    {
+        return $this->belongsTo(Propertytypes::class, 'property_type');
     }
 }

@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use App\Models\Workers\Workers;
 use App\Exports\EmailListsExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RealitieController;
 use App\Http\Controllers\Areas\AreasController;
 use App\Http\Controllers\Plots\PlotsController;
 use App\Http\Controllers\Units\UnitsController;
@@ -64,7 +66,6 @@ use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
 use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsController;
 use App\Http\Controllers\Specializationclassification\SpecializationclassificationController;
-use Maatwebsite\Excel\Facades\Excel;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -266,6 +267,8 @@ Route::get('/export-emails', function (Illuminate\Http\Request $request) {
 
     return Excel::download(new EmailListsExport($selectedIds), 'emaillists.xlsx');
 });
+
+Route::get('/realities/export', [RealitieController::class, 'export'])->name('realities.export');
 
 // locale
 Route::get('language/{locale}', [LanguageController::class, 'swap']);

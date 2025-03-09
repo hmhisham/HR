@@ -34,7 +34,6 @@
                             <label for="bulkBranch" class="form-label">الشعبة المختصة</label>
                         </div>
                     </div>
-
                     <!-- حقل تحديد إمكانية الظهور -->
                     <div class="col-2">
                         <div class="form-floating form-floating-outline">
@@ -46,11 +45,14 @@
                             <label for="bulkVisibility" class="form-label">إمكانية الظهور</label>
                         </div>
                     </div>
-
                     <!-- زر تحديث دفعة واحدة -->
                     <div>
                         <button wire:click="updateBatch" class="btn btn-primary">تحديث دفعة واحدة</button>
                     </div>
+                    @can('realitie-export')
+                        <!-- زر التصدير -->
+                        <button id="export-button" class="btn btn-success"><i class="mdi mdi-file-excel-box"></i>تصدير الى Excel</button>
+                    @endcan
                 </div>
             @endcan
         </div>
@@ -168,7 +170,6 @@
                                                 <i class="mdi mdi-text-box-edit-outline fs-3"></i>
                                             </button>
                                         @endcan
-
                                         @can('realitie-delete')
                                             <strong style="margin: 0 10px;">|</strong>
                                             <button wire:click="GetRealitie({{ $Realitie->id }})"
@@ -177,7 +178,6 @@
                                                 <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
                                             </button>
                                         @endcan
-
                                         {{--  @can('realitie-print')
                                             <strong style="margin: 0 10px;">|</strong>
                                             <button wire:click="printt({{ $Realitie->id }})"
@@ -215,5 +215,10 @@
                 <!-- Modal -->
             </div>
         @endcan
+    </div>
+
+    <!-- رسالة خطأ عند عدم تحديد قيد -->
+    <div id="no-selection-message" class="alert alert-warning d-none">
+        لم يتم تحديد قيد. يرجى تحديد قيد واحد على الأقل.
     </div>
 </div>
