@@ -51,7 +51,9 @@
                     </div>
                     @can('realitie-export')
                         <!-- زر التصدير -->
-                        <button id="export-button" class="btn btn-success"><i class="mdi mdi-file-excel-box"></i>تصدير الى Excel</button>
+                        <button wire:click="exportSelected" class="btn btn-success">
+                            <i class="mdi mdi-file-excel-box"></i> تصدير الى Excel
+                        </button>
                     @endcan
                 </div>
             @endcan

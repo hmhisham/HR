@@ -87,47 +87,10 @@ class Show extends Component
         }
     }
 
-    //المحافظة
-    public function SelectGovernorate($GovernorateID)
-    {
-        $this->governorate = $GovernorateID;
-        $Governorate = Governorates::find($GovernorateID);
-        $this->Districts = $Governorate->GetDistrict;
-        $this->reset('district');
-    }
-
-    //الاقضية
-    public function SelectDistrict($DistrictID)
-    {
-        $this->district = $DistrictID;
-    }
-
-    //نوع السند
-    public function SelectPropertyType($PropertyTypeID)
-    {
-        $property_type = Propertytypes::find($PropertyTypeID);
-        if ($property_type) {
-            $this->property_type = $PropertyTypeID;
-        } else {
-            $this->property_type = null;
-        }
-    }
-
-    //نوع العقار
-    public function SelectPropertycategoryId($PropertycategoryIdID)
-    {
-        $propertycategory_id = Propertycategory::find($PropertycategoryIdID);
-        if ($propertycategory_id) {
-            $this->propertycategory_id = $PropertycategoryIdID;
-        } else {
-            $this->propertycategory_id = null;
-        }
-    }
-
     public function updatedSearch($value, $key)
     {
         // إعادة تعيين الصفحة إلى الأولى فقط إذا كان البحث قد تغير
-        if (in_array($key, ['property_number', 'count', 'mortgage_notes', 'volume_number', 'visibility','property_deed_image'])) {
+        if (in_array($key, ['property_number', 'count', 'mortgage_notes', 'volume_number', 'visibility', 'property_deed_image'])) {
             $this->resetPage();
         }
     }
@@ -143,7 +106,7 @@ class Show extends Component
         $searchPropertyDeedImage = $this->search['property_deed_image'];
 
         $Realities = Realities::query()
-        ->with(['Getgovernorate', 'Getdistrict', 'GetpropertyType'])
+            ->with(['Getgovernorate', 'Getdistrict', 'GetpropertyType'])
             ->where('plot_id', $this->Plotid)
             ->when($this->search['property_number'], function ($query) use ($searchPropertyNumber) {
                 $query->where('property_number', 'LIKE', $searchPropertyNumber);
@@ -187,6 +150,43 @@ class Show extends Component
             'links' => $links,
             'Realities' => $Realities,
         ]);
+    }
+
+    //المحافظة
+    public function SelectGovernorate($GovernorateID)
+    {
+        $this->governorate = $GovernorateID;
+        $Governorate = Governorates::find($GovernorateID);
+        $this->Districts = $Governorate->GetDistrict;
+        $this->reset('district');
+    }
+
+    //الاقضية
+    public function SelectDistrict($DistrictID)
+    {
+        $this->district = $DistrictID;
+    }
+
+    //نوع السند
+    public function SelectPropertyType($PropertyTypeID)
+    {
+        $property_type = Propertytypes::find($PropertyTypeID);
+        if ($property_type) {
+            $this->property_type = $PropertyTypeID;
+        } else {
+            $this->property_type = null;
+        }
+    }
+
+    //نوع العقار
+    public function SelectPropertycategoryId($PropertycategoryIdID)
+    {
+        $propertycategory_id = Propertycategory::find($PropertycategoryIdID);
+        if ($propertycategory_id) {
+            $this->propertycategory_id = $PropertycategoryIdID;
+        } else {
+            $this->propertycategory_id = null;
+        }
     }
 
     public function addRealitieModal()
@@ -260,10 +260,27 @@ class Show extends Component
         $this->selectAll = count($this->selectedRealities) === count($allRealities);
     }
 
+    //تحديد كل السجلات
     public function selectAllRecords($allRealities)
     {
         $this->selectedRealities = $allRealities;
         $this->selectAll = true;
+    }
+
+    //تصدير اكسل القيود المحددة
+    public function exportSelected()
+    {
+        if (empty($this->selectedRealities)) {
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'يرجى تحديد قيد واحد على الأقل',
+                'title' => 'تصدير'
+            ]);
+            return;
+        }
+
+        $this->dispatchBrowserEvent('export-realities', [
+            'selectedIds' => $this->selectedRealities,
+        ]);
     }
 
     public function store()

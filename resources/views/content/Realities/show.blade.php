@@ -48,20 +48,6 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
-        document.getElementById('export-button').addEventListener('click', function() {
-            const selectedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-            const noSelectionMessage = document.getElementById('no-selection-message');
-
-            if (selectedCheckboxes.length === 0) {
-                noSelectionMessage.classList.remove('d-none'); // إظهار الرسالة
-            } else {
-                noSelectionMessage.classList.add('d-none'); // إخفاء الرسالة
-                // توجيه المستخدم إلى رابط التصدير مع IDs المحددة
-                const selectedIds = Array.from(selectedCheckboxes).map(checkbox => checkbox.value);
-                window.location.href = `/realities/export?ids=${selectedIds.join(',')}`;
-            }
-        });
-
         function printFile(fileUrl) {
             const fileExtension = fileUrl.split('.').pop().toLowerCase();
             const isPDF = fileExtension === 'pdf';
@@ -370,5 +356,25 @@
                 timer: 5000,
             })
         })
+        //تصدير الاكسل
+        window.addEventListener('export-realities', event => {
+            const selectedIds = event.detail.selectedIds;
+
+            if (selectedIds.length === 0) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'خطأ' + '<hr>' + 'لم يتم تحديد أي قيد.',
+                });
+                return;
+            }
+
+            Toast.fire({
+                icon: 'info',
+                title: 'تصدير' + '<hr>' + 'جارٍ تنزيل الملف...',
+                timer: 2000,
+            }).then(() => {
+                window.location.href = `/realities/export?ids=${selectedIds.join(',')}`;
+            });
+        });
     </script>
 @endsection
