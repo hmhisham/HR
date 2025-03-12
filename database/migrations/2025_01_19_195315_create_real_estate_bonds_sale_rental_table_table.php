@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('from_date')->nullable()->comment('من تاريخ');
             $table->date('to_date')->nullable()->comment('الى تاريخ');
             $table->string('number_of_months')->nullable()->comment('عدد الاشهر');
-            $table->string('insurance_amount')->nullable()->comment('مبلغ التأمين');
+            $table->string('insurance_amount')->nullable()->comment('مبلغ التثمين');
             $table->string('sale_amount')->nullable()->comment('مبلغ الرسو');
             $table->string('net_amount')->nullable()->comment('المبلغ الصافي');
             $table->string('monthly_amount')->nullable()->comment('المبلغ الشهري');

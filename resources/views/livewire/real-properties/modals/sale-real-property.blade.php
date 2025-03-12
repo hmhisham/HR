@@ -98,9 +98,9 @@
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='insurance_amount' wire:keyup='percentAmount' type="text" onkeypress="return onlyNumberKey(event)"
-                                        id="insurance_amount" placeholder="مبلغ التأمين"
+                                        id="insurance_amount" placeholder="مبلغ التثمين"
                                         class="form-control @error('insurance_amount') is-invalid is-filled @enderror"/>
-                                    <label for="insurance_amount">مبلغ التأمين</label>
+                                    <label for="insurance_amount">مبلغ التثمين</label>
                                 </div>
                                 @error('insurance_amount')
                                     <small class='text-danger inputerror'> {{ $message }} </small>
@@ -169,7 +169,7 @@
                             </div>
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <select wire:model.defer='real_estate_status' id="real_estate_status" 
+                                    <select wire:model.defer='real_estate_status' id="real_estate_status"
                                         class="form-select @error('real_estate_status') is-invalid is-filled @enderror">
                                         <option value=""></option>
                                         <option value="1">محجوز</option>

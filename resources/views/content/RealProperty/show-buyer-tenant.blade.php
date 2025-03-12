@@ -56,6 +56,7 @@
                     placeholder: 'اختر التاريخ',
                     dropdownParent: $(parentModal),
                     dir: 'rtl',
+                    allowInput: true,
                     width: '100%',
                     locale: {
                         months: {
