@@ -138,7 +138,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                                
+
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='buyer_tenant_notes' type="text" id="notes"
@@ -163,8 +163,8 @@
                             <div class="row">
                                 <div class="col mb-3">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='from_date' type="text" id="from_date"
-                                            placeholder="من تاريخ"
+                                        <input wire:model.defer='from_date' type="date" id="from_date"
+                                            placeholder="من تاريخ" oninput="updateToDate()"
                                             class="form-control @error('from_date') is-invalid is-filled @enderror" />
                                         <label for="from_date">من تاريخ</label>
                                     </div>
@@ -174,8 +174,8 @@
                                 </div>
                                 <div class="col mb-3">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='to_date' type="text" id="to_date"
-                                            placeholder="الى تاريخ"
+                                        <input wire:model.defer='to_date' type="date" id="to_date"
+                                            placeholder="الى تاريخ" readonly
                                             class="form-control @error('to_date') is-invalid is-filled @enderror" />
                                         <label for="to_date">الى تاريخ</label>
                                     </div>
@@ -201,14 +201,40 @@
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='insurance_amount' wire:keyup='percentAmount'
                                             type="text" onkeypress="return onlyNumberKey(event)"
-                                            id="insurance_amount" placeholder="مبلغ التأمين"
+                                            id="insurance_amount" placeholder="مبلغ التثمين"
                                             class="form-control @error('insurance_amount') is-invalid is-filled @enderror" />
-                                        <label for="insurance_amount">مبلغ التأمين</label>
+                                        <label for="insurance_amount">مبلغ التثمين</label>
                                     </div>
                                     @error('insurance_amount')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+
+                                <div class="col mb-3">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='Percent_5' type="text" readonly disabled
+                                            id="Percent_5" placeholder="نسبة 5%"
+                                            class="form-control @error('Percent_5') is-invalid is-filled @enderror" />
+                                        <label for="Percent_5">نسبة 5%</label>
+                                    </div>
+                                    @error('Percent_5')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                                <div class="col mb-3">
+                                    <div class="form-floating form-floating-outline">
+                                        <input wire:model.defer='Percent_2' type="text" readonly disabled
+                                            id="Percent_2" placeholder="نسبة 2%"
+                                            class="form-control @error('Percent_2') is-invalid is-filled @enderror" />
+                                        <label for="Percent_2">نسبة 2%</label>
+                                    </div>
+                                    @error('Percent_2')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col mb-3">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='sale_amount' wire:keyup='percentAmount'
@@ -221,6 +247,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+
                                 <div class="col mb-3">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='net_amount' type="text"
@@ -233,12 +260,10 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="col mb-3">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='monthly_amount' type="text" id="monthly_amount"
+                                        <input wire:model.defer='monthly_amount' type="text" id="monthly_amount" readonly disabled
                                             placeholder="المبلغ الشهري" onkeypress="return onlyNumberKey(event)"
                                             class="form-control @error('monthly_amount') is-invalid is-filled @enderror" />
                                         <label for="monthly_amount">المبلغ الشهري</label>
@@ -247,6 +272,9 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col mb-3">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='alert_duration' id="alert_duration"
@@ -265,9 +293,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='real_estate_status' id="real_estate_status"
