@@ -37,9 +37,11 @@ class ShowRealProperties extends Component
     public $BuyerTenant, $buyer, $tenant, $chooseBuyerTenant, $buyer_tenant_name, $buyer_calculator_number, $buyer_tenant_phone_number, $buyer_tenant_email, $buyer_tenant_type, $buyer_tenant_notes;
     public $from_date, $to_date, $number_of_months, $insurance_amount, $sale_amount, $net_amount, $monthly_amount, $real_estate_status, $company_department_email, $alert_duration, $real_estate_statement, $real_estate_bonds_number, $buyer_tenant_calculator_number;
     public $receipt_number, $receipt_date, $receipt_payer_name, $receipt_payment_amount, $receipt_from_date, $receipt_to_date, $receipt_attach, $receipt_notes, $attachFile;
+    public $Percent_2 = 0;
+    public $Percent_5 = 0;
     public $notifications = 0;
     public $visibility = 'false';
-    public $search = ['property_number' => '', 'count' => '', 'mortgage_notes' => '', 'volume_number' => '', 'visibility' => '',];
+    public $search = ['property_number' => '', 'count' => '', 'mortgage_notes' => '', 'volume_number' => ''];
 
     protected $listeners = [
         'SelectFromDate',
@@ -86,7 +88,6 @@ class ShowRealProperties extends Component
         $searchCount = '%' . $this->search['count'] . '%';
         $searchMortgageNotes = $this->search['mortgage_notes'];
         $searchVolumeNumber = '%' . $this->search['volume_number'] . '%';
-        $searchVisibility = $this->search['visibility'];
 
         $Realities = Realities::query()
             ->where('plot_id', $this->Plotid)
@@ -101,9 +102,6 @@ class ShowRealProperties extends Component
             })
             ->when($this->search['volume_number'], function ($query) use ($searchVolumeNumber) {
                 $query->where('volume_number', 'LIKE', $searchVolumeNumber);
-            })
-            ->when($this->search['visibility'] !== '', function ($query) use ($searchVisibility) {
-                $query->where('visibility', $searchVisibility);
             })
             ->where('specialized_department', 15)
             ->where('visibility', '1')
@@ -147,8 +145,7 @@ class ShowRealProperties extends Component
     //  حساب عدد الاشهر
     public function NumberOfMonths()
     {
-        if($this->from_date && $this->to_date)
-        {
+        if ($this->from_date && $this->to_date) {
             $FromDate = Carbon::parse($this->from_date);
             $ToDate = Carbon::parse($this->to_date);
 
@@ -162,7 +159,7 @@ class ShowRealProperties extends Component
         }
     }
 
-    public function percentAmount()
+    /* public function percentAmount()
     {
         if($this->insurance_amount && $this->sale_amount && ($this->sale_amount > $this->insurance_amount))
         {
@@ -174,14 +171,31 @@ class ShowRealProperties extends Component
             $this->net_amount = 0;
             $this->monthly_amount = 0;
         }
+    } */
+
+    public function percentAmount()
+    {
+        // ذا كان عدد الأشهر يساوي صفر (دفع كامل بدون أقساط)
+        if ($this->number_of_months == 0) {
+            $this->Percent_5 = 0; // نسبة 5% من مبلغ الرسو
+            $this->Percent_2 = $this->sale_amount * 0.02; // نسبة 2% من مبلغ الرسو
+            $this->net_amount = $this->sale_amount; // المبلغ الصافي يساوي مبلغ الرسو
+            $this->monthly_amount = 0; // لا يوجد دفع شهري
+        }
+        // إذا كان هناك أقساط (دفع مقطوع)
+        else {
+            $this->Percent_5 = $this->sale_amount * 0.05; // نسبة 5% من مبلغ الرسو
+            $this->Percent_2 = $this->sale_amount * 0.02; // نسبة 2% من مبلغ الرسو
+            $this->net_amount = ceil($this->sale_amount - $this->Percent_5); // المبلغ الصافي بعد خصم Percent_5
+            $this->monthly_amount = ceil($this->net_amount / $this->number_of_months); // المبلغ الشهري يتم تقسيمه على عدد الأشهر
+        }
     }
 
     public function Visibility()
     {
-        if(!$this->notifications)
-        {
+        if (!$this->notifications) {
             $this->notifications = 1;
-        }else{
+        } else {
             $this->notifications = 0;
         }
     }
@@ -387,7 +401,7 @@ class ShowRealProperties extends Component
             'number_of_months.required' => 'رقم الحاسبة للمشتري أو المستأجر مطلوب',
             'insurance_amount.required' => 'رقم هاتف المشتري أو المستأجر مطلوب',
             'sale_amount.required' => 'بيان العقار مطلوب',
-            'net_amount.required' => 'مبلغ التأمين مطلوب',
+            'net_amount.required' => 'مبلغ التثمين مطلوب',
             'monthly_amount.required' => 'مبلغ الرسو مطلوب',
             'alert_duration.required' => 'المبلغ الصافي	مطلوب',
             'company_department_email.required' => 'حالة العقار مطلوب',
@@ -398,9 +412,9 @@ class ShowRealProperties extends Component
         $Validation['user_id'] = Auth::User()->id;
         $Validation['buyer_tenant_id'] = $BuyerTenant->id;
         $Validation['property_number'] = $this->property_number;
-        if($this->chooseBuyerTenant == 'buyer'){
+        if ($this->chooseBuyerTenant == 'buyer') {
             $Validation['real_estate_statement'] = 'مباع';
-        }else{
+        } else {
             $Validation['real_estate_statement'] = 'مستأجر';
         }
         $Validation['notes'] = $this->notes;
@@ -409,8 +423,22 @@ class ShowRealProperties extends Component
 
         $this->reset('chooseBuyerTenant', 'buyer_tenant_name', 'buyer_calculator_number', 'buyer_tenant_phone_number', 'buyer_tenant_email', 'buyer_tenant_notes');
 
-        $this->reset('from_date', 'to_date', 'property_number', 'company_department_email', 'number_of_months', 'monthly_amount', 'alert_duration',
-            'real_estate_statement', 'insurance_amount', 'sale_amount', 'net_amount', 'real_estate_status', 'notifications', 'notes');
+        $this->reset(
+            'from_date',
+            'to_date',
+            'property_number',
+            'company_department_email',
+            'number_of_months',
+            'monthly_amount',
+            'alert_duration',
+            'real_estate_statement',
+            'insurance_amount',
+            'sale_amount',
+            'net_amount',
+            'real_estate_status',
+            'notifications',
+            'notes'
+        );
 
         $this->dispatchBrowserEvent('success', [
             'message' => 'تمت الاضافة بنجاح',
@@ -418,13 +446,14 @@ class ShowRealProperties extends Component
         ]);
     }
 
-    public function updatedAttachFile() {
+    public function updatedAttachFile()
+    {
         //$this->attachFile = $this->attachFile->temporaryUrl();
 
         $this->validate([
             'receipt_attach' => 'file|max:1024', // الحد الأقصى للحجم 1 ميجابايت
         ], [
-            'receipt_attach.max'=> 'يجب ألا يزيد حجم ملف الشهادة عن 1024 كيلوبايت.'
+            'receipt_attach.max' => 'يجب ألا يزيد حجم ملف الشهادة عن 1024 كيلوبايت.'
         ]);
     }
 
@@ -452,14 +481,13 @@ class ShowRealProperties extends Component
         $Validation['buyer_tenant_id'] = $this->BuyerTenant->id;
         $Validation['property_number'] = $this->property_number;
         $Validation['receipt_notes'] = $this->receipt_notes;
-        $Validation['receipt_type'] = $this->BuyerTenant->buyer_tenant_type == 'buyer' ? 'بيع':'ايجار';
+        $Validation['receipt_type'] = $this->BuyerTenant->buyer_tenant_type == 'buyer' ? 'بيع' : 'ايجار';
         $Validation['receipt_attach'] = $this->receipt_attach->hashName();
         $Validation['user_id'] = Auth::User()->id;
 
-        $attachFile = $this->receipt_attach->store('public/Real-Property/Payment-Receipts/'.$this->property_number.'/'.$this->BuyerTenant->id);
+        $attachFile = $this->receipt_attach->store('public/Real-Property/Payment-Receipts/' . $this->property_number . '/' . $this->BuyerTenant->id);
 
-        if($attachFile)
-        {
+        if ($attachFile) {
             SaleTenantReceipts::create($Validation);
         }
 
@@ -553,8 +581,21 @@ class ShowRealProperties extends Component
 
         RealEstateBondsSaleRental::create($Validation);
 
-        $this->reset('property_number', 'buyer_tenant_name', 'buyer_tenant_calculator_number', 'buyer_tenant_phone_number', 'buyer_tenant_email', 'company_department_email',
-            'real_estate_statement', 'insurance_amount', 'sale_amount', 'net_amount', 'real_estate_status', 'notifications', 'notes');
+        $this->reset(
+            'property_number',
+            'buyer_tenant_name',
+            'buyer_tenant_calculator_number',
+            'buyer_tenant_phone_number',
+            'buyer_tenant_email',
+            'company_department_email',
+            'real_estate_statement',
+            'insurance_amount',
+            'sale_amount',
+            'net_amount',
+            'real_estate_status',
+            'notifications',
+            'notes'
+        );
 
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
@@ -590,7 +631,7 @@ class ShowRealProperties extends Component
             'number_of_months.required' => 'رقم الحاسبة للمشتري أو المستأجر مطلوب',
             'insurance_amount.required' => 'رقم هاتف المشتري أو المستأجر مطلوب',
             'sale_amount.required' => 'بيان العقار مطلوب',
-            'net_amount.required' => 'مبلغ التأمين مطلوب',
+            'net_amount.required' => 'مبلغ التثمين مطلوب',
             'monthly_amount.required' => 'مبلغ الرسو مطلوب',
             'alert_duration.required' => 'المبلغ الصافي	مطلوب',
             'company_department_email.required' => 'حالة العقار مطلوب',
@@ -606,8 +647,21 @@ class ShowRealProperties extends Component
 
         RealEstateBondsSaleRental::create($Validation);
 
-        $this->reset('property_number', 'buyer_tenant_name', 'buyer_tenant_calculator_number', 'buyer_tenant_phone_number', 'buyer_tenant_email', 'company_department_email',
-            'real_estate_statement', 'insurance_amount', 'sale_amount', 'net_amount', 'real_estate_status', 'notifications', 'notes');
+        $this->reset(
+            'property_number',
+            'buyer_tenant_name',
+            'buyer_tenant_calculator_number',
+            'buyer_tenant_phone_number',
+            'buyer_tenant_email',
+            'company_department_email',
+            'real_estate_statement',
+            'insurance_amount',
+            'sale_amount',
+            'net_amount',
+            'real_estate_status',
+            'notifications',
+            'notes'
+        );
 
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
@@ -615,4 +669,3 @@ class ShowRealProperties extends Component
         ]);
     }
 }
-

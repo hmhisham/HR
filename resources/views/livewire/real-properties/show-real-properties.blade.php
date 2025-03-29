@@ -28,7 +28,6 @@
                             <th class="text-center">العدد</th>
                             <th class="text-center">إشارات التأمينات</th>
                             <th class="text-center">الجلد</th>
-                            <th class="text-center">إمكانية ظهوره</th>
                             <th class="text-center">العملية</th>
                         </tr>
                         <tr>
@@ -53,13 +52,6 @@
                                 <input type="text" wire:model.debounce.300ms="search.volume_number" class="form-control"
                                     placeholder="بحث بالجلد .." wire:key="search_volume_number">
                             </th>
-                            <th>
-                                <select wire:model.debounce.300ms="search.visibility" class="form-select" wire:key="search_visibility">
-                                    <option value="">اختر</option>
-                                    <option value="1">نعم</option>
-                                    <option value="0">لا</option>
-                                </select>
-                            </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -72,7 +64,6 @@
                                 <td class="text-center">{{ $Reality->count }}</td>
                                 <td class="text-center">{{ $Reality->mortgage_notes }}</td>
                                 <td class="text-center">{{ $Reality->volume_number }}</td>
-                                <td class="text-center">{{ $Reality->visibility ? 'نعم' : 'لا' }}</td>
                                 <td class="text-end">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @php

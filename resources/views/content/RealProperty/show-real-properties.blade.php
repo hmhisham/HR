@@ -21,7 +21,7 @@
 
     @livewire('real-properties.show-real-properties', [
         'Provinceid' => $Provinceid,
-        'Plotid' => $Plotid
+        'Plotid' => $Plotid,
     ])
 
 @endsection
@@ -57,7 +57,7 @@
 
                     minimumInputLength: 3,
                     ajax: {
-                        url: '{{ route("worker.search") }}',
+                        url: '{{ route('worker.search') }}',
                         dataType: 'json',
                     },
                 })
@@ -72,44 +72,72 @@
         });
 
         $(document).ready(function() {
-            function initflatpickrFromTo(selector, eventName, parentModal) {
-                $(selector).flatpickr({
-                    placeholder: 'اختر التاريخ',
-                    dropdownParent: $(parentModal),
-                    dir: 'rtl',
-                    width: '100%',
-                    locale: {
-                        months: {
-                            shorthand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
-                                'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
-                            ],
-                            longhand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
-                                'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
-                            ]
-                        }
-                    },
-                });
-                $(selector).on('change', function(e) {
-                    Livewire.emit(eventName, e.target.value);
-                });
-            }
-            initflatpickrFromTo('#from_date', 'SelectFromDate', '#saleRealPropertyModal');
-            initflatpickrFromTo('#to_date', 'SelectToDate', '#saleRealPropertyModal');
-            initflatpickrFromTo('#tenant_from_date', 'SelectFromDate', '#tenantRealPropertyModal');
-            initflatpickrFromTo('#tenant_to_date', 'SelectToDate', '#tenantRealPropertyModal');
-            initflatpickrFromTo('#receipt_date', 'SelectReceiptDate', '#saleTenantReceiptModal');
-            initflatpickrFromTo('#receipt_from_date', 'SelectReceiptFromDate', '#saleTenantReceiptModal');
-            initflatpickrFromTo('#receipt_to_date', 'SelectReceiptToDate', '#saleTenantReceiptModal');
-            window.livewire.on('flatpickr', () => {
-                initflatpickrFromTo('#from_date', 'SelectFromDate', '#saleRealPropertyModal');
-                initflatpickrFromTo('#to_date', 'SelectToDate', '#saleRealPropertyModal');
-                initflatpickrFromTo('#tenant_from_date', 'SelectFromDate', '#tenantRealPropertyModal');
-                initflatpickrFromTo('#tenant_to_date', 'SelectToDate', '#tenantRealPropertyModal');
-                initflatpickrFromTo('#receipt_date', 'SelectReceiptDate', '#saleTenantReceiptModal');
-                initflatpickrFromTo('#receipt_from_date', 'SelectReceiptFromDate', '#saleTenantReceiptModal');
-                initflatpickrFromTo('#receipt_to_date', 'SelectReceiptToDate', '#saleTenantReceiptModal');
-            });
+    function initflatpickrFromTo(selector, eventName, parentModal) {
+        $(selector).flatpickr({
+            placeholder: 'اختر التاريخ',
+            dropdownParent: $(parentModal),
+            dir: 'rtl',
+            allowInput: true,
+            width: '100%',
+            locale: {
+                months: {
+                    shorthand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                        'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                    ],
+                    longhand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                        'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                    ]
+                }
+            },
         });
+
+        // عند تغيير التاريخ
+        $(selector).on('change', function(e) {
+            const selectedDate = e.target.value;
+
+            // إذا كان الحقل هو "من تاريخ"
+            if ($(this).attr('id') === 'from_date') {
+                // تحويل التاريخ إلى كائن Date
+                const fromDate = new Date(selectedDate);
+
+                // إضافة 20 سنة إلى التاريخ
+                fromDate.setFullYear(fromDate.getFullYear() + 20);
+
+                // تنسيق التاريخ إلى صيغة YYYY-MM-DD
+                const toDateValue = fromDate.toISOString().split('T')[0];
+
+                // تحديث حقل "إلى تاريخ"
+                $('#to_date').val(toDateValue);
+
+                // إرسال قيمة "إلى تاريخ" إلى Livewire
+                Livewire.emit('SelectToDate', toDateValue);
+            }
+
+            // إرسال قيمة الحقل الحالي إلى Livewire
+            Livewire.emit(eventName, selectedDate);
+        });
+    }
+
+    // تهيئة الحقول
+    initflatpickrFromTo('#from_date', 'SelectFromDate', '#saleRealPropertyModal');
+    initflatpickrFromTo('#to_date', 'SelectToDate', '#saleRealPropertyModal');
+    initflatpickrFromTo('#tenant_from_date', 'SelectFromDate', '#tenantRealPropertyModal');
+    initflatpickrFromTo('#tenant_to_date', 'SelectToDate', '#tenantRealPropertyModal');
+    initflatpickrFromTo('#receipt_date', 'SelectReceiptDate', '#saleTenantReceiptModal');
+    initflatpickrFromTo('#receipt_from_date', 'SelectReceiptFromDate', '#saleTenantReceiptModal');
+    initflatpickrFromTo('#receipt_to_date', 'SelectReceiptToDate', '#saleTenantReceiptModal');
+
+    // إعادة التهيئة عند الحاجة
+    window.livewire.on('flatpickr', () => {
+        initflatpickrFromTo('#from_date', 'SelectFromDate', '#saleRealPropertyModal');
+        initflatpickrFromTo('#to_date', 'SelectToDate', '#saleRealPropertyModal');
+        initflatpickrFromTo('#tenant_from_date', 'SelectFromDate', '#tenantRealPropertyModal');
+        initflatpickrFromTo('#tenant_to_date', 'SelectToDate', '#tenantRealPropertyModal');
+        initflatpickrFromTo('#receipt_date', 'SelectReceiptDate', '#saleTenantReceiptModal');
+        initflatpickrFromTo('#receipt_from_date', 'SelectReceiptFromDate', '#saleTenantReceiptModal');
+        initflatpickrFromTo('#receipt_to_date', 'SelectReceiptToDate', '#saleTenantReceiptModal');
+    });
+});
 
         $(document).ready(function() {
             function initFlatpickr(selector, eventName) {
@@ -168,7 +196,8 @@
             initSelect2('#editRealitiegovernorate', 'SelectGovernorate', '#editRealitieModal');
             initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealPropertyModal');
             initSelect2('#editRealitiedistrict', 'SelectDistrict', '#editRealitieModal');
-            initSelect2('#addRealitiespecialized_department', 'SelectSpecializedDepartment', '#addRealPropertyModal');
+            initSelect2('#addRealitiespecialized_department', 'SelectSpecializedDepartment',
+                '#addRealPropertyModal');
             initSelect2('#editRealitiespecialized_department', 'SelectSpecializedDepartment', '#editRealitieModal');
 
             window.livewire.on('select2', () => {
@@ -176,8 +205,10 @@
                 initSelect2('#editRealitiegovernorate', 'SelectGovernorate', '#editRealitieModal');
                 initSelect2('#addRealitiedistrict', 'SelectDistrict', '#addRealPropertyModal');
                 initSelect2('#editRealitiedistrict', 'SelectDistrict', '#editRealitieModal');
-                initSelect2('#addRealitiespecialized_department', 'SelectSpecializedDepartment','#addRealPropertyModal');
-                initSelect2('#editRealitiespecialized_department', 'SelectSpecializedDepartment','#editRealitieModal');
+                initSelect2('#addRealitiespecialized_department', 'SelectSpecializedDepartment',
+                    '#addRealPropertyModal');
+                initSelect2('#editRealitiespecialized_department', 'SelectSpecializedDepartment',
+                    '#editRealitieModal');
             });
         });
 
