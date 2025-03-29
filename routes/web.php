@@ -66,6 +66,7 @@ use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
 use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsController;
 use App\Http\Controllers\Specializationclassification\SpecializationclassificationController;
+use App\Http\Controllers\BackupController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -272,3 +273,11 @@ Route::get('/realities/export', [RealitieController::class, 'export'])->name('re
 
 // locale
 Route::get('language/{locale}', [LanguageController::class, 'swap']);
+
+
+
+// طرق النسخ الاحتياطي
+Route::get('/backup/download', [BackupController::class, 'downloadBackup']);
+Route::get('/backup', function () {
+    return view('content.Backup.index');
+})->name('backup')->middleware(['auth', config('jetstream.auth_session'), 'verified']);

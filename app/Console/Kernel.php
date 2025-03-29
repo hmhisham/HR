@@ -13,6 +13,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+
+
+        // تعيين وقت النسخ الاحتياطي على الساعة 6:40 مساءً
+        $backupTime = '18:40';
+        $schedule->command('backup:auto')
+            ->dailyAt($backupTime)
+            ->appendOutputTo(storage_path('logs/backup.log'));
     }
 
     /**
@@ -20,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

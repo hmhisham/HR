@@ -349,7 +349,7 @@
                             @can('settings')
                                 {{-- الإعدادات --}}
                                 <li
-                                    class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking') ? 'open active' : '' }}">
+                                    class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking' ,'backup') ? 'open active' : '' }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                         <span class="menu-title">الاعدادات</span>
@@ -604,6 +604,15 @@
                                                 <a href="{{ Route('Tracking.index') }}" Class="menu-link">
                                                     <i Class=""></i>
                                                     <div>التتبع</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can('settings')
+                                            {{-- النسخ الاحتياطي --}}
+                                            <li Class="menu-item {{ request()->Is('backup') ? 'active' : '' }}">
+                                                <a href="{{ Route('backup') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>النسخ الاحتياطي</div>
                                                 </a>
                                             </li>
                                         @endcan
