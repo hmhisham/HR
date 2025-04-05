@@ -5,6 +5,7 @@ use App\Models\Workers\Workers;
 use App\Exports\EmailListsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BackupController;
 use App\Http\Controllers\RealitieController;
 use App\Http\Controllers\Areas\AreasController;
 use App\Http\Controllers\Plots\PlotsController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\Precises\PrecisesController;
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Services\ServicesController;
 use App\Http\Controllers\Tracking\TrackingController;
+use App\Http\Controllers\Usersapp\UsersappController;
 use App\Http\Controllers\Childrens\ChildrensController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
@@ -66,7 +68,6 @@ use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
 use App\Http\Controllers\Users\AdministratorsAccounts\AdministratorsAccountsController;
 use App\Http\Controllers\Specializationclassification\SpecializationclassificationController;
-use App\Http\Controllers\BackupController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -269,8 +270,12 @@ Route::get('/export-emails', function (Illuminate\Http\Request $request) {
     return Excel::download(new EmailListsExport($selectedIds), 'emaillists.xlsx');
 });
 
+// التصدير
 Route::get('/realities/export', [RealitieController::class, 'export'])->name('realities.export');
 
+// مستخدمي التطبيق
+Route::get('Usersapp', [UsersappController::class, 'index'])->name('Usersapp.index');
+Route::get('Usersapp-Show/{id}', [UsersappController::class, 'UsersapShow'])->name('Usersapp-Show');
 // locale
 Route::get('language/{locale}', [LanguageController::class, 'swap']);
 

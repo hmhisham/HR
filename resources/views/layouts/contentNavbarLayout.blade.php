@@ -598,6 +598,16 @@
                                                 </a>
                                             </li>
                                         @endcan
+                                        @can('usersapp')
+                                        {{-- مستخدمي التطبيق --}}
+                                        <li Class="menu-item {{ request()->Is('Usersapp') ? 'active' : '' }}">
+                                            <a href="{{ Route('Usersapp.index') }}" Class="menu-link">
+                                                <i Class=""></i>
+                                                <div>مستخدمي التطبيق</div>
+                                            </a>
+                                        </li>
+                                    @endcan
+
                                         @can('tracking')
                                             {{-- التتبع --}}
                                             <li Class="menu-item {{ request()->Is('Tracking') ? 'active' : '' }}">
