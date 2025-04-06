@@ -70,7 +70,7 @@ class Usersap extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'computer_number' => 'required|unique:usersapps,computer_number',
+            'computer_number' => 'required|unique:usersapp,computer_number',
             'name' => 'required',
             'password' => 'required',
             'email' => 'nullable|email',
@@ -126,7 +126,7 @@ class Usersap extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'computer_number' => 'required|unique:usersapps,computer_number,' . $this->UsersapId,
+            'computer_number' => 'required|unique:usersapp,computer_number,' . $this->UsersapId,
             'name' => 'required',
             'password' => 'required',
             'email' => 'nullable|email',
