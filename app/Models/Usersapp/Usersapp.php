@@ -11,7 +11,7 @@ class Usersapp extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = "usersapp";
-    protected $hidden = ['password'];
+  protected $hidden = ['password'];
 
     /**
      * تعيين كلمة المرور مع التشفير

@@ -23,9 +23,8 @@ class UsersLoginController extends Controller
         // التحقق من وجود المستخدم
         if ($user && $user->verifyPassword($request->password)) {
             return response()->json([
-                'status' => '1',
-                'computer_number' => $user->computer_number,
-                'name' => $user->name,
+        
+            'user' => $user,
             ]);
         } else {
             return response()->json([
