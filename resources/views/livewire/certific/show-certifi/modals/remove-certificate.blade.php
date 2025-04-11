@@ -11,8 +11,10 @@
 
                 <hr class="mt-n2">
 
-                <h5 wire:loading wire:target="Getcertifi" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">جار حفظ البيانات...</h5>
+                <h5 wire:loading wire:target="Getcertifi"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="destroy" wire:loading.class="d-flex justify-content-center text-primary">
+                    جار حفظ البيانات...</h5>
 
                 <div wire:loading.remove wire:target="Getcertifi, destroy">
                     <form id="editcertifiModalForm" autocomplete="off">
@@ -35,7 +37,7 @@
                                     <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                                 </div>
                                 <div wire:loading.remove wire:target='AddCertifyModal' class="text-center">
-                                    {{ $Worker->calculator_number ?? '' }}
+                                    {{ $Worker->computer_number ?? '' }}
                                 </div>
                             </div>
                         </div>
@@ -58,7 +60,8 @@
                             <div class="col text-center">
                                 <div class="text-danger">
                                     <label for="modalCertifycertificates_name">التحصيل الدراسي</label>
-                                    <div class="form-control-plaintext mt-n2">{{ $certifi ? $certifi->Getcertificate->certificates_name:'' }}</div>
+                                    <div class="form-control-plaintext mt-n2">
+                                        {{ $certifi ? $certifi->Getcertificate->certificates_name : '' }}</div>
                                 </div>
                             </div>
                         </div>

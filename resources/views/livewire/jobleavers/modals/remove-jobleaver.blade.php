@@ -22,26 +22,26 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='calculator_number' type="text"
-                                                id="modalJobleavercalculator_number" placeholder="رقم الحاسبة"
-                                                class="form-control @error('calculator_number') is-invalid is-filled @enderror"
+                                            <input wire:model.defer='computer_number' type="text"
+                                                id="modalJobleavercomputer_number" placeholder="رقم الحاسبة"
+                                                class="form-control @error('computer_number') is-invalid is-filled @enderror"
                                                 disabled />
-                                            <label for="modalJobleavercalculator_number">رقم الحاسبة</label>
+                                            <label for="modalJobleavercomputer_number">رقم الحاسبة</label>
                                         </div>
-                                        @error('calculator_number')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @error('computer_number')
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='full_name' type="text" id="modalEmployeefull_name"
-                                                placeholder="اسم الموظف "
+                                            <input wire:model.defer='full_name' type="text"
+                                                id="modalEmployeefull_name" placeholder="اسم الموظف "
                                                 class="form-control @error('full_name') is-invalid is-filled @enderror"
                                                 disabled />
                                             <label for="modalEmployeefull_name">اسم الموظف</label>
                                         </div>
                                         @error('full_name')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                 </div>
@@ -50,8 +50,8 @@
                             <div class="d-flex justify-content-center col-12 demo-vertical-spacing mb-n4">
                                 <button wire:click='destroy' type="submit"
                                     class="flex-fill btn btn-danger me-sm-3 me-1">حذف </button>
-                                <button type="reset" class="flex-fill btn btn-outline-secondary" data-bs-dismiss="modal"
-                                    aria-label="Close">تجاهل</button>
+                                <button type="reset" class="flex-fill btn btn-outline-secondary"
+                                    data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
                             </div>
                         </div>
                     </form>

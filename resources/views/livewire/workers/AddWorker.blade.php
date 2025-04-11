@@ -372,12 +372,12 @@
                 <div Class="row g-4">
                     <div class="mb-3 col">
                         <div class="form-floating form-floating-outline">
-                            <input wire:model.defer='calculator_number' type="text"
-                                id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
-                                class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
-                            <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
+                            <input wire:model.defer='computer_number' type="text" id="modalEmployeecomputer_number"
+                                placeholder="رقم الحاسبة"
+                                class="form-control @error('computer_number') is-invalid is-filled @enderror" />
+                            <label for="modalEmployeecomputer_number">رقم الحاسبة</label>
                         </div>
-                        @error('calculator_number')
+                        @error('computer_number')
                             <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                     </div>

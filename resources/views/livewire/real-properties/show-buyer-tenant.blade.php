@@ -24,7 +24,9 @@
             <div class="alert alert-outline-secondary pb-0 border-2" role="alert">
                 <h5 class="d-flex justify-content-around">
                     <div>
-                        <strong>أسم {{ $BuyerTenant ? $BuyerTenant->buyer_tenant_type == 'buyer' ? 'المشتري':'المستأجر' : '' }} : </strong>
+                        <strong>أسم
+                            {{ $BuyerTenant ? ($BuyerTenant->buyer_tenant_type == 'buyer' ? 'المشتري' : 'المستأجر') : '' }}
+                            : </strong>
                         <span class="text-danger">
                             {{ $BuyerTenant->buyer_tenant_name ?? '' }}
                         </span>
@@ -32,7 +34,7 @@
                     <div>
                         <strong>رقم الحاسبة : </strong>
                         <span class="text-danger">
-                            {{ $BuyerTenant->buyer_calculator_number ?? '' }}
+                            {{ $BuyerTenant->buyer_computer_number ?? '' }}
                         </span>
                     </div>
                 </h5>
@@ -57,14 +59,16 @@
                             <th>#</th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.property_number"
-                                    class="form-control" placeholder="بحث برقم السند العقاري .." wire:key="search_property_number">
+                                    class="form-control" placeholder="بحث برقم السند العقاري .."
+                                    wire:key="search_property_number">
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.count" class="form-control"
                                     placeholder="بحث بالعدد .." wire:key="search_count">
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-select" wire:key="search_mortgage_notes">
+                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-select"
+                                    wire:key="search_mortgage_notes">
                                     <option value="">اختر</option>
                                     <option value="رفع الحجز">رفع الحجز</option>
                                     <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف بالعقار الا بموافقة
@@ -76,14 +80,16 @@
                                     placeholder="بحث بالجلد .." wire:key="search_volume_number">
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.visibility" class="form-select" wire:key="search_visibility">
+                                <select wire:model.debounce.300ms="search.visibility" class="form-select"
+                                    wire:key="search_visibility">
                                     <option value="">اختر</option>
                                     <option value="1">نعم</option>
                                     <option value="0">لا</option>
                                 </select>
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.visibility" class="form-select" wire:key="search_visibility">
+                                <select wire:model.debounce.300ms="search.visibility" class="form-select"
+                                    wire:key="search_visibility">
                                     <option value="">اختر</option>
                                     <option value="1">نعم</option>
                                     <option value="0">لا</option>
@@ -100,7 +106,8 @@
                                 <td class="text-center">{{ $SaleTenantReceipt->receipt_number }}</td>
                                 <td class="text-center text-nowrap">{{ $SaleTenantReceipt->receipt_date }}</td>
                                 <td class="text-center">{{ $SaleTenantReceipt->receipt_payer_name }}</td>
-                                <td class="text-center ls-1">{{ number_format($SaleTenantReceipt->receipt_payment_amount) }}</td>
+                                <td class="text-center ls-1">
+                                    {{ number_format($SaleTenantReceipt->receipt_payment_amount) }}</td>
                                 <td class="text-center text-nowrap">{{ $SaleTenantReceipt->receipt_from_date }}</td>
                                 <td class="text-center text-nowrap">{{ $SaleTenantReceipt->receipt_to_date }}</td>
                                 <td class="text-center">{{ $SaleTenantReceipt->receipt_notes }}</td>
@@ -108,17 +115,17 @@
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('tenant-receipt-edit')
                                             <button wire:click="GetSaleTenantReceipt({{ $SaleTenantReceipt->id }})"
-                                                class="p-0 px-1 btn btn-text-success waves-effect"
-                                                data-bs-toggle="modal" data-bs-target="#editSaleTenantReceiptModal">
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#editSaleTenantReceiptModal">
                                                 <i class="mdi mdi-text-box-edit-outline fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('tenant-receipt-delete')
-                                        <button wire:click="GetSaleTenantReceipt({{ $SaleTenantReceipt->id }})"
-                                            class="p-0 px-1 btn btn-text-danger waves-effect"
-                                            data-bs-toggle="modal" data-bs-target="#removeSaleTenantReceiptModal">
-                                            <i class="mdi mdi-delete-outline fs-3"></i>
-                                        </button>
+                                            <button wire:click="GetSaleTenantReceipt({{ $SaleTenantReceipt->id }})"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#removeSaleTenantReceiptModal">
+                                                <i class="mdi mdi-delete-outline fs-3"></i>
+                                            </button>
                                         @endcan
                                     </div>
                                 </td>

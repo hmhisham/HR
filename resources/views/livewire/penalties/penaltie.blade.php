@@ -41,7 +41,7 @@
                             <td>{{ $i }}</td>
                             <td class="text-center">{{ $Penaltie->worker ? $Penaltie->worker->full_name : 'N/A' }}</td>
                             <td class="text-center">{{ $Penaltie->worker ? $Penaltie->worker->department : 'N/A' }}</td>
-                            <td Class="text-center">{{ $Penaltie->calculator_number }}</td>
+                            <td Class="text-center">{{ $Penaltie->computer_number }}</td>
                             <td Class="text-center">{{ $Penaltie->p_ministerial_order_number }}</td>
                             <td Class="text-center">{{ $Penaltie->p_ministerial_order_date }}</td>
                             <td Class="text-center">{{ $Penaltie->p_penalty_type }}</td>

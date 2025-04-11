@@ -27,22 +27,21 @@
                                         <label for="modalEmployeefull_name">اسم الموظف</label>
                                     </div>
                                     @error('full_name')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                                 <div class="row">
 
-
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='calculator_number' type="text"
-                                                id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
-                                                class="form-control @error('calculator_number') is-invalid is-filled @enderror"
+                                            <input wire:model.defer='computer_number' type="text"
+                                                id="modalEmployeecomputer_number" placeholder="رقم الحاسبة"
+                                                class="form-control @error('computer_number') is-invalid is-filled @enderror"
                                                 disabled />
-                                            <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
+                                            <label for="modalEmployeecomputer_number">رقم الحاسبة</label>
                                         </div>
-                                        @error('calculator_number')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        @error('computer_number')
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
@@ -55,18 +54,17 @@
                                             <label for="modalEmployeedepartment">اسم القسم </label>
                                         </div>
                                         @error('department')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                 </div>
-
 
                                 <div Class="row">
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
                                             <select wire:model.defer='country_status' id="modalJobleaverscountry_status"
-                                                    class="form-select @error('country_status') is-invalid is-filled @enderror">
+                                                class="form-select @error('country_status') is-invalid is-filled @enderror">
                                                 <option value="" disabled selected>اختر نوع الايفاد</option>
                                                 <option value=""></option>
                                                 <option value="داخل العراق">داخل العراق</option>
@@ -76,7 +74,7 @@
                                             <label for="modalJobleaverscountry_status">داخل او خارج</label>
                                         </div>
                                         @error('country_status')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                     <div class="mb-3 col">
@@ -87,7 +85,7 @@
                                             <label for="modalDispatchdispatch_subject">موضوع الايفاد</label>
                                         </div>
                                         @error('dispatch_subject')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
@@ -99,7 +97,7 @@
                                             <label for="modalDispatchfunding_agency">الجهة الممولة</label>
                                         </div>
                                         @error('funding_agency')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                 </div>
@@ -112,7 +110,7 @@
                                             <label for="modaldispatcdispatch_location">مكان الايفاد</label>
                                         </div>
                                         @error('dispatch_location')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
@@ -124,7 +122,7 @@
                                             <label for="modaldispatcresident_agency">الجهة المقيمة للدولة</label>
                                         </div>
                                         @error('resident_agency')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
@@ -136,7 +134,7 @@
                                             <label for="modaldispatctravel_date">تاريخ السفر</label>
                                         </div>
                                         @error('travel_date')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                 </div>
@@ -149,7 +147,7 @@
                                             <label for="modaldispatctravel_days">عدد أيام السفر</label>
                                         </div>
                                         @error('travel_days')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
@@ -163,19 +161,19 @@
                                                 الفعلي</label>
                                         </div>
                                         @error('actual_dispatch_days')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='start_date' type="date" id="modaldispatcstart_date"
-                                                placeholder="تاريخ المباشرة"
+                                            <input wire:model.defer='start_date' type="date"
+                                                id="modaldispatcstart_date" placeholder="تاريخ المباشرة"
                                                 class="form-control @error('start_date') is-invalid is-filled @enderror" />
                                             <label for="modaldispatcstart_date">تاريخ المباشرة</label>
                                         </div>
                                         @error('start_date')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                 </div>
@@ -189,7 +187,7 @@
                                             <label for="modaldispatcministerial_order_number">رقم الأمر الوزاري</label>
                                         </div>
                                         @error('ministerial_order_number')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
@@ -202,7 +200,7 @@
                                             <label for="modaldispatcministerial_order_date">تاريخ الأمر الوزاري</label>
                                         </div>
                                         @error('ministerial_order_date')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 
@@ -214,7 +212,7 @@
                                             <label for="modaldispatcnotes">الملاحظات</label>
                                         </div>
                                         @error('notes')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                            <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
 

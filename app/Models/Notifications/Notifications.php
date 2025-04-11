@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Notifications extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $guarded = [];
-    protected $table = "notifications";
+  protected $guarded = [];
+  protected $table = "notifications";
 
-    Public function GetWorker()
-    {
-        return $this->belongsTo(Workers::class, 'calculator_number');
-    }
+  public function GetWorker()
+  {
+    return $this->belongsTo(Workers::class, 'computer_number');
+  }
 }

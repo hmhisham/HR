@@ -27,12 +27,12 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='calculator_number' type="text"
-                                            id="modalCoachecalculator_number" placeholder="رقم الحاسبة"
-                                            class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
-                                        <label for="modalCoachecalculator_number">رقم الحاسبة</label>
+                                        <input wire:model.defer='computer_number' type="text"
+                                            id="modalCoachecomputer_number" placeholder="رقم الحاسبة"
+                                            class="form-control @error('computer_number') is-invalid is-filled @enderror" />
+                                        <label for="modalCoachecomputer_number">رقم الحاسبة</label>
                                     </div>
-                                    @error('calculator_number')
+                                    @error('computer_number')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
@@ -41,7 +41,8 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer="education" id="modalCoacheeducation" class="form-select @error('education') is-invalid is-filled @enderror">
+                                        <select wire:model.defer="education" id="modalCoacheeducation"
+                                            class="form-select @error('education') is-invalid is-filled @enderror">
                                             <option value="">اختر التحصيل الدراسي</option>
                                             <option value="دبلوم">دبلوم</option>
                                             <option value="بكالوريوس">بكالوريوس</option>
@@ -55,7 +56,6 @@
                                         <small class="text-danger inputerror"> {{ $message }} </small>
                                     @enderror
                                 </div>
-
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">

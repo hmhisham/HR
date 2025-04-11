@@ -34,7 +34,7 @@
                                     <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                                 </div>
                                 <div wire:loading.remove wire:target='AddServiceModal' class="text-center">
-                                    {{ $Worker->calculator_number ?? '' }}</div>
+                                    {{ $Worker->computer_number ?? '' }}</div>
                             </div>
                         </div>
 
@@ -52,7 +52,8 @@
                                 <div class="col text-center">
                                     <div class="text-danger">
                                         <label for="modalServicecalculation_order_number">رقم امر الاحتساب</label>
-                                        <div class="form-control-plaintext mt-n2">{{ $this->calculation_order_number }}</div>
+                                        <div class="form-control-plaintext mt-n2">{{ $this->calculation_order_number }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

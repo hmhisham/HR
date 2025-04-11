@@ -1,6 +1,7 @@
 <!-- Edite certifi Modal -->
 <!-- Add certifi Modal -->
-<div wire:ignore.self class="modal fade" id="editcertifiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="editcertifiModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -12,7 +13,8 @@
 
                 <hr class="mt-n2">
 
-                <h5 wire:loading wire:target="Getcertifi" wire:loading.class="d-flex justify-content-center text-primary">
+                <h5 wire:loading wire:target="Getcertifi"
+                    wire:loading.class="d-flex justify-content-center text-primary">
                     جار معالجة البيانات...</h5>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
@@ -37,7 +39,7 @@
                                     <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                                 </div>
                                 <div wire:loading.remove wire:target='AddCertifyModal' class="text-center">
-                                    {{ $Worker->calculator_number ?? '' }}</div>
+                                    {{ $Worker->computer_number ?? '' }}</div>
                             </div>
                         </div>
 
@@ -85,8 +87,9 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='authenticity_date' type="text" id="addauthenticity_date"
-                                                autocomplete="off" readonly placeholder="يوم-شهر-سنة"
+                                            <input wire:model.defer='authenticity_date' type="text"
+                                                id="addauthenticity_date" autocomplete="off" readonly
+                                                placeholder="يوم-شهر-سنة"
                                                 class="form-control @error('authenticity_date') is-invalid is-filled @enderror" />
                                             <label for="flatpickr-date">تاريخ صحة الصدور</label>
                                         </div>
@@ -137,7 +140,8 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <select wire:model.defer='specialization_id' id="addCertifispecialization_id"
+                                            <select wire:model.defer='specialization_id'
+                                                id="addCertifispecialization_id"
                                                 class="form-select @error('specialization_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($specializations as $specialization)
@@ -158,7 +162,8 @@
                                                 $startYear = 1950; // Change this to your desired start year
                                                 $currentYear = date('Y');
                                             @endphp
-                                            <select wire:model.defer='graduation_year' id="modalCertificgraduation_year"
+                                            <select wire:model.defer='graduation_year'
+                                                id="modalCertificgraduation_year"
                                                 class="form-select @error('graduation_year') is-invalid is-filled @enderror"
                                                 name="year">
                                                 <option value="">اختر سنة التخرج</option>
@@ -186,7 +191,8 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <label for="modalCertifispecializationclassification_id">تصنيف التخصص</label>
+                                            <label for="modalCertifispecializationclassification_id">تصنيف
+                                                التخصص</label>
                                         </div>
                                         @error('specializationclassification_id')
                                             <small class='text-danger inputerror'>{{ $message }}</small>
@@ -201,7 +207,8 @@
                                                 class="form-select @error('specialtys_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($specialtys as $specialty)
-                                                    <option value="{{ $specialty->id }}">{{ $specialty->specialtys_name }}
+                                                    <option value="{{ $specialty->id }}">
+                                                        {{ $specialty->specialtys_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -218,7 +225,8 @@
                                                 class="form-select @error('precises_id') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($precises as $precise)
-                                                    <option value="{{ $precise->id }}">{{ $precise->precises_name }}</option>
+                                                    <option value="{{ $precise->id }}">{{ $precise->precises_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             <label for="modalCertifiprecises_id">التخصص الدقيق</label>
@@ -248,7 +256,8 @@
                                         <div class="form-floating form-floating-outline">
                                             <input wire:model='estimate' type="text" id="modalCertificestimate"
                                                 placeholder="التقدير"
-                                                class="form-control @error('estimate') is-invalid is-filled @enderror" readonly />
+                                                class="form-control @error('estimate') is-invalid is-filled @enderror"
+                                                readonly />
                                             <label for="modalCertificestimate">التقدير</label>
                                         </div>
                                         @error('estimate')
@@ -290,7 +299,8 @@
 
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='notes' type="text" id="modalcertifinotes" placeholder="الملاحظات"
+                                            <input wire:model.defer='notes' type="text" id="modalcertifinotes"
+                                                placeholder="الملاحظات"
                                                 class="form-control @error('notes') is-invalid is-filled @enderror" />
                                             <label for="modalcertifinotes">الملاحظات</label>
                                         </div>
@@ -300,7 +310,8 @@
                                     </div>
 
                                     <div class="col position-relative">
-                                        <div class="form-check position-absolute top-50 start-0 translate-middle-y mt-n2">
+                                        <div
+                                            class="form-check position-absolute top-50 start-0 translate-middle-y mt-n2">
                                             <input wire:model.defer='status' type="checkbox" id="modalHolidaystatus"
                                                 placeholder="الحالة"
                                                 class="form-check-input @error('status') is-invalid @enderror" />
@@ -321,14 +332,21 @@
                                         <div class="nav-align-top">
                                             <ul class="nav nav-tabs" role="tablist">
                                                 <li class="nav-item">
-                                                    <button wire:click='certificateTap' type="button" class="alert  {{ $activeCertificateTap == 'active' ? 'active alert-solid-primary':'' }} py-1 mb-n1" role="tab" data-bs-toggle="tab"
-                                                        data-bs-target="#navs-top-certificate" aria-controls="navs-top-certificate" aria-selected="true">
+                                                    <button wire:click='certificateTap' type="button"
+                                                        class="alert  {{ $activeCertificateTap == 'active' ? 'active alert-solid-primary' : '' }} py-1 mb-n1"
+                                                        role="tab" data-bs-toggle="tab"
+                                                        data-bs-target="#navs-top-certificate"
+                                                        aria-controls="navs-top-certificate" aria-selected="true">
                                                         الشهادة
                                                     </button>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <button wire:click='validitySsuanceTap' type="button" class="{{-- nav-link --}} alert {{ $activeValiditySsuanceTap == 'active' ? 'active alert-solid-primary':'' }} py-1 mb-n1" role="tab" data-bs-toggle="tab"
-                                                        data-bs-target="#navs-top-validity-ssuance" aria-controls="navs-top-validity-ssuance" aria-selected="false">
+                                                    <button wire:click='validitySsuanceTap' type="button"
+                                                        class="{{-- nav-link --}} alert {{ $activeValiditySsuanceTap == 'active' ? 'active alert-solid-primary' : '' }} py-1 mb-n1"
+                                                        role="tab" data-bs-toggle="tab"
+                                                        data-bs-target="#navs-top-validity-ssuance"
+                                                        aria-controls="navs-top-validity-ssuance"
+                                                        aria-selected="false">
                                                         صحة الصدور
                                                     </button>
                                                 </li>
@@ -337,72 +355,103 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="tab-content p-0">
-                                            <div class="tab-pane fade {{ $activeCertificateTap == 'active' ? 'show active':'' }}" id="navs-top-certificate" role="tabpanel">
+                                            <div class="tab-pane fade {{ $activeCertificateTap == 'active' ? 'show active' : '' }}"
+                                                id="navs-top-certificate" role="tabpanel">
                                                 <div class="form-floating form-floating-outline mt-3">
-                                                    <input type="file" wire:model="Edit_certificate_file" id="Edit_certificate_file"
+                                                    <input type="file" wire:model="Edit_certificate_file"
+                                                        id="Edit_certificate_file"
                                                         class="form-control @error('Edit_certificate_file') is-invalid is-filled @enderror"
                                                         accept="application/pdf, .png, .jpg, .jpeg">
                                                     <label for="modalcertifinotes">اختر ملف الشهادة</label>
                                                 </div>
-                                                @error('Edit_certificate_file') <span class="error">{{ $message }}</span> @enderror
+                                                @error('Edit_certificate_file')
+                                                    <span class="error">{{ $message }}</span>
+                                                @enderror
 
                                                 <div wire:loading.remove wire:target='Edit_certificate_file'>
                                                     @if ($Edit_certificate_file && !$certificateFilePreview)
-                                                        @if(pathinfo($Edit_certificate_file, PATHINFO_EXTENSION) == strtolower('pdf'))
-                                                            <iframe src="{{ asset('storage/Certific/'.$calculator_number.'/'.$Edit_certificate_file) }}" class="mt-3" style="height: 320px; width: 100%"></iframe>
+                                                        @if (pathinfo($Edit_certificate_file, PATHINFO_EXTENSION) == strtolower('pdf'))
+                                                            <iframe
+                                                                src="{{ asset('storage/Certific/' . $computer_number . '/' . $Edit_certificate_file) }}"
+                                                                class="mt-3"
+                                                                style="height: 320px; width: 100%"></iframe>
                                                         @else
-                                                            <img src="{{ asset('storage/Certific/'.$calculator_number.'/'.$Edit_certificate_file) }}" class="mt-3 rounded img-fluid" style="max-height: 150px; width: 100%">
+                                                            <img src="{{ asset('storage/Certific/' . $computer_number . '/' . $Edit_certificate_file) }}"
+                                                                class="mt-3 rounded img-fluid"
+                                                                style="max-height: 150px; width: 100%">
                                                         @endif
                                                     @endif
                                                 </div>
 
                                                 <div wire:loading.remove wire:target='Edit_certificate_file'>
                                                     @if ($certificateFilePreview)
-                                                        @if($Edit_certificate_file->getClientOriginalExtension() == strtolower('pdf'))
-                                                            <iframe src="{{ $certificateFilePreview }}" class="mt-3 mb-n4" style="height: 320px; width: 100%"></iframe>
+                                                        @if ($Edit_certificate_file->getClientOriginalExtension() == strtolower('pdf'))
+                                                            <iframe src="{{ $certificateFilePreview }}"
+                                                                class="mt-3 mb-n4"
+                                                                style="height: 320px; width: 100%"></iframe>
                                                         @else
-                                                            <img src="{{ $certificateFilePreview }}" class="rounded img-fluid mt-3 mb-n4" style="max-height: 300px; width: 100%">
+                                                            <img src="{{ $certificateFilePreview }}"
+                                                                class="rounded img-fluid mt-3 mb-n4"
+                                                                style="max-height: 300px; width: 100%">
                                                         @endif
                                                     @endif
                                                 </div>
 
                                                 <div wire:loading wire:target="Edit_certificate_file">
-                                                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 200px" alt="Timer Loading Animated 3D Icon">
+                                                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}"
+                                                        style="height: 200px" alt="Timer Loading Animated 3D Icon">
                                                 </div>
                                             </div>
 
-                                            <div class="tab-pane fade {{ $activeValiditySsuanceTap == 'active' ? 'show active':'' }}" id="navs-top-validity-ssuance" role="tabpanel">
+                                            <div class="tab-pane fade {{ $activeValiditySsuanceTap == 'active' ? 'show active' : '' }}"
+                                                id="navs-top-validity-ssuance" role="tabpanel">
                                                 <div class="form-floating form-floating-outline mt-3">
-                                                    <input type="file" wire:model="Edit_validity_ssuance_certificate_file" id="Edit_validity_ssuance_certificate_file"
+                                                    <input type="file"
+                                                        wire:model="Edit_validity_ssuance_certificate_file"
+                                                        id="Edit_validity_ssuance_certificate_file"
                                                         class="form-control @error('Edit_validity_ssuance_certificate_file') is-invalid is-filled @enderror"
                                                         accept="application/pdf, .png, .jpg, .jpeg">
                                                     <label for="modalcertifinotes">اختر ملف صحة صدور الشهادة</label>
                                                 </div>
 
-                                                @error('Edit_validity_ssuance_certificate_file') <span class="error">{{ $message }}</span> @enderror
+                                                @error('Edit_validity_ssuance_certificate_file')
+                                                    <span class="error">{{ $message }}</span>
+                                                @enderror
 
-                                                <div wire:loading.remove wire:target='Edit_validity_ssuance_certificate_file'>
+                                                <div wire:loading.remove
+                                                    wire:target='Edit_validity_ssuance_certificate_file'>
                                                     @if ($Edit_validity_ssuance_certificate_file && !$validitySsuanceFilePreview)
-                                                        @if(pathinfo($Edit_validity_ssuance_certificate_file, PATHINFO_EXTENSION) == strtolower('pdf'))
-                                                            <iframe src="{{ asset('storage/Certific/'.$calculator_number.'/'.$Edit_validity_ssuance_certificate_file) }}" class="mt-3 " style="height: 320px; width: 100%"></iframe>
+                                                        @if (pathinfo($Edit_validity_ssuance_certificate_file, PATHINFO_EXTENSION) == strtolower('pdf'))
+                                                            <iframe
+                                                                src="{{ asset('storage/Certific/' . $computer_number . '/' . $Edit_validity_ssuance_certificate_file) }}"
+                                                                class="mt-3 "
+                                                                style="height: 320px; width: 100%"></iframe>
                                                         @else
-                                                            <img src="{{ asset('storage/Certific/'.$calculator_number.'/'.$Edit_validity_ssuance_certificate_file) }}" class="mt-3 rounded img-fluid" style="max-height: 300px; width: 100%">
+                                                            <img src="{{ asset('storage/Certific/' . $computer_number . '/' . $Edit_validity_ssuance_certificate_file) }}"
+                                                                class="mt-3 rounded img-fluid"
+                                                                style="max-height: 300px; width: 100%">
                                                         @endif
                                                     @endif
                                                 </div>
 
-                                                <div wire:loading.remove wire:target='Edit_validity_ssuance_certificate_file'>
+                                                <div wire:loading.remove
+                                                    wire:target='Edit_validity_ssuance_certificate_file'>
                                                     @if ($validitySsuanceFilePreview)
-                                                        @if($Edit_validity_ssuance_certificate_file->getClientOriginalExtension() == strtolower('pdf'))
-                                                            <iframe src="{{ $validitySsuanceFilePreview }}" class="mt-3 mb-n4" style="height: 320px; width: 100%"></iframe>
+                                                        @if ($Edit_validity_ssuance_certificate_file->getClientOriginalExtension() == strtolower('pdf'))
+                                                            <iframe src="{{ $validitySsuanceFilePreview }}"
+                                                                class="mt-3 mb-n4"
+                                                                style="height: 320px; width: 100%"></iframe>
                                                         @else
-                                                            <img src="{{ $validitySsuanceFilePreview }}" class="rounded img-fluid mt-3 mb-n4" style="max-height: 300px; width: 100%">
+                                                            <img src="{{ $validitySsuanceFilePreview }}"
+                                                                class="rounded img-fluid mt-3 mb-n4"
+                                                                style="max-height: 300px; width: 100%">
                                                         @endif
                                                     @endif
                                                 </div>
 
                                                 <div wire:loading wire:target="Edit_validity_ssuance_certificate_file">
-                                                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}" style="height: 200px" alt="Timer Loading Animated 3D Icon">
+                                                    <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}"
+                                                        style="height: 200px" alt="Timer Loading Animated 3D Icon">
                                                 </div>
                                             </div>
                                         </div>
@@ -426,7 +475,6 @@
     </div>
 </div>
 <!--/ Add certifi Modal -->
-
 
 {{-- <div wire:ignore.self class="modal fade" id="editcertifiModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -463,7 +511,7 @@
                                     <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                                 </div>
                                 <div wire:loading.remove wire:target='AddCertifyModal' class="text-center">
-                                    {{ $Worker->calculator_number ?? '' }}</div>
+                                    {{ $Worker->computer_number ?? '' }}</div>
                             </div>
                         </div>
 

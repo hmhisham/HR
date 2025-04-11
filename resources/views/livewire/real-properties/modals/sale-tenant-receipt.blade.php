@@ -10,8 +10,8 @@
 
                 <hr class="mt-n2">
 
-                <h4 wire:loading wire:target="GetRealProperty"
-                    wire:loading.class="d-flex justify-content-center">جار معالجة البيانات...</h4>
+                <h4 wire:loading wire:target="GetRealProperty" wire:loading.class="d-flex justify-content-center">جار
+                    معالجة البيانات...</h4>
                 <h5 wire:loading wire:target="receipt" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
 
@@ -41,7 +41,9 @@
                             <div class="alert alert-outline-secondary pb-0 border-2" role="alert">
                                 <h5 class="d-flex justify-content-around">
                                     <div>
-                                        <strong>أسم {{ $BuyerTenant ? $BuyerTenant->buyer_tenant_type == 'buyer' ? 'المشتري':'المستأجر' : '' }} : </strong>
+                                        <strong>أسم
+                                            {{ $BuyerTenant ? ($BuyerTenant->buyer_tenant_type == 'buyer' ? 'المشتري' : 'المستأجر') : '' }}
+                                            : </strong>
                                         <span class="text-danger">
                                             {{ $BuyerTenant->buyer_tenant_name ?? '' }}
                                         </span>
@@ -49,7 +51,7 @@
                                     <div>
                                         <strong>رقم الحاسبة : </strong>
                                         <span class="text-danger">
-                                            {{ $BuyerTenant->buyer_calculator_number ?? '' }}
+                                            {{ $BuyerTenant->buyer_computer_number ?? '' }}
                                         </span>
                                     </div>
                                 </h5>
@@ -61,8 +63,10 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='receipt_number' type="text" class="form-control @error('receipt_number') is-invalid is-filled @enderror"
-                                        onkeypress="return onlyNumberKey(event)" id="receipt_number" placeholder="رقم الوصل"/>
+                                    <input wire:model.defer='receipt_number' type="text"
+                                        class="form-control @error('receipt_number') is-invalid is-filled @enderror"
+                                        onkeypress="return onlyNumberKey(event)" id="receipt_number"
+                                        placeholder="رقم الوصل" />
                                     <label for="receipt_number">رقم الوصل</label>
                                 </div>
                                 @error('receipt_number')
@@ -71,7 +75,8 @@
                             </div>
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='receipt_date' type="text" class="form-control @error('receipt_date') is-invalid is-filled @enderror"
+                                    <input wire:model.defer='receipt_date' type="text"
+                                        class="form-control @error('receipt_date') is-invalid is-filled @enderror"
                                         id="receipt_date" placeholder="تاريخ الوصل" />
                                     <label for="receipt_date">تاريخ الوصل</label>
                                 </div>
@@ -84,8 +89,9 @@
                         <div Class="row">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='receipt_payer_name' type="text" id="receipt_payer_name" placeholder="أسم المسدد"
-                                        class="form-control @error('receipt_payer_name') is-invalid is-filled @enderror"/>
+                                    <input wire:model.defer='receipt_payer_name' type="text" id="receipt_payer_name"
+                                        placeholder="أسم المسدد"
+                                        class="form-control @error('receipt_payer_name') is-invalid is-filled @enderror" />
                                     <label for="receipt_payer_name">أسم المسدد</label>
                                 </div>
                                 @error('receipt_payer_name')
@@ -95,8 +101,9 @@
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.defer='receipt_payment_amount' type="text"
-                                        class="form-control @error('receipt_payment_amount') is-invalid is-filled @enderror" onkeypress="return onlyNumberKey(event)"
-                                        id="receipt_payment_amount" placeholder="مبلغ التسديد"/>
+                                        class="form-control @error('receipt_payment_amount') is-invalid is-filled @enderror"
+                                        onkeypress="return onlyNumberKey(event)" id="receipt_payment_amount"
+                                        placeholder="مبلغ التسديد" />
                                     <label for="receipt_payment_amount">مبلغ التسديد</label>
                                 </div>
                                 @error('receipt_payment_amount')
@@ -108,9 +115,9 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='receipt_from_date' type="text"
-                                        id="receipt_from_date" placeholder="من تاريخ"
-                                        class="form-control @error('receipt_from_date') is-invalid is-filled @enderror"/>
+                                    <input wire:model.defer='receipt_from_date' type="text" id="receipt_from_date"
+                                        placeholder="من تاريخ"
+                                        class="form-control @error('receipt_from_date') is-invalid is-filled @enderror" />
                                     <label for="receipt_from_date">من تاريخ</label>
                                 </div>
                                 @error('receipt_from_date')
@@ -119,9 +126,9 @@
                             </div>
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='receipt_to_date' type="text"
-                                        id="receipt_to_date" placeholder="الى تاريخ"
-                                        class="form-control @error('receipt_to_date') is-invalid is-filled @enderror"/>
+                                    <input wire:model.defer='receipt_to_date' type="text" id="receipt_to_date"
+                                        placeholder="الى تاريخ"
+                                        class="form-control @error('receipt_to_date') is-invalid is-filled @enderror" />
                                     <label for="receipt_to_date">الى تاريخ</label>
                                 </div>
                                 @error('receipt_to_date')
@@ -133,8 +140,9 @@
                         <div Class="row">
                             <div class="mb-3 col">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='receipt_notes' type="text" id="receipt_notes" placeholder="ملاحظات"
-                                        class="form-control @error('receipt_notes') is-invalid is-filled @enderror"/>
+                                    <input wire:model.defer='receipt_notes' type="text" id="receipt_notes"
+                                        placeholder="ملاحظات"
+                                        class="form-control @error('receipt_notes') is-invalid is-filled @enderror" />
                                     <label for="receipt_notes">ملاحظات</label>
                                 </div>
                                 @error('receipt_notes')
@@ -146,8 +154,8 @@
                         <div class="row">
                             <div class="col mb-3" style="height: 350px;">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='receipt_attach' type="file"
-                                        id="receipt_attach" accept=".jpeg,.png,.jpg,.pdf"
+                                    <input wire:model.defer='receipt_attach' type="file" id="receipt_attach"
+                                        accept=".jpeg,.png,.jpg,.pdf"
                                         class="form-control @error('receipt_attach') is-invalid is-filled @enderror" />
                                     <label for="receipt_attach">اختر ملف الايصال</label>
                                 </div>
@@ -162,8 +170,8 @@
                                     </div>
                                     <div wire:loading.remove wire:target='receipt_attach' class="mt-3">
                                         @if ($receipt_attach && $receipt_attach->getMimeType() == 'application/pdf')
-                                            <embed src="{{ $receipt_attach->temporaryUrl() }}"
-                                                type="application/pdf" style="height: 300px" />
+                                            <embed src="{{ $receipt_attach->temporaryUrl() }}" type="application/pdf"
+                                                style="height: 300px" />
                                         @elseif ($receipt_attach && Str::startsWith($receipt_attach->getMimeType(), 'image/'))
                                             <img src="{{ $receipt_attach->temporaryUrl() }}" alt="Selected Image"
                                                 class="img-fluid" style="height: 300px" />

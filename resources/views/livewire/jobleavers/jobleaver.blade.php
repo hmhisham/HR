@@ -1,6 +1,7 @@
 <div class="mt-n4">
     <h4 class="mb-2">
-        <span class="text-muted fw-light">الموارد البشرية <span class="mdi mdi-chevron-left mdi-24px"></span></span> تاركي العمل
+        <span class="text-muted fw-light">الموارد البشرية <span class="mdi mdi-chevron-left mdi-24px"></span></span> تاركي
+        العمل
     </h4>
     <div class="card">
         <div class="card-header">
@@ -39,10 +40,10 @@
                             <td>{{ $i }}</td>
                             <td class="text-center">{{ $Jobleaver->worker ? $Jobleaver->worker->full_name : 'N/A' }}</td>
                             <td class="text-center">{{ $Jobleaver->worker ? $Jobleaver->worker->department : 'N/A' }}</td>
-                            <td Class="text-center">{{ $Jobleaver->calculator_number}}</td>
-                            <td Class="text-center">{{ $Jobleaver->job_leaving_type}}</td>
-                            <td Class="text-center">{{ $Jobleaver->appointment_date}}</td>
-                            <td Class="text-center">{{ $Jobleaver->disconnection_date}}</td>
+                            <td Class="text-center">{{ $Jobleaver->computer_number }}</td>
+                            <td Class="text-center">{{ $Jobleaver->job_leaving_type }}</td>
+                            <td Class="text-center">{{ $Jobleaver->appointment_date }}</td>
+                            <td Class="text-center">{{ $Jobleaver->disconnection_date }}</td>
                             <td Class="text-center">
                                 <div class="btn-group" role="group" aria-label="First group">
                                     @can('jobleaver-edit')
