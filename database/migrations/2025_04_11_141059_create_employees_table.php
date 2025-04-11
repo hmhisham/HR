@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             // المعلومات الأساسية
-            $table->string('computer_number')->comment('رقم الموظف');
-            $table->string('job_number')->comment('الرقم الوظيفي');
+            $table->integer('computer_number')->comment('رقم الموظف');
+            $table->integer('job_number')->comment('الرقم الوظيفي');
             $table->string('full_name')->comment('الاسم الرباعي واللقب');
             $table->string('mother_name')->comment('اسم الام');
 
@@ -109,7 +109,7 @@ return new class extends Migration
             $table->string('ration_center_name')->nullable()->comment('اسم مركز التمويني');
             $table->string('ration_center_number')->nullable()->comment('رقم المركز التمويني');
             $table->string('national_id_number')->comment('رقم البطاقة الوطنية');
-            $table->date('national_id_date')->comment('تاريخ البطاقة الوطنية');
+            $table->date('national_id_date')->nullable()->comment('تاريخ البطاقة الوطنية');
 
             $table->timestamps();
             $table->softDeletes();
