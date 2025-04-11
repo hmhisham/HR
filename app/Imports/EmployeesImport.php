@@ -269,7 +269,7 @@ class EmployeesImport implements ToModel, WithHeadingRow, WithValidation, SkipsO
                 'organization_date',
                 'national_id_date',
                 'organization_date',
-                'national_id_date'
+                'national_id_date',
             ];
 
             // $this->rowCount++;

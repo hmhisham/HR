@@ -104,7 +104,7 @@ return new class extends Migration
 
             // المعلومات الإدارية
             $table->string('office_name')->comment('اسم مكتب');
-            $table->date('organization_date')->comment('تاريخ التنظيم');
+            $table->date('organization_date')->nullable()->comment('تاريخ التنظيم');
             $table->string('ration_card_number')->nullable()->comment('رقم بطاقة تموينية');
             $table->string('ration_center_name')->nullable()->comment('اسم مركز التمويني');
             $table->string('ration_center_number')->nullable()->comment('رقم المركز التمويني');
