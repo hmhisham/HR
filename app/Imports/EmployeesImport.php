@@ -250,8 +250,6 @@ class EmployeesImport implements ToModel, WithHeadingRow, WithValidation, SkipsO
                         return null;
                     }
                 },
-                // Date fields list
-                $dateFields = [
                 'last_promotion_date',
                 'job_title_change_order_date',
                 'last_allowance_date',
@@ -269,12 +267,12 @@ class EmployeesImport implements ToModel, WithHeadingRow, WithValidation, SkipsO
                 'transfer_commencement_date',
                 'birth_date',
                 'organization_date',
+                'national_id_date',
+                'organization_date',
                 'national_id_date'
             ];
 
-            $this->rowCount++;
-
-            // Process the row data to handle both Arabic and English column names
+            // $this->rowCount++;
             $data = [];
 
             // Map of field names to their corresponding database fields
