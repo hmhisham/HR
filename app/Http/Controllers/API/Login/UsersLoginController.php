@@ -29,7 +29,7 @@ class UsersLoginController extends Controller
         $user->save();
 
         return response()->json([
-        
+
             'user' => $user
         ]);
     }
@@ -57,4 +57,39 @@ class UsersLoginController extends Controller
             ]);
         }
     }
+
+
+    public function changePassword(Request $request)
+{
+    $request->validate([
+        'computer_number' => 'required',
+        'old_password' => 'required',
+        'new_password' => 'required|min:6',
+    ]);
+
+    $user = Usersapp::where('computer_number', $request->computer_number)->first();
+
+    if (!$user) {
+        return response()->json([
+            'status' => '0',
+            'message' => 'المستخدم غير موجود',
+        ], 404);
+    }
+
+    if (!Hash::check($request->old_password, $user->password)) {
+        return response()->json([
+            'status' => '0',
+            'message' => 'كلمة المرور القديمة غير صحيحة',
+        ], 400);
+    }
+
+    $user->setRawAttributes(array_merge($user->getAttributes(), ['password' => Hash::make($request->new_password)]));
+    $user->save();
+
+    return response()->json([
+        'status' => '1',
+        'message' => 'تم تغيير كلمة المرور بنجاح',
+    ]);
+}
+
 }

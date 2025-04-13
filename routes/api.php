@@ -13,6 +13,7 @@ use App\Http\Controllers\API\employees\EmployeesController;
 
 Route::post('/users/login', [UsersLoginController::class, 'login']);
 Route::post('/users/update-token', [UsersLoginController::class, 'updateToken']);
+Route::post('/users/change-password', [UsersLoginController::class, 'changePassword']);
 
 Route::post('/employees/get-by-computer-number', [EmployeesController::class, 'getEmployeeByComputerNumber']);
 
