@@ -14,37 +14,45 @@
                         <div class="col mb-3">
                             <div class="row">
                                 <div class="mb-3 col-12">
-                                    <div class="form-floating form-floating-outline @error('worker') is-invalid is-filled @enderror" style="width: 100%">
-                                        <select wire:model='worker' id="worker" class="form-select" placeholder='حدد العملية'>
+                                    <div class="form-floating form-floating-outline @error('worker') is-invalid is-filled @enderror"
+                                        style="width: 100%">
+                                        <select wire:model='worker' id="worker" class="form-select"
+                                            placeholder='حدد العملية'>
                                             <option value=""></option>
                                             @foreach ($workers as $worker)
-                                            <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
+                                                <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
                                             @endforeach
                                         </select>
                                         <label for="worker">حدد الموظف</label>
                                     </div>
                                     @error('worker')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
                                 <div class="mb-4 col-6">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='calculator_number' type="text" id="modalEmployeecalculator_number" placeholder="رقم الحاسبة" class="form-control @error('calculator_number') is-invalid is-filled @enderror" disabled />
-                                        <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
+                                        <input wire:model.defer='computer_number' type="text"
+                                            id="modalEmployeecomputer_number" placeholder="رقم الحاسبة"
+                                            class="form-control @error('computer_number') is-invalid is-filled @enderror"
+                                            disabled />
+                                        <label for="modalEmployeecomputer_number">رقم الحاسبة</label>
                                     </div>
-                                    @error('calculator_number')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @error('computer_number')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
                                 <div class="mb-3 col-6">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='department' type="text" id="modalEmployeedepartment" placeholder="اسم القسم" class="form-control @error('department') is-invalid is-filled @enderror" disabled />
-                                        <label for="modalEmployeedepartment">اسم القسم  </label>
+                                        <input wire:model.defer='department' type="text" id="modalEmployeedepartment"
+                                            placeholder="اسم القسم"
+                                            class="form-control @error('department') is-invalid is-filled @enderror"
+                                            disabled />
+                                        <label for="modalEmployeedepartment">اسم القسم </label>
                                     </div>
                                     @error('department')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                             </div>
@@ -53,7 +61,7 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='job_leaving_type' id="modalJobleaversjob_leaving_type"
-                                                class="form-select @error('job_leaving_type') is-invalid is-filled @enderror">
+                                            class="form-select @error('job_leaving_type') is-invalid is-filled @enderror">
                                             <option value="" disabled selected>اختر نوع ترك العمل</option>
                                             <option value=""></option>
                                             <option value="استقالة">استقالة</option>
@@ -65,11 +73,9 @@
                                         <label for="modalJobleaversjob_leaving_type">نوع ترك العمل</label>
                                     </div>
                                     @error('job_leaving_type')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
-
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
@@ -79,7 +85,7 @@
                                         <label for="modalJobleaversissuing_authority">جهة اصدار الكتاب</label>
                                     </div>
                                     @error('issuing_authority')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
@@ -91,7 +97,7 @@
                                         <label for="modalJobleaversappointment_date">تاريخ التعيين</label>
                                     </div>
                                     @error('appointment_date')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                             </div>
@@ -104,7 +110,7 @@
                                         <label for="modalJobleaversdisconnection_date">تاريخ الانقطاع</label>
                                     </div>
                                     @error('disconnection_date')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
@@ -116,7 +122,7 @@
                                         <label for="modalJobleaversreturn_date">تاريخ العودة</label>
                                     </div>
                                     @error('return_date')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
@@ -128,7 +134,7 @@
                                         <label for="modalJobleaversdisconnection_duration">مدة الانقطاع</label>
                                     </div>
                                     @error('disconnection_duration')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                             </div>
@@ -136,24 +142,26 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='ministerial_order_number' type="text"
-                                            id="modalJobleaversministerial_order_number" placeholder="رقم الامر الوزاري"
+                                            id="modalJobleaversministerial_order_number"
+                                            placeholder="رقم الامر الوزاري"
                                             class="form-control @error('ministerial_order_number') is-invalid is-filled @enderror" />
                                         <label for="modalJobleaversministerial_order_number">رقم الامر الوزاري</label>
                                     </div>
                                     @error('ministerial_order_number')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='ministerial_order_date' type="date"
-                                            id="modalJobleaversministerial_order_date" placeholder="تاريخ الامر الوزاري"
+                                            id="modalJobleaversministerial_order_date"
+                                            placeholder="تاريخ الامر الوزاري"
                                             class="form-control @error('ministerial_order_date') is-invalid is-filled @enderror" />
                                         <label for="modalJobleaversministerial_order_date">تاريخ الامر الوزاري</label>
                                     </div>
                                     @error('ministerial_order_date')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
@@ -167,7 +175,7 @@
                                             المضافه</label>
                                     </div>
                                     @error('added_service_letter_number')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                             </div>
@@ -182,20 +190,20 @@
                                             المضافة</label>
                                     </div>
                                     @error('added_service_letter_date')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='added_service' type="text" id="modalJobleaversadded_service" placeholder="الخدمة مضافه"
-                                             class="form-select @error('added_service') is-invalid is-filled @enderror">
-                                             <option value="" disabled selected>اختر الحالة</option>
-                                             <option value=""></option>
-                                             <option value="مضافة">مضافة</option>
-                                             <option value="غير مضافة">غير مضافة</option>
-                                         </select>
+                                        <select wire:model.defer='added_service' type="text"
+                                            id="modalJobleaversadded_service" placeholder="الخدمة مضافه"
+                                            class="form-select @error('added_service') is-invalid is-filled @enderror">
+                                            <option value="" disabled selected>اختر الحالة</option>
+                                            <option value=""></option>
+                                            <option value="مضافة">مضافة</option>
+                                            <option value="غير مضافة">غير مضافة</option>
+                                        </select>
                                         <label for="modalJobleaversadded_service">الخدمة مضافه</label>
                                     </div>
                                     @error('added_service')

@@ -18,7 +18,6 @@
                         @endcan --}}
                         @can('worker-create')
                             <a href="{{ Route('AddWorker') }}" class="mb-3 add-new btn btn-primary mb-md-0">أضــافــة</a>
- 
                         @endcan
                     </div>
                 </div>
@@ -42,7 +41,7 @@
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
-                                <td class="text-center">{{ $worker->calculator_number }}</td>
+                                <td class="text-center">{{ $worker->computer_number }}</td>
                                 <td class="text-center">{{ $worker->employee_number }}</td>
                                 <td class="text-center">{{ $worker->full_name }}</td>
 

@@ -349,7 +349,11 @@
                             @can('settings')
                                 {{-- الإعدادات --}}
                                 <li
+<<<<<<< HEAD
                                     class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking', 'backup') ? 'open active' : '' }}">
+=======
+                                    class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking', 'backup', 'employees') ? 'open active' : '' }}">
+>>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                         <span class="menu-title">الاعدادات</span>
@@ -626,6 +630,15 @@
                                                 </a>
                                             </li>
                                         @endcan
+                                        @can('employees')
+                                            <li Class="menu-item {{ request()->Is('employees') ? 'active' : '' }}">
+                                                <a href="{{ route('employees.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>Employees</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+
                                     </ul>
                                 </li>
                             @endcan

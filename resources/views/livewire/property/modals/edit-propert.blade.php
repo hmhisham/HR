@@ -34,19 +34,19 @@
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model='calculator_number' type="text" readonly
-                                                id="modalPropertcalculator_number" placeholder="رقم الحاسبة"
-                                                class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
-                                            <label for="modalPropertcalculator_number">رقم الحاسبة</label>
+                                            <input wire:model='computer_number' type="text" readonly
+                                                id="modalPropertcomputer_number" placeholder="رقم الحاسبة"
+                                                class="form-control @error('computer_number') is-invalid is-filled @enderror" />
+                                            <label for="modalPropertcomputer_number">رقم الحاسبة</label>
                                         </div>
-                                        @error('calculator_number')
+                                        @error('computer_number')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model='phone' type="text" readonly
-                                                id="modalPropertphone" placeholder="رقم الهاتف"
+                                            <input wire:model='phone' type="text" readonly id="modalPropertphone"
+                                                placeholder="رقم الهاتف"
                                                 class="form-control @error('phone') is-invalid is-filled @enderror" />
                                             <label for="modalPropertphone">رقم الهاتف</label>
                                         </div>

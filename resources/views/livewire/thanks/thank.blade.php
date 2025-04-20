@@ -32,7 +32,7 @@
                     <tr>
                         <th>#</th>
                         <th class="text-center">رقم الحاسبة</th>
-                         <th class="text-center">الاسم الكامل</th>
+                        <th class="text-center">الاسم الكامل</th>
                         <th class="text-center">العملية</th>
 
                     </tr>
@@ -44,25 +44,24 @@
                         <tr>
                             <?php $i++; ?>
                             <td>{{ $i }}</td>
-                            <td class="text-center">{{ $w->calculator_number }}</td>
+                            <td class="text-center">{{ $w->computer_number }}</td>
 
                             <td class="text-center">{{ $w->full_name }}</td>
 
                             <td Class="text-center">
                                 <div class="btn-group" role="group" aria-label="First group">
                                     @can('thank-add')
-                                    @if(isset($w) && $w->id)
-                                        <button wire:click="GetWorker({{ $w->id }})"
-                                                class="p-0 px-1 btn btn-text-primary"
-                                                data-bs-toggle="modal" data-bs-target="#addthankModal">
-                                            <i class="tf-icons mdi mdi-plus-circle fs-3"></i>
-                                        </button>
-                                        @include('livewire.thanks.modals.add-thank')
-                                    @else
-                                        <p>الموظف غير متوفر</p> <!-- رسالة تظهر في حال عدم توفر `$worker` -->
-                                    @endif
-                                @endcan
-
+                                        @if (isset($w) && $w->id)
+                                            <button wire:click="GetWorker({{ $w->id }})"
+                                                class="p-0 px-1 btn btn-text-primary" data-bs-toggle="modal"
+                                                data-bs-target="#addthankModal">
+                                                <i class="tf-icons mdi mdi-plus-circle fs-3"></i>
+                                            </button>
+                                            @include('livewire.thanks.modals.add-thank')
+                                        @else
+                                            <p>الموظف غير متوفر</p> <!-- رسالة تظهر في حال عدم توفر `$worker` -->
+                                        @endif
+                                    @endcan
 
                                     {{-- @can('thank-edit')
                                         <button wire:click="GetThank({{ $worker->id }})"

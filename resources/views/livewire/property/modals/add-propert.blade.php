@@ -28,19 +28,19 @@
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='calculator_number' type="text"
-                                            id="modalPropertcalculator_number" placeholder="رقم الحاسبة"
-                                            class="form-control @error('calculator_number') is-invalid is-filled @enderror" />
-                                        <label for="modalPropertcalculator_number">رقم الحاسبة</label>
+                                        <input wire:model='computer_number' type="text"
+                                            id="modalPropertcomputer_number" placeholder="رقم الحاسبة"
+                                            class="form-control @error('computer_number') is-invalid is-filled @enderror" />
+                                        <label for="modalPropertcomputer_number">رقم الحاسبة</label>
                                     </div>
-                                    @error('calculator_number')
+                                    @error('computer_number')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='phone' type="text"
-                                            id="modalPropertphone" placeholder="رقم الهاتف"
+                                        <input wire:model='phone' type="text" id="modalPropertphone"
+                                            placeholder="رقم الهاتف"
                                             class="form-control @error('phone') is-invalid is-filled @enderror" />
                                         <label for="modalPropertphone">رقم الهاتف</label>
                                     </div>
@@ -127,7 +127,8 @@
                                         <input wire:model.defer='paid_amount' type="text"
                                             id="modalPropertpaid_amount" placeholder="مجموع المسدد"
                                             class="form-control @error('paid_amount') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)" oninput="formatWithCommas(this)" disabled />
+                                            onkeypress="return onlyNumberKey(event)" oninput="formatWithCommas(this)"
+                                            disabled />
                                         <label for="modalPropertpaid_amount">مجموع المسدد</label>
                                     </div>
                                     @error('paid_amount')
@@ -139,7 +140,8 @@
                                         <input wire:model.defer='total_paid_amount' type="text"
                                             id="modalProperttotal_paid_amount" placeholder="مجموع المتبقي"
                                             class="form-control @error('total_paid_amount') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)" oninput="formatWithCommas(this)" disabled />
+                                            onkeypress="return onlyNumberKey(event)" oninput="formatWithCommas(this)"
+                                            disabled />
                                         <label for="modalProperttotal_paid_amount">مجموع المتبقي</label>
                                     </div>
                                     @error('total_paid_amount')

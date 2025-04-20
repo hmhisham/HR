@@ -11,8 +11,10 @@
 
                 <hr class="mt-n2">
 
-                <h5 wire:loading wire:target="AddPenaltieModalShow" wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
-                <h5 wire:loading wire:target="store" wire:loading.class="d-flex justify-content-center text-primary">جار حفظ البيانات...</h5>
+                <h5 wire:loading wire:target="AddPenaltieModalShow"
+                    wire:loading.class="d-flex justify-content-center text-primary">جار معالجة البيانات...</h5>
+                <h5 wire:loading wire:target="store" wire:loading.class="d-flex justify-content-center text-primary">جار
+                    حفظ البيانات...</h5>
 
                 <div wire:loading.remove wire:target="AddPenaltieModalShow, store">
                     <form id="addpenaltieModalForm" autocomplete="off">
@@ -20,8 +22,10 @@
                             <div class="col mb-3">
                                 <div class="row">
                                     <div class="mb-3 col">
-                                        <div class="form-floating form-floating-outline @error('worker') is-invalid is-filled @enderror">
-                                            <select wire:model='worker' id="selectedWorker" class="form-select" placeholder='حدد الموظف'></select>
+                                        <div
+                                            class="form-floating form-floating-outline @error('worker') is-invalid is-filled @enderror">
+                                            <select wire:model='worker' id="selectedWorker" class="form-select"
+                                                placeholder='حدد الموظف'></select>
                                             <label for="worker">حدد الموظف</label>
                                         </div>
                                         @error('worker')
@@ -46,13 +50,13 @@
                                     </div> --}}
                                     <div class="mb-4 col-3">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='calculator_number' type="text"
-                                                id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
-                                                class="form-control @error('calculator_number') is-invalid is-filled @enderror"
+                                            <input wire:model.defer='computer_number' type="text"
+                                                id="modalEmployeecomputer_number" placeholder="رقم الحاسبة"
+                                                class="form-control @error('computer_number') is-invalid is-filled @enderror"
                                                 disabled />
-                                            <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
+                                            <label for="modalEmployeecomputer_number">رقم الحاسبة</label>
                                         </div>
-                                        @error('calculator_number')
+                                        @error('computer_number')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
                                         @enderror
                                     </div>
@@ -72,8 +76,8 @@
                                 <div Class="row">
                                     <div class="mb-3 col-6">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='p_reason' type="text" id="modalPenaltiesp_reason"
-                                                placeholder="سبب العقوبة"
+                                            <input wire:model.defer='p_reason' type="text"
+                                                id="modalPenaltiesp_reason" placeholder="سبب العقوبة"
                                                 class="form-control @error('p_reason') is-invalid is-filled @enderror" />
                                             <label for="modalPenaltiesp_reason">سبب العقوبة</label>
                                         </div>
@@ -88,7 +92,8 @@
                                                 class="form-select @error('p_issuing_authority') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($department as $departmen)
-                                                    <option value="{{ $departmen->id }}">{{ $departmen->department_name }}
+                                                    <option value="{{ $departmen->id }}">
+                                                        {{ $departmen->department_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -107,7 +112,8 @@
                                                 placeholder="رقم الامر الوزاري"
                                                 class="form-control @error('p_ministerial_order_number') is-invalid is-filled @enderror"
                                                 onkeypress="return onlyNumberKey(event)" />
-                                            <label for="modalPenaltiesp_ministerial_order_number">رقم الامر الوزاري</label>
+                                            <label for="modalPenaltiesp_ministerial_order_number">رقم الامر
+                                                الوزاري</label>
                                         </div>
                                         @error('p_ministerial_order_number')
                                             <small class='text-danger inputerror'> {{ $message }} </small>
@@ -199,7 +205,8 @@
                                                     <option value="6">6</option>
                                                 @elseif ($p_penalty_type == 'قطع راتب')
                                                     @for ($i = 5; $i <= 10; $i++)
-                                                        <option value="{{ $i }}">{{ $i }}</option>
+                                                        <option value="{{ $i }}">{{ $i }}
+                                                        </option>
                                                     @endfor
                                                 @elseif ($p_penalty_type == 'توبيخ')
                                                     <option value="12">12</option>
@@ -217,8 +224,8 @@
                                 <div Class="row">
                                     <div class="mb-3 col">
                                         <div class="form-floating form-floating-outline">
-                                            <input wire:model.defer='p_notes' type="text" id="modalPenaltiesp_notes"
-                                                placeholder="ملاحظات"
+                                            <input wire:model.defer='p_notes' type="text"
+                                                id="modalPenaltiesp_notes" placeholder="ملاحظات"
                                                 class="form-control @error('p_notes') is-invalid is-filled @enderror" />
                                             <label for="modalPenaltiesp_notes">ملاحظات</label>
                                         </div>

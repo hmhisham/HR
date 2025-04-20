@@ -6,27 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('notifications', function (Blueprint $table) {
-            $table->id();
-            $table->integer('calculator_number');
-            $table->string('title');
-            $table->string('body');
-            $table->string('image')->nullable();
-            $table->date('read_at')->nullable();
-            $table->timestamps();
-        });
-    }
+  /**
+   * Run the migrations.
+   */
+  public function up(): void
+  {
+    Schema::create('notifications', function (Blueprint $table) {
+      $table->id();
+      $table->integer('computer_number');
+      $table->string('title');
+      $table->string('body');
+      $table->string('image')->nullable();
+      $table->date('read_at')->nullable();
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('notifications');
-    }
+  /**
+   * Reverse the migrations.
+   */
+  public function down(): void
+  {
+    Schema::dropIfExists('notifications');
+  }
 };

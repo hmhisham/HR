@@ -20,26 +20,26 @@
                                             placeholder='حدد العملية'>
                                             <option value=""></option>
                                             @foreach ($workers as $worker)
-                                            <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
+                                                <option value="{{ $worker->id }}">{{ $worker->full_name }}</option>
                                             @endforeach
                                         </select>
                                         <label for="worker">حدد الموظف</label>
                                     </div>
                                     @error('worker')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
                                 <div class="mb-4 col-6">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='calculator_number' type="text"
-                                            id="modalEmployeecalculator_number" placeholder="رقم الحاسبة"
-                                            class="form-control @error('calculator_number') is-invalid is-filled @enderror"
+                                        <input wire:model.defer='computer_number' type="text"
+                                            id="modalEmployeecomputer_number" placeholder="رقم الحاسبة"
+                                            class="form-control @error('computer_number') is-invalid is-filled @enderror"
                                             disabled />
-                                        <label for="modalEmployeecalculator_number">رقم الحاسبة</label>
+                                        <label for="modalEmployeecomputer_number">رقم الحاسبة</label>
                                     </div>
-                                    @error('calculator_number')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                    @error('computer_number')
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
@@ -52,7 +52,7 @@
                                         <label for="modalEmployeedepartment">اسم القسم </label>
                                     </div>
                                     @error('department')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                             </div>
@@ -64,15 +64,15 @@
                                         <select wire:model.defer='order_number' type="select"
                                             id="modalHolidayorder_number" placeholder="رقم امر التكليف "
                                             class="form-select @error('order_number') is-invalid is-filled @enderror">
-                                        <option value=" " disabled selected>اختيار</option>
-                                        <option value="تجريبي">تجريبي</option>
-                                        <option value="تجريبي1">تجريبي1</option>
-                                        <option value="تجريبي2">تجريبي2</option>
+                                            <option value=" " disabled selected>اختيار</option>
+                                            <option value="تجريبي">تجريبي</option>
+                                            <option value="تجريبي1">تجريبي1</option>
+                                            <option value="تجريبي2">تجريبي2</option>
                                         </select>
                                         <label for="modalHolidayorder_number"> رقم امر التكليف</label>
                                     </div>
                                     @error('order_number')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                                 <div class="mb-3 col">
@@ -83,19 +83,19 @@
                                         <label for="modalHolidayorder_date">تاريخ الامر الاداري</label>
                                     </div>
                                     @error('order_date')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='holiday_type' type="text" id="modalHolidayholiday_type"
-                                            placeholder="نوع الاجازه"
+                                        <input wire:model.defer='holiday_type' type="text"
+                                            id="modalHolidayholiday_type" placeholder="نوع الاجازه"
                                             class="form-control @error('holiday_type') is-invalid is-filled @enderror" />
                                         <label for="modalHolidayholiday_type">نوع الاجازه</label>
                                     </div>
                                     @error('holiday_type')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                                         <label for="modalHolidayholiday_purpose">الغرض من الاجازه</label>
                                     </div>
                                     @error('holiday_purpose')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
@@ -120,7 +120,7 @@
                                         <label for="modalHolidaydays_count">عدد الايام</label>
                                     </div>
                                     @error('days_count')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
@@ -132,7 +132,7 @@
                                         <label for="modalHolidayseparation_date">تاريخ الانفكاك</label>
                                     </div>
                                     @error('separation_date')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                             </div>
@@ -145,7 +145,7 @@
                                         <label for="modalHolidayresumption_date">تاريخ المباشرة</label>
                                     </div>
                                     @error('resumption_date')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
@@ -160,7 +160,7 @@
                                         </div>
                                     </div>
                                     @error('cut_off_holiday')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                                 <div class="mb-3 col">
@@ -171,22 +171,22 @@
                                         <label for="modalHolidayfile_path">الملف</label>
                                     </div>
                                     @error('file_path')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
                                 <!-- عرض معاينة الصورة إذا تم تحميلها مؤقتًا -->
                                 @if ($file_path && $file_path instanceof \Livewire\TemporaryUploadedFile)
-                                <div class="mb-3 col">
-                                    <img src="{{ $file_path->temporaryUrl() }}" alt="معاينة الصورة"
-                                        style="max-width: 100%; height: auto;" />
-                                </div>
+                                    <div class="mb-3 col">
+                                        <img src="{{ $file_path->temporaryUrl() }}" alt="معاينة الصورة"
+                                            style="max-width: 100%; height: auto;" />
+                                    </div>
                                 @endif
                                 <!-- عرض الصورة المخزنة إذا كانت موجودة -->
                                 @if ($file_path && !$file_path instanceof \Livewire\TemporaryUploadedFile)
-                                <div class="mb-3 col">
-                                    <img src="{{ asset('storage/' . $file_path) }}" alt="الصورة المخزنة"
-                                        style="max-width: 100%; height: auto;" />
-                                </div>
+                                    <div class="mb-3 col">
+                                        <img src="{{ asset('storage/' . $file_path) }}" alt="الصورة المخزنة"
+                                            style="max-width: 100%; height: auto;" />
+                                    </div>
                                 @endif
                             </div>
                             <div Class="row">
@@ -198,7 +198,7 @@
                                         <label for="modalHolidaynotes">الملاحظات</label>
                                     </div>
                                     @error('notes')
-                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
 
