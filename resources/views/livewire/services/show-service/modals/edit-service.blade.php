@@ -34,7 +34,7 @@
                                     <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                                 </div>
                                 <div wire:loading.remove wire:target='AddServiceModal' class="text-center">
-                                    {{ $Worker->calculator_number ?? '' }}</div>
+                                    {{ $Worker->computer_number ?? '' }}</div>
                             </div>
 
                             <div class="col">

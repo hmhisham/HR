@@ -14,7 +14,8 @@
                         <div class="col mb-3">
                             <div Class="row bg-label-primary">
                                 <div class="col">
-                                    <label class="border-bottom-2 text-center mb-2 w-100" style="border-bottom: 2px solid">اسم الموظف</label>
+                                    <label class="border-bottom-2 text-center mb-2 w-100"
+                                        style="border-bottom: 2px solid">اسم الموظف</label>
                                     <div wire:loading wire:target='AddPlacementsModal'
                                         wire:loading.class="d-flex justify-content-center">
                                         <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
@@ -23,14 +24,15 @@
                                         {{ $Worker->full_name ?? '' }}</div>
                                 </div>
 
-                                <div class="col" >
-                                    <label class="border-bottom-2 text-center mb-2 w-100" style="border-bottom: 2px solid">رقم الحاسبة</label>
+                                <div class="col">
+                                    <label class="border-bottom-2 text-center mb-2 w-100"
+                                        style="border-bottom: 2px solid">رقم الحاسبة</label>
                                     <div wire:loading wire:target='AddPlacementsModal'
                                         wire:loading.class="d-flex justify-content-center">
                                         <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                                     </div>
                                     <div wire:loading.remove wire:target='AddPlacementsModal' class="text-center">
-                                        {{ $Worker->calculator_number ?? '' }}</div>
+                                        {{ $Worker->computer_number ?? '' }}</div>
                                 </div>
                             </div>
 

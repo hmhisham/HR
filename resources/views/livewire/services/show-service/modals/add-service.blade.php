@@ -1,5 +1,6 @@
 <!-- Add Service Modal -->
-<div wire:ignore.self class="modal fade" id="addserviceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="addserviceModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -28,7 +29,7 @@
                                 <span class="mdi mdi-loading mdi-spin mdi-24px"></span>
                             </div>
                             <div wire:loading.remove wire:target='AddServiceModal' class="text-center">
-                                {{ $Worker->calculator_number ?? '' }}</div>
+                                {{ $Worker->computer_number ?? '' }}</div>
                         </div>
 
                         <div class="col">

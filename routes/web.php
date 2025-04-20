@@ -83,6 +83,8 @@ use App\Http\Controllers\Specializationclassification\Specializationclassificati
 
 
 Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group(function () {
+    // تضمين مسارات الموظفين
+    require __DIR__ . '/employees.php';
     Route::GET('/', [DashboardController::class, 'index'])->name('Dashboard');
 
     // Middleware Owners

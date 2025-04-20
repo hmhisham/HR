@@ -9,16 +9,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Penalties extends Model
 {
-    use HasFactory;
-    protected $guarded = [];
-    protected $table = "penalties";
+  use HasFactory;
+  protected $guarded = [];
+  protected $table = "penalties";
 
-    public function worker()
-    {
-        return $this->belongsTo(Workers::class, 'calculator_number', 'calculator_number');
-    }
-    Public function Getdepartmen()
-    {
-        return $this->belongsTo(Department::class, 'grantor' );
-    }
+  public function worker()
+  {
+    return $this->belongsTo(Workers::class, 'computer_number', 'computer_number');
+  }
+  public function Getdepartmen()
+  {
+    return $this->belongsTo(Department::class, 'grantor');
+  }
 }

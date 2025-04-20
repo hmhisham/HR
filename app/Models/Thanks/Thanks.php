@@ -9,18 +9,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Thanks extends Model
 {
-    use HasFactory;
-    protected $guarded = [];
-    protected $table = "thanks";
+  use HasFactory;
+  protected $guarded = [];
+  protected $table = "thanks";
 
-    public function worker()
-    {
-        return $this->belongsTo(Workers::class, 'calculator_number', 'calculator_number');
-    }
+  public function worker()
+  {
+    return $this->belongsTo(Workers::class, 'computer_number', 'computer_number');
+  }
 
-    Public function Getdepartmen()
-    {
-        return $this->belongsTo(Department::class, 'grantor' );
-    }
-
+  public function Getdepartmen()
+  {
+    return $this->belongsTo(Department::class, 'grantor');
+  }
 }

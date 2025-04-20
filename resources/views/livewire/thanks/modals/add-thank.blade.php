@@ -10,21 +10,23 @@
                  </div>
                  <hr class="mt-n2">
                  <form id="addthankModalForm" autocomplete="off">
-                    <div class="row bg-label-primary rounded-3">
-                        <div class="col-md-6 mb-4">
-                            <label class="d-block text-center fw-semibold mb-2 text-blue">اسم الموظف</label>
-                            <div class="text-center">
-                                <span class="d-block fs-5   text-dark" id="modalEmployeefull_name">{{ $full_name }}</span>
-                            </div>
-                        </div>
+                     <div class="row bg-label-primary rounded-3">
+                         <div class="col-md-6 mb-4">
+                             <label class="d-block text-center fw-semibold mb-2 text-blue">اسم الموظف</label>
+                             <div class="text-center">
+                                 <span class="d-block fs-5   text-dark"
+                                     id="modalEmployeefull_name">{{ $full_name }}</span>
+                             </div>
+                         </div>
 
-                        <div class="col-md-6 mb-4">
-                            <label class="d-block text-center fw-semibold mb-2 text-blue">رقم الحاسبة</label>
-                            <div class="text-center">
-                                <span class="d-block fs-5   text-dark" id="modalEmployeecalculator_number">{{ $calculator_number }}</span>
-                            </div>
-                        </div>
-                    </div>
+                         <div class="col-md-6 mb-4">
+                             <label class="d-block text-center fw-semibold mb-2 text-blue">رقم الحاسبة</label>
+                             <div class="text-center">
+                                 <span class="d-block fs-5   text-dark"
+                                     id="modalEmployeecomputer_number">{{ $computer_number }}</span>
+                             </div>
+                         </div>
+                     </div>
 
                      <hr class="">
                      <div class="row">

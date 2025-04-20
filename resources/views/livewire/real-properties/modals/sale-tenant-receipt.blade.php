@@ -42,7 +42,11 @@
                                 <h5 class="d-flex justify-content-around">
                                     <div>
                                         <strong>أسم
+<<<<<<< HEAD
                                             {{ $BuyerTenant ? ($BuyerTenant->buyer_tenant_type == 'مشتري' ? 'المشتري' : 'المستأجر') : '' }}
+=======
+                                            {{ $BuyerTenant ? ($BuyerTenant->buyer_tenant_type == 'buyer' ? 'المشتري' : 'المستأجر') : '' }}
+>>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                                             : </strong>
                                         <span class="text-danger">
                                             {{ $BuyerTenant->buyer_tenant_name ?? '' }}
@@ -51,7 +55,7 @@
                                     <div>
                                         <strong>رقم الحاسبة : </strong>
                                         <span class="text-danger">
-                                            {{ $BuyerTenant->buyer_calculator_number ?? '' }}
+                                            {{ $BuyerTenant->buyer_computer_number ?? '' }}
                                         </span>
                                     </div>
                                 </h5>
@@ -110,11 +114,31 @@
                         </div>
 
                         <div Class="row">
+<<<<<<< HEAD
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.debounce.300ms='receipt_payment_amount' wire:input="calculateAmounts" type="text"
                                            class="form-control @error('receipt_payment_amount') is-invalid is-filled @enderror"
                                            onkeypress="return onlyNumberKey(event)" id="receipt_payment_amount" placeholder="مبلغ التسديد" />
+=======
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='receipt_payer_name' type="text" id="receipt_payer_name"
+                                        placeholder="أسم المسدد"
+                                        class="form-control @error('receipt_payer_name') is-invalid is-filled @enderror" />
+                                    <label for="receipt_payer_name">أسم المسدد</label>
+                                </div>
+                                @error('receipt_payer_name')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+                            </div>
+                            <div class="col mb-3">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='receipt_payment_amount' type="text"
+                                        class="form-control @error('receipt_payment_amount') is-invalid is-filled @enderror"
+                                        onkeypress="return onlyNumberKey(event)" id="receipt_payment_amount"
+                                        placeholder="مبلغ التسديد" />
+>>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                                     <label for="receipt_payment_amount">مبلغ التسديد</label>
                                 </div>
                                 @error('receipt_payment_amount')
@@ -165,7 +189,11 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
+<<<<<<< HEAD
                                     <input wire:model='receipt_attach' type="file" id="receipt_attach"
+=======
+                                    <input wire:model.defer='receipt_attach' type="file" id="receipt_attach"
+>>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                                         accept=".jpeg,.png,.jpg,.pdf"
                                         class="form-control @error('receipt_attach') is-invalid is-filled @enderror" />
                                     <label for="receipt_attach">اختر ملف الايصال</label>
@@ -176,9 +204,23 @@
 
                                 <div class="d-flex justify-content-center text-center">
                                     <div wire:loading wire:target='receipt_attach' class="mt-3">
+<<<<<<< HEAD
                                         <div class="spinner-border text-primary" role="status">
                                             <span class="visually-hidden">جاري التحميل...</span>
                                         </div>
+=======
+                                        <img src="{{ asset('assets/img/gif/Cube-Loading-Animated-3D.gif') }}"
+                                            style="height: 150px" alt="">
+                                    </div>
+                                    <div wire:loading.remove wire:target='receipt_attach' class="mt-3">
+                                        @if ($receipt_attach && $receipt_attach->getMimeType() == 'application/pdf')
+                                            <embed src="{{ $receipt_attach->temporaryUrl() }}" type="application/pdf"
+                                                style="height: 300px" />
+                                        @elseif ($receipt_attach && Str::startsWith($receipt_attach->getMimeType(), 'image/'))
+                                            <img src="{{ $receipt_attach->temporaryUrl() }}" alt="Selected Image"
+                                                class="img-fluid" style="height: 300px" />
+                                        @endif
+>>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                                     </div>
                                     @if ($receipt_attach)
                                         <div class="mt-2">
