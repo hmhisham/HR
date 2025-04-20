@@ -42,7 +42,7 @@ class Realities extends Model
 
     public function GetBuyerTenant()
     {
-        return $this->hasOne(BuyerTenant::class, 'property_number', 'property_number');
+        return $this->hasOne(BuyerTenant::class, 'property_number', 'id'); // Changed to use id
     }
 
     public function Getpropertycategor()

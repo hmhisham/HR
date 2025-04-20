@@ -112,7 +112,7 @@
                                         @php
                                             $buyer_tenant = App\Models\RealProperty\BuyerTenant::where(
                                                 'property_number',
-                                                $Reality->property_number,
+                                                $Reality->id,
                                             )->first();
                                             $RealEstateStatement = '';
                                         @endphp
@@ -152,7 +152,7 @@
                                                 </button>
                                             @endcan
                                             @can('show-buyer-tenant')
-                                                <a href="{{ route('ShowBuyerTenant', [$Reality->property_number, $buyer_tenant->id]) }}"
+                                                <a href="{{ route('ShowBuyerTenant', [$Reality->id, $buyer_tenant->id]) }}"
                                                     class="p-0 px-1 btn btn-text-primary waves-effect">
                                                     <i class="mdi mdi-eye-outline fs-2"></i>
                                                 </a>

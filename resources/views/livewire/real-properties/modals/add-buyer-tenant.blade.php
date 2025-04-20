@@ -162,7 +162,7 @@
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='from_date' type="date" id="addfrom_date"
+                                        <input wire:ignore wire:model='from_date' type="date" id="addfrom_date"
                                             placeholder="من تاريخ"
                                             class="form-control @error('from_date') is-invalid is-filled @enderror" />
                                         <label for="from_date">من تاريخ</label>
@@ -174,7 +174,7 @@
 
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='to_date' type="date" id="addto_date" readonly disabled
+                                        <input wire:ignore wire:model='to_date' type="date" id="addto_date" readonly disabled
                                             placeholder="الى تاريخ"
                                             class="form-control @error('to_date') is-invalid is-filled @enderror"
                                             readonly />

@@ -61,19 +61,19 @@
                                 <h5 class="d-flex justify-content-around">
                                     <div>
                                         <strong>المبلغ الصافي : </strong>
-                                        <span class="text-danger" id="netAmount">
+                                        <span class="text-danger" id="netAmount" wire:ignore>
                                             {{ number_format($BuyerTenant->net_amount ?? 0) }}
                                         </span>
                                     </div>
                                     <div>
                                         <strong>المبلغ المسدد : </strong>
-                                        <span class="text-danger" id="totalPaid">
+                                        <span class="text-danger" id="totalPaid" wire:ignore>
                                             {{ number_format($totalPaid) }}
                                         </span>
                                     </div>
                                     <div>
                                         <strong>المبلغ المتبقي : </strong>
-                                        <span class="text-danger" id="remainingAmount">
+                                        <span class="text-danger" id="remainingAmount" wire:ignore>
                                             {{ number_format($remainingAmount) }}
                                         </span>
                                     </div>

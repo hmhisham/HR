@@ -51,7 +51,8 @@ class ShowRealProperties extends Component
         'count' => '',
         'mortgage_notes' => '',
         'volume_number' => '',
-        'buyer_tenant_type' => ''
+        'buyer_tenant_type' => '',
+        'buyer_tenant_name' => ''
     ];
 
     public $receipt_payment_amount = 0; // القيمة المدخلة في الحقل
@@ -115,14 +116,20 @@ class ShowRealProperties extends Component
         $searchPropertyNumber = '%' . $this->search['property_number'] . '%';
         $searchMortgageNotes = $this->search['mortgage_notes'];
         $searchBuyerTenantType = $this->search['buyer_tenant_type'];
+        $searchBuyerTenantName = '%' . $this->search['buyer_tenant_name'] . '%';
 
         $Realities = Realities::query()
             ->where('plot_id', $this->Plotid)
             ->when($this->search['property_number'], function ($query) use ($searchPropertyNumber) {
-                $query->where('property_number', 'LIKE', $searchPropertyNumber);
+                $query->where('id', 'LIKE', $searchPropertyNumber);
             })
             ->when($this->search['mortgage_notes'], function ($query) use ($searchMortgageNotes) {
                 $query->where('mortgage_notes', $searchMortgageNotes);
+            })
+            ->when($this->search['buyer_tenant_name'], function ($query) use ($searchBuyerTenantName) {
+                $query->whereHas('GetBuyerTenant', function ($subQuery) use ($searchBuyerTenantName) {
+                    $subQuery->where('buyer_tenant_name', 'LIKE', $searchBuyerTenantName);
+                });
             })
             ->when($this->search['buyer_tenant_type'], function ($query) use ($searchBuyerTenantType) {
                 $query->whereHas('GetBuyerTenant', function ($subQuery) use ($searchBuyerTenantType) {
@@ -299,10 +306,14 @@ class ShowRealProperties extends Component
 
         foreach ($fileFields as $field) {
             if ($this->$field && $this->$field instanceof \Illuminate\Http\UploadedFile) {
+                // Get property_number from realities table
+                $reality = Realities::find($this->property_number);
+                $propertyNumber = $reality->property_number ?? $this->property_number;
+
                 // Delete old file if exists
                 if ($buyerTenantFiles->$field) {
                     Storage::delete('public/Realities/' . $this->province_number . '/' .
-                        $this->plot_number . '/' . $this->property_number . '/' .
+                        $this->plot_number . '/' . $propertyNumber . '/' .
                         $buyerTenantFiles->$field);
                 }
 
@@ -310,7 +321,7 @@ class ShowRealProperties extends Component
                 $fileName = $this->$field->hashName();
 
                 $this->$field->storeAs(
-                    'public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->property_number,
+                    'public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $propertyNumber,
                     $fileName
                 );
 
@@ -468,7 +479,7 @@ class ShowRealProperties extends Component
             'buyer_tenant_type' => $this->chooseBuyerTenant == 'buyer' ? 'مشتري' : 'مستأجر',
         ]);
 
-        Realities::where('property_number', $this->property_number)
+        Realities::where('id', $this->property_number) // Changed to use id
             ->update(['mortgage_notes' => $this->real_estate_status]);
 
         // =================================
@@ -496,13 +507,11 @@ class ShowRealProperties extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('editRealitieModalShow');
 
-
-        $this->Realitie  = Realities::find($RealitieId);
-        $this->property_number = $this->Realitie->property_number;
+        $this->Realitie = Realities::find($RealitieId);
+        $this->property_number = $RealitieId; // Changed to use id instead of property_number
         $this->mortgage_notes = $this->Realitie->mortgage_notes;
 
-
-        $this->BuyerTenant = BuyerTenant::where('property_number', $this->property_number)->first();
+        $this->BuyerTenant = BuyerTenant::where('property_number', $RealitieId)->first(); // Changed to use id
         if ($this->BuyerTenant) {
             $this->buyer_tenant_name = $this->BuyerTenant->buyer_tenant_name;
             $this->buyer_calculator_number = $this->BuyerTenant->buyer_calculator_number;
@@ -593,7 +602,7 @@ class ShowRealProperties extends Component
 
         $this->BuyerTenant->update($Validation);
 
-        Realities::where('property_number', $this->property_number)
+        Realities::where('id', $this->property_number) // Changed to use id
             ->update(['mortgage_notes' => $this->real_estate_status]);
 
         // =================================
@@ -634,7 +643,7 @@ class ShowRealProperties extends Component
 
         $Validation = $this->validate([
             'receipt_number' => 'required',
-            'receipt_date' => 'required',
+            'receipt_date' => 'required', 
             'receipt_payment_amount' => 'required',
             'receipt_from_date' => 'required',
             'receipt_to_date' => 'required',
@@ -644,12 +653,16 @@ class ShowRealProperties extends Component
             'receipt_date.required' => 'تاريخ الايصال مطلوب',
             'receipt_payment_amount.required' => 'المبلغ المدفوع مطلوب',
             'receipt_from_date.required' => 'الحقل مطلوب',
-            'receipt_to_date.required' => 'الحقل مطلوب',
+            'receipt_to_date.required' => 'الحقل مطلوب', 
             'receipt_attach.required' => 'ملف الايصال مطلوب',
         ]);
 
+        // Get property_number from realities table
+        $reality = Realities::find($this->property_number);
+        $propertyNumber = $reality->property_number ?? $this->property_number;
+
         $path = 'public/Realities/' . $this->province_number . '/' .
-            $this->plot_number . '/' . $this->property_number;
+            $this->plot_number . '/' . $propertyNumber;
 
         // Delete old file if exists
         $oldReceipt = SaleTenantReceipts::where('buyer_tenant_id', $this->BuyerTenant->id)
@@ -668,7 +681,7 @@ class ShowRealProperties extends Component
         }
 
         $Validation['buyer_tenant_id'] = $this->BuyerTenant->id;
-        $Validation['property_number'] = $this->property_number;
+        $Validation['property_number'] = $propertyNumber; // Use property_number from realities
         $Validation['receipt_notes'] = $this->receipt_notes;
         $Validation['receipt_type'] = $this->BuyerTenant->buyer_tenant_type === 'مشتري' ? 'بيع' : 'ايجار';
         $Validation['receipt_attach'] = $fileName;
@@ -714,7 +727,7 @@ class ShowRealProperties extends Component
         ]);
 
         $this->Realitie = Realities::findOrFail($realityId);
-        $this->property_number = $this->Realitie->property_number;
+        $this->property_number = $realityId; // Changed to use id
 
         $buyerTenant = BuyerTenant::where('property_number', $this->property_number)->first();
         if (!$buyerTenant) {

@@ -48,7 +48,7 @@
                             </div>
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='receipt_date' type="text" class="form-control @error('receipt_date') is-invalid is-filled @enderror"
+                                    <input wire:ignore wire:model.defer='receipt_date' type="text" class="form-control @error('receipt_date') is-invalid is-filled @enderror"
                                         id="edit_receipt_date" placeholder="تاريخ الوصل" />
                                     <label for="receipt_date">تاريخ الوصل</label>
                                 </div>
@@ -75,7 +75,7 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='receipt_from_date' type="text"
+                                    <input wire:ignore wire:model.defer='receipt_from_date' type="text"
                                         id="edit_receipt_from_date" placeholder="من تاريخ"
                                         class="form-control @error('receipt_from_date') is-invalid is-filled @enderror"/>
                                     <label for="receipt_from_date">من تاريخ</label>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.defer='receipt_to_date' type="text"
+                                    <input wire:ignore wire:model.defer='receipt_to_date' type="text"
                                         id="edit_receipt_to_date" placeholder="الى تاريخ"
                                         class="form-control @error('receipt_to_date') is-invalid is-filled @enderror"/>
                                     <label for="receipt_to_date">الى تاريخ</label>
