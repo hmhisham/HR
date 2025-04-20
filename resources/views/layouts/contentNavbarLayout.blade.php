@@ -349,7 +349,7 @@
                             @can('settings')
                                 {{-- الإعدادات --}}
                                 <li
-                                    class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking' ,'backup') ? 'open active' : '' }}">
+                                    class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking', 'backup') ? 'open active' : '' }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                         <span class="menu-title">الاعدادات</span>
@@ -599,14 +599,14 @@
                                             </li>
                                         @endcan
                                         @can('usersapp')
-                                        {{-- مستخدمي التطبيق --}}
-                                        <li Class="menu-item {{ request()->Is('Usersapp') ? 'active' : '' }}">
-                                            <a href="{{ Route('Usersapp.index') }}" Class="menu-link">
-                                                <i Class=""></i>
-                                                <div>مستخدمي التطبيق</div>
-                                            </a>
-                                        </li>
-                                    @endcan
+                                            {{-- مستخدمي التطبيق --}}
+                                            <li Class="menu-item {{ request()->Is('Usersapp') ? 'active' : '' }}">
+                                                <a href="{{ Route('Usersapp.index') }}" Class="menu-link">
+                                                    <i Class=""></i>
+                                                    <div>مستخدمي التطبيق</div>
+                                                </a>
+                                            </li>
+                                        @endcan
 
                                         @can('tracking')
                                             {{-- التتبع --}}
@@ -617,7 +617,7 @@
                                                 </a>
                                             </li>
                                         @endcan
-                                        @can('settings')
+                                        @can('backup')
                                             {{-- النسخ الاحتياطي --}}
                                             <li Class="menu-item {{ request()->Is('backup') ? 'active' : '' }}">
                                                 <a href="{{ Route('backup') }}" Class="menu-link">
