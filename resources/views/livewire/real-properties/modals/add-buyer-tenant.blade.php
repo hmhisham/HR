@@ -86,20 +86,12 @@
 
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
-<<<<<<< HEAD
                                         <input wire:model.defer='buyer_calculator_number' type="text"
                                             id="buyer_calculator_number" placeholder="رقم الحاسبة"
                                             class="form-control @error('buyer_calculator_number') is-invalid is-filled @enderror"
                                             onkeypress="return onlyNumberKey(event)"
                                             {{ $chooseBuyerTenant == 'buyer' ? '' : 'readonly disabled' }} />
                                         <label for="buyer_calculator_number">رقم الحاسبة</label>
-=======
-                                        <input wire:model.defer='buyer_computer_number' type="text"
-                                            id="buyer_computer_number" placeholder="رقم الحاسبة"
-                                            class="form-control @error('buyer_computer_number') is-invalid is-filled @enderror"
-                                            onkeypress="return onlyNumberKey(event)" />
-                                        <label for="buyer_computer_number">رقم الحاسبة</label>
->>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                                     </div>
                                     @error('buyer_computer_number')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
@@ -266,11 +258,7 @@
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='monthly_amount' type="text" id="monthly_amount"
-<<<<<<< HEAD
-                                            readonly disabled readonly disabled placeholder="المبلغ الشهري"
-=======
                                             readonly disabled placeholder="المبلغ الشهري"
->>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                                             onkeypress="return onlyNumberKey(event)"
                                             class="form-control @error('monthly_amount') is-invalid is-filled @enderror" />
                                         <label for="monthly_amount">المبلغ الشهري</label>

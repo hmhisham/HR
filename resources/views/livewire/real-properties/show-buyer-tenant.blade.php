@@ -25,11 +25,7 @@
                 <h5 class="d-flex justify-content-around">
                     <div>
                         <strong>أسم
-<<<<<<< HEAD
                             {{ $BuyerTenant ? ($BuyerTenant->buyer_tenant_type == 'مشتري' ? 'المشتري' : 'المستأجر') : '' }}
-=======
-                            {{ $BuyerTenant ? ($BuyerTenant->buyer_tenant_type == 'buyer' ? 'المشتري' : 'المستأجر') : '' }}
->>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                             : </strong>
                         <span class="text-danger">
                             {{ $BuyerTenant->buyer_tenant_name ?? '' }}
@@ -83,61 +79,26 @@
                         <tr>
                             <th>#</th>
                             <th>
-<<<<<<< HEAD
                                 <input type="text" wire:model.debounce.300ms="search.receipt_number"
                                     class="form-control" placeholder="بحث برقم الوصل .." onkeypress="return onlyNumberKey(event)"
                                     wire:key="search_receipt_number">
-=======
-                                <input type="text" wire:model.debounce.300ms="search.property_number"
-                                    class="form-control" placeholder="بحث برقم السند العقاري .."
-                                    wire:key="search_property_number">
->>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.receipt_date" class="form-control"
                                     placeholder="بحث بتاريخ الوصل .." wire:key="search_receipt_date">
                             </th>
                             <th>
-<<<<<<< HEAD
                                 <input type="text" wire:model.debounce.300ms="search.receipt_payment_amount" class="form-control"
                                     placeholder="بحث بمبلغ التسديد .." onkeypress="return onlyNumberKey(event)" wire:key="search_receipt_payment_amount">
-=======
-                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-select"
-                                    wire:key="search_mortgage_notes">
-                                    <option value="">اختر</option>
-                                    <option value="رفع الحجز">رفع الحجز</option>
-                                    <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف بالعقار الا بموافقة
-                                        الموانئ</option>
-                                </select>
->>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                             </th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.receipt_from_date" class="form-control"
                                     placeholder="بحث من تاريخ .." wire:key="search_receipt_from_date">
                             </th>
                             <th>
-<<<<<<< HEAD
                                 <input type="text" wire:model.debounce.300ms="search.receipt_to_date" class="form-control"
                                     placeholder="بحث الى تاريخ .." wire:key="search_receipt_to_date">
                             </th>
-=======
-                                <select wire:model.debounce.300ms="search.visibility" class="form-select"
-                                    wire:key="search_visibility">
-                                    <option value="">اختر</option>
-                                    <option value="1">نعم</option>
-                                    <option value="0">لا</option>
-                                </select>
-                            </th>
-                            <th>
-                                <select wire:model.debounce.300ms="search.visibility" class="form-select"
-                                    wire:key="search_visibility">
-                                    <option value="">اختر</option>
-                                    <option value="1">نعم</option>
-                                    <option value="0">لا</option>
-                                </select>
-                            </th>
-                            <th></th>
->>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                             <th></th>
                         </tr>
                     </thead>
@@ -147,10 +108,6 @@
                                 <td>{{ $links->firstItem() + $index }}</td>
                                 <td class="text-center">{{ $SaleTenantReceipt->receipt_number }}</td>
                                 <td class="text-center text-nowrap">{{ $SaleTenantReceipt->receipt_date }}</td>
-<<<<<<< HEAD
-=======
-                                <td class="text-center">{{ $SaleTenantReceipt->receipt_payer_name }}</td>
->>>>>>> 00f11ddd74f76cbca93548f9f3b4de63da9f751c
                                 <td class="text-center ls-1">
                                     {{ number_format($SaleTenantReceipt->receipt_payment_amount) }}</td>
                                 <td class="text-center text-nowrap">{{ $SaleTenantReceipt->receipt_from_date }}</td>
