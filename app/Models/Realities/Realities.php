@@ -7,6 +7,7 @@ use App\Models\Branch\Branch;
 use App\Models\Districts\Districts;
 use App\Models\Provinces\Provinces;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\RealProperty\BuyerTenant;
 use App\Models\Governorates\Governorates;
 use App\Models\Propertytypes\Propertytypes;
 use App\Models\Propertycategory\Propertycategory;
@@ -37,6 +38,11 @@ class Realities extends Model
     public function GetRealEstateBondsSaleRental()
     {
         return $this->belongsTo(RealEstateBondsSaleRental::class, 'property_number');
+    }
+
+    public function GetBuyerTenant()
+    {
+        return $this->hasOne(BuyerTenant::class, 'property_number', 'property_number');
     }
 
     public function Getpropertycategor()

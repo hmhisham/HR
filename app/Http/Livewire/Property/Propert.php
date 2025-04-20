@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Property;
 
 use Livewire\Component;
-use App\Models\Bonds\Bonds;
 use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
 use App\Models\Property\Property;
+use App\Models\Realities\Realities;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -90,7 +90,7 @@ class Propert extends Component
     // عرض البيانات
     public function render()
     {
-        $bonds = QueryBuilder::for(Bonds::class)
+        $bonds = QueryBuilder::for(Realities::class)
             ->allowedFilters([
                 AllowedFilter::callback('full_name', function ($query, $value) {
                     $query->whereHas('getProperty', function ($query) use ($value) {
@@ -161,7 +161,7 @@ class Propert extends Component
         $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('PropertModalShow');
-        $this->Bond = Bonds::find($bonds_id);
+        $this->Bond = Realities::find($bonds_id);
         $this->bonds_id = $this->Bond->id;
         $this->total_amount = 0;
         $this->paid_amount = 0;

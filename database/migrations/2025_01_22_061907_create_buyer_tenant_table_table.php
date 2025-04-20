@@ -19,8 +19,19 @@ return new class extends Migration
             $table->string('buyer_calculator_number')->nullable()->comment('رقم الحاسبة للمشتري');
             $table->string('buyer_tenant_phone_number')->comment('رقم هاتف المشتري أو المستأجر');
             $table->string('buyer_tenant_email')->nullable()->comment('البريد الالكتروني للمشتري أو المستأجر');
-            $table->string('notes')->nullable()->comment('الملاحظات');
             $table->string('buyer_tenant_type')->nullable()->comment('مشتري أم مستأجر');
+            $table->date('from_date')->nullable()->comment('من تاريخ');
+            $table->date('to_date')->nullable()->comment('الى تاريخ');
+            $table->string('number_of_months')->nullable()->comment('عدد الاشهر');
+            $table->string('insurance_amount')->nullable()->comment('مبلغ التثمين');
+            $table->string('sale_amount')->nullable()->comment('مبلغ الرسو');
+            $table->string('net_amount')->nullable()->comment('المبلغ الصافي');
+            $table->string('monthly_amount')->nullable()->comment('المبلغ الشهري');
+            $table->string('alert_duration')->nullable()->comment('مدة التنبيه');
+            $table->string('company_department_email')->nullable()->comment('البريد الالكتروني للشركة او القسم');
+            $table->string('real_estate_status')->comment('حالة العقار');
+            $table->boolean('notifications')->nullable()->default(0)->comment('الاشعارات');
+            $table->text('notes')->nullable()->comment('الملاحظات');
             $table->timestamps();
         });
     }

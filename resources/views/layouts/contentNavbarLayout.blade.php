@@ -304,7 +304,7 @@
                                             <li Class="menu-item {{ request()->Is('Show-Real-Property/*') ? 'active' : 'hidden' }}">
                                                 <a href = "#" Class="menu-link">
                                                     <i Class=""></i>
-                                                    <div>عرض الاملاك</div>
+                                                    <div>عرض الاسكان</div>
                                                 </a>
                                             </li>
                                         @endcan

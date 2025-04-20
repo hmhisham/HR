@@ -1,11 +1,11 @@
 <!-- Edite Realitie Modal -->
-<div wire:ignore.self class="modal fade" id="addBuyerTenantModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="editBuyerTenantModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="p-4 modal-content p-md-5">
             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
-                    <h3 class="pb-1 mb-2">إضافة مشتري أو مستأجر</h3>
+                    <h3 class="pb-1 mb-2">تعديل مشتري أو مستأجر</h3>
                 </div>
 
                 <hr class="mt-n2">
@@ -68,7 +68,7 @@
                             </div>
                         </div>
 
-                        @if ($chooseBuyerTenant)
+                        @if ($buyer_tenant_type)
                             {{-- المشتري أو المستأجر --}}
                             <div class="row mb-3">
                                 <div class="col">
@@ -162,7 +162,7 @@
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='from_date' type="date" id="addfrom_date"
+                                        <input wire:model='from_date' type="date" id="editfrom_date"
                                             placeholder="من تاريخ"
                                             class="form-control @error('from_date') is-invalid is-filled @enderror" />
                                         <label for="from_date">من تاريخ</label>
@@ -174,10 +174,9 @@
 
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='to_date' type="date" id="addto_date" readonly disabled
+                                        <input wire:model='to_date' type="date" id="editto_date" readonly disabled
                                             placeholder="الى تاريخ"
-                                            class="form-control @error('to_date') is-invalid is-filled @enderror"
-                                            readonly />
+                                            class="form-control @error('to_date') is-invalid is-filled @enderror" />
                                         <label for="to_date">الى تاريخ</label>
                                     </div>
                                     @error('to_date')
@@ -187,8 +186,8 @@
 
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model='number_of_months' type="text" id="number_of_months"
-                                            readonly disabled placeholder="عدد الاشهر" readonly
+                                        <input wire:model='number_of_months' type="text" id="number_of_months" readonly disabled
+                                            readonly disabled placeholder="عدد الاشهر"
                                             class="form-control @error('number_of_months') is-invalid is-filled @enderror" />
                                         <label for="number_of_months">عدد الاشهر</label>
                                     </div>
@@ -202,14 +201,12 @@
                                         <div class="btn-group w-100" role="group">
                                             <input type="radio" class="btn-check" name="payment_period"
                                                 id="zero_years" wire:click="setPaymentPeriod(0)" autocomplete="off">
-                                            <label class="btn btn-outline-primary w-50" for="zero_years">دفع
-                                                كامل</label>
+                                            <label class="btn btn-outline-primary w-50" for="zero_years">دفع كامل</label>
 
                                             <input type="radio" class="btn-check" name="payment_period"
                                                 id="twenty_years" wire:click="setPaymentPeriod(20)"
                                                 autocomplete="off">
-                                            <label class="btn btn-outline-primary w-50" for="twenty_years">20
-                                                سنة</label>
+                                            <label class="btn btn-outline-primary w-50" for="twenty_years">20 سنة</label>
                                         </div>
                                     </div>
                                 </div>
@@ -244,8 +241,8 @@
 
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='net_amount' type="text" readonly disabled
-                                            onkeypress="return onlyNumberKey(event)" id="net_amount"
+                                        <input wire:model.defer='net_amount' type="text"
+                                            onkeypress="return onlyNumberKey(event)" id="net_amount" readonly disabled
                                             placeholder="المبلغ الصافي"
                                             class="form-control @error('net_amount') is-invalid is-filled @enderror" />
                                         <label for="net_amount">المبلغ الصافي</label>
@@ -257,8 +254,8 @@
 
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='monthly_amount' type="text" id="monthly_amount"
-                                            readonly disabled readonly disabled placeholder="المبلغ الشهري"
+                                        <input wire:model.defer='monthly_amount' type="text" id="monthly_amount" readonly disabled
+                                            readonly disabled placeholder="المبلغ الشهري"
                                             onkeypress="return onlyNumberKey(event)"
                                             class="form-control @error('monthly_amount') is-invalid is-filled @enderror" />
                                         <label for="monthly_amount">المبلغ الشهري</label>
@@ -293,7 +290,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
                                         <select wire:model.defer='alert_duration' id="alert_duration"
@@ -337,7 +333,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-3 mb-3 position-relative">
                                     <label class="switch switch-primary position-absolute top-50"
                                         style="margin-top: -12px">
@@ -373,8 +369,8 @@
                             <hr class="my-0">
 
                             <div class="text-center col-12 demo-vertical-spacing mb-n4">
-                                <button wire:click='SaleTenant' wire:loading.attr="disabled" type="button"
-                                    class="btn btn-primary me-sm-3 me-1">حفظ</button>
+                                <button wire:click='UpdateSaleTenant' wire:loading.attr="disabled" type="button"
+                                    class="btn btn-primary me-sm-3 me-1">تعديل</button>
                                 <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                     aria-label="Close">تجاهل</button>
                             </div>

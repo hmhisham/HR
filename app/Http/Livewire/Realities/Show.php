@@ -36,7 +36,7 @@ class Show extends Component
     public $RealitieSearch, $Realitie, $RealitieId;
     public $province_number, $province_name, $plot_number;
     public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $propertycategory_id, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department,  $notes;
-    public $filePreview, $property_deed_image, $previewRealitieDeedImage,    $bond_type;
+    public $filePreview, $property_deed_image, $previewRealitieDeedImage, $bond_type;
     public $visibility = false;
     public $selectedRealities = [];
     public $selectedBranch;

@@ -14,7 +14,6 @@
                     wire:loading.class="d-flex justify-content-center">جار معالجة البيانات...</h4>
                 <h5 wire:loading wire:target="update" wire:loading.class="d-flex justify-content-center text-primary">
                     جار حفظ البيانات...</h5>
-
                 <div wire:loading.remove wire:target="update, GetRealProperty">
                     <div class="row">
                         <div wire:loading.remove wire:target='GetRealProperty' class="text-center">

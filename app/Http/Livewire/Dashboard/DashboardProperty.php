@@ -12,7 +12,7 @@ class DashboardProperty extends Component
     {
         $this->ProvincesCount = Provinces::count();
         $this->RealitiesCount = DB::table('realities')->count(); // عدد السندات
-        $this->RealPropertyCount = DB::table('real_property')->count(); // عدد الأملاك
+        $this->RealPropertyCount = DB::table('buyer_tenant')->count(); // عدد الأملاك
         $this->PlotsCount = DB::table('Plots')->count(); // عدد القطع
         // جلب بيانات المخطط البياني
         $this->chartData = $this->getChartData();
@@ -31,7 +31,7 @@ class DashboardProperty extends Component
             ->get();
 
         // جلب عدد الحركات لكل يوم من جدول الأملاك
-        $realPropertyData = DB::table('real_property')
+        $realPropertyData = DB::table('buyer_tenant')
             ->select(
                 DB::raw('DATE(updated_at) as date'),
                 DB::raw('count(*) as total')
@@ -46,7 +46,7 @@ class DashboardProperty extends Component
             $mergedData[$data->date]['realities'] = $data->total;
         }
         foreach ($realPropertyData as $data) {
-            $mergedData[$data->date]['real_property'] = $data->total;
+            $mergedData[$data->date]['buyer_tenant'] = $data->total;
         }
 
         // تحويل البيانات إلى الشكل المطلوب
@@ -55,7 +55,7 @@ class DashboardProperty extends Component
             $chartData[] = [
                 'date' => $date,
                 'realities' => $values['realities'] ?? 0,
-                'real_property' => $values['real_property'] ?? 0,
+                'buyer_tenant' => $values['buyer_tenant'] ?? 0,
             ];
         }
 

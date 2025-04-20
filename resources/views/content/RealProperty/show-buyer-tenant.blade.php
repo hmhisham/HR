@@ -50,6 +50,7 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+
         $(document).ready(function() {
             function initflatpickrFromTo(selector, eventName, parentModal) {
                 $(selector).flatpickr({
@@ -73,111 +74,63 @@
                     Livewire.emit(eventName, e.target.value);
                 });
             }
+
             initflatpickrFromTo('#edit_receipt_date', 'SelectReceiptDate', '#editSaleTenantReceiptModal');
             initflatpickrFromTo('#edit_receipt_from_date', 'SelectReceiptFromDate', '#editSaleTenantReceiptModal');
             initflatpickrFromTo('#edit_receipt_to_date', 'SelectReceiptToDate', '#editSaleTenantReceiptModal');
+
+            $('[wire\\:model\\.debounce\\.300ms="search.receipt_date"]').flatpickr({
+                placeholder: 'اختر التاريخ',
+                dir: 'rtl',
+                allowInput: true,
+                locale: {
+                    months: {
+                        shorthand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                            'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                        ],
+                        longhand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                            'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                        ]
+                    }
+                }
+            });
+
+            $('[wire\\:model\\.debounce\\.300ms="search.receipt_from_date"]').flatpickr({
+                placeholder: 'اختر التاريخ',
+                dir: 'rtl',
+                allowInput: true,
+                locale: {
+                    months: {
+                        shorthand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                            'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                        ],
+                        longhand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                            'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                        ]
+                    }
+                }
+            });
+
+            $('[wire\\:model\\.debounce\\.300ms="search.receipt_to_date"]').flatpickr({
+                placeholder: 'اختر التاريخ',
+                dir: 'rtl',
+                allowInput: true,
+                locale: {
+                    months: {
+                        shorthand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                            'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                        ],
+                        longhand: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز',
+                            'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'
+                        ]
+                    }
+                }
+            });
+
             window.livewire.on('flatpickr', () => {
                 initflatpickrFromTo('#edit_receipt_date', 'SelectReceiptDate', '#editSaleTenantReceiptModal');
                 initflatpickrFromTo('#edit_receipt_from_date', 'SelectReceiptFromDate', '#editSaleTenantReceiptModal');
                 initflatpickrFromTo('#edit_receipt_to_date', 'SelectReceiptToDate', '#editSaleTenantReceiptModal');
-            });
-        });
-
-
-        /* اضافة تاريخ امر التنسيب */
-        $(document).ready(function() {
-            window.initAddPlacementOrderDateDrop = () => {
-                $('#addplacement_order_date').flatpickr({
-                    placeholder: 'تاريخ امر التنسيب',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initAddPlacementOrderDateDrop();
-            $('#addplacement_order_date').on('change', function(e) {
-                livewire.emit('employeePlacementOrderDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initAddPlacementOrderDateDrop();
-            });
-        });
-        /* تعديل تاريخ امر التنسيب */
-        $(document).ready(function() {
-            window.initEditPlacementOrderDateDrop = () => {
-                $('#editplacement_order_date').flatpickr({
-                    placeholder: 'تاريخ امر التنسيب',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initEditPlacementOrderDateDrop();
-            $('#editplacement_order_date').on('change', function(e) {
-                livewire.emit('employeePlacementOrderDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initEditPlacementOrderDateDrop();
-            });
-        });
-        /* اضافة تاريخ الانفكاك */
-        $(document).ready(function() {
-            window.initAddReleaseDateDrop = () => {
-                $('#addrelease_date').flatpickr({
-                    placeholder: 'تاريخ الانفكاك',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initAddReleaseDateDrop();
-            $('#addrelease_date').on('change', function(e) {
-                livewire.emit('employeeReleaseDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initAddReleaseDateDrop();
-            });
-        });
-        /* تعديل تاريخ الانفكاك */
-        $(document).ready(function() {
-            window.initEditReleaseDateDrop = () => {
-                $('#editrelease_date').flatpickr({
-                    placeholder: 'تاريخ الانفكاك',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initEditReleaseDateDrop();
-            $('#editrelease_date').on('change', function(e) {
-                livewire.emit('employeeReleaseDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initEditReleaseDateDrop();
-            });
-        });
-        /* اضافة تاريخ المباشرة */
-        $(document).ready(function() {
-            window.initAddStartDateDrop = () => {
-                $('#addstart_date').flatpickr({
-                    placeholder: 'تاريخ المباشرة',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initAddStartDateDrop();
-            $('#addstart_date').on('change', function(e) {
-                livewire.emit('employeeStartDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initAddStartDateDrop();
-            });
-        });
-        /* تعديل تاريخ المباشرة */
-        $(document).ready(function() {
-            window.initEditStartDateDrop = () => {
-                $('#editstart_date').flatpickr({
-                    placeholder: 'تاريخ المباشرة',
-                    //dropdownParent: $('#addPatientModal')
-                })
-            }
-            initEditStartDateDrop();
-            $('#editstart_date').on('change', function(e) {
-                livewire.emit('employeeStartDate', e.target.value)
-            });
-            window.livewire.on('flatpickr', () => {
-                initEditStartDateDrop();
             });
         });
 
@@ -188,6 +141,7 @@
                 return false;
             return true;
         }
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-start',
@@ -200,16 +154,14 @@
             }
         })
 
-        window.addEventListener('PlacementModalShow', event => {
+        window.addEventListener('SaleTenantReceiptModal', event => {
             setTimeout(() => {
                 $('#id').focus();
             }, 100);
         })
 
         window.addEventListener('success', event => {
-            $('#addplacementModal').modal('hide');
-            $('#editplacementModal').modal('hide');
-            $('#removeplacementModal').modal('hide');
+            $('#removeSaleTenantReceiptModal').modal('hide');
             $('#editSaleTenantReceiptModal').modal('hide');
             Toast.fire({
                 icon: 'success',
@@ -218,7 +170,7 @@
         })
 
         window.addEventListener('error', event => {
-            $('#removeplacementModal').modal('hide');
+            $('#removeSaleTenantReceiptModal').modal('hide');
             Toast.fire({
                 icon: 'error',
                 title: event.detail.title + '<hr>' + event.detail.message,
@@ -226,177 +178,5 @@
             })
 
         })
-
-
-        // add Workers
-        $(document).ready(function() {
-            window.initAddWorkersDrop = () => {
-                $('#addPlacementworker_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addplacementModal')
-                });
-            }
-            initAddWorkersDrop();
-            $('#addPlacementworker_id').on('change', function(e) {
-                livewire.emit('SelectWorkerId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initAddWorkersDrop();
-            });
-        });
-
-        // edit Workers
-        $(document).ready(function() {
-            window.initEditWorkersDrop = () => {
-                $('#editPlacementworker_id').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editplacementModal')
-                });
-            }
-            initEditWorkersDrop();
-            $('#editPlacementworker_id').on('change', function(e) {
-                livewire.emit('SelectWorkerId', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditWorkersDrop();
-            });
-        });
-
-
-        /* addLinkage */
-        $(document).ready(function() {
-            window.initAddLinkageDrop = () => {
-                $('#addLinkage').select2({
-                    placeholder: 'حدد الارتباط',
-                    dropdownParent: $('#addplacementModal')
-                })
-            }
-            initAddLinkageDrop();
-            $('#addLinkage').on('change', function(e) {
-                livewire.emit('GetLinkage', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initAddLinkageDrop();
-            });
-        });
-
-
-        /* addSection */
-        $(document).ready(function() {
-            window.initAddSectionDrop = () => {
-                $('#addSection').select2({
-                    placeholder: 'حدد القسم',
-                    dropdownParent: $('#addplacementModal')
-                })
-            }
-            initAddSectionDrop();
-            $('#addSection').on('change', function(e) {
-                livewire.emit('GetSection', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initAddSectionDrop();
-            });
-        });
-
-        /* addBranch */
-        $(document).ready(function() {
-            window.initAddBranchDrop = () => {
-                $('#addBranch').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addplacementModal')
-                });
-            }
-            initAddBranchDrop();
-            $('#addBranch').on('change', function(e) {
-                livewire.emit('GetBranch', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initAddBranchDrop();
-            });
-        });
-
-        /* addUnit */
-        $(document).ready(function() {
-            window.initAddUnitDrop = () => {
-                $('#addUnit').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#addplacementModal')
-                });
-            }
-            initAddUnitDrop();
-            $('#addUnit').on('change', function(e) {
-                livewire.emit('GetUnit', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initAddUnitDrop();
-            });
-        });
-
-        /* editLinkage */
-        $(document).ready(function() {
-            window.initEditLinkageDrop = () => {
-                $('#editLinkage').select2({
-                    placeholder: 'حدد الارتباط',
-                    dropdownParent: $('#editplacementModal')
-                })
-            }
-            initEditLinkageDrop();
-            $('#editLinkage').on('change', function(e) {
-                livewire.emit('GetLinkage', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initEditLinkageDrop();
-            });
-        });
-        /* editSection */
-        $(document).ready(function() {
-            window.initEditSectionDrop = () => {
-                $('#editSection').select2({
-                    placeholder: 'حدد القسم',
-                    dropdownParent: $('#editplacementModal')
-                })
-            }
-            initEditSectionDrop();
-            $('#editSection').on('change', function(e) {
-                livewire.emit('GetSection', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initEditSectionDrop();
-            });
-        });
-
-        /* editBranch */
-        $(document).ready(function() {
-            window.initEditBranchDrop = () => {
-                $('#editBranch').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editplacementModal')
-                });
-            }
-            initEditBranchDrop();
-            $('#editBranch').on('change', function(e) {
-                livewire.emit('GetBranch', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditBranchDrop();
-            });
-        });
-
-        /* editUnit */
-        $(document).ready(function() {
-            window.initEditUnitDrop = () => {
-                $('#editUnit').select2({
-                    placeholder: 'اختيار',
-                    dropdownParent: $('#editplacementModal')
-                });
-            }
-            initEditUnitDrop();
-            $('#editUnit').on('change', function(e) {
-                livewire.emit('GetUnit', e.target.value);
-            });
-            window.livewire.on('select2', () => {
-                initEditUnitDrop();
-            });
-        });
     </script>
 @endsection

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('property_number');
             $table->string('receipt_number')->comment('رقم الوصل');
             $table->date('receipt_date')->comment('تاريخ الوصل');
-            $table->string('receipt_payer_name')->comment('أسم المسدد');
             $table->string('receipt_payment_amount')->comment('مبلغ التسديد');
             $table->date('receipt_from_date')->comment('من تاريخ');
             $table->date('receipt_to_date')->comment('الى تاريخ');

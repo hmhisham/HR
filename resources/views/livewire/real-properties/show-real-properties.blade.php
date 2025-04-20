@@ -2,15 +2,14 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <h4 class="mb-2">
-                <span class="text-muted fw-light">الأملاك<span
-                        class="mdi mdi-chevron-left mdi-24px"></span></span>
+                <span class="text-muted fw-light">الاسكان<span class="mdi mdi-chevron-left mdi-24px"></span></span>
                 </span>
                 عرض بيانات القطعة : <span class="text-danger">{{ $Plot->plot_number }}</span>
                 <strong style="margin: 0 30px;">|</strong>
                 ضمن المقاطعة : <span class="text-danger">{{ $Province->province_number }} -
                     {{ $Province->province_name }}</span>
-            </h5>
-            {{-- <div>
+                </h5>
+                {{-- <div>
                 @can('real-property-create')
                     <button wire:click='addRealProperty' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal"
                         data-bs-target="#addRealPropertyModal">أضــافــة</button>
@@ -25,23 +24,23 @@
                         <tr>
                             <th>#</th>
                             <th class="text-center">رقم السند العقاري</th>
-                            <th class="text-center">العدد</th>
                             <th class="text-center">إشارات التأمينات</th>
-                            <th class="text-center">الجلد</th>
+                            <th class="text-center">اسم المشتري او المستاجر</th>
+                            <th class="text-center">النوع</th>
+                            <th class="text-center">المبلغ الصافي</th>
+                            <th class="text-center">المبلغ المتبقي</th>
                             <th class="text-center">العملية</th>
                         </tr>
                         <tr>
                             <th>#</th>
                             <th>
                                 <input type="text" wire:model.debounce.300ms="search.property_number"
-                                    class="form-control" placeholder="بحث برقم السند العقاري .." wire:key="search_property_number">
+                                    onkeypress="return onlyNumberKey(event)" class="form-control"
+                                    placeholder="بحث برقم السند العقاري .." wire:key="search_property_number">
                             </th>
                             <th>
-                                <input type="text" wire:model.debounce.300ms="search.count" class="form-control"
-                                    placeholder="بحث بالعدد .." wire:key="search_count">
-                            </th>
-                            <th>
-                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-select" wire:key="search_mortgage_notes">
+                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-select"
+                                    wire:key="search_mortgage_notes">
                                     <option value="">اختر</option>
                                     <option value="رفع الحجز">رفع الحجز</option>
                                     <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف بالعقار الا بموافقة
@@ -49,9 +48,20 @@
                                 </select>
                             </th>
                             <th>
-                                <input type="text" wire:model.debounce.300ms="search.volume_number" class="form-control"
-                                    placeholder="بحث بالجلد .." wire:key="search_volume_number">
+                                <input type="text" wire:model.debounce.300ms="search.buyer_tenant_name"
+                                    class="form-control" onkeypress="return onlyArabicKey(event)"
+                                    placeholder="بحث بالاسم .." wire:key="search_buyer_tenant_name">
                             </th>
+                            <th>
+                                <select wire:model.debounce.300ms="search.buyer_tenant_type" class="form-select"
+                                    wire:key="search_buyer_tenant_type">
+                                    <option value="">الكل</option>
+                                    <option value="مشتري">مشتري</option>
+                                    <option value="مستأجر">مستأجر</option>
+                                </select>
+                            </th>
+                            <th></th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -61,73 +71,92 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td class="text-center">{{ $Reality->property_number }}</td>
-                                <td class="text-center">{{ $Reality->count }}</td>
                                 <td class="text-center">{{ $Reality->mortgage_notes }}</td>
-                                <td class="text-center">{{ $Reality->volume_number }}</td>
+                                <td class="text-center">
+                                    @if ($Reality->GetBuyerTenant)
+                                        <button wire:click="GetRealProperty({{ $Reality->id }})"
+                                            class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
+                                            data-bs-target="#editBuyerTenantModal">
+                                            {{ $Reality->GetBuyerTenant->buyer_tenant_name }}
+                                        </button>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if ($Reality->GetBuyerTenant)
+                                        {{ $Reality->GetBuyerTenant->buyer_tenant_type }}
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if ($Reality->GetBuyerTenant)
+                                        {{ number_format($Reality->GetBuyerTenant->net_amount) }}
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if ($Reality->GetBuyerTenant)
+                                        @php
+                                            $totalPaid = App\Models\RealProperty\SaleTenantReceipts::where(
+                                                'buyer_tenant_id',
+                                                $Reality->GetBuyerTenant->id,
+                                            )->sum('receipt_payment_amount');
+                                            $remainingAmount = $Reality->GetBuyerTenant->net_amount - $totalPaid;
+                                        @endphp
+                                        @if ($remainingAmount !== null)
+                                            <span class="text-{{ $remainingAmount <= 0 ? 'success' : 'danger' }}">
+                                                {{ number_format($remainingAmount) }}
+                                            </span>
+                                        @endif
+                                    @endif
+                                </td>
                                 <td class="text-end">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @php
-                                            $buyer_tenant = App\Models\RealProperty\BuyerTenant::where('property_number', $Reality->property_number)->first();
-                                            $RealEstateBondsSaleRental = App\Models\RealProperty\RealEstateBondsSaleRental::where('property_number', $Reality->property_number)->first();
-
-                                            if($RealEstateBondsSaleRental){
-                                                $RealEstateStatement = $RealEstateBondsSaleRental->real_estate_statement;
-                                            }else{
-                                                $RealEstateStatement = '';
-                                            }
+                                            $buyer_tenant = App\Models\RealProperty\BuyerTenant::where(
+                                                'property_number',
+                                                $Reality->property_number,
+                                            )->first();
+                                            $RealEstateStatement = '';
                                         @endphp
                                         @if (!$buyer_tenant)
                                             @can('real-property-buyer_tenant')
                                                 <button wire:click="GetRealProperty({{ $Reality->id }})"
-                                                    class="p-0 px-1 btn btn-text-primary waves-effect"
-                                                    data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
+                                                    class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
+                                                    data-bs-target="#addBuyerTenantModal">
                                                     <i class="mdi mdi-account-plus-outline fs-3"></i>
                                                 </button>
                                             @endcan
                                         @else
-                                            @can('real-property-sale')
-                                                @if ($buyer_tenant->buyer_tenant_type =='buyer' && $RealEstateStatement != 'مباع')
+                                            @can('real-property-rent')
+                                                @if ($buyer_tenant->buyer_tenant_type == 'مشتري' || $buyer_tenant->buyer_tenant_type == 'مستأجر')
+                                                    @php
+                                                        $totalPaid = App\Models\RealProperty\SaleTenantReceipts::where(
+                                                            'buyer_tenant_id',
+                                                            $Reality->GetBuyerTenant->id,
+                                                        )->sum('receipt_payment_amount');
+                                                        $remainingAmount =
+                                                            $Reality->GetBuyerTenant->net_amount - $totalPaid;
+                                                    @endphp
                                                     <button wire:click="GetRealProperty({{ $Reality->id }})"
                                                         class="p-0 px-1 btn btn-text-primary waves-effect"
-                                                        data-bs-toggle="modal" data-bs-target="#saleRealPropertyModal">
-                                                        <i class="mdi mdi-text-box-outline fs-3"></i>
-                                                    </button>
-                                                @endif
-                                            @endcan
-                                            @can('real-property-rent')
-                                                @if ($buyer_tenant->buyer_tenant_type == 'buyer' || $buyer_tenant->buyer_tenant_type == 'tenant')
-                                                    <button wire:click="GetRealProperty({{ $Reality->id }})"
-                                                        class="p-0 px-1 btn btn-text-primary waves-effect {{ $Reality->active ? 'disabled' : '' }}"
-                                                        data-bs-toggle="modal" data-bs-target="#saleTenantReceiptModal">
+                                                        data-bs-toggle="modal" data-bs-target="#saleTenantReceiptModal"
+                                                        {{ $remainingAmount <= 0 ? 'disabled' : '' }}
+                                                        title="{{ $remainingAmount <= 0 ? 'تم تسديد المبلغ بالكامل' : '' }}">
                                                         <i class="mdi mdi-file-document-plus-outline fs-3"></i>
                                                     </button>
                                                 @endif
                                             @endcan
-
-                                            <a href="{{ route('ShowBuyerTenant', [$Reality->property_number, $buyer_tenant->id]) }}"
-                                                class="p-0 px-1 btn btn-text-primary waves-effect">
-                                                <i class="mdi mdi-eye-outline fs-2"></i>
-                                            </a>
-                                            {{-- <button wire:click="GetRealProperty({{ $Reality->id }})"
-                                                class="p-0 px-1 btn btn-text-success waves-effect"
-                                                data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
-                                                <i class="mdi mdi-text-box-edit-outline fs-3"></i>
-                                            </button>
-                                            <button wire:click="GetRealProperty({{ $Reality->id }})"
-                                                class="p-0 px-1 btn btn-text-danger waves-effect"
-                                                data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
-                                                <i class="mdi mdi-delete-outline fs-3"></i>
-                                            </button> --}}
-                                            {{-- <button wire:click="GetRealProperty({{ $Reality->id }})"
-                                                class="p-0 px-1 btn btn-text-success waves-effect"
-                                                data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
-                                                <i class="mdi mdi-account-edit-outline fs-2"></i>
-                                            </button>
-                                            <button wire:click="GetRealProperty({{ $Reality->id }})"
-                                                class="p-0 px-1 btn btn-text-danger waves-effect"
-                                                data-bs-toggle="modal" data-bs-target="#addBuyerTenantModal">
-                                                <i class="mdi mdi-account-remove-outline fs-2"></i>
-                                            </button> --}}
+                                            @can('upload_property-files')
+                                                <button wire:click="openUploadFiles({{ $Reality->id }})"
+                                                    class="p-0 px-1 btn btn-text-primary waves-effect" data-bs-toggle="modal"
+                                                    data-bs-target="#uploadFilesModal">
+                                                    <i class="mdi mdi-paperclip-plus fs-3"></i>
+                                                </button>
+                                            @endcan
+                                            @can('show-buyer-tenant')
+                                                <a href="{{ route('ShowBuyerTenant', [$Reality->property_number, $buyer_tenant->id]) }}"
+                                                    class="p-0 px-1 btn btn-text-primary waves-effect">
+                                                    <i class="mdi mdi-eye-outline fs-2"></i>
+                                                </a>
+                                            @endcan
                                         @endif
                                     </div>
                                 </td>
@@ -141,11 +170,10 @@
 
                 <!-- Modal -->
                 @include('livewire.real-properties.modals.add-buyer-tenant')
+                @include('livewire.real-properties.modals.edit-buyer-tenant')
                 @include('livewire.real-properties.modals.sale-tenant-receipt')
-                @include('livewire.real-properties.modals.sale-real-property')
                 @include('livewire.real-properties.modals.tenant-real-property')
-                {{-- @include('livewire.realities.modals.edit-realitie')
-                @include('livewire.realities.modals.remove-realitie') --}}
+                @include('livewire.real-properties.modals.upload-files')
                 <!-- Modal -->
             </div>
         @endcan

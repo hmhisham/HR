@@ -55,15 +55,6 @@
                                                 <span class="mdi mdi-eye-outline fs-3"></span>
                                             </a>
                                         @endcan
-                                        {{-- <strong style="margin: 0 10px;">|</strong>
-                                        @can('real-property-create')
-                                            <button
-                                                wire:click="GetPlot({{ $Plot->id }}, '{{ $Plot->GetProvinces->province_number }}', '{{ $Plot->GetProvinces->province_name }}', '{{ $Plot->GetProvinces->section_id }}','{{ $Plot->plot_number }}')"
-                                                class="p-0 px-1 btn btn-text-primary waves-effect"
-                                                data-bs-toggle="modal" data-bs-target="#addRealitieToPlotModal">
-                                                <span class="mdi mdi-text-box-plus-outline fs-3"></span>
-                                            </button>
-                                        @endcan --}}
                                     </div>
                                 </td>
                             </tr>
@@ -74,7 +65,6 @@
             <div class="mt-2 d-flex justify-content-center">
                 {{ $links->onEachSide(1)->links() }}
             </div>
-            {{-- @include('livewire.realities.modals.add-realitie-plot') --}}
         @endcan
     </div>
 </div>

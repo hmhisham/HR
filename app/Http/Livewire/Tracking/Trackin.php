@@ -43,7 +43,7 @@ class Trackin extends Component
                 $query->where('details', 'LIKE', $detailsSearch);
             })
 
-            ->orderBy('id', 'ASC')
+            ->orderBy('operation_time', 'DESC')
             ->paginate(10);
         $links = $Tracking;
         $this->Tracking = collect($Tracking->items());

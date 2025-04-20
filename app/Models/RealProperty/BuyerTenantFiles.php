@@ -5,16 +5,15 @@ namespace App\Models\RealProperty;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BuyerTenant extends Model
+class BuyerTenantFiles extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-    protected $table = "buyer_tenant";
+    protected $table = 'buyer_tenant_files';
 
-    public function files()
+    public function buyerTenant()
     {
-        return $this->hasMany(BuyerTenantFiles::class);
+        return $this->belongsTo(BuyerTenant::class);
     }
-
 }

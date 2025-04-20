@@ -24,7 +24,9 @@
             <div class="alert alert-outline-secondary pb-0 border-2" role="alert">
                 <h5 class="d-flex justify-content-around">
                     <div>
-                        <strong>أسم {{ $BuyerTenant ? $BuyerTenant->buyer_tenant_type == 'buyer' ? 'المشتري':'المستأجر' : '' }} : </strong>
+                        <strong>أسم
+                            {{ $BuyerTenant ? ($BuyerTenant->buyer_tenant_type == 'مشتري' ? 'المشتري' : 'المستأجر') : '' }}
+                            : </strong>
                         <span class="text-danger">
                             {{ $BuyerTenant->buyer_tenant_name ?? '' }}
                         </span>
@@ -33,6 +35,29 @@
                         <strong>رقم الحاسبة : </strong>
                         <span class="text-danger">
                             {{ $BuyerTenant->buyer_calculator_number ?? '' }}
+                        </span>
+                    </div>
+                </h5>
+            </div>
+
+            <div class="alert alert-outline-primary pb-0 border-2" role="alert">
+                <h5 class="d-flex justify-content-around">
+                    <div>
+                        <strong>المبلغ الصافي : </strong>
+                        <span class="text-danger">
+                            {{ number_format($BuyerTenant->net_amount ?? 0) }}
+                        </span>
+                    </div>
+                    <div>
+                        <strong>المبلغ المسدد : </strong>
+                        <span class="text-danger">
+                            {{ number_format($totalPaid ?? 0) }}
+                        </span>
+                    </div>
+                    <div>
+                        <strong>المبلغ المتبقي : </strong>
+                        <span class="text-danger">
+                            {{ number_format($remainingAmount ?? 0) }}
                         </span>
                     </div>
                 </h5>
@@ -46,50 +71,34 @@
                             <th>#</th>
                             <th class="text-center">رقم الوصل</th>
                             <th class="text-center">تاريخ الوصل</th>
-                            <th class="text-center">أسم المسدد</th>
                             <th class="text-center">مبلغ التسديد</th>
                             <th class="text-center">من تاريخ</th>
                             <th class="text-center">الى تاريخ</th>
-                            <th class="text-center">الملاحظات</th>
                             <th class="text-center">الاجراءات</th>
                         </tr>
                         <tr>
                             <th>#</th>
                             <th>
-                                <input type="text" wire:model.debounce.300ms="search.property_number"
-                                    class="form-control" placeholder="بحث برقم السند العقاري .." wire:key="search_property_number">
+                                <input type="text" wire:model.debounce.300ms="search.receipt_number"
+                                    class="form-control" placeholder="بحث برقم الوصل .." onkeypress="return onlyNumberKey(event)"
+                                    wire:key="search_receipt_number">
                             </th>
                             <th>
-                                <input type="text" wire:model.debounce.300ms="search.count" class="form-control"
-                                    placeholder="بحث بالعدد .." wire:key="search_count">
+                                <input type="text" wire:model.debounce.300ms="search.receipt_date" class="form-control"
+                                    placeholder="بحث بتاريخ الوصل .." wire:key="search_receipt_date">
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.mortgage_notes" class="form-select" wire:key="search_mortgage_notes">
-                                    <option value="">اختر</option>
-                                    <option value="رفع الحجز">رفع الحجز</option>
-                                    <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف بالعقار الا بموافقة
-                                        الموانئ</option>
-                                </select>
+                                <input type="text" wire:model.debounce.300ms="search.receipt_payment_amount" class="form-control"
+                                    placeholder="بحث بمبلغ التسديد .." onkeypress="return onlyNumberKey(event)" wire:key="search_receipt_payment_amount">
                             </th>
                             <th>
-                                <input type="text" wire:model.debounce.300ms="search.volume_number" class="form-control"
-                                    placeholder="بحث بالجلد .." wire:key="search_volume_number">
+                                <input type="text" wire:model.debounce.300ms="search.receipt_from_date" class="form-control"
+                                    placeholder="بحث من تاريخ .." wire:key="search_receipt_from_date">
                             </th>
                             <th>
-                                <select wire:model.debounce.300ms="search.visibility" class="form-select" wire:key="search_visibility">
-                                    <option value="">اختر</option>
-                                    <option value="1">نعم</option>
-                                    <option value="0">لا</option>
-                                </select>
+                                <input type="text" wire:model.debounce.300ms="search.receipt_to_date" class="form-control"
+                                    placeholder="بحث الى تاريخ .." wire:key="search_receipt_to_date">
                             </th>
-                            <th>
-                                <select wire:model.debounce.300ms="search.visibility" class="form-select" wire:key="search_visibility">
-                                    <option value="">اختر</option>
-                                    <option value="1">نعم</option>
-                                    <option value="0">لا</option>
-                                </select>
-                            </th>
-                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -99,26 +108,25 @@
                                 <td>{{ $links->firstItem() + $index }}</td>
                                 <td class="text-center">{{ $SaleTenantReceipt->receipt_number }}</td>
                                 <td class="text-center text-nowrap">{{ $SaleTenantReceipt->receipt_date }}</td>
-                                <td class="text-center">{{ $SaleTenantReceipt->receipt_payer_name }}</td>
-                                <td class="text-center ls-1">{{ number_format($SaleTenantReceipt->receipt_payment_amount) }}</td>
+                                <td class="text-center ls-1">
+                                    {{ number_format($SaleTenantReceipt->receipt_payment_amount) }}</td>
                                 <td class="text-center text-nowrap">{{ $SaleTenantReceipt->receipt_from_date }}</td>
                                 <td class="text-center text-nowrap">{{ $SaleTenantReceipt->receipt_to_date }}</td>
-                                <td class="text-center">{{ $SaleTenantReceipt->receipt_notes }}</td>
                                 <td class="text-end">
                                     <div class="btn-group" role="group" aria-label="First group">
                                         @can('tenant-receipt-edit')
                                             <button wire:click="GetSaleTenantReceipt({{ $SaleTenantReceipt->id }})"
-                                                class="p-0 px-1 btn btn-text-success waves-effect"
-                                                data-bs-toggle="modal" data-bs-target="#editSaleTenantReceiptModal">
+                                                class="p-0 px-1 btn btn-text-success waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#editSaleTenantReceiptModal">
                                                 <i class="mdi mdi-text-box-edit-outline fs-3"></i>
                                             </button>
                                         @endcan
                                         @can('tenant-receipt-delete')
-                                        <button wire:click="GetSaleTenantReceipt({{ $SaleTenantReceipt->id }})"
-                                            class="p-0 px-1 btn btn-text-danger waves-effect"
-                                            data-bs-toggle="modal" data-bs-target="#removeSaleTenantReceiptModal">
-                                            <i class="mdi mdi-delete-outline fs-3"></i>
-                                        </button>
+                                            <button wire:click="GetSaleTenantReceipt({{ $SaleTenantReceipt->id }})"
+                                                class="p-0 px-1 btn btn-text-danger waves-effect" data-bs-toggle="modal"
+                                                data-bs-target="#removeSaleTenantReceiptModal">
+                                                <i class="mdi mdi-delete-outline fs-3"></i>
+                                            </button>
                                         @endcan
                                     </div>
                                 </td>
@@ -132,6 +140,7 @@
 
                 <!-- Modal -->
                 @include('livewire.real-properties.modals.edit-sale-tenant-receipt')
+                @include('livewire.real-properties.modals.remove-sale-tenant-receipt')
                 <!-- Modal -->
             </div>
         @endcan
