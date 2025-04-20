@@ -372,17 +372,17 @@
                                             style="height: 150px" alt="">
                                     </div>
                                     <div wire:loading.remove wire:target='property_deed_image' class="mt-3">
-                                        @if ($filePreview)
+                                        @if ($filePreviewDeep)
                                             @if ($property_deed_image && $property_deed_image->getClientOriginalExtension() == strtolower('pdf'))
-                                                <embed src="{{ $filePreview }}" type="application/pdf"
+                                                <embed src="{{ $filePreviewDeep }}" type="application/pdf"
                                                     width="100%" height="300px" />
                                             @elseif ($property_deed_image)
-                                                <img src="{{ $filePreview }}" alt="Selected Image"
+                                                <img src="{{ $filePreviewDeep }}" alt="Selected Image"
                                                     class="img-fluid" width="100%" height="300px" />
                                             @endif
                                         @endif
 
-                                        @if ($previewRealitieDeedImage && !$filePreview)
+                                        @if ($previewRealitieDeedImage && !$filePreviewDeep)
                                             @if (pathinfo($previewRealitieDeedImage, PATHINFO_EXTENSION) == strtolower('pdf'))
                                                 <embed
                                                     src="{{ asset('storage/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $property_number . '/' . $previewRealitieDeedImage) }}"

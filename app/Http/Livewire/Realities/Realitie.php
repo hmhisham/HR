@@ -33,7 +33,7 @@ class Realitie extends Component
     public $Plot, $PlotId;
     public $province_number, $province_name, $plot_number, $section_id;
     public $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $propertycategory_id, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department, $notes;
-    public $filePreview, $property_deed_image,     $province_id, $plot_id, $bond_type;
+    public $filePreviewDeep, $property_deed_image, $province_id, $plot_id, $bond_type;
     public $visibility = false;
     public $search = ['province_number' => '', 'province_name' => '', 'plot_number' => '',];
 
@@ -174,7 +174,7 @@ class Realitie extends Component
         $this->dispatchBrowserEvent('addRealitieToPlotModal');
     }
 
-    public function updatedRealitieImage()
+    public function updatedPropertyDeedImage()
     {
         $this->validate([
             'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
@@ -183,9 +183,17 @@ class Realitie extends Component
             'property_deed_image.max' => 'يجب ألا يزيد حجم ملف القطعة عن 1024 كيلوبايت.',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
-        $this->filePreview = $this->property_deed_image->temporaryUrl();
-    }
 
+        if ($this->property_deed_image) {
+            if ($this->property_deed_image->getClientOriginalExtension() == 'pdf') {
+                $tempPath = 'temp/' . uniqid() . '.pdf';
+                $this->property_deed_image->storeAs('public/' . $tempPath);
+                $this->filePreviewDeep = asset('storage/' . $tempPath);
+            } else {
+                $this->filePreviewDeep = $this->property_deed_image->temporaryUrl();
+            }
+        }
+    }
 
     public function store()
     {
@@ -197,7 +205,7 @@ class Realitie extends Component
                     return $query->where('plot_id', $this->PlotId);
                 }),
             ],
-            /*  'area_in_meters' => 'required',
+            'area_in_meters' => 'required',
             'area_in_olok' => 'required',
             'area_in_donum' => 'required',
             'count' => 'required',
@@ -211,7 +219,7 @@ class Realitie extends Component
             'mortgage_notes' => 'required',
             'registered_office' => 'required',
             'specialized_department' => 'required',
-            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024', */
+            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:1024',
         ], [
             'property_number.required' => 'حقل رقم العقار مطلوب',
             'property_number.unique' => 'رقم السند موجود بالفعل في هذه القطعة',
@@ -273,7 +281,7 @@ class Realitie extends Component
         // ==================================
 
 
-        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility', 'filePreview');
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'notes', 'visibility', 'filePreviewDeep');
         $this->mount();
 
         $this->dispatchBrowserEvent('success', [

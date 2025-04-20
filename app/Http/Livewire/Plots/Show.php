@@ -112,19 +112,36 @@ class Show extends Component
             'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 5120 كيلوبايت.',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
-        $this->filePreviewDeep = $this->property_deed_image->temporaryUrl();
+
+        if ($this->property_deed_image) {
+            if ($this->property_deed_image->getClientOriginalExtension() == 'pdf') {
+                $tempPath = 'temp/' . uniqid() . '.pdf';
+                $this->property_deed_image->storeAs('public/' . $tempPath);
+                $this->filePreviewDeep = asset('storage/' . $tempPath);
+            } else {
+                $this->filePreviewDeep = $this->property_deed_image->temporaryUrl();
+            }
+        }
     }
 
     public function updatedPropertyMapImage()
     {
         $this->validate([
-            'property_deed_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120',
+            'property_map_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120',
         ], [
-            //'property_map_image.required' => 'الملف مطلوب',
             'property_map_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 30720 كيلوبايت.',
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
-        $this->filePreviewMap = $this->property_map_image->temporaryUrl();
+
+        if ($this->property_map_image) {
+            if ($this->property_map_image->getClientOriginalExtension() == 'pdf') {
+                $tempPath = 'temp/' . uniqid() . '.pdf';
+                $this->property_map_image->storeAs('public/' . $tempPath);
+                $this->filePreviewMap = asset('storage/' . $tempPath);
+            } else {
+                $this->filePreviewMap = $this->property_map_image->temporaryUrl();
+            }
+        }
     }
 
     //تحديث السجلات المحددة

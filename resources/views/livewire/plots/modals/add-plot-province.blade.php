@@ -112,12 +112,19 @@
                                             style="height: 150px" alt="">
                                     </div>
                                     <div wire:loading.remove wire:target='property_deed_image' class="mt-3">
-                                        @if ($property_deed_image && $property_deed_image->getMimeType() == 'application/pdf')
-                                            <embed src="{{ $property_deed_image->temporaryUrl() }}"
-                                                type="application/pdf" width="100%" height="300px" />
-                                        @elseif ($property_deed_image && Str::startsWith($property_deed_image->getMimeType(), 'image/'))
-                                            <img src="{{ $property_deed_image->temporaryUrl() }}" alt="Selected Image"
-                                                class="img-fluid" width="100%" height="300px" />
+                                        @if ($filePreviewDeep)
+                                            @if ($property_deed_image && $property_deed_image->getClientOriginalExtension() == 'pdf')
+                                                <embed src="{{ $filePreviewDeep }}"
+                                                    type="application/pdf"
+                                                    width="100%"
+                                                    height="300px" />
+                                            @else
+                                                <img src="{{ $filePreviewDeep }}"
+                                                    alt="Selected Image"
+                                                    class="img-fluid"
+                                                    width="100%"
+                                                    height="300px" />
+                                            @endif
                                         @endif
                                     </div>
                                 </div>
@@ -139,12 +146,19 @@
                                             style="height: 150px" alt="">
                                     </div>
                                     <div wire:loading.remove wire:target='property_map_image' class="mt-3">
-                                        @if ($property_map_image && $property_map_image->getMimeType() == 'application/pdf')
-                                            <embed src="{{ $property_map_image->temporaryUrl() }}"
-                                                type="application/pdf" width="100%" height="300px" />
-                                        @elseif ($property_map_image && Str::startsWith($property_map_image->getMimeType(), 'image/'))
-                                            <img src="{{ $property_map_image->temporaryUrl() }}" alt="Selected Image"
-                                                class="img-fluid" width="100%" height="300px" />
+                                        @if ($filePreviewMap)
+                                            @if ($property_map_image && $property_map_image->getClientOriginalExtension() == 'pdf')
+                                                <embed src="{{ $filePreviewMap }}"
+                                                    type="application/pdf"
+                                                    width="100%"
+                                                    height="300px" />
+                                            @else
+                                                <img src="{{ $filePreviewMap }}"
+                                                    alt="Selected Image"
+                                                    class="img-fluid"
+                                                    width="100%"
+                                                    height="300px" />
+                                            @endif
                                         @endif
                                     </div>
                                 </div>

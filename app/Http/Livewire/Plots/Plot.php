@@ -93,9 +93,9 @@ class Plot extends Component
     }
 
     public function initMap()
-{
-    $this->dispatchBrowserEvent('init-map');
-}
+    {
+        $this->dispatchBrowserEvent('init-map');
+    }
 
     public function GetProvince($ProvinceId, $openModal = false)
     {
@@ -130,20 +130,36 @@ class Plot extends Component
             'property_deed_image.required' => 'الملف مطلوب',
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
-        $this->filePreviewDeep = $this->property_deed_image->temporaryUrl();
+
+        if ($this->property_deed_image) {
+            if ($this->property_deed_image->getClientOriginalExtension() == 'pdf') {
+                $tempPath = 'temp/' . uniqid() . '.pdf';
+                $this->property_deed_image->storeAs('public/' . $tempPath);
+                $this->filePreviewDeep = asset('storage/' . $tempPath);
+            } else {
+                $this->filePreviewDeep = $this->property_deed_image->temporaryUrl();
+            }
+        }
     }
 
     public function updatedPropertyMapImage()
     {
         $this->validate([
-            'property_deed_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf',
+            'property_map_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf',
         ], [
-            //'property_map_image.required' => 'الملف مطلوب',
             'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
-        $this->filePreviewMap = $this->property_map_image->temporaryUrl();
-    }
 
+        if ($this->property_map_image) {
+            if ($this->property_map_image->getClientOriginalExtension() == 'pdf') {
+                $tempPath = 'temp/' . uniqid() . '.pdf';
+                $this->property_map_image->storeAs('public/' . $tempPath);
+                $this->filePreviewMap = asset('storage/' . $tempPath);
+            } else {
+                $this->filePreviewMap = $this->property_map_image->temporaryUrl();
+            }
+        }
+    }
 
     public function store()
     {

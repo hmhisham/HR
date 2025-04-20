@@ -36,7 +36,7 @@ class Show extends Component
     public $RealitieSearch, $Realitie, $RealitieId;
     public $province_number, $province_name, $plot_number;
     public $province_id, $plot_id, $property_number, $area_in_meters, $area_in_olok, $area_in_donum, $count, $date, $volume_number, $propertycategory_id, $ownership, $property_type, $governorate, $district, $mortgage_notes, $registered_office, $specialized_department,  $notes;
-    public $filePreview, $property_deed_image, $previewRealitieDeedImage, $bond_type;
+    public $filePreviewDeep, $property_deed_image, $previewRealitieDeedImage, $bond_type;
     public $visibility = false;
     public $selectedRealities = [];
     public $selectedBranch;
@@ -206,8 +206,15 @@ class Show extends Component
             'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
-        $this->filePreview = $this->property_deed_image->temporaryUrl();
-        $this->previewRealitieDeedImage = null;
+        if ($this->property_deed_image) {
+            if ($this->property_deed_image->getClientOriginalExtension() == 'pdf') {
+                $tempPath = 'temp/' . uniqid() . '.pdf';
+                $this->property_deed_image->storeAs('public/' . $tempPath);
+                $this->filePreviewDeep = asset('storage/' . $tempPath);
+            } else {
+                $this->filePreviewDeep = $this->property_deed_image->temporaryUrl();
+            }
+        }
     }
 
     //تحديث السجلات المحددة
@@ -380,7 +387,7 @@ class Show extends Component
     public function GetRealitie($RealitieId)
     {
 
-        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'filePreview', 'notes', 'visibility');
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'filePreviewDeep', 'notes', 'visibility');
         $this->resetValidation();
         $this->dispatchBrowserEvent('editRealitieModalShow');
 
@@ -465,7 +472,7 @@ class Show extends Component
             'mortgage_notes' => 'required:realities',
             'registered_office' => 'required:realities',
             'specialized_department' => 'required:realities',
-            'property_deed_image' => $this->Realitie->property_deed_image && !$this->filePreview
+            'property_deed_image' => $this->Realitie->property_deed_image && !$this->filePreviewDeep
                 ? 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120'
                 : 'required|file|mimes:jpeg,png,jpg,pdf|max:5120',
         ], [
@@ -493,7 +500,7 @@ class Show extends Component
         $plot = Plots::find($this->Plotid);
         $province_id = $plot->province_id;
 
-        if ($this->filePreview) {
+        if ($this->filePreviewDeep) {
             Storage::delete('public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->Realitie->property_number . '/' . $this->Realitie->property_deed_image);
             $this->property_deed_image->store('public/Realities/' . $this->province_number . '/' . $this->plot_number . '/' . $this->property_number);
             $fileDeepImage = $this->property_deed_image->hashName();
@@ -541,7 +548,7 @@ class Show extends Component
             'details' => "رقم المقاطعة: " . $this->province_id . ' - '  . " \nرقم القطعة: " . $this->plot_id . ' - '  . " \nرقم العقار: " . $this->property_number . ' - '  . " \nالمساحة بالمتر: " . $this->area_in_meters . ' - '  . " \nالمساحة بالأولك: " . $this->area_in_olok . ' - '  . " \nالمساحة بالدونم: " . $this->area_in_donum . ' - '  . " \nالعدد: " . $this->count . ' - '  . " \nالتاريخ: " . $this->date . ' - '  . " \nرقم الجلد: " . $this->volume_number . ' - '  . " \nنوع السند: " . $this->bond_type . ' - '  . " \nالعائدية: " . $this->ownership . ' - '  . " \nجنس العقار: " . $this->property_type . ' - '  . " \nالمحافظة: " . $this->governorate . ' - '  . " \nالقضاء: " . $this->district . ' - '  . " \nإشارات التأمينات: " . $this->mortgage_notes . ' - '  . " \nالدائرة المسجل لديها: " . $this->registered_office . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nملاحظات: " . $this->notes . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
         ]);
         // ==================================
-        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'filePreview', 'notes', 'visibility');
+        $this->reset('property_number', 'area_in_meters', 'area_in_olok', 'area_in_donum', 'count', 'date', 'volume_number', 'propertycategory_id', 'ownership', 'property_type', 'governorate', 'district', 'mortgage_notes', 'registered_office', 'specialized_department', 'property_deed_image', 'filePreviewDeep', 'notes', 'visibility');
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
