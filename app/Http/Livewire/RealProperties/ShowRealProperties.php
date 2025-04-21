@@ -695,7 +695,7 @@ class ShowRealProperties extends Component
         }
 
         $Validation['buyer_tenant_id'] = $this->BuyerTenant->id;
-        $Validation['property_number'] = $propertyNumber; // Use property_number from realities
+        $Validation['property_number'] = $reality->id;
         $Validation['receipt_notes'] = $this->receipt_notes;
         $Validation['receipt_type'] = $this->BuyerTenant->buyer_tenant_type === 'مشتري' ? 'بيع' : 'ايجار';
         $Validation['receipt_attach'] = $fileName;

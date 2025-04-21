@@ -90,6 +90,8 @@ class ShowBuyerTenant extends Component
             ->orderBy('receipt_date', 'ASC')
             ->paginate(10);
 
+         //dd($this->RealPropertyNumber,$this->BuyerTenantid);
+
         $links = $SaleTenantReceipts;
         $this->SaleTenantReceipts = collect($SaleTenantReceipts->items());
 
