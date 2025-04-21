@@ -26,6 +26,25 @@
                     </h5>
                 </div>
 
+                <div class="alert alert-outline-secondary pb-0 border-2" role="alert">
+                    <h5 class="d-flex justify-content-around">
+                        <div>
+                            <strong>أسم
+                                {{ $BuyerTenant ? ($BuyerTenant->buyer_tenant_type == 'مشتري' ? 'المشتري' : 'المستأجر') : '' }}
+                                : </strong>
+                            <span class="text-danger">
+                                {{ $BuyerTenant->buyer_tenant_name ?? '' }}
+                            </span>
+                        </div>
+                        <div>
+                            <strong>رقم الحاسبة : </strong>
+                            <span class="text-danger">
+                                {{ $BuyerTenant->buyer_calculator_number ?? '' }}
+                            </span>
+                        </div>
+                    </h5>
+                </div>
+
                 <hr class="mt-n2">
 
                 <h4 wire:loading wire:target="GetRealProperty"

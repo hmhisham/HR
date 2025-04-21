@@ -31,13 +31,13 @@
                         <div>
                             <strong>أسم المشتري : </strong>
                             <span class="text-danger">
-                                {{ $BuyerTenant->buyer_tenant_name ?? '' }}
+                                {{ $buyer_tenant_name ?? '' }}
                             </span>
                         </div>
                         <div>
                             <strong>رقم الحاسبة : </strong>
                             <span class="text-danger">
-                                {{ $BuyerTenant->buyer_calculator_number ?? '' }}
+                                {{ $buyer_calculator_number ?? '' }}
                             </span>
                         </div>
                     </h5>

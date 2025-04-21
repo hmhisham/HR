@@ -740,7 +740,7 @@ class ShowRealProperties extends Component
         ]);
 
         $this->Realitie = Realities::findOrFail($realityId);
-        $this->property_number = $realityId; // Changed to use id
+        $this->property_number = $realityId;
 
         $buyerTenant = BuyerTenant::where('property_number', $this->property_number)->first();
         if (!$buyerTenant) {
@@ -748,13 +748,15 @@ class ShowRealProperties extends Component
             return;
         }
 
+        // تحديث بيانات المشتري
+        $this->buyer_tenant_name = $buyerTenant->buyer_tenant_name;
+        $this->buyer_calculator_number = $buyerTenant->buyer_calculator_number;
+
         $filesRecord = BuyerTenantFiles::where('buyer_tenant_id', $buyerTenant->id)->first();
 
-        // تعيين BuyerTenant إما من السجل الموجود أو إنشاء سجل جديد
         if (!$filesRecord) {
             $this->BuyerTenant = $buyerTenant;
         } else {
-            $this->BuyerTenant = $buyerTenant;
             $filesRecord->buyerTenant = $buyerTenant;
             $this->BuyerTenant = $filesRecord;
         }
