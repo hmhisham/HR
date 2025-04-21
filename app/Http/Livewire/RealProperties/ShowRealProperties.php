@@ -147,6 +147,7 @@ class ShowRealProperties extends Component
         return view('livewire.real-properties.show-real-properties', [
             'links' => $links,
             'Realities' => $Realities,
+            'Realitie' => $this->Realitie,
         ]);
     }
 

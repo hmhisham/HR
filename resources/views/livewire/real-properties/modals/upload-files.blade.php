@@ -69,7 +69,7 @@
                                         <div class="form-floating form-floating-outline mb-2">
                                             <div class="d-flex align-items-center mb-2">
                                                 @if ($BuyerTenant->{$field} ?? false)
-                                                    <a href="{{ asset('storage/Realities/' . $province_number . '/' . $plot_number . '/' . $property_number . '/' . $BuyerTenant->{$field}) }}"
+                                                    <a href="{{ asset('storage/Realities/' . $province_number . '/' . $plot_number . '/' . $Realitie->property_number . '/' . $BuyerTenant->{$field}) }}"
                                                         target="_blank" class="btn btn-sm btn-outline-primary me-2">
                                                         <i class="mdi mdi-file-document"></i> عرض الملف الحالي
                                                     </a>
