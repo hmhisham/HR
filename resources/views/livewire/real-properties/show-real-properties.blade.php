@@ -172,7 +172,6 @@
                 @include('livewire.real-properties.modals.add-buyer-tenant')
                 @include('livewire.real-properties.modals.edit-buyer-tenant')
                 @include('livewire.real-properties.modals.sale-tenant-receipt')
-                @include('livewire.real-properties.modals.tenant-real-property')
                 @include('livewire.real-properties.modals.upload-files')
                 <!-- Modal -->
             </div>

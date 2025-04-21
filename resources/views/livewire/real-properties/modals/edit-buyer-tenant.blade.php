@@ -53,6 +53,19 @@
                                 </div>
                             </div>
                             <div class="col-md mb-md-0 mb-2">
+                                <div class="form-check custom-option custom-option-icon disabled">
+                                    <label class="form-check-label custom-option-content" for="customRadioIcon2">
+                                        <span class="custom-option-body">
+                                            <span class="custom-option-title">مستأجر</span>
+                                            <small>سيتم تحديد اسم مواطن</small><small class="text-danger">.. قريباً</small>
+                                        </span>
+                                        <input wire:click='chooseBuyerTenant("tenant")' name="customRadioIcon-01"
+                                            class="form-check-input" type="radio" value="tenant" id="customRadioIcon2"
+                                            disabled>
+                                    </label>
+                                </div>
+                            </div>
+                            {{-- <div class="col-md mb-md-0 mb-2">
                                 <div
                                     class="form-check custom-option custom-option-icon {{ $chooseBuyerTenant == 'tenant' ? 'checked' : '' }}">
                                     <label class="form-check-label custom-option-content" for="customRadioIcon2">
@@ -65,7 +78,7 @@
                                             {{ $chooseBuyerTenant == 'tenant' ? 'checked' : '' }}>
                                     </label>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         @if ($buyer_tenant_type)

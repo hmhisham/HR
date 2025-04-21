@@ -53,6 +53,19 @@
                                 </div>
                             </div>
                             <div class="col-md mb-md-0 mb-2">
+                                <div class="form-check custom-option custom-option-icon disabled">
+                                    <label class="form-check-label custom-option-content" for="customRadioIcon2">
+                                        <span class="custom-option-body">
+                                            <span class="custom-option-title">مستأجر</span>
+                                            <small>سيتم تحديد اسم مواطن</small><small class="text-danger">.. قريباً</small>
+                                        </span>
+                                        <input wire:click='chooseBuyerTenant("tenant")' name="customRadioIcon-01"
+                                            class="form-check-input" type="radio" value="tenant" id="customRadioIcon2"
+                                            disabled>
+                                    </label>
+                                </div>
+                            </div>
+                            {{-- <div class="col-md mb-md-0 mb-2">
                                 <div
                                     class="form-check custom-option custom-option-icon {{ $chooseBuyerTenant == 'tenant' ? 'checked' : '' }}">
                                     <label class="form-check-label custom-option-content" for="customRadioIcon2">
@@ -65,7 +78,7 @@
                                             {{ $chooseBuyerTenant == 'tenant' ? 'checked' : '' }}>
                                     </label>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         @if ($chooseBuyerTenant)
@@ -73,7 +86,8 @@
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='buyer_tenant_name' type="text" id="tenantName" onkeypress="return onlyArabicKey(event)"
+                                        <input wire:model.defer='buyer_tenant_name' type="text" id="tenantName"
+                                            onkeypress="return onlyArabicKey(event)"
                                             placeholder="{{ $chooseBuyerTenant == 'buyer' ? 'أسم المشتري' : 'أسم المستأجر' }}"
                                             class="form-control @error('buyer_tenant_name') is-invalid is-filled @enderror" />
                                         <label
@@ -174,8 +188,8 @@
 
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:ignore wire:model='to_date' type="date" id="addto_date" readonly disabled
-                                            placeholder="الى تاريخ"
+                                        <input wire:ignore wire:model='to_date' type="date" id="addto_date"
+                                            readonly disabled placeholder="الى تاريخ"
                                             class="form-control @error('to_date') is-invalid is-filled @enderror"
                                             readonly />
                                         <label for="to_date">الى تاريخ</label>
@@ -315,18 +329,20 @@
 
                                 <div class="col">
                                     <div class="form-floating form-floating-outline">
-                                        @if($chooseBuyerTenant == 'buyer')
+                                        @if ($chooseBuyerTenant == 'buyer')
                                             <select wire:model.defer='real_estate_status' id="real_estate_status"
                                                 class="form-select @error('real_estate_status') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 <option value="رفع الحجز">رفع الحجز</option>
-                                                <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف بالعقار الا بموافقة الموانئ</option>
+                                                <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف
+                                                    بالعقار الا بموافقة الموانئ</option>
                                             </select>
                                         @else
                                             <select wire:model.defer='real_estate_status' id="real_estate_status"
                                                 class="form-select @error('real_estate_status') is-invalid is-filled @enderror">
                                                 <option value=""></option>
-                                                <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف بالعقار الا بموافقة الموانئ</option>
+                                                <option value="عدم التصرف بالعقار الا بموافقة الموانئ">عدم التصرف
+                                                    بالعقار الا بموافقة الموانئ</option>
                                             </select>
                                         @endif
                                         <label for="real_estate_status">حالة العقار</label>
