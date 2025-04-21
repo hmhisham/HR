@@ -2,20 +2,14 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <h4 class="mb-2">
-                <span class="text-muted fw-light">الاسكان<span class="mdi mdi-chevron-left mdi-24px"></span></span>
-                </span>
+                    <a href="{{ route('RealProperty') }}"
+                        class="text-muted fw-light">الاسكان
+                        <span class="mdi mdi-chevron-left mdi-24px"></span></a>
                 عرض بيانات القطعة : <span class="text-danger">{{ $Plot->plot_number }}</span>
                 <strong style="margin: 0 30px;">|</strong>
                 ضمن المقاطعة : <span class="text-danger">{{ $Province->province_number }} -
                     {{ $Province->province_name }}</span>
-                </h5>
-                {{-- <div>
-                @can('real-property-create')
-                    <button wire:click='addRealProperty' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal"
-                        data-bs-target="#addRealPropertyModal">أضــافــة</button>
-                    @include('livewire.real-properties.modals.add-real-property')
-                @endcan
-            </div> --}}
+            </h4>
         </div>
         @can('real-property-list')
             <div class="table-responsive">

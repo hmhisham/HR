@@ -1,6 +1,13 @@
 <div class="mt-n4">
     <div class="card">
         <div class="card-header">
+            <h4 class="mb-2">
+                <a href="{{ route('ShowRealProperty', ['Plotid' => $Realities->plot_id]) }}"
+                    class="text-muted fw-light">الاسكان
+                    <span class="mdi mdi-chevron-left mdi-24px"></span></a>
+                نافذةالوصولات
+            </h4>
+
             <div class="alert alert-outline-secondary pb-0 border-2" role="alert">
                 <h5 class="d-flex justify-content-around">
                     <div>
@@ -79,8 +86,8 @@
                         <tr>
                             <th>#</th>
                             <th>
-                                <input type="text" wire:model.debounce.300ms="search.receipt_number"
-                                    class="form-control" placeholder="بحث برقم الوصل .." onkeypress="return onlyNumberKey(event)"
+                                <input type="text" wire:model.debounce.300ms="search.receipt_number" class="form-control"
+                                    placeholder="بحث برقم الوصل .." onkeypress="return onlyNumberKey(event)"
                                     wire:key="search_receipt_number">
                             </th>
                             <th>
@@ -88,16 +95,17 @@
                                     placeholder="بحث بتاريخ الوصل .." wire:key="search_receipt_date">
                             </th>
                             <th>
-                                <input type="text" wire:model.debounce.300ms="search.receipt_payment_amount" class="form-control"
-                                    placeholder="بحث بمبلغ التسديد .." onkeypress="return onlyNumberKey(event)" wire:key="search_receipt_payment_amount">
+                                <input type="text" wire:model.debounce.300ms="search.receipt_payment_amount"
+                                    class="form-control" placeholder="بحث بمبلغ التسديد .."
+                                    onkeypress="return onlyNumberKey(event)" wire:key="search_receipt_payment_amount">
                             </th>
                             <th>
-                                <input type="text" wire:model.debounce.300ms="search.receipt_from_date" class="form-control"
-                                    placeholder="بحث من تاريخ .." wire:key="search_receipt_from_date">
+                                <input type="text" wire:model.debounce.300ms="search.receipt_from_date"
+                                    class="form-control" placeholder="بحث من تاريخ .." wire:key="search_receipt_from_date">
                             </th>
                             <th>
-                                <input type="text" wire:model.debounce.300ms="search.receipt_to_date" class="form-control"
-                                    placeholder="بحث الى تاريخ .." wire:key="search_receipt_to_date">
+                                <input type="text" wire:model.debounce.300ms="search.receipt_to_date"
+                                    class="form-control" placeholder="بحث الى تاريخ .." wire:key="search_receipt_to_date">
                             </th>
                             <th></th>
                         </tr>
@@ -137,7 +145,6 @@
                 <div class="mt-2 d-flex justify-content-center">
                     {{ $links->onEachSide(1)->links() }}
                 </div>
-
                 <!-- Modal -->
                 @include('livewire.real-properties.modals.edit-sale-tenant-receipt')
                 @include('livewire.real-properties.modals.remove-sale-tenant-receipt')
