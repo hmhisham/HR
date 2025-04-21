@@ -52,8 +52,7 @@ class ShowBuyerTenant extends Component
     public function mount()
     {
         $this->BuyerTenant = BuyerTenant::find($this->BuyerTenantid);
-        $this->Realities = Realities::where('property_number', $this->RealPropertyNumber)->first();
-
+        $this->Realities = Realities::where('id', $this->RealPropertyNumber)->first();
         // Calculate total paid amount
         if ($this->BuyerTenant) {
             $this->calculateTotalAmounts();
@@ -82,19 +81,19 @@ class ShowBuyerTenant extends Component
         $SaleTenantReceipts = SaleTenantReceipts::query()
             ->where('buyer_tenant_id', $this->BuyerTenantid)
             ->where('property_number', $this->RealPropertyNumber)
-            ->when($this->search['receipt_number'], function($query) use ($searchReceiptNumber) {
+            ->when($this->search['receipt_number'], function ($query) use ($searchReceiptNumber) {
                 $query->where('receipt_number', 'LIKE', $searchReceiptNumber);
             })
-            ->when($this->search['receipt_date'], function($query) use ($searchReceiptDate) {
+            ->when($this->search['receipt_date'], function ($query) use ($searchReceiptDate) {
                 $query->where('receipt_date', 'LIKE', $searchReceiptDate);
             })
-            ->when($this->search['receipt_payment_amount'], function($query) use ($searchPaymentAmount) {
+            ->when($this->search['receipt_payment_amount'], function ($query) use ($searchPaymentAmount) {
                 $query->where('receipt_payment_amount', 'LIKE', $searchPaymentAmount);
             })
-            ->when($this->search['receipt_from_date'], function($query) use ($searchFromDate) {
+            ->when($this->search['receipt_from_date'], function ($query) use ($searchFromDate) {
                 $query->where('receipt_from_date', 'LIKE', $searchFromDate);
             })
-            ->when($this->search['receipt_to_date'], function($query) use ($searchToDate) {
+            ->when($this->search['receipt_to_date'], function ($query) use ($searchToDate) {
                 $query->where('receipt_to_date', 'LIKE', $searchToDate);
             })
             ->orderBy('receipt_date', 'ASC')
