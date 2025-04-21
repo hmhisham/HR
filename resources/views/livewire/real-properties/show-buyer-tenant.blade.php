@@ -25,11 +25,9 @@
                         <strong>رقم العقار : </strong>
                         <span class="text-danger">{{ $Realities->property_number ?? '' }}</span>
                     </div>
-                </h5>
-            </div>
 
-            <div class="alert alert-outline-secondary pb-0 border-2" role="alert">
-                <h5 class="d-flex justify-content-around">
+                    <strong class="text-warning" style="margin: 0 10px;">/</strong>
+
                     <div>
                         <strong>أسم
                             {{ $BuyerTenant ? ($BuyerTenant->buyer_tenant_type == 'مشتري' ? 'المشتري' : 'المستأجر') : '' }}
@@ -45,9 +43,9 @@
                         </span>
                     </div>
                 </h5>
-            </div>
 
-            <div class="alert alert-outline-primary pb-0 border-2" role="alert">
+                <hr>
+                
                 <h5 class="d-flex justify-content-around">
                     <div>
                         <strong>المبلغ الصافي : </strong>

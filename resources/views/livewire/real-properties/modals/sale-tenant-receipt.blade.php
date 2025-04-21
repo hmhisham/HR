@@ -2,7 +2,7 @@
 <div wire:ignore.self class="modal fade" id="saleTenantReceiptModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="p-4 modal-content p-md-5">
-            <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
+            {{-- <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button> --}}
             <div class="modal-body p-md-0">
                 <div class="mb-4 text-center mt-n4">
                     <h3 class="pb-1 mb-2">ايصال بيع أو إجار السند العقاري</h3>
@@ -36,9 +36,9 @@
                                         <span class="text-danger">{{ $property_number ?? '' }}</span>
                                     </div>
                                 </h5>
-                            </div>
 
-                            <div class="alert alert-outline-secondary pb-0 border-2" role="alert">
+                                <hr>
+
                                 <h5 class="d-flex justify-content-around">
                                     <div>
                                         <strong>أسم
@@ -56,6 +56,25 @@
                                     </div>
                                 </h5>
                             </div>
+
+                            {{-- <div class="alert alert-outline-secondary pb-0 border-2" role="alert">
+                                <h5 class="d-flex justify-content-around">
+                                    <div>
+                                        <strong>أسم
+                                            {{ $BuyerTenant ? ($BuyerTenant->buyer_tenant_type == 'مشتري' ? 'المشتري' : 'المستأجر') : '' }}
+                                            : </strong>
+                                        <span class="text-danger">
+                                            {{ $BuyerTenant->buyer_tenant_name ?? '' }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <strong>رقم الحاسبة : </strong>
+                                        <span class="text-danger">
+                                            {{ $BuyerTenant->buyer_calculator_number ?? '' }}
+                                        </span>
+                                    </div>
+                                </h5>
+                            </div> --}}
 
                             <div class="alert alert-outline-primary pb-0 border-2" role="alert">
                                 <h5 class="d-flex justify-content-around">
@@ -107,14 +126,14 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>
-                        </div>
 
-                        <div Class="row">
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
-                                    <input wire:model.debounce.300ms='receipt_payment_amount' wire:input="calculateAmounts" type="text"
-                                           class="form-control @error('receipt_payment_amount') is-invalid is-filled @enderror"
-                                           onkeypress="return onlyNumberKey(event)" id="receipt_payment_amount" placeholder="مبلغ التسديد" />
+                                    <input wire:model.debounce.300ms='receipt_payment_amount'
+                                        wire:input="calculateAmounts" type="text"
+                                        class="form-control @error('receipt_payment_amount') is-invalid is-filled @enderror"
+                                        onkeypress="return onlyNumberKey(event)" id="receipt_payment_amount"
+                                        placeholder="مبلغ التسديد" />
                                     <label for="receipt_payment_amount">مبلغ التسديد</label>
                                 </div>
                                 @error('receipt_payment_amount')

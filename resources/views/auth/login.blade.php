@@ -37,7 +37,7 @@
             </span>
             <span class="app-brand-text demo text-heading fw-bold fs-1">
                 <span class="feqrah">GCPI</span>
-                <h5 class="mb-2 fw-semibold text-center">موانئ العراق</h5>
+                <h5 class="mb-2 fw-semibold text-center">موانئ العراق / قسم الاملاك والاراضي</h5>
             </span>
         </a>
         {{-- <a href="{{url('/')}}" class="gap-2 auth-cover-brand d-flex align-items-center">

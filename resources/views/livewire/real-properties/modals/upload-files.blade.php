@@ -2,8 +2,9 @@
     <div class="modal-dialog modal-xl modal-dialog-centered modal-show-files">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">رفع المستندات</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                {{-- <h5 class="modal-title" id="exampleModalLabel">رفع المستندات</h5> --}}
+                <h3 class="pb-1 mb-2">رفع اوليات المعاملة</h3>
+                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
             </div>
             <div class="modal-body">
                 <div class="alert alert-outline-secondary pb-0 border-2" role="alert">
@@ -23,11 +24,13 @@
                             <strong>رقم العقار : </strong>
                             <span class="text-danger">{{ $property_number ?? '' }}</span>
                         </div>
-                    </h5>
-                </div>
 
-                <div class="alert alert-outline-secondary pb-0 border-2" role="alert">
+                    </h5>
+
+                    <hr>
+
                     <h5 class="d-flex justify-content-around">
+
                         <div>
                             <strong>أسم المشتري : </strong>
                             <span class="text-danger">
@@ -43,6 +46,23 @@
                     </h5>
                 </div>
 
+                {{--  <div class="alert alert-outline-secondary pb-0 border-2" role="alert">
+                    <h5 class="d-flex justify-content-around">
+                        <div>
+                            <strong>أسم المشتري : </strong>
+                            <span class="text-danger">
+                                {{ $buyer_tenant_name ?? '' }}
+                            </span>
+                        </div>
+                        <div>
+                            <strong>رقم الحاسبة : </strong>
+                            <span class="text-danger">
+                                {{ $buyer_calculator_number ?? '' }}
+                            </span>
+                        </div>
+                    </h5>
+                </div> --}}
+
                 <form wire:submit.prevent="saveFiles">
                     <div class="row g-3">
                         @php
@@ -50,7 +70,8 @@
                                 'valuation_report_file' => 'محضر التثمين',
                                 'buyer_documents_file' => 'مستمسكات المشتري',
                                 'basra_municipality_statement_file' => 'بيان عدم استفادة البلدية والبلديات البصرة',
-                                'governorate_municipality_statement_file' => 'بيان عدم استفادة البلدية والبلديات مسقط الراس',
+                                'governorate_municipality_statement_file' =>
+                                    'بيان عدم استفادة البلدية والبلديات مسقط الراس',
                                 'written_pledge_file' => 'الإقرار الخطي',
                                 'company_deed_25_file' => 'السند العقاري 25 للشركة',
                                 'official_gazette_file' => 'اعلان الجريدة الرسمية',
