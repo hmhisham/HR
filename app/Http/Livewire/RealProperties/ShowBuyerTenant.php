@@ -59,15 +59,6 @@ class ShowBuyerTenant extends Component
         }
     }
 
-    public function calculateTotalAmounts()
-    {
-        if ($this->BuyerTenant && !is_array($this->BuyerTenant)) {
-            $this->totalPaid = SaleTenantReceipts::where('buyer_tenant_id', $this->BuyerTenant->id)
-                ->sum('receipt_payment_amount');
-            $this->remainingAmount = $this->BuyerTenant->net_amount - $this->totalPaid;
-        }
-    }
-
     public function render()
     {
         $this->calculateTotalAmounts();
@@ -105,6 +96,15 @@ class ShowBuyerTenant extends Component
         return view('livewire.real-properties.show-buyer-tenant', [
             'links' => $links,
         ]);
+    }
+
+    public function calculateTotalAmounts()
+    {
+        if ($this->BuyerTenant && !is_array($this->BuyerTenant)) {
+            $this->totalPaid = SaleTenantReceipts::where('buyer_tenant_id', $this->BuyerTenant->id)
+                ->sum('receipt_payment_amount');
+            $this->remainingAmount = $this->BuyerTenant->net_amount - $this->totalPaid;
+        }
     }
 
     public function SelectReceiptDate($ReceiptDate)
