@@ -429,7 +429,7 @@ class ShowRealProperties extends Component
                 }),
             ],
             'buyer_tenant_phone_number' => 'required',
-            'buyer_tenant_email' => 'required|email',
+            //'buyer_tenant_email' => 'required|email',
             'from_date' => 'required|date',
             'to_date' => 'required|date|after_or_equal:from_date',
             'number_of_months' => 'required|numeric|min:0',
@@ -438,7 +438,7 @@ class ShowRealProperties extends Component
             'net_amount' => 'required|numeric|min:0',
             'monthly_amount' => 'required|numeric|min:0',
             'alert_duration' => 'required|numeric|min:0',
-            'company_department_email' => 'required|email',
+            //'company_department_email' => 'required|email',
             'real_estate_status' => 'required',
         ], [
             'buyer_tenant_name.required' => 'أسم المشتري أو المستأجر مطلوب',
@@ -577,6 +577,19 @@ class ShowRealProperties extends Component
                 })->ignore($this->BuyerTenant->id ?? null),
             ],
             'buyer_tenant_phone_number' => 'required',
+            //'buyer_tenant_email' => 'required|email',
+            'from_date' => 'required|date',
+            'to_date' => 'required|date|after_or_equal:from_date',
+            'number_of_months' => 'required|numeric|min:0',
+            'insurance_amount' => 'required|numeric|min:0',
+            'sale_amount' => 'required|numeric|min:0',
+            'net_amount' => 'required|numeric|min:0',
+            'monthly_amount' => 'required|numeric|min:0',
+            'alert_duration' => 'required|numeric|min:0',
+            //'company_department_email' => 'required|email',
+            'real_estate_status' => 'required',
+        ], [
+            'buyer_tenant_name.required' => 'أسم المشتري أو المستأجر مطلوب',
             'buyer_calculator_number.required' => 'رقم الحاسبة للمشتري مطلوب',
             'buyer_tenant_phone_number.required' => 'رقم هاتف المشتري أو المستأجر مطلوب',
             'buyer_tenant_email.required' => 'البريد الالكتروني للمشتري أو المستأجر مطلوب',
@@ -643,7 +656,7 @@ class ShowRealProperties extends Component
 
         $Validation = $this->validate([
             'receipt_number' => 'required',
-            'receipt_date' => 'required', 
+            'receipt_date' => 'required',
             'receipt_payment_amount' => 'required',
             'receipt_from_date' => 'required',
             'receipt_to_date' => 'required',
@@ -653,7 +666,7 @@ class ShowRealProperties extends Component
             'receipt_date.required' => 'تاريخ الايصال مطلوب',
             'receipt_payment_amount.required' => 'المبلغ المدفوع مطلوب',
             'receipt_from_date.required' => 'الحقل مطلوب',
-            'receipt_to_date.required' => 'الحقل مطلوب', 
+            'receipt_to_date.required' => 'الحقل مطلوب',
             'receipt_attach.required' => 'ملف الايصال مطلوب',
         ]);
 

@@ -34,7 +34,7 @@
                     <div>
                         <strong>رقم الحاسبة : </strong>
                         <span class="text-danger">
-                            {{ $BuyerTenant->buyer_computer_number ?? '' }}
+                            {{ $BuyerTenant->buyer_calculator_number ?? '' }}
                         </span>
                     </div>
                 </h5>
