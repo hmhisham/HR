@@ -205,21 +205,12 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     //العقار الاصغر من القطعة
     Route::GET('Realities', [RealitiesController::class, 'index'])->name('Realities');
     Route::GET('Show-Realitie/{Plotid}', [RealitiesController::class, 'ShowRealitie'])->name('showRealities');
-    //العقار الاصغر من القطعة
+    //شعبة الاسكان
     Route::GET('Real-Property', [RealPropertyController::class, 'index'])->name('RealProperty');
     Route::GET('Show-Real-Property/{Plotid}', [RealPropertyController::class, 'ShowRealProperty'])->name('ShowRealProperty');
-    //Route::GET('show-buyer-tenant/{RealPropertyNumber}/{BuyerTenantid}', [RealPropertyController::class, 'ShowBuyerTenant'])->name('ShowBuyerTenant');
-    // في ملف web.php أو routes.php
     Route::get('show-buyer-tenant/{RealPropertyNumber}/{BuyerTenantId}', [RealPropertyController::class, 'ShowBuyerTenant'])->name('ShowBuyerTenant');
+    //===============الاملاك والاراضي==================
 
-
-
-    //الاملاك
-    //Route::RESOURCE('Property', PropertyController::class);
-    //Route::GET('Property-Show/{id}', [PropertyController::class, 'PropertyShow'])->name('Property-Show');
-    // الدفع في نافذة الاملاك
-    Route::GET('Propertypayd/{id}', [PropertypaydController::class, 'Index'])->name('Propertypayd');
-    Route::GET('Propertypay-Show/{id}', [PropertypaydController::class, 'PropertypayShow'])->name('Propertypay-Show');
 
     //===============المالية==================
 

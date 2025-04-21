@@ -35,14 +35,14 @@
             'route' => 'Realities.index',
         ],
         [
-            'title' => ' عدد الاملاك',
+            'title' => ' الاسكان',
             'value' => $RealPropertyCount,
             'icon' => 'mdi-home', // أيقونة جديدة
             'bgClass' => 'bg-label-dark',
             'hoverColor' => '#e2d9f3',
             'change' => $RealPropertyCount,
             'changeClass' => 'text-dark',
-            'period' => 'عدد الاملاك',
+            'period' => 'الاسكان',
             'route' => 'Real-Property.index',
         ],
     ];
@@ -141,7 +141,7 @@
                         pointHoverBorderColor: 'rgba(255, 99, 132, 1)', // لون حدود النقاط عند التمرير
                     },
                     {
-                        label: 'الأملاك اليومية',
+                        label: 'الاسكان اليومية',
                         data: realPropertyData,
                         backgroundColor: 'rgba(54, 162, 235, 0.2)', // لون الخلفية
                         borderColor: 'rgba(54, 162, 235, 1)', // لون الخط
