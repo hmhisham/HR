@@ -127,7 +127,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
