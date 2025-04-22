@@ -126,7 +126,9 @@
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
                             </div>
-
+                        </div>
+                        
+                        <div class="row">
                             <div class="col mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input wire:model.debounce.300ms='receipt_payment_amount'
@@ -139,6 +141,21 @@
                                 @error('receipt_payment_amount')
                                     <small class='text-danger inputerror'> {{ $message }} </small>
                                 @enderror
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating form-floating-outline">
+                                    <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="payment_period" id="full_payment"
+                                            wire:click="$set('receipt_payment_amount', {{ $remainingAmount }})"
+                                            autocomplete="off">
+                                        <label class="btn btn-outline-primary w-50" for="full_payment">دفع كامل</label>
+
+                                        <input type="radio" class="btn-check" name="payment_period" id="fixed_amount"
+                                            wire:click="$set('receipt_payment_amount', 100000)" autocomplete="off">
+                                        <label class="btn btn-outline-primary w-50" for="fixed_amount">100000</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
