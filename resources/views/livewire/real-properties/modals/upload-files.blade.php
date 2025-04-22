@@ -22,7 +22,7 @@
                         </div>
                         <div>
                             <strong>رقم العقار : </strong>
-                            <span class="text-danger">{{ $property_number ?? '' }}</span>
+                            <span class="text-danger">{{ $Realitie->property_number ?? '' }}</span>
                         </div>
 
                     </h5>

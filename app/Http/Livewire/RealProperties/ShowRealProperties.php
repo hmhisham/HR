@@ -509,10 +509,10 @@ class ShowRealProperties extends Component
         $this->dispatchBrowserEvent('editRealitieModalShow');
 
         $this->Realitie = Realities::find($RealitieId);
-        $this->property_number = $RealitieId; // Changed to use id instead of property_number
+        $this->property_number = $RealitieId;
         $this->mortgage_notes = $this->Realitie->mortgage_notes;
 
-        $this->BuyerTenant = BuyerTenant::where('property_number', $RealitieId)->first(); // Changed to use id
+        $this->BuyerTenant = BuyerTenant::where('property_number', $RealitieId)->first();
         if ($this->BuyerTenant) {
             $this->buyer_tenant_name = $this->BuyerTenant->buyer_tenant_name;
             $this->buyer_calculator_number = $this->BuyerTenant->buyer_calculator_number;
