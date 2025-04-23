@@ -429,7 +429,7 @@ class ShowRealProperties extends Component
                     return $query->where('property_number', $this->property_number);
                 }),
             ],
-            'buyer_tenant_phone_number' => 'required',
+            //'buyer_tenant_phone_number' => 'required',
             //'buyer_tenant_email' => 'required|email',
             'from_date' => 'required|date',
             'to_date' => 'required|date|after_or_equal:from_date',
@@ -577,7 +577,7 @@ class ShowRealProperties extends Component
                     return $query->where('property_number', $this->property_number);
                 })->ignore($this->BuyerTenant->id ?? null),
             ],
-            'buyer_tenant_phone_number' => 'required',
+            //'buyer_tenant_phone_number' => 'required',
             //'buyer_tenant_email' => 'required|email',
             'from_date' => 'required|date',
             'to_date' => 'required|date|after_or_equal:from_date',
