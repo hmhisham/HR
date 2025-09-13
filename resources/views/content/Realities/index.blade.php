@@ -44,6 +44,7 @@
     <script src=" {{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/js/form-basic-inputs.js') }}"></script>
     <script>
+
         $(document).ready(function() {
             function initFlatpickr(selector, eventName) {
                 $(selector).flatpickr({
