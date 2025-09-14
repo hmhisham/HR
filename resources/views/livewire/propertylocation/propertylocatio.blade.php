@@ -1,14 +1,15 @@
 
 
 <div class="mt-n4">
-    <h4 class="mb-1 fw-semiboyld">قائمة \ موقع العقار</h4>
+ 
     <div class="card">
 
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <div>
-                    <input wire:model="PropertylocatioSearch" type="text" class="form-control" placeholder="بحث...">
+                    <h4 class="mb-1 fw-semiboyld">قائمة \ موقع العقار</h4>
+
                 </div>
                 <div>
                     @can('propertylocatio-create')
