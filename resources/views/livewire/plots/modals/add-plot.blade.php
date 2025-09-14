@@ -69,6 +69,7 @@
                             </div>
                         </div>
 
+                        {{-- تم إيقاف حقول رفع الصور
                         <div Class="row">
                             <div class="col mb-3 text-center">
                                 <div class="form-floating form-floating-outline">
@@ -140,6 +141,7 @@
                                 </div>
                             </div>
                         </div>
+                        --}}
 
                         <hr class="my-0">
 

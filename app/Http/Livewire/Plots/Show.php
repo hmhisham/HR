@@ -24,8 +24,9 @@ class Show extends Component
     public $Province;
     public $Plots = [];
     public $branches = [];
-    public $plot_number, $specialized_department, $Plot, $property_deed_image, $property_map_image;
-    public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
+    public $plot_number, $specialized_department, $Plot; //, $property_deed_image, $property_map_image;
+    // تم إيقاف متغيرات الصور
+    // public $filePreviewDeep, $filePreviewMap, $previewPropertyDeedImage, $previewPropertyMapImage;
     public $visibility = false;
     public $selectedPlots = [];
     public $selectedBranch;
@@ -98,11 +99,13 @@ class Show extends Component
 
     public function addPlotModal()
     {
-        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'visibility');
+        $this->reset('plot_number', 'specialized_department', 'visibility'); //, 'property_deed_image', 'property_map_image'
         $this->resetValidation();
         $this->dispatchBrowserEvent('PlotModalShow');
     }
 
+    // تم إيقاف دوال التحقق من صحة الصور
+    /*
     public function updatedPropertyDeedImage()
     {
         $this->validate([
@@ -143,6 +146,7 @@ class Show extends Component
             }
         }
     }
+    */
 
     //تحديث السجلات المحددة
     public function updateBatch()
@@ -207,15 +211,18 @@ class Show extends Component
         $this->plot_number = $this->Plot->plot_number;
         $this->specialized_department = $this->Plot->specialized_department;
         $this->visibility = $this->Plot->visibility;
-        $this->previewPropertyDeedImage = $this->Plot->property_deed_image;
-        $this->previewPropertyMapImage = $this->Plot->property_map_image;
+        // تم إيقاف تحميل الصور
+        // $this->previewPropertyDeedImage = $this->Plot->property_deed_image;
+        // $this->previewPropertyMapImage = $this->Plot->property_map_image;
         // =================================
         Tracking::create([
             'user_id' => Auth::id(),
             'page_name' => 'القطع',
             'operation_type' => 'طباعة',
             'operation_time' => now()->format('Y-m-d H:i:s'),
-            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->previewPropertyDeedImage . ' - '  . " \nصوره الخارطة العقارية: " . $this->previewPropertyMapImage . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department,
+            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department,
+            // تم إزالة الصور من التفاصيل
+            // . ' - '  . " \nصورة السند العقاري: " . $this->previewPropertyDeedImage . ' - '  . " \nصوره الخارطة العقارية: " . $this->previewPropertyMapImage
         ]);
         // ==================================
     }
@@ -231,20 +238,23 @@ class Show extends Component
                 }),
             ],
             'specialized_department' => 'required',
-            'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:5120',
-            'property_map_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120',
+            // تم إيقاف التحقق من صحة الصور
+            // 'property_deed_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:5120',
+            // 'property_map_image' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
             'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
-            'property_deed_image.required' => 'الملف مطلوب',
-            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 5120 كيلوبايت.',
-            'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
-            //'property_map_image.required' => 'الملف مطلوب',
-            'property_map_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 30720 كيلوبايت.',
-            'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
+            // تم إيقاف رسائل الخطأ للصور
+            // 'property_deed_image.required' => 'الملف مطلوب',
+            // 'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 5120 كيلوبايت.',
+            // 'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
+            // 'property_map_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 30720 كيلوبايت.',
+            // 'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
+        // تم إيقاف تخزين الصور
+        /*
         $this->property_deed_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
 
         $propertyMapImageHashName = null;
@@ -252,14 +262,17 @@ class Show extends Component
             $this->property_map_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
             $propertyMapImageHashName = $this->property_map_image->hashName();
         }
+        */
+
         Plots::create([
             'user_id' => Auth::User()->id,
             'province_id' => $this->Province->id,
             'plot_number' => $this->plot_number,
             'specialized_department' => $this->specialized_department,
             'visibility' => $this->visibility,
-            'property_deed_image' => $this->property_deed_image->hashName(),
-            'property_map_image' => $propertyMapImageHashName,
+            // تم إيقاف حفظ الصور
+            // 'property_deed_image' => $this->property_deed_image->hashName(),
+            // 'property_map_image' => $propertyMapImageHashName,
         ]);
 
         // =================================
@@ -268,11 +281,13 @@ class Show extends Component
             'page_name' => 'القطع',
             'operation_type' => 'اضافة',
             'operation_time' => now()->format('Y-m-d H:i:s'),
-            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+            // تم إزالة الصور من التفاصيل
+            // . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image
         ]);
         // ==================================
 
-        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
+        $this->reset('plot_number', 'specialized_department', 'visibility'); //, 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap'
         $this->mount();
 
         $this->dispatchBrowserEvent('success', [
@@ -283,7 +298,7 @@ class Show extends Component
 
     public function GetPlot($Plotid)
     {
-        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'visibility');
+        $this->reset('plot_number', 'specialized_department', 'visibility'); //, 'property_deed_image', 'property_map_image'
         $this->resetValidation();
         $this->dispatchBrowserEvent('editPlotModalShow');
 
@@ -291,8 +306,9 @@ class Show extends Component
         $this->plot_number = $this->Plot->plot_number;
         $this->specialized_department = $this->Plot->specialized_department;
         $this->visibility = $this->Plot->visibility;
-        $this->previewPropertyDeedImage = $this->Plot->property_deed_image;
-        $this->previewPropertyMapImage = $this->Plot->property_map_image;
+        // تم إيقاف تحميل الصور
+        // $this->previewPropertyDeedImage = $this->Plot->property_deed_image;
+        // $this->previewPropertyMapImage = $this->Plot->property_map_image;
     }
 
     public function update()
@@ -306,20 +322,23 @@ class Show extends Component
                 })->ignore($this->Plot->id),
             ],
             'specialized_department' => 'required',
-            'property_deed_image' => $this->filePreviewDeep ? 'required|file|mimes:jpeg,png,jpg,pdf|max:5120' : 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120',
-            'property_map_image' => $this->filePreviewMap ? 'nullable|file|mimes:jpeg,png,jpg,pdf|max:30720' : 'nullable|file|mimes:jpeg,png,jpg,pdf|max:30720',
+            // تم إيقاف التحقق من صحة الصور
+            // 'property_deed_image' => $this->filePreviewDeep ? 'required|file|mimes:jpeg,png,jpg,pdf|max:5120' : 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120',
+            // 'property_map_image' => $this->filePreviewMap ? 'nullable|file|mimes:jpeg,png,jpg,pdf|max:30720' : 'nullable|file|mimes:jpeg,png,jpg,pdf|max:30720',
         ], [
             'plot_number.required' => 'رقم القطعة مطلوب',
             'plot_number.unique' => 'رقم القطعة موجود بالفعل في هذه المقاطعة',
             'specialized_department.required' => 'حقل الشعبة المختصة مطلوب',
-            'property_deed_image.required' => 'الملف مطلوب',
-            'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 5120 كيلوبايت.',
-            'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
-            //'property_map_image.required' => 'الملف مطلوب',
-            'property_map_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 30720 كيلوبايت.',
-            'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
+            // تم إيقاف رسائل الخطأ للصور
+            // 'property_deed_image.required' => 'الملف مطلوب',
+            // 'property_deed_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 5120 كيلوبايت.',
+            // 'property_deed_image.mimes' => 'الملف ليس صورة أو PDF',
+            // 'property_map_image.max' => 'يجب ألا يزيد حجم ملف السند العقاري عن 30720 كيلوبايت.',
+            // 'property_map_image.mimes' => 'الملف ليس صورة أو PDF',
         ]);
 
+        // تم إيقاف معالجة الصور
+        /*
         if ($this->filePreviewDeep) {
             Storage::delete('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number . '/' . $this->Plot->property_deed_image);
             $this->property_deed_image->store('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
@@ -338,14 +357,16 @@ class Show extends Component
                 'public/Plots/' . $this->Province->province_number . '/' . $this->plot_number
             );
         }
+        */
 
         $this->Plot->update([
             'user_id' => Auth::User()->id,
             'plot_number' => $this->plot_number,
             'specialized_department' => $this->specialized_department,
             'visibility' => $this->visibility,
-            'property_deed_image' => $fileDeepImage ?? $this->Plot->property_deed_image,
-            'property_map_image' => $fileMapImage ?? $this->Plot->property_map_image,
+            // تم إيقاف تحديث الصور
+            // 'property_deed_image' => $fileDeepImage ?? $this->Plot->property_deed_image,
+            // 'property_map_image' => $fileMapImage ?? $this->Plot->property_map_image,
         ]);
         // =================================
         Tracking::create([
@@ -353,10 +374,12 @@ class Show extends Component
             'page_name' => 'القطع',
             'operation_type' => 'تعديل',
             'operation_time' => now()->format('Y-m-d H:i:s'),
-            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+            // تم إزالة الصور من التفاصيل
+            // . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image
         ]);
         // ==================================
-        $this->reset('plot_number', 'specialized_department', 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap', 'visibility');
+        $this->reset('plot_number', 'specialized_department', 'visibility'); //, 'property_deed_image', 'property_map_image', 'filePreviewDeep', 'filePreviewMap'
         $this->mount();
 
         $this->dispatchBrowserEvent('success', [
@@ -374,15 +397,16 @@ class Show extends Component
             'page_name' => 'القطع',
             'operation_type' => 'حذف',
             'operation_time' => now()->format('Y-m-d H:i:s'),
-            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+            'details' =>   "رقم القطعة: " . $this->plot_number . ' - '  . " \nالشعبة المختصة: " . $this->specialized_department . ' - '  . " \nإمكانية ظهوره: " . $this->visibility,
+            // تم إزالة الصور من التفاصيل
+            // . ' - '  . " \nصورة السند العقاري: " . $this->property_deed_image . ' - '  . " \nصوره الخارطة العقارية: " . $this->property_map_image
         ]);
         // ==================================
 
         $this->Plot->delete();
 
-
-
-        Storage::deleteDirectory('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
+        // تم إيقاف حذف مجلد الصور
+        // Storage::deleteDirectory('public/Plots/' . $this->Province->province_number . '/' . $this->plot_number);
 
         $this->mount();
         $this->dispatchBrowserEvent('success', [
