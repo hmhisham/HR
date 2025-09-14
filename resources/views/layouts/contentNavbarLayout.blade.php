@@ -349,7 +349,7 @@
                             @can('settings')
                                 {{-- الإعدادات --}}
                                 <li
-                                    class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking', 'backup', 'employees') ? 'open active' : '' }}">
+                                    class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking', 'backup', 'employees','Propertylocation') ? 'open active' : '' }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                         <span class="menu-title">الاعدادات</span>
@@ -598,6 +598,20 @@
                                                 </a>
                                             </li>
                                         @endcan
+
+                                        {{--  =================نافذة تاجير العقارات================== --}}
+
+                                        @can('propertylocation')
+                                            {{-- موقع العقار --}}
+                                            <li Class="menu-item {{ request()->Is('Propertylocation') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Propertylocation.index') }}" Class="menu-link">
+                                                    {{-- <i Class='menu-icon tf-icons mdi mdi-map-marker-outline'></i> --}}
+                                                    <div>موقع العقار</div>
+                                                </a>
+                                            </li>
+                                        @endcan
+
+
                                         @can('usersapp')
                                             {{-- مستخدمي التطبيق --}}
                                             <li Class="menu-item {{ request()->Is('Usersapp') ? 'active' : '' }}">
