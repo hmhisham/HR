@@ -64,6 +64,7 @@ use App\Http\Controllers\Propertylocation\PropertylocationController;
 use App\Http\Controllers\Users\UsersAccounts\UsersAccountsController;
 use App\Http\Controllers\Utilizationtypes\UtilizationtypesController;
 use App\Http\Controllers\PermissionsRoles\Roles\AccountRolesController;
+use App\Http\Controllers\Propertytyperented\PropertytyperentedController;
 use App\Http\Controllers\PrivateEmployeeFiles\PrivateEmployeeFilesController;
 use App\Http\Controllers\Users\CustomersAccounts\CustomersAccountsController;
 use App\Http\Controllers\PermissionsRoles\Permissions\AccountPermissionsController;
@@ -212,7 +213,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::get('show-buyer-tenant/{RealPropertyNumber}/{BuyerTenantId}', [RealPropertyController::class, 'ShowBuyerTenant'])->name('ShowBuyerTenant');
     // شعبة العقارات
     Route::GET('Propertylocation', [PropertylocationController::class, 'index'])->name('Propertylocation.index');
-
+    Route::get('Propertytyperented', [PropertytyperentedController::class, 'index'])->name('Propertytyperented.index');
     //===============الاملاك والاراضي==================
 
 

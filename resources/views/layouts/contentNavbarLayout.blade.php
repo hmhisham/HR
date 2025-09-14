@@ -349,7 +349,7 @@
                             @can('settings')
                                 {{-- الإعدادات --}}
                                 <li
-                                    class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking', 'backup', 'employees','Propertylocation') ? 'open active' : '' }}">
+                                    class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking', 'backup', 'employees', 'Propertylocation', 'propertytyperented') ? 'open active' : '' }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
                                         <span class="menu-title">الاعدادات</span>
@@ -610,7 +610,13 @@
                                                 </a>
                                             </li>
                                         @endcan
-
+                                        @can('propertytyperented')
+                                            <li Class="menu-item {{ request()->Is('Propertytyperented') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Propertytyperented.index') }}" Class="menu-link">
+                                                     <div>نوع العقار المؤجر</div>
+                                                </a>
+                                            </li>
+                                        @endcan
 
                                         @can('usersapp')
                                             {{-- مستخدمي التطبيق --}}
