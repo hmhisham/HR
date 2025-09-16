@@ -613,11 +613,17 @@
                                         @can('propertytyperented')
                                             <li Class="menu-item {{ request()->Is('Propertytyperented') ? 'active' : '' }}">
                                                 <a href = "{{ Route('Propertytyperented.index') }}" Class="menu-link">
-                                                     <div>نوع العقار المؤجر</div>
+                                                    <div>نوع العقار المؤجر</div>
                                                 </a>
                                             </li>
                                         @endcan
-
+                                        @can('descriptionrented')
+                                            <li Class="menu-item {{ request()->Is('Descriptionrented') ? 'active' : '' }}">
+                                                <a href = "{{ Route('Descriptionrented.index') }}" Class="menu-link">
+                                                     <div>صفة العقار المؤجر</div>
+                                                </a>
+                                            </li>
+                                        @endcan
                                         @can('usersapp')
                                             {{-- مستخدمي التطبيق --}}
                                             <li Class="menu-item {{ request()->Is('Usersapp') ? 'active' : '' }}">
