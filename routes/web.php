@@ -58,6 +58,7 @@ use App\Http\Controllers\RealProperty\RealPropertyController;
 use App\Http\Controllers\Typeholidays\TypeholidaysController;
 use App\Http\Controllers\Propertytypes\PropertytypesController;
 use App\Http\Controllers\Typesservices\TypesservicesController;
+use App\Http\Controllers\Propertyfolder\PropertyfolderController;
 use App\Http\Controllers\Specializations\SpecializationsController;
 use App\Http\Controllers\Propertycategory\PropertycategoryController;
 use App\Http\Controllers\Propertylocation\PropertylocationController;
@@ -215,8 +216,10 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     // شعبة العقارات
     Route::GET('Propertylocation', [PropertylocationController::class, 'index'])->name('Propertylocation.index');
     Route::GET('Propertytyperented', [PropertytyperentedController::class, 'index'])->name('Propertytyperented.index');
-Route::GET('Descriptionrented', [DescriptionrentedController::class, 'index'])->name('Descriptionrented.index');
-//===============الاملاك والاراضي==================
+    Route::GET('Descriptionrented', [DescriptionrentedController::class, 'index'])->name('Descriptionrented.index');
+
+    Route::GET('Propertyfolder', [PropertyfolderController::class, 'index'])->name('Propertyfolder.index');
+    //===============الاملاك والاراضي==================
 
 
     //===============المالية==================

@@ -249,7 +249,7 @@
                             @endcan
                             @can('landproperty')
                                 <li
-                                    class="menu-item {{ request()->is('Provinces', 'Plots', 'Show-Plot/*', 'Realities', 'Show-Realitie/*', 'Boycotts', 'Bonds', 'Bond-Show/*', 'Real-Property', 'Show-Real-Property/*', 'Estate') ? 'open active' : '' }}">
+                                    class="menu-item {{ request()->is('Provinces', 'Plots', 'Show-Plot/*', 'Realities', 'Show-Realitie/*', 'Boycotts', 'Bonds', 'Bond-Show/*', 'Real-Property', 'Show-Real-Property/*', 'Estate' ,'Propertyfolder') ? 'open active' : '' }}">
                                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                                         <i class='menu-icon tf-icons mdi mdi-map-outline'></i>
                                         <span class="menu-title">قسم الاملاك و الاراضي</span>
@@ -307,6 +307,15 @@
                                                     <div>عرض الاسكان</div>
                                                 </a>
                                             </li>
+
+                                            <li Class="menu-item {{ request()->Is('Propertyfolder') ? 'active' : '' }}">
+  <a href = "{{ Route('Propertyfolder.index') }}" Class="menu-link">
+
+   <div>اضبارة العقار</div>
+ </a>
+</li>
+
+
                                         @endcan
                                     </ul>
                                 </li>
@@ -337,15 +346,15 @@
                                     </ul>
                                 </li>
                             @endcan
-                            @can('files')
-                                {{-- Files Upload --}}
+                            {{-- @can('files')
+
                                 <li class="menu-item {{ request()->is('Private-Employee-Files') ? 'active' : '' }}">
                                     <a href="{{ Route('PrivateEmployeeFiles') }}" class="menu-link">
                                         <i class="menu-icon tf-icons mdi mdi-file-cloud-outline"></i>
                                         <div>{{ trans('sidebar.PrivateEmployeeFiles') }}</div>
                                     </a>
                                 </li>
-                            @endcan
+                            @endcan --}}
                             @can('settings')
                                 {{-- الإعدادات --}}
                                 <li
