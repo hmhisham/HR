@@ -1,7 +1,5 @@
 <div class="mt-n4">
-
   <div class="card">
-
     <div class="card">
       <div class="card-header">
         <div class="d-flex justify-content-between">
@@ -34,48 +32,37 @@
             <th class="text-center">الملاحظات</th>
             <th class="text-center">العملية</th>
           </tr>
-
           <tr>
             <th></th>
             <th class="text-center">
               <input type="text" wire:model.debounce.300ms="search.folder_number" class="text-center form-control" placeholder="رقم الاضبارة">
             </th>
-
             <th class="text-center">
               <input type="text" wire:model.debounce.300ms="search.property_name" class="text-center form-control" placeholder="اسم العقار">
             </th>
-
             <th class="text-center">
               <input type="text" wire:model.debounce.300ms="search.id_property_location" class="text-center form-control" placeholder="موقع العقار">
             </th>
-
             <th class="text-center">
               <input type="text" wire:model.debounce.300ms="search.id_property_type" class="text-center form-control" placeholder="نوع العقار">
             </th>
-
             <th class="text-center">
               <input type="text" wire:model.debounce.300ms="search.id_property_description" class="text-center form-control" placeholder="صفة العقار">
             </th>
-
             <th class="text-center">
               <input type="text" wire:model.debounce.300ms="search.property_area" class="text-center form-control" placeholder="مساحة العقار">
             </th>
-
             <th class="text-center">
               <input type="text" wire:model.debounce.300ms="search.plot_number" class="text-center form-control" placeholder="رقم القطعة">
             </th>
-
             <th class="text-center">
               <input type="text" wire:model.debounce.300ms="search.district_name" class="text-center form-control" placeholder="اسم المقاطعة">
             </th>
-
             <th class="text-center">
               <input type="text" wire:model.debounce.300ms="search.notes" class="text-center form-control" placeholder="الملاحظات">
             </th>
-
             <th></th>
           </tr>
-
         </thead>
         <tbody>
           <?php $i = 0; ?>
@@ -91,20 +78,16 @@
             <td class="text-center">{{ $Propertyfolde->propertyCategory->category ?? '' }}</td>
             <td class="text-center">{{ $Propertyfolde->property_area }}</td>
             <td class="text-center">{{ $Propertyfolde->plot_number }}</td>
-
             <td class="text-center">مقاطعة
               {{ $Propertyfolde->Getprovince ? $Propertyfolde->Getprovince->province_number : '' }}
               -
               {{ $Propertyfolde->Getprovince ? $Propertyfolde->Getprovince->province_name : '' }}
-
             </td>
-
             <td class="text-center">{{ $Propertyfolde->notes }}</td>
-
             <td class="text-center">
               <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton{{ $Propertyfolde->id }}" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="tf-icons mdi mdi-cog"></i>
+                  <i class="text-white tf-icons mdi mdi-cog mdi-spin"></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $Propertyfolde->id }}">
                   @can('propertyfolde-edit')
@@ -117,19 +100,42 @@
                   @endcan
                   @can('propertyfolde-delete')
                   <li>
-                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#"
-                       wire:click="GetPropertyfolde({{ $Propertyfolde->id }})"
-                       data-bs-toggle="modal"
-                       data-bs-target="#removepropertyfoldeModal">
-                      <i class="tf-icons mdi mdi-delete-outline me-1"></i>
+                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
+                      <i class="tf-icons mdi mdi-delete-outline me-1 text-danger"></i>
                       حذف
                     </a>
                   </li>
                   @endcan
+                    <li>
+                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
+                      <i class="tf-icons mdi mdi-file-document me-1"></i>
+                      محضر تعاقد
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
+                      <i class="tf-icons mdi mdi-file-document-edit me-1"></i>
+                      محضر تاجير
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
+                      <i class="tf-icons mdi mdi-calculator me-1"></i>
+                      محضر تثمين
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
+                      <i class="tf-icons mdi mdi-receipt me-1"></i>
+                      وصل
+                    </a>
+                  </li>
+
                 </ul>
               </div>
             </td>
-
           </tr>
           @endforeach
         </tbody>
