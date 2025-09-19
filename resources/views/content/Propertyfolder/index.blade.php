@@ -78,13 +78,13 @@
 
 
         $(document).ready(function() {
-            Function initSelect2(selector, eventName, parentModal) {
+            function initSelect2(selector, eventName, parentModal) {
                 $(selector).select2({
                     placeholder: 'اختيار',
                     dropdownParent: $(parentModal)
                 });
                 $(selector).on('change', function(e) {
-                    Console.log(`Value changed to: ${e.target.value}`);
+                    console.log(`Value changed to: ${e.target.value}`);
                     livewire.emit(eventName, e.target.value);
                 });
             }
@@ -94,7 +94,7 @@
             initSelect2('#editPropertyfoldeid_property_location', 'SelectIdPropertyLocation',
                 '#editpropertyfoldeModal');
             window.livewire.on('select2', () => {
-                Console.log("Reinitializing Select2");
+                console.log("Reinitializing Select2");
                 initSelect2('#addPropertyfoldeid_property_location', 'SelectIdPropertyLocation',
                     '#addpropertyfoldeModal');
                 initSelect2('#editPropertyfoldeid_property_location', 'SelectIdPropertyLocation',

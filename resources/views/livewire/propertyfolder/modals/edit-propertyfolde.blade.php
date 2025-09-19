@@ -1,5 +1,5 @@
 
-    <!-- Edite Propertyfolde Modal -->
+<!-- Edite Propertyfolde Modal -->
     <div wire:ignore.self class="modal fade" id="editpropertyfoldeModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="p-4 modal-content p-md-5">
@@ -44,8 +44,17 @@
             
                 <div class="mb-3 col">
                 <div class="form-floating form-floating-outline">
-                    <input wire:model.defer='id_property_location' type="text" id="modalPropertyfoldeid_property_location" placeholder="موقع العقار"
-                        class="form-control @error('id_property_location') is-invalid is-filled @enderror" />
+                    <div wire:ignore>
+                        <select wire:model.defer='id_property_location'
+                            id="editPropertyfoldeid_property_location"
+                            class="form-select @error('id_property_location') is-invalid is-filled @enderror">
+                            <option value=""></option>
+                            @foreach ($provinces as $province)
+                                <option value="{{ $province->id }}">{{ $province->province_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                     <label for="modalPropertyfoldeid_property_location">موقع العقار</label>
                 </div>
                 @error('id_property_location')

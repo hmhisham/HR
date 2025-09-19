@@ -38,15 +38,20 @@
                                     @enderror
                                 </div>
 
-                          <div class="mb-3 col">
+                                <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <select wire:model.defer='id_property_location' id="addPropertyfoldeid_property_location" class="form-select @error('id_property_location') is-invalid is-filled @enderror">
-                                            <option value=""></option>
-                                            @foreach ($provinces as $province)
-                                                <option value="{{ $province->id }}">{{ $province->province_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="modalPropertyfoldeid_property_location">id_property_location</label>
+                                        <div wire:ignore>
+                                            <select wire:model.defer='id_property_location'
+                                                id="addPropertyfoldeid_property_location"
+                                                class="form-select @error('id_property_location') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                @foreach ($provinces as $province)
+                                                    <option value="{{ $province->id }}">{{ $province->province_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <label for="modalPropertyfoldeid_property_location">موقع العقار</label>
                                     </div>
                                     @error('id_property_location')
                                         <small class='text-danger inputerror'>{{ $message }}</small>
