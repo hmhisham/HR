@@ -5,8 +5,9 @@
       <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
       <div class="modal-body p-md-0">
         <div class="mb-4 text-center mt-n4">
-          <h3 class="pb-1 mb-2 text-primary">اضافة عقار </h3>
-
+          <h3 class="pb-1 mb-2 text-primary">
+            <i class="tf-icons mdi mdi-home-plus me-2"></i>اضافة عقار
+          </h3>
         </div>
 
         <form id="addpropertyfoldeModalForm" autocomplete="off">
@@ -159,8 +160,12 @@
           </div>
           <hr class="my-0">
           <div class="text-center col-12 demo-vertical-spacing mb-n4">
-            <button wire:click='store' wire:loading.attr="disabled" type="button" class="btn btn-primary me-sm-3 me-1">اضافة فئة</button>
-            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">تجاهل</button>
+            <button wire:click='store' wire:loading.attr="disabled" type="button" class="btn btn-primary me-sm-3 me-1">
+              <i class="tf-icons mdi mdi-plus me-1"></i>اضافة عقار
+            </button>
+            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
+              <i class="tf-icons mdi mdi-close me-1"></i>تجاهل
+            </button>
           </div>
         </form>
       </div>

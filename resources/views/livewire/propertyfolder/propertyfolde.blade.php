@@ -5,10 +5,14 @@
     <div class="card">
       <div class="card-header">
         <div class="d-flex justify-content-between">
-          <h4 class="mb-1 fw-semiboyld text-primary">العقارات</h4>
+          <h4 class="mb-1 fw-semiboyld text-primary">
+            <i class="tf-icons mdi mdi-home-city me-2"></i>العقارات
+          </h4>
           <div>
             @can('propertyfolde-create')
-            <button wire:click='AddPropertyfoldeModalShow' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal" data-bs-target="#addpropertyfoldeModal">أضــافــة</button>
+            <button wire:click='AddPropertyfoldeModalShow' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal" data-bs-target="#addpropertyfoldeModal">
+              <i class="tf-icons mdi mdi-plus me-1"></i>أضــافــة
+            </button>
             @include('livewire.propertyfolder.modals.add-propertyfolde')
             @endcan
           </div>
