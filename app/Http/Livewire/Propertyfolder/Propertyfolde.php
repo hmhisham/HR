@@ -30,12 +30,28 @@ class Propertyfolde extends Component
 
         $folder_numberSearch = '%' . $this->search['folder_number'] . '%';
         $property_nameSearch = '%' . $this->search['property_name'] . '%';
-        $id_property_locationSearch = '%' . $this->search['id_property_location'] . '%';
-        $id_property_typeSearch = '%' . $this->search['id_property_type'] . '%';
-        $id_property_descriptionSearch = '%' . $this->search['id_property_description'] . '%';
+        // Search by province name instead of ID for better readability
+        $id_property_locationSearch = $this->search['id_property_location'] ?
+            Provinces::where('province_name', 'LIKE', '%' . $this->search['id_property_location'] . '%')
+            ->pluck('id')
+            ->toArray() : [];
+        $id_property_typeSearch = $this->search['id_property_type'] ?
+            Propertytypes::where('type_name', 'LIKE', '%' . $this->search['id_property_type'] . '%')
+            ->pluck('id')
+            ->toArray() : [];
+        $id_property_descriptionSearch = $this->search['id_property_description'] ?
+            Propertycategory::where('category', 'LIKE', '%' . $this->search['id_property_description'] . '%')
+            ->pluck('id')
+            ->toArray() : [];
         $property_areaSearch = '%' . $this->search['property_area'] . '%';
         $plot_numberSearch = '%' . $this->search['plot_number'] . '%';
-        $district_nameSearch = '%' . $this->search['district_name'] . '%';
+
+ 
+    $district_nameSearch = $this->search['district_name'] ?
+            Provinces::where('province_name', 'LIKE', '%' . $this->search['district_name'] . '%')
+            ->pluck('id')
+            ->toArray() : [];
+
         $notesSearch = '%' . $this->search['notes'] . '%';
         $Propertyfolder = Propertyfolder::query()
             ->when($this->search['folder_number'], function ($query) use ($folder_numberSearch) {
