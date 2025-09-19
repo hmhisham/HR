@@ -46,11 +46,12 @@ class Propertyfolde extends Component
         $property_areaSearch = '%' . $this->search['property_area'] . '%';
         $plot_numberSearch = '%' . $this->search['plot_number'] . '%';
 
- 
-    $district_nameSearch = $this->search['district_name'] ?
-            Provinces::where('province_name', 'LIKE', '%' . $this->search['district_name'] . '%')
-            ->pluck('id')
-            ->toArray() : [];
+
+$district_nameSearch = $this->search['district_name'] ?
+    Provinces::where('province_name', 'LIKE', '%' . $this->search['district_name'] . '%')
+    ->orWhere('province_number', 'LIKE', '%' . $this->search['district_name'] . '%')
+    ->pluck('id')
+    ->toArray() : [];
 
         $notesSearch = '%' . $this->search['notes'] . '%';
         $Propertyfolder = Propertyfolder::query()
