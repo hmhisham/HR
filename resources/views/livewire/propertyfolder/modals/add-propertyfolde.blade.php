@@ -46,7 +46,8 @@
                                                 class="form-select @error('id_property_location') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($provinces as $province)
-                                                    <option value="{{ $province->id }}">{{ $province->province_name }}</option>
+                                                    <option value="{{ $province->id }}">{{ $province->province_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -86,7 +87,8 @@
                                                 class="form-select @error('id_property_description') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($propertyCategories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                                    <option value="{{ $category->id }}">{{ $category->category }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -96,6 +98,10 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
+
+                            </div>
+                            <div Class="row">
+
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
@@ -120,8 +126,7 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-                            </div>
-                            <div Class="row">
+
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='district_name' type="text"
@@ -134,6 +139,11 @@
                                     @enderror
                                 </div>
 
+
+
+
+
+                            </div>
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='notes' type="text" id="modalPropertyfoldenotes"
@@ -145,20 +155,6 @@
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='property_files' type="text"
-                                            id="modalPropertyfoldeproperty_files" placeholder="الملفات"
-                                            class="form-control @error('property_files') is-invalid is-filled @enderror" />
-                                        <label for="modalPropertyfoldeproperty_files">الملفات</label>
-                                    </div>
-                                    @error('property_files')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-
-                            </div>
                         </div>
                     </div>
                     <hr class="my-0">
