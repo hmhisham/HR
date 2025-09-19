@@ -20,7 +20,7 @@ class Propertyfolde extends Component
     public $PropertyfoldeSearch, $Propertyfolde, $PropertyfoldeId;
     public $folder_number, $property_name, $id_property_location, $id_property_type, $id_property_description, $property_area, $plot_number, $district_name, $notes, $property_files;
     public $search = ['folder_number' => '', 'property_name' => '', 'id_property_location' => '', 'id_property_type' => '', 'id_property_description' => '', 'property_area' => '', 'plot_number' => '', 'district_name' => '', 'notes' => ''];
-    public $provinces;
+    public $provinces = [];
     public $propertyTypes = [], $propertyCategories = [];
 
 
@@ -72,7 +72,10 @@ class Propertyfolde extends Component
         $this->Propertyfolder = collect($Propertyfolder->items());
         return View('livewire.propertyfolder.propertyfolde', [
             'Propertyfolder' => $Propertyfolder,
-            'links' => $links
+            'links' => $links,
+            'provinces' => $this->provinces,
+            'propertyTypes' => $this->propertyTypes,
+            'propertyCategories' => $this->propertyCategories
         ]);
     }
 

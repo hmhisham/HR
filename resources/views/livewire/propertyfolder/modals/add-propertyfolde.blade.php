@@ -39,10 +39,12 @@
                     <div wire:ignore>
                       <select wire:model.defer='id_property_location' id="addPropertyfoldeid_property_location" class="form-select @error('id_property_location') is-invalid is-filled @enderror">
                         <option value=""></option>
-                        @foreach ($provinces as $province)
-                        <option value="{{ $province->id }}">{{ $province->province_name }}
-                        </option>
-                        @endforeach
+                        @if(isset($provinces) && !empty($provinces) && (is_array($provinces) || is_object($provinces)))
+                          @foreach ($provinces as $province)
+                          <option value="{{ $province->id }}">{{ $province->province_name }}
+                          </option>
+                          @endforeach
+                        @endif
                       </select>
                     </div>
                     <label for="addPropertyfoldeid_property_location">موقع العقار</label>
@@ -60,9 +62,11 @@
                     <div wire:ignore>
                       <select wire:model.defer='id_property_type' id="addPropertyfoldeid_property_type" class="form-select @error('id_property_type') is-invalid is-filled @enderror">
                         <option value=""></option>
-                        @foreach ($propertyTypes as $type)
-                        <option value="{{ $type->id }}">{{ $type->type_name }}</option>
-                        @endforeach
+                        @if(isset($propertyTypes) && !empty($propertyTypes) && (is_array($propertyTypes) || is_object($propertyTypes)))
+                          @foreach ($propertyTypes as $type)
+                          <option value="{{ $type->id }}">{{ $type->type_name }}</option>
+                          @endforeach
+                        @endif
                       </select>
                     </div>
                     <label for="addPropertyfoldeid_property_type">نوع العقار</label>
@@ -76,10 +80,12 @@
                     <div wire:ignore>
                       <select wire:model.defer='id_property_description' id="addPropertyfoldeid_property_description" class="form-select @error('id_property_description') is-invalid is-filled @enderror">
                         <option value=""></option>
-                        @foreach ($propertyCategories as $category)
-                        <option value="{{ $category->id }}">{{ $category->category }}
-                        </option>
-                        @endforeach
+                        @if(isset($propertyCategories) && !empty($propertyCategories) && (is_array($propertyCategories) || is_object($propertyCategories)))
+                          @foreach ($propertyCategories as $category)
+                          <option value="{{ $category->id }}">{{ $category->category }}
+                          </option>
+                          @endforeach
+                        @endif
                       </select>
                     </div>
                     <label for="addPropertyfoldeid_property_description">صفة العقار</label>
@@ -91,19 +97,19 @@
 
               </div>
               <div Class="row">
-    <div class="mb-3 col">
+                <div class="mb-3 col">
                   <div class="form-floating form-floating-outline">
                     <div wire:ignore>
-                      <select wire:model.defer='district_name' id="modalPropertyfoldedistrict_name" class="form-select select2-province @error('district_name') is-invalid is-filled @enderror"  >
-                        <option value="">اختر المقاطعة...</option>
-                        @foreach ($provinces as $province)
-                        <option value="{{ $province->province_number }}">
-                            مقاطعة   {{ $province->province_number }}
-                         - {{ $province->province_name }}
-
-                        </option>
-                        @endforeach
-                      </select>
+                      <select wire:model.defer='district_name' id="modalPropertyfoldedistrict_name" class="form-select select2-province @error('district_name') is-invalid is-filled @enderror">
+    <option value="">اختر المقاطعة...</option>
+    @if(isset($provinces) && !empty($provinces) && (is_array($provinces) || is_object($provinces)))
+        @foreach ($provinces as $province)
+            <option value="{{ $province->province_number }}">
+                مقاطعة {{ $province->province_number }} - {{ $province->province_name }}
+            </option>
+        @endforeach
+    @endif
+</select>
                     </div>
                     <label for="modalPropertyfoldedistrict_name">اسم المقاطعة</label>
                   </div>
@@ -130,8 +136,6 @@
                   <small class='text-danger inputerror'> {{ $message }} </small>
                   @enderror
                 </div>
-
-
 
               </div>
               <div class="mb-3 col">
