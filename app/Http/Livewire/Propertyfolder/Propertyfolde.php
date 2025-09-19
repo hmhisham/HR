@@ -47,11 +47,11 @@ class Propertyfolde extends Component
         $plot_numberSearch = '%' . $this->search['plot_number'] . '%';
 
 
-$district_nameSearch = $this->search['district_name'] ?
-    Provinces::where('province_name', 'LIKE', '%' . $this->search['district_name'] . '%')
-    ->orWhere('province_number', 'LIKE', '%' . $this->search['district_name'] . '%')
-    ->pluck('id')
-    ->toArray() : [];
+        $district_nameSearch = $this->search['district_name'] ?
+            Provinces::where('province_name', 'LIKE', '%' . $this->search['district_name'] . '%')
+            ->orWhere('province_number', 'LIKE', '%' . $this->search['district_name'] . '%')
+            ->pluck('id')
+            ->toArray() : [];
 
         $notesSearch = '%' . $this->search['notes'] . '%';
         $Propertyfolder = Propertyfolder::query()
@@ -233,8 +233,7 @@ $district_nameSearch = $this->search['district_name'] ?
     {
         $this->resetValidation();
         $this->validate([
-            // 'folder_number' => 'required:propertyfolder',
-            'property_name' => 'required:propertyfolder',
+             'property_name' => 'required:propertyfolder',
             'id_property_location' => 'required:propertyfolder',
             'id_property_type' => 'required:propertyfolder',
             'id_property_description' => 'required:propertyfolder',
@@ -242,24 +241,22 @@ $district_nameSearch = $this->search['district_name'] ?
             'plot_number' => 'required:propertyfolder',
             'district_name' => 'required:propertyfolder',
             'notes' => 'required:propertyfolder',
-            'property_files' => 'required:propertyfolder',
+         
 
         ], [
-            // 'folder_number.required' => 'حقل رقم الاضبارة مطلوب',
-            'property_name.required' => 'حقل اسم العقار مطلوب',
+             'property_name.required' => 'حقل اسم العقار مطلوب',
             'id_property_location.required' => 'حقل موقع العقار مطلوب',
             'id_property_type.required' => 'حقل نوع العقار مطلوب',
             'id_property_description.required' => 'حقل صفة العقار مطلوب',
             'property_area.required' => 'حقل مساحة العقار مطلوب',
             'plot_number.required' => 'حقل رقم القطعة مطلوب',
             'district_name.required' => 'حقل اسم المقاطعة مطلوب',
-            'notes.required' => 'حقل الملاحظات مطلوب',
-            'property_files.required' => 'حقل الملفات مطلوب',
 
         ]);
 
         $Propertyfolder = Propertyfolder::find($this->PropertyfoldeId);
         $Propertyfolder->update([
+            'user_id' => Auth::id(),
             'folder_number' => $this->folder_number,
             'property_name' => $this->property_name,
             'id_property_location' => $this->id_property_location,
@@ -269,7 +266,7 @@ $district_nameSearch = $this->search['district_name'] ?
             'plot_number' => $this->plot_number,
             'district_name' => $this->district_name,
             'notes' => $this->notes,
-            'property_files' => $this->property_files,
+
 
         ]);
         $this->reset();
