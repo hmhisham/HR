@@ -102,7 +102,6 @@
                             </div>
                             <div Class="row">
 
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='property_area' type="text"
@@ -129,9 +128,18 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='district_name' type="text"
-                                            id="modalPropertyfoldedistrict_name" placeholder="اسم المقاطعة"
-                                            class="form-control @error('district_name') is-invalid is-filled @enderror" />
+                                        <div wire:ignore>
+                                            <select wire:model.defer='district_name'
+                                                id="modalPropertyfoldedistrict_name"
+                                                class="form-select select2-province @error('district_name') is-invalid is-filled @enderror"
+                                                style="width: 100%;">
+                                                <option value="">اختر المقاطعة...</option>
+                                                @foreach ($provinces as $province)
+                                                    <option value="{{ $province->province_name }}">
+                                                        {{ $province->province_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <label for="modalPropertyfoldedistrict_name">اسم المقاطعة</label>
                                     </div>
                                     @error('district_name')
@@ -139,22 +147,18 @@
                                     @enderror
                                 </div>
 
-
-
-
-
                             </div>
-                                <div class="mb-3 col">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='notes' type="text" id="modalPropertyfoldenotes"
-                                            placeholder="الملاحظات"
-                                            class="form-control @error('notes') is-invalid is-filled @enderror" />
-                                        <label for="modalPropertyfoldenotes">الملاحظات</label>
-                                    </div>
-                                    @error('notes')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
+                            <div class="mb-3 col">
+                                <div class="form-floating form-floating-outline">
+                                    <input wire:model.defer='notes' type="text" id="modalPropertyfoldenotes"
+                                        placeholder="الملاحظات"
+                                        class="form-control @error('notes') is-invalid is-filled @enderror" />
+                                    <label for="modalPropertyfoldenotes">الملاحظات</label>
                                 </div>
+                                @error('notes')
+                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <hr class="my-0">

@@ -95,6 +95,8 @@
             initSelect2('#editPropertyfoldeid_property_type', 'SelectIdPropertyType', '#editpropertyfoldeModal');
             initSelect2('#addPropertyfoldeid_property_description', 'SelectIdPropertyDescription', '#addpropertyfoldeModal');
             initSelect2('#editPropertyfoldeid_property_description', 'SelectIdPropertyDescription', '#editpropertyfoldeModal');
+            // Province dropdown
+            initSelect2('#modalPropertyfoldedistrict_name', 'SelectDistrictName', '#addpropertyfoldeModal');
             window.livewire.on('select2', () => {
                 console.log("Reinitializing Select2");
                 initSelect2('#addPropertyfoldeid_property_location', 'SelectIdPropertyLocation', '#addpropertyfoldeModal');
@@ -103,6 +105,8 @@
                 initSelect2('#editPropertyfoldeid_property_type', 'SelectIdPropertyType', '#editpropertyfoldeModal');
                 initSelect2('#addPropertyfoldeid_property_description', 'SelectIdPropertyDescription', '#addpropertyfoldeModal');
                 initSelect2('#editPropertyfoldeid_property_description', 'SelectIdPropertyDescription', '#editpropertyfoldeModal');
+                // Province dropdown
+                initSelect2('#modalPropertyfoldedistrict_name', 'SelectDistrictName', '#addpropertyfoldeModal');
             });
         });
     </script>
