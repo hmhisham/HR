@@ -8,6 +8,8 @@ use Livewire\WithPagination;
 use App\Models\Provinces\Provinces;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Propertyfolder\Propertyfolder;
+use App\Models\Propertytypes\Propertytypes;
+use App\Models\Propertycategory\Propertycategory;
 
 class Propertyfolde extends Component
 {
@@ -19,6 +21,7 @@ class Propertyfolde extends Component
     public $folder_number, $property_name, $id_property_location, $id_property_type, $id_property_description, $property_area, $plot_number, $district_name, $notes, $property_files;
     public $search = ['folder_number' => '', 'property_name' => '', 'id_property_location' => '', 'id_property_type' => '', 'id_property_description' => '', 'property_area' => '', 'plot_number' => '', 'district_name' => '', 'notes' => ''];
     public $provinces;
+    public $propertyTypes = [], $propertyCategories = [];
 
     public function render()
     {
@@ -71,12 +74,16 @@ class Propertyfolde extends Component
         return View('livewire.propertyfolder.propertyfolde', [
             'Propertyfolder' => $propertyFolders,
             'links' => $propertyFolders,
-            'provinces' => $this->provinces
+            'provinces' => $this->provinces,
+            'propertyTypes' => $this->propertyTypes,
+            'propertyCategories' => $this->propertyCategories
         ]);
     }
 
     protected $listeners = [
         'SelectIdPropertyLocation',
+        'SelectIdPropertyType',
+        'SelectIdPropertyDescription',
     ];
     public function hydrate()
     {
@@ -85,14 +92,36 @@ class Propertyfolde extends Component
     public function mount()
     {
         $this->provinces = Provinces::orderBy('province_number')->get();
+        $this->propertyTypes = Propertytypes::orderBy('type_name')->get();
+        $this->propertyCategories = Propertycategory::orderBy('category')->get();
     }
     public function SelectIdPropertyLocation($IdPropertyLocationID)
     {
-        $id_property_location = Provinces::find($IdPropertyLocationID);
-        if ($id_property_location) {
+        $propertyLocation = Provinces::find($IdPropertyLocationID);
+        if ($propertyLocation) {
             $this->id_property_location = $IdPropertyLocationID;
         } else {
             $this->id_property_location = null;
+        }
+    }
+
+    public function SelectIdPropertyType($IdPropertyTypeID)
+    {
+        $propertyType = Propertytypes::find($IdPropertyTypeID);
+        if ($propertyType) {
+            $this->id_property_type = $IdPropertyTypeID;
+        } else {
+            $this->id_property_type = null;
+        }
+    }
+
+    public function SelectIdPropertyDescription($IdPropertyDescriptionID)
+    {
+        $propertyCategory = Propertycategory::find($IdPropertyDescriptionID);
+        if ($propertyCategory) {
+            $this->id_property_description = $IdPropertyDescriptionID;
+        } else {
+            $this->id_property_description = null;
         }
     }
 

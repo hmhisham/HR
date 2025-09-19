@@ -46,12 +46,11 @@
                                                 class="form-select @error('id_property_location') is-invalid is-filled @enderror">
                                                 <option value=""></option>
                                                 @foreach ($provinces as $province)
-                                                    <option value="{{ $province->id }}">{{ $province->province_name }}
-                                                    </option>
+                                                    <option value="{{ $province->id }}">{{ $province->province_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <label for="modalPropertyfoldeid_property_location">موقع العقار</label>
+                                        <label for="addPropertyfoldeid_property_location">موقع العقار</label>
                                     </div>
                                     @error('id_property_location')
                                         <small class='text-danger inputerror'>{{ $message }}</small>
@@ -63,22 +62,35 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='id_property_type' type="text"
-                                            id="modalPropertyfoldeid_property_type" placeholder="نوع العقار"
-                                            class="form-control @error('id_property_type') is-invalid is-filled @enderror" />
-                                        <label for="modalPropertyfoldeid_property_type">نوع العقار</label>
+                                        <div wire:ignore>
+                                            <select wire:model.defer='id_property_type'
+                                                id="addPropertyfoldeid_property_type"
+                                                class="form-select @error('id_property_type') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                @foreach ($propertyTypes as $type)
+                                                    <option value="{{ $type->id }}">{{ $type->type_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <label for="addPropertyfoldeid_property_type">نوع العقار</label>
                                     </div>
                                     @error('id_property_type')
                                         <small class='text-danger inputerror'> {{ $message }} </small>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='id_property_description' type="text"
-                                            id="modalPropertyfoldeid_property_description" placeholder="صفة العقار"
-                                            class="form-control @error('id_property_description') is-invalid is-filled @enderror" />
-                                        <label for="modalPropertyfoldeid_property_description">صفة العقار</label>
+                                        <div wire:ignore>
+                                            <select wire:model.defer='id_property_description'
+                                                id="addPropertyfoldeid_property_description"
+                                                class="form-select @error('id_property_description') is-invalid is-filled @enderror">
+                                                <option value=""></option>
+                                                @foreach ($propertyCategories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <label for="addPropertyfoldeid_property_description">صفة العقار</label>
                                     </div>
                                     @error('id_property_description')
                                         <small class='text-danger inputerror'> {{ $message }} </small>

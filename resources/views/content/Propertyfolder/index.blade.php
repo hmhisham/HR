@@ -88,17 +88,21 @@
                     livewire.emit(eventName, e.target.value);
                 });
             }
-            // add and edit Provinces
-            initSelect2('#addPropertyfoldeid_property_location', 'SelectIdPropertyLocation',
-                '#addpropertyfoldeModal');
-            initSelect2('#editPropertyfoldeid_property_location', 'SelectIdPropertyLocation',
-                '#editpropertyfoldeModal');
+            // add and edit Provinces, Property Types, and Property Descriptions
+            initSelect2('#addPropertyfoldeid_property_location', 'SelectIdPropertyLocation', '#addpropertyfoldeModal');
+            initSelect2('#editPropertyfoldeid_property_location', 'SelectIdPropertyLocation', '#editpropertyfoldeModal');
+            initSelect2('#addPropertyfoldeid_property_type', 'SelectIdPropertyType', '#addpropertyfoldeModal');
+            initSelect2('#editPropertyfoldeid_property_type', 'SelectIdPropertyType', '#editpropertyfoldeModal');
+            initSelect2('#addPropertyfoldeid_property_description', 'SelectIdPropertyDescription', '#addpropertyfoldeModal');
+            initSelect2('#editPropertyfoldeid_property_description', 'SelectIdPropertyDescription', '#editpropertyfoldeModal');
             window.livewire.on('select2', () => {
                 console.log("Reinitializing Select2");
-                initSelect2('#addPropertyfoldeid_property_location', 'SelectIdPropertyLocation',
-                    '#addpropertyfoldeModal');
-                initSelect2('#editPropertyfoldeid_property_location', 'SelectIdPropertyLocation',
-                    '#editpropertyfoldeModal');
+                initSelect2('#addPropertyfoldeid_property_location', 'SelectIdPropertyLocation', '#addpropertyfoldeModal');
+                initSelect2('#editPropertyfoldeid_property_location', 'SelectIdPropertyLocation', '#editpropertyfoldeModal');
+                initSelect2('#addPropertyfoldeid_property_type', 'SelectIdPropertyType', '#addpropertyfoldeModal');
+                initSelect2('#editPropertyfoldeid_property_type', 'SelectIdPropertyType', '#editpropertyfoldeModal');
+                initSelect2('#addPropertyfoldeid_property_description', 'SelectIdPropertyDescription', '#addpropertyfoldeModal');
+                initSelect2('#editPropertyfoldeid_property_description', 'SelectIdPropertyDescription', '#editpropertyfoldeModal');
             });
         });
     </script>
