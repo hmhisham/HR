@@ -89,7 +89,16 @@
             <td class="text-center">{{ $Propertyfolde->propertyCategory->category ?? '' }}</td>
             <td class="text-center">{{ $Propertyfolde->property_area}}</td>
             <td class="text-center">{{ $Propertyfolde->plot_number}}</td>
-            <td class="text-center">{{ $Propertyfolde->district_name}}</td>
+
+
+              <td class="text-center">مقاطعة {{ $Propertyfolde->Getprovince ? $Propertyfolde->Getprovince->province_number : '' }}
+ -
+                {{ $Propertyfolde->Getprovince ? $Propertyfolde->Getprovince->province_name : '' }}  
+
+
+              </td>
+
+
             <td class="text-center">{{ $Propertyfolde->notes}}</td>
 
             <td class="text-center">
