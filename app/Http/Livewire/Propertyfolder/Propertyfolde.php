@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Propertyfolder;
 use Livewire\Component;
 
 use Livewire\WithPagination;
+use App\Models\Provinces\Provinces;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Propertyfolder\Propertyfolder;
 
@@ -17,6 +18,7 @@ class Propertyfolde extends Component
     public $PropertyfoldeSearch, $Propertyfolde, $PropertyfoldeId;
     public $folder_number, $property_name, $id_property_location, $id_property_type, $id_property_description, $property_area, $plot_number, $district_name, $notes, $property_files;
     public $search = ['folder_number' => '', 'property_name' => '', 'id_property_location' => '', 'id_property_type' => '', 'id_property_description' => '', 'property_area' => '', 'plot_number' => '', 'district_name' => '', 'notes' => ''];
+    public $provinces;
 
     public function render()
     {
@@ -67,6 +69,27 @@ class Propertyfolde extends Component
             'Propertyfolder' => $Propertyfolder,
             'links' => $links
         ]);
+    }
+
+    protected $listeners = [
+        'SelectIdPropertyLocation',
+    ];
+    public function hydrate()
+    {
+        $this->emit('select2');
+    }
+    public function mount()
+    {
+        $this->provinces = Provinces::orderBy('province_number')->get();
+    }
+    public function SelectIdPropertyLocation($IdPropertyLocationID)
+    {
+        $id_property_location = Provinces::find($IdPropertyLocationID);
+        if ($id_property_location) {
+            $this->id_property_location = $IdPropertyLocationID;
+        } else {
+            $this->id_property_location = null;
+        }
     }
 
 

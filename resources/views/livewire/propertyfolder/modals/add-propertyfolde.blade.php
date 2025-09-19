@@ -16,8 +16,8 @@
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='folder_number' type="text"
-                                         readonly    id="modalPropertyfoldefolder_number" placeholder="رقم الاضبارة"
+                                        <input wire:model.defer='folder_number' type="text" readonly
+                                            id="modalPropertyfoldefolder_number" placeholder="رقم الاضبارة"
                                             class="form-control @error('folder_number') is-invalid is-filled @enderror" />
                                         <label for="modalPropertyfoldefolder_number">رقم الاضبارة</label>
                                     </div>
@@ -38,15 +38,18 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3 col">
+                          <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='id_property_location' type="text"
-                                            id="modalPropertyfoldeid_property_location" placeholder="موقع العقار"
-                                            class="form-control @error('id_property_location') is-invalid is-filled @enderror" />
-                                        <label for="modalPropertyfoldeid_property_location">موقع العقار</label>
+                                        <select wire:model.defer='id_property_location' id="addPropertyfoldeid_property_location" class="form-select @error('id_property_location') is-invalid is-filled @enderror">
+                                            <option value=""></option>
+                                            @foreach ($provinces as $province)
+                                                <option value="{{ $province->id }}">{{ $province->province_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="modalPropertyfoldeid_property_location">id_property_location</label>
                                     </div>
                                     @error('id_property_location')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
+                                        <small class='text-danger inputerror'>{{ $message }}</small>
                                     @enderror
                                 </div>
 

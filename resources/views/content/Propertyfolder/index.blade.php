@@ -1,4 +1,3 @@
-
 @extends('layouts/layoutMaster')
 @section('title', 'Propertyfolder')
 @section('vendor-style')
@@ -11,10 +10,9 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-        @endsection
-@section('content') 
-@livewire('propertyfolder.propertyfolde')
-
+@endsection
+@section('content')
+    @livewire('propertyfolder.propertyfolde')
 
 @endsection
 
@@ -50,10 +48,10 @@
 
         window.addEventListener('PropertyfoldeModalShow', event => {
             setTimeout(() => {
-             $('#id').focus();
-               }, 100);  
+                $('#id').focus();
+            }, 100);
         })
-      
+
         window.addEventListener('success', event => {
             $('#addpropertyfoldeModal').modal('hide');
             $('#editpropertyfoldeModal').modal('hide');
@@ -63,9 +61,9 @@
                 title: event.detail.message
             })
         })
-           
 
-            
+
+
 
         window.addEventListener('error', event => {
             $('#removepropertyfoldeModal').modal('hide');
@@ -74,7 +72,34 @@
                 title: event.detail.message,
                 timer: 5000,
             })
-           
+
         })
+
+
+
+        $(document).ready(function() {
+            Function initSelect2(selector, eventName, parentModal) {
+                $(selector).select2({
+                    placeholder: 'اختيار',
+                    dropdownParent: $(parentModal)
+                });
+                $(selector).on('change', function(e) {
+                    Console.log(`Value changed to: ${e.target.value}`);
+                    livewire.emit(eventName, e.target.value);
+                });
+            }
+            // add and edit Provinces
+            initSelect2('#addPropertyfoldeid_property_location', 'SelectIdPropertyLocation',
+                '#addpropertyfoldeModal');
+            initSelect2('#editPropertyfoldeid_property_location', 'SelectIdPropertyLocation',
+                '#editpropertyfoldeModal');
+            window.livewire.on('select2', () => {
+                Console.log("Reinitializing Select2");
+                initSelect2('#addPropertyfoldeid_property_location', 'SelectIdPropertyLocation',
+                    '#addpropertyfoldeModal');
+                initSelect2('#editPropertyfoldeid_property_location', 'SelectIdPropertyLocation',
+                    '#editpropertyfoldeModal');
+            });
+        });
     </script>
 @endsection
