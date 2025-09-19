@@ -17,7 +17,7 @@
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
                                         <input wire:model.defer='folder_number' type="text"
-                                            id="modalPropertyfoldefolder_number" placeholder="رقم الاضبارة"
+                                         readonly    id="modalPropertyfoldefolder_number" placeholder="رقم الاضبارة"
                                             class="form-control @error('folder_number') is-invalid is-filled @enderror" />
                                         <label for="modalPropertyfoldefolder_number">رقم الاضبارة</label>
                                     </div>
@@ -52,7 +52,6 @@
 
                             </div>
                             <div Class="row">
-
 
                                 <div class="mb-3 col">
                                     <div class="form-floating form-floating-outline">
