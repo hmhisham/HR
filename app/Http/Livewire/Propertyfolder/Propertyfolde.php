@@ -23,12 +23,10 @@ class Propertyfolde extends Component
     public $provinces;
     public $propertyTypes = [], $propertyCategories = [];
 
+
+
     public function render()
     {
-        // Make sure provinces is always initialized
-        if ($this->provinces === null) {
-            $this->provinces = Provinces::orderBy('province_number')->get();
-        }
 
         $folder_numberSearch = '%' . $this->search['folder_number'] . '%';
         $property_nameSearch = '%' . $this->search['property_name'] . '%';
@@ -70,15 +68,14 @@ class Propertyfolde extends Component
 
             ->orderBy('id', 'ASC')
             ->paginate(10);
-        $propertyFolders = $Propertyfolder;
+        $links = $Propertyfolder;
+        $this->Propertyfolder = collect($Propertyfolder->items());
         return View('livewire.propertyfolder.propertyfolde', [
-            'Propertyfolder' => $propertyFolders,
-            'links' => $propertyFolders,
-            'provinces' => $this->provinces,
-            'propertyTypes' => $this->propertyTypes,
-            'propertyCategories' => $this->propertyCategories
+            'Propertyfolder' => $Propertyfolder,
+            'links' => $links
         ]);
     }
+
 
     protected $listeners = [
         'SelectIdPropertyLocation',
