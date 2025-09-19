@@ -85,8 +85,8 @@
             <td class="text-center">{{ $Propertyfolde->folder_number}}</td>
             <td class="text-center">{{ $Propertyfolde->property_name}}</td>
   <td class="text-center">{{ $Propertyfolde->Getprovince ? $Propertyfolde->Getprovince->province_name : '' }}</td>
-            <td class="text-center">{{ $Propertyfolde->id_property_type}}</td>
-            <td class="text-center">{{$Propertyfolde->id_property_description}}</td>
+            <td class="text-center">{{ $Propertyfolde->propertyType->type_name ?? '' }}</td>
+            <td class="text-center">{{ $Propertyfolde->propertyCategory->category ?? '' }}</td>
             <td class="text-center">{{ $Propertyfolde->property_area}}</td>
             <td class="text-center">{{ $Propertyfolde->plot_number}}</td>
             <td class="text-center">{{ $Propertyfolde->district_name}}</td>
