@@ -8,7 +8,7 @@
           <h3 class="pb-1 mb-2 text-danger">
             <i class="tf-icons mdi mdi-home-remove me-2"></i>حذف اضبارة العقار
           </h3>
-     
+
         </div>
         <hr class="mt-n2">
 

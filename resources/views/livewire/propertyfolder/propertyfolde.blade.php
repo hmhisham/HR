@@ -102,19 +102,34 @@
             <td class="text-center">{{ $Propertyfolde->notes }}</td>
 
             <td class="text-center">
-              <div class="btn-group" role="group" aria-label="First group">
-                @can('propertyfolde-edit')
-                <button wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" class="p-0 px-1 btn btn-outline-success waves-effect" data-bs-toggle="modal" data-bs-target="#editpropertyfoldeModal">
-                  <i class="tf-icons mdi mdi-pencil fs-3"></i>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton{{ $Propertyfolde->id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="tf-icons mdi mdi-cog"></i>
                 </button>
-                @endcan
-                @can('propertyfolde-delete')
-                <button wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" class="p-0 px-1 btn btn-outline-danger waves-effect {{ $Propertyfolde->active ? 'disabled' : '' }}" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
-                  <i class="tf-icons mdi mdi-delete-outline fs-3"></i>
-                </button>
-                @endcan
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $Propertyfolde->id }}">
+                  @can('propertyfolde-edit')
+                  <li>
+                    <a class="dropdown-item" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#editpropertyfoldeModal">
+                      <i class="tf-icons mdi mdi-pencil me-1"></i>
+                      تعديل
+                    </a>
+                  </li>
+                  @endcan
+                  @can('propertyfolde-delete')
+                  <li>
+                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#"
+                       wire:click="GetPropertyfolde({{ $Propertyfolde->id }})"
+                       data-bs-toggle="modal"
+                       data-bs-target="#removepropertyfoldeModal">
+                      <i class="tf-icons mdi mdi-delete-outline me-1"></i>
+                      حذف
+                    </a>
+                  </li>
+                  @endcan
+                </ul>
               </div>
             </td>
+
           </tr>
           @endforeach
         </tbody>
