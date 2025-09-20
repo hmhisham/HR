@@ -8,12 +8,22 @@
           </h4>
           <div>
             @can('propertyfolde-create')
+            <button wire:click='AddPropertyfoldeModalShow' class="mb-3 text-white add-new btn btn-secondary mb-md-0" data-bs-toggle="modal" data-bs-target="#addpropertyfoldeModal">
+              <i class="tf-icons mdi mdi-file-document-outline me-1"></i>الخلاصة
+            </button>
+            {{-- @include('livewire.propertyfolder.modals.add-propertyfolde') --}}
+            @endcan
+
+            @can('propertyfolde-create')
             <button wire:click='AddPropertyfoldeModalShow' class="mb-3 add-new btn btn-primary mb-md-0" data-bs-toggle="modal" data-bs-target="#addpropertyfoldeModal">
               <i class="tf-icons mdi mdi-plus me-1"></i>أضــافــة
             </button>
             @include('livewire.propertyfolder.modals.add-propertyfolde')
             @endcan
+
+
           </div>
+
         </div>
       </div>
       @can('propertyfolde-list')
@@ -106,7 +116,7 @@
                     </a>
                   </li>
                   @endcan
-                    <li>
+                  <li>
                     <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
                       <i class="tf-icons mdi mdi-file-document me-1"></i>
                       محضر تعاقد
@@ -130,6 +140,21 @@
                     <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
                       <i class="tf-icons mdi mdi-receipt me-1"></i>
                       وصل
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
+                      <i class="tf-icons mdi mdi-archive-outline me-1"></i>
+                      ارشفة مركزية
+                    </a>
+                  </li>
+
+
+                  <li>
+                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
+                      <i class="tf-icons mdi mdi-file-document-outline me-1"></i>
+                      عرض الخلاصة
                     </a>
                   </li>
 
