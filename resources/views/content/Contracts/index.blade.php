@@ -13,7 +13,7 @@
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
         @endsection
 @section('content') 
-@livewire('contracts.contract')
+@livewire('contracts.contract', ['property_folder_id' => $property_folder_id ?? null])
 
 
 @endsection

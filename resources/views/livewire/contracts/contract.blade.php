@@ -75,10 +75,10 @@
                      
                    
             </thead>
-            <tbody> 
+            <tbody>
                  <?php $i = 0; ?>
-                  @foreach ($Contracts as $Contract)
-                           <tr>
+                 @forelse ($Contracts as $Contract)
+                  <tr>
                                     <?php $i++; ?>
                                     <td>{{ $i }}</td>
                                    <td class="text-center">{{ $Contract->document_contract_number}}</td>
@@ -108,7 +108,20 @@
                                      </div>
                                  </td>
                   </tr>
-                    @endforeach
+                  @empty
+                  <tr>
+                      <td colspan="9" class="text-center py-4">
+                          <div class="d-flex flex-column align-items-center">
+                              <i class="mdi mdi-information-outline fs-1 text-muted mb-3"></i>
+                              <h5 class="text-muted">لا توجد بيانات للعرض</h5>
+                              <p class="text-muted">لم يتم العثور على أي عقود تطابق معايير البحث</p>
+                              @if($property_folder_id)
+                                  <small class="text-muted">العقود المتعلقة بملف العقار الحالي ستظهر هنا</small>
+                              @endif
+                          </div>
+                      </td>
+                  </tr>
+                  @endforelse
                 </tbody>
             </table>
             <div class="mt-2 d-flex justify-content-center">

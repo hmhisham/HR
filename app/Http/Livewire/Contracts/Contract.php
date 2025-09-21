@@ -13,20 +13,37 @@ class Contract extends Component
     public $Contracts = [];
      public $ContractSearch, $Contract, $ContractId;
     public $user_id,$property_folder_id,$document_contract_number,$generated_contract_number,$start_date,$approval_date,$end_date,$tenant_name,$annual_rent_amount,$amount_in_words,$lease_duration,$usage_type,$phone_number,$address,$notes;
-Public $search = ['document_contract_number' => '', 'generated_contract_number' => '', 'start_date' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
- 
-        Public Function render()
+    Public $search = ['document_contract_number' => '', 'generated_contract_number' => '', 'start_date' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
+
+    public function mount($property_folder_id = null)
     {
-        
- $document_contract_numberSearch = '%' . $this->search['document_contract_number'] . '%';
- $generated_contract_numberSearch = '%' . $this->search['generated_contract_number'] . '%';
- $start_dateSearch = '%' . $this->search['start_date'] . '%';
- $end_dateSearch = '%' . $this->search['end_date'] . '%';
- $tenant_nameSearch = '%' . $this->search['tenant_name'] . '%';
- $annual_rent_amountSearch = '%' . $this->search['annual_rent_amount'] . '%';
- $notesSearch = '%' . $this->search['notes'] . '%';
-$Contracts = Contracts::query()
- ->when($this->search['document_contract_number'], function ($query) use ($document_contract_numberSearch) {
+        $this->property_folder_id = $property_folder_id;
+    }
+
+    // إعادة تحميل البيانات عند تغيير معايير البحث
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
+    Public Function render()
+    {
+        $query = Contracts::query();
+
+        // تصفية العقود بناءً على property_folder_id إذا كان موجوداً
+        if ($this->property_folder_id) {
+            $query->where('property_folder_id', $this->property_folder_id);
+        }
+
+        $document_contract_numberSearch = '%' . $this->search['document_contract_number'] . '%';
+        $generated_contract_numberSearch = '%' . $this->search['generated_contract_number'] . '%';
+        $start_dateSearch = '%' . $this->search['start_date'] . '%';
+        $end_dateSearch = '%' . $this->search['end_date'] . '%';
+        $tenant_nameSearch = '%' . $this->search['tenant_name'] . '%';
+        $annual_rent_amountSearch = '%' . $this->search['annual_rent_amount'] . '%';
+        $notesSearch = '%' . $this->search['notes'] . '%';
+
+        $contractsQuery = $query->when($this->search['document_contract_number'], function ($query) use ($document_contract_numberSearch) {
                 $query->where('document_contract_number', 'LIKE', $document_contract_numberSearch);
             })
  ->when($this->search['generated_contract_number'], function ($query) use ($generated_contract_numberSearch) {
@@ -47,14 +64,17 @@ $Contracts = Contracts::query()
  ->when($this->search['notes'], function ($query) use ($notesSearch) {
                 $query->where('notes', 'LIKE', $notesSearch);
             })
+ ->orderBy('created_at', 'DESC');
 
-            ->orderBy('id', 'ASC')
-            ->paginate(10);
-        $links = $Contracts;
+        // الحصول على البيانات مع pagination
+        $Contracts = $contractsQuery->paginate(10);
+
+        // تعيين البيانات للاستخدام الداخلي
         $this->Contracts = collect($Contracts->items());
-                Return View('livewire.contracts.contract', [
+
+        Return View('livewire.contracts.contract', [
             'Contracts' => $Contracts,
-            'links' => $links
+            'links' => $Contracts
         ]);
     }
 
@@ -103,9 +123,6 @@ $Contracts = Contracts::query()
                 'address.required' => 'حقل العنوان مطلوب', 
                 'notes.required' => 'حقل الملاحظات مطلوب',  ]);
                                  
-        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
-
-
         Contracts::create([
 'user_id'=> $this->user_id,
 'property_folder_id'=> $this->property_folder_id,
