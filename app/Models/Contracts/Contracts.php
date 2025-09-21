@@ -1,0 +1,11 @@
+<?php
+namespace App\Models\Contracts;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Contracts extends Model
+{
+     use HasFactory;
+    protected $guarded = [];
+    protected $table = "contracts";
+}
