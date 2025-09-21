@@ -117,7 +117,7 @@
                   </li>
                   @endcan
                   <li>
-                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
+                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="{{ Route('Contracts.index') }}">
                       <i class="tf-icons mdi mdi-file-document me-1"></i>
                       محضر تعاقد
                     </a>
