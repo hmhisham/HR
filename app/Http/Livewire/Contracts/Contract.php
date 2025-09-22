@@ -15,45 +15,17 @@ class Contract extends Component
     public $Contracts = [];
     public $ContractSearch, $Contract, $ContractId;
     public $user_id, $property_folder_id, $document_contract_number, $generated_contract_number, $start_date, $approval_date, $end_date, $tenant_name, $annual_rent_amount, $amount_in_words, $lease_duration, $usage_type, $phone_number, $address, $notes;
-    public $search = ['document_contract_number' => '', 'generated_contract_number' => '', 'start_date' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
-
-    public function mount($property_folder_id = null)
-    {
-        $this->property_folder_id = $property_folder_id;
-    }
-
-    // إعادة تحميل البيانات عند تغيير معايير البحث
-    public function updatedSearch()
-    {
-        $this->resetPage();
-    }
+    public $search = ['end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'phone_number' => '', 'notes' => ''];
 
     public function render()
     {
-        $query = Contracts::query();
 
-        // تصفية العقود بناءً على property_folder_id إذا كان موجوداً
-        if ($this->property_folder_id) {
-            $query->where('property_folder_id', $this->property_folder_id);
-        }
-
-        $document_contract_numberSearch = '%' . $this->search['document_contract_number'] . '%';
-        $generated_contract_numberSearch = '%' . $this->search['generated_contract_number'] . '%';
-        $start_dateSearch = '%' . $this->search['start_date'] . '%';
         $end_dateSearch = '%' . $this->search['end_date'] . '%';
         $tenant_nameSearch = '%' . $this->search['tenant_name'] . '%';
         $annual_rent_amountSearch = '%' . $this->search['annual_rent_amount'] . '%';
+        $phone_numberSearch = '%' . $this->search['phone_number'] . '%';
         $notesSearch = '%' . $this->search['notes'] . '%';
-
-        $contractsQuery = $query->when($this->search['document_contract_number'], function ($query) use ($document_contract_numberSearch) {
-            $query->where('document_contract_number', 'LIKE', $document_contract_numberSearch);
-        })
-            ->when($this->search['generated_contract_number'], function ($query) use ($generated_contract_numberSearch) {
-                $query->where('generated_contract_number', 'LIKE', $generated_contract_numberSearch);
-            })
-            ->when($this->search['start_date'], function ($query) use ($start_dateSearch) {
-                $query->where('start_date', 'LIKE', $start_dateSearch);
-            })
+        $Contracts = Contracts::query()
             ->when($this->search['end_date'], function ($query) use ($end_dateSearch) {
                 $query->where('end_date', 'LIKE', $end_dateSearch);
             })
@@ -63,29 +35,27 @@ class Contract extends Component
             ->when($this->search['annual_rent_amount'], function ($query) use ($annual_rent_amountSearch) {
                 $query->where('annual_rent_amount', 'LIKE', $annual_rent_amountSearch);
             })
+            ->when($this->search['phone_number'], function ($query) use ($phone_numberSearch) {
+                $query->where('phone_number', 'LIKE', $phone_numberSearch);
+            })
             ->when($this->search['notes'], function ($query) use ($notesSearch) {
                 $query->where('notes', 'LIKE', $notesSearch);
             })
-            ->orderBy('created_at', 'DESC');
 
-        // الحصول على البيانات مع pagination
-        $Contracts = $contractsQuery->paginate(10);
-
-        // تعيين البيانات للاستخدام الداخلي
+            ->orderBy('id', 'ASC')
+            ->paginate(10);
+        $links = $Contracts;
         $this->Contracts = collect($Contracts->items());
-
         return View('livewire.contracts.contract', [
             'Contracts' => $Contracts,
-            'links' => $Contracts
+            'links' => $links
         ]);
     }
 
 
     public function AddContractModalShow()
     {
-$this->reset(['user_id',   'document_contract_number', 'generated_contract_number',
-    'start_date', 'approval_date', 'end_date', 'tenant_name', 'annual_rent_amount',
-    'amount_in_words', 'lease_duration', 'usage_type', 'phone_number', 'address', 'notes']);
+        $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('ContractModalShow');
     }
@@ -129,6 +99,9 @@ $this->reset(['user_id',   'document_contract_number', 'generated_contract_numbe
             'notes.required' => 'حقل الملاحظات مطلوب',
         ]);
 
+        //$fullName = implode(' ', [$this->FirstName, $this->SecondName, $this->ThirdName]);
+
+
         Contracts::create([
             'user_id' => $this->user_id,
             'property_folder_id' => $this->property_folder_id,
@@ -147,9 +120,7 @@ $this->reset(['user_id',   'document_contract_number', 'generated_contract_numbe
             'notes' => $this->notes,
 
         ]);
-     $this->reset(['user_id',   'document_contract_number', 'generated_contract_number',
-    'start_date', 'approval_date', 'end_date', 'tenant_name', 'annual_rent_amount',
-    'amount_in_words', 'lease_duration', 'usage_type', 'phone_number', 'address', 'notes']);
+        $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الاضافه بنجاح',
             'title' => 'اضافه'
@@ -177,6 +148,7 @@ $this->reset(['user_id',   'document_contract_number', 'generated_contract_numbe
         $this->phone_number = $this->Contract->phone_number;
         $this->address = $this->Contract->address;
         $this->notes = $this->Contract->notes;
+          $this->dispatchBrowserEvent('flatpickr');
     }
 
     public function update()
@@ -236,9 +208,7 @@ $this->reset(['user_id',   'document_contract_number', 'generated_contract_numbe
             'notes' => $this->notes,
 
         ]);
-        $this->reset(['user_id',   'document_contract_number', 'generated_contract_number',
-    'start_date', 'approval_date', 'end_date', 'tenant_name', 'annual_rent_amount',
-    'amount_in_words', 'lease_duration', 'usage_type', 'phone_number', 'address', 'notes']);
+        $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',
             'title' => 'تعديل'
