@@ -12,9 +12,15 @@ class Contract extends Component
 
     public $Contracts = [];
     public $ContractSearch, $Contract, $ContractId;
-    public $user_id, $property_folder_id, $document_contract_number, $generated_contract_number, $start_date, $approval_date, $end_date, $tenant_name, $annual_rent_amount, $amount_in_words, $lease_duration, $usage_type, $phone_number, $address, $notes;
+    public $user_id, $property_folder_id, $document_contract_number, $generated_contract_number, $start_date, $approval_date, $end_date, $tenant_name, $annual_rent_amount, $amount_in_words, $lease_duration, $usage_type, $phone_number, $address, $notes, $selected_property_folder_id, $selected_property_name;
     public $search = ['property_folder_id' => '', 'generated_contract_number' => '', 'start_date' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
 
+
+    public function mount($selected_property_folder_id = null, $selected_property_name = null)
+    {
+        $this->selected_property_folder_id = $selected_property_folder_id;
+        $this->selected_property_name = $selected_property_name;
+    }
 
         public function render()
     {
@@ -58,6 +64,9 @@ class Contract extends Component
             ->when($this->search['notes'], function ($query) {
                 $notesSearch = '%' . $this->search['notes'] . '%';
                 $query->where('notes', 'LIKE', $notesSearch);
+            })
+            ->when($this->selected_property_folder_id, function ($query) {
+                $query->where('property_folder_id', $this->selected_property_folder_id);
             })
             ->orderBy('id', 'ASC')
             ->paginate(10);

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
         @endsection
 @section('content') 
-@livewire('contracts.contract')
+@livewire('contracts.contract', ['selected_property_folder_id' => request('property_folder_id'), 'selected_property_name' => request('property_name')])
 
 
 @endsection

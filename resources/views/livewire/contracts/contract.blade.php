@@ -5,6 +5,12 @@
         <div class="d-flex align-items-center">
             <i class="mdi mdi-format-list-bulleted text-primary fs-4 me-2"></i>
             <h4 class="mb-0 fw-bold">قائمة   عقد الايجار</h4>
+            @if($selected_property_folder_id && $selected_property_name)
+                <small class="text-muted ms-3">
+                    <i class="mdi mdi-folder-outline me-1"></i>
+                    رقم الاضبارة: {{ $selected_property_folder_id }} - {{ $selected_property_name }}
+                </small>
+            @endif
         </div>
         <!-- ✅ مجموعة أدوات البطاقة: بحث + زر إضافة -->
         <div class="d-flex align-items-center gap-3">
