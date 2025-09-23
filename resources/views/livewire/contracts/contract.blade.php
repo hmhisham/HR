@@ -1,19 +1,18 @@
 
 <div class="card">
     <!-- ✅ شريط البطاقة العلوي مع العنوان وأيقونة -->
-    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-3">
+    <div class="flex-wrap gap-3 card-header d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
-            <i class="mdi mdi-format-list-bulleted text-primary fs-4 me-2"></i>
-            <h4 class="mb-0 fw-bold">قائمة   عقد الايجار</h4>
+
             @if($selected_property_folder_id && $selected_property_name)
-                <small class="text-muted ms-3">
-                    <i class="mdi mdi-folder-outline me-1"></i>
+                <small class="text-primary fs-4 me-2">
+                    <i class="mdi mdi-folder-outline text-primary fs-4 me-2"></i>
                     رقم الاضبارة: {{ $selected_property_folder_id }} - {{ $selected_property_name }}
                 </small>
             @endif
         </div>
         <!-- ✅ مجموعة أدوات البطاقة: بحث + زر إضافة -->
-        <div class="d-flex align-items-center gap-3">
+        <div class="gap-3 d-flex align-items-center">
             <!-- حقل بحث مدمج -->
             <div class="dt-search">
                 <input wire:model.debounce.300ms="ContractSearch" type="text" class="form-control form-control-sm" placeholder="بحث عام..." />
@@ -52,37 +51,37 @@
                         <th></th>
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.property_folder_id"
-                                class="form-control form-control-sm text-center" placeholder="">
+                                class="text-center form-control form-control-sm" placeholder="">
                         </th>
 
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.generated_contract_number"
-                                class="form-control form-control-sm text-center" placeholder="رقم العقد المنشأ">
+                                class="text-center form-control form-control-sm" placeholder="رقم العقد المنشأ">
                         </th>
 
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.start_date"
-                                class="form-control form-control-sm text-center" placeholder="تاريخ بداية العقد">
+                                class="text-center form-control form-control-sm" placeholder="تاريخ بداية العقد">
                         </th>
 
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.end_date"
-                                class="form-control form-control-sm text-center" placeholder="تاريخ انتهاء العقد">
+                                class="text-center form-control form-control-sm" placeholder="تاريخ انتهاء العقد">
                         </th>
 
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.tenant_name"
-                                class="form-control form-control-sm text-center" placeholder="اسم المستأجر">
+                                class="text-center form-control form-control-sm" placeholder="اسم المستأجر">
                         </th>
 
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.annual_rent_amount"
-                                class="form-control form-control-sm text-center" placeholder="مبلغ التأجير للسنة الواحدة">
+                                class="text-center form-control form-control-sm" placeholder="مبلغ التأجير للسنة الواحدة">
                         </th>
 
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.notes"
-                                class="form-control form-control-sm text-center" placeholder="الملاحظات">
+                                class="text-center form-control form-control-sm" placeholder="الملاحظات">
                         </th>
 
                         <th></th>
@@ -102,7 +101,7 @@
                             <td class="text-center">{{ $Contract->notes}}</td>
                             <!-- ✅ أزرار العمليات -->
                             <td class="text-center">
-                                <div class="d-flex justify-content-center gap-1">
+                                <div class="gap-1 d-flex justify-content-center">
                                     @can('contract-edit')
                                         <button wire:click="GetContract({{ $Contract->id }})"
                                             class="btn btn-icon btn-outline-success btn-sm waves-effect" data-bs-toggle="modal"
@@ -112,7 +111,7 @@
                                     @endcan
                                     @can('contract-delete')
                                         <button wire:click="GetContract({{ $Contract->id }})"
-                                            class="btn btn-icon btn-outline-danger btn-sm waves-effect {{ $Contract->active ? 'disabled' : '' }}" 
+                                            class="btn btn-icon btn-outline-danger btn-sm waves-effect {{ $Contract->active ? 'disabled' : '' }}"
                                             data-bs-toggle="modal" data-bs-target="#removecontractModal" title="حذف">
                                             <i class="tf-icons mdi mdi-delete-outline fs-5"></i>
                                         </button>

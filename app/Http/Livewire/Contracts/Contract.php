@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Livewire\Contracts;
+
 use Livewire\Component;
 
 use Livewire\WithPagination;
 use App\Models\Contracts\Contracts;
+use Illuminate\Support\Facades\Auth;
 
 class Contract extends Component
 {
@@ -22,20 +25,20 @@ class Contract extends Component
         $this->selected_property_name = $selected_property_name;
     }
 
-        public function render()
+    public function render()
     {
         // ✅ الحصول على قيمة البحث العام
         $ContractSearch = '%' . $this->ContractSearch . '%';
 
-        $Contracts = Contracts::query() 
+        $Contracts = Contracts::query()
             ->where(function ($query) use ($ContractSearch) {
                 $query->where('property_folder_id', 'LIKE', $ContractSearch)
-                ->orWhere('generated_contract_number', 'LIKE', $ContractSearch)
-                ->orWhere('start_date', 'LIKE', $ContractSearch)
-                ->orWhere('end_date', 'LIKE', $ContractSearch)
-                ->orWhere('tenant_name', 'LIKE', $ContractSearch)
-                ->orWhere('annual_rent_amount', 'LIKE', $ContractSearch)
-                ->orWhere('notes', 'LIKE', $ContractSearch);
+                    ->orWhere('generated_contract_number', 'LIKE', $ContractSearch)
+                    ->orWhere('start_date', 'LIKE', $ContractSearch)
+                    ->orWhere('end_date', 'LIKE', $ContractSearch)
+                    ->orWhere('tenant_name', 'LIKE', $ContractSearch)
+                    ->orWhere('annual_rent_amount', 'LIKE', $ContractSearch)
+                    ->orWhere('notes', 'LIKE', $ContractSearch);
             })
             ->when($this->search['property_folder_id'], function ($query) {
                 $property_folder_idSearch = '%' . $this->search['property_folder_id'] . '%';
@@ -91,22 +94,24 @@ class Contract extends Component
     public function store()
     {
         $this->resetValidation();
-        $this->validate(['user_id' => 'required', 
-'property_folder_id' => 'required', 
-'document_contract_number' => 'required', 
-'generated_contract_number' => 'required', 
-'start_date' => 'required', 
-'approval_date' => 'required', 
-'end_date' => 'required', 
-'tenant_name' => 'required', 
-'annual_rent_amount' => 'required', 
-'amount_in_words' => 'required', 
-'lease_duration' => 'required', 
-'usage_type' => 'required', 
-'phone_number' => 'required', 
-'address' => 'required', 
-'notes' => 'required',         ], [
-            'user_id.required' => 'حقل  مطلوب',
+        $this->validate([
+
+            'property_folder_id' => 'required',
+            'document_contract_number' => 'required',
+            'generated_contract_number' => 'required',
+            'start_date' => 'required',
+            'approval_date' => 'required',
+            'end_date' => 'required',
+            'tenant_name' => 'required',
+            'annual_rent_amount' => 'required',
+            'amount_in_words' => 'required',
+            'lease_duration' => 'required',
+            'usage_type' => 'required',
+            'phone_number' => 'required',
+            'address' => 'required',
+            'notes' => 'required',
+        ], [
+
             'property_folder_id.required' => 'حقل  مطلوب',
             'document_contract_number.required' => 'حقل رقم العقد في المستند مطلوب',
             'generated_contract_number.required' => 'حقل رقم العقد المنشأ مطلوب',
@@ -122,21 +127,22 @@ class Contract extends Component
             'address.required' => 'حقل العنوان مطلوب',
             'notes.required' => 'حقل الملاحظات مطلوب'
         ]);
-        Contracts::create(['user_id' => $this->user_id,
-'property_folder_id' => $this->property_folder_id,
-'document_contract_number' => $this->document_contract_number,
-'generated_contract_number' => $this->generated_contract_number,
-'start_date' => $this->start_date,
-'approval_date' => $this->approval_date,
-'end_date' => $this->end_date,
-'tenant_name' => $this->tenant_name,
-'annual_rent_amount' => $this->annual_rent_amount,
-'amount_in_words' => $this->amount_in_words,
-'lease_duration' => $this->lease_duration,
-'usage_type' => $this->usage_type,
-'phone_number' => $this->phone_number,
-'address' => $this->address,
-'notes' => $this->notes
+        Contracts::create([
+            'user_id' => Auth::id(),
+            'property_folder_id' => $this->property_folder_id,
+            'document_contract_number' => $this->document_contract_number,
+            'generated_contract_number' => $this->generated_contract_number,
+            'start_date' => $this->start_date,
+            'approval_date' => $this->approval_date,
+            'end_date' => $this->end_date,
+            'tenant_name' => $this->tenant_name,
+            'annual_rent_amount' => $this->annual_rent_amount,
+            'amount_in_words' => $this->amount_in_words,
+            'lease_duration' => $this->lease_duration,
+            'usage_type' => $this->usage_type,
+            'phone_number' => $this->phone_number,
+            'address' => $this->address,
+            'notes' => $this->notes
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -178,22 +184,24 @@ class Contract extends Component
     public function update()
     {
         $this->resetValidation();
-        $this->validate(['user_id' => 'required:contracts', 
-'property_folder_id' => 'required:contracts', 
-'document_contract_number' => 'required:contracts', 
-'generated_contract_number' => 'required:contracts', 
-'start_date' => 'required:contracts', 
-'approval_date' => 'required:contracts', 
-'end_date' => 'required:contracts', 
-'tenant_name' => 'required:contracts', 
-'annual_rent_amount' => 'required:contracts', 
-'amount_in_words' => 'required:contracts', 
-'lease_duration' => 'required:contracts', 
-'usage_type' => 'required:contracts', 
-'phone_number' => 'required:contracts', 
-'address' => 'required:contracts', 
-'notes' => 'required:contracts',         ], [
-            'user_id.required' => 'حقل  مطلوب',
+        $this->validate([
+
+            'property_folder_id' => 'required:contracts',
+            'document_contract_number' => 'required:contracts',
+            'generated_contract_number' => 'required:contracts',
+            'start_date' => 'required:contracts',
+            'approval_date' => 'required:contracts',
+            'end_date' => 'required:contracts',
+            'tenant_name' => 'required:contracts',
+            'annual_rent_amount' => 'required:contracts',
+            'amount_in_words' => 'required:contracts',
+            'lease_duration' => 'required:contracts',
+            'usage_type' => 'required:contracts',
+            'phone_number' => 'required:contracts',
+            'address' => 'required:contracts',
+            'notes' => 'required:contracts',
+        ], [
+
             'property_folder_id.required' => 'حقل  مطلوب',
             'document_contract_number.required' => 'حقل رقم العقد في المستند مطلوب',
             'generated_contract_number.required' => 'حقل رقم العقد المنشأ مطلوب',
@@ -210,21 +218,22 @@ class Contract extends Component
             'notes.required' => 'حقل الملاحظات مطلوب'
         ]);
         $Contracts = Contracts::find($this->ContractId);
-        $Contracts->update(['user_id' => $this->user_id,
-'property_folder_id' => $this->property_folder_id,
-'document_contract_number' => $this->document_contract_number,
-'generated_contract_number' => $this->generated_contract_number,
-'start_date' => $this->start_date,
-'approval_date' => $this->approval_date,
-'end_date' => $this->end_date,
-'tenant_name' => $this->tenant_name,
-'annual_rent_amount' => $this->annual_rent_amount,
-'amount_in_words' => $this->amount_in_words,
-'lease_duration' => $this->lease_duration,
-'usage_type' => $this->usage_type,
-'phone_number' => $this->phone_number,
-'address' => $this->address,
-'notes' => $this->notes
+        $Contracts->update([
+            'user_id' => Auth::id(),
+            'property_folder_id' => $this->property_folder_id,
+            'document_contract_number' => $this->document_contract_number,
+            'generated_contract_number' => $this->generated_contract_number,
+            'start_date' => $this->start_date,
+            'approval_date' => $this->approval_date,
+            'end_date' => $this->end_date,
+            'tenant_name' => $this->tenant_name,
+            'annual_rent_amount' => $this->annual_rent_amount,
+            'amount_in_words' => $this->amount_in_words,
+            'lease_duration' => $this->lease_duration,
+            'usage_type' => $this->usage_type,
+            'phone_number' => $this->phone_number,
+            'address' => $this->address,
+            'notes' => $this->notes
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
