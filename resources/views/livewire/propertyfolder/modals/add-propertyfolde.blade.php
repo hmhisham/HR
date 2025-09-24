@@ -17,7 +17,7 @@
 
                 <div class="mb-3 col">
                   <div class="form-floating form-floating-outline">
-                    <input wire:model.defer='folder_number' type="text" readonly id="modalPropertyfoldefolder_number" placeholder="رقم الاضبارة" class="form-control @error('folder_number') is-invalid is-filled @enderror" />
+                    <input wire:ignore='folder_number' type="text" readonly id="modalPropertyfoldefolder_number" placeholder="رقم الاضبارة" class="form-control @error('folder_number') is-invalid is-filled @enderror" />
                     <label for="modalPropertyfoldefolder_number">رقم الاضبارة</label>
                   </div>
                   @error('folder_number')
@@ -27,7 +27,7 @@
 
                 <div class="mb-3 col">
                   <div class="form-floating form-floating-outline">
-                    <input wire:model.defer='property_name' type="text" id="modalPropertyfoldeproperty_name" placeholder="اسم العقار" class="form-control @error('property_name') is-invalid is-filled @enderror" />
+                    <input wire:ignore='property_name' type="text" id="modalPropertyfoldeproperty_name" placeholder="اسم العقار" class="form-control @error('property_name') is-invalid is-filled @enderror" />
                     <label for="modalPropertyfoldeproperty_name">اسم العقار</label>
                   </div>
                   @error('property_name')
@@ -38,7 +38,7 @@
                 <div class="mb-3 col">
                   <div class="form-floating form-floating-outline">
                     <div wire:ignore>
-                      <select wire:model.defer='id_property_location' id="addPropertyfoldeid_property_location" class="form-select @error('id_property_location') is-invalid is-filled @enderror">
+                      <select wire:ignore='id_property_location' id="addPropertyfoldeid_property_location" class="form-select @error('id_property_location') is-invalid is-filled @enderror">
                         <option  value="">موقع العقار</option>
                         @if (isset($provinces) && !empty($provinces) && (is_array($provinces) ||
                         is_object($provinces)))
@@ -62,7 +62,7 @@
                 <div class="mb-3 col">
                   <div class="form-floating form-floating-outline">
                     <div wire:ignore>
-                      <select wire:model.defer='id_property_type' id="addPropertyfoldeid_property_type" class="form-select @error('id_property_type') is-invalid is-filled @enderror">
+                      <select wire:ignore='id_property_type' id="addPropertyfoldeid_property_type" class="form-select @error('id_property_type') is-invalid is-filled @enderror">
                         <option value="">نوع العقار</option>
                         @if (isset($propertyTypes) && !empty($propertyTypes) &&
                         (is_array($propertyTypes) || is_object($propertyTypes)))
@@ -81,7 +81,7 @@
                 <div class="mb-3 col">
                   <div class="form-floating form-floating-outline">
                     <div wire:ignore>
-                      <select wire:model.defer='id_property_description' id="addPropertyfoldeid_property_description" class="form-select @error('id_property_description') is-invalid is-filled @enderror">
+                      <select wire:ignore='id_property_description' id="addPropertyfoldeid_property_description" class="form-select @error('id_property_description') is-invalid is-filled @enderror">
                         <option  value="">صفة العقار</option>
                         @if (isset($propertyCategories) &&
                         !empty($propertyCategories) &&
@@ -104,7 +104,7 @@
                 <div class="mb-3 col">
                   <div class="form-floating form-floating-outline">
                     <div wire:ignore>
-                      <select wire:model.defer='district_name' id="modalPropertyfoldedistrict_name" class="form-select select2-province @error('district_name') is-invalid is-filled @enderror">
+                      <select wire:ignore='district_name' id="modalPropertyfoldedistrict_name" class="form-select select2-province @error('district_name') is-invalid is-filled @enderror">
                         <option value="">اختر المقاطعة</option>
                         @if (isset($provinces) && !empty($provinces) && (is_array($provinces) ||
                         is_object($provinces)))
@@ -124,7 +124,7 @@
                 </div>
                 <div class="mb-3 col">
                   <div class="form-floating form-floating-outline">
-                    <input wire:model.defer='property_area' type="text" id="modalPropertyfoldeproperty_area" placeholder="مساحة العقار" class="form-control @error('property_area') is-invalid is-filled @enderror" />
+                    <input wire:ignore='property_area' type="text" id="modalPropertyfoldeproperty_area" placeholder="مساحة العقار" class="form-control @error('property_area') is-invalid is-filled @enderror" />
                     <label for="modalPropertyfoldeproperty_area">مساحة العقار</label>
                   </div>
                   @error('property_area')
@@ -134,7 +134,7 @@
 
                 <div class="mb-3 col">
                   <div class="form-floating form-floating-outline">
-                    <input wire:model.defer='plot_number' type="text" id="modalPropertyfoldeplot_number" placeholder="رقم القطعة" class="form-control @error('plot_number') is-invalid is-filled @enderror" />
+                    <input wire:ignore='plot_number' type="text" id="modalPropertyfoldeplot_number" placeholder="رقم القطعة" class="form-control @error('plot_number') is-invalid is-filled @enderror" />
                     <label for="modalPropertyfoldeplot_number">رقم القطعة</label>
                   </div>
                   @error('plot_number')
@@ -145,7 +145,7 @@
               </div>
               <div class="mb-3 col">
                 <div class="form-floating form-floating-outline">
-                  <input wire:model.defer='notes' type="text" id="modalPropertyfoldenotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" />
+                  <input wire:ignore='notes' type="text" id="modalPropertyfoldenotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" />
                   <label for="modalPropertyfoldenotes">الملاحظات</label>
                 </div>
                 @error('notes')
