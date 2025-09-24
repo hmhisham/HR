@@ -1,6 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* تطبيق خط تجوال على جميع العناصر */
+* {
+    font-family: 'Tajawal', sans-serif !important;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif !important;
+}
 
 [x-cloak] {
     display: none;
