@@ -156,31 +156,31 @@ class Propertyfolde extends Component
 
     public function store()
     {
-        // $this->resetValidation();
-        // $this->validate([
-        //     'folder_number' => 'required',
-        //     'property_name' => 'required',
-        //     'id_property_location' => 'required',
-        //     'id_property_type' => 'required',
-        //     'id_property_description' => 'required',
-        //     'property_area' => 'required',
-        //     'plot_number' => 'required',
-        //     'district_name' => 'required',
-        //     'notes' => 'required',
-        //     'property_files' => 'required',
+        $this->resetValidation();
+        $this->validate([
+            'folder_number' => 'required',
+            'property_name' => 'required',
+            'id_property_location' => 'required',
+            'id_property_type' => 'required',
+            'id_property_description' => 'required',
+            'property_area' => 'required',
+            'plot_number' => 'required',
+            'district_name' => 'required',
+            'notes' => 'required',
+            'property_files' => 'required',
 
-        // ], [
-        //     // 'folder_number.required' => 'حقل رقم الاضبارة مطلوب',
-        //     'property_name.required' => 'حقل اسم العقار مطلوب',
-        //     'id_property_location.required' => 'حقل موقع العقار مطلوب',
-        //     'id_property_type.required' => 'حقل نوع العقار مطلوب',
-        //     'id_property_description.required' => 'حقل صفة العقار مطلوب',
-        //     'property_area.required' => 'حقل مساحة العقار مطلوب',
-        //     'plot_number.required' => 'حقل رقم القطعة مطلوب',
-        //     'district_name.required' => 'حقل اسم المقاطعة مطلوب',
-        //     'notes.required' => 'حقل الملاحظات مطلوب',
-        //     'property_files.required' => 'حقل الملفات مطلوب',
-        // ]);
+        ], [
+            // 'folder_number.required' => 'حقل رقم الاضبارة مطلوب',
+            'property_name.required' => 'حقل اسم العقار مطلوب',
+            'id_property_location.required' => 'حقل موقع العقار مطلوب',
+            'id_property_type.required' => 'حقل نوع العقار مطلوب',
+            'id_property_description.required' => 'حقل صفة العقار مطلوب',
+            'property_area.required' => 'حقل مساحة العقار مطلوب',
+            'plot_number.required' => 'حقل رقم القطعة مطلوب',
+            'district_name.required' => 'حقل اسم المقاطعة مطلوب',
+            'notes.required' => 'حقل الملاحظات مطلوب',
+            'property_files.required' => 'حقل الملفات مطلوب',
+        ]);
 
         $latestFolder = Propertyfolder::latest()->first();
         if ($latestFolder) {
@@ -233,7 +233,7 @@ class Propertyfolde extends Component
     {
         $this->resetValidation();
         $this->validate([
-             'property_name' => 'required:propertyfolder',
+            'property_name' => 'required:propertyfolder',
             'id_property_location' => 'required:propertyfolder',
             'id_property_type' => 'required:propertyfolder',
             'id_property_description' => 'required:propertyfolder',
@@ -241,10 +241,10 @@ class Propertyfolde extends Component
             'plot_number' => 'required:propertyfolder',
             'district_name' => 'required:propertyfolder',
             'notes' => 'required:propertyfolder',
-         
+
 
         ], [
-             'property_name.required' => 'حقل اسم العقار مطلوب',
+            'property_name.required' => 'حقل اسم العقار مطلوب',
             'id_property_location.required' => 'حقل موقع العقار مطلوب',
             'id_property_type.required' => 'حقل نوع العقار مطلوب',
             'id_property_description.required' => 'حقل صفة العقار مطلوب',
