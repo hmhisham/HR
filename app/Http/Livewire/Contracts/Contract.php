@@ -19,12 +19,57 @@ class Contract extends Component
     public $search = ['property_folder_id' => '', 'generated_contract_number' => '', 'start_date' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
 
 
-    public function mount($selected_property_folder_id = null, $selected_property_name = null, $id = null)
+    public function mount($selected_property_folder_id = null, $selected_property_name = null, $id = null, $property_id = null, $property_name = null)
     {
-        $this->selected_property_folder_id = $selected_property_folder_id;
-        $this->selected_property_name = $selected_property_name;
-        $this->selected_id = $id;
+        // تنظيف وتأمين المعاملات
+        $this->selected_property_folder_id = $this->sanitizeInput($selected_property_folder_id ?: $property_id);
+        $this->selected_property_name = $this->sanitizeInput($selected_property_name ?: $property_name);
+        $this->selected_id = $this->sanitizeNumericInput($id);
+
+        // التحقق من صحة المعاملات
+        $this->validateInputs();
     }
+
+    private function sanitizeInput($input)
+    {
+        if (is_null($input)) return null;
+        return htmlspecialchars(strip_tags(trim($input)), ENT_QUOTES, 'UTF-8');
+    }
+
+    private function sanitizeNumericInput($input)
+    {
+        if (is_null($input)) return null;
+        return is_numeric($input) ? (int) $input : null;
+    }
+
+    private function validateInputs()
+    {
+        // التحقق من أن ID رقمي وموجب
+        if ($this->selected_id && ($this->selected_id <= 0)) {
+            $this->selected_id = null;
+        }
+
+        // التحقق من طول النصوص لمنع الهجمات
+        if ($this->selected_property_name && strlen($this->selected_property_name) > 255) {
+            $this->selected_property_name = substr($this->selected_property_name, 0, 255);
+        }
+
+        if ($this->selected_property_folder_id && strlen($this->selected_property_folder_id) > 100) {
+             $this->selected_property_folder_id = substr($this->selected_property_folder_id, 0, 100);
+         }
+     }
+
+     private function isValidId($id)
+     {
+         return is_numeric($id) && $id > 0 && $id <= 999999999; // حد أقصى معقول للـ ID
+     }
+
+     private function isValidPropertyFolderId($folderId)
+     {
+         if (is_null($folderId)) return false;
+         // التحقق من أن المعرف يحتوي على أحرف وأرقام آمنة فقط (بما في ذلك العربية)
+         return preg_match('/^[a-zA-Z0-9\-_\p{Arabic}\s]{1,100}$/u', $folderId);
+     }
 
     public function render()
     {
@@ -70,10 +115,16 @@ class Contract extends Component
                 $query->where('notes', 'LIKE', $notesSearch);
             })
             ->when($this->selected_property_folder_id, function ($query) {
-                $query->where('property_folder_id', $this->selected_property_folder_id);
+                // التحقق من أن القيمة آمنة قبل الاستعلام
+                if ($this->isValidPropertyFolderId($this->selected_property_folder_id)) {
+                    $query->where('property_folder_id', $this->selected_property_folder_id);
+                }
             })
             ->when($this->selected_id, function ($query) {
-                $query->where('id', $this->selected_id);
+                // التحقق من أن ID رقمي وموجب
+                if ($this->isValidId($this->selected_id)) {
+                    $query->where('id', $this->selected_id);
+                }
             })
             ->orderBy('id', 'ASC')
             ->paginate(10);
@@ -90,7 +141,9 @@ class Contract extends Component
 
     public function AddContractModalShow()
     {
-        $this->reset();
+        $this->reset([ 'property_folder_id', 'document_contract_number', 'generated_contract_number',
+            'start_date', 'approval_date', 'end_date', 'tenant_name', 'annual_rent_amount',
+            'amount_in_words', 'lease_duration', 'usage_type', 'phone_number', 'address', 'notes']);
         $this->resetValidation();
         $this->dispatchBrowserEvent('ContractModalShow');
     }
