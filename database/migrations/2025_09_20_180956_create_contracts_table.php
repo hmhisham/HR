@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->integer(column: 'user_id');
             $table->foreignId('property_folder_id')->constrained('property_folders')->comment('رقم الاضبارة');
             $table->string('document_contract_number')->nullable()->comment('رقم العقد في المستند');
             $table->string('generated_contract_number')->nullable()->comment('رقم العقد المنشأ');
