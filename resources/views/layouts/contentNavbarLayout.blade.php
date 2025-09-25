@@ -629,7 +629,12 @@ $container = $container ?? 'container-xxl';
                 <div>عقد الايجار</div>
               </a>
             </li>
-
+<li Class="menu-item {{ request()->Is('Tenants') ? 'active' : '' }}">
+  <a href = "{{ Route('Tenants.index') }}" Class="menu-link">
+   <i Class='menu-icon tf-icons mdi mdi-account-outline'></i>
+   <div>المستأجر</div>
+ </a>
+</li>
             @can('usersapp')
             {{-- مستخدمي التطبيق --}}
             <li Class="menu-item {{ request()->Is('Usersapp') ? 'active' : '' }}">

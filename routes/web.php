@@ -21,6 +21,7 @@ use App\Http\Controllers\Coaches\CoachesController;
 use App\Http\Controllers\Courses\CoursesController;
 use App\Http\Controllers\Scaleas\ScaleasController;
 use App\Http\Controllers\Scalems\ScalemsController;
+use App\Http\Controllers\Tenants\TenantsController;
 use App\Http\Controllers\Workers\WorkersController;
 use App\Http\Controllers\Certific\CertificController;
 use App\Http\Controllers\Dispatch\DispatchController;
@@ -222,7 +223,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::GET('Propertyfolder', [PropertyfolderController::class, 'index'])->name('Propertyfolder.index');
     Route::GET('Contracts/{property_folder_id?}', [ContractsController::class, 'index'])->name('Contracts.index');
     //===============الاملاك والاراضي==================
-
+Route::  RESOURCE(name: 'Tenants', controller: TenantsController::class);
 
     //===============المالية==================
 
