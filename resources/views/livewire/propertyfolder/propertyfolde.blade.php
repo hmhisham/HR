@@ -117,7 +117,7 @@
                   </li>
                   @endcan
                   <li>
-                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="{{ route('Contracts.index', ['property_folder_id' => $Propertyfolde->folder_number, 'property_name' => $Propertyfolde->property_name]) }}">
+                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="{{ route('Contracts.index', ['property_id' => $Propertyfolde->id,'property_folder_id' => $Propertyfolde->folder_number, 'property_name' => $Propertyfolde->property_name]) }}">
                       <i class="tf-icons mdi mdi-file-document me-1"></i>
                       محضر تعاقد
                     </a>
