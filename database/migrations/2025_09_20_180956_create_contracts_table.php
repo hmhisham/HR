@@ -20,14 +20,12 @@ return new class extends Migration
             $table->date('start_date')->nullable()->comment('تاريخ بداية العقد');
             $table->date('approval_date')->nullable()->comment('تاريخ المصادقة على العقد');
             $table->date('end_date')->nullable()->comment('تاريخ انتهاء العقد');
-            $table->string('tenant_name')->nullable()->comment('اسم المستأجر');
-            $table->decimal('annual_rent_amount', 15, 2)->nullable()->comment('مبلغ التأجير للسنة الواحدة');
-            $table->string('amount_in_words')->nullable()->comment('المبلغ كتابةً');
+            $table->integer('tenant_name')->nullable()->comment('اسم المستأجر');
+            $table->decimal('annual_rent_amount', 15, 0)->nullable()->comment('مبلغ التأجير للسنة الواحدة');
+            // $table->string('amount_in_words')->nullable()->comment('المبلغ كتابةً');
             $table->string('lease_duration')->nullable()->comment('مدة الإيجار');
             $table->string('usage_type')->nullable()->comment('نوع الاستغلال');
-            $table->string('phone_number')->nullable()->comment('رقم الهاتف');
-            $table->text('address')->nullable()->comment('العنوان');
-            $table->string('notes')->nullable()->comment('الملاحظات');
+             $table->string('notes')->nullable()->comment('الملاحظات');
             $table->timestamps();
         });
     }
