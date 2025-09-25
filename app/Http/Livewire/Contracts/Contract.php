@@ -55,21 +55,21 @@ class Contract extends Component
         }
 
         if ($this->selected_property_folder_id && strlen($this->selected_property_folder_id) > 100) {
-             $this->selected_property_folder_id = substr($this->selected_property_folder_id, 0, 100);
-         }
-     }
+            $this->selected_property_folder_id = substr($this->selected_property_folder_id, 0, 100);
+        }
+    }
 
-     private function isValidId($id)
-     {
-         return is_numeric($id) && $id > 0 && $id <= 999999999; // حد أقصى معقول للـ ID
-     }
+    private function isValidId($id)
+    {
+        return is_numeric($id) && $id > 0 && $id <= 999999999; // حد أقصى معقول للـ ID
+    }
 
-     private function isValidPropertyFolderId($folderId)
-     {
-         if (is_null($folderId)) return false;
-         // التحقق من أن المعرف يحتوي على أحرف وأرقام آمنة فقط (بما في ذلك العربية)
-         return preg_match('/^[a-zA-Z0-9\-_\p{Arabic}\s]{1,100}$/u', $folderId);
-     }
+    private function isValidPropertyFolderId($folderId)
+    {
+        if (is_null($folderId)) return false;
+        // التحقق من أن المعرف يحتوي على أحرف وأرقام آمنة فقط (بما في ذلك العربية)
+        return preg_match('/^[a-zA-Z0-9\-_\p{Arabic}\s]{1,100}$/u', $folderId);
+    }
 
     public function render()
     {
@@ -141,9 +141,22 @@ class Contract extends Component
 
     public function AddContractModalShow()
     {
-        $this->reset([ 'property_folder_id', 'document_contract_number', 'generated_contract_number',
-            'start_date', 'approval_date', 'end_date', 'tenant_name', 'annual_rent_amount',
-            'amount_in_words', 'lease_duration', 'usage_type', 'phone_number', 'address', 'notes']);
+        $this->reset([
+            'property_folder_id',
+            'document_contract_number',
+            'generated_contract_number',
+            'start_date',
+            'approval_date',
+            'end_date',
+            'tenant_name',
+            'annual_rent_amount',
+            'amount_in_words',
+            'lease_duration',
+            'usage_type',
+            'phone_number',
+            'address',
+            'notes'
+        ]);
         $this->resetValidation();
         $this->dispatchBrowserEvent('ContractModalShow');
     }
@@ -153,7 +166,7 @@ class Contract extends Component
         $this->resetValidation();
         $this->validate([
 
-            'property_folder_id' => 'required',
+         
             'document_contract_number' => 'required',
             'generated_contract_number' => 'required',
             'start_date' => 'required',
@@ -161,15 +174,14 @@ class Contract extends Component
             'end_date' => 'required',
             'tenant_name' => 'required',
             'annual_rent_amount' => 'required',
-            'amount_in_words' => 'required',
+
             'lease_duration' => 'required',
             'usage_type' => 'required',
-            'phone_number' => 'required',
-            'address' => 'required',
+
             'notes' => 'required',
         ], [
 
-            'property_folder_id.required' => 'حقل  مطلوب',
+
             'document_contract_number.required' => 'حقل رقم العقد في المستند مطلوب',
             'generated_contract_number.required' => 'حقل رقم العقد المنشأ مطلوب',
             'start_date.required' => 'حقل تاريخ بداية العقد مطلوب',
@@ -177,16 +189,14 @@ class Contract extends Component
             'end_date.required' => 'حقل تاريخ انتهاء العقد مطلوب',
             'tenant_name.required' => 'حقل اسم المستأجر مطلوب',
             'annual_rent_amount.required' => 'حقل مبلغ التأجير للسنة الواحدة مطلوب',
-            'amount_in_words.required' => 'حقل المبلغ كتابةً مطلوب',
             'lease_duration.required' => 'حقل مدة الإيجار مطلوب',
             'usage_type.required' => 'حقل نوع الاستغلال مطلوب',
-            'phone_number.required' => 'حقل رقم الهاتف مطلوب',
-            'address.required' => 'حقل العنوان مطلوب',
+
             'notes.required' => 'حقل الملاحظات مطلوب'
         ]);
         Contracts::create([
             'user_id' => Auth::id(),
-            'property_folder_id' => $this->property_folder_id,
+            'property_folder_id' => $this->selected_property_folder_id,
             'document_contract_number' => $this->document_contract_number,
             'generated_contract_number' => $this->generated_contract_number,
             'start_date' => $this->start_date,
@@ -194,11 +204,9 @@ class Contract extends Component
             'end_date' => $this->end_date,
             'tenant_name' => $this->tenant_name,
             'annual_rent_amount' => $this->annual_rent_amount,
-            'amount_in_words' => $this->amount_in_words,
             'lease_duration' => $this->lease_duration,
             'usage_type' => $this->usage_type,
-            'phone_number' => $this->phone_number,
-            'address' => $this->address,
+
             'notes' => $this->notes
         ]);
         $this->reset();

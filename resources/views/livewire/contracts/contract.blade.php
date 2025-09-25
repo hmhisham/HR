@@ -36,7 +36,7 @@
                 <thead class="table-light">
                     <tr>
                         <th class="text-center">#</th>
-                        <th class="text-center"></th>
+                        <th class="text-center">رقم الاضبارة</th>
                         <th class="text-center">رقم العقد المنشأ</th>
                         <th class="text-center">تاريخ بداية العقد</th>
                         <th class="text-center">تاريخ انتهاء العقد</th>
@@ -51,7 +51,7 @@
                         <th></th>
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.property_folder_id"
-                                class="text-center form-control form-control-sm" placeholder="">
+                                class="text-center form-control form-control-sm" placeholder="رقم الاضبارة">
                         </th>
 
                         <th class="text-center">
