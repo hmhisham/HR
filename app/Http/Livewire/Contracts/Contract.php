@@ -166,7 +166,7 @@ class Contract extends Component
         $this->resetValidation();
         $this->validate([
 
-         
+
             'document_contract_number' => 'required',
             'generated_contract_number' => 'required',
             'start_date' => 'required',

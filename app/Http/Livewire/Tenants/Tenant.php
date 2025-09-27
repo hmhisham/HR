@@ -1,35 +1,35 @@
 <?php
+
 namespace App\Http\Livewire\Tenants;
+
 use Livewire\Component;
 
 use Livewire\WithPagination;
 use App\Models\Tenants\Tenants;
+use Illuminate\Support\Facades\Auth;
 
 class Tenant extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-
     public $Tenants = [];
     public $TenantSearch, $Tenant, $TenantId;
     public $user_id, $name, $phone, $email, $address, $pdf_file, $notes;
     public $search = ['user_id' => '', 'name' => '', 'phone' => '', 'email' => '', 'address' => '', 'pdf_file' => '', 'notes' => ''];
-
-
-        public function render()
+    public function render()
     {
         // ✅ الحصول على قيمة البحث العام
         $TenantSearch = '%' . $this->TenantSearch . '%';
 
-        $Tenants = Tenants::query() 
+        $Tenants = Tenants::query()
             ->where(function ($query) use ($TenantSearch) {
                 $query->where('user_id', 'LIKE', $TenantSearch)
-                ->orWhere('name', 'LIKE', $TenantSearch)
-                ->orWhere('phone', 'LIKE', $TenantSearch)
-                ->orWhere('email', 'LIKE', $TenantSearch)
-                ->orWhere('address', 'LIKE', $TenantSearch)
-                ->orWhere('pdf_file', 'LIKE', $TenantSearch)
-                ->orWhere('notes', 'LIKE', $TenantSearch);
+                    ->orWhere('name', 'LIKE', $TenantSearch)
+                    ->orWhere('phone', 'LIKE', $TenantSearch)
+                    ->orWhere('email', 'LIKE', $TenantSearch)
+                    ->orWhere('address', 'LIKE', $TenantSearch)
+                    ->orWhere('pdf_file', 'LIKE', $TenantSearch)
+                    ->orWhere('notes', 'LIKE', $TenantSearch);
             })
             ->when($this->search['user_id'], function ($query) {
                 $user_idSearch = '%' . $this->search['user_id'] . '%';
@@ -70,40 +70,38 @@ class Tenant extends Component
             'links' => $links
         ]);
     }
-
-
     public function AddTenantModalShow()
     {
         $this->reset();
         $this->resetValidation();
         $this->dispatchBrowserEvent('TenantModalShow');
     }
-
     public function store()
     {
         $this->resetValidation();
-        $this->validate(['user_id' => 'required', 
-'name' => 'required', 
-'phone' => 'required', 
-'email' => 'required', 
-'address' => 'required', 
-'pdf_file' => 'required', 
-'notes' => 'required',         ], [
+        $this->validate([
+            'user_id' => 'required',
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'pdf_file' => 'required',
+        ], [
             'user_id.required' => 'حقل  مطلوب',
             'name.required' => 'حقل اسم المستأجر مطلوب',
             'phone.required' => 'حقل رقم الهاتف مطلوب',
             'email.required' => 'حقل البريد الإلكتروني مطلوب',
             'address.required' => 'حقل العنوان مطلوب',
             'pdf_file.required' => 'حقل المستمسكات مطلوب',
-            'notes.required' => 'حقل الملاحظات مطلوب'
         ]);
-        Tenants::create(['user_id' => $this->user_id,
-'name' => $this->name,
-'phone' => $this->phone,
-'email' => $this->email,
-'address' => $this->address,
-'pdf_file' => $this->pdf_file,
-'notes' => $this->notes
+        Tenants::create([
+            'user_id' => Auth::id(),
+            'name' => $this->name,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'address' => $this->address,
+            'pdf_file' => $this->pdf_file,
+            'notes' => $this->notes
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -111,7 +109,6 @@ class Tenant extends Component
             'title' => 'إضافة'
         ]);
     }
-
     public function GetTenant($TenantId)
     {
         $this->resetValidation();
@@ -133,17 +130,18 @@ class Tenant extends Component
         // إعادة تهيئة Flatpickr عند فتح نافذة التعديل
         $this->dispatchBrowserEvent('flatpickr');
     }
-
     public function update()
     {
         $this->resetValidation();
-        $this->validate(['user_id' => 'required:tenants', 
-'name' => 'required:tenants', 
-'phone' => 'required:tenants', 
-'email' => 'required:tenants', 
-'address' => 'required:tenants', 
-'pdf_file' => 'required:tenants', 
-'notes' => 'required:tenants',         ], [
+        $this->validate([
+            'user_id' => 'required:tenants',
+            'name' => 'required:tenants',
+            'phone' => 'required:tenants',
+            'email' => 'required:tenants',
+            'address' => 'required:tenants',
+            'pdf_file' => 'required:tenants',
+            'notes' => 'required:tenants',
+        ], [
             'user_id.required' => 'حقل  مطلوب',
             'name.required' => 'حقل اسم المستأجر مطلوب',
             'phone.required' => 'حقل رقم الهاتف مطلوب',
@@ -153,13 +151,14 @@ class Tenant extends Component
             'notes.required' => 'حقل الملاحظات مطلوب'
         ]);
         $Tenants = Tenants::find($this->TenantId);
-        $Tenants->update(['user_id' => $this->user_id,
-'name' => $this->name,
-'phone' => $this->phone,
-'email' => $this->email,
-'address' => $this->address,
-'pdf_file' => $this->pdf_file,
-'notes' => $this->notes
+        $Tenants->update([
+            'user_id' => $this->user_id,
+            'name' => $this->name,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'address' => $this->address,
+            'pdf_file' => $this->pdf_file,
+            'notes' => $this->notes
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -167,7 +166,6 @@ class Tenant extends Component
             'title' => 'تعديل'
         ]);
     }
-
     public function destroy()
     {
         $Tenants = Tenants::find($this->TenantId);

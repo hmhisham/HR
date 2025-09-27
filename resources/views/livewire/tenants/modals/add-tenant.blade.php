@@ -1,28 +1,28 @@
 <!-- Add Tenant Modal -->
 <div wire:ignore.self class="modal fade" id="addtenantModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="border-0 shadow-lg modal-content">
-      <div class="px-5 py-4 text-white border-0 modal-header bg-gradient-primary">
-        <h4 class="mb-0 modal-title d-flex align-items-center fw-bold">
-          <i class="mdi mdi-plus-circle-outline me-3 fs-3"></i>
+      <div class="px-4 py-3 text-white border-0 modal-header bg-gradient-primary">
+        <h5 class="mb-0 modal-title d-flex align-items-center fw-bold">
+          <i class="mdi mdi-plus-circle-outline me-2 fs-4"></i>
           إضافة مستأجر جديد
-        </h4>
+        </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="p-3 modal-body">
-        <div class="row g-4">
+      <div class="p-4 modal-body">
+        <div class="row g-3">
               <!-- Form Inputs Section - Right Side -->
-          <div class="col-xl-7 col-lg-6">
+          <div class="col-lg-7">
             <div class="border-0 shadow-sm card h-100">
-              <div class="py-3 border-0 card-header bg-light">
+              <div class="py-2 border-0 card-header bg-light">
                 <h6 class="mb-0 card-title d-flex align-items-center">
                   <i class="mdi mdi-account-edit-outline text-primary me-2"></i>
                   بيانات المستأجر
                 </h6>
               </div>
-              <div class="p-4 card-body">
+              <div class="p-3 card-body">
                 <form id="addtenantModalForm" autocomplete="off">
-                  <div class="row g-4">
+                    <div class="row g-3">
                     <div class="col-lg-6">
                       <div class="form-floating form-floating-outline">
                         <input wire:model.defer='name' type="text" id="modalTenantname" placeholder="اسم المستأجر" class="form-control @error('name') is-invalid is-filled @enderror" />
@@ -81,7 +81,13 @@
 
                     <div class="col-12">
                       <div class="form-floating form-floating-outline">
-                        <textarea wire:model.defer='notes' id="modalTenantnotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" style="height: 100px;"></textarea>
+                        <textarea wire:model.defer='notes' id="modalTenantnotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" style="height: 150px;" oninput="autoExpand(this)"></textarea>
+                        <script>
+                            function autoExpand(textarea) {
+                                textarea.style.height = 'auto';
+                                textarea.style.height = textarea.scrollHeight + 'px';
+                            }
+                        </script>
                         <label for="modalTenantnotes">
                           <i class="mdi mdi-note-text me-1"></i>الملاحظات
                         </label>
@@ -98,18 +104,18 @@
             </div>
           </div>
           <!-- File Upload Section - Left Side -->
-          <div class="col-xl-5 col-lg-6">
+          <div class="col-lg-5">
             <div class="border-0 shadow-sm card h-100">
-              <div class="py-3 border-0 card-header bg-light">
+              <div class="py-2 border-0 card-header bg-light">
                 <h6 class="mb-0 card-title d-flex align-items-center">
                   <i class="mdi mdi-file-upload-outline text-primary me-2"></i>
                   رفع وثيقة المستأجر
                 </h6>
               </div>
-              <div class="p-4 card-body">
+              <div class="p-3 card-body">
                 <!-- File Input and Preview Area -->
                 <div wire:loading.remove wire:target="pdf_file" class="h-100">
-                  <label for="documentPdfUpload" class="w-100 d-flex align-items-center justify-content-center" style="cursor: pointer; min-height: 350px;">
+                  <label for="documentPdfUpload" class="w-100 d-flex align-items-center justify-content-center" style="cursor: pointer; min-height: 280px;">
                   <div class="overflow-hidden border-dashed upload-container border-3 rounded-4 w-100 h-100 d-flex align-items-center justify-content-center position-relative" style="transition: all 0.3s ease;" onmouseover="this.classList.add('upload-hover')" onmouseout="this.classList.remove('upload-hover')">
                     @if ($pdf_file || $pdf_file)
                     @php
@@ -232,9 +238,9 @@
         </div>
       </div>
 
-      <div class="px-5 py-4 border-0 modal-footer bg-light">
-        <div class="gap-3 d-flex w-100 justify-content-center">
-          <button wire:click='store' wire:loading.attr="disabled" type="button" class="px-4 py-2 shadow-sm btn btn-primary rounded-3">
+      <div class="px-4 py-3 border-0 modal-footer bg-light">
+        <div class="gap-2 d-flex w-100 justify-content-center">
+          <button wire:click='store' wire:loading.attr="disabled" type="button" class="px-3 py-2 shadow-sm btn btn-primary rounded-3">
             <span wire:loading.remove wire:target="store">
               <i class="mdi mdi-content-save-outline me-2"></i>حفظ المستأجر
             </span>
@@ -242,7 +248,7 @@
               <span class="spinner-border spinner-border-sm me-2" role="status"></span>جارٍ الحفظ...
             </span>
           </button>
-          <button type="button" class="px-4 py-2 btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">
+          <button type="button" class="px-3 py-2 btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">
             <i class="mdi mdi-close-circle-outline me-2"></i>إلغاء
           </button>
         </div>
@@ -250,3 +256,54 @@
     </div>
   </div>
 </div>
+
+<style>
+  /* تحسينات للنافذة الأصغر */
+  .modal-lg {
+    max-width: 900px;
+  }
+
+
+
+  .upload-icon {
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .inputerror {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+
+  /* تحسينات للشاشات الصغيرة */
+  @media (max-width: 768px) {
+    .modal-lg {
+      max-width: 95%;
+      margin: 10px auto;
+    }
+
+    .upload-container {
+      min-height: 200px !important;
+    }
+
+    .card-body {
+      padding: 1rem !important;
+    }
+  }
+</style>
