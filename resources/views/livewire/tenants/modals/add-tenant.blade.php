@@ -116,41 +116,27 @@
                 <!-- File Input and Preview Area -->
                 <div wire:loading.remove wire:target="pdf_file" class="h-100">
                   @if($pdf_file)
-                    <div class="mt-3 p-3 border rounded bg-light">
-                      <h6 class="text-success mb-3">
+                    <div class="p-3 mt-3 rounded border bg-light">
+                      <h6 class="mb-3 text-success">
                         <i class="mdi mdi-check-circle me-1"></i>تم رفع الملف بنجاح
                       </h6>
-                      
+
                       @if($pdfPreviewUrl && !is_string($pdf_file))
                         <!-- New uploaded PDF preview -->
-                        <div class="pdf-preview-container mb-3">
-                          <div class="border rounded overflow-hidden bg-white">
-                            <embed src="{{ $pdfPreviewUrl }}" type="application/pdf" width="100%" height="400px" style="min-height: 400px;">
+                        <div class="mb-3 pdf-preview-container">
+                          <div class="overflow-hidden bg-white rounded border">
+                            <embed src="{{ $pdfPreviewUrl }}" type="application/pdf" width="100%" height="300px" style="min-height: 300px;">
                           </div>
-                          <div class="text-center mt-2">
-                            <p class="text-muted mb-1">
-                              <i class="mdi mdi-file-pdf-box text-danger me-1"></i>
-                              <strong>معاينة ملف PDF</strong>
-                            </p>
-                            <small class="text-success">
-                              <i class="mdi mdi-check me-1"></i>الملف جاهز للحفظ - سيتم حفظه عند الضغط على "حفظ"
-                            </small>
-                            <br>
-                            <small class="text-muted">
-                              <a href="{{ $pdfPreviewUrl }}" target="_blank" class="text-primary text-decoration-none">
-                                <i class="mdi mdi-open-in-new me-1"></i>فتح في نافذة جديدة
-                              </a>
-                            </small>
-                          </div>
+
                         </div>
                       @elseif($pdf_file && is_string($pdf_file))
                         <!-- Existing PDF file -->
-                        <div class="pdf-preview-container mb-3">
-                          <div class="border rounded overflow-hidden bg-white">
+                        <div class="mb-3 pdf-preview-container">
+                          <div class="overflow-hidden bg-white rounded border">
                             <embed src="{{ asset('storage/' . $pdf_file) }}" type="application/pdf" width="100%" height="400px" style="min-height: 400px;">
                           </div>
-                          <div class="text-center mt-2">
-                            <p class="text-muted mb-1">
+                          <div class="mt-2 text-center">
+                            <p class="mb-1 text-muted">
                               <i class="mdi mdi-file-pdf-box text-danger me-1"></i>
                               <strong>ملف PDF محفوظ</strong>
                             </p>
@@ -174,7 +160,7 @@
                           <span class="px-3 py-2 mb-3 badge bg-danger-subtle text-danger rounded-pill">
                             <i class="mdi mdi-alert-circle me-1"></i>مطلوب
                           </span>
-                          <p class="text-muted small mb-3">سيتم عرض الملف مباشرة بعد الاختيار</p>
+                          <p class="mb-3 text-muted small">سيتم عرض الملف مباشرة بعد الاختيار</p>
                           <div class="mt-3 upload-info">
                             <small class="text-muted d-block">
                               <i class="mdi mdi-file-pdf me-1"></i>ملفات PDF فقط
