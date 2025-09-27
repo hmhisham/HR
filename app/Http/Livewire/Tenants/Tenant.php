@@ -3,19 +3,20 @@
 namespace App\Http\Livewire\Tenants;
 
 use Livewire\Component;
-
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Tenants\Tenants;
 use Illuminate\Support\Facades\Auth;
 
 class Tenant extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
     protected $paginationTheme = 'bootstrap';
     public $Tenants = [];
     public $TenantSearch, $Tenant, $TenantId;
     public $user_id, $name, $phone, $email, $address, $pdf_file, $notes;
     public $search = ['user_id' => '', 'name' => '', 'phone' => '', 'email' => '', 'address' => '', 'pdf_file' => '', 'notes' => ''];
+    public $pdfPreviewUrl = null;
     public function render()
     {
         // ✅ الحصول على قيمة البحث العام
@@ -80,34 +81,103 @@ class Tenant extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'user_id' => 'required',
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'address' => 'required',
-            'pdf_file' => 'required',
+            'pdf_file' => 'required|file|mimes:pdf|max:10240', // 10MB max, PDF only
         ], [
-            'user_id.required' => 'حقل  مطلوب',
             'name.required' => 'حقل اسم المستأجر مطلوب',
             'phone.required' => 'حقل رقم الهاتف مطلوب',
             'email.required' => 'حقل البريد الإلكتروني مطلوب',
+            'email.email' => 'يجب أن يكون البريد الإلكتروني صحيحاً',
             'address.required' => 'حقل العنوان مطلوب',
             'pdf_file.required' => 'حقل المستمسكات مطلوب',
+            'pdf_file.file' => 'يجب أن يكون الملف صالحاً',
+            'pdf_file.mimes' => 'يجب أن يكون الملف من نوع PDF فقط',
+            'pdf_file.max' => 'حجم الملف يجب أن يكون أقل من 10 ميجابايت',
         ]);
+
+        // رفع الملف وحفظه
+        $fileName = null;
+        if ($this->pdf_file) {
+            $fileName = $this->pdf_file->store('tenants', 'public');
+        }
+
         Tenants::create([
             'user_id' => Auth::id(),
             'name' => $this->name,
             'phone' => $this->phone,
             'email' => $this->email,
             'address' => $this->address,
-            'pdf_file' => $this->pdf_file,
+            'pdf_file' => $fileName,
             'notes' => $this->notes
         ]);
+
+        // Clean up temporary preview file
+        $this->cleanupTempFile();
+        
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الإضافة بنجاح',
             'title' => 'إضافة'
         ]);
+    }
+
+    public function emptyy()
+    {
+        $this->cleanupTempFile();
+        $this->pdf_file = null;
+        $this->pdfPreviewUrl = null;
+        $this->resetValidation('pdf_file');
+    }
+
+    public function updatedPdfFile()
+    {
+        $this->resetValidation('pdf_file');
+        
+        if ($this->pdf_file) {
+            // Validate the file
+            $this->validate([
+                'pdf_file' => 'file|mimes:pdf|max:10240'
+            ], [
+                'pdf_file.file' => 'يجب أن يكون الملف صالحاً',
+                'pdf_file.mimes' => 'يجب أن يكون الملف من نوع PDF فقط',
+                'pdf_file.max' => 'حجم الملف يجب أن يكون أقل من 10 ميجابايت',
+            ]);
+
+            // Generate a preview URL using a temporary storage approach
+            try {
+                // Ensure temp directory exists
+                $tempDir = storage_path('app/public/temp');
+                if (!file_exists($tempDir)) {
+                    mkdir($tempDir, 0755, true);
+                }
+                
+                $tempPath = 'temp/preview_' . uniqid() . '.pdf';
+                $this->pdf_file->storeAs('public', $tempPath);
+                $this->pdfPreviewUrl = asset('storage/' . $tempPath);
+            } catch (\Exception $e) {
+                $this->pdfPreviewUrl = null;
+            }
+        } else {
+            $this->pdfPreviewUrl = null;
+        }
+    }
+
+    private function cleanupTempFile()
+    {
+        if ($this->pdfPreviewUrl) {
+            try {
+                $path = str_replace(asset('storage/'), '', $this->pdfPreviewUrl);
+                $fullPath = storage_path('app/public/' . $path);
+                if (file_exists($fullPath)) {
+                    unlink($fullPath);
+                }
+            } catch (\Exception $e) {
+                // Ignore cleanup errors
+            }
+        }
     }
     public function GetTenant($TenantId)
     {

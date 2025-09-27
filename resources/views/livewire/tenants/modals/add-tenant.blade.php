@@ -117,75 +117,68 @@
                 <div wire:loading.remove wire:target="pdf_file" class="h-100">
                   <label for="documentPdfUpload" class="w-100 d-flex align-items-center justify-content-center" style="cursor: pointer; min-height: 280px;">
                   <div class="overflow-hidden border-dashed upload-container border-3 rounded-4 w-100 h-100 d-flex align-items-center justify-content-center position-relative" style="transition: all 0.3s ease;" onmouseover="this.classList.add('upload-hover')" onmouseout="this.classList.remove('upload-hover')">
-                    @if ($pdf_file || $pdf_file)
+                    @if ($pdf_file)
                     @php
-                    $fileExtension = '';
                     $fileName = '';
                     $fileUrl = '';
-                    if ($pdf_file) {
-                    $fileExtension = strtolower(
-                    $pdf_file->getClientOriginalExtension(),
-                    );
-                    $fileName = $pdf_file->getClientOriginalName();
-                    $fileUrl = $pdf_file->temporaryUrl();
+                    $isNewUpload = false;
+
+                    if ($pdf_file && is_object($pdf_file) && method_exists($pdf_file, 'getClientOriginalName')) {
+                        $fileName = $pdf_file->getClientOriginalName();
+                        $fileUrl = $pdfPreviewUrl;
+                        $isNewUpload = true;
                     } elseif (is_string($pdf_file)) {
-                    $fileExtension = strtolower(
-                    pathinfo($pdf_file, PATHINFO_EXTENSION),
-                    );
-                    $fileName = basename($pdf_file);
-                    $fileUrl = asset('storage/' . $pdf_file);
-                    } else {
-                    $fileExtension = strtolower(
-                    $pdf_file->getClientOriginalExtension(),
-                    );
-                    $fileName = $pdf_file->getClientOriginalName();
-                    $fileUrl = $pdf_file->temporaryUrl();
+                        $fileName = basename($pdf_file);
+                        $fileUrl = asset('storage/' . $pdf_file);
+                        $isNewUpload = false;
                     }
                     @endphp
+
                     <div class="file-preview w-100 h-100 position-relative">
-                      @if ($fileExtension === 'pdf')
-                      <embed src="{{ $fileUrl }}" type="application/pdf" class="shadow-sm w-100 h-100 rounded-4">
+                      @if ($fileUrl && !$isNewUpload)
+                        <!-- Existing saved PDF file -->
+                        <embed src="{{ $fileUrl }}" type="application/pdf" class="shadow-sm w-100 h-100 rounded-4" id="pdfEmbed">
+                      @elseif ($fileUrl && $isNewUpload)
+                        <!-- Newly uploaded PDF file with preview -->
+                        <embed src="{{ $fileUrl }}" type="application/pdf" class="shadow-sm w-100 h-100 rounded-4" id="pdfEmbed">
                       @else
-                      <div class="p-5 text-center bg-white bg-opacity-95 shadow-lg file-display rounded-4 h-100 d-flex flex-column justify-content-center">
-                        <div class="mb-4">
-                          @if (in_array($fileExtension, ['doc', 'docx']))
-                          <i class="bi bi-file-earmark-word display-1 text-primary"></i>
-                          @elseif (in_array($fileExtension, ['xls', 'xlsx']))
-                          <i class="bi bi-file-earmark-excel display-1 text-success"></i>
-                          @else
-                          <i class="bi bi-file-earmark display-1 text-secondary"></i>
-                          @endif
+                        <!-- PDF icon display when no preview available -->
+                        <div class="p-5 text-center bg-white bg-opacity-95 shadow-lg file-display rounded-4 h-100 d-flex flex-column justify-content-center">
+                          <div class="mb-4">
+                            <i class="bi bi-file-earmark-pdf display-1 text-danger"></i>
+                          </div>
+                          <h5 class="mb-3 text-dark fw-bold">{{ $fileName }}</h5>
+                          <p class="text-muted">ملف PDF جاهز للحفظ</p>
                         </div>
-                        <h5 class="mb-3 text-dark fw-bold">{{ $fileName }}</h5>
-                        <div class="gap-2 d-flex justify-content-center">
-                          <a href="{{ $fileUrl }}" target="_blank" class="btn btn-primary btn-sm">
-                            <i class="bi bi-download me-2"></i>تحميل وعرض الملف
-                          </a>
-                        </div>
-                      </div>
                       @endif
-                      @if ($fileExtension === 'pdf')
+
+                      <!-- Fallback for browsers that can't display PDF -->
                       <div class="p-5 text-center bg-white bg-opacity-95 shadow-lg pdf-fallback position-absolute top-50 start-50 translate-middle rounded-4" style="display: none;">
                         <div class="animation-pulse">
                           <i class="mb-4 bi bi-file-earmark-pdf display-1 text-danger"></i>
                         </div>
-                        <h5 class="mb-3 text-dark fw-bold">لا يمكن عرض ملف PDF في المتصفح</h5>
+                        <h5 class="mb-3 text-dark fw-bold">{{ $fileName }}</h5>
+                        <p class="mb-3 text-muted">لا يمكن عرض ملف PDF في المتصفح</p>
+                        @if ($fileUrl)
                         <a href="{{ $fileUrl }}" target="_blank" class="px-4 py-2 shadow-sm btn btn-danger btn-lg rounded-pill">
                           <i class="bi bi-download me-2"></i>تحميل وعرض الملف
                         </a>
+                        @endif
                       </div>
-                      @endif
                     </div>
-                    <script>
-                      setTimeout(() => {
-                        const embed = document.querySelector('.pdf-preview embed');
-                        const fallback = document.querySelector('.pdf-fallback');
-                        if (embed ? .offsetHeight === 0) {
-                          embed.style.display = 'none';
-                          fallback.style.display = 'block';
-                        }
-                      }, 1500);
 
+                    <script>
+                      // Check if PDF embed is working, show fallback if not
+                      setTimeout(() => {
+                        const embed = document.getElementById('pdfEmbed');
+                        const fallback = document.querySelector('.pdf-fallback');
+                        if (embed && fallback) {
+                          if (embed.offsetHeight === 0 || embed.clientHeight === 0) {
+                            embed.style.display = 'none';
+                            fallback.style.display = 'block';
+                          }
+                        }
+                      }, 2000);
                     </script>
                     @else
                     <div class="p-4 text-center upload-content">
@@ -196,9 +189,10 @@
                       <span class="px-3 py-2 mb-3 badge bg-danger-subtle text-danger rounded-pill">
                         <i class="mdi mdi-alert-circle me-1"></i>مطلوب
                       </span>
+                      <p class="text-muted small mb-3">سيتم عرض الملف مباشرة بعد الاختيار</p>
                       <div class="mt-3 upload-info">
                         <small class="text-muted d-block">
-                          <i class="mdi mdi-file-document me-1"></i>يُقبل ملفات PDF
+                          <i class="mdi mdi-file-pdf me-1"></i>ملفات PDF فقط
                         </small>
                         <small class="mt-1 text-muted d-block">
                           الحد الأقصى: 10 ميجابايت
@@ -208,7 +202,7 @@
                     @endif
                   </div>
                 </label>
-                <input wire:model="pdf_file" type="file" id="documentPdfUpload" class="d-none" accept="application/pdf,.doc,.docx,.xls,.xlsx" />
+                <input wire:model="pdf_file" type="file" id="documentPdfUpload" class="d-none" accept="application/pdf" />
               </div>
 
               <!-- Loading State -->
@@ -225,7 +219,7 @@
               </div>
               @enderror
 
-              @if ($pdf_file || $pdf_file)
+              @if ($pdf_file)
               <button wire:click="emptyy" type="button" class="mt-3 shadow-sm btn btn-outline-danger w-100 rounded-3">
                 <i class="mdi mdi-delete me-2"></i>تبديل الملف
               </button>
