@@ -16,7 +16,7 @@
           <form id="editTenantModalForm" autocomplete="off">
             <div class="row g-1">
               <div class="row g-2">
-                 
+
 
                 <div class="mb-2 col">
                   <div class="form-floating form-floating-outline">
