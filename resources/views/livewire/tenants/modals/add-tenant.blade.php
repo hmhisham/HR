@@ -2,19 +2,19 @@
 <div wire:ignore.self class="modal fade" id="addtenantModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="border-0 shadow-lg modal-content">
-      <div class="px-4 py-3 text-white border-0 modal-header bg-gradient-primary">
-        <h5 class="mb-0 modal-title d-flex align-items-center fw-bold">
-          <i class="mdi mdi-plus-circle-outline me-2 fs-4"></i>
+      <div class="px-3 py-2 text-white border-0 modal-header bg-gradient-primary">
+        <h6 class="mb-0 modal-title d-flex align-items-center fw-bold">
+          <i class="mdi mdi-plus-circle-outline me-2"></i>
           إضافة مستأجر جديد
-        </h5>
+        </h6>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="p-4 modal-body">
+      <div class="p-3 modal-body">
         <div class="row g-3">
-              <!-- Form Inputs Section - Right Side -->
-          <div class="col-lg-7">
+              <!-- Form Inputs Section - Left Side -->
+          <div class="col-lg-8">
             <div class="border-0 shadow-sm card h-100">
-              <div class="py-2 border-0 card-header bg-light">
+              <div class="px-3 py-2 border-0 card-header bg-light">
                 <h6 class="mb-0 card-title d-flex align-items-center">
                   <i class="mdi mdi-account-edit-outline text-primary me-2"></i>
                   بيانات المستأجر
@@ -81,7 +81,7 @@
 
                     <div class="col-12">
                       <div class="form-floating form-floating-outline">
-                        <textarea wire:model.defer='notes' id="modalTenantnotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" style="height: 150px;" oninput="autoExpand(this)"></textarea>
+                        <textarea wire:model.defer='notes' id="modalTenantnotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" style="height: 120px; resize: vertical;" oninput="autoExpand(this)"></textarea>
                         <script>
                             function autoExpand(textarea) {
                                 textarea.style.height = 'auto';
@@ -103,46 +103,47 @@
               </div>
             </div>
           </div>
-          <!-- File Upload Section - Left Side -->
-          <div class="col-lg-5">
+          <!-- File Upload Section - Right Side -->
+          <div class="col-lg-4">
             <div class="border-0 shadow-sm card h-100">
-              <div class="py-2 border-0 card-header bg-light">
-                <h6 class="mb-0 card-title d-flex align-items-center">
-                  <i class="mdi mdi-file-upload-outline text-primary me-2"></i>
-                  رفع وثيقة المستأجر
+              <div class="px-3 py-2 border-0 card-header bg-light">
+                <h6 class="mb-0 text-center card-title d-flex align-items-center w-100 justify-content-center">
+                  <i class="mdi mdi-file-upload-outline text-primary me-1"></i>
+                  <span class="small">رفع الوثيقة</span>
                 </h6>
               </div>
-              <div class="p-3 card-body">
+              <div class="p-2 card-body">
                 <!-- File Input and Preview Area -->
                 <div wire:loading.remove wire:target="pdf_file" class="h-100">
                   @if($pdf_file)
-                    <div class="p-3 mt-3 rounded border bg-light">
-                      <h6 class="mb-3 text-success">
-                        <i class="mdi mdi-check-circle me-1"></i>تم رفع الملف بنجاح
-                      </h6>
+                    <div class="p-2 mt-2 rounded border bg-light">
+                      <div class="mb-2 text-center">
+                        <small class="text-success fw-bold">
+                          <i class="mdi mdi-check-circle me-1"></i>تم الرفع
+                        </small>
+                      </div>
 
                       @if($pdfPreviewUrl && !is_string($pdf_file))
                         <!-- New uploaded PDF preview -->
-                        <div class="mb-3 pdf-preview-container">
+                        <div class="mb-2 pdf-preview-container">
                           <div class="overflow-hidden bg-white rounded border">
-                            <embed src="{{ $pdfPreviewUrl }}" type="application/pdf" width="100%" height="300px" style="min-height: 300px;">
+                            <embed src="{{ $pdfPreviewUrl }}" type="application/pdf" width="100%" height="250px" style="min-height: 250px; border-radius: 4px;">
                           </div>
-
                         </div>
                       @elseif($pdf_file && is_string($pdf_file))
                         <!-- Existing PDF file -->
-                        <div class="mb-3 pdf-preview-container">
+                        <div class="mb-2 pdf-preview-container">
                           <div class="overflow-hidden bg-white rounded border">
-                            <embed src="{{ asset('storage/' . $pdf_file) }}" type="application/pdf" width="100%" height="400px" style="min-height: 400px;">
+                            <embed src="{{ asset('storage/' . $pdf_file) }}" type="application/pdf" width="100%" height="280px" style="min-height: 280px; border-radius: 4px;">
                           </div>
                           <div class="mt-2 text-center">
-                            <p class="mb-1 text-muted">
+                            <small class="text-muted d-block">
                               <i class="mdi mdi-file-pdf-box text-danger me-1"></i>
-                              <strong>ملف PDF محفوظ</strong>
-                            </p>
+                              ملف محفوظ
+                            </small>
                             <small class="text-muted">
-                              <a href="{{ asset('storage/' . $pdf_file) }}" target="_blank" class="text-primary text-decoration-none">
-                                <i class="mdi mdi-open-in-new me-1"></i>فتح في نافذة جديدة
+                              <a href="{{ asset('storage/' . $pdf_file) }}" target="_blank" class="text-primary text-decoration-none small">
+                                <i class="mdi mdi-open-in-new me-1"></i>عرض
                               </a>
                             </small>
                           </div>
@@ -150,23 +151,23 @@
                       @endif
                     </div>
                   @else
-                    <label for="documentPdfUpload" class="w-100 d-flex align-items-center justify-content-center" style="cursor: pointer; min-height: 280px;">
-                      <div class="overflow-hidden border-dashed upload-container border-3 rounded-4 w-100 h-100 d-flex align-items-center justify-content-center position-relative" style="transition: all 0.3s ease;" onmouseover="this.classList.add('upload-hover')" onmouseout="this.classList.remove('upload-hover')">
-                        <div class="p-4 text-center upload-content">
-                          <div class="mb-4 upload-icon">
-                            <i class="opacity-75 mdi mdi-cloud-upload display-1 text-primary"></i>
+                    <label for="documentPdfUpload" class="w-100 d-flex align-items-center justify-content-center" style="cursor: pointer; min-height: 220px;">
+                      <div class="overflow-hidden border-2 border-dashed upload-container rounded-3 w-100 h-100 d-flex align-items-center justify-content-center position-relative" style="transition: all 0.3s ease;" onmouseover="this.classList.add('upload-hover')" onmouseout="this.classList.remove('upload-hover')">
+                        <div class="p-3 text-center upload-content">
+                          <div class="mb-2 upload-icon">
+                            <i class="opacity-75 mdi mdi-cloud-upload fs-1 text-primary"></i>
                           </div>
-                          <h5 class="mb-3 text-dark fw-bold">ارفق ملف الوثيقة</h5>
-                          <span class="px-3 py-2 mb-3 badge bg-danger-subtle text-danger rounded-pill">
+                          <h6 class="mb-2 text-dark fw-bold small">ارفق الوثيقة</h6>
+                          <span class="px-2 py-1 mb-2 badge bg-danger-subtle text-danger rounded-pill small">
                             <i class="mdi mdi-alert-circle me-1"></i>مطلوب
                           </span>
-                          <p class="mb-3 text-muted small">سيتم عرض الملف مباشرة بعد الاختيار</p>
-                          <div class="mt-3 upload-info">
-                            <small class="text-muted d-block">
-                              <i class="mdi mdi-file-pdf me-1"></i>ملفات PDF فقط
+                          <p class="mb-2 text-muted" style="font-size: 0.75rem;">عرض مباشر بعد الاختيار</p>
+                          <div class="mt-2 upload-info">
+                            <small class="text-muted d-block" style="font-size: 0.7rem;">
+                              <i class="mdi mdi-file-pdf me-1"></i>PDF فقط
                             </small>
-                            <small class="mt-1 text-muted d-block">
-                              الحد الأقصى: 10 ميجابايت
+                            <small class="mt-1 text-muted d-block" style="font-size: 0.7rem;">
+                              حد أقصى: 10 MB
                             </small>
                           </div>
                         </div>
@@ -177,22 +178,22 @@
                 </div>
 
               <!-- Loading State -->
-              <div wire:loading wire:target="pdf_file" class="py-5 text-center">
-                <div class="mb-3 spinner-border text-primary" role="status">
+              <div wire:loading wire:target="pdf_file" class="py-4 text-center">
+                <div class="mb-2 spinner-border spinner-border-sm text-primary" role="status">
                   <span class="visually-hidden">جارٍ التحميل...</span>
                 </div>
-                <p class="mb-0 text-muted">جارٍ رفع الملف...</p>
+                <p class="mb-0 text-muted small">جارٍ الرفع...</p>
               </div>
 
               @error('pdf_file')
-              <div class="mt-3 border-0 shadow-sm alert alert-danger rounded-3">
-                <i class="mdi mdi-alert-circle me-2"></i>{{ $message }}
+              <div class="py-2 mt-2 border-0 shadow-sm alert alert-danger rounded-3">
+                <small><i class="mdi mdi-alert-circle me-1"></i>{{ $message }}</small>
               </div>
               @enderror
 
               @if ($pdf_file)
-              <button wire:click="emptyy" type="button" class="mt-3 shadow-sm btn btn-outline-danger w-100 rounded-3">
-                <i class="mdi mdi-delete me-2"></i>تبديل الملف
+              <button wire:click="emptyy" type="button" class="mt-2 shadow-sm btn btn-outline-danger btn-sm w-100 rounded-3">
+                <i class="mdi mdi-delete me-1"></i><small>تبديل الملف</small>
               </button>
               @endif
               </div>
@@ -203,7 +204,7 @@
         </div>
       </div>
 
-      <div class="px-4 py-3 border-0 modal-footer bg-light">
+      <div class="px-3 py-2 border-0 modal-footer bg-light">
         <div class="gap-2 d-flex w-100 justify-content-center">
           <button wire:click='store' wire:loading.attr="disabled" type="button" class="px-3 py-2 shadow-sm btn btn-primary rounded-3">
             <span wire:loading.remove wire:target="store">
@@ -223,12 +224,10 @@
 </div>
 
 <style>
-  /* تحسينات للنافذة الأصغر */
+  /* تحسينات للنافذة المتوسطة */
   .modal-lg {
     max-width: 900px;
   }
-
-
 
   .upload-icon {
     animation: bounce 2s infinite;
@@ -239,11 +238,16 @@
       transform: translateY(0);
     }
     40% {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
     }
     60% {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
     }
+  }
+
+  .upload-hover {
+    border-color: #007bff !important;
+    background-color: rgba(0, 123, 255, 0.05) !important;
   }
 
   .inputerror {
@@ -252,23 +256,76 @@
 
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
   }
 
-  /* تحسينات للشاشات الصغيرة */
-  @media (max-width: 768px) {
+  /* تحسينات للشاشات المتوسطة */
+  @media (max-width: 992px) {
     .modal-lg {
       max-width: 95%;
       margin: 10px auto;
     }
 
+    .col-lg-8, .col-lg-4 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  /* تحسينات للشاشات الصغيرة */
+  @media (max-width: 768px) {
+    .modal-lg {
+      max-width: 98%;
+      margin: 5px auto;
+    }
+
     .upload-container {
-      min-height: 200px !important;
+      min-height: 180px !important;
     }
 
     .card-body {
+      padding: 0.75rem !important;
+    }
+
+    .modal-header {
+      padding: 0.5rem 0.75rem !important;
+    }
+
+    .modal-footer {
+      padding: 0.5rem 0.75rem !important;
+    }
+
+    .modal-body {
+      padding: 0.75rem !important;
+    }
+
+    .pdf-preview-container embed {
+      height: 200px !important;
+      min-height: 200px !important;
+    }
+  }
+
+  /* تحسينات للشاشات الصغيرة جداً */
+  @media (max-width: 576px) {
+    .upload-container {
+      min-height: 150px !important;
+    }
+
+    .upload-content {
       padding: 1rem !important;
+    }
+
+    .pdf-preview-container embed {
+      height: 180px !important;
+      min-height: 180px !important;
+    }
+
+    .modal-title {
+      font-size: 0.9rem;
+    }
+
+    .card-title {
+      font-size: 0.85rem;
     }
   }
 </style>
