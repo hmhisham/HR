@@ -116,6 +116,7 @@ class Tenant extends Component
 
         // Clean up temporary preview file
         $this->cleanupTempFile();
+        $this->pdfPreviewUrl = null;
         
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -146,37 +147,58 @@ class Tenant extends Component
                 'pdf_file.max' => 'حجم الملف يجب أن يكون أقل من 10 ميجابايت',
             ]);
 
-            // Generate a preview URL using a temporary storage approach
+            // Clean up any previous temp file
+            $this->cleanupTempFile();
+            
+            // Store the file temporarily for preview
             try {
-                // Ensure temp directory exists
                 $tempDir = storage_path('app/public/temp');
                 if (!file_exists($tempDir)) {
                     mkdir($tempDir, 0755, true);
                 }
                 
-                $tempPath = 'temp/preview_' . uniqid() . '.pdf';
-                $this->pdf_file->storeAs('public', $tempPath);
+                $tempFileName = 'preview_' . uniqid() . '.pdf';
+                $tempPath = 'temp/' . $tempFileName;
+                
+                // Store the file
+                $this->pdf_file->storeAs('temp', $tempFileName, 'public');
                 $this->pdfPreviewUrl = asset('storage/' . $tempPath);
+                
+                // Also store the temp file name for cleanup
+                session(['temp_pdf_file' => $tempPath]);
+                
             } catch (\Exception $e) {
                 $this->pdfPreviewUrl = null;
+                session()->forget('temp_pdf_file');
             }
         } else {
+            $this->cleanupTempFile();
             $this->pdfPreviewUrl = null;
         }
     }
 
     private function cleanupTempFile()
     {
-        if ($this->pdfPreviewUrl) {
-            try {
+        try {
+            // Clean up using session stored path
+            if (session('temp_pdf_file')) {
+                $fullPath = storage_path('app/public/' . session('temp_pdf_file'));
+                if (file_exists($fullPath)) {
+                    unlink($fullPath);
+                }
+                session()->forget('temp_pdf_file');
+            }
+            
+            // Also try to clean up using current preview URL
+            if ($this->pdfPreviewUrl && strpos($this->pdfPreviewUrl, 'temp/preview_') !== false) {
                 $path = str_replace(asset('storage/'), '', $this->pdfPreviewUrl);
                 $fullPath = storage_path('app/public/' . $path);
                 if (file_exists($fullPath)) {
                     unlink($fullPath);
                 }
-            } catch (\Exception $e) {
-                // Ignore cleanup errors
             }
+        } catch (\Exception $e) {
+            // Ignore cleanup errors
         }
     }
     public function GetTenant($TenantId)

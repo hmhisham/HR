@@ -115,95 +115,80 @@
               <div class="p-3 card-body">
                 <!-- File Input and Preview Area -->
                 <div wire:loading.remove wire:target="pdf_file" class="h-100">
-                  <label for="documentPdfUpload" class="w-100 d-flex align-items-center justify-content-center" style="cursor: pointer; min-height: 280px;">
-                  <div class="overflow-hidden border-dashed upload-container border-3 rounded-4 w-100 h-100 d-flex align-items-center justify-content-center position-relative" style="transition: all 0.3s ease;" onmouseover="this.classList.add('upload-hover')" onmouseout="this.classList.remove('upload-hover')">
-                    @if ($pdf_file)
-                    @php
-                    $fileName = '';
-                    $fileUrl = '';
-                    $isNewUpload = false;
-
-                    if ($pdf_file && is_object($pdf_file) && method_exists($pdf_file, 'getClientOriginalName')) {
-                        $fileName = $pdf_file->getClientOriginalName();
-                        $fileUrl = $pdfPreviewUrl;
-                        $isNewUpload = true;
-                    } elseif (is_string($pdf_file)) {
-                        $fileName = basename($pdf_file);
-                        $fileUrl = asset('storage/' . $pdf_file);
-                        $isNewUpload = false;
-                    }
-                    @endphp
-
-                    <div class="file-preview w-100 h-100 position-relative">
-                      @if ($fileUrl && !$isNewUpload)
-                        <!-- Existing saved PDF file -->
-                        <embed src="{{ $fileUrl }}" type="application/pdf" class="shadow-sm w-100 h-100 rounded-4" id="pdfEmbed">
-                      @elseif ($fileUrl && $isNewUpload)
-                        <!-- Newly uploaded PDF file with preview -->
-                        <embed src="{{ $fileUrl }}" type="application/pdf" class="shadow-sm w-100 h-100 rounded-4" id="pdfEmbed">
-                      @else
-                        <!-- PDF icon display when no preview available -->
-                        <div class="p-5 text-center bg-white bg-opacity-95 shadow-lg file-display rounded-4 h-100 d-flex flex-column justify-content-center">
-                          <div class="mb-4">
-                            <i class="bi bi-file-earmark-pdf display-1 text-danger"></i>
+                  @if($pdf_file)
+                    <div class="mt-3 p-3 border rounded bg-light">
+                      <h6 class="text-success mb-3">
+                        <i class="mdi mdi-check-circle me-1"></i>تم رفع الملف بنجاح
+                      </h6>
+                      
+                      @if($pdfPreviewUrl && !is_string($pdf_file))
+                        <!-- New uploaded PDF preview -->
+                        <div class="pdf-preview-container mb-3">
+                          <div class="border rounded overflow-hidden bg-white">
+                            <embed src="{{ $pdfPreviewUrl }}" type="application/pdf" width="100%" height="400px" style="min-height: 400px;">
                           </div>
-                          <h5 class="mb-3 text-dark fw-bold">{{ $fileName }}</h5>
-                          <p class="text-muted">ملف PDF جاهز للحفظ</p>
+                          <div class="text-center mt-2">
+                            <p class="text-muted mb-1">
+                              <i class="mdi mdi-file-pdf-box text-danger me-1"></i>
+                              <strong>معاينة ملف PDF</strong>
+                            </p>
+                            <small class="text-success">
+                              <i class="mdi mdi-check me-1"></i>الملف جاهز للحفظ - سيتم حفظه عند الضغط على "حفظ"
+                            </small>
+                            <br>
+                            <small class="text-muted">
+                              <a href="{{ $pdfPreviewUrl }}" target="_blank" class="text-primary text-decoration-none">
+                                <i class="mdi mdi-open-in-new me-1"></i>فتح في نافذة جديدة
+                              </a>
+                            </small>
+                          </div>
+                        </div>
+                      @elseif($pdf_file && is_string($pdf_file))
+                        <!-- Existing PDF file -->
+                        <div class="pdf-preview-container mb-3">
+                          <div class="border rounded overflow-hidden bg-white">
+                            <embed src="{{ asset('storage/' . $pdf_file) }}" type="application/pdf" width="100%" height="400px" style="min-height: 400px;">
+                          </div>
+                          <div class="text-center mt-2">
+                            <p class="text-muted mb-1">
+                              <i class="mdi mdi-file-pdf-box text-danger me-1"></i>
+                              <strong>ملف PDF محفوظ</strong>
+                            </p>
+                            <small class="text-muted">
+                              <a href="{{ asset('storage/' . $pdf_file) }}" target="_blank" class="text-primary text-decoration-none">
+                                <i class="mdi mdi-open-in-new me-1"></i>فتح في نافذة جديدة
+                              </a>
+                            </small>
+                          </div>
                         </div>
                       @endif
-
-                      <!-- Fallback for browsers that can't display PDF -->
-                      <div class="p-5 text-center bg-white bg-opacity-95 shadow-lg pdf-fallback position-absolute top-50 start-50 translate-middle rounded-4" style="display: none;">
-                        <div class="animation-pulse">
-                          <i class="mb-4 bi bi-file-earmark-pdf display-1 text-danger"></i>
+                    </div>
+                  @else
+                    <label for="documentPdfUpload" class="w-100 d-flex align-items-center justify-content-center" style="cursor: pointer; min-height: 280px;">
+                      <div class="overflow-hidden border-dashed upload-container border-3 rounded-4 w-100 h-100 d-flex align-items-center justify-content-center position-relative" style="transition: all 0.3s ease;" onmouseover="this.classList.add('upload-hover')" onmouseout="this.classList.remove('upload-hover')">
+                        <div class="p-4 text-center upload-content">
+                          <div class="mb-4 upload-icon">
+                            <i class="opacity-75 mdi mdi-cloud-upload display-1 text-primary"></i>
+                          </div>
+                          <h5 class="mb-3 text-dark fw-bold">ارفق ملف الوثيقة</h5>
+                          <span class="px-3 py-2 mb-3 badge bg-danger-subtle text-danger rounded-pill">
+                            <i class="mdi mdi-alert-circle me-1"></i>مطلوب
+                          </span>
+                          <p class="text-muted small mb-3">سيتم عرض الملف مباشرة بعد الاختيار</p>
+                          <div class="mt-3 upload-info">
+                            <small class="text-muted d-block">
+                              <i class="mdi mdi-file-pdf me-1"></i>ملفات PDF فقط
+                            </small>
+                            <small class="mt-1 text-muted d-block">
+                              الحد الأقصى: 10 ميجابايت
+                            </small>
+                          </div>
                         </div>
-                        <h5 class="mb-3 text-dark fw-bold">{{ $fileName }}</h5>
-                        <p class="mb-3 text-muted">لا يمكن عرض ملف PDF في المتصفح</p>
-                        @if ($fileUrl)
-                        <a href="{{ $fileUrl }}" target="_blank" class="px-4 py-2 shadow-sm btn btn-danger btn-lg rounded-pill">
-                          <i class="bi bi-download me-2"></i>تحميل وعرض الملف
-                        </a>
-                        @endif
                       </div>
-                    </div>
-
-                    <script>
-                      // Check if PDF embed is working, show fallback if not
-                      setTimeout(() => {
-                        const embed = document.getElementById('pdfEmbed');
-                        const fallback = document.querySelector('.pdf-fallback');
-                        if (embed && fallback) {
-                          if (embed.offsetHeight === 0 || embed.clientHeight === 0) {
-                            embed.style.display = 'none';
-                            fallback.style.display = 'block';
-                          }
-                        }
-                      }, 2000);
-                    </script>
-                    @else
-                    <div class="p-4 text-center upload-content">
-                      <div class="mb-4 upload-icon">
-                        <i class="opacity-75 mdi mdi-cloud-upload display-1 text-primary"></i>
-                      </div>
-                      <h5 class="mb-3 text-dark fw-bold">ارفق ملف الوثيقة</h5>
-                      <span class="px-3 py-2 mb-3 badge bg-danger-subtle text-danger rounded-pill">
-                        <i class="mdi mdi-alert-circle me-1"></i>مطلوب
-                      </span>
-                      <p class="text-muted small mb-3">سيتم عرض الملف مباشرة بعد الاختيار</p>
-                      <div class="mt-3 upload-info">
-                        <small class="text-muted d-block">
-                          <i class="mdi mdi-file-pdf me-1"></i>ملفات PDF فقط
-                        </small>
-                        <small class="mt-1 text-muted d-block">
-                          الحد الأقصى: 10 ميجابايت
-                        </small>
-                      </div>
-                    </div>
-                    @endif
-                  </div>
-                </label>
-                <input wire:model="pdf_file" type="file" id="documentPdfUpload" class="d-none" accept="application/pdf" />
-              </div>
+                    </label>
+                    <input wire:model="pdf_file" type="file" id="documentPdfUpload" class="d-none" accept="application/pdf" />
+                  @endif
+                </div>
 
               <!-- Loading State -->
               <div wire:loading wire:target="pdf_file" class="py-5 text-center">
