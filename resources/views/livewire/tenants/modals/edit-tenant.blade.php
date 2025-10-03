@@ -24,13 +24,14 @@
               </div>
               <div class="p-3 card-body">
                 <div wire:loading.remove>
+                  @if($Tenant)
                   <form id="editTenantModalForm" autocomplete="off">
                     <div class="row g-3">
                       <!-- Name Field -->
                       <div class="col-md-6">
                         <div class="form-floating form-floating-outline">
-                          <input wire:model.defer='name' type="text" id="modalTenantname" placeholder="اسم المستأجر" class="form-control @error('name') is-invalid is-filled @enderror" />
-                          <label for="modalTenantname">
+                          <input value="{{ $Tenant->name ?? '' }}" wire:model.defer='name' type="text" id="editModalTenantname" placeholder="اسم المستأجر" class="form-control @error('name') is-invalid is-filled @enderror" />
+                          <label for="editModalTenantname">
                             <i class="mdi mdi-account me-2"></i>اسم المستأجر
                           </label>
                         </div>
@@ -44,8 +45,8 @@
                       <!-- Phone Field -->
                       <div class="col-md-6">
                         <div class="form-floating form-floating-outline">
-                          <input wire:model.defer='phone' type="text" id="modalTenantphone" placeholder="رقم الهاتف" class="form-control @error('phone') is-invalid is-filled @enderror" />
-                          <label for="modalTenantphone">
+                          <input value="{{ $Tenant->phone ?? '' }}" wire:model.defer='phone' type="text" id="editModalTenantphone" placeholder="رقم الهاتف" class="form-control @error('phone') is-invalid is-filled @enderror" />
+                          <label for="editModalTenantphone">
                             <i class="mdi mdi-phone me-2"></i>رقم الهاتف
                           </label>
                         </div>
@@ -59,8 +60,8 @@
                       <!-- Email Field -->
                       <div class="col-md-6">
                         <div class="form-floating form-floating-outline">
-                          <input wire:model.defer='email' type="email" id="modalTenantemail" placeholder="البريد الإلكتروني" class="form-control @error('email') is-invalid is-filled @enderror" />
-                          <label for="modalTenantemail">
+                          <input value="{{ $Tenant->email ?? '' }}" wire:model.defer='email' type="email" id="editModalTenantemail" placeholder="البريد الإلكتروني" class="form-control @error('email') is-invalid is-filled @enderror" />
+                          <label for="editModalTenantemail">
                             <i class="mdi mdi-email me-2"></i>البريد الإلكتروني
                           </label>
                         </div>
@@ -74,8 +75,8 @@
                       <!-- Address Field -->
                       <div class="col-md-6">
                         <div class="form-floating form-floating-outline">
-                          <input wire:model.defer='address' type="text" id="modalTenantaddress" placeholder="العنوان" class="form-control @error('address') is-invalid is-filled @enderror" />
-                          <label for="modalTenantaddress">
+                          <input value="{{ $Tenant->address ?? '' }}" wire:model.defer='address' type="text" id="editModalTenantaddress" placeholder="العنوان" class="form-control @error('address') is-invalid is-filled @enderror" />
+                          <label for="editModalTenantaddress">
                             <i class="mdi mdi-map-marker me-2"></i>العنوان
                           </label>
                         </div>
@@ -89,14 +90,14 @@
                       <!-- Notes Field -->
                       <div class="col-12">
                         <div class="form-floating form-floating-outline">
-                          <textarea wire:model.defer='notes' id="modalTenantnotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" style="height: 120px; resize: vertical;" oninput="autoExpand(this)"></textarea>
+                          <textarea wire:model.defer='notes' id="editModalTenantnotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" style="height: 120px; resize: vertical;" oninput="autoExpand(this)">{{ $Tenant->notes ?? '' }}</textarea>
                           <script>
                             function autoExpand(textarea) {
                               textarea.style.height = 'auto';
                               textarea.style.height = textarea.scrollHeight + 'px';
                             }
                           </script>
-                          <label for="modalTenantnotes">
+                          <label for="editModalTenantnotes">
                             <i class="mdi mdi-note-text me-2"></i>الملاحظات الإضافية
                           </label>
                         </div>
@@ -108,6 +109,11 @@
                       </div>
                     </div>
                   </form>
+                  @else
+                  <div class="alert alert-warning" role="alert">
+                    لم يتم العثور على المستأجر المطلوب للتعديل.
+                  </div>
+                  @endif
                 </div>
               </div>
             </div>
@@ -174,7 +180,7 @@
       <!-- Footer -->
       <div class="px-3 py-2 border-0 modal-footer bg-light">
         <div class="gap-2 d-flex w-100 justify-content-center">
-          <button wire:click='update' wire:loading.attr="disabled" type="button" class="px-3 py-2 shadow-sm btn btn-success rounded-pill">
+          <button wire:click='update' wire:loading.attr="disabled" type="button" class="px-3 py-2 shadow-sm btn btn-success rounded-pill" @disabled(!$Tenant)>
             <span wire:loading.remove wire:target="update">
               <i class="mdi mdi-check-circle-outline me-2"></i>تحديث بيانات المستأجر
             </span>

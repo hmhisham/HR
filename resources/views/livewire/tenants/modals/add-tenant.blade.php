@@ -29,8 +29,8 @@
                     <!-- Name Field -->
                     <div class="col-md-6">
                       <div class="form-floating form-floating-outline">
-                        <input wire:model.defer='name' type="text" id="modalTenantname" placeholder="اسم المستأجر" class="form-control @error('name') is-invalid is-filled @enderror" />
-                        <label for="modalTenantname">
+                        <input wire:model.defer='name' type="text" id="addModalTenantname" placeholder="اسم المستأجر" class="form-control @error('name') is-invalid is-filled @enderror" />
+                        <label for="addModalTenantname">
                           <i class="mdi mdi-account me-2"></i>اسم المستأجر
                         </label>
                       </div>
@@ -44,8 +44,8 @@
                     <!-- Phone Field -->
                     <div class="col-md-6">
                       <div class="form-floating form-floating-outline">
-                        <input wire:model.defer='phone' type="text" id="modalTenantphone" placeholder="رقم الهاتف" class="form-control @error('phone') is-invalid is-filled @enderror" />
-                        <label for="modalTenantphone">
+                        <input wire:model.defer='phone' type="text" id="addModalTenantphone" placeholder="رقم الهاتف" class="form-control @error('phone') is-invalid is-filled @enderror" />
+                        <label for="addModalTenantphone">
                           <i class="mdi mdi-phone me-2"></i>رقم الهاتف
                         </label>
                       </div>
@@ -59,8 +59,8 @@
                     <!-- Email Field -->
                     <div class="col-md-6">
                       <div class="form-floating form-floating-outline">
-                        <input wire:model.defer='email' type="email" id="modalTenantemail" placeholder="البريد الإلكتروني" class="form-control @error('email') is-invalid is-filled @enderror" />
-                        <label for="modalTenantemail">
+                        <input wire:model.defer='email' type="email" id="addModalTenantemail" placeholder="البريد الإلكتروني" class="form-control @error('email') is-invalid is-filled @enderror" />
+                        <label for="addModalTenantemail">
                           <i class="mdi mdi-email me-2"></i>البريد الإلكتروني
                         </label>
                       </div>
@@ -74,8 +74,8 @@
                     <!-- Address Field -->
                     <div class="col-md-6">
                       <div class="form-floating form-floating-outline">
-                        <input wire:model.defer='address' type="text" id="modalTenantaddress" placeholder="العنوان" class="form-control @error('address') is-invalid is-filled @enderror" />
-                        <label for="modalTenantaddress">
+                        <input wire:model.defer='address' type="text" id="addModalTenantaddress" placeholder="العنوان" class="form-control @error('address') is-invalid is-filled @enderror" />
+                        <label for="addModalTenantaddress">
                           <i class="mdi mdi-map-marker me-2"></i>العنوان
                         </label>
                       </div>
@@ -89,7 +89,7 @@
                     <!-- Notes Field -->
                     <div class="col-12">
                       <div class="form-floating form-floating-outline">
-                        <textarea wire:model.defer='notes' id="modalTenantnotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" style="height: 300px; resize: vertical;" oninput="autoExpand(this)"></textarea>
+                        <textarea wire:model.defer='notes' id="addModalTenantnotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" style="height: 300px; resize: vertical;" oninput="autoExpand(this)"></textarea>
                         <script>
                           function autoExpand(textarea) {
                             textarea.style.height = 'auto';
@@ -97,7 +97,7 @@
                           }
 
                         </script>
-                        <label for="modalTenantnotes">
+                        <label for="addModalTenantnotes">
                           <i class="mdi mdi-note-text me-2"></i>الملاحظات الإضافية
                         </label>
                       </div>
