@@ -15,7 +15,7 @@
         <div class="row g-3">
           <!-- Form Inputs Section - Left Side -->
           <div class="col-lg-7">
-            <div class="border-0 shadow-sm card h-100">
+            <div class="border-0 shadow-sm card">
               <div class="px-3 py-2 border-0 card-header bg-light">
                 <h6 class="mb-0 card-title d-flex align-items-center">
                   <i class="mdi mdi-account-edit-outline text-warning me-2 fs-6"></i>
@@ -121,7 +121,7 @@
 
           <!-- PDF Display Section - Right Side -->
           <div class="col-lg-5">
-            <div class="border-0 shadow-sm card h-100">
+            <div class="border-0 shadow-sm card">
               <div class="px-3 py-2 border-0 card-header bg-light">
                 <h6 class="mb-0 card-title d-flex align-items-center justify-content-center">
                   <i class="mdi mdi-file-pdf-box text-danger me-2 fs-6"></i>
@@ -130,7 +130,7 @@
               </div>
               <div class="p-2 card-body">
                 <!-- PDF Display Container -->
-                <div class="h-100">
+                <div>
                   @if($Tenant && $Tenant->pdf_file)
                   <!-- PDF Preview Section -->
                   <div class="p-2 border rounded-3 bg-light">
@@ -143,79 +143,20 @@
                     <!-- PDF Display -->
                     <div class="pdf-preview-container">
                       <div class="overflow-hidden bg-white border shadow-sm rounded-3">
-                        <embed src="{{ asset('storage/' . $Tenant->pdf_file) }}" type="application/pdf" width="100%" height="320px" style="min-height: 320px; border-radius: 6px;">
+                        <embed src="{{ asset('storage/' . $Tenant->pdf_file) }}" type="application/pdf" width="100%" height="250px" style="min-height: 250px; border-radius: 6px;">
                       </div>
                       <div class="mt-2 text-center">
-                        <small class="mb-2 text-muted d-block">
-                          <i class="mdi mdi-file-pdf-box text-danger me-1"></i>
-                          وثيقة المستأجر المحفوظة
-                        </small>
+                         
                         <a href="{{ asset('storage/' . $Tenant->pdf_file) }}" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">
                           <i class="mdi mdi-open-in-new me-1"></i>فتح في نافذة جديدة
                         </a>
                       </div>
                     </div>
                   </div>
-                  @else
-                  <!-- No Document Message -->
-                  <div class="w-100 d-flex align-items-center justify-content-center" style="min-height: 380px;">
-                    <div class="border-2 border-dashed rounded-3 w-100 h-100 d-flex align-items-center justify-content-center" style="border-color: #dee2e6;">
-                      <div class="p-3 text-center">
-                        <div class="mb-2">
-                          <i class="mdi mdi-file-pdf-box text-muted" style="font-size: 3rem; opacity: 0.5;"></i>
-                        </div>
-                        <h6 class="mb-2 text-muted">لا توجد وثيقة محفوظة</h6>
-                        <p class="mb-0 text-muted small">لم يتم رفع أي وثيقة لهذا المستأجر</p>
-                      </div>
-                    </div>
-                  </div>
                   @endif
                 </div>
 
-                <!-- File Upload Section -->
-                <div class="mt-3">
-                  <div class="p-2 border rounded-3 bg-light">
-                    <h6 class="mb-2 text-center">
-                      <i class="mdi mdi-file-upload text-primary me-1"></i>
-                      تحديث الوثيقة
-                    </h6>
-                    <label for="editDocumentPdfUpload" class="w-100 cursor-pointer">
-                      <div class="p-3 text-center border-2 border-dashed rounded-3" style="border-color: #dee2e6;">
-                        <div class="mb-2 upload-icon">
-                          <i class="mdi mdi-cloud-upload text-primary" style="font-size: 2rem; opacity: 0.8;"></i>
-                        </div>
-                        <h6 class="mb-2 text-dark fw-bold">رفع وثيقة جديدة</h6>
-                        <p class="mb-2 text-muted small">اختياري - لتحديث الوثيقة الحالية</p>
-                        <div class="upload-info">
-                          <div class="p-2 border rounded-3 bg-white">
-                            <small class="mb-1 text-muted d-block">
-                              <i class="mdi mdi-file-pdf text-danger me-1"></i>
-                              <strong>نوع الملف:</strong> PDF فقط
-                            </small>
-                            <small class="text-muted d-block">
-                              <i class="mdi mdi-weight me-1"></i>
-                              <strong>الحد الأقصى:</strong> 10 ميجابايت
-                            </small>
-                          </div>
-                        </div>
-                      </div>
-                    </label>
-                    <input wire:model="pdf_file" type="file" id="editDocumentPdfUpload" class="d-none" accept="application/pdf" />
-                  </div>
 
-                  <!-- Error Display -->
-                  @error('pdf_file')
-                  <div class="mt-2 border-0 shadow-sm alert alert-danger rounded-3">
-                    <div class="d-flex align-items-center">
-                      <i class="mdi mdi-alert-circle me-2 fs-6"></i>
-                      <div>
-                        <strong>خطأ في رفع الملف:</strong><br>
-                        <small>{{ $message }}</small>
-                      </div>
-                    </div>
-                  </div>
-                  @enderror
-                </div>
               </div>
             </div>
           </div>
