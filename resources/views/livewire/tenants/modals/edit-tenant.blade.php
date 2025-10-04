@@ -90,7 +90,7 @@
                       <!-- Notes Field -->
                       <div class="col-12">
                         <div class="form-floating form-floating-outline">
-                          <textarea wire:model.defer='notes' id="editModalTenantnotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" style="height: 120px; resize: vertical;" oninput="autoExpand(this)">{{ $Tenant->notes ?? '' }}</textarea>
+                          <textarea wire:model.defer='notes' id="editModalTenantnotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" style="height: 200px; resize: vertical;" oninput="autoExpand(this)">{{ $Tenant->notes ?? '' }}</textarea>
                           <script>
                             function autoExpand(textarea) {
                               textarea.style.height = 'auto';
@@ -146,7 +146,7 @@
                         <embed src="{{ asset('storage/' . $Tenant->pdf_file) }}" type="application/pdf" width="100%" height="250px" style="min-height: 250px; border-radius: 6px;">
                       </div>
                       <div class="mt-2 text-center">
-                         
+
                         <a href="{{ asset('storage/' . $Tenant->pdf_file) }}" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">
                           <i class="mdi mdi-open-in-new me-1"></i>فتح في نافذة جديدة
                         </a>
