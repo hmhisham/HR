@@ -21,7 +21,6 @@ class Tenant extends Component
     {
         // ✅ الحصول على قيمة البحث العام
         $TenantSearch = '%' . $this->TenantSearch . '%';
-
         $Tenants = Tenants::query()
             ->where(function ($query) use ($TenantSearch) {
                 $query->where('user_id', 'LIKE', $TenantSearch)
@@ -62,10 +61,8 @@ class Tenant extends Component
             })
             ->orderBy('id', 'ASC')
             ->paginate(10);
-
         $links = $Tenants;
         $this->Tenants = collect($Tenants->items());
-
         return view('livewire.tenants.tenant', [
             'Tenants' => $Tenants,
             'links' => $links
@@ -83,27 +80,22 @@ class Tenant extends Component
         $this->validate([
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required|email',
             'address' => 'required',
             'pdf_file' => 'required|file|mimes:pdf|max:10240', // 10MB max, PDF only
         ], [
             'name.required' => 'حقل اسم المستأجر مطلوب',
             'phone.required' => 'حقل رقم الهاتف مطلوب',
-            'email.required' => 'حقل البريد الإلكتروني مطلوب',
-            'email.email' => 'يجب أن يكون البريد الإلكتروني صحيحاً',
             'address.required' => 'حقل العنوان مطلوب',
             'pdf_file.required' => 'حقل المستمسكات مطلوب',
             'pdf_file.file' => 'يجب أن يكون الملف صالحاً',
             'pdf_file.mimes' => 'يجب أن يكون الملف من نوع PDF فقط',
             'pdf_file.max' => 'حجم الملف يجب أن يكون أقل من 10 ميجابايت',
         ]);
-
         // رفع الملف وحفظه
         $fileName = null;
         if ($this->pdf_file) {
             $fileName = $this->pdf_file->store('tenants', 'public');
         }
-
         Tenants::create([
             'user_id' => Auth::id(),
             'name' => $this->name,
@@ -113,18 +105,15 @@ class Tenant extends Component
             'pdf_file' => $fileName,
             'notes' => $this->notes
         ]);
-
         // Clean up temporary preview file
         $this->cleanupTempFile();
         $this->pdfPreviewUrl = null;
-        
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الإضافة بنجاح',
             'title' => 'إضافة'
         ]);
     }
-
     public function emptyy()
     {
         $this->cleanupTempFile();
@@ -132,11 +121,9 @@ class Tenant extends Component
         $this->pdfPreviewUrl = null;
         $this->resetValidation('pdf_file');
     }
-
     public function updatedPdfFile()
     {
         $this->resetValidation('pdf_file');
-        
         if ($this->pdf_file) {
             // Validate the file
             $this->validate([
@@ -146,27 +133,21 @@ class Tenant extends Component
                 'pdf_file.mimes' => 'يجب أن يكون الملف من نوع PDF فقط',
                 'pdf_file.max' => 'حجم الملف يجب أن يكون أقل من 10 ميجابايت',
             ]);
-
             // Clean up any previous temp file
             $this->cleanupTempFile();
-            
             // Store the file temporarily for preview
             try {
                 $tempDir = storage_path('app/public/temp');
                 if (!file_exists($tempDir)) {
                     mkdir($tempDir, 0755, true);
                 }
-                
                 $tempFileName = 'preview_' . uniqid() . '.pdf';
                 $tempPath = 'temp/' . $tempFileName;
-                
                 // Store the file
                 $this->pdf_file->storeAs('temp', $tempFileName, 'public');
                 $this->pdfPreviewUrl = asset('storage/' . $tempPath);
-                
                 // Also store the temp file name for cleanup
                 session(['temp_pdf_file' => $tempPath]);
-                
             } catch (\Exception $e) {
                 $this->pdfPreviewUrl = null;
                 session()->forget('temp_pdf_file');
@@ -176,7 +157,6 @@ class Tenant extends Component
             $this->pdfPreviewUrl = null;
         }
     }
-
     private function cleanupTempFile()
     {
         try {
@@ -188,7 +168,6 @@ class Tenant extends Component
                 }
                 session()->forget('temp_pdf_file');
             }
-            
             // Also try to clean up using current preview URL
             if ($this->pdfPreviewUrl && strpos($this->pdfPreviewUrl, 'temp/preview_') !== false) {
                 $path = str_replace(asset('storage/'), '', $this->pdfPreviewUrl);
@@ -229,18 +208,14 @@ class Tenant extends Component
             'user_id' => 'required:tenants',
             'name' => 'required:tenants',
             'phone' => 'required:tenants',
-            'email' => 'required:tenants',
             'address' => 'required:tenants',
             'pdf_file' => 'required:tenants',
-            'notes' => 'required:tenants',
         ], [
             'user_id.required' => 'حقل  مطلوب',
             'name.required' => 'حقل اسم المستأجر مطلوب',
             'phone.required' => 'حقل رقم الهاتف مطلوب',
-            'email.required' => 'حقل البريد الإلكتروني مطلوب',
             'address.required' => 'حقل العنوان مطلوب',
             'pdf_file.required' => 'حقل المستمسكات مطلوب',
-            'notes.required' => 'حقل الملاحظات مطلوب'
         ]);
         $Tenants = Tenants::find($this->TenantId);
         $Tenants->update([
@@ -261,7 +236,6 @@ class Tenant extends Component
     public function destroy()
     {
         $Tenants = Tenants::find($this->TenantId);
-
         if ($Tenants) {
             $Tenants->delete();
             $this->reset();
