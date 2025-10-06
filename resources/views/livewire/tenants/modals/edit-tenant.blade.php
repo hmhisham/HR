@@ -150,7 +150,8 @@
                 allowfullscreen
                 loading="lazy">
                 <p>المتصفح لا يدعم عرض ملفات PDF.
-                  <a href="{{ asset('storage/' . $Tenant->pdf_file) }}" target="_blank">انقر هنا لفتح الملف</a>.
+                 
+                    <a href="{{ asset('storage/' . $Tenant->pdf_file) }}" target="_blank" rel="noopener">انقر هنا لفتح الملف</a>.
                 </p>
               </iframe>
             </div>
