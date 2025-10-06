@@ -18,15 +18,7 @@
           <p class="text-muted">لا يمكن التراجع عن هذه العملية.</p>
           <div class="mt-2 row g-2">
             <div class="row g-2">
-              <div class="mb-2 col">
-                <div class="form-floating form-floating-outline">
-                  <input value="{{ $Tenant->user_id ?? '' }}" wire:model.defer='user_id' type="text" id="removeModalTenantuser_id" placeholder="" class="form-control @error('user_id') is-invalid is-filled @enderror" / readonly disabled>
-                  <label for="removeModalTenantuser_id"></label>
-                </div>
-                @error('user_id')
-                <small class='text-danger inputerror'> {{ $message }} </small>
-                @enderror
-              </div>
+
 
               <div class="mb-2 col">
                 <div class="form-floating form-floating-outline">
@@ -37,8 +29,7 @@
                 <small class='text-danger inputerror'> {{ $message }} </small>
                 @enderror
               </div>
-            </div>
-            <div class="row g-2">
+         
               <div class="mb-2 col">
                 <div class="form-floating form-floating-outline">
                   <input value="{{ $Tenant->phone ?? '' }}" wire:model.defer='phone' type="text" id="removeModalTenantphone" placeholder="رقم الهاتف" class="form-control @error('phone') is-invalid is-filled @enderror" / readonly disabled>
@@ -74,15 +65,7 @@
                 @enderror
               </div>
 
-              <div class="mb-2 col">
-                <div class="form-floating form-floating-outline">
-                  <input value="{{ $Tenant->pdf_file ?? '' }}" wire:model.defer='pdf_file' type="text" id="removeModalTenantpdf_file" placeholder="المستمسكات" class="form-control @error('pdf_file') is-invalid is-filled @enderror" / readonly disabled>
-                  <label for="removeModalTenantpdf_file">المستمسكات</label>
-                </div>
-                @error('pdf_file')
-                <small class='text-danger inputerror'> {{ $message }} </small>
-                @enderror
-              </div>
+
             </div>
             <div class="row g-2">
               <div class="mb-2 col">

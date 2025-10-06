@@ -224,7 +224,7 @@
       </div>
 
       <!-- Footer -->
-      <div class="px-3 py-2 border-0 modal-footer bg-light">
+      <div class="px-3 py-2 border-0 modal-footer">
         <div class="gap-2 d-flex w-100 justify-content-center">
           <button wire:click='store' wire:loading.attr="disabled" type="button" class="px-3 py-2 shadow-sm btn btn-primary rounded-pill">
             <span wire:loading.remove wire:target="store">

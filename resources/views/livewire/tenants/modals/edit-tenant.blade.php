@@ -142,6 +142,7 @@
           <div class="pdf-preview-container">
             <div class="overflow-hidden bg-white border shadow-sm rounded-3">
               <iframe
+         
                 src="{{ asset('storage/' . $Tenant->pdf_file) }}#toolbar=0&navpanes=0"
                 width="100%"
                 height="300"
@@ -150,7 +151,7 @@
                 allowfullscreen
                 loading="lazy">
                 <p>المتصفح لا يدعم عرض ملفات PDF.
-                 
+
                     <a href="{{ asset('storage/' . $Tenant->pdf_file) }}" target="_blank" rel="noopener">انقر هنا لفتح الملف</a>.
                 </p>
               </iframe>
@@ -177,7 +178,7 @@
       </div>
 
       <!-- Footer -->
-      <div class="px-3 py-2 border-0 modal-footer bg-light">
+      <div class="px-3 py-2 border-0 modal-footer">
         <div class="gap-2 d-flex w-100 justify-content-center">
           <button wire:click='update' wire:loading.attr="disabled" type="button" class="px-3 py-2 shadow-sm btn btn-success rounded-pill" @disabled(!$Tenant)>
             <span wire:loading.remove wire:target="update">

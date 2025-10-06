@@ -182,6 +182,7 @@ class Tenant extends Component
     }
     public function GetTenant($TenantId)
     {
+            $this->reset();
         $this->resetValidation();
         $this->Tenant = Tenants::find($TenantId);
         if (!$this->Tenant) {
