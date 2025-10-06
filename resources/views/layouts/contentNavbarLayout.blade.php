@@ -5,6 +5,395 @@
 $configData = Helper::appClasses();
 @endphp
 
+<!-- إضافة ملف CSS للتأثيرات الحركية -->
+ <style>
+  /* تأثيرات الأنيميشن والتصميم الاحترافي */
+  /* تنسيق القائمة الرئيسية مع خلفية متدرجة وظل وحواف دائرية */
+  .layout-menu {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 0 20px 20px 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* إضافة تأثير بريق متحرك على القائمة */
+  /* .layout-menu::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+                    animation: shimmer 3s infinite;
+                } */
+  /* تعريف حركة البريق */
+  /* @keyframes shimmer {
+                    0% { transform: translateX(-100%); }
+                    100% { transform: translateX(100%); }
+                } */
+  /* تنسيق منطقة الشعار والعلامة التجارية */
+  /* .app-brand {
+                    background: rgba(255,255,255,0.1);
+                    backdrop-filter: blur(10px);
+                    border-radius: 15px;
+                    margin: 20px;
+                    padding: 30px !important;
+                    transition: all 0.3s ease;
+                    border: 1px solid rgba(255,255,255,0.2);
+                } */
+  /* تأثير حركي عند تحويم المؤشر على منطقة العلامة التجارية */
+  /* .app-brand:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+                } */
+  /* تنسيق صورة الشعار */
+  /* .app-brand-logo img {
+                    transition: all 0.3s ease;
+                    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+                } */
+  /* حاوية الشعار مع تأثير التوهج */
+  /* حاوي الشعار الرئيسي */
+  .logo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    min-height: 165px;
+    animation: none;
+    margin: -5px auto 0 auto;
+    /* رفع الشعار قليلاً إلى الأعلى */
+    overflow: visible;
+    text-align: center;
+  }
+
+  /* تأثير توهج خلف الشعار */
+  /* .logo-glow {
+                     position: absolute;
+                     top: 50%;
+                     left: 50%;
+                     width: 180px;
+                     height: 180px;
+                     background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, rgba(255, 165, 0, 0.2) 40%, transparent 70%);
+                     border-radius: 50%;
+                     transform: translate(-50%, -50%);
+                     animation: logoGlow 3s ease-in-out infinite;
+                     z-index: 0;
+                 } */
+  /* حركة توهج الشعار المحسنة */
+  /* @keyframes logoGlow {
+                     0%, 100% {
+                         transform: translate(-50%, -50%) scale(0.9);
+                         opacity: 0.6;
+                         background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, rgba(255, 165, 0, 0.2) 40%, transparent 70%);
+                     }
+                     25% {
+                         transform: translate(-50%, -50%) scale(1.05);
+                         opacity: 0.8;
+                         background: radial-gradient(circle, rgba(255, 140, 0, 0.5) 0%, rgba(255, 215, 0, 0.3) 40%, transparent 70%);
+                     }
+                     50% {
+                         transform: translate(-50%, -50%) scale(1.1);
+                         opacity: 1;
+                         background: radial-gradient(circle, rgba(255, 215, 0, 0.6) 0%, rgba(255, 165, 0, 0.4) 40%, transparent 70%);
+                     }
+                     75% {
+                         transform: translate(-50%, -50%) scale(1.05);
+                         opacity: 0.8;
+                         background: radial-gradient(circle, rgba(255, 165, 0, 0.5) 0%, rgba(255, 140, 0, 0.3) 40%, transparent 70%);
+                     }
+                 } */
+  /* حركة دوران ناعمة للشعار */
+  /* @keyframes logoRotate {
+                     0% { transform: rotate(0deg); }
+                     100% { transform: rotate(360deg); }
+                 } */
+  /* حركة نبضة للشعار */
+  /* @keyframes logoPulse {
+                     0%, 100% {
+                         transform: scale(1);
+                         box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+                     }
+                     50% {
+                         transform: scale(1.05);
+                         box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+                     }
+                 } */
+  /* تنسيقات محسنة لصورة الشعار */
+  .logo-image {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 420px !important;
+    max-height: 150px !important;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    /* transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+                     filter: drop-shadow(0 6px 15px rgba(0,0,0,0.3)) brightness(1.1); */
+    /* position: relative;
+                     z-index: 2; */
+    /* border-radius: 15px; */
+    /* animation: logoPulse 4s ease-in-out infinite; */
+  }
+
+  /* تأثير حركي محسن عند تحويم المؤشر على الشعار */
+  /* .app-brand-logo:hover .logo-image {
+                     transform: scale(1.15) rotate(8deg);
+                     filter: drop-shadow(0 12px 30px rgba(255, 215, 0, 0.6)) brightness(1.3) saturate(1.2);
+                     animation: logoRotate 2s linear infinite;
+                 } */
+  /* تأثير إضافي عند النقر على الشعار */
+  /* .app-brand-logo:active .logo-image {
+                      transform: scale(0.95) rotate(-5deg);
+                      filter: drop-shadow(0 4px 10px rgba(255, 215, 0, 0.8)) brightness(1.5);
+                  } */
+  /* تأثير تركيز على الشعار */
+  /* .app-brand-logo:focus .logo-image {
+                      outline: 3px solid rgba(255, 215, 0, 0.6);
+                      outline-offset: 5px;
+                      transform: scale(1.1);
+                  } */
+  /* تحسين الاستجابة للشاشات الصغيرة */
+  @media (max-width: 768px) {
+    .logo-container {
+      max-width: 360px;
+      min-height: 135px;
+      margin: -3px auto 0 auto;
+    }
+
+    .logo-image {
+      max-width: 330px !important;
+      max-height: 120px !important;
+    }
+  }
+
+  /* تحسين للشاشات المتوسطة */
+  @media (min-width: 769px) and (max-width: 1199px) {
+    .logo-container {
+      max-width: 420px;
+      min-height: 150px;
+      margin: -4px auto 0 auto;
+    }
+
+    .logo-image {
+      max-width: 375px !important;
+      max-height: 135px !important;
+    }
+  }
+
+  /* تحسين إضافي للشاشات الكبيرة */
+  @media (min-width: 1200px) {
+    .logo-container {
+      max-width: 480px;
+      min-height: 165px;
+      margin: -5px auto 0 auto;
+    }
+
+    .logo-image {
+      max-width: 420px !important;
+      max-height: 150px !important;
+    }
+  }
+
+  /* تأثير انعكاس ضوئي */
+  /* .logo-container::before {
+                      content: '';
+                      position: absolute;
+                      top: 10%;
+                      left: 10%;
+                      width: 30%;
+                      height: 30%;
+                      background: linear-gradient(45deg, rgba(255,255,255,0.8) 0%, transparent 50%);
+                      border-radius: 50%;
+                      z-index: 3;
+                      opacity: 0.7;
+                      animation: shine 3s ease-in-out infinite;
+                  } */
+  /* حركة الانعكاس الضوئي */
+  /* @keyframes shine {
+                      0%, 100% {
+                          opacity: 0.3;
+                          transform: scale(0.8);
+                      }
+                      50% {
+                          opacity: 0.8;
+                          transform: scale(1.2);
+                      }
+                  } */
+  /* حركة بريق النص */
+  @keyframes textShine {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* تأثير ظهور العنوان الفرعي */
+  .brand-subtitle {
+    animation: fadeInUp 1s ease-out 0.5s both;
+  }
+
+  /* حركة ظهور النص من أسفل */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+  }
+
+  /* تنسيق المحتوى الداخلي للقائمة */
+  .menu-inner {
+    padding: 20px 0;
+  }
+
+  /* تأثير حركي لعناصر القائمة */
+  .menu-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(184, 154, 84, 0.6), transparent);
+    transition: left 0.5s;
+  }
+
+  /* تأثير حركي عند تحويم المؤشر */
+  .menu-item:hover::before {
+    left: 100%;
+  }
+
+  /* تنسيق أيقونات القائمة */
+  .menu-icon {
+    font-size: 20px;
+    margin-left: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .menu-vertical .menu-item .menu-link,
+  .menu-vertical .menu-header,
+  .menu-vertical .menu-block {
+    padding: 0.625rem 1.25rem;
+    margin-block: 0.125rem;
+    margin-inline: 1rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+  }
+
+  /* تأثير حركي لأيقونات القائمة عند التحويم */
+  .menu-item:hover .menu-icon {
+    transform: scale(1.2) rotate(10deg);
+    color: #ffd700;
+  }
+
+  /* تنسيق الأيقونة في العنصر النشط */
+  .menu-item.active .menu-icon {
+    color: #ffd700;
+    animation: pulse 2s infinite;
+  }
+
+  /* حركة نبض للأيقونة */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* تنسيق القوائم الفرعية */
+  /* .menu-sub {
+                    background: rgba(0,0,0,0.2);
+                    border-radius: 10px;
+                    margin: 10px 0;
+                    padding: 10px 0;
+                    animation: slideDown 0.3s ease;
+                } */
+  /* حركة ظهور القائمة الفرعية */
+  /* @keyframes slideDown {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                } */
+  /* تنسيق عناصر القائمة الفرعية */
+  /* .menu-sub .menu-item {
+                    margin: 5px 10px;
+                } */
+  /* تنسيق زر تبديل القائمة */
+  /* .menu-toggle::after {
+                    content: '▼';
+                    float: left;
+                    transition: transform 0.3s ease;
+                    margin-right: 10px;
+                } */
+  /* تأثير دوران السهم عند فتح القائمة */
+  .menu-item.open .menu-toggle::after {
+    transform: rotate(180deg);
+  }
+
+  /* تأثير ظل إضافي عند تحويم المؤشر على القائمة */
+  .layout-menu:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  /* تنسيق خط النصوص */
+  .menu-link div,
+  .menu-title {
+    font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  /* تنسيقات شريط التمرير */
+  .menu-inner {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  .menu-inner::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .menu-inner::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .menu-inner::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+
+  .menu-inner::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+</style>
+
+
 @extends('layouts/commonMaster')
 
 @php
@@ -38,20 +427,27 @@ $container = $container ?? 'container-xxl';
     @if ($isMenu)
     {{-- @include('layouts/sections/menu/verticalMenu') --}}
     @role(['OWNER', 'Administrator', 'Supervisor', 'Employee'])
+
+
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
       <div class="app-brand demo">
-        <a href="{{ url('/') }}" class="app-brand-link">
-          <span class="app-brand-logo demo">
-            <img src="{{ asset('assets/img/logo/GCPI.png') }}" class="rounded img-fluid" style="width: 50px;">
-            {{-- @include('_partials.macros', ['width' => 25, 'withbg' => '#666cff']) --}}
-          </span>
-          <span class="app-brand-text demo menu-text fw-bold ms-2 fs-5">ادارة البيانات</span>
+
+   <a href="{{ url('/') }}" class="app-brand-link d-flex flex-column align-items-center text-decoration-none" style="width: 100%; display: flex; justify-content: center; align-items: center;">
+          {{-- @role(['OWNER', 'Supervisor']) --}}
+          <div class="logo-container">
+            <div class="logo-glow"></div>
+            <span class="app-brand-logo demo">
+              <img src="{{ asset('assets/img/logo/GCPI.png') }}" class="logo-image" alt="شعار النظام">
+            </span>
+          </div>
+
+
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11.4854 4.88844C11.0081 4.41121 10.2344 4.41121 9.75715 4.88844L4.51028 10.1353C4.03297 10.6126 4.03297 11.3865 4.51028 11.8638L9.75715 17.1107C10.2344 17.5879 11.0081 17.5879 11.4854 17.1107C11.9626 16.6334 11.9626 15.8597 11.4854 15.3824L7.96672 11.8638C7.48942 11.3865 7.48942 10.6126 7.96672 10.1353L11.4854 6.61667C11.9626 6.13943 11.9626 5.36568 11.4854 4.88844Z" fill="currentColor" fill-opacity="0.6" />
-            <path d="M15.8683 4.88844L10.6214 10.1353C10.1441 10.6126 10.1441 11.3865 10.6214 11.8638L15.8683 17.1107C16.3455 17.5879 17.1192 17.5879 17.5965 17.1107C18.0737 16.6334 18.0737 15.8597 17.5965 15.3824L14.0778 11.8638C13.6005 11.3865 13.6005 10.6126 14.0778 10.1353L17.5965 6.61667C18.0737 6.13943 18.0737 5.36568 17.5965 4.88844C17.1192 4.41121 16.3455 4.41121 15.8683 4.88844Z" fill="currentColor" fill-opacity="0.38" />
+            <path d="M11.4854 4.88844C11.0081 4.41121 10.2344 4.41121 9.75715 4.88844L4.51028 10.1353C4.03297 10.6126 4.03297 11.3865 4.51028 11.8638L9.75715 17.1107C10.2344 17.5879 11.0081 17.5879 11.4854 17.1107C11.9626 16.6334 11.9626 15.8597 11.4854 15.3824L7.96672 11.8638C7.48942 11.3865 7.48942 10.6126 7.96672 10.1353L11.4854 6.61667C11.9626 6.13943 11.9626 5.36568 11.4854 4.88844Z" fill="var(--primary-color)" fill-opacity="0.6" />
+            <path d="M15.8683 4.88844L10.6214 10.1353C10.1441 10.6126 10.1441 11.3865 10.6214 11.8638L15.8683 17.1107C16.3455 17.5879 17.1192 17.5879 17.5965 17.1107C18.0737 16.6334 18.0737 15.8597 17.5965 15.3824L14.0778 11.8638C13.6005 11.3865 13.6005 10.6126 14.0778 10.1353L17.5965 6.61667C18.0737 6.13943 18.0737 5.36568 17.5965 4.88844C17.1192 4.41121 16.3455 4.41121 15.8683 4.88844Z" fill="var(--primary-color)" fill-opacity="0.38" />
           </svg>
         </a>
       </div>
@@ -63,7 +459,7 @@ $container = $container ?? 'container-xxl';
         {{-- Dashboard --}}
         <li class="menu-item {{ request()->is('/') ? 'active' : '' }}">
           <a href="{{ Route('Dashboard') }}" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
+            <i class="menu-icon tf-icons mdi mdi-view-dashboard-outline"></i>
             <div>{{ trans('sidebar.dashboard') }}</div>
           </a>
         </li>
@@ -71,7 +467,7 @@ $container = $container ?? 'container-xxl';
         @can('employees')
         <li class="menu-item {{ request()->is('Workers', 'AddWorker', 'Thanks', 'Penalties', 'Jobleavers', 'Dispatch', 'Certific', 'Holidays', 'Wives', 'Childrens', 'Placements', 'Positions', 'Services', 'Inputs', 'Itypes') ? 'open active' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class='menu-icon tf-icons mdi mdi-account-cog-outline'></i>
+            <i class='menu-icon tf-icons mdi mdi-account-group-outline'></i>
             <span class="menu-title">قسم الموارد البشرية</span>
           </a>
 
@@ -623,7 +1019,7 @@ $container = $container ?? 'container-xxl';
               </a>
             </li>
             @endcan
-             
+
             <li Class="menu-item {{ request()->Is('Tenants') ? 'active' : '' }}">
               <a href="{{ Route('Tenants.index') }}" Class="menu-link">
                 <i Class='menu-icon tf-icons mdi mdi-account-outline'></i>
