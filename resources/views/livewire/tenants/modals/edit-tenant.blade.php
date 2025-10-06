@@ -120,46 +120,58 @@
           </div>
 
           <!-- PDF Display Section - Right Side -->
-          <div class="col-lg-5">
-            <div class="border-0 shadow-sm card">
-              <div class="px-3 py-2 border-0 card-header bg-light">
-                <h6 class="mb-0 card-title d-flex align-items-center justify-content-center">
-                  <i class="mdi mdi-file-pdf-box text-danger me-2 fs-6"></i>
-                  <span>وثيقة المستأجر</span>
-                </h6>
-              </div>
-              <div class="p-2 card-body">
-                <!-- PDF Display Container -->
-                <div>
-                  @if($Tenant && $Tenant->pdf_file)
-                  <!-- PDF Preview Section -->
-                  <div class="p-2 border rounded-3 bg-light">
-                    <div class="mb-2 text-center">
-                      <span class="px-2 py-1 text-success bg-success-subtle rounded-pill fw-bold small">
-                        <i class="mdi mdi-check-circle me-1"></i>وثيقة محفوظة
-                      </span>
-                    </div>
+         <!-- PDF Display Section - Right Side -->
+<div class="col-lg-5">
+  <div class="border-0 shadow-sm card">
+    <div class="px-3 py-2 border-0 card-header bg-light">
+      <h6 class="mb-0 card-title d-flex align-items-center justify-content-center">
+        <i class="mdi mdi-file-pdf-box text-danger me-2 fs-6"></i>
+        <span>وثيقة المستأجر</span>
+      </h6>
+    </div>
+    <div class="p-2 card-body">
+      @if($Tenant && $Tenant->pdf_file)
+        <div class="p-2 border rounded-3 bg-light">
+          <div class="mb-2 text-center">
+            <span class="px-2 py-1 text-success bg-success-subtle rounded-pill fw-bold small">
+              <i class="mdi mdi-check-circle me-1"></i> وثيقة محفوظة
+            </span>
+          </div>
 
-                    <!-- PDF Display -->
-                    <div class="pdf-preview-container">
-                      <div class="overflow-hidden bg-white border shadow-sm rounded-3">
-                        <embed src="{{ asset('storage/' . $Tenant->pdf_file) }}" type="application/pdf" width="100%" height="250px" style="min-height: 250px; border-radius: 6px;">
-                      </div>
-                      <div class="mt-2 text-center">
-
-                        <a href="{{ asset('storage/' . $Tenant->pdf_file) }}" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">
-                          <i class="mdi mdi-open-in-new me-1"></i>فتح في نافذة جديدة
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  @endif
-                </div>
-
-
-              </div>
+          <!-- PDF Preview using iframe (more reliable) -->
+          <div class="pdf-preview-container">
+            <div class="overflow-hidden bg-white border shadow-sm rounded-3">
+              <iframe
+                src="{{ asset('storage/' . $Tenant->pdf_file) }}#toolbar=0&navpanes=0"
+                width="100%"
+                height="300"
+                style="border: none; min-height: 300px; border-radius: 6px;"
+                frameborder="0"
+                allowfullscreen
+                loading="lazy">
+                <p>المتصفح لا يدعم عرض ملفات PDF.
+                  <a href="{{ asset('storage/' . $Tenant->pdf_file) }}" target="_blank">انقر هنا لفتح الملف</a>.
+                </p>
+              </iframe>
+            </div>
+            <div class="mt-2 text-center">
+              <a href="{{ asset('storage/' . $Tenant->pdf_file) }}" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">
+                <i class="mdi mdi-open-in-new me-1"></i> فتح في نافذة جديدة
+              </a>
             </div>
           </div>
+        </div>
+      @else
+        <div class="py-3 text-center">
+          <i class="mb-2 mdi mdi-file-remove-outline text-muted fs-2 d-block"></i>
+          <small class="text-muted">لا توجد وثيقة مرفقة</small>
+        </div>
+      @endif
+    </div>
+  </div>
+</div>
+
+
         </div>
       </div>
 
