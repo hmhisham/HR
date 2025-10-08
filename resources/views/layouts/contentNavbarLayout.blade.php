@@ -9,12 +9,12 @@ $configData = Helper::appClasses();
 <style>
   /* متغيرات الألوان الاحترافية */
   :root {
-    --primary-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3b82f6 100%);
+    /* --primary-gradient: linear-gradient(135deg, #999a9d 0%, #a5b8d7 50%, #bbcfef 100%); */
     --secondary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gold-gradient: linear-gradient(135deg, #c6b37e 0%, #d8cba6 50%, #a89a69 100%);
+    --gold-gradient: linear-gradient(135deg, #7e9dc6 0%, #a6b3d8 50%, #697fa8 100%);
     --hover-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
     --text-primary: #1f2937;
-    --text-secondary: #6b7280;
+    --text-secondary: #060707;
     --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     --shadow-heavy: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
@@ -93,7 +93,7 @@ $configData = Helper::appClasses();
     left: 50%;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(198, 179, 126, 0.3) 0%, rgba(216, 203, 166, 0.2) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(126, 146, 198, 0.3) 0%, rgba(216, 203, 166, 0.2) 40%, transparent 70%);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     animation: logoGlow 4s ease-in-out infinite;
@@ -129,7 +129,7 @@ $configData = Helper::appClasses();
 
   .app-brand-logo:hover .logo-image {
     transform: scale(1.1) rotate(2deg);
-    filter: drop-shadow(0 15px 35px rgba(198, 179, 126, 0.6)) brightness(1.3) saturate(1.2);
+    filter: drop-shadow(0 15px 35px rgba(126, 138, 198, 0.6)) brightness(1.3) saturate(1.2);
   }
 
   /* تنسيق المحتوى الداخلي للقائمة */
@@ -173,7 +173,7 @@ $configData = Helper::appClasses();
     background: var(--gold-gradient);
     transform: translateX(-5px) scale(1.02);
     box-shadow: var(--shadow-medium);
-    border-color: rgba(198, 179, 126, 0.5);
+    border-color: rgba(126, 127, 198, 0.5);
   }
 
   /* تنسيق أيقونات القائمة */
@@ -183,7 +183,7 @@ $configData = Helper::appClasses();
     transition: var(--transition-bounce);
     position: relative;
     z-index: 2;
-    color: rgba(255,255,255,0.8);
+    color: rgba(34, 34, 34, 0.8);
   }
 
   /* تأثير حركي للأيقونات عند التحويم */
@@ -208,9 +208,9 @@ $configData = Helper::appClasses();
 
   /* تنسيق الأيقونة في العنصر النشط */
   .menu-item.active .menu-icon {
-    color: #ffd700;
+    color: #1b191d;
     animation: activePulse 2s infinite;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+    text-shadow: 0 0 15px rgba(0, 102, 255, 0.8);
   }
 
   @keyframes activePulse {
@@ -232,7 +232,7 @@ $configData = Helper::appClasses();
     letter-spacing: 0.5px;
     position: relative;
     z-index: 2;
-    color: rgba(255,255,255,0.9);
+    color: rgba(36, 35, 35, 0.9);
     transition: var(--transition-smooth);
   }
 
@@ -275,7 +275,7 @@ $configData = Helper::appClasses();
   }
 
   .menu-sub .menu-item:hover .menu-link {
-    background: rgba(198, 179, 126, 0.8);
+    background: rgba(126, 147, 198, 0.8);
     transform: translateX(-3px);
   }
 
@@ -291,7 +291,7 @@ $configData = Helper::appClasses();
 
   .menu-item.open .menu-toggle::after {
     transform: rotate(180deg);
-    color: #ffd700;
+    color: #0099ff;
   }
 
   /* تأثير ظل إضافي عند تحويم المؤشر على القائمة */
@@ -308,13 +308,13 @@ $configData = Helper::appClasses();
 
   .layout-menu-toggle:hover {
     transform: scale(1.2) rotate(180deg);
-    color: #ffd700 !important;
+    color: #006eff !important;
   }
 
   /* تنسيقات شريط التمرير */
   .menu-inner {
     scrollbar-width: thin;
-    scrollbar-color: rgba(198, 179, 126, 0.5) transparent;
+    scrollbar-color: rgba(69, 65, 202, 0.5) transparent;
   }
 
   .menu-inner::-webkit-scrollbar {
@@ -333,7 +333,7 @@ $configData = Helper::appClasses();
   }
 
   .menu-inner::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #d8cba6 0%, #c6b37e 100%);
+    background: linear-gradient(135deg, #a6b2d8 0%, #7e87c6 100%);
   }
 
   /* تأثيرات الاستجابة للشاشات المختلفة */
@@ -413,16 +413,16 @@ $configData = Helper::appClasses();
   /* تأثير نبضة للعناصر النشطة */
   .menu-item.active .menu-link {
     background: var(--gold-gradient);
-    box-shadow: 0 0 20px rgba(198, 179, 126, 0.5);
+    box-shadow: 0 0 20px rgba(126, 137, 198, 0.5);
     animation: activeGlow 2s ease-in-out infinite;
   }
 
   @keyframes activeGlow {
     0%, 100% {
-      box-shadow: 0 0 20px rgba(198, 179, 126, 0.5);
+      box-shadow: 0 0 20px rgba(126, 159, 198, 0.5);
     }
     50% {
-      box-shadow: 0 0 30px rgba(198, 179, 126, 0.8);
+      box-shadow: 0 0 30px rgba(132, 126, 198, 0.8);
     }
   }
 
@@ -433,9 +433,9 @@ $configData = Helper::appClasses();
 
   /* تأثير تركيز محسن */
   .menu-link:focus {
-    outline: 2px solid rgba(198, 179, 126, 0.8);
+    outline: 2px solid rgba(126, 126, 198, 0.8);
     outline-offset: 2px;
-    background: rgba(198, 179, 126, 0.2);
+    background: rgba(167, 126, 198, 0.2);
   }
 
   /* تأثير الضغط */
