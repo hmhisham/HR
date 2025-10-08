@@ -5,349 +5,318 @@
 $configData = Helper::appClasses();
 @endphp
 
-<!-- تصميم احترافي عصري مع الألوان البيضاء -->
+<!-- تصميم عصري كامل باللون الأبيض -->
 <style>
-  /* متغيرات الألوان العصرية */
+  /* نظام ألوان أبيض نقي مع تدرجات رمادية */
   :root {
-    --primary-white: #ffffff;
-    --soft-white: #fafafa;
-    --light-gray: #f8f9fa;
-    --border-light: #e9ecef;
-    --text-primary: #2c3e50;
-    --text-secondary: #6c757d;
-    --accent-blue: #3498db;
-    --accent-hover: #2980b9;
-    --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.08);
-    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.12);
-    --shadow-strong: 0 8px 30px rgba(0, 0, 0, 0.15);
-    --border-radius: 16px;
-    --border-radius-small: 8px;
-    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    --gradient-subtle: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    --gradient-accent: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    --pure-white: #ffffff;
+    --snow-white: #fcfcfc;
+    --ivory-white: #fffff0;
+    --ghost-white: #f8f8ff;
+    --alabaster: #f2f0e6;
+    --pearl-white: #f8f6f0;
+    --text-dark: #2c3e50;
+    --text-gray: #6c757d;
+    --text-light: #95a5a6;
+    --accent-primary: #3498db;
+    --accent-secondary: #2980b9;
+    --border-ultralight: #f1f3f4;
+    --border-light: #e3e8f0;
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-strong: 0 12px 36px rgba(0, 0, 0, 0.1);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --transition-fast: all 0.2s ease;
+    --transition-normal: all 0.3s ease;
+    --transition-slow: all 0.4s ease;
+    --gradient-white: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.95) 100%);
   }
 
-  /* تصميم القائمة الجانبية العصري */
-  .layout-menu {
-    background: var(--primary-white);
-    box-shadow: var(--shadow-medium);
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
-    transition: var(--transition-smooth);
+  /* إعادة تعيين كاملة للتصميم */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* هيكل الصفحة الرئيسي */
+  .layout-wrapper {
+    background: var(--pure-white);
+    min-height: 100vh;
     position: relative;
-    overflow: hidden;
-    border-right: 1px solid var(--border-light);
   }
 
-  /* تأثير الإضاءة الخفيفة */
+  .layout-container {
+    background: var(--pure-white);
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* القائمة الجانبية - تصميم جديد كامل */
+  .layout-menu {
+    background: var(--pure-white);
+    border-right: 1px solid var(--border-ultralight);
+    width: 280px;
+    position: relative;
+    z-index: 1000;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-normal);
+    overflow: hidden;
+  }
+
   .layout-menu::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-subtle);
-    opacity: 0.5;
-    z-index: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-glass);
+    backdrop-filter: blur(10px);
+    z-index: -1;
   }
 
-  /* منطقة الشعار العصرية */
+  /* منطقة الشعار - تصميم جديد */
   .app-brand {
-    transition: var(--transition-bounce);
-    position: relative;
-    margin: 20px auto;
-    padding: 40px 20px !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 2rem 1.5rem !important;
     text-align: center;
-    z-index: 2;
-    background: var(--primary-white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-soft);
-    margin-bottom: 30px;
+    position: relative;
+    margin-bottom: 1rem;
+    background: var(--pure-white);
+    border-bottom: 1px solid var(--border-ultralight);
   }
 
-  /* حاوي الشعار المحسن */
+  .app-brand-link {
+    display: block;
+    text-decoration: none;
+    transition: var(--transition-normal);
+  }
+
   .logo-container {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 280px;
-    height: auto;
-    min-height: 120px;
-    margin: 0 auto;
-    overflow: visible;
-    text-align: center;
-    background: var(--primary-white);
-    border-radius: var(--border-radius-small);
-    padding: 20px;
+    padding: 1.5rem;
+    background: var(--pure-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-subtle);
+    border: 1px solid var(--border-ultralight);
+    transition: var(--transition-normal);
   }
 
-  /* تأثير الإضاءة خلف الشعار */
-  .logo-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0.05) 40%, transparent 70%);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: logoGlow 6s ease-in-out infinite;
-    z-index: 0;
+  .logo-container:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--border-light);
   }
 
-  @keyframes logoGlow {
-    0%, 100% {
-      transform: translate(-50%, -50%) scale(0.9);
-      opacity: 0.3;
-    }
-    50% {
-      transform: translate(-50%, -50%) scale(1.1);
-      opacity: 0.6;
-    }
-  }
-
-  /* تصميم صورة الشعار */
   .logo-image {
-    width: 85% !important;
+    width: 180px !important;
     height: auto !important;
-    max-width: 240px !important;
-    max-height: 100px !important;
+    max-height: 80px !important;
     object-fit: contain;
-    display: block;
-    margin: 0 auto;
-    transition: var(--transition-bounce);
-    position: relative;
-    z-index: 2;
-    border-radius: var(--border-radius-small);
     filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+    transition: var(--transition-normal);
   }
 
   .logo-image:hover {
     transform: scale(1.05);
-    filter: drop-shadow(0 4px 12px rgba(52, 152, 219, 0.2));
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
   }
 
-  /* تصميم المحتوى الداخلي للقائمة */
+  /* محتوى القائمة */
   .menu-inner {
-    padding: 20px 0;
+    padding: 1rem 0;
     position: relative;
     z-index: 2;
-    background: transparent;
   }
 
-  /* تصميم عناصر القائمة العصري */
+  .menu-inner-shadow {
+    display: none;
+  }
+
+  /* عناصر القائمة الرئيسية */
+  .menu-vertical .menu-item {
+    margin: 0.25rem 1rem;
+  }
+
   .menu-vertical .menu-item .menu-link {
-    padding: 14px 20px;
-    margin: 6px 16px;
-    border-radius: var(--border-radius-small);
-    transition: var(--transition-smooth);
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    background: var(--pure-white);
+    border: 1px solid var(--border-ultralight);
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition-normal);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     position: relative;
     overflow: hidden;
-    background: var(--primary-white);
-    border: 1px solid var(--border-light);
+  }
+
+  .menu-vertical .menu-item .menu-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent-primary);
+    opacity: 0;
+    transition: var(--transition-fast);
+  }
+
+  .menu-vertical .menu-item .menu-link:hover {
+    background: var(--pure-white);
+    border-color: var(--border-light);
     box-shadow: var(--shadow-soft);
+    transform: translateX(4px);
   }
 
-  /* تأثير التحويم المحسن */
-  .menu-item:hover .menu-link {
-    background: var(--gradient-accent);
-    transform: translateX(8px) scale(1.02);
-    box-shadow: var(--shadow-medium);
-    border-color: var(--accent-blue);
+  .menu-vertical .menu-item .menu-link:hover::before {
+    opacity: 1;
   }
 
-  /* تأثير الضغط */
-  .menu-item:active .menu-link {
-    transform: translateX(8px) scale(0.98);
-    transition: transform 0.1s ease;
-  }
-
-  /* تصميم الأيقونات العصري */
+  /* الأيقونات */
   .menu-icon {
-    font-size: 20px;
-    margin-left: 12px;
-    transition: var(--transition-bounce);
-    position: relative;
-    z-index: 2;
-    color: var(--text-primary);
-    width: 24px;
-    height: 24px;
+    font-size: 1.25rem;
+    color: var(--text-gray);
+    transition: var(--transition-normal);
+    min-width: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* تأثير الأيقونات عند التحويم */
-  .menu-item:hover .menu-icon {
-    transform: scale(1.2) rotate(5deg);
-    color: var(--primary-white);
-    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+  .menu-vertical .menu-item .menu-link:hover .menu-icon {
+    color: var(--accent-primary);
+    transform: scale(1.1);
   }
 
-  /* تصميم النصوص العصري */
+  /* النصوص */
   .menu-link div,
   .menu-title {
-    font-family: 'Cairo', 'Segoe UI', 'Roboto', sans-serif;
+    color: var(--text-dark);
     font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 0.3px;
-    position: relative;
-    z-index: 2;
-    color: var(--text-primary);
-    transition: var(--transition-smooth);
-    line-height: 1.4;
+    font-size: 0.9rem;
+    transition: var(--transition-normal);
+    flex: 1;
   }
 
-  .menu-item:hover .menu-link div,
-  .menu-item:hover .menu-title {
-    color: var(--text-secondary);
-    font-weight: 600;
+  .menu-vertical .menu-item .menu-link:hover div,
+  .menu-vertical .menu-item .menu-link:hover .menu-title {
+    color: var(--accent-primary);
   }
 
-  /* تصميم القوائم الفرعية العصري */
+  /* القوائم الفرعية */
   .menu-sub {
-    background: var(--light-gray);
-    border-radius: var(--border-radius-small);
-    margin: 8px 0;
-    padding: 12px 0;
-    animation: slideDown 0.4s ease;
-    border: 1px solid var(--border-light);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    background: var(--pure-white);
+    border-radius: var(--radius-md);
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 0;
+    border: 1px solid var(--border-ultralight);
+    box-shadow: var(--shadow-subtle);
+    animation: slideIn 0.3s ease;
   }
 
-  @keyframes slideDown {
+  @keyframes slideIn {
     from {
       opacity: 0;
       transform: translateY(-10px);
-      max-height: 0;
     }
     to {
       opacity: 1;
       transform: translateY(0);
-      max-height: 500px;
     }
   }
 
-  /* عناصر القائمة الفرعية */
+  .menu-sub .menu-item {
+    margin: 0.25rem 0.75rem;
+  }
+
   .menu-sub .menu-item .menu-link {
-    margin: 4px 20px;
-    padding: 10px 16px;
-    background: var(--primary-white);
-    font-size: 13px;
-    border-radius: var(--border-radius-small);
+    padding: 0.75rem 1rem;
+    background: var(--pure-white);
+    border: 1px solid var(--border-ultralight);
+    font-size: 0.85rem;
+    border-radius: var(--radius-sm);
   }
 
-  .menu-sub .menu-item:hover .menu-link {
-    background: var(--accent-blue);
-    transform: translateX(6px);
-    color: var(--primary-white);
+  .menu-sub .menu-item .menu-link:hover {
+    background: var(--pure-white);
+    border-color: var(--accent-primary);
+    transform: translateX(2px);
   }
 
-  /* تصميم زر التبديل */
+  /* زر التبديل */
   .menu-toggle::after {
-    content: '▼';
-    float: left;
-    transition: var(--transition-smooth);
-    margin-right: 8px;
-    font-size: 10px;
-    color: var(--text-secondary);
+    content: '›';
+    font-size: 1.2rem;
+    transition: var(--transition-normal);
+    color: var(--text-light);
   }
 
   .menu-item.open .menu-toggle::after {
-    transform: rotate(180deg);
-    color: var(--accent-blue);
+    transform: rotate(90deg);
+    color: var(--accent-primary);
   }
 
   /* العنصر النشط */
   .menu-item.active .menu-link {
-    background: var(--gradient-accent);
-    box-shadow: var(--shadow-medium);
-    border-color: var(--accent-blue);
-    transform: translateX(8px);
+    background: var(--pure-white);
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .menu-item.active .menu-link::before {
+    opacity: 1;
   }
 
   .menu-item.active .menu-link div,
   .menu-item.active .menu-title,
   .menu-item.active .menu-icon {
-    color: var(--primary-white);
+    color: var(--accent-primary);
   }
 
-  /* تأثير التحويم على القائمة */
-  .layout-menu:hover {
-    box-shadow: var(--shadow-strong);
-    transform: translateX(2px);
-  }
-
-  /* تصميم شريط التمرير العصري */
-  .menu-inner {
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-blue) transparent;
-  }
-
+  /* شريط التمرير */
   .menu-inner::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
   }
 
   .menu-inner::-webkit-scrollbar-track {
-    background: var(--light-gray);
-    border-radius: 3px;
+    background: var(--border-ultralight);
+    border-radius: 2px;
   }
 
   .menu-inner::-webkit-scrollbar-thumb {
-    background: var(--accent-blue);
-    border-radius: 3px;
-    transition: var(--transition-smooth);
+    background: var(--text-light);
+    border-radius: 2px;
+    transition: var(--transition-fast);
   }
 
   .menu-inner::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-hover);
+    background: var(--text-gray);
   }
 
-  /* تأثيرات الاستجابة */
-  @media (max-width: 768px) {
-    .logo-container {
-      max-width: 240px;
-      min-height: 100px;
-      padding: 15px;
-    }
-
-    .logo-image {
-      max-width: 200px !important;
-      max-height: 80px !important;
-    }
-
-    .menu-icon {
-      font-size: 18px;
-    }
-
-    .app-brand {
-      padding: 30px 15px !important;
-      margin-bottom: 20px;
-    }
-  }
-
-  @media (min-width: 769px) and (max-width: 1199px) {
-    .logo-container {
-      max-width: 260px;
-      min-height: 110px;
-    }
-
-    .logo-image {
-      max-width: 220px !important;
-      max-height: 90px !important;
-    }
-  }
-
-  /* تأثيرات الظهور المتدرج */
+  /* تأثيرات الظهور */
   .menu-item {
-    animation: fadeInLeft 0.6s ease forwards;
+    animation: fadeInUp 0.4s ease forwards;
     opacity: 0;
+    transform: translateY(10px);
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .menu-item:nth-child(1) { animation-delay: 0.1s; }
@@ -359,67 +328,234 @@ $configData = Helper::appClasses();
   .menu-item:nth-child(7) { animation-delay: 0.4s; }
   .menu-item:nth-child(8) { animation-delay: 0.45s; }
 
-  @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-20px);
+  /* استجابة للشاشات الصغيرة */
+  @media (max-width: 768px) {
+    .layout-menu {
+      width: 250px;
     }
-    to {
-      opacity: 1;
-      transform: translateX(0);
+
+    .logo-container {
+      padding: 1rem;
+    }
+
+    .logo-image {
+      width: 150px !important;
+      max-height: 60px !important;
+    }
+
+    .menu-vertical .menu-item .menu-link {
+      padding: 0.875rem 1rem;
+    }
+
+    .app-brand {
+      padding: 1.5rem 1rem !important;
     }
   }
 
-  /* تحسين الخطوط العربية */
-  * {
-    font-family: 'Cairo', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  @media (max-width: 480px) {
+    .layout-menu {
+      width: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 9999;
+    }
+
+    .logo-container {
+      margin: 0 1rem;
+    }
   }
 
-  /* تأثير التركيز المحسن */
+  /* تحسينات عامة */
+  body {
+    background: var(--pure-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+
+  .layout-page {
+    background: var(--pure-white);
+    flex: 1;
+  }
+
+  /* تأثير التركيز للوصول */
   .menu-link:focus {
-    outline: 2px solid var(--accent-blue);
+    outline: 2px solid var(--accent-primary);
     outline-offset: 2px;
-    background: var(--light-gray);
   }
 
-  /* تصميم زر تبديل القائمة */
+  /* زر تبديل القائمة */
   .layout-menu-toggle {
-    transition: var(--transition-bounce);
-    color: var(--text-primary) !important;
-    background: var(--primary-white);
-    border-radius: 50%;
+    background: var(--pure-white);
+    border: 1px solid var(--border-ultralight);
+    border-radius: var(--radius-md);
     width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition-normal);
+    color: var(--text-dark) !important;
   }
 
   .layout-menu-toggle:hover {
-    transform: scale(1.1) rotate(180deg);
-    color: var(--accent-blue) !important;
-    box-shadow: var(--shadow-medium);
+    background: var(--pure-white);
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-soft);
+    transform: scale(1.05);
+    color: var(--accent-primary) !important;
   }
 
   /* تحسينات إضافية للتصميم العصري */
-  .layout-wrapper {
-    background: var(--soft-white);
+  
+  /* تأثيرات الظل المحسنة */
+  .layout-menu {
+    box-shadow: 
+      0 0 0 1px var(--border-ultralight),
+      0 4px 24px rgba(0, 0, 0, 0.04),
+      0 8px 48px rgba(0, 0, 0, 0.06);
   }
 
-  .layout-container {
-    background: var(--soft-white);
+  /* تأثيرات التحويم المتقدمة */
+  .menu-vertical .menu-item .menu-link {
+    transition: 
+      transform var(--transition-normal),
+      box-shadow var(--transition-normal),
+      border-color var(--transition-normal),
+      background-color var(--transition-normal);
   }
 
-  /* تأثير الانتقال السلس للصفحة */
-  .layout-page {
-    transition: var(--transition-smooth);
+  /* تحسينات الشعار */
+  .logo-container {
+    position: relative;
+    overflow: hidden;
   }
 
-  /* تحسين المظهر العام */
-  body {
-    background: var(--soft-white);
-    color: var(--text-primary);
+  .logo-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 50%, 
+      rgba(255, 255, 255, 0.02) 100%);
+    pointer-events: none;
+  }
+
+  /* تأثيرات النصوص */
+  .menu-title {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  /* تحسينات الأيقونات */
+  .menu-icon {
+    position: relative;
+  }
+
+  .menu-icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--pure-white);
+    border-radius: 6px;
+    z-index: -1;
+    opacity: 0;
+    transition: var(--transition-fast);
+  }
+
+  .menu-vertical .menu-item .menu-link:hover .menu-icon::before {
+    opacity: 0.1;
+  }
+
+  /* تأثيرات متقدمة للعناصر النشطة */
+  .menu-item.active {
+    position: relative;
+  }
+
+  .menu-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: var(--accent-primary);
+    border-radius: 0 2px 2px 0;
+    animation: activePulse 2s ease-in-out infinite;
+  }
+
+  @keyframes activePulse {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 0 rgba(52, 152, 219, 0.4);
+    }
+    50% {
+      opacity: 0.8;
+      box-shadow: 0 0 10px rgba(52, 152, 219, 0.6);
+    }
+  }
+
+  /* تحسينات الأداء والسلاسة */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* تأثيرات الانتقال المحسنة */
+  .layout-menu,
+  .menu-link,
+  .menu-icon,
+  .logo-container {
+    will-change: transform, opacity;
+  }
+
+  /* تحسينات للشاشات عالية الدقة */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo-image {
+      filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+    }
+  }
+
+  /* تحسينات الوصول */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* تأثيرات الظلام (للتوافق المستقبلي) */
+  @media (prefers-color-scheme: dark) {
+    .layout-menu {
+      background: var(--pure-white);
+      border-right-color: var(--border-ultralight);
+    }
+    
+    body {
+      background: var(--pure-white);
+      color: var(--text-dark);
+    }
+  }
+
+  /* تحسينات الطباعة */
+  @media print {
+    .layout-menu {
+      display: none;
+    }
+    
+    .layout-container {
+      display: block;
+    }
   }
 </style>
 
@@ -448,8 +584,8 @@ $container = $container ?? 'container-xxl';
 @endphp
 
 @section('layoutContent')
-<div class="layout-wrapper layout-content-navbar {{ $isMenu ? '' : 'layout-without-menu' }}">
-  <div class="layout-container">
+<div class="layout-wrapper layout-content-navbar {{ $isMenu ? '' : 'layout-without-menu' }} bg-white min-h-screen">
+  <div class="layout-container flex flex-row-reverse min-h-screen bg-white">
 
     @if ($isMenu)
     @role(['OWNER', 'Administrator', 'Supervisor', 'Employee'])

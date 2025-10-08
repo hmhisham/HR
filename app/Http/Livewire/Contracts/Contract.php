@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Contracts;
 use Livewire\Component;
 
 use Livewire\WithPagination;
+use App\Models\Tenants\Tenants;
 use App\Models\Contracts\Contracts;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,10 +15,19 @@ class Contract extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Contracts = [];
-    public $ContractSearch, $Contract, $ContractId;
+    public $ContractSearch, $Contract, $ContractId, $tenants;
     public $user_id, $property_folder_id, $document_contract_number, $generated_contract_number, $start_date, $approval_date, $end_date, $tenant_name, $annual_rent_amount, $amount_in_words, $lease_duration, $usage_type, $phone_number, $address, $notes, $selected_property_folder_id, $selected_property_name, $selected_id;
     public $search = ['property_folder_id' => '', 'generated_contract_number' => '', 'start_date' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
 
+    protected $listeners = [
+        'SelectTenantName',
+    ];
+
+
+    public function SelectTenantName($tenantId)
+    {
+        $this->tenant_name = $tenantId ? (int) $tenantId : null;
+    }
 
     public function mount($selected_property_folder_id = null, $selected_property_name = null, $id = null, $property_id = null, $property_name = null)
     {
@@ -28,6 +38,9 @@ class Contract extends Component
 
         // التحقق من صحة المعاملات
         $this->validateInputs();
+
+        $this->tenants = Tenants::select('id', 'name')->orderBy('name')->get();
+        $this->emit('select2');
     }
 
     private function sanitizeInput($input)

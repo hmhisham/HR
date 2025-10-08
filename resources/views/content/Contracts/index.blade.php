@@ -14,9 +14,9 @@
     <!-- ✅ تضمين Flatpickr CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
         @endsection
-@section('content') 
+@section('content')
 @livewire('contracts.contract', [
-    'selected_property_folder_id' => request('property_folder_id'), 
+    'selected_property_folder_id' => request('property_folder_id'),
     'selected_property_name' => request('property_name'),
     'property_id' => request('property_id'),
     'property_name' => request('property_name'),
@@ -123,5 +123,35 @@
                 timer: 5000,
             })
         })
+
+
+     document.addEventListener('livewire:load', function () {
+    function initSelect2(selector, eventName, parentModal = null) {
+        const $el = $(selector);
+        const options = {
+       placeholder: 'اختيار',
+            allowClear: true,
+            dropdownParent: parentModal ? $(parentModal) : $(document.body)
+        };
+
+        // Destroy if already initialized
+        if ($el.data('select2')) $el.select2('destroy');
+
+        $el.select2(options).on('change', function (e) {
+            Livewire.emit(eventName, e.target.value || null);
+        });
+    }
+
+    // Initialize on first load
+    initSelect2('#addContracttenant_name', 'SelectTenantName', '#addcontractModal');
+    initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal');
+
+    // Re-initialize after Livewire updates
+    Livewire.hook('message.processed', () => {
+        initSelect2('#addContracttenant_name', 'SelectTenantName', '#addcontractModal');
+        initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal');
+    });
+});
+
     </script>
 @endsection
