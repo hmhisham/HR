@@ -3,14 +3,14 @@
 <div wire:ignore.self class="modal fade" id="editcontractModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-light px-4 py-3">
+            <div class="px-4 py-3 modal-header bg-light">
                 <h5 class="modal-title d-flex align-items-center">
                     <i class="mdi mdi-pencil-circle-outline text-warning me-2"></i>
                     تعديل عقد الايجار
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-4">
+            <div class="p-4 modal-body">
 
 
                 <div wire:loading.remove>
@@ -27,7 +27,7 @@
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
         </div>
-        
+
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
                 <input wire:model.defer='property_folder_id' type="text" id="modalContractproperty_folder_id" placeholder=""
@@ -38,7 +38,7 @@
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
         </div>
-        
+
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
                 <input wire:model.defer='document_contract_number' type="text" id="modalContractdocument_contract_number" placeholder="رقم العقد في المستند"
@@ -48,7 +48,7 @@
             @error('document_contract_number')
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
-        </div>
+        {{-- </div>
            </div>   <div class="row g-2">
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
@@ -59,8 +59,8 @@
             @error('generated_contract_number')
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
-        </div>
-        
+        </div> --}}
+
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
                 <input wire:model.defer='start_date' type="text" id="modalContractstart_date" placeholder="تاريخ بداية العقد"
@@ -71,7 +71,7 @@
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
         </div>
-        
+
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
                 <input wire:model.defer='approval_date' type="text" id="modalContractapproval_date" placeholder="تاريخ المصادقة على العقد"
@@ -93,7 +93,7 @@
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
         </div>
-        
+
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
                 <input wire:model.defer='tenant_name' type="text" id="modalContracttenant_name" placeholder="اسم المستأجر"
@@ -104,7 +104,7 @@
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
         </div>
-        
+
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
                 <input wire:model.defer='annual_rent_amount' type="text" id="modalContractannual_rent_amount" placeholder="مبلغ التأجير للسنة الواحدة"
@@ -126,7 +126,7 @@
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
         </div>
-        
+
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
                 <input wire:model.defer='lease_duration' type="text" id="modalContractlease_duration" placeholder="مدة الإيجار"
@@ -137,7 +137,7 @@
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
         </div>
-        
+
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
                 <input wire:model.defer='usage_type' type="text" id="modalContractusage_type" placeholder="نوع الاستغلال"
@@ -159,7 +159,7 @@
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
         </div>
-        
+
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
                 <input wire:model.defer='address' type="text" id="modalContractaddress" placeholder="العنوان"
@@ -170,7 +170,7 @@
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
         </div>
-        
+
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
                 <input wire:model.defer='notes' type="text" id="modalContractnotes" placeholder="الملاحظات"
