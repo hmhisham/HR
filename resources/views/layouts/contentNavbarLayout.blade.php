@@ -5,56 +5,72 @@
 $configData = Helper::appClasses();
 @endphp
 
-<!-- إضافة ملف CSS للتأثيرات الحركية -->
- <style>
-  /* تأثيرات الأنيميشن والتصميم الاحترافي */
-  /* تنسيق القائمة الرئيسية مع خلفية متدرجة وظل وحواف دائرية */
-  .layout-menu {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-radius: 0 20px 20px 0;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    overflow: hidden;
+<!-- إضافة ملف CSS للتأثيرات الحركية الاحترافية -->
+<style>
+  /* متغيرات الألوان الاحترافية */
+  :root {
+    --primary-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3b82f6 100%);
+    --secondary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gold-gradient: linear-gradient(135deg, #c6b37e 0%, #d8cba6 50%, #a89a69 100%);
+    --hover-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-heavy: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
-  /* إضافة تأثير بريق متحرك على القائمة */
-  /* .layout-menu::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
-                    animation: shimmer 3s infinite;
-                } */
-  /* تعريف حركة البريق */
-  /* @keyframes shimmer {
-                    0% { transform: translateX(-100%); }
-                    100% { transform: translateX(100%); }
-                } */
-  /* تنسيق منطقة الشعار والعلامة التجارية */
-  /* .app-brand {
-                    background: rgba(255,255,255,0.1);
-                    backdrop-filter: blur(10px);
-                    border-radius: 15px;
-                    margin: 20px;
-                    padding: 30px !important;
-                    transition: all 0.3s ease;
-                    border: 1px solid rgba(255,255,255,0.2);
-                } */
-  /* تأثير حركي عند تحويم المؤشر على منطقة العلامة التجارية */
-  /* .app-brand:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-                } */
-  /* تنسيق صورة الشعار */
-  /* .app-brand-logo img {
-                    transition: all 0.3s ease;
-                    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
-                } */
-  /* حاوية الشعار مع تأثير التوهج */
+  /* تنسيق القائمة الرئيسية مع تدرج احترافي */
+  .layout-menu {
+    background: var(--primary-gradient);
+    box-shadow: var(--shadow-heavy);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  /* تأثير بريق متحرك على القائمة */
+  .layout-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 4s infinite;
+    z-index: 1;
+  }
+
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  /* تنسيق منطقة الشعار */
+  .app-brand {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: var(--border-radius);
+    margin: 20px;
+    padding: 25px !important;
+    transition: var(--transition-bounce);
+    border: 1px solid rgba(255,255,255,0.2);
+    position: relative;
+    z-index: 2;
+  }
+
+  .app-brand:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-heavy);
+    background: rgba(255,255,255,0.15);
+  }
+
   /* حاوي الشعار الرئيسي */
   .logo-container {
     position: relative;
@@ -65,66 +81,37 @@ $configData = Helper::appClasses();
     max-width: 480px;
     height: auto;
     min-height: 165px;
-    animation: none;
     margin: -5px auto 0 auto;
-    /* رفع الشعار قليلاً إلى الأعلى */
     overflow: visible;
     text-align: center;
   }
 
   /* تأثير توهج خلف الشعار */
-  /* .logo-glow {
-                     position: absolute;
-                     top: 50%;
-                     left: 50%;
-                     width: 180px;
-                     height: 180px;
-                     background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, rgba(255, 165, 0, 0.2) 40%, transparent 70%);
-                     border-radius: 50%;
-                     transform: translate(-50%, -50%);
-                     animation: logoGlow 3s ease-in-out infinite;
-                     z-index: 0;
-                 } */
-  /* حركة توهج الشعار المحسنة */
-  /* @keyframes logoGlow {
-                     0%, 100% {
-                         transform: translate(-50%, -50%) scale(0.9);
-                         opacity: 0.6;
-                         background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, rgba(255, 165, 0, 0.2) 40%, transparent 70%);
-                     }
-                     25% {
-                         transform: translate(-50%, -50%) scale(1.05);
-                         opacity: 0.8;
-                         background: radial-gradient(circle, rgba(255, 140, 0, 0.5) 0%, rgba(255, 215, 0, 0.3) 40%, transparent 70%);
-                     }
-                     50% {
-                         transform: translate(-50%, -50%) scale(1.1);
-                         opacity: 1;
-                         background: radial-gradient(circle, rgba(255, 215, 0, 0.6) 0%, rgba(255, 165, 0, 0.4) 40%, transparent 70%);
-                     }
-                     75% {
-                         transform: translate(-50%, -50%) scale(1.05);
-                         opacity: 0.8;
-                         background: radial-gradient(circle, rgba(255, 165, 0, 0.5) 0%, rgba(255, 140, 0, 0.3) 40%, transparent 70%);
-                     }
-                 } */
-  /* حركة دوران ناعمة للشعار */
-  /* @keyframes logoRotate {
-                     0% { transform: rotate(0deg); }
-                     100% { transform: rotate(360deg); }
-                 } */
-  /* حركة نبضة للشعار */
-  /* @keyframes logoPulse {
-                     0%, 100% {
-                         transform: scale(1);
-                         box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
-                     }
-                     50% {
-                         transform: scale(1.05);
-                         box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
-                     }
-                 } */
-  /* تنسيقات محسنة لصورة الشعار */
+  .logo-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(198, 179, 126, 0.3) 0%, rgba(216, 203, 166, 0.2) 40%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: logoGlow 4s ease-in-out infinite;
+    z-index: 0;
+  }
+
+  @keyframes logoGlow {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0.4;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0.8;
+    }
+  }
+
+  /* تنسيقات صورة الشعار */
   .logo-image {
     width: 100% !important;
     height: auto !important;
@@ -133,32 +120,223 @@ $configData = Helper::appClasses();
     object-fit: contain;
     display: block;
     margin: 0 auto;
-    /* transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-                     filter: drop-shadow(0 6px 15px rgba(0,0,0,0.3)) brightness(1.1); */
-    /* position: relative;
-                     z-index: 2; */
-    /* border-radius: 15px; */
-    /* animation: logoPulse 4s ease-in-out infinite; */
+    transition: var(--transition-bounce);
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3)) brightness(1.1);
+    position: relative;
+    z-index: 2;
+    border-radius: var(--border-radius);
   }
 
-  /* تأثير حركي محسن عند تحويم المؤشر على الشعار */
-  /* .app-brand-logo:hover .logo-image {
-                     transform: scale(1.15) rotate(8deg);
-                     filter: drop-shadow(0 12px 30px rgba(255, 215, 0, 0.6)) brightness(1.3) saturate(1.2);
-                     animation: logoRotate 2s linear infinite;
-                 } */
-  /* تأثير إضافي عند النقر على الشعار */
-  /* .app-brand-logo:active .logo-image {
-                      transform: scale(0.95) rotate(-5deg);
-                      filter: drop-shadow(0 4px 10px rgba(255, 215, 0, 0.8)) brightness(1.5);
-                  } */
-  /* تأثير تركيز على الشعار */
-  /* .app-brand-logo:focus .logo-image {
-                      outline: 3px solid rgba(255, 215, 0, 0.6);
-                      outline-offset: 5px;
-                      transform: scale(1.1);
-                  } */
-  /* تحسين الاستجابة للشاشات الصغيرة */
+  .app-brand-logo:hover .logo-image {
+    transform: scale(1.1) rotate(2deg);
+    filter: drop-shadow(0 15px 35px rgba(198, 179, 126, 0.6)) brightness(1.3) saturate(1.2);
+  }
+
+  /* تنسيق المحتوى الداخلي للقائمة */
+  .menu-inner {
+    padding: 20px 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* تنسيق عناصر القائمة */
+  .menu-vertical .menu-item .menu-link {
+    padding: 0.75rem 1.5rem;
+    margin: 0.25rem 1rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* تأثير حركي لعناصر القائمة */
+  .menu-item .menu-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+    z-index: 1;
+  }
+
+  .menu-item:hover .menu-link::before {
+    left: 100%;
+  }
+
+  /* تأثير hover محسن */
+  .menu-item:hover .menu-link {
+    background: var(--gold-gradient);
+    transform: translateX(-5px) scale(1.02);
+    box-shadow: var(--shadow-medium);
+    border-color: rgba(198, 179, 126, 0.5);
+  }
+
+  /* تنسيق أيقونات القائمة */
+  .menu-icon {
+    font-size: 22px;
+    margin-left: 15px;
+    transition: var(--transition-bounce);
+    position: relative;
+    z-index: 2;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* تأثير حركي للأيقونات عند التحويم */
+  .menu-item:hover .menu-icon {
+    transform: scale(1.3) rotate(15deg);
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    animation: iconBounce 0.6s ease;
+  }
+
+  @keyframes iconBounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: scale(1.3) rotate(15deg) translateY(0);
+    }
+    40% {
+      transform: scale(1.4) rotate(20deg) translateY(-3px);
+    }
+    60% {
+      transform: scale(1.35) rotate(10deg) translateY(-2px);
+    }
+  }
+
+  /* تنسيق الأيقونة في العنصر النشط */
+  .menu-item.active .menu-icon {
+    color: #ffd700;
+    animation: activePulse 2s infinite;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  }
+
+  @keyframes activePulse {
+    0%, 100% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.25);
+      opacity: 0.8;
+    }
+  }
+
+  /* تنسيق النصوص */
+  .menu-link div,
+  .menu-title {
+    font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+    color: rgba(255,255,255,0.9);
+    transition: var(--transition-smooth);
+  }
+
+  .menu-item:hover .menu-link div,
+  .menu-item:hover .menu-title {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  /* تنسيق القوائم الفرعية */
+  .menu-sub {
+    background: rgba(0,0,0,0.2);
+    border-radius: var(--border-radius);
+    margin: 10px 0;
+    padding: 10px 0;
+    animation: slideDown 0.4s ease;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-15px);
+      max-height: 0;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      max-height: 500px;
+    }
+  }
+
+  /* تنسيق عناصر القائمة الفرعية */
+  .menu-sub .menu-item .menu-link {
+    margin: 5px 15px;
+    padding: 0.5rem 1rem;
+    background: rgba(255,255,255,0.03);
+    font-size: 0.9rem;
+  }
+
+  .menu-sub .menu-item:hover .menu-link {
+    background: rgba(198, 179, 126, 0.8);
+    transform: translateX(-3px);
+  }
+
+  /* تنسيق زر تبديل القائمة */
+  .menu-toggle::after {
+    content: '▼';
+    float: left;
+    transition: var(--transition-smooth);
+    margin-right: 10px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .menu-item.open .menu-toggle::after {
+    transform: rotate(180deg);
+    color: #ffd700;
+  }
+
+  /* تأثير ظل إضافي عند تحويم المؤشر على القائمة */
+  .layout-menu:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    transform: translateX(2px);
+  }
+
+  /* تنسيق زر إغلاق/فتح القائمة */
+  .layout-menu-toggle {
+    transition: var(--transition-bounce);
+    color: rgba(255,255,255,0.8) !important;
+  }
+
+  .layout-menu-toggle:hover {
+    transform: scale(1.2) rotate(180deg);
+    color: #ffd700 !important;
+  }
+
+  /* تنسيقات شريط التمرير */
+  .menu-inner {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(198, 179, 126, 0.5) transparent;
+  }
+
+  .menu-inner::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .menu-inner::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+  }
+
+  .menu-inner::-webkit-scrollbar-thumb {
+    background: var(--gold-gradient);
+    border-radius: 4px;
+    transition: var(--transition-smooth);
+  }
+
+  .menu-inner::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #d8cba6 0%, #c6b37e 100%);
+  }
+
+  /* تأثيرات الاستجابة للشاشات المختلفة */
   @media (max-width: 768px) {
     .logo-container {
       max-width: 360px;
@@ -170,9 +348,16 @@ $configData = Helper::appClasses();
       max-width: 330px !important;
       max-height: 120px !important;
     }
+
+    .menu-icon {
+      font-size: 20px;
+    }
+
+    .menu-item:hover .menu-icon {
+      transform: scale(1.2) rotate(10deg);
+    }
   }
 
-  /* تحسين للشاشات المتوسطة */
   @media (min-width: 769px) and (max-width: 1199px) {
     .logo-container {
       max-width: 420px;
@@ -186,7 +371,6 @@ $configData = Helper::appClasses();
     }
   }
 
-  /* تحسين إضافي للشاشات الكبيرة */
   @media (min-width: 1200px) {
     .logo-container {
       max-width: 480px;
@@ -200,199 +384,66 @@ $configData = Helper::appClasses();
     }
   }
 
-  /* تأثير انعكاس ضوئي */
-  /* .logo-container::before {
-                      content: '';
-                      position: absolute;
-                      top: 10%;
-                      left: 10%;
-                      width: 30%;
-                      height: 30%;
-                      background: linear-gradient(45deg, rgba(255,255,255,0.8) 0%, transparent 50%);
-                      border-radius: 50%;
-                      z-index: 3;
-                      opacity: 0.7;
-                      animation: shine 3s ease-in-out infinite;
-                  } */
-  /* حركة الانعكاس الضوئي */
-  /* @keyframes shine {
-                      0%, 100% {
-                          opacity: 0.3;
-                          transform: scale(0.8);
-                      }
-                      50% {
-                          opacity: 0.8;
-                          transform: scale(1.2);
-                      }
-                  } */
-  /* حركة بريق النص */
-  @keyframes textShine {
-    0% {
-      background-position: 0% 50%;
-    }
-
-    100% {
-      background-position: 100% 50%;
-    }
+  /* تأثيرات إضافية للتفاعل */
+  .menu-item {
+    animation: fadeInLeft 0.6s ease forwards;
+    opacity: 0;
   }
 
-  /* تأثير ظهور العنوان الفرعي */
-  .brand-subtitle {
-    animation: fadeInUp 1s ease-out 0.5s both;
-  }
+  .menu-item:nth-child(1) { animation-delay: 0.1s; }
+  .menu-item:nth-child(2) { animation-delay: 0.2s; }
+  .menu-item:nth-child(3) { animation-delay: 0.3s; }
+  .menu-item:nth-child(4) { animation-delay: 0.4s; }
+  .menu-item:nth-child(5) { animation-delay: 0.5s; }
+  .menu-item:nth-child(6) { animation-delay: 0.6s; }
+  .menu-item:nth-child(7) { animation-delay: 0.7s; }
+  .menu-item:nth-child(8) { animation-delay: 0.8s; }
 
-  /* حركة ظهور النص من أسفل */
-  @keyframes fadeInUp {
+  @keyframes fadeInLeft {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateX(-30px);
     }
-
     to {
-      opacity: 0.9;
-      transform: translateY(0);
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 
-  /* تنسيق المحتوى الداخلي للقائمة */
-  .menu-inner {
-    padding: 20px 0;
+  /* تأثير نبضة للعناصر النشطة */
+  .menu-item.active .menu-link {
+    background: var(--gold-gradient);
+    box-shadow: 0 0 20px rgba(198, 179, 126, 0.5);
+    animation: activeGlow 2s ease-in-out infinite;
   }
 
-  /* تأثير حركي لعناصر القائمة */
-  .menu-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(184, 154, 84, 0.6), transparent);
-    transition: left 0.5s;
-  }
-
-  /* تأثير حركي عند تحويم المؤشر */
-  .menu-item:hover::before {
-    left: 100%;
-  }
-
-  /* تنسيق أيقونات القائمة */
-  .menu-icon {
-    font-size: 20px;
-    margin-left: 15px;
-    transition: all 0.3s ease;
-  }
-
-  .menu-vertical .menu-item .menu-link,
-  .menu-vertical .menu-header,
-  .menu-vertical .menu-block {
-    padding: 0.625rem 1.25rem;
-    margin-block: 0.125rem;
-    margin-inline: 1rem;
-    border-radius: 0.75rem;
-    transition: all 0.3s ease;
-  }
-
-  /* تأثير حركي لأيقونات القائمة عند التحويم */
-  .menu-item:hover .menu-icon {
-    transform: scale(1.2) rotate(10deg);
-    color: #ffd700;
-  }
-
-  /* تنسيق الأيقونة في العنصر النشط */
-  .menu-item.active .menu-icon {
-    color: #ffd700;
-    animation: pulse 2s infinite;
-  }
-
-  /* حركة نبض للأيقونة */
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
+  @keyframes activeGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(198, 179, 126, 0.5);
     }
-
     50% {
-      transform: scale(1.1);
-    }
-
-    100% {
-      transform: scale(1);
+      box-shadow: 0 0 30px rgba(198, 179, 126, 0.8);
     }
   }
 
-  /* تنسيق القوائم الفرعية */
-  /* .menu-sub {
-                    background: rgba(0,0,0,0.2);
-                    border-radius: 10px;
-                    margin: 10px 0;
-                    padding: 10px 0;
-                    animation: slideDown 0.3s ease;
-                } */
-  /* حركة ظهور القائمة الفرعية */
-  /* @keyframes slideDown {
-                    from {
-                        opacity: 0;
-                        transform: translateY(-10px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                } */
-  /* تنسيق عناصر القائمة الفرعية */
-  /* .menu-sub .menu-item {
-                    margin: 5px 10px;
-                } */
-  /* تنسيق زر تبديل القائمة */
-  /* .menu-toggle::after {
-                    content: '▼';
-                    float: left;
-                    transition: transform 0.3s ease;
-                    margin-right: 10px;
-                } */
-  /* تأثير دوران السهم عند فتح القائمة */
-  .menu-item.open .menu-toggle::after {
-    transform: rotate(180deg);
+  /* تحسين الخطوط العربية */
+  * {
+    font-family: 'Cairo', 'Segoe UI', 'Tahoma', sans-serif;
   }
 
-  /* تأثير ظل إضافي عند تحويم المؤشر على القائمة */
-  .layout-menu:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  /* تأثير تركيز محسن */
+  .menu-link:focus {
+    outline: 2px solid rgba(198, 179, 126, 0.8);
+    outline-offset: 2px;
+    background: rgba(198, 179, 126, 0.2);
   }
 
-  /* تنسيق خط النصوص */
-  .menu-link div,
-  .menu-title {
-    font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+  /* تأثير الضغط */
+  .menu-link:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
   }
-
-  /* تنسيقات شريط التمرير */
-  .menu-inner {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-  }
-
-  .menu-inner::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .menu-inner::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .menu-inner::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
-  }
-
-  .menu-inner::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
-  }
-
 </style>
-
 
 @extends('layouts/commonMaster')
 
@@ -413,11 +464,9 @@ $navbarFixed = isset($configData['navbarFixed']) ? $configData['navbarFixed'] : 
 $footerFixed = isset($configData['footerFixed']) ? $configData['footerFixed'] : '';
 $menuCollapsed = isset($configData['menuCollapsed']) ? $configData['menuCollapsed'] : '';
 $menuFlipped = isset($configData['menuFlipped']) ? $configData['menuFlipped'] : '';
-/* $menuOffcanvas = (isset($configData['menuOffcanvas']) ? $configData['menuOffcanvas'] : ''); */
 
 /* Content classes */
 $container = $container ?? 'container-xxl';
-
 @endphp
 
 @section('layoutContent')
@@ -425,29 +474,22 @@ $container = $container ?? 'container-xxl';
   <div class="layout-container">
 
     @if ($isMenu)
-    {{-- @include('layouts/sections/menu/verticalMenu') --}}
     @role(['OWNER', 'Administrator', 'Supervisor', 'Employee'])
-
-
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
       <div class="app-brand demo">
-
-   <a href="{{ url('/') }}" class="app-brand-link d-flex flex-column align-items-center text-decoration-none" style="width: 100%; display: flex; justify-content: center; align-items: center;">
-          {{-- @role(['OWNER', 'Supervisor']) --}}
+        <a href="{{ url('/') }}" class="app-brand-link d-flex flex-column align-items-center text-decoration-none" style="width: 100%; display: flex; justify-content: center; align-items: center;">
           <div class="logo-container">
             <div class="logo-glow"></div>
             <span class="app-brand-logo demo">
               <img src="{{ asset('assets/img/logo/GCPI.png') }}" class="logo-image" alt="شعار النظام">
             </span>
           </div>
-
-
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11.4854 4.88844C11.0081 4.41121 10.2344 4.41121 9.75715 4.88844L4.51028 10.1353C4.03297 10.6126 4.03297 11.3865 4.51028 11.8638L9.75715 17.1107C10.2344 17.5879 11.0081 17.5879 11.4854 17.1107C11.9626 16.6334 11.9626 15.8597 11.4854 15.3824L7.96672 11.8638C7.48942 11.3865 7.48942 10.6126 7.96672 10.1353L11.4854 6.61667C11.9626 6.13943 11.9626 5.36568 11.4854 4.88844Z" fill="var(--primary-color)" fill-opacity="0.6" />
-            <path d="M15.8683 4.88844L10.6214 10.1353C10.1441 10.6126 10.1441 11.3865 10.6214 11.8638L15.8683 17.1107C16.3455 17.5879 17.1192 17.5879 17.5965 17.1107C18.0737 16.6334 18.0737 15.8597 17.5965 15.3824L14.0778 11.8638C13.6005 11.3865 13.6005 10.6126 14.0778 10.1353L17.5965 6.61667C18.0737 6.13943 18.0737 5.36568 17.5965 4.88844C17.1192 4.41121 16.3455 4.41121 15.8683 4.88844Z" fill="var(--primary-color)" fill-opacity="0.38" />
+            <path d="M11.4854 4.88844C11.0081 4.41121 10.2344 4.41121 9.75715 4.88844L4.51028 10.1353C4.03297 10.6126 4.03297 11.3865 4.51028 11.8638L9.75715 17.1107C10.2344 17.5879 11.0081 17.5879 11.4854 17.1107C11.9626 16.6334 11.9626 15.8597 11.4854 15.3824L7.96672 11.8638C7.48942 11.3865 7.48942 10.6126 7.96672 10.1353L11.4854 6.61667C11.9626 6.13943 11.9626 5.36568 11.4854 4.88844Z" fill="currentColor" fill-opacity="0.6" />
+            <path d="M15.8683 4.88844L10.6214 10.1353C10.1441 10.6126 10.1441 11.3865 10.6214 11.8638L15.8683 17.1107C16.3455 17.5879 17.1192 17.5879 17.5965 17.1107C18.0737 16.6334 18.0737 15.8597 17.5965 15.3824L14.0778 11.8638C13.6005 11.3865 13.6005 10.6126 14.0778 10.1353L17.5965 6.61667C18.0737 6.13943 18.0737 5.36568 17.5965 4.88844C17.1192 4.41121 16.3455 4.41121 15.8683 4.88844Z" fill="currentColor" fill-opacity="0.38" />
           </svg>
         </a>
       </div>
@@ -455,7 +497,6 @@ $container = $container ?? 'container-xxl';
       <div class="menu-inner-shadow"></div>
 
       <ul class="py-1 menu-inner">
-
         {{-- Dashboard --}}
         <li class="menu-item {{ request()->is('/') ? 'active' : '' }}">
           <a href="{{ Route('Dashboard') }}" class="menu-link">
@@ -473,119 +514,119 @@ $container = $container ?? 'container-xxl';
 
           <ul class="menu-sub">
             @can('workers')
-            <li Class="menu-item {{ request()->Is('Workers') ? 'active' : '' }}">
-              <a href="{{ Route('Workers') }}" Class="menu-link">
+            <li class="menu-item {{ request()->is('Workers') ? 'active' : '' }}">
+              <a href="{{ Route('Workers') }}" class="menu-link">
                 <i class=""></i>
                 <div>المعلومات العامة</div>
               </a>
             </li>
-            <li Class="menu-item {{ request()->Is('AddWorker') ? 'active' : 'hidden' }}">
-              <a href="{{ Route('AddWorker') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('AddWorker') ? 'active' : 'hidden' }}">
+              <a href="{{ Route('AddWorker') }}" class="menu-link">
+                <i class=""></i>
                 <div>إضافة موظف</div>
               </a>
             </li>
             @endcan
             @can('wives')
-            <li Class="menu-item {{ request()->Is('Wives') ? 'active' : '' }}">
-              <a href="{{ Route('Wives.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Wives') ? 'active' : '' }}">
+              <a href="{{ Route('Wives.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>بيانات الزوج/ـة</div>
               </a>
             </li>
             @endcan
             @can('childrens')
-            <li Class="menu-item {{ request()->Is('Childrens') ? 'active' : '' }}">
-              <a href="{{ Route('Childrens.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Childrens') ? 'active' : '' }}">
+              <a href="{{ Route('Childrens.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>بيانات الاطفال</div>
               </a>
             </li>
             @endcan
             @can('certific')
-            <li Class="menu-item {{ request()->Is('Certific') ? 'active' : '' }}">
-              <a href="{{ Route('Certific.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Certific') ? 'active' : '' }}">
+              <a href="{{ Route('Certific.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>الشهادات</div>
               </a>
             </li>
             @endcan
             @can('placements')
-            <li Class="menu-item {{ request()->Is('Placements') ? 'active' : '' }}">
-              <a href="{{ Route('Placements.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Placements') ? 'active' : '' }}">
+              <a href="{{ Route('Placements.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>التنسيب</div>
               </a>
             </li>
             @endcan
             @can('positions')
-            <li Class="menu-item {{ request()->Is('Positions') ? 'active' : '' }}">
-              <a href="{{ Route('Positions.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Positions') ? 'active' : '' }}">
+              <a href="{{ Route('Positions.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>المنصب</div>
               </a>
             </li>
             @endcan
             @can('thanks')
-            <li Class="menu-item {{ request()->Is('Thanks') ? 'active' : '' }}">
-              <a href="{{ Route('Thanks.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Thanks') ? 'active' : '' }}">
+              <a href="{{ Route('Thanks.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>الشكر و التقدير</div>
               </a>
             </li>
             @endcan
             @can('penalties')
-            <li Class="menu-item {{ request()->Is('Penalties') ? 'active' : '' }}">
-              <a href="{{ Route('Penalties.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Penalties') ? 'active' : '' }}">
+              <a href="{{ Route('Penalties.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>العقوبات</div>
               </a>
             </li>
             @endcan
             @can('jobleavers')
-            <li Class="menu-item {{ request()->Is('Jobleavers') ? 'active' : '' }}">
-              <a href="{{ Route('Jobleavers.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Jobleavers') ? 'active' : '' }}">
+              <a href="{{ Route('Jobleavers.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>تاركي العمل</div>
               </a>
             </li>
             @endcan
             @can('services')
-            <li Class="menu-item {{ request()->Is('Services') ? 'active' : '' }}">
-              <a href="{{ Route('Services.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Services') ? 'active' : '' }}">
+              <a href="{{ Route('Services.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>خلاصة الخدمة</div>
               </a>
             </li>
             @endcan
             @can('dispatch')
-            <li Class="menu-item {{ request()->Is('Dispatch') ? 'active' : '' }}">
-              <a href="{{ Route('Dispatch.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Dispatch') ? 'active' : '' }}">
+              <a href="{{ Route('Dispatch.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>الأيفادات</div>
               </a>
             </li>
             @endcan
             @can('holidays')
-            <li Class="menu-item {{ request()->Is('Holidays') ? 'active' : '' }}">
-              <a href="{{ Route('Holidays.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Holidays') ? 'active' : '' }}">
+              <a href="{{ Route('Holidays.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>الاجازات</div>
               </a>
             </li>
             @endcan
             @can('empInfoBank')
-            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-              <a href="" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('EmpInfoBank') ? 'active' : '' }}">
+              <a href="" class="menu-link">
+                <i class=""></i>
                 <div>العلاوات</div>
               </a>
             </li>
             @endcan
             @can('empInfoBank')
-            <li Class="menu-item {{ request()->Is('EmpInfoBank') ? 'active' : '' }}">
-              <a href="" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('EmpInfoBank') ? 'active' : '' }}">
+              <a href="" class="menu-link">
+                <i class=""></i>
                 <div>الترفيعات</div>
               </a>
             </li>
@@ -593,6 +634,7 @@ $container = $container ?? 'container-xxl';
           </ul>
         </li>
         @endcan
+
         @can('financial')
         <li class="menu-item {{ request()->is('Salaries', 'Inputs', 'Itypes', 'Iaccts', 'Idepartments') ? 'open active' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -600,503 +642,282 @@ $container = $container ?? 'container-xxl';
             <span class="menu-title">القسم المالي</span>
           </a>
           <ul class="menu-sub">
-            @can('itypes')
-            <li Class="menu-item {{ request()->Is('Itypes') ? 'active' : '' }}">
-              <a href="{{ Route('Itypes.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>انواع القيود</div>
-              </a>
-            </li>
-            @endcan
-            @can('iaccts')
-            <li Class="menu-item {{ request()->Is('Iaccts') ? 'active' : '' }}">
-              <a href="{{ Route('Iaccts.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>الدليل المحاسبي</div>
-              </a>
-            </li>
-            @endcan
-            @can('idepartments')
-            <li Class="menu-item {{ request()->Is('Idepartments') ? 'active' : '' }}">
-              <a href="{{ Route('Idepartments.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>دليل الاقسام</div>
+            @can('salaries')
+            <li class="menu-item {{ request()->is('Salaries') ? 'active' : '' }}">
+              <a href="{{ Route('Salaries.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>الرواتب</div>
               </a>
             </li>
             @endcan
             @can('inputs')
-            <li Class="menu-item {{ request()->Is('Inputs') ? 'active' : '' }}">
-              <a href="{{ Route('Inputs.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>ادخال اليومية</div>
+            <li class="menu-item {{ request()->is('Inputs') ? 'active' : '' }}">
+              <a href="{{ Route('Inputs.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>المدخلات</div>
+              </a>
+            </li>
+            @endcan
+            @can('itypes')
+            <li class="menu-item {{ request()->is('Itypes') ? 'active' : '' }}">
+              <a href="{{ Route('Itypes.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>أنواع المدخلات</div>
+              </a>
+            </li>
+            @endcan
+            @can('iaccts')
+            <li class="menu-item {{ request()->is('Iaccts') ? 'active' : '' }}">
+              <a href="{{ Route('Iaccts.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>حسابات المدخلات</div>
+              </a>
+            </li>
+            @endcan
+            @can('idepartments')
+            <li class="menu-item {{ request()->is('Idepartments') ? 'active' : '' }}">
+              <a href="{{ Route('Idepartments.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>أقسام المدخلات</div>
               </a>
             </li>
             @endcan
           </ul>
         </li>
         @endcan
-        @can('landproperty')
-        <li class="menu-item {{ request()->is('Provinces', 'Plots', 'Show-Plot/*', 'Realities', 'Show-Realitie/*', 'Boycotts', 'Bonds', 'Bond-Show/*', 'Real-Property', 'Show-Real-Property/*', 'Estate' ,'Propertyfolder') ? 'open active' : '' }}">
+
+        @can('informations')
+        <li class="menu-item {{ request()->is('Informations', 'Infooffice', 'Grades', 'Jobtitles', 'Specialtys', 'Scaleas', 'Scalems', 'Linkages', 'Precises', 'Provinces', 'Districts', 'Areas', 'Sections', 'Units', 'Branch', 'Department') ? 'open active' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class='menu-icon tf-icons mdi mdi-map-outline'></i>
-            <span class="menu-title">قسم الاملاك و الاراضي</span>
+            <i class='menu-icon tf-icons mdi mdi-information-outline'></i>
+            <span class="menu-title">المعلومات الأساسية</span>
           </a>
           <ul class="menu-sub">
+            @can('infooffice')
+            <li class="menu-item {{ request()->is('Infooffice') ? 'active' : '' }}">
+              <a href="{{ Route('Infooffice.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>معلومات المكتب</div>
+              </a>
+            </li>
+            @endcan
+            @can('grades')
+            <li class="menu-item {{ request()->is('Grades') ? 'active' : '' }}">
+              <a href="{{ Route('Grades.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>الدرجات الوظيفية</div>
+              </a>
+            </li>
+            @endcan
+            @can('jobtitles')
+            <li class="menu-item {{ request()->is('Jobtitles') ? 'active' : '' }}">
+              <a href="{{ Route('Jobtitles.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>العناوين الوظيفية</div>
+              </a>
+            </li>
+            @endcan
+            @can('specialtys')
+            <li class="menu-item {{ request()->is('Specialtys') ? 'active' : '' }}">
+              <a href="{{ Route('Specialtys.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>التخصصات</div>
+              </a>
+            </li>
+            @endcan
+            @can('scaleas')
+            <li class="menu-item {{ request()->is('Scaleas') ? 'active' : '' }}">
+              <a href="{{ Route('Scaleas.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>سلم الرواتب أ</div>
+              </a>
+            </li>
+            @endcan
+            @can('scalems')
+            <li class="menu-item {{ request()->is('Scalems') ? 'active' : '' }}">
+              <a href="{{ Route('Scalems.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>سلم الرواتب م</div>
+              </a>
+            </li>
+            @endcan
+            @can('linkages')
+            <li class="menu-item {{ request()->is('Linkages') ? 'active' : '' }}">
+              <a href="{{ Route('Linkages.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>الارتباطات</div>
+              </a>
+            </li>
+            @endcan
+            @can('precises')
+            <li class="menu-item {{ request()->is('Precises') ? 'active' : '' }}">
+              <a href="{{ Route('Precises.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>التخصص الدقيق</div>
+              </a>
+            </li>
+            @endcan
             @can('provinces')
-            <li Class="menu-item {{ request()->Is('Provinces') ? 'active' : '' }}">
-              <a href="{{ Route('Provinces.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>المقاطعات</div>
-              </a>
-            </li>
-            @endcan
-            @can('plots')
-            <li Class="menu-item {{ request()->Is('Plots') ? 'active' : '' }}">
-              <a href="{{ Route('Plots') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>القطع</div>
-              </a>
-            </li>
-
-            <li Class="menu-item {{ request()->Is('Show-Plot/*') ? 'active' : 'hidden' }}">
-              <a href="javascript:void(0)" Class="menu-link">
-                <i Class=""></i>
-                <div>عرض القطعة</div>
-              </a>
-            </li>
-            @endcan
-            @can('realities')
-            <li Class="menu-item {{ request()->Is('Realities') ? 'active' : '' }}">
-              <a href="{{ Route('Realities') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>السند العقاري</div>
-              </a>
-            </li>
-
-            <li Class="menu-item {{ request()->Is('Show-Realitie/*') ? 'active' : 'hidden' }}">
-              <a href="javascript:void(0)" Class="menu-link">
-                <i Class=""></i>
-                <div>عرض السند العقاري</div>
-              </a>
-            </li>
-            @endcan
-            @can('realProperty')
-            <li Class="menu-item {{ request()->Is('Real-Property') ? 'active' : '' }}">
-              <a href="{{ Route('RealProperty') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>الاسكان</div>
-              </a>
-            </li>
-
-            <li Class="menu-item {{ request()->Is('Show-Real-Property/*') ? 'active' : 'hidden' }}">
-              <a href="#" Class="menu-link">
-                <i Class=""></i>
-                <div>عرض الاسكان</div>
-              </a>
-            </li>
-
-            <li Class="menu-item {{ request()->Is('Propertyfolder') ? 'active' : '' }}">
-              <a href="{{ Route('Propertyfolder.index') }}" Class="menu-link">
-
-                <div>اضبارة العقار</div>
-              </a>
-            </li>
-
-
-            @endcan
-          </ul>
-        </li>
-        @endcan
-        @can('training')
-        <li class="menu-item {{ request()->is('Coaches', 'Courses') ? 'open active' : '' }}">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class='menu-icon tf-icons mdi mdi-account-tie-voice-outline'></i>
-            <span class="menu-title">التدريب و التطوير</span>
-          </a>
-          <ul class="menu-sub">
-            @can('coaches')
-            <li Class="menu-item {{ request()->Is('Coaches') ? 'active' : '' }}">
-              <a href="{{ Route('Coaches.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>المدربين</div>
-              </a>
-            </li>
-            @endcan
-            @can('courses')
-            <li Class="menu-item {{ request()->Is('Courses') ? 'active' : '' }}">
-              <a href="{{ Route('Courses.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>الدورات</div>
-              </a>
-            </li>
-            @endcan
-          </ul>
-        </li>
-        @endcan
-        {{-- @can('files')
-
-                                <li class="menu-item {{ request()->is('Private-Employee-Files') ? 'active' : '' }}">
-        <a href="{{ Route('PrivateEmployeeFiles') }}" class="menu-link">
-          <i class="menu-icon tf-icons mdi mdi-file-cloud-outline"></i>
-          <div>{{ trans('sidebar.PrivateEmployeeFiles') }}</div>
-        </a>
-        </li>
-        @endcan --}}
-        @can('settings')
-        {{-- الإعدادات --}}
-        <li class="menu-item {{ request()->is('Governorates', 'Districts', 'Areas', 'Infooffice', 'Linkages', 'Sections', 'Branch', 'Units', 'Certificates', 'Graduations', 'Specializations', 'Specialtys', 'Precises', 'Grades', 'Jobtitles', 'Scalems', 'Technicians', 'Scaleas', 'Trainings', 'Typeholidays', 'Specializationclassification', 'Typesservices', 'Department', 'Emaillists', 'Utilizationtypes', 'Propertycategory', 'Propertytypes', 'Tracking', 'backup', 'employees', 'Propertylocation', 'propertytyperented') ? 'open active' : '' }}">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class='menu-icon tf-icons mdi mdi-cog-outline'></i>
-            <span class="menu-title">الاعدادات</span>
-          </a>
-          <ul class="menu-sub">
-            @can('governorates')
-            {{-- المحافظات --}}
-            <li class="menu-item {{ request()->is('Governorates') ? 'active' : '' }}">
-              <a href="{{ Route('Governorates.index') }}" Class="menu-link">
+            <li class="menu-item {{ request()->is('Provinces') ? 'active' : '' }}">
+              <a href="{{ Route('Provinces.index') }}" class="menu-link">
                 <i class=""></i>
                 <div>المحافظات</div>
               </a>
             </li>
             @endcan
             @can('districts')
-            {{-- الأقضية --}}
-            <li class="menu-item {{ request()->Is('Districts') ? 'active' : '' }}">
-              <a href="{{ Route('Districts.index') }}" Class="menu-link">
+            <li class="menu-item {{ request()->is('Districts') ? 'active' : '' }}">
+              <a href="{{ Route('Districts.index') }}" class="menu-link">
                 <i class=""></i>
                 <div>الأقضية</div>
               </a>
             </li>
             @endcan
             @can('areas')
-            {{-- النواحي --}}
-            <li class="menu-item {{ request()->Is('Areas') ? 'active' : '' }}">
-              <a href="{{ Route('Areas.index') }}" Class="menu-link">
+            <li class="menu-item {{ request()->is('Areas') ? 'active' : '' }}">
+              <a href="{{ Route('Areas.index') }}" class="menu-link">
                 <i class=""></i>
                 <div>النواحي</div>
               </a>
             </li>
             @endcan
-            @can('infooffice')
-            {{-- مكتب المعلومات --}}
-            <li Class="menu-item {{ request()->Is('Infooffice') ? 'active' : '' }}">
-              <a href="{{ Route('Infooffice.index') }}" Class="menu-link">
-                <i class=""></i>
-                <div>مكتب المعلومات</div>
-              </a>
-            </li>
-            @endcan
-            @can('linkages')
-            {{-- الارتباط --}}
-            <li Class="menu-item {{ request()->Is('Linkages') ? 'active' : '' }}">
-              <a href="{{ Route('Linkages.index') }}" Class="menu-link">
-                <i class=""></i>
-                <div>الارتباط</div>
-              </a>
-            </li>
-            @endcan
             @can('sections')
-            {{-- الاقسام --}}
-            <li Class="menu-item {{ request()->Is('Sections') ? 'active' : '' }}">
-              <a href="{{ Route('Sections.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>الاقسام</div>
-              </a>
-            </li>
-            @endcan
-            @can('branch')
-            {{-- الشعب --}}
-            <li Class="menu-item {{ request()->Is('Branch') ? 'active' : '' }}">
-              <a href="{{ Route('Branch.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>الشعب</div>
+            <li class="menu-item {{ request()->is('Sections') ? 'active' : '' }}">
+              <a href="{{ Route('Sections.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>الأقسام</div>
               </a>
             </li>
             @endcan
             @can('units')
-            {{-- الوحدات --}}
-            <li Class="menu-item {{ request()->Is('Units') ? 'active' : '' }}">
-              <a href="{{ Route('Units.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Units') ? 'active' : '' }}">
+              <a href="{{ Route('Units.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>الوحدات</div>
               </a>
             </li>
             @endcan
+            @can('branch')
+            <li class="menu-item {{ request()->is('Branch') ? 'active' : '' }}">
+              <a href="{{ Route('Branch.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>الشعب</div>
+              </a>
+            </li>
+            @endcan
             @can('department')
-            {{-- الدوائر --}}
-            <li Class="menu-item {{ request()->Is('Department') ? 'active' : '' }}">
-              <a href="{{ Route('Department.index') }}" Class="menu-link">
-                <i Class=""></i>
+            <li class="menu-item {{ request()->is('Department') ? 'active' : '' }}">
+              <a href="{{ Route('Department.index') }}" class="menu-link">
+                <i class=""></i>
                 <div>الدوائر</div>
               </a>
             </li>
             @endcan
-            @can('certificates')
-            {{-- الشهادة --}}
-            <li Class="menu-item {{ request()->Is('Certificates') ? 'active' : '' }}">
-              <a href="{{ Route('Certificates.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>الشهادة</div>
-              </a>
-            </li>
-            @endcan
-            @can('graduations')
-            {{-- جهة التخرج --}}
-            <li Class="menu-item {{ request()->Is('Graduations') ? 'active' : '' }}">
-              <a href="{{ Route('Graduations.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>جهة التخرج</div>
-              </a>
-            </li>
-            @endcan
-            @can('specializations')
-            {{-- الاختصاص --}}
-            <li Class="menu-item {{ request()->Is('Specializations') ? 'active' : '' }}">
-              <a href="{{ Route('Specializations.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>الاختصاص</div>
-              </a>
-            </li>
-            @endcan
-            @can('specialtys')
-            {{-- التخصص العام --}}
-            <li Class="menu-item {{ request()->Is('Specialtys') ? 'active' : '' }}">
-              <a href="{{ Route('Specialtys.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>التخصص العام</div>
-              </a>
-            </li>
-            @endcan
-            @can('precises')
-            {{-- التخصص الدقيق --}}
-            <li Class="menu-item {{ request()->Is('Precises') ? 'active' : '' }}">
-              <a href="{{ Route('Precises.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>التخصص الدقيق</div>
-              </a>
-            </li>
-            @endcan
-            @can('specializationclassification')
-            {{-- تصنيف التخصص --}}
-            <li Class="menu-item {{ request()->Is('Specializationclassification') ? 'active' : '' }}">
-              <a href="{{ Route('Specializationclassification.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>تصنيف التخصص</div>
-              </a>
-            </li>
-            @endcan
-            @can('grades')
-            {{-- الدرجات --}}
-            <li Class="menu-item {{ request()->Is('Grades') ? 'active' : '' }}">
-              <a href="{{ Route('Grades.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>الدرجات</div>
-              </a>
-            </li>
-            @endcan
-            @can('jobtitles')
-            {{-- العنوان الوظيفي --}}
-            <li Class="menu-item {{ request()->Is('Jobtitles') ? 'active' : '' }}">
-              <a href="{{ Route('Jobtitles.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>العنوان الوظيفي</div>
-              </a>
-            </li>
-            @endcan
-            @can('scalems')
-            {{-- سلم رواتب الملاك --}}
-            <li Class="menu-item {{ request()->Is('Scalems') ? 'active' : '' }}">
-              <a href="{{ Route('Scalems.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>سلم رواتب الملاك</div>
-              </a>
-            </li>
-            @endcan
-            @can('scaleas')
-            {{-- سلم رواتب العقد الاداري --}}
-            <li Class="menu-item {{ request()->Is('Scaleas') ? 'active' : '' }}">
-              <a href="{{ Route('Scaleas.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>سلم رواتب العقد الاداري</div>
-              </a>
-            </li>
-            @endcan
-            @can('technicians')
-            {{-- سلم رواتب العقد الفني --}}
-            <li Class="menu-item {{ request()->Is('Technicians') ? 'active' : '' }}">
-              <a href="{{ Route('Technicians.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>سلم رواتب العقد الفني</div>
-              </a>
-            </li>
-            @endcan
-            @can('trainings')
-            {{-- مجال التدريب --}}
-            <li Class="menu-item {{ request()->Is('Trainings') ? 'active' : '' }}">
-              <a href="{{ Route('Trainings.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>مجال التدريب</div>
-              </a>
-            </li>
-            @endcan
-            @can('typeholidays')
-            {{-- نوع الاجازة --}}
-            <li Class="menu-item {{ request()->Is('Typeholidays') ? 'active' : '' }}">
-              <a href="{{ Route('Typeholidays.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>نوع الاجازة</div>
-              </a>
-            </li>
-            @endcan
-            @can('typesservices')
-            {{-- حالة الخدمة --}}
-            <li Class="menu-item {{ request()->Is('Typesservices') ? 'active' : '' }}">
-              <a href="{{ Route('Typesservices.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>حالة الخدمة</div>
-              </a>
-            </li>
-            @endcan
-            @can('emaillists')
-            {{-- البريد الالكتروني --}}
-            <li Class="menu-item {{ request()->Is('Emaillists') ? 'active' : '' }}">
-              <a href="{{ Route('Emaillists.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>البريد الألكتروني</div>
-              </a>
-            </li>
-            @endcan
-            @can('propertycategory')
-            {{-- انواع العقارات --}}
-            <li Class="menu-item {{ request()->Is('Propertycategory') ? 'active' : '' }}">
-              <a href="{{ Route('Propertycategory.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>انواع العقارات</div>
-              </a>
-            </li>
-            @endcan
-            @can('utilizationtypes')
-            {{-- انواع الاستغلال للعقار --}}
-            <li Class="menu-item {{ request()->Is('Utilizationtypes') ? 'active' : '' }}">
-              <a href="{{ Route('Utilizationtypes.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>انواع الاستغلال للعقار</div>
-              </a>
-            </li>
-            @endcan
-            @can('propertytypes')
-            {{-- جنس العقار --}}
-            <li Class="menu-item {{ request()->Is('Propertytypes') ? 'active' : '' }}">
-              <a href="{{ Route('Propertytypes.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>جنس العقار</div>
-              </a>
-            </li>
-            @endcan
-
-            {{-- =================نافذة تاجير العقارات================== --}}
-
-            @can('propertylocation')
-            {{-- موقع العقار --}}
-            <li Class="menu-item {{ request()->Is('Propertylocation') ? 'active' : '' }}">
-              <a href="{{ Route('Propertylocation.index') }}" Class="menu-link">
-                {{-- <i Class='menu-icon tf-icons mdi mdi-map-marker-outline'></i> --}}
-                <div>موقع العقار</div>
-              </a>
-            </li>
-            @endcan
-            @can('propertytyperented')
-            <li Class="menu-item {{ request()->Is('Propertytyperented') ? 'active' : '' }}">
-              <a href="{{ Route('Propertytyperented.index') }}" Class="menu-link">
-                <div>نوع العقار المؤجر</div>
-              </a>
-            </li>
-            @endcan
-            @can('descriptionrented')
-            <li Class="menu-item {{ request()->Is('Descriptionrented') ? 'active' : '' }}">
-              <a href="{{ Route('Descriptionrented.index') }}" Class="menu-link">
-                <div>صفة العقار المؤجر</div>
-              </a>
-            </li>
-            @endcan
-
-            <li Class="menu-item {{ request()->Is('Tenants') ? 'active' : '' }}">
-              <a href="{{ Route('Tenants.index') }}" Class="menu-link">
-                <i Class='menu-icon tf-icons mdi mdi-account-outline'></i>
-                <div>المستأجر</div>
-              </a>
-            </li>
-            @can('usersapp')
-            {{-- مستخدمي التطبيق --}}
-            <li Class="menu-item {{ request()->Is('Usersapp') ? 'active' : '' }}">
-              <a href="{{ Route('Usersapp.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>مستخدمي التطبيق</div>
-              </a>
-            </li>
-            @endcan
-
-            @can('tracking')
-            {{-- التتبع --}}
-            <li Class="menu-item {{ request()->Is('Tracking') ? 'active' : '' }}">
-              <a href="{{ Route('Tracking.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>التتبع</div>
-              </a>
-            </li>
-            @endcan
-            @can('backup')
-            {{-- النسخ الاحتياطي --}}
-            <li Class="menu-item {{ request()->Is('backup') ? 'active' : '' }}">
-              <a href="{{ Route('backup') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>النسخ الاحتياطي</div>
-              </a>
-            </li>
-            @endcan
-            @can('employees')
-            <li Class="menu-item {{ request()->Is('employees') ? 'active' : '' }}">
-              <a href="{{ route('employees.index') }}" Class="menu-link">
-                <i Class=""></i>
-                <div>Employees</div>
-              </a>
-            </li>
-            @endcan
-
           </ul>
         </li>
         @endcan
-        {{-- المستخدمين --}}
-        @can('users')
-        <li class="menu-item {{ request()->is('Administrators-Accounts') ? 'active open' : (request()->is('Customers-Accounts') ? 'active open' : '') }}">
+
+        @can('trainings')
+        <li class="menu-item {{ request()->is('Trainings', 'Courses', 'Coaches') ? 'open active' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class='menu-icon tf-icons mdi mdi-account-outline'></i>
-            <span class="menu-title">{{ trans('sidebar.Users accounts') }}</span>
+            <i class='menu-icon tf-icons mdi mdi-school-outline'></i>
+            <span class="menu-title">التدريب والتطوير</span>
           </a>
           <ul class="menu-sub">
-            @role(['OWNER', 'Administrator', 'Supervisor'])
-            <li class="menu-item {{ request()->is('Administrators-Accounts') ? 'active' : '' }}">
-              <a href="{{ Route('Administrators-Accounts.index') }}" class="menu-link">
+            @can('trainings')
+            <li class="menu-item {{ request()->is('Trainings') ? 'active' : '' }}">
+              <a href="{{ Route('Trainings.index') }}" class="menu-link">
                 <i class=""></i>
-                <div>{{ trans('sidebar.Admin accounts') }}</div>
+                <div>التدريبات</div>
               </a>
             </li>
-            @endrole
-            <li class="menu-item {{ request()->is('Customers-Accounts') ? 'active' : '' }}">
-              <a href="{{ Route('Customers-Accounts.index') }}" class="menu-link">
+            @endcan
+            @can('courses')
+            <li class="menu-item {{ request()->is('Courses') ? 'active' : '' }}">
+              <a href="{{ Route('Courses.index') }}" class="menu-link">
                 <i class=""></i>
-                <div>{{ trans('sidebar.Customer accounts') }}</div>
+                <div>الدورات</div>
               </a>
             </li>
-
+            @endcan
+            @can('coaches')
+            <li class="menu-item {{ request()->is('Coaches') ? 'active' : '' }}">
+              <a href="{{ Route('Coaches.index') }}" class="menu-link">
+                <i class=""></i>
+                <div>المدربين</div>
+              </a>
+            </li>
+            @endcan
           </ul>
         </li>
         @endcan
 
-        {{-- التصاريح والأدوار --}}
-        @if (Auth::check())
-        @can('permissions-roles')
-        <li class="menu-item {{ request()->is('Permissions&Roles/Account-Permissions') ? 'active open' : (request()->is('Permissions&Roles/Account-Roles') ? 'active open' : '') }}">
+        @can('contracts')
+        <li class="menu-item {{ request()->is('Contracts') ? 'active' : '' }}">
+          <a href="{{ Route('Contracts.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-file-document-outline"></i>
+            <div>العقود</div>
+          </a>
+        </li>
+        @endcan
+
+        @can('tracking')
+        <li class="menu-item {{ request()->is('Tracking') ? 'active' : '' }}">
+          <a href="{{ Route('Tracking.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-map-marker-path"></i>
+            <div>التتبع</div>
+          </a>
+        </li>
+        @endcan
+
+        @can('realities')
+        <li class="menu-item {{ request()->is('Realities') ? 'active' : '' }}">
+          <a href="{{ Route('Realities') }}" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-chart-line"></i>
+            <div>الواقع</div>
+          </a>
+        </li>
+        @endcan
+
+        @can('plots')
+        <li class="menu-item {{ request()->is('Plots') ? 'active' : '' }}">
+          <a href="{{ Route('Plots') }}" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-map-outline"></i>
+            <div>القطع</div>
+          </a>
+        </li>
+        @endcan
+
+        @can('backup')
+        <li class="menu-item {{ request()->is('Backup') ? 'active' : '' }}">
+          <a href="{{ Route('backup') }}" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-backup-restore"></i>
+            <div>النسخ الاحتياطي</div>
+          </a>
+        </li>
+        @endcan
+
+        @can('emaillists')
+        <li class="menu-item {{ request()->is('Emaillists') ? 'active' : '' }}">
+          <a href="{{ Route('Emaillists.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-email-outline"></i>
+            <div>قوائم البريد الإلكتروني</div>
+          </a>
+        </li>
+        @endcan
+
+        @role(['OWNER'])
+        @can('usersapp')
+        <li class="menu-item {{ request()->is('Usersapp') ? 'active' : '' }}">
+          <a href="{{ Route('Usersapp.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-account-multiple-outline"></i>
+            <div>مستخدمي التطبيق</div>
+          </a>
+        </li>
+        @endcan
+
+        @can('permissions&roles')
+        <li class="menu-item {{ request()->is('Permissions&Roles/Account-Permissions', 'Permissions&Roles/Account-Roles') ? 'open active' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class='menu-icon tf-icons mdi mdi-shield-account'></i>
             <span class="menu-title">{{ trans('sidebar.Permissions and roles') }}</span>
@@ -1121,7 +942,7 @@ $container = $container ?? 'container-xxl';
           </ul>
         </li>
         @endcan
-        @endif
+        @endrole
       </ul>
     </aside>
     @endrole
@@ -1129,12 +950,6 @@ $container = $container ?? 'container-xxl';
 
     <!-- Layout page -->
     <div class="layout-page">
-
-      {{-- Below commented code read by artisan command while installing jetstream. !! Do not remove if you want
-            to use jetstream. --}}
-      {{--
-            <x-banner /> --}}
-
       <!-- BEGIN: Navbar-->
       @if ($isNavbar)
       @include('layouts/sections/navbar/navbar')
@@ -1181,4 +996,4 @@ $container = $container ?? 'container-xxl';
     <div class="drag-target"></div>
   </div>
   <!-- / Layout wrapper -->
-  @endsection
+@endsection
