@@ -10,7 +10,7 @@ $configData = Helper::appClasses();
   /* متغيرات الألوان الاحترافية */
   :root {
     /* --primary-gradient: linear-gradient(135deg, #999a9d 0%, #a5b8d7 50%, #bbcfef 100%); */
-    --secondary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #0732ef 0%, #764ba2 100%);
     --gold-gradient: linear-gradient(135deg, #7e9dc6 0%, #a6b3d8 50%, #697fa8 100%);
     --hover-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
     --text-primary: #1f2937;
@@ -53,23 +53,28 @@ $configData = Helper::appClasses();
   }
 
   /* تنسيق منطقة الشعار */
-  .app-brand {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(15px);
-    border-radius: var(--border-radius);
-    margin: 20px;
-    padding: 25px !important;
+ .app-brand {
+    /* background: rgba(255,255,255,0.1); */
+    /* backdrop-filter: blur(15px); */
+    /* border-radius: var(--border-radius); */
+
     transition: var(--transition-bounce);
-    border: 1px solid rgba(255,255,255,0.2);
+    /* border: 1px solid rgba(255,255,255,0.2); */
     position: relative;
-    z-index: 2;
+    margin: 10px auto;
+    padding: 65px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index:1;
   }
 
-  .app-brand:hover {
+  /* .app-brand:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: var(--shadow-heavy);
     background: rgba(255,255,255,0.15);
-  }
+  } */
 
   /* حاوي الشعار الرئيسي */
   .logo-container {
@@ -93,7 +98,7 @@ $configData = Helper::appClasses();
     left: 50%;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(126, 146, 198, 0.3) 0%, rgba(216, 203, 166, 0.2) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(112, 138, 204, 0.3) 0%, rgba(216, 203, 166, 0.2) 40%, transparent 70%);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     animation: logoGlow 4s ease-in-out infinite;
@@ -113,7 +118,7 @@ $configData = Helper::appClasses();
 
   /* تنسيقات صورة الشعار */
   .logo-image {
-    width: 100% !important;
+    width: 80% !important;
     height: auto !important;
     max-width: 420px !important;
     max-height: 150px !important;
@@ -121,16 +126,16 @@ $configData = Helper::appClasses();
     display: block;
     margin: 0 auto;
     transition: var(--transition-bounce);
-    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3)) brightness(1.1);
+    /* filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3)) brightness(1.1); */
     position: relative;
     z-index: 2;
     border-radius: var(--border-radius);
   }
 
-  .app-brand-logo:hover .logo-image {
+  /* .app-brand-logo:hover .logo-image {
     transform: scale(1.1) rotate(2deg);
     filter: drop-shadow(0 15px 35px rgba(126, 138, 198, 0.6)) brightness(1.3) saturate(1.2);
-  }
+  } */
 
   /* تنسيق المحتوى الداخلي للقائمة */
   .menu-inner {
@@ -173,7 +178,7 @@ $configData = Helper::appClasses();
     background: var(--gold-gradient);
     transform: translateX(-5px) scale(1.02);
     box-shadow: var(--shadow-medium);
-    border-color: rgba(126, 127, 198, 0.5);
+    border-color: rgba(10, 13, 199, 0.5);
   }
 
   /* تنسيق أيقونات القائمة */
@@ -244,7 +249,7 @@ $configData = Helper::appClasses();
 
   /* تنسيق القوائم الفرعية */
   .menu-sub {
-    background: rgba(0,0,0,0.2);
+    background: rgba(91, 90, 90, 0.2);
     border-radius: var(--border-radius);
     margin: 10px 0;
     padding: 10px 0;
@@ -275,7 +280,7 @@ $configData = Helper::appClasses();
   }
 
   .menu-sub .menu-item:hover .menu-link {
-    background: rgba(126, 147, 198, 0.8);
+    background: rgba(13, 60, 180, 0.8);
     transform: translateX(-3px);
   }
 
@@ -486,12 +491,12 @@ $container = $container ?? 'container-xxl';
           </div>
         </a>
 
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+        {{-- <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M11.4854 4.88844C11.0081 4.41121 10.2344 4.41121 9.75715 4.88844L4.51028 10.1353C4.03297 10.6126 4.03297 11.3865 4.51028 11.8638L9.75715 17.1107C10.2344 17.5879 11.0081 17.5879 11.4854 17.1107C11.9626 16.6334 11.9626 15.8597 11.4854 15.3824L7.96672 11.8638C7.48942 11.3865 7.48942 10.6126 7.96672 10.1353L11.4854 6.61667C11.9626 6.13943 11.9626 5.36568 11.4854 4.88844Z" fill="currentColor" fill-opacity="0.6" />
             <path d="M15.8683 4.88844L10.6214 10.1353C10.1441 10.6126 10.1441 11.3865 10.6214 11.8638L15.8683 17.1107C16.3455 17.5879 17.1192 17.5879 17.5965 17.1107C18.0737 16.6334 18.0737 15.8597 17.5965 15.3824L14.0778 11.8638C13.6005 11.3865 13.6005 10.6126 14.0778 10.1353L17.5965 6.61667C18.0737 6.13943 18.0737 5.36568 17.5965 4.88844C17.1192 4.41121 16.3455 4.41121 15.8683 4.88844Z" fill="currentColor" fill-opacity="0.38" />
           </svg>
-        </a>
+        </a> --}}
       </div>
 
       <div class="menu-inner-shadow"></div>
