@@ -15,7 +15,8 @@ class Contract extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $Contracts = [];
-    public $ContractSearch, $Contract, $ContractId, $tenants;
+    public $tenants = [];
+    public $ContractSearch, $Contract, $ContractId;
     public $user_id, $property_folder_id, $document_contract_number,  $start_date, $approval_date, $end_date, $tenant_name, $annual_rent_amount, $amount_in_words, $lease_duration, $usage_type, $phone_number, $address, $notes, $selected_property_folder_id, $selected_property_name, $selected_id;
     public $search = ['property_folder_id' => '', 'start_date' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
 
