@@ -153,7 +153,7 @@ class Contract extends Component
     public function AddContractModalShow()
     {
         $this->reset([
-            'property_folder_id',
+             
             'document_contract_number',
 
             'start_date',

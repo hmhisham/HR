@@ -409,10 +409,10 @@ $configData = Helper::appClasses();
   }
 
   /* تحسينات إضافية للتصميم العصري */
-  
+
   /* تأثيرات الظل المحسنة */
   .layout-menu {
-    box-shadow: 
+    box-shadow:
       0 0 0 1px var(--border-ultralight),
       0 4px 24px rgba(0, 0, 0, 0.04),
       0 8px 48px rgba(0, 0, 0, 0.06);
@@ -420,7 +420,7 @@ $configData = Helper::appClasses();
 
   /* تأثيرات التحويم المتقدمة */
   .menu-vertical .menu-item .menu-link {
-    transition: 
+    transition:
       transform var(--transition-normal),
       box-shadow var(--transition-normal),
       border-color var(--transition-normal),
@@ -440,9 +440,9 @@ $configData = Helper::appClasses();
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, 
-      rgba(255, 255, 255, 0.1) 0%, 
-      rgba(255, 255, 255, 0.05) 50%, 
+    background: linear-gradient(45deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
       rgba(255, 255, 255, 0.02) 100%);
     pointer-events: none;
   }
@@ -540,7 +540,7 @@ $configData = Helper::appClasses();
       background: var(--pure-white);
       border-right-color: var(--border-ultralight);
     }
-    
+
     body {
       background: var(--pure-white);
       color: var(--text-dark);
@@ -552,7 +552,7 @@ $configData = Helper::appClasses();
     .layout-menu {
       display: none;
     }
-    
+
     .layout-container {
       display: block;
     }
@@ -585,7 +585,7 @@ $container = $container ?? 'container-xxl';
 
 @section('layoutContent')
 <div class="layout-wrapper layout-content-navbar {{ $isMenu ? '' : 'layout-without-menu' }} bg-white min-h-screen">
-  <div class="layout-container flex flex-row-reverse min-h-screen bg-white">
+  <div class="flex flex-row-reverse min-h-screen bg-white layout-container">
 
     @if ($isMenu)
     @role(['OWNER', 'Administrator', 'Supervisor', 'Employee'])
@@ -1115,10 +1115,7 @@ $container = $container ?? 'container-xxl';
       <!-- / Layout page -->
     </div>
 
-    @if ($isMenu)
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
-    @endif
+ 
     <!-- Drag Target Area To SlideIn Menu On Small Screens -->
     <div class="drag-target"></div>
   </div>
