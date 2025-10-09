@@ -48,18 +48,7 @@
             @error('document_contract_number')
                 <small class='text-danger inputerror'> {{ $message }} </small>
             @enderror
-        {{-- </div>
-           </div>   <div class="row g-2">
-            <div class="mb-2 col">
-            <div class="form-floating form-floating-outline">
-                <input wire:model.defer='generated_contract_number' type="text" id="modalContractgenerated_contract_number" placeholder="رقم العقد المنشأ"
-                    class="form-control @error('generated_contract_number') is-invalid is-filled @enderror" />
-                <label for="modalContractgenerated_contract_number">رقم العقد المنشأ</label>
-            </div>
-            @error('generated_contract_number')
-                <small class='text-danger inputerror'> {{ $message }} </small>
-            @enderror
-        </div> --}}
+         
 
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer(column: 'user_id');
             $table->foreignId('property_folder_id')->constrained('property_folders')->comment('رقم الاضبارة');
             $table->string('document_contract_number')->nullable()->comment('رقم العقد في المستند');
-            $table->string('generated_contract_number')->nullable()->comment('رقم العقد المنشأ');
+            // $table->string('generated_contract_number')->nullable()->comment('رقم العقد المنشأ');
             $table->date('start_date')->nullable()->comment('تاريخ بداية العقد');
             $table->date('approval_date')->nullable()->comment('تاريخ المصادقة على العقد');
             $table->date('end_date')->nullable()->comment('تاريخ انتهاء العقد');

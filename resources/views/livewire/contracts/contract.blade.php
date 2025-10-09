@@ -54,10 +54,6 @@
                                 class="text-center form-control form-control-sm" placeholder="رقم الاضبارة">
                         </th>
 
-                        <th class="text-center">
-                            <input type="text" wire:model.debounce.300ms="search.generated_contract_number"
-                                class="text-center form-control form-control-sm" placeholder="رقم العقد المنشأ">
-                        </th>
 
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.start_date"
@@ -93,8 +89,7 @@
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="text-center">{{ $Contract->property_folder_id}}</td>
-                            <td class="text-center">{{ $Contract->generated_contract_number}}</td>
-                            <td class="text-center">{{ $Contract->start_date}}</td>
+                             <td class="text-center">{{ $Contract->start_date}}</td>
                             <td class="text-center">{{ $Contract->end_date}}</td>
                             <td class="text-center">{{ $Contract->tenant_name}}</td>
                             <td class="text-center">{{ $Contract->annual_rent_amount}}</td>

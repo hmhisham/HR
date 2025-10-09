@@ -16,8 +16,8 @@ class Contract extends Component
 
     public $Contracts = [];
     public $ContractSearch, $Contract, $ContractId, $tenants;
-    public $user_id, $property_folder_id, $document_contract_number, $generated_contract_number, $start_date, $approval_date, $end_date, $tenant_name, $annual_rent_amount, $amount_in_words, $lease_duration, $usage_type, $phone_number, $address, $notes, $selected_property_folder_id, $selected_property_name, $selected_id;
-    public $search = ['property_folder_id' => '', 'generated_contract_number' => '', 'start_date' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
+    public $user_id, $property_folder_id, $document_contract_number,  $start_date, $approval_date, $end_date, $tenant_name, $annual_rent_amount, $amount_in_words, $lease_duration, $usage_type, $phone_number, $address, $notes, $selected_property_folder_id, $selected_property_name, $selected_id;
+    public $search = ['property_folder_id' => '', 'start_date' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
 
     protected $listeners = [
         'SelectTenantName',
@@ -92,7 +92,7 @@ class Contract extends Component
         $Contracts = Contracts::query()
             ->where(function ($query) use ($ContractSearch) {
                 $query->where('property_folder_id', 'LIKE', $ContractSearch)
-                    ->orWhere('generated_contract_number', 'LIKE', $ContractSearch)
+
                     ->orWhere('start_date', 'LIKE', $ContractSearch)
                     ->orWhere('end_date', 'LIKE', $ContractSearch)
                     ->orWhere('tenant_name', 'LIKE', $ContractSearch)
@@ -103,10 +103,7 @@ class Contract extends Component
                 $property_folder_idSearch = '%' . $this->search['property_folder_id'] . '%';
                 $query->where('property_folder_id', 'LIKE', $property_folder_idSearch);
             })
-            ->when($this->search['generated_contract_number'], function ($query) {
-                $generated_contract_numberSearch = '%' . $this->search['generated_contract_number'] . '%';
-                $query->where('generated_contract_number', 'LIKE', $generated_contract_numberSearch);
-            })
+
             ->when($this->search['start_date'], function ($query) {
                 $start_dateSearch = '%' . $this->search['start_date'] . '%';
                 $query->where('start_date', 'LIKE', $start_dateSearch);
@@ -157,7 +154,7 @@ class Contract extends Component
         $this->reset([
             'property_folder_id',
             'document_contract_number',
-            'generated_contract_number',
+
             'start_date',
             'approval_date',
             'end_date',
@@ -181,7 +178,7 @@ class Contract extends Component
 
 
             'document_contract_number' => 'required',
-            'generated_contract_number' => 'required',
+
             'start_date' => 'required',
             'approval_date' => 'required',
             'end_date' => 'required',
@@ -196,8 +193,7 @@ class Contract extends Component
 
 
             'document_contract_number.required' => 'حقل رقم العقد في المستند مطلوب',
-            'generated_contract_number.required' => 'حقل رقم العقد المنشأ مطلوب',
-            'start_date.required' => 'حقل تاريخ بداية العقد مطلوب',
+             'start_date.required' => 'حقل تاريخ بداية العقد مطلوب',
             'approval_date.required' => 'حقل تاريخ المصادقة على العقد مطلوب',
             'end_date.required' => 'حقل تاريخ انتهاء العقد مطلوب',
             'tenant_name.required' => 'حقل اسم المستأجر مطلوب',
@@ -211,8 +207,7 @@ class Contract extends Component
             'user_id' => Auth::id(),
             'property_folder_id' => $this->selected_property_folder_id,
             'document_contract_number' => $this->document_contract_number,
-            'generated_contract_number' => $this->generated_contract_number,
-            'start_date' => $this->start_date,
+             'start_date' => $this->start_date,
             'approval_date' => $this->approval_date,
             'end_date' => $this->end_date,
             'tenant_name' => $this->tenant_name,
@@ -243,8 +238,7 @@ class Contract extends Component
         $this->user_id = $this->Contract->user_id;
         $this->property_folder_id = $this->Contract->property_folder_id;
         $this->document_contract_number = $this->Contract->document_contract_number;
-        $this->generated_contract_number = $this->Contract->generated_contract_number;
-        $this->start_date = $this->Contract->start_date;
+         $this->start_date = $this->Contract->start_date;
         $this->approval_date = $this->Contract->approval_date;
         $this->end_date = $this->Contract->end_date;
         $this->tenant_name = $this->Contract->tenant_name;
@@ -266,8 +260,7 @@ class Contract extends Component
 
             'property_folder_id' => 'required:contracts',
             'document_contract_number' => 'required:contracts',
-            'generated_contract_number' => 'required:contracts',
-            'start_date' => 'required:contracts',
+             'start_date' => 'required:contracts',
             'approval_date' => 'required:contracts',
             'end_date' => 'required:contracts',
             'tenant_name' => 'required:contracts',
@@ -282,8 +275,7 @@ class Contract extends Component
 
             'property_folder_id.required' => 'حقل  مطلوب',
             'document_contract_number.required' => 'حقل رقم العقد في المستند مطلوب',
-            'generated_contract_number.required' => 'حقل رقم العقد المنشأ مطلوب',
-            'start_date.required' => 'حقل تاريخ بداية العقد مطلوب',
+             'start_date.required' => 'حقل تاريخ بداية العقد مطلوب',
             'approval_date.required' => 'حقل تاريخ المصادقة على العقد مطلوب',
             'end_date.required' => 'حقل تاريخ انتهاء العقد مطلوب',
             'tenant_name.required' => 'حقل اسم المستأجر مطلوب',
@@ -300,8 +292,7 @@ class Contract extends Component
             'user_id' => Auth::id(),
             'property_folder_id' => $this->property_folder_id,
             'document_contract_number' => $this->document_contract_number,
-            'generated_contract_number' => $this->generated_contract_number,
-            'start_date' => $this->start_date,
+             'start_date' => $this->start_date,
             'approval_date' => $this->approval_date,
             'end_date' => $this->end_date,
             'tenant_name' => $this->tenant_name,
