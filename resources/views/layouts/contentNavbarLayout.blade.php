@@ -960,12 +960,7 @@ $container = $container ?? 'container-xxl';
               </a>
             </li>
             @endcan
-            <li class="menu-item {{ request()->Is('Contracts') ? 'active' : '' }}">
-              <a href="{{ Route('Contracts.index') }}" class="menu-link">
-                <i class='menu-icon tf-icons mdi mdi-account-outline'></i>
-                <div>عقد الايجار</div>
-              </a>
-            </li>
+         
             <li class="menu-item {{ request()->Is('Tenants') ? 'active' : '' }}">
               <a href="{{ Route('Tenants.index') }}" class="menu-link">
                 <i class='menu-icon tf-icons mdi mdi-account-outline'></i>
@@ -1115,7 +1110,7 @@ $container = $container ?? 'container-xxl';
       <!-- / Layout page -->
     </div>
 
- 
+
     <!-- Drag Target Area To SlideIn Menu On Small Screens -->
     <div class="drag-target"></div>
   </div>

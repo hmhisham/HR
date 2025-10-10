@@ -25,7 +25,9 @@ return new class extends Migration
             // $table->string('amount_in_words')->nullable()->comment('المبلغ كتابةً');
             $table->string('lease_duration')->nullable()->comment('مدة الإيجار');
             $table->string('usage_type')->nullable()->comment('نوع الاستغلال');
-             $table->string('notes')->nullable()->comment('الملاحظات');
+            $table->string('notes')->nullable()->comment('الملاحظات');
+            $table->string(column: 'file')->nullable()->comment('الملف');
+            $table->string(column: 'id_type')->default('contract_01')->comment('نوع');
             $table->timestamps();
         });
     }
