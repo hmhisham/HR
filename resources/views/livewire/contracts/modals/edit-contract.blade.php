@@ -3,188 +3,190 @@
 <div wire:ignore.self class="modal fade" id="editcontractModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="px-4 py-3 modal-header bg-light">
+            <div class="modal-header bg-light px-4 py-3">
                 <h5 class="modal-title d-flex align-items-center">
                     <i class="mdi mdi-pencil-circle-outline text-warning me-2"></i>
-                    تعديل عقد الايجار
+                    تعديل عقد
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="p-4 modal-body">
+            <div class="modal-body p-4">
 
 
                 <div wire:loading.remove>
                     <form id="editContractModalForm" autocomplete="off">
-                        <!-- الحقول المخفية -->
-                        <input wire:model.defer='user_id' type="hidden" />
-                        <input wire:model.defer='property_folder_id' type="hidden" />
-                        
-                        <div class="row g-3">
-                            <!-- الصف الأول: رقم العقد وتاريخ البداية -->
-                            <div class="row g-2">
-                                <div class="mb-2 col-md-6">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='document_contract_number' type="text" id="modalContractdocument_contract_number" placeholder="رقم العقد في المستند"
-                                            class="form-control @error('document_contract_number') is-invalid is-filled @enderror" />
-                                        <label for="modalContractdocument_contract_number">رقم العقد في المستند</label>
-                                    </div>
-                                    @error('document_contract_number')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
+                        <div class="row g-1">
+   <div class="row g-2">
+            <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <input wire:model.defer='user_id' type="text" id="editContractuser_id" placeholder=""
+                    class="form-control @error('user_id') is-invalid is-filled @enderror" />
+                <label for="editContractuser_id"></label>
+            </div>
+            @error('user_id')
+                <small class='text-danger inputerror'> {{ $message }} </small>
+            @enderror
+        </div>
+        
+            <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <input wire:model.defer='property_folder_id' type="text" id="editContractproperty_folder_id" placeholder=""
+                    class="form-control @error('property_folder_id') is-invalid is-filled @enderror" />
+                <label for="editContractproperty_folder_id"></label>
+            </div>
+            @error('property_folder_id')
+                <small class='text-danger inputerror'> {{ $message }} </small>
+            @enderror
+        </div>
+        
+            <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <input wire:model.defer='document_contract_number' type="text" id="editContractdocument_contract_number" placeholder="رقم العقد في المستند"
+                    class="form-control @error('document_contract_number') is-invalid is-filled @enderror" />
+                <label for="editContractdocument_contract_number">رقم العقد في المستند</label>
+            </div>
+            @error('document_contract_number')
+                <small class='text-danger inputerror'> {{ $message }} </small>
+            @enderror
+        </div>
+           </div>   <div class="row g-2">
+            <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <input wire:model.defer='start_date' type="text" id="editContractstart_date" placeholder="تاريخ بداية العقد"
+                    class="form-control flatpickr @error('start_date') is-invalid is-filled @enderror" />
+                <label for="editContractstart_date">تاريخ بداية العقد</label>
+            </div>
+            @error('start_date')
+                <small class='text-danger inputerror'> {{ $message }} </small>
+            @enderror
+        </div>
+        
+            <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <input wire:model.defer='approval_date' type="text" id="editContractapproval_date" placeholder="تاريخ المصادقة على العقد"
+                    class="form-control flatpickr @error('approval_date') is-invalid is-filled @enderror" />
+                <label for="editContractapproval_date">تاريخ المصادقة على العقد</label>
+            </div>
+            @error('approval_date')
+                <small class='text-danger inputerror'> {{ $message }} </small>
+            @enderror
+        </div>
+        
+            <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <input wire:model.defer='end_date' type="text" id="editContractend_date" placeholder="تاريخ انتهاء العقد"
+                    class="form-control flatpickr @error('end_date') is-invalid is-filled @enderror" />
+                <label for="editContractend_date">تاريخ انتهاء العقد</label>
+            </div>
+            @error('end_date')
+                <small class='text-danger inputerror'> {{ $message }} </small>
+            @enderror
+        </div>
+           </div>   <div class="row g-2">
+        <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <select wire:model.defer="tenant_name"
+                    id="editContracttenant_name"
+                    class="form-select select2 @error('tenant_name') is-invalid is-filled @enderror"
+                    data-placeholder="اختيار اسم المستأجر"
+                    data-allow-clear="true"
+                    data-dropdown-parent="#editcontractModal">
 
-                                <div class="mb-2 col-md-6">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='start_date' type="text" id="modalContractstart_date" placeholder="تاريخ بداية العقد"
-                                            class="form-control flatpickr @error('start_date') is-invalid is-filled @enderror" />
-                                        <label for="modalContractstart_date">تاريخ بداية العقد</label>
-                                    </div>
-                                    @error('start_date')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                            </div>
+                    <option value="">اختيار اسم المستأجر</option>
 
-                            <!-- الصف الثاني: تاريخ المصادقة وتاريخ الانتهاء -->
-                            <div class="row g-2">
-                                <div class="mb-2 col-md-6">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='approval_date' type="text" id="modalContractapproval_date" placeholder="تاريخ المصادقة على العقد"
-                                            class="form-control flatpickr @error('approval_date') is-invalid is-filled @enderror" />
-                                        <label for="modalContractapproval_date">تاريخ المصادقة على العقد</label>
-                                    </div>
-                                    @error('approval_date')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
+                    @if(isset($tenants) && count($tenants) > 0)
+                        @foreach($tenants as $tenantsnew)
+                            <option value="{{ $tenantsnew->id }}">
+                                {{ $tenantsnew->name }}
+                            </option>
+                        @endforeach
+                    @else
+                        <option value="" disabled>لا توجد بيانات متاحة</option>
+                    @endif
+                </select>
 
-                                <div class="mb-2 col-md-6">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='end_date' type="text" id="modalContractend_date" placeholder="تاريخ انتهاء العقد"
-                                            class="form-control flatpickr @error('end_date') is-invalid is-filled @enderror" />
-                                        <label for="modalContractend_date">تاريخ انتهاء العقد</label>
-                                    </div>
-                                    @error('end_date')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <!-- الصف الثالث: اسم المستأجر ومبلغ التأجير -->
-                            <div class="row g-2">
-                                <div class="mb-2 col-md-6">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='tenant_name' type="text" id="modalContracttenant_name" placeholder="اسم المستأجر"
-                                            class="form-control @error('tenant_name') is-invalid is-filled @enderror" />
-                                         
-                                    </div>
-                                    @error('tenant_name')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-2 col-md-6">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='annual_rent_amount' type="text" id="modalContractannual_rent_amount" placeholder="مبلغ التأجير للسنة الواحدة"
-                                            class="form-control @error('annual_rent_amount') is-invalid is-filled @enderror" />
-                                        <label for="modalContractannual_rent_amount">مبلغ التأجير للسنة الواحدة</label>
-                                    </div>
-                                    @error('annual_rent_amount')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <!-- الصف الرابع: المبلغ كتابة ومدة الإيجار -->
-                            <div class="row g-2">
-                                <div class="mb-2 col-md-6">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='amount_in_words' type="text" id="modalContractamount_in_words" placeholder="المبلغ كتابةً"
-                                            class="form-control @error('amount_in_words') is-invalid is-filled @enderror" />
-                                        <label for="modalContractamount_in_words">المبلغ كتابةً</label>
-                                    </div>
-                                    @error('amount_in_words')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-2 col-md-6">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='lease_duration' type="text" id="modalContractlease_duration" placeholder="مدة الإيجار"
-                                            class="form-control @error('lease_duration') is-invalid is-filled @enderror" />
-                                        <label for="modalContractlease_duration">مدة الإيجار</label>
-                                    </div>
-                                    @error('lease_duration')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <!-- الصف الخامس: نوع الاستغلال ورقم الهاتف -->
-                            <div class="row g-2">
-                                <div class="mb-2 col-md-6">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='usage_type' type="text" id="modalContractusage_type" placeholder="نوع الاستغلال"
-                                            class="form-control @error('usage_type') is-invalid is-filled @enderror" />
-                                        <label for="modalContractusage_type">نوع الاستغلال</label>
-                                    </div>
-                                    @error('usage_type')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-2 col-md-6">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='phone_number' type="text" id="modalContractphone_number" placeholder="رقم الهاتف"
-                                            class="form-control @error('phone_number') is-invalid is-filled @enderror" />
-                                        <label for="modalContractphone_number">رقم الهاتف</label>
-                                    </div>
-                                    @error('phone_number')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <!-- الصف السادس: العنوان -->
-                            <div class="row g-2">
-                                <div class="mb-2 col-12">
-                                    <div class="form-floating form-floating-outline">
-                                        <input wire:model.defer='address' type="text" id="modalContractaddress" placeholder="العنوان"
-                                            class="form-control @error('address') is-invalid is-filled @enderror" />
-                                        <label for="modalContractaddress">العنوان</label>
-                                    </div>
-                                    @error('address')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <!-- الصف السابع: الملاحظات -->
-                            <div class="row g-2">
-                                <div class="mb-2 col-12">
-                                    <div class="form-floating form-floating-outline">
-                                        <textarea wire:model.defer='notes' id="modalContractnotes" placeholder="الملاحظات"
-                                            class="form-control @error('notes') is-invalid is-filled @enderror" rows="3"></textarea>
-                                        <label for="modalContractnotes">الملاحظات</label>
-                                    </div>
-                                    @error('notes')
-                                        <small class='text-danger inputerror'> {{ $message }} </small>
-                                    @enderror
-                                </div>
-                            </div>
+              //  <label for="editContracttenant_name">اسم المستأجر</label>
+            </div>
+            @error('tenant_name')
+                <small class='text-danger inputerror'>{ $message }</small>
+            @enderror
+        </div>
+        
+            <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <input wire:model.defer='annual_rent_amount' type="text" id="editContractannual_rent_amount" placeholder="مبلغ التأجير للسنة الواحدة"
+                    class="form-control @error('annual_rent_amount') is-invalid is-filled @enderror" />
+                <label for="editContractannual_rent_amount">مبلغ التأجير للسنة الواحدة</label>
+            </div>
+            @error('annual_rent_amount')
+                <small class='text-danger inputerror'> {{ $message }} </small>
+            @enderror
+        </div>
+        
+            <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <input wire:model.defer='lease_duration' type="text" id="editContractlease_duration" placeholder="مدة الإيجار"
+                    class="form-control @error('lease_duration') is-invalid is-filled @enderror" />
+                <label for="editContractlease_duration">مدة الإيجار</label>
+            </div>
+            @error('lease_duration')
+                <small class='text-danger inputerror'> {{ $message }} </small>
+            @enderror
+        </div>
+           </div>   <div class="row g-2">
+            <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <input wire:model.defer='usage_type' type="text" id="editContractusage_type" placeholder="نوع الاستغلال"
+                    class="form-control @error('usage_type') is-invalid is-filled @enderror" />
+                <label for="editContractusage_type">نوع الاستغلال</label>
+            </div>
+            @error('usage_type')
+                <small class='text-danger inputerror'> {{ $message }} </small>
+            @enderror
+        </div>
+        
+            <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <input wire:model.defer='notes' type="text" id="editContractnotes" placeholder="الملاحظات"
+                    class="form-control @error('notes') is-invalid is-filled @enderror" />
+                <label for="editContractnotes">الملاحظات</label>
+            </div>
+            @error('notes')
+                <small class='text-danger inputerror'> {{ $message }} </small>
+            @enderror
+        </div>
+        
+            <div class="mb-2 col">
+            <div class="form-floating form-floating-outline">
+                <input wire:model.defer='file' type="file" id="editContractfile" placeholder="الملف"
+                    class="form-control @error('file') is-invalid is-filled @enderror" />
+                <label for="editContractfile">الملف</label>
+            </div>
+            @error('file')
+                <small class='text-danger inputerror'> {{ $message }} </small>
+            @enderror
+        </div>
+           </div>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="modal-footer justify-content-center">
-                <button wire:click='update' wire:loading.attr="disabled" type="button" class="btn btn-success">
-                    <span wire:loading.remove><i class="mdi mdi-check-circle-outline me-1"></i> تعديل</span>
-                    <span wire:loading><span class="spinner-border spinner-border-sm" role="status"></span> جارٍ التعديل...</span>
-                </button>
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    <i class="mdi mdi-close-circle-outline me-1"></i> تجاهل
-                </button>
-            </div>
+              <div class="px-3 py-2 border-0 modal-footer">
+        <div class="gap-2 d-flex w-100 justify-content-center">
+          <button wire:click='update' wire:loading.attr="disabled" type="button" class="px-3 py-2 shadow-sm btn btn-success rounded-pill">
+            <span wire:loading.remove wire:target="update">
+              <i class="mdi mdi-check-circle-outline Me-2"></i>تحديث البيانات
+            </span>
+            <span wire:loading wire:target="update">
+              <span class="spinner-border spinner-border-sm Me-2" role="status"></span>
+              جارٍ التحديث...
+            </span>
+          </button>
+          <button type = "button" Class="px-3 py-2 btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">
+            <i class="mdi mdi-close-circle-outline Me-2"></i>إلغاء العملية
+          </button>
+        </div>
+      </div>
         </div>
     </div>
 </div>

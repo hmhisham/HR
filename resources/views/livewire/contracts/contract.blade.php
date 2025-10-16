@@ -1,21 +1,17 @@
-<div class="card">
-    <!-- ✅ شريط البطاقة العلوي -->
-    <div class="flex-wrap gap-3 card-header d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center">
-            @if($selected_property_folder_id && $selected_property_name)
-                <small class="text-primary fs-4 me-2">
-                    <i class="mdi mdi-folder-outline text-primary fs-4 me-2"></i>
-                    رقم الاضبارة: {{ $selected_property_folder_id }} - {{ $selected_property_name }}
-                </small>
-            @endif
-        </div>
 
-        <div class="gap-3 d-flex align-items-center">
-            <!-- حقل البحث -->
+<div class="card">
+    <!-- ✅ شريط البطاقة العلوي مع العنوان وأيقونة -->
+    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div class="d-flex align-items-center">
+            <i class="mdi mdi-format-list-bulleted text-primary fs-4 me-2"></i>
+            <h4 class="mb-0 fw-bold">قائمة   عقد</h4>
+        </div>
+        <!-- ✅ مجموعة أدوات البطاقة: بحث + زر إضافة -->
+        <div class="d-flex align-items-center gap-3">
+            <!-- حقل بحث مدمج -->
             <div class="dt-search">
                 <input wire:model.debounce.300ms="ContractSearch" type="text" class="form-control form-control-sm" placeholder="بحث عام..." />
             </div>
-
             <!-- زر الإضافة -->
             @can('contract-create')
                 <button wire:click='AddContractModalShow' class="btn btn-primary btn-sm d-flex align-items-center"
@@ -26,17 +22,17 @@
                 @include('livewire.contracts.modals.add-contract')
             @endcan
         </div>
-    </div>
 
-    <!-- ✅ جدول البيانات -->
+
+
     @can('contract-list')
         <div class="card-datatable table-responsive">
             <table class="table table-bordered table-striped">
                 <thead class="table-light">
                     <tr>
                         <th class="text-center">#</th>
-                        <th class="text-center">رقم الاضبارة</th>
-                        <th class="text-center">تاريخ بداية العقد</th>
+                        <th class="text-center"></th>
+                        <th class="text-center">رقم العقد في المستند</th>
                         <th class="text-center">تاريخ انتهاء العقد</th>
                         <th class="text-center">اسم المستأجر</th>
                         <th class="text-center">مبلغ التأجير للسنة الواحدة</th>
@@ -44,33 +40,39 @@
                         <th class="text-center">العمليات</th>
                     </tr>
 
-                    <!-- ✅ صف الفلترة -->
+
                     <tr>
                         <th></th>
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.property_folder_id"
-                                class="text-center form-control form-control-sm" placeholder="رقم الاضبارة">
+                                class="form-control form-control-sm text-center" placeholder="">
                         </th>
+
                         <th class="text-center">
-                            <input type="text" wire:model.debounce.300ms="search.start_date"
-                                class="text-center form-control form-control-sm" placeholder="تاريخ بداية العقد">
+                            <input type="text" wire:model.debounce.300ms="search.document_contract_number"
+                                class="form-control form-control-sm text-center" placeholder="رقم العقد في المستند">
                         </th>
+
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.end_date"
-                                class="text-center form-control form-control-sm" placeholder="تاريخ انتهاء العقد">
+                                class="form-control form-control-sm text-center" placeholder="تاريخ انتهاء العقد">
                         </th>
+
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.tenant_name"
-                                class="text-center form-control form-control-sm" placeholder="اسم المستأجر">
+                                class="form-control form-control-sm text-center" placeholder="اسم المستأجر">
                         </th>
+
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.annual_rent_amount"
-                                class="text-center form-control form-control-sm" placeholder="مبلغ التأجير للسنة الواحدة">
+                                class="form-control form-control-sm text-center" placeholder="مبلغ التأجير للسنة الواحدة">
                         </th>
+
                         <th class="text-center">
                             <input type="text" wire:model.debounce.300ms="search.notes"
-                                class="text-center form-control form-control-sm" placeholder="الملاحظات">
+                                class="form-control form-control-sm text-center" placeholder="الملاحظات">
                         </th>
+
                         <th></th>
                     </tr>
                 </thead>
@@ -79,18 +81,19 @@
                     @foreach ($Contracts as $Contract)
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
-                            <td class="text-center">{{ $Contract->property_folder_id }}</td>
-                            <td class="text-center">{{ $Contract->start_date }}</td>
-                            <td class="text-center">{{ $Contract->end_date }}</td>
-                            <td class="text-center">{{ $Contract->tenant_name }}</td>
-                            <td class="text-center">{{ $Contract->annual_rent_amount }}</td>
-                            <td class="text-center">{{ $Contract->notes }}</td>
+                            <td class="text-center">{{ $Contract->property_folder_id}}</td>
+                            <td class="text-center">{{ $Contract->document_contract_number}}</td>
+                            <td class="text-center">{{ $Contract->end_date}}</td>
+                            <td class="text-center">{{ $Contract->tenant_name}}</td>
+                            <td class="text-center">{{ $Contract->annual_rent_amount}}</td>
+                            <td class="text-center">{{ $Contract->notes}}</td>
+
                             <td class="text-center">
-                                <div class="gap-1 d-flex justify-content-center">
+                                <div class="d-flex justify-content-center gap-1">
                                     @can('contract-edit')
                                         <button wire:click="GetContract({{ $Contract->id }})"
-                                            class="btn btn-icon btn-outline-success btn-sm waves-effect"
-                                            data-bs-toggle="modal" data-bs-target="#editcontractModal" title="تعديل">
+                                            class="btn btn-icon btn-outline-success btn-sm waves-effect" data-bs-toggle="modal"
+                                            data-bs-target="#editcontractModal" title="تعديل">
                                             <i class="tf-icons mdi mdi-pencil fs-5"></i>
                                         </button>
                                     @endcan
@@ -108,17 +111,19 @@
                 </tbody>
             </table>
         </div>
+    </div>
 
-        <!-- ✅ ترقيم الصفحات -->
         <div class="card-footer d-flex justify-content-center">
             <div class="mt-2">
                 {{ $links->links() }}
             </div>
         </div>
+        @endcan
 
-        <!-- ✅ النوافذ المنبثقة -->
-        @include('livewire.contracts.modals.add-contract')
+
+    <!-- Modal -->
         @include('livewire.contracts.modals.edit-contract')
         @include('livewire.contracts.modals.remove-contract')
-    @endcan
+        <!-- Modal -->
 </div>
+    </div>

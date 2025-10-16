@@ -3,87 +3,41 @@
 namespace App\Http\Livewire\Contracts;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 use Livewire\WithPagination;
-use App\Models\Tenants\Tenants;
 use App\Models\Contracts\Contracts;
-use Illuminate\Support\Facades\Auth;
 
 class Contract extends Component
 {
+    use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
     public $Contracts = [];
-    public $tenants = [];
     public $ContractSearch, $Contract, $ContractId;
-    public $user_id, $property_folder_id, $document_contract_number,  $start_date, $approval_date, $end_date, $tenant_name, $annual_rent_amount, $amount_in_words, $lease_duration, $usage_type, $phone_number, $address, $notes, $selected_property_folder_id, $selected_property_name, $selected_id;
-    public $search = ['property_folder_id' => '', 'start_date' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
+    public $user_id, $property_folder_id, $document_contract_number, $start_date, $approval_date, $end_date, $tenant_name, $annual_rent_amount, $lease_duration, $usage_type, $notes, $file;
+    public $tenants = [];
 
     protected $listeners = [
         'SelectTenantName',
     ];
+    public $search = ['property_folder_id' => '', 'document_contract_number' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
 
-
-    public function SelectTenantName($tenantId)
+    public function mount()
     {
-        $this->tenant_name = $tenantId ? (int) $tenantId : null;
+        $this->tenants = \App\Models\Tenants\Tenants::select('id', 'name')->orderBy('name')->get();
+    }
+    public function SelectTenantName($value)
+    {
+        $this->tenant_name = $value ? (int) $value : null;
     }
 
-    public function mount($selected_property_folder_id = null, $selected_property_name = null, $id = null, $property_id = null, $property_name = null)
-    {
-        // تنظيف وتأمين المعاملات
-        $this->selected_property_folder_id = $this->sanitizeInput($selected_property_folder_id ?: $property_id);
-        $this->selected_property_name = $this->sanitizeInput($selected_property_name ?: $property_name);
-        $this->selected_id = $this->sanitizeNumericInput($id);
 
-        // التحقق من صحة المعاملات
-        $this->validateInputs();
 
-        $this->tenants = Tenants::select('id', 'name')->orderBy('name')->get();
-        $this->emit('select2');
-    }
 
-    private function sanitizeInput($input)
-    {
-        if (is_null($input)) return null;
-        return htmlspecialchars(strip_tags(trim($input)), ENT_QUOTES, 'UTF-8');
-    }
 
-    private function sanitizeNumericInput($input)
-    {
-        if (is_null($input)) return null;
-        return is_numeric($input) ? (int) $input : null;
-    }
-
-    private function validateInputs()
-    {
-        // التحقق من أن ID رقمي وموجب
-        if ($this->selected_id && ($this->selected_id <= 0)) {
-            $this->selected_id = null;
-        }
-
-        // التحقق من طول النصوص لمنع الهجمات
-        if ($this->selected_property_name && strlen($this->selected_property_name) > 255) {
-            $this->selected_property_name = substr($this->selected_property_name, 0, 255);
-        }
-
-        if ($this->selected_property_folder_id && strlen($this->selected_property_folder_id) > 100) {
-            $this->selected_property_folder_id = substr($this->selected_property_folder_id, 0, 100);
-        }
-    }
-
-    private function isValidId($id)
-    {
-        return is_numeric($id) && $id > 0 && $id <= 999999999; // حد أقصى معقول للـ ID
-    }
-
-    private function isValidPropertyFolderId($folderId)
-    {
-        if (is_null($folderId)) return false;
-        // التحقق من أن المعرف يحتوي على أحرف وأرقام آمنة فقط (بما في ذلك العربية)
-        return preg_match('/^[a-zA-Z0-9\-_\p{Arabic}\s]{1,100}$/u', $folderId);
-    }
 
     public function render()
     {
@@ -93,8 +47,7 @@ class Contract extends Component
         $Contracts = Contracts::query()
             ->where(function ($query) use ($ContractSearch) {
                 $query->where('property_folder_id', 'LIKE', $ContractSearch)
-
-                    ->orWhere('start_date', 'LIKE', $ContractSearch)
+                    ->orWhere('document_contract_number', 'LIKE', $ContractSearch)
                     ->orWhere('end_date', 'LIKE', $ContractSearch)
                     ->orWhere('tenant_name', 'LIKE', $ContractSearch)
                     ->orWhere('annual_rent_amount', 'LIKE', $ContractSearch)
@@ -104,10 +57,9 @@ class Contract extends Component
                 $property_folder_idSearch = '%' . $this->search['property_folder_id'] . '%';
                 $query->where('property_folder_id', 'LIKE', $property_folder_idSearch);
             })
-
-            ->when($this->search['start_date'], function ($query) {
-                $start_dateSearch = '%' . $this->search['start_date'] . '%';
-                $query->where('start_date', 'LIKE', $start_dateSearch);
+            ->when($this->search['document_contract_number'], function ($query) {
+                $document_contract_numberSearch = '%' . $this->search['document_contract_number'] . '%';
+                $query->where('document_contract_number', 'LIKE', $document_contract_numberSearch);
             })
             ->when($this->search['end_date'], function ($query) {
                 $end_dateSearch = '%' . $this->search['end_date'] . '%';
@@ -125,18 +77,6 @@ class Contract extends Component
                 $notesSearch = '%' . $this->search['notes'] . '%';
                 $query->where('notes', 'LIKE', $notesSearch);
             })
-            ->when($this->selected_property_folder_id, function ($query) {
-                // التحقق من أن القيمة آمنة قبل الاستعلام
-                if ($this->isValidPropertyFolderId($this->selected_property_folder_id)) {
-                    $query->where('property_folder_id', $this->selected_property_folder_id);
-                }
-            })
-            ->when($this->selected_id, function ($query) {
-                // التحقق من أن ID رقمي وموجب
-                if ($this->isValidId($this->selected_id)) {
-                    $query->where('id', $this->selected_id);
-                }
-            })
             ->orderBy('id', 'ASC')
             ->paginate(10);
 
@@ -152,22 +92,22 @@ class Contract extends Component
 
     public function AddContractModalShow()
     {
+        // $this->reset();
         $this->reset([
-             
+            'user_id',
+            'property_folder_id',
             'document_contract_number',
-
             'start_date',
             'approval_date',
             'end_date',
             'tenant_name',
             'annual_rent_amount',
-            'amount_in_words',
             'lease_duration',
             'usage_type',
-            'phone_number',
-            'address',
-            'notes'
+            'notes',
+            'file'
         ]);
+
         $this->resetValidation();
         $this->dispatchBrowserEvent('ContractModalShow');
     }
@@ -176,47 +116,48 @@ class Contract extends Component
     {
         $this->resetValidation();
         $this->validate([
-
-
+            'user_id' => 'required',
+            'property_folder_id' => 'required',
             'document_contract_number' => 'required',
-
             'start_date' => 'required',
             'approval_date' => 'required',
             'end_date' => 'required',
             'tenant_name' => 'required',
             'annual_rent_amount' => 'required',
-
             'lease_duration' => 'required',
             'usage_type' => 'required',
-
             'notes' => 'required',
+            'file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240',
         ], [
-
-
+            'user_id.required' => 'حقل  مطلوب',
+            'property_folder_id.required' => 'حقل  مطلوب',
             'document_contract_number.required' => 'حقل رقم العقد في المستند مطلوب',
-             'start_date.required' => 'حقل تاريخ بداية العقد مطلوب',
+            'start_date.required' => 'حقل تاريخ بداية العقد مطلوب',
             'approval_date.required' => 'حقل تاريخ المصادقة على العقد مطلوب',
             'end_date.required' => 'حقل تاريخ انتهاء العقد مطلوب',
             'tenant_name.required' => 'حقل اسم المستأجر مطلوب',
             'annual_rent_amount.required' => 'حقل مبلغ التأجير للسنة الواحدة مطلوب',
             'lease_duration.required' => 'حقل مدة الإيجار مطلوب',
             'usage_type.required' => 'حقل نوع الاستغلال مطلوب',
-
-            'notes.required' => 'حقل الملاحظات مطلوب'
+            'notes.required' => 'حقل الملاحظات مطلوب',
+            'file.required' => 'حقل الملف مطلوب'
         ]);
+        if ($this->file instanceof \Livewire\TemporaryUploadedFile) {
+            $file = $this->file->store('uploads', 'public');
+        }
         Contracts::create([
-            'user_id' => Auth::id(),
-            'property_folder_id' => $this->selected_property_folder_id,
+            'user_id' => $this->user_id,
+            'property_folder_id' => $this->property_folder_id,
             'document_contract_number' => $this->document_contract_number,
-             'start_date' => $this->start_date,
+            'start_date' => $this->start_date,
             'approval_date' => $this->approval_date,
             'end_date' => $this->end_date,
             'tenant_name' => $this->tenant_name,
             'annual_rent_amount' => $this->annual_rent_amount,
             'lease_duration' => $this->lease_duration,
             'usage_type' => $this->usage_type,
-
-            'notes' => $this->notes
+            'notes' => $this->notes,
+            'file' => $file
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -239,17 +180,15 @@ class Contract extends Component
         $this->user_id = $this->Contract->user_id;
         $this->property_folder_id = $this->Contract->property_folder_id;
         $this->document_contract_number = $this->Contract->document_contract_number;
-         $this->start_date = $this->Contract->start_date;
+        $this->start_date = $this->Contract->start_date;
         $this->approval_date = $this->Contract->approval_date;
         $this->end_date = $this->Contract->end_date;
         $this->tenant_name = $this->Contract->tenant_name;
         $this->annual_rent_amount = $this->Contract->annual_rent_amount;
-        $this->amount_in_words = $this->Contract->amount_in_words;
         $this->lease_duration = $this->Contract->lease_duration;
         $this->usage_type = $this->Contract->usage_type;
-        $this->phone_number = $this->Contract->phone_number;
-        $this->address = $this->Contract->address;
         $this->notes = $this->Contract->notes;
+        $this->file = $this->Contract->file;
         // إعادة تهيئة Flatpickr عند فتح نافذة التعديل
         $this->dispatchBrowserEvent('flatpickr');
     }
@@ -258,52 +197,51 @@ class Contract extends Component
     {
         $this->resetValidation();
         $this->validate([
-
+            'user_id' => 'required:contracts',
             'property_folder_id' => 'required:contracts',
             'document_contract_number' => 'required:contracts',
-             'start_date' => 'required:contracts',
+            'start_date' => 'required:contracts',
             'approval_date' => 'required:contracts',
             'end_date' => 'required:contracts',
             'tenant_name' => 'required:contracts',
             'annual_rent_amount' => 'required:contracts',
-            'amount_in_words' => 'required:contracts',
             'lease_duration' => 'required:contracts',
             'usage_type' => 'required:contracts',
-            'phone_number' => 'required:contracts',
-            'address' => 'required:contracts',
             'notes' => 'required:contracts',
+            'file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240',
         ], [
-
+            'user_id.required' => 'حقل  مطلوب',
             'property_folder_id.required' => 'حقل  مطلوب',
             'document_contract_number.required' => 'حقل رقم العقد في المستند مطلوب',
-             'start_date.required' => 'حقل تاريخ بداية العقد مطلوب',
+            'start_date.required' => 'حقل تاريخ بداية العقد مطلوب',
             'approval_date.required' => 'حقل تاريخ المصادقة على العقد مطلوب',
             'end_date.required' => 'حقل تاريخ انتهاء العقد مطلوب',
             'tenant_name.required' => 'حقل اسم المستأجر مطلوب',
             'annual_rent_amount.required' => 'حقل مبلغ التأجير للسنة الواحدة مطلوب',
-            'amount_in_words.required' => 'حقل المبلغ كتابةً مطلوب',
             'lease_duration.required' => 'حقل مدة الإيجار مطلوب',
             'usage_type.required' => 'حقل نوع الاستغلال مطلوب',
-            'phone_number.required' => 'حقل رقم الهاتف مطلوب',
-            'address.required' => 'حقل العنوان مطلوب',
-            'notes.required' => 'حقل الملاحظات مطلوب'
+            'notes.required' => 'حقل الملاحظات مطلوب',
+            'file.required' => 'حقل الملف مطلوب'
         ]);
         $Contracts = Contracts::find($this->ContractId);
+        if ($this->file instanceof \Livewire\TemporaryUploadedFile) {
+            $file = $this->file->store('uploads', 'public');
+        } else {
+            $file = $this->Contract->file;
+        }
         $Contracts->update([
-            'user_id' => Auth::id(),
+            'user_id' => $this->user_id,
             'property_folder_id' => $this->property_folder_id,
             'document_contract_number' => $this->document_contract_number,
-             'start_date' => $this->start_date,
+            'start_date' => $this->start_date,
             'approval_date' => $this->approval_date,
             'end_date' => $this->end_date,
             'tenant_name' => $this->tenant_name,
             'annual_rent_amount' => $this->annual_rent_amount,
-            'amount_in_words' => $this->amount_in_words,
             'lease_duration' => $this->lease_duration,
             'usage_type' => $this->usage_type,
-            'phone_number' => $this->phone_number,
-            'address' => $this->address,
-            'notes' => $this->notes
+            'notes' => $this->notes,
+            'file' => $file
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success', [
@@ -317,6 +255,12 @@ class Contract extends Component
         $Contracts = Contracts::find($this->ContractId);
 
         if ($Contracts) {
+            if ($Contracts->file) {
+                $filePath = 'storage/' . $Contracts->file;
+                if (\File::exists($filePath)) {
+                    \File::delete($filePath);
+                }
+            }
             $Contracts->delete();
             $this->reset();
             $this->dispatchBrowserEvent('success', [

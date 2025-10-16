@@ -11,17 +11,11 @@
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link rel=" stylesheet" href=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
-    <!-- ✅ تضمين Flatpickr CSS -->
+
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
         @endsection
-@section('content')
-@livewire('contracts.contract', [
-    'selected_property_folder_id' => request('property_folder_id'),
-    'selected_property_name' => request('property_name'),
-    'property_id' => request('property_id'),
-    'property_name' => request('property_name'),
-    'id' => request('id')
-])
+@section('content') 
+@livewire('contracts.contract')
 
 
 @endsection
@@ -37,9 +31,9 @@
     <script src=" {{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src=" {{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
-    <!-- ✅ تضمين Flatpickr JS -->
+
     <script src=" {{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
-    <!-- ✅ تضمين ملف اللغة العربية -->
+
     <script src=" {{ asset('assets/vendor/libs/flatpickr/l10n/ar.js') }}"></script>
 @endsection
 
@@ -124,34 +118,84 @@
             })
         })
 
+        // ✅ تهيئة Select2 مع دعم كامل لـ Livewire والنوافذ المنبثقة
+        document.addEventListener('livewire:load', function () {
+            // دالة عامة لإعادة تهيئة Select2 بأمان
+            window.initSelect2 = function(selector, eventName, parentModalSelector = null) {
+                const element = document.querySelector(selector);
+                if (!element) {
+                    console.warn('Select2 element not found:', selector);
+                    return;
+                }
 
-     document.addEventListener('livewire:load', function () {
-    function initSelect2(selector, eventName, parentModal = null) {
-        const $el = $(selector);
-        const options = {
-       placeholder: 'اختيار',
-            allowClear: true,
-            dropdownParent: parentModal ? $(parentModal) : $(document.body)
-        };
+                const $el = $(element);
+                // تدمير التهيئة السابقة إن وجدت
+                if ($el.data('select2')) {
+                    $el.select2('destroy');
+                }
 
-        // Destroy if already initialized
-        if ($el.data('select2')) $el.select2('destroy');
+                const options = {
+                   // placeholder: 'اختيار',
+                    allowClear: true,
+                    minimumInputLength: 0,
+                    maximumInputLength: 255,
+                    dropdownParent: parentModalSelector ? $(parentModalSelector) : $(document.body)
+                };
 
-        $el.select2(options).on('change', function (e) {
-            Livewire.emit(eventName, e.target.value || null);
+                try {
+                    $el.select2(options).on('change', function (e) {
+                        const value = e.target.value || null;
+                        if (window.Livewire && Livewire.emit) {
+                            Livewire.emit(eventName, value);
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error initializing Select2 for', selector, error);
+                }
+            };
+
+            // دالة لإعادة تهيئة جميع حقول Select2
+            window.reinitAllSelect2 = function() {
+initSelect2('#addContracttenant_name', 'SelectTenantName', '#addcontractModal');
+initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal');
+            };
+
+            // ✅ تهيئة أولية عند تحميل الصفحة
+            window.reinitAllSelect2();
+
+            // ✅ إعادة التهيئة بعد كل تحديث من Livewire
+            Livewire.hook('message.processed', (message, component) => {
+                setTimeout(() => {
+                    window.reinitAllSelect2();
+                }, 100);
+            });
+
+            // ✅ تهيئة عند فتح النوافذ المنبثقة
+            $('#addcontractModal').on('shown.bs.modal', function () {
+                setTimeout(() => {
+                    // تهيئة حقول الإضافة فقط
+            initSelect2('#addContracttenant_name', 'SelectTenantName', '#addcontractModal');
+            // initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal');
+                }, 100);
+            });
+
+            $('#editcontractModal').on('shown.bs.modal', function () {
+                setTimeout(() => {
+                    // تهيئة حقول التعديل فقط
+            // initSelect2('#addContracttenant_name', 'SelectTenantName', '#addcontractModal');
+            initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal');
+                }, 100);
+            });
+
+            // ✅ تنظيف Select2 عند إغلاق المودال
+            $('#addcontractModal, #editcontractModal').on('hidden.bs.modal', function () {
+                $(this).find('select').each(function() {
+                    if ($(this).data('select2')) {
+                        $(this).select2('destroy');
+                    }
+                });
+            });
         });
-    }
-
-    // Initialize on first load
-    initSelect2('#addContracttenant_name', 'SelectTenantName', '#addcontractModal');
-    initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal');
-
-    // Re-initialize after Livewire updates
-    Livewire.hook('message.processed', () => {
-        initSelect2('#addContracttenant_name', 'SelectTenantName', '#addcontractModal');
-        initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal');
-    });
-});
 
     </script>
 @endsection

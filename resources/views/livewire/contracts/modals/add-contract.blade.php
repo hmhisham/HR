@@ -1,140 +1,301 @@
-<!-- Add Contract Modal -->
+﻿<!-- Add Contract Modal -->
 <div wire:ignore.self class="modal fade" id="addcontractModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="px-4 py-3 modal-header bg-light">
-        <h5 class="modal-title d-flex align-items-center">
-          <i class="mdi mdi-plus-circle-outline text-primary me-2"></i>
-          إضافة عقد الايجار
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="p-4 modal-body">
-        <form id="addcontractModalForm" autocomplete="off">
-          <div class="row g-3">
-            <!-- الصف الأول: رقم العقد وتاريخ البداية -->
-            <div class="row g-2">
-              <div class="mb-2 col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <input wire:model.defer='document_contract_number' type="text" id="modalContractdocument_contract_number" placeholder="رقم العقد في المستند" class="form-control @error('document_contract_number') is-invalid is-filled @enderror" />
-                  <label for="modalContractdocument_contract_number">رقم العقد في المستند</label>
-                </div>
-                @error('document_contract_number')
-                <small class='text-danger inputerror'> {{ $message }} </small>
-                @enderror
-              </div>
-
-              <div class="mb-2 col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <input wire:model.defer='start_date' type="text" id="modalContractstart_date" placeholder="تاريخ بداية العقد" class="form-control flatpickr @error('start_date') is-invalid is-filled @enderror" />
-                  <label for="modalContractstart_date">تاريخ بداية العقد</label>
-                </div>
-                @error('start_date')
-                <small class='text-danger inputerror'> {{ $message }} </small>
-                @enderror
-              </div>
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-light px-4 py-3">
+                <h5 class="modal-title d-flex align-items-center">
+                    <i class="mdi mdi-plus-circle-outline text-primary me-2"></i>
+                    إضافة عقد
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-            <!-- الصف الثاني: تاريخ المصادقة وتاريخ الانتهاء -->
-            <div class="row g-2">
-              <div class="mb-2 col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <input wire:model.defer='approval_date' type="text" id="modalContractapproval_date" placeholder="تاريخ المصادقة على العقد" class="form-control flatpickr @error('approval_date') is-invalid is-filled @enderror" />
-                  <label for="modalContractapproval_date">تاريخ المصادقة على العقد</label>
-                </div>
-                @error('approval_date')
-                <small class='text-danger inputerror'> {{ $message }} </small>
-                @enderror
-              </div>
-
-              <div class="mb-2 col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <input wire:model.defer='end_date' type="text" id="modalContractend_date" placeholder="تاريخ انتهاء العقد" class="form-control flatpickr @error('end_date') is-invalid is-filled @enderror" />
-                  <label for="modalContractend_date">تاريخ انتهاء العقد</label>
-                </div>
-                @error('end_date')
-                <small class='text-danger inputerror'> {{ $message }} </small>
-                @enderror
-              </div>
+            <div class="modal-body p-4">
+                <form id="addcontractModalForm" autocomplete="off">
+                    <div class="row g-3">
+                        <div class="col-lg-7">
+                            <div class="card shadow-sm border-0 h-100">
+                                <div class="card-body p-3">
+                                    <div class="row g-1">
+                                        <div class="row g-2">
+                                            <div class="mb-2 col">
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='user_id' type="text"
+                                                        id="addContractuser_id" placeholder=""
+                                                        class="form-control @error('user_id') is-invalid is-filled @enderror" />
+                                                    <label for="addContractuser_id"></label>
+                                                </div>
+                                                @error('user_id')
+                                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-2 col">
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='property_folder_id' type="text"
+                                                        id="addContractproperty_folder_id" placeholder=""
+                                                        class="form-control @error('property_folder_id') is-invalid is-filled @enderror" />
+                                                    <label for="addContractproperty_folder_id"></label>
+                                                </div>
+                                                @error('property_folder_id')
+                                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-2 col">
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='document_contract_number' type="text"
+                                                        id="addContractdocument_contract_number"
+                                                        placeholder="رقم العقد في المستند"
+                                                        class="form-control @error('document_contract_number') is-invalid is-filled @enderror" />
+                                                    <label for="addContractdocument_contract_number">رقم العقد في
+                                                        المستند</label>
+                                                </div>
+                                                @error('document_contract_number')
+                                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="mb-2 col">
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='start_date' type="text"
+                                                        id="addContractstart_date" placeholder="تاريخ بداية العقد"
+                                                        class="form-control flatpickr @error('start_date') is-invalid is-filled @enderror" />
+                                                    <label for="addContractstart_date">تاريخ بداية العقد</label>
+                                                </div>
+                                                @error('start_date')
+                                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-2 col">
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='approval_date' type="text"
+                                                        id="addContractapproval_date"
+                                                        placeholder="تاريخ المصادقة على العقد"
+                                                        class="form-control flatpickr @error('approval_date') is-invalid is-filled @enderror" />
+                                                    <label for="addContractapproval_date">تاريخ المصادقة على
+                                                        العقد</label>
+                                                </div>
+                                                @error('approval_date')
+                                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-2 col">
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='end_date' type="text"
+                                                        id="addContractend_date" placeholder="تاريخ انتهاء العقد"
+                                                        class="form-control flatpickr @error('end_date') is-invalid is-filled @enderror" />
+                                                    <label for="addContractend_date">تاريخ انتهاء العقد</label>
+                                                </div>
+                                                @error('end_date')
+                                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="mb-2 col">
+                                                <div class="form-floating form-floating-outline">
+                                                    <select wire:model.defer="tenant_name" id="addContracttenant_name"
+                                                        class="form-select select2 @error('tenant_name') is-invalid is-filled @enderror"
+                                                        data-placeholder="اختيار اسم المستأجر" data-allow-clear="true"
+                                                        data-dropdown-parent="#addcontractModal">
+                                                        <option value="">اختيار اسم المستأجر</option>
+                                                        @if (isset($tenants) && count($tenants) > 0)
+                                                            @foreach ($tenants as $tenantsnew)
+                                                                <option value="{{ $tenantsnew->id }}">
+                                                                    {{ $tenantsnew->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        @else
+                                                            <option value="" disabled>لا توجد بيانات متاحة
+                                                            </option>
+                                                        @endif
+                                                    </select>
+                                                    {{-- <label for="addContracttenant_name">اسم المستأجر</label> --}}
+                                                </div>
+                                                @error('tenant_name')
+                                                    <small class='text-danger inputerror'>{ $message }</small>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-2 col">
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='annual_rent_amount' type="text"
+                                                        id="addContractannual_rent_amount"
+                                                        placeholder="مبلغ التأجير للسنة الواحدة"
+                                                        class="form-control @error('annual_rent_amount') is-invalid is-filled @enderror" />
+                                                    <label for="addContractannual_rent_amount">مبلغ التأجير للسنة
+                                                        الواحدة</label>
+                                                </div>
+                                                @error('annual_rent_amount')
+                                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-2 col">
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='lease_duration' type="text"
+                                                        id="addContractlease_duration" placeholder="مدة الإيجار"
+                                                        class="form-control @error('lease_duration') is-invalid is-filled @enderror" />
+                                                    <label for="addContractlease_duration">مدة الإيجار</label>
+                                                </div>
+                                                @error('lease_duration')
+                                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="mb-2 col">
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='usage_type' type="text"
+                                                        id="addContractusage_type" placeholder="نوع الاستغلال"
+                                                        class="form-control @error('usage_type') is-invalid is-filled @enderror" />
+                                                    <label for="addContractusage_type">نوع الاستغلال</label>
+                                                </div>
+                                                @error('usage_type')
+                                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-2 col">
+                                                <div class="form-floating form-floating-outline">
+                                                    <input wire:model.defer='notes' type="text"
+                                                        id="addContractnotes" placeholder="الملاحظات"
+                                                        class="form-control @error('notes') is-invalid is-filled @enderror" />
+                                                    <label for="addContractnotes">الملاحظات</label>
+                                                </div>
+                                                @error('notes')
+                                                    <small class='text-danger inputerror'> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="border-0 shadow-sm card h-100">
+                                <div class="px-3 py-2 border-0 card-header bg-light">
+                                    <h6 class="mb-0 card-title d-flex align-items-center justify-content-center">
+                                        <i class="mdi mdi-file-pdf-box text-danger me-2 fs-6"></i>
+                                        <span>الملف</span>
+                                    </h6>
+                                </div>
+                                <div class="p-2 card-body">
+                                    <div wire:loading.remove wire:target="file" class="h-100">
+                                        @if ($file)
+                                            <div class="p-2 border rounded-3 bg-light">
+                                                <div class="mb-2 text-center">
+                                                    <span
+                                                        class="px-2 py-1 text-success bg-success-subtle rounded-pill fw-bold small">
+                                                        <i class="mdi mdi-check-circle me-1"></i>تم رفع الملف بنجاح
+                                                    </span>
+                                                </div>
+                                                @if ($file instanceof \Livewire\TemporaryUploadedFile)
+                                                    <div class="pdf-preview-container">
+                                                        <div
+                                                            class="overflow-hidden bg-white border shadow-sm rounded-3">
+                                                            <embed src="{ $file->temporaryUrl() }"
+                                                                type="application/pdf" width="100%" height="180px"
+                                                                style="min-height: 180px; border-radius: 6px;">
+                                                        </div>
+                                                        <div class="mt-2 text-center">
+                                                            <small class="mb-1 text-muted d-block">
+                                                                <i class="mdi mdi-file-pdf-box text-danger me-1"></i>
+                                                                معاينة الملف المرفوع
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="pdf-preview-container">
+                                                        <div
+                                                            class="overflow-hidden bg-white border shadow-sm rounded-3">
+                                                            <embed src="{ asset('storage/' . $file) }"
+                                                                type="application/pdf" width="100%" height="120px"
+                                                                style="min-height: 120px; border-radius: 6px;">
+                                                        </div>
+                                                        <div class="mt-2 text-center">
+                                                            <small class="mb-2 text-muted d-block">
+                                                                <i class="mdi mdi-file-pdf-box text-danger me-1"></i>
+                                                                ملف محفوظ مسبقاً
+                                                            </small>
+                                                            <a href="{ asset('storage/' . $file) }" target="_blank"
+                                                                class="btn btn-outline-primary btn-sm rounded-pill">
+                                                                <i class="mdi mdi-open-in-new me-1"></i>فتح في نافذة
+                                                                جديدة
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                <div class="mt-2 text-center">
+                                                    <button wire:click="$set('file', null)" type="button"
+                                                        class="px-3 btn btn-outline-danger btn-sm rounded-pill">
+                                                        <i class="mdi mdi-refresh me-1"></i>استبدال الملف
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <label for="addContractfile"
+                                                class="w-100 d-flex align-items-center justify-content-center upload-label"
+                                                style="cursor: pointer; min-height: 220px;">
+                                                <div class="border-2 border-dashed upload-container rounded-3 w-100 h-100 d-flex align-items-center justify-content-center position-relative"
+                                                    style="transition: all 0.3s ease; border-color: #dee2e6;"
+                                                    onmouseover="this.style.borderColor='#007bff'; this.style.backgroundColor='rgba(0,123,255,0.05)'"
+                                                    onmouseout="this.style.borderColor='#dee2e6'; this.style.backgroundColor='transparent'">
+                                                    <div class="p-3 text-center upload-content">
+                                                        <div class="mb-2 upload-icon">
+                                                            <i class="mdi mdi-cloud-upload text-primary"
+                                                                style="font-size: 2.2rem; opacity: 0.8;"></i>
+                                                        </div>
+                                                        <h6 class="mb-1 text-dark fw-bold fs-6">الملف</h6>
+                                                        <span
+                                                            class="px-2 py-1 mb-1 badge bg-danger-subtle text-danger rounded-pill d-inline-block small">
+                                                            <i class="mdi mdi-alert-circle me-1"></i>PDF فقط
+                                                        </span>
+                                                        <p class="mt-1 text-muted small">الحد الأقصى: 10 ميجابايت</p>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                            <input wire:model="file" type="file" id="addContractfile"
+                                                class="d-none" accept="application/pdf" />
+                                        @endif
+                                    </div>
+                                    {{-- <div wire:loading wire:target="file"
+                                        class="d-flex align-items-center justify-content-center"
+                                        style="min-height: 220px;">
+                                        <div class="text-center">
+                                            <div class="spinner-border text-primary" role="status"></div>
+                                            <p class="mt-2 text-muted small">جارٍ رفع الملف...</p>
+                                        </div>
+                                    </div> --}}
+                                    @error('file')
+                                        <div class="mt-2 border-0 shadow-sm alert alert-danger rounded-3 p-2">
+                                            <div class="d-flex align-items-center small">
+                                                <i class="mdi mdi-alert-circle me-2 fs-6"></i>
+                                                <span>{ $message }</span>
+                                            </div>
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <!-- الصف الثالث: اسم المستأجر ومبلغ التأجير -->
-            <div class="row g-2">
-              <div class="mb-2 col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <select wire:model.defer="tenant_name" id="addContracttenant_name" class="form-select @error('tenant_name') is-invalid @enderror">
-                    <option value="">اختر المستأجر</option>
-                    @foreach($tenants as $tenant)
-                    <option value="{{ $tenant->id }}">{{ $tenant->name }}</option>
-                    @endforeach
-                  </select>
-                 
+            <div class="px-3 py-2 border-0 modal-footer">
+                <div class="gap-2 d-flex w-100 justify-content-center">
+                    <button wire:click='store' wire:loading.attr="disabled" type="button"
+                        class="px-3 py-2 shadow-sm btn btn-primary rounded-pill">
+                        <span wire:loading.remove wire:target="store">
+                            <i class="mdi mdi-content-save-outline me-2"></i>حفظ
+                        </span>
+                        <span wire:loading wire:target="store">
+                            <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                            جارٍ الحفظ...
+                        </span>
+                    </button>
+                    <button type="button" class="px-3 py-2 btn btn-outline-secondary rounded-pill"
+                        data-bs-dismiss="modal">
+                        <i class="mdi mdi-close-circle-outline me-2"></i>إلغاء العملية
+                    </button>
                 </div>
-                @error('tenant_name')
-                <small class="text-danger">{{ $message }}</small>
-                @enderror
-              </div>
-
-              <div class="mb-2 col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <input wire:model.defer='annual_rent_amount' type="text" id="modalContractannual_rent_amount" placeholder="مبلغ التأجير للسنة الواحدة" class="form-control @error('annual_rent_amount') is-invalid is-filled @enderror" />
-                  <label for="modalContractannual_rent_amount">مبلغ التأجير للسنة الواحدة</label>
-                </div>
-                @error('annual_rent_amount')
-                <small class='text-danger inputerror'> {{ $message }} </small>
-                @enderror
-              </div>
             </div>
-
-            <!-- الصف الرابع: مدة الإيجار ونوع الاستغلال -->
-            <div class="row g-2">
-              <div class="mb-2 col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <input wire:model.defer='lease_duration' type="text" id="modalContractlease_duration" placeholder="مدة الإيجار" class="form-control @error('lease_duration') is-invalid is-filled @enderror" />
-                  <label for="modalContractlease_duration">مدة الإيجار</label>
-                </div>
-                @error('lease_duration')
-                <small class='text-danger inputerror'> {{ $message }} </small>
-                @enderror
-              </div>
-
-              <div class="mb-2 col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <input wire:model.defer='usage_type' type="text" id="modalContractusage_type" placeholder="نوع الاستغلال" class="form-control @error('usage_type') is-invalid is-filled @enderror" />
-                  <label for="modalContractusage_type">نوع الاستغلال</label>
-                </div>
-                @error('usage_type')
-                <small class='text-danger inputerror'> {{ $message }} </small>
-                @enderror
-              </div>
-            </div>
-
-            <!-- الصف الخامس: الملاحظات -->
-            <div class="row g-2">
-              <div class="mb-2 col-12">
-                <div class="form-floating form-floating-outline">
-                  <textarea wire:model.defer='notes' id="modalContractnotes" placeholder="الملاحظات" class="form-control @error('notes') is-invalid is-filled @enderror" rows="3"></textarea>
-                  <label for="modalContractnotes">الملاحظات</label>
-                </div>
-                @error('notes')
-                <small class='text-danger inputerror'> {{ $message }} </small>
-                @enderror
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer justify-content-center">
-        <button wire:click='store' wire:loading.attr="disabled" type="button" class="btn btn-primary">
-          <span wire:loading.remove><i class="mdi mdi-content-save-outline me-1"></i> حفظ</span>
-          <span wire:loading><span class="spinner-border spinner-border-sm" role="status"></span> جارٍ الحفظ...</span>
-        </button>
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-          <i class="mdi mdi-close-circle-outline me-1"></i> تجاهل
-        </button>
-
-      </div>
+        </div>
     </div>
-  </div>
 </div>
 <!--/ Add Contract Modal -->
