@@ -19,6 +19,7 @@ class Contract extends Component
     public $ContractSearch, $Contract, $ContractId;
     public $user_id, $property_folder_id, $document_contract_number, $start_date, $approval_date, $end_date, $tenant_name, $annual_rent_amount, $lease_duration, $usage_type, $notes, $file;
     public $tenants = [];
+    public $filePreviewPath = null;
 
     protected $listeners = [
         'SelectTenantName',
@@ -32,6 +33,16 @@ class Contract extends Component
     public function SelectTenantName($value)
     {
         $this->tenant_name = $value ? (int) $value : null;
+    }
+
+    public function updatedFile()
+    {
+        // When a temporary file is selected, create a public preview copy
+        if ($this->file instanceof \Livewire\TemporaryUploadedFile) {
+            $this->filePreviewPath = $this->file->store('tmp', 'public');
+        } else {
+            $this->filePreviewPath = null;
+        }
     }
 
 
@@ -105,7 +116,8 @@ class Contract extends Component
             'lease_duration',
             'usage_type',
             'notes',
-            'file'
+            'file',
+            'filePreviewPath'
         ]);
 
         $this->resetValidation();
@@ -159,6 +171,11 @@ class Contract extends Component
             'notes' => $this->notes,
             'file' => $file
         ]);
+        // Clean up temporary public preview file
+        if ($this->filePreviewPath) {
+            Storage::disk('public')->delete($this->filePreviewPath);
+            $this->filePreviewPath = null;
+        }
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم الإضافة بنجاح',
@@ -243,6 +260,11 @@ class Contract extends Component
             'notes' => $this->notes,
             'file' => $file
         ]);
+        // Clean up temporary public preview file
+        if ($this->filePreviewPath) {
+            Storage::disk('public')->delete($this->filePreviewPath);
+            $this->filePreviewPath = null;
+        }
         $this->reset();
         $this->dispatchBrowserEvent('success', [
             'message' => 'تم التعديل بنجاح',

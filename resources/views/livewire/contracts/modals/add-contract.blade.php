@@ -186,13 +186,19 @@
                                                         <i class="mdi mdi-check-circle me-1"></i>تم رفع الملف بنجاح
                                                     </span>
                                                 </div>
-                                                @if ($file instanceof \Livewire\TemporaryUploadedFile)
+                                                @if (!is_string($file))
                                                     <div class="pdf-preview-container">
                                                         <div
                                                             class="overflow-hidden bg-white border shadow-sm rounded-3">
-                                                            <embed src="{ $file->temporaryUrl() }"
-                                                                type="application/pdf" width="100%" height="180px"
-                                                                style="min-height: 180px; border-radius: 6px;">
+                                                            @if ($filePreviewPath)
+                                                                <embed src="{{ asset('storage/' . $filePreviewPath) }}"
+                                                                    type="application/pdf" width="100%" height="180px"
+                                                                    style="min-height: 180px; border-radius: 6px;">
+                                                            @else
+                                                                <div class="p-2 text-muted">
+                                                                    لا يمكن إنشاء رابط معاينة مؤقت على هذا القرص.
+                                                                </div>
+                                                            @endif
                                                         </div>
                                                         <div class="mt-2 text-center">
                                                             <small class="mb-1 text-muted d-block">
@@ -205,7 +211,7 @@
                                                     <div class="pdf-preview-container">
                                                         <div
                                                             class="overflow-hidden bg-white border shadow-sm rounded-3">
-                                                            <embed src="{ asset('storage/' . $file) }"
+                                                            <embed src="{{ asset('storage/' . $file) }}"
                                                                 type="application/pdf" width="100%" height="120px"
                                                                 style="min-height: 120px; border-radius: 6px;">
                                                         </div>
@@ -214,7 +220,7 @@
                                                                 <i class="mdi mdi-file-pdf-box text-danger me-1"></i>
                                                                 ملف محفوظ مسبقاً
                                                             </small>
-                                                            <a href="{ asset('storage/' . $file) }" target="_blank"
+                                                            <a href="{{ asset('storage/' . $file) }}" target="_blank"
                                                                 class="btn btn-outline-primary btn-sm rounded-pill">
                                                                 <i class="mdi mdi-open-in-new me-1"></i>فتح في نافذة
                                                                 جديدة
@@ -223,6 +229,17 @@
                                                     </div>
                                                 @endif
                                                 <div class="mt-2 text-center">
+                                                    @if (!is_string($file) && $filePreviewPath)
+                                                        <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank"
+                                                           class="btn btn-outline-primary btn-sm rounded-pill me-2">
+                                                            <i class="mdi mdi-open-in-new me-1"></i>عرض الملف
+                                                        </a>
+                                                    @elseif (is_string($file))
+                                                        <a href="{{ asset('storage/' . $file) }}" target="_blank"
+                                                           class="btn btn-outline-primary btn-sm rounded-pill me-2">
+                                                            <i class="mdi mdi-open-in-new me-1"></i>عرض الملف
+                                                        </a>
+                                                    @endif
                                                     <button wire:click="$set('file', null)" type="button"
                                                         class="px-3 btn btn-outline-danger btn-sm rounded-pill">
                                                         <i class="mdi mdi-refresh me-1"></i>استبدال الملف
