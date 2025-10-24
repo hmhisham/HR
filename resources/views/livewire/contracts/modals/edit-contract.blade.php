@@ -115,7 +115,8 @@
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
                 <input wire:model.defer='annual_rent_amount' type="text" id="editContractannual_rent_amount" placeholder="مبلغ التأجير للسنة الواحدة"
-                    class="form-control @error('annual_rent_amount') is-invalid is-filled @enderror" />
+                    class="form-control @error('annual_rent_amount') is-invalid is-filled @enderror"
+                    oninput="formatNumber(this)" />
                 <label for="editContractannual_rent_amount">مبلغ التأجير للسنة الواحدة</label>
             </div>
             @error('annual_rent_amount')
@@ -125,8 +126,12 @@
         
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
-                <input wire:model.defer='lease_duration' type="text" id="editContractlease_duration" placeholder="مدة الإيجار"
-                    class="form-control @error('lease_duration') is-invalid is-filled @enderror" />
+                <select wire:model="lease_duration" id="editContractlease_duration" class="form-select @error('lease_duration') is-invalid is-filled @enderror" size="6">
+                    <option value="">اختيار مدة الإيجار</option>
+                    @for ($i = 1; $i <= 30; $i++)
+                    <option value="{{ $i }}">{{ $i }} @if($i == 1) سنة @else سنوات @endif</option>
+                    @endfor
+                </select>
                 <label for="editContractlease_duration">مدة الإيجار</label>
             </div>
             @error('lease_duration')
@@ -190,4 +195,96 @@
         </div>
     </div>
 </div>
+
+<style>
+/* تحديد حجم قائمة lease_duration */
+.select2-container--default .select2-results__options {
+    max-height: 150px !important;
+    overflow-y: auto !important;
+}
+
+.select2-dropdown {
+    max-height: 150px !important;
+}
+
+/* تحديد حجم القائمة المنسدلة لـ lease_duration فقط */
+#editContractlease_duration + .select2-container .select2-dropdown .select2-results {
+    max-height: 150px !important;
+    overflow-y: auto !important;
+}
+</style>
+
+<script>
+function formatNumber(input) {
+    // احفظ موضع المؤشر
+    let cursorPosition = input.selectionStart;
+    
+    // احصل على القيمة وأزل الفواصل الموجودة
+    let value = input.value.replace(/,/g, '');
+    
+    // تحقق من أن القيمة رقم صحيح
+    if (!/^\d*\.?\d*$/.test(value)) {
+        // إذا لم تكن رقماً صحيحاً، أزل الأحرف غير الصحيحة
+        value = value.replace(/[^\d.]/g, '');
+    }
+    
+    // تأكد من وجود نقطة عشرية واحدة فقط
+    let parts = value.split('.');
+    if (parts.length > 2) {
+        value = parts[0] + '.' + parts.slice(1).join('');
+    }
+    
+    // أضف الفواصل للجزء الصحيح
+    if (parts[0]) {
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        value = parts.join('.');
+    }
+    
+    // احسب الفرق في الطول لتعديل موضع المؤشر
+    let lengthDiff = value.length - input.value.length;
+    
+    // حدث القيمة
+    input.value = value;
+    
+    // أعد تعيين موضع المؤشر
+    let newCursorPosition = cursorPosition + lengthDiff;
+    input.setSelectionRange(newCursorPosition, newCursorPosition);
+    
+    // حدث قيمة Livewire
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+}
+</script>
+
+<style>
+/* أنماط خاصة بقائمة lease_duration */
+#editContractlease_duration {
+    height: 120px !important;
+    overflow-y: auto !important;
+    max-height: 120px !important;
+    padding: 0 !important;
+}
+
+#editContractlease_duration option {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#editContractlease_duration option:hover {
+    background-color: #f8f9fa;
+}
+
+/* تحسين مظهر القائمة */
+select[size] {
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background-color: white;
+}
+
+select[size]:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+</style>
+
 <!--/ Edit Contract Modal -->

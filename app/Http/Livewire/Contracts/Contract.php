@@ -186,7 +186,7 @@ class Contract extends Component
             'approval_date' => $this->approval_date,
             'end_date' => $this->end_date,
             'tenant_name' => $this->tenant_name,
-            'annual_rent_amount' => $this->annual_rent_amount,
+            'annual_rent_amount' => str_replace(',', '', $this->annual_rent_amount),
             'lease_duration' => $this->lease_duration,
             'usage_type' => $this->usage_type,
             'notes' => $this->notes,
@@ -222,7 +222,7 @@ class Contract extends Component
         $this->approval_date = $this->Contract->approval_date;
         $this->end_date = $this->Contract->end_date;
         $this->tenant_name = $this->Contract->tenant_name;
-        $this->annual_rent_amount = $this->Contract->annual_rent_amount;
+        $this->annual_rent_amount = number_format($this->Contract->annual_rent_amount);
         $this->lease_duration = $this->Contract->lease_duration;
         $this->usage_type = $this->Contract->usage_type;
         $this->notes = $this->Contract->notes;
@@ -275,7 +275,7 @@ class Contract extends Component
             'approval_date' => $this->approval_date,
             'end_date' => $this->end_date,
             'tenant_name' => $this->tenant_name,
-            'annual_rent_amount' => $this->annual_rent_amount,
+            'annual_rent_amount' => str_replace(',', '', $this->annual_rent_amount),
             'lease_duration' => $this->lease_duration,
             'usage_type' => $this->usage_type,
             'notes' => $this->notes,

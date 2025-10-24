@@ -84,7 +84,12 @@
 
                       <div class="mb-2 col">
                         <div class="form-floating form-floating-outline">
-                          <input wire:model.defer='annual_rent_amount' type="text" id="addContractannual_rent_amount" placeholder="مبلغ التأجير للسنة الواحدة" class="form-control @error('annual_rent_amount') is-invalid is-filled @enderror" />
+                          <input wire:model.defer='annual_rent_amount'
+                                 type="text"
+                                 id="addContractannual_rent_amount"
+                                 placeholder="مبلغ التأجير للسنة الواحدة"
+                                 class="form-control @error('annual_rent_amount') is-invalid is-filled @enderror"
+                                 oninput="formatNumber(this)" />
                           <label for="addContractannual_rent_amount">مبلغ التأجير للسنة
                             الواحدة</label>
                         </div>
@@ -92,15 +97,18 @@
                         <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                       </div>
-                      <div class="mb-2 col">
+
+                     <div class="mb-2 col">
                         <div class="form-floating form-floating-outline">
-                          <input wire:model.defer='lease_duration' type="text" id="addContractlease_duration" placeholder="مدة الإيجار" class="form-control @error('lease_duration') is-invalid is-filled @enderror" />
-                          <label for="addContractlease_duration">مدة الإيجار</label>
+                          <input wire:model.defer='lease_duration' type="number" id="addContractlease_duration" placeholder="مدة الإيجار" class="form-control @error('lease_duration') is-invalid is-filled @enderror" min="1" max="30" />
+                          <label for="addContractlease_duration">مدة الإيجار (سنوات)</label>
                         </div>
                         @error('lease_duration')
                         <small class='text-danger inputerror'> {{ $message }} </small>
                         @enderror
                       </div>
+
+
                         <div class="mb-2 col">
                         <div class="form-floating form-floating-outline">
                           <input wire:model.defer='usage_type' type="text" id="addContractusage_type" placeholder="نوع الاستغلال" class="form-control @error('usage_type') is-invalid is-filled @enderror" />
@@ -254,3 +262,44 @@
   </div>
 </div>
 <!--/ Add Contract Modal -->
+
+<script>
+function formatNumber(input) {
+    // احفظ موضع المؤشر
+    let cursorPosition = input.selectionStart;
+
+    // احصل على القيمة وأزل الفواصل الموجودة
+    let value = input.value.replace(/,/g, '');
+
+    // تحقق من أن القيمة رقم صحيح
+    if (!/^\d*\.?\d*$/.test(value)) {
+        // إذا لم تكن رقماً صحيحاً، أزل الأحرف غير الصحيحة
+        value = value.replace(/[^\d.]/g, '');
+    }
+
+    // تأكد من وجود نقطة عشرية واحدة فقط
+    let parts = value.split('.');
+    if (parts.length > 2) {
+        value = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    // أضف الفواصل للجزء الصحيح
+    if (parts[0]) {
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        value = parts.join('.');
+    }
+
+    // احسب الفرق في الطول لتعديل موضع المؤشر
+    let lengthDiff = value.length - input.value.length;
+
+    // حدث القيمة
+    input.value = value;
+
+    // أعد تعيين موضع المؤشر
+    let newCursorPosition = cursorPosition + lengthDiff;
+    input.setSelectionRange(newCursorPosition, newCursorPosition);
+
+    // حدث قيمة Livewire
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+}
+</script>

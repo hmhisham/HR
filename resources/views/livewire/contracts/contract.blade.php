@@ -86,7 +86,7 @@
             <td class="text-center">{{ $Contract->document_contract_number}}</td>
             <td class="text-center">{{ $Contract->end_date}}</td>
             <td class="text-center">{{ $Contract->tenant ? $Contract->tenant->name : $Contract->tenant_name }}</td>
-            <td class="text-center">{{ $Contract->annual_rent_amount}}</td>
+            <td class="text-center">{{ number_format($Contract->annual_rent_amount) }}</td>
             <td class="text-center">{{ $Contract->notes}}</td>
 
             <td class="text-center">
