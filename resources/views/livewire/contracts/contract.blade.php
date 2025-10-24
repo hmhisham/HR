@@ -1,4 +1,4 @@
-﻿<div class="card">
+<div class="card">
   <!-- ✅ شريط البطاقة العلوي مع العنوان وأيقونة -->
   <div class="flex-wrap gap-3 card-header d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center">
@@ -79,13 +79,13 @@
         </thead>
 
         <tbody>
-          @foreach ($Contracts as $Contract)
+          @forelse ($Contracts as $Contract)
           <tr>
             <td class="text-center">{{ $loop->iteration }}</td>
             <td class="text-center">{{ $Contract->property_folder_id}}</td>
             <td class="text-center">{{ $Contract->document_contract_number}}</td>
             <td class="text-center">{{ $Contract->end_date}}</td>
-            <td class="text-center">{{ $Contract->tenant_name}}</td>
+            <td class="text-center">{{ $Contract->tenant ? $Contract->tenant->name : $Contract->tenant_name }}</td>
             <td class="text-center">{{ $Contract->annual_rent_amount}}</td>
             <td class="text-center">{{ $Contract->notes}}</td>
 
@@ -104,7 +104,23 @@
               </div>
             </td>
           </tr>
-          @endforeach
+          @empty
+          <tr>
+            <td colspan="8" class="text-center py-4">
+              <div class="d-flex flex-column align-items-center">
+                <i class="mdi mdi-file-search-outline text-muted mb-2" style="font-size: 3rem;"></i>
+                <h6 class="text-muted mb-1">لا توجد عقود</h6>
+                <p class="text-muted small mb-0">
+                  @if(!empty($ContractSearch) || array_filter($search))
+                    لم يتم العثور على نتائج تطابق معايير البحث
+                  @else
+                    لا توجد عقود مسجلة حالياً
+                  @endif
+                </p>
+              </div>
+            </td>
+          </tr>
+          @endforelse
         </tbody>
       </table>
     </div>

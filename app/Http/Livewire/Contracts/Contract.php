@@ -52,26 +52,37 @@ class Contract extends Component
         }
     }
 
+    public function updatingContractSearch()
+    {
+        $this->resetPage();
+    }
 
-
-
-
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
-        // ✅ الحصول على قيمة البحث العام
-        $ContractSearch = '%' . $this->ContractSearch . '%';
+        $Contracts = Contracts::with('tenant');
 
-        $Contracts = Contracts::query()
-            ->where(function ($query) use ($ContractSearch) {
+        // ✅ تطبيق البحث العام فقط إذا كان هناك نص للبحث
+        if (!empty($this->ContractSearch)) {
+            $ContractSearch = '%' . $this->ContractSearch . '%';
+            $Contracts->where(function ($query) use ($ContractSearch) {
                 $query->where('property_folder_id', 'LIKE', $ContractSearch)
                     ->orWhere('document_contract_number', 'LIKE', $ContractSearch)
                     ->orWhere('end_date', 'LIKE', $ContractSearch)
-                    ->orWhere('tenant_name', 'LIKE', $ContractSearch)
                     ->orWhere('annual_rent_amount', 'LIKE', $ContractSearch)
-                    ->orWhere('notes', 'LIKE', $ContractSearch);
-            })
-            ->when($this->search['property_folder_id'], function ($query) {
+                    ->orWhere('notes', 'LIKE', $ContractSearch)
+                    ->orWhereHas('tenant', function ($tenantQuery) use ($ContractSearch) {
+                        $tenantQuery->where('name', 'LIKE', $ContractSearch);
+                    });
+            });
+        }
+
+        // ✅ تطبيق البحث المحدد لكل عمود
+        $Contracts->when($this->search['property_folder_id'], function ($query) {
                 $property_folder_idSearch = '%' . $this->search['property_folder_id'] . '%';
                 $query->where('property_folder_id', 'LIKE', $property_folder_idSearch);
             })
@@ -85,7 +96,9 @@ class Contract extends Component
             })
             ->when($this->search['tenant_name'], function ($query) {
                 $tenant_nameSearch = '%' . $this->search['tenant_name'] . '%';
-                $query->where('tenant_name', 'LIKE', $tenant_nameSearch);
+                $query->whereHas('tenant', function ($tenantQuery) use ($tenant_nameSearch) {
+                    $tenantQuery->where('name', 'LIKE', $tenant_nameSearch);
+                });
             })
             ->when($this->search['annual_rent_amount'], function ($query) {
                 $annual_rent_amountSearch = '%' . $this->search['annual_rent_amount'] . '%';
@@ -94,9 +107,9 @@ class Contract extends Component
             ->when($this->search['notes'], function ($query) {
                 $notesSearch = '%' . $this->search['notes'] . '%';
                 $query->where('notes', 'LIKE', $notesSearch);
-            })
-            ->orderBy('id', 'ASC')
-            ->paginate(10);
+            });
+
+        $Contracts = $Contracts->orderBy('id', 'ASC')->paginate(10);
 
         $links = $Contracts;
         $this->Contracts = collect($Contracts->items());
