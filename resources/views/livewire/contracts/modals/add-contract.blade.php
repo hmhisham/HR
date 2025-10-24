@@ -1,7 +1,7 @@
 ﻿<!-- Add Contract Modal -->
 <div wire:ignore.self class="modal fade" id="addcontractModal" tabindex="-1" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered modal-fullscreen">
-    <div class="modal-content">
+    <div class="modal-content h-100">
       <div class="px-4 py-3 modal-header bg-light">
         <h5 class="modal-title d-flex align-items-center">
           <i class="mdi mdi-plus-circle-outline text-primary me-2"></i>
@@ -9,13 +9,13 @@
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="p-4 modal-body">
-        <form id="addcontractModalForm" autocomplete="off">
-          <div class="row g-3">
-            <div class="col-lg-7">
-              <div class="border-0 shadow-sm card h-100">
-                <div class="p-3 card-body">
-                  <div class="row g-1">
+      <div class="p-4 modal-body d-flex flex-column">
+        <form id="addcontractModalForm" autocomplete="off" class="d-flex flex-column flex-grow-1">
+          <div class="row g-3 flex-grow-1">
+            <div class="col-lg-7 d-flex flex-column">
+              <div class="border-0 shadow-sm card flex-grow-1">
+                <div class="p-3 card-body d-flex flex-column">
+                  <div class="row g-1 flex-grow-1">
                     <div class="row g-2">
 
                       <div class="mb-2 col">
@@ -147,28 +147,28 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-5">
-              <div class="border-0 shadow-sm card h-100">
+            <div class="col-lg-5 d-flex flex-column">
+              <div class="border-0 shadow-sm card flex-grow-1">
                 <div class="px-3 py-2 border-0 card-header bg-light">
                   <h6 class="mb-0 card-title d-flex align-items-center justify-content-center">
                     <i class="mdi mdi-file-pdf-box text-danger me-2 fs-6"></i>
                     <span>الملف</span>
                   </h6>
                 </div>
-                <div class="p-2 card-body">
-                  <div wire:loading.remove wire:target="file" class="h-100">
+                <div class="p-2 card-body d-flex flex-column">
+                  <div wire:loading.remove wire:target="file" class="flex-grow-1 d-flex flex-column">
                     @if ($file)
-                    <div class="p-2 border rounded-3 bg-light">
+                    <div class="p-2 border rounded-3 bg-light flex-grow-1 d-flex flex-column">
                       <div class="mb-2 text-center">
                         <span class="px-2 py-1 text-success bg-success-subtle rounded-pill fw-bold small">
                           <i class="mdi mdi-check-circle me-1"></i>تم رفع الملف بنجاح
                         </span>
                       </div>
                       @if (!is_string($file))
-                      <div class="pdf-preview-container">
-                        <div class="overflow-hidden bg-white border shadow-sm rounded-3">
+                      <div class="pdf-preview-container flex-grow-1 d-flex flex-column">
+                        <div class="overflow-hidden bg-white border shadow-sm rounded-3 flex-grow-1">
                           @if ($filePreviewPath)
-                          <embed src="{{ asset('storage/' . $filePreviewPath) }}" type="application/pdf" width="100%" height="180px" style="min-height: 180px; border-radius: 6px;">
+                          <embed src="{{ asset('storage/' . $filePreviewPath) }}" type="application/pdf" width="100%" height="100%" style="border-radius: 6px;">
                           @else
                           <div class="p-2 text-muted">
                             لا يمكن إنشاء رابط معاينة مؤقت على هذا القرص.
@@ -183,9 +183,9 @@
                         </div>
                       </div>
                       @else
-                      <div class="pdf-preview-container">
-                        <div class="overflow-hidden bg-white border shadow-sm rounded-3">
-                          <embed src="{{ asset('storage/' . $file) }}" type="application/pdf" width="100%" height="120px" style="min-height: 120px; border-radius: 6px;">
+                      <div class="pdf-preview-container flex-grow-1 d-flex flex-column">
+                        <div class="overflow-hidden bg-white border shadow-sm rounded-3 flex-grow-1">
+                          <embed src="{{ asset('storage/' . $file) }}" type="application/pdf" width="100%" height="100%" style="border-radius: 6px;">
                         </div>
                         <div class="mt-2 text-center">
                           <small class="mb-2 text-muted d-block">
@@ -215,7 +215,7 @@
                       </div>
                     </div>
                     @else
-                    <label for="addContractfile" class="w-100 d-flex align-items-center justify-content-center upload-label" style="cursor: pointer; min-height: 220px;">
+                    <label for="addContractfile" class="w-100 d-flex align-items-center justify-content-center upload-label flex-grow-1" style="cursor: pointer;">
                       <div class="border-2 border-dashed upload-container rounded-3 w-100 h-100 d-flex align-items-center justify-content-center position-relative" style="transition: all 0.3s ease; border-color: #dee2e6;" onmouseover="this.style.borderColor='#007bff'; this.style.backgroundColor='rgba(0,123,255,0.05)'" onmouseout="this.style.borderColor='#dee2e6'; this.style.backgroundColor='transparent'">
                         <div class="p-3 text-center upload-content">
                           <div class="mb-2 upload-icon">
@@ -233,8 +233,7 @@
                     @endif
                   </div>
                   {{-- <div wire:loading wire:target="file"
-                                        class="d-flex align-items-center justify-content-center"
-                                        style="min-height: 220px;">
+                                        class="d-flex align-items-center justify-content-center flex-grow-1">
                                         <div class="text-center">
                                             <div class="spinner-border text-primary" role="status"></div>
                                             <p class="mt-2 text-muted small">جارٍ رفع الملف...</p>
