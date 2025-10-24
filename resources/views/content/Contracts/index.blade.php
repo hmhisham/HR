@@ -158,6 +158,8 @@
             window.reinitAllSelect2 = function() {
 initSelect2('#addContracttenant_name', 'SelectTenantName', '#addcontractModal');
 initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal');
+initSelect2('#addContractusage_type', 'SelectUsageType', '#addcontractModal');
+initSelect2('#editContractusage_type', 'SelectUsageType', '#editcontractModal');
             };
 
             // ✅ تهيئة أولية عند تحميل الصفحة
@@ -175,6 +177,7 @@ initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal'
                 setTimeout(() => {
                     // تهيئة حقول الإضافة فقط
             initSelect2('#addContracttenant_name', 'SelectTenantName', '#addcontractModal');
+            initSelect2('#addContractusage_type', 'SelectUsageType', '#addcontractModal');
             // initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal');
                 }, 100);
             });
@@ -184,6 +187,7 @@ initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal'
                     // تهيئة حقول التعديل فقط
             // initSelect2('#addContracttenant_name', 'SelectTenantName', '#addcontractModal');
             initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal');
+            initSelect2('#editContractusage_type', 'SelectUsageType', '#editcontractModal');
                 }, 100);
             });
 
