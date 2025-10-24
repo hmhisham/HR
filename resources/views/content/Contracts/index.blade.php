@@ -13,8 +13,12 @@
     <link rel=" stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <style>
+      .select2-container { width: 100% !important; }
+      .select2-selection--single .select2-selection__rendered { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+    </style>
         @endsection
-@section('content') 
+@section('content')
 @livewire('contracts.contract', ['property_folder_id' => $property_folder_id])
 
 
@@ -135,11 +139,15 @@
                 }
 
                 const options = {
-                   // placeholder: 'اختيار',
-                    allowClear: true,
-                    minimumInputLength: 0,
-                    maximumInputLength: 255,
-                    dropdownParent: parentModalSelector ? $(parentModalSelector) : $(document.body)
+                    width: '100%',
+                    dir: 'rtl',
+                    placeholder: element.getAttribute('data-placeholder') || 'اختيار',
+                    allowClear: element.getAttribute('data-allow-clear') === 'true' || true,
+                    dropdownParent: parentModalSelector ? $(parentModalSelector) : $(document.body),
+                    language: {
+                        noResults: function () { return 'لا توجد نتائج'; },
+                        searching: function () { return 'جاري البحث…'; }
+                    }
                 };
 
                 try {
