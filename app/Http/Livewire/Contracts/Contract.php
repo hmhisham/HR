@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Livewire\WithPagination;
 use App\Models\Contracts\Contracts;
+use App\Models\Propertyfolder\Propertyfolder;
 
 class Contract extends Component
 {
@@ -20,15 +21,21 @@ class Contract extends Component
     public $user_id, $property_folder_id, $document_contract_number, $start_date, $approval_date, $end_date, $tenant_name, $annual_rent_amount, $lease_duration, $usage_type, $notes, $file;
     public $tenants = [];
     public $filePreviewPath = null;
+    public $currentPropertyFolder = null;
 
     protected $listeners = [
         'SelectTenantName',
     ];
     public $search = ['property_folder_id' => '', 'document_contract_number' => '', 'end_date' => '', 'tenant_name' => '', 'annual_rent_amount' => '', 'notes' => ''];
 
-    public function mount()
+    public function mount($property_folder_id = null)
     {
         $this->tenants = \App\Models\Tenants\Tenants::select('id', 'name')->orderBy('name')->get();
+        
+        if ($property_folder_id) {
+            $this->property_folder_id = $property_folder_id;
+            $this->currentPropertyFolder = Propertyfolder::find($property_folder_id);
+        }
     }
     public function SelectTenantName($value)
     {
@@ -96,7 +103,8 @@ class Contract extends Component
 
         return view('livewire.contracts.contract', [
             'Contracts' => $Contracts,
-            'links' => $links
+            'links' => $links,
+            'propertyfolder' => $this->currentPropertyFolder
         ]);
     }
 

@@ -4,9 +4,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 class ContractsController extends Controller
 {
-    public function index()
+    public function index($property_folder_id = null)
     {
-        Return View('content.Contracts.index');
+        Return View('content.Contracts.index', [
+            'property_folder_id' => $property_folder_id
+        ]);
     }
 
     public function ContractShow($id)

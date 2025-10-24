@@ -88,7 +88,7 @@ use App\Http\Controllers\Specializationclassification\Specializationclassificati
 // Dashboard
 
 
-Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     // تضمين مسارات الموظفين
     require __DIR__ . '/employees.php';
     Route::GET('/', [DashboardController::class, 'index'])->name('Dashboard');
@@ -291,4 +291,4 @@ Route::get('language/{locale}', [LanguageController::class, 'swap']);
 Route::get('/backup/download', [BackupController::class, 'downloadBackup']);
 Route::get('/backup', function () {
     return view('content.Backup.index');
-})->name('backup')->middleware(['auth', config('jetstream.auth_session'), 'verified']);
+})->name('backup')->middleware(['auth', 'verified']);
