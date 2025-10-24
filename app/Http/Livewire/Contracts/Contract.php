@@ -34,6 +34,7 @@ class Contract extends Component
     public function mount($property_folder_id = null)
     {
         $this->tenants = \App\Models\Tenants\Tenants::select('id', 'name')->orderBy('name')->get();
+        $this->propertyTypes = Propertytypes::select('id', 'type_name')->orderBy('type_name')->get();
 
         if ($property_folder_id) {
             $this->property_folder_id = $property_folder_id;
@@ -43,6 +44,11 @@ class Contract extends Component
     public function SelectTenantName($value)
     {
         $this->tenant_name = $value ? (int) $value : null;
+    }
+
+    public function SelectUsageType($value)
+    {
+        $this->usage_type = $value ? (int) $value : null;
     }
 
     public function updatedFile()
@@ -138,7 +144,7 @@ class Contract extends Component
             'tenant_name',
             'annual_rent_amount',
             'lease_duration',
-            // 'usage_type',
+            'usage_type',
             'notes',
             'file',
             'filePreviewPath'

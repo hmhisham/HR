@@ -1,6 +1,6 @@
 ﻿<!-- Add Contract Modal -->
 <div wire:ignore.self class="modal fade" id="addcontractModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
+   <div class="modal-dialog modal-dialog-centered modal-fullscreen">
     <div class="modal-content">
       <div class="px-4 py-3 modal-header bg-light">
         <h5 class="modal-title d-flex align-items-center">

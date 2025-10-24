@@ -141,9 +141,19 @@
            </div>   <div class="row g-2">
             <div class="mb-2 col">
             <div class="form-floating form-floating-outline">
-                <input wire:model.defer='usage_type' type="text" id="editContractusage_type" placeholder="نوع الاستغلال"
-                    class="form-control @error('usage_type') is-invalid is-filled @enderror" />
-                <label for="editContractusage_type">نوع الاستغلال</label>
+                <select wire:model.defer="usage_type" id="editContractusage_type" class="form-select select2 @error('usage_type') is-invalid is-filled @enderror" data-placeholder="اختيار نوع الاستغلال" data-allow-clear="true" data-dropdown-parent="#editcontractModal">
+                    <option value="">اختيار نوع الاستغلال</option>
+                    @if (isset($propertyTypes) && count($propertyTypes) > 0)
+                    @foreach ($propertyTypes as $propertyType)
+                    <option value="{{ $propertyType->id }}" {{ $usage_type == $propertyType->id ? 'selected' : '' }}>
+                      {{ $propertyType->type_name }}
+                    </option>
+                    @endforeach
+                    @else
+                    <option value="" disabled>لا توجد بيانات متاحة</option>
+                    @endif
+                </select>
+                {{-- <label for="editContractusage_type">نوع الاستغلال</label> --}}
             </div>
             @error('usage_type')
                 <small class='text-danger inputerror'> {{ $message }} </small>
