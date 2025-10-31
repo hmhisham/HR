@@ -16,6 +16,9 @@
     <style>
       .select2-container { width: 100% !important; }
       .select2-selection--single .select2-selection__rendered { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+      /* عرض 8 عناصر عند فتح Select2 */
+      .select2-container--default .select2-results__options { max-height: calc(8 * 2.25em) !important; overflow-y: auto !important; }
+      .select2-container--default .select2-results__option { line-height: 2.25em; padding: 0 0.75rem; }
     </style>
         @endsection
 @section('content')
@@ -166,7 +169,6 @@
             window.reinitAllSelect2 = function() {
 initSelect2('#addContracttenant_name', 'SelectTenantName', '#addcontractModal');
 initSelect2('#editContracttenant_name', 'SelectTenantName', '#editcontractModal');
-initSelect2('#addContractusage_type', 'SelectUsageType', '#addcontractModal');
 initSelect2('#editContractusage_type', 'SelectUsageType', '#editcontractModal');
             };
 

@@ -3,13 +3,14 @@
 namespace App\Http\Livewire\Contracts;
 
 use Livewire\Component;
-use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
-
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+
 use App\Models\Contracts\Contracts;
-use App\Models\Propertyfolder\Propertyfolder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Propertytypes\Propertytypes;
+use App\Models\Propertyfolder\Propertyfolder;
 
 class Contract extends Component
 {
@@ -157,9 +158,21 @@ class Contract extends Component
     public function store()
     {
         $this->resetValidation();
+        // في حال عدم وجود اضبارة العقار، عرض رسالة واضحة للمستخدم وإيقاف العملية
+
+        if (empty($this->currentPropertyFolder->folder_number)) {
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'يرجى فتح صفحة العقود من داخل اضبارة العقار أو تحديد اضبارة العقار أولاً.',
+                'title' => 'فشل الإضافة'
+            ]);
+            return;
+        }
+
+
+
         $this->validate([
-            'user_id' => 'required',
-            'property_folder_id' => 'required',
+
+
             'document_contract_number' => 'required',
             'start_date' => 'required',
             'approval_date' => 'required',
@@ -168,11 +181,9 @@ class Contract extends Component
             'annual_rent_amount' => 'required',
             'lease_duration' => 'required',
             'usage_type' => 'required',
-            'notes' => 'required',
-            'file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240',
+             'file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240',
         ], [
-            'user_id.required' => 'حقل  مطلوب',
-            'property_folder_id.required' => 'حقل  مطلوب',
+
             'document_contract_number.required' => 'حقل رقم العقد في المستند مطلوب',
             'start_date.required' => 'حقل تاريخ بداية العقد مطلوب',
             'approval_date.required' => 'حقل تاريخ المصادقة على العقد مطلوب',
@@ -181,15 +192,21 @@ class Contract extends Component
             'annual_rent_amount.required' => 'حقل مبلغ التأجير للسنة الواحدة مطلوب',
             'lease_duration.required' => 'حقل مدة الإيجار مطلوب',
             'usage_type.required' => 'حقل نوع الاستغلال مطلوب',
-            'notes.required' => 'حقل الملاحظات مطلوب',
-            'file.required' => 'حقل الملف مطلوب'
+             'file.required' => 'حقل الملف مطلوب'
         ]);
+
+
+
+        $file = null;
         if ($this->file instanceof \Livewire\TemporaryUploadedFile) {
             $file = $this->file->store('uploads', 'public');
         }
+
+
         Contracts::create([
-            'user_id' => $this->user_id,
-            'property_folder_id' => $this->property_folder_id,
+
+            'user_id' => Auth::user()->id,
+            'property_folder_id' => $this->currentPropertyFolder->folder_number,
             'document_contract_number' => $this->document_contract_number,
             'start_date' => $this->start_date,
             'approval_date' => $this->approval_date,
@@ -201,6 +218,8 @@ class Contract extends Component
             'notes' => $this->notes,
             'file' => $file
         ]);
+
+
         // Clean up temporary public preview file
         if ($this->filePreviewPath) {
             Storage::disk('public')->delete($this->filePreviewPath);
@@ -244,7 +263,7 @@ class Contract extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'user_id' => 'required:contracts',
+            'user_id' => Auth::user()->id,
             'property_folder_id' => 'required:contracts',
             'document_contract_number' => 'required:contracts',
             'start_date' => 'required:contracts',
