@@ -195,41 +195,55 @@ class Contract extends Component
              'file.required' => 'حقل الملف مطلوب'
         ]);
 
+        try {
+            $file = null;
+            if ($this->file instanceof \Livewire\TemporaryUploadedFile) {
+                $file = $this->file->store('uploads', 'public');
+            }
 
+            Contracts::create([
+                'user_id' => Auth::user()->id,
+                'property_folder_id' => $this->currentPropertyFolder->folder_number,
+                'document_contract_number' => $this->document_contract_number,
+                'start_date' => $this->start_date,
+                'approval_date' => $this->approval_date,
+                'end_date' => $this->end_date,
+                'tenant_name' => $this->tenant_name,
+                'annual_rent_amount' => str_replace(',', '', $this->annual_rent_amount),
+                'lease_duration' => $this->lease_duration,
+                'usage_type' => $this->usage_type,
+                'notes' => $this->notes,
+                'file' => $file
+            ]);
 
-        $file = null;
-        if ($this->file instanceof \Livewire\TemporaryUploadedFile) {
-            $file = $this->file->store('uploads', 'public');
+            // Clean up temporary public preview file
+            if ($this->filePreviewPath) {
+                Storage::disk('public')->delete($this->filePreviewPath);
+                $this->filePreviewPath = null;
+            }
+            
+            $this->reset();
+            $this->dispatchBrowserEvent('success', [
+                'message' => 'تم الإضافة بنجاح',
+                'title' => 'إضافة'
+            ]);
+        } catch (\Exception $e) {
+            // Clean up uploaded file if database save fails
+            if ($file && Storage::disk('public')->exists($file)) {
+                Storage::disk('public')->delete($file);
+            }
+            
+            // Clean up temporary public preview file
+            if ($this->filePreviewPath) {
+                Storage::disk('public')->delete($this->filePreviewPath);
+                $this->filePreviewPath = null;
+            }
+            
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'حدث خطأ أثناء الحفظ: ' . $e->getMessage(),
+                'title' => 'خطأ'
+            ]);
         }
-
-
-        Contracts::create([
-
-            'user_id' => Auth::user()->id,
-            'property_folder_id' => $this->currentPropertyFolder->folder_number,
-            'document_contract_number' => $this->document_contract_number,
-            'start_date' => $this->start_date,
-            'approval_date' => $this->approval_date,
-            'end_date' => $this->end_date,
-            'tenant_name' => $this->tenant_name,
-            'annual_rent_amount' => str_replace(',', '', $this->annual_rent_amount),
-            'lease_duration' => $this->lease_duration,
-            'usage_type' => $this->usage_type,
-            'notes' => $this->notes,
-            'file' => $file
-        ]);
-
-
-        // Clean up temporary public preview file
-        if ($this->filePreviewPath) {
-            Storage::disk('public')->delete($this->filePreviewPath);
-            $this->filePreviewPath = null;
-        }
-        $this->reset();
-        $this->dispatchBrowserEvent('success', [
-            'message' => 'تم الإضافة بنجاح',
-            'title' => 'إضافة'
-        ]);
     }
 
     public function GetContract($ContractId)
@@ -263,21 +277,16 @@ class Contract extends Component
     {
         $this->resetValidation();
         $this->validate([
-            'user_id' => Auth::user()->id,
-            'property_folder_id' => 'required:contracts',
-            'document_contract_number' => 'required:contracts',
-            'start_date' => 'required:contracts',
-            'approval_date' => 'required:contracts',
-            'end_date' => 'required:contracts',
-            'tenant_name' => 'required:contracts',
-            'annual_rent_amount' => 'required:contracts',
-            'lease_duration' => 'required:contracts',
-            'usage_type' => 'required:contracts',
-            'notes' => 'required:contracts',
-            'file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'document_contract_number' => 'required',
+            'start_date' => 'required',
+            'approval_date' => 'required',
+            'end_date' => 'required',
+            'tenant_name' => 'required',
+            'annual_rent_amount' => 'required',
+            'lease_duration' => 'required',
+            'usage_type' => 'required',
+            'file' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
         ], [
-            'user_id.required' => 'حقل  مطلوب',
-            'property_folder_id.required' => 'حقل  مطلوب',
             'document_contract_number.required' => 'حقل رقم العقد في المستند مطلوب',
             'start_date.required' => 'حقل تاريخ بداية العقد مطلوب',
             'approval_date.required' => 'حقل تاريخ المصادقة على العقد مطلوب',
@@ -286,39 +295,111 @@ class Contract extends Component
             'annual_rent_amount.required' => 'حقل مبلغ التأجير للسنة الواحدة مطلوب',
             'lease_duration.required' => 'حقل مدة الإيجار مطلوب',
             'usage_type.required' => 'حقل نوع الاستغلال مطلوب',
-            'notes.required' => 'حقل الملاحظات مطلوب',
-            'file.required' => 'حقل الملف مطلوب'
+            'file.file' => 'يجب أن يكون الملف من نوع صحيح',
+            'file.mimes' => 'يجب أن يكون الملف من نوع: pdf, jpg, jpeg, png',
+            'file.max' => 'حجم الملف يجب أن يكون أقل من 10 ميجابايت'
         ]);
+
         $Contracts = Contracts::find($this->ContractId);
-        if ($this->file instanceof \Livewire\TemporaryUploadedFile) {
-            $file = $this->file->store('uploads', 'public');
+        
+        if (!$Contracts) {
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'العقد غير موجود',
+                'title' => 'خطأ'
+            ]);
+            return;
+        }
+
+        try {
+            $file = $Contracts->file; // Keep existing file by default
+            $oldFile = $Contracts->file; // Store old file path for cleanup
+            
+            // Handle new file upload
+            if ($this->file instanceof \Livewire\TemporaryUploadedFile) {
+                // Store new file first
+                $file = $this->file->store('uploads', 'public');
+            }
+
+            $Contracts->update([
+                'user_id' => Auth::user()->id,
+                'property_folder_id' => $this->property_folder_id,
+                'document_contract_number' => $this->document_contract_number,
+                'start_date' => $this->start_date,
+                'approval_date' => $this->approval_date,
+                'end_date' => $this->end_date,
+                'tenant_name' => $this->tenant_name,
+                'annual_rent_amount' => str_replace(',', '', $this->annual_rent_amount),
+                'lease_duration' => $this->lease_duration,
+                'usage_type' => $this->usage_type,
+                'notes' => $this->notes,
+                'file' => $file
+            ]);
+
+            // Only delete old file after successful database update
+            if ($this->file instanceof \Livewire\TemporaryUploadedFile && $oldFile && $oldFile !== $file) {
+                if (Storage::disk('public')->exists($oldFile)) {
+                    Storage::disk('public')->delete($oldFile);
+                }
+            }
+
+            // Clean up temporary public preview file
+            if ($this->filePreviewPath) {
+                Storage::disk('public')->delete($this->filePreviewPath);
+                $this->filePreviewPath = null;
+            }
+            
+            $this->reset();
+            $this->dispatchBrowserEvent('success', [
+                'message' => 'تم التعديل بنجاح',
+                'title' => 'تعديل'
+            ]);
+        } catch (\Exception $e) {
+            // Clean up new file if database update fails
+            if ($this->file instanceof \Livewire\TemporaryUploadedFile && isset($file) && $file !== $oldFile) {
+                if (Storage::disk('public')->exists($file)) {
+                    Storage::disk('public')->delete($file);
+                }
+            }
+            
+            // Clean up temporary public preview file
+            if ($this->filePreviewPath) {
+                Storage::disk('public')->delete($this->filePreviewPath);
+                $this->filePreviewPath = null;
+            }
+            
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'حدث خطأ أثناء التعديل: ' . $e->getMessage(),
+                'title' => 'خطأ'
+            ]);
+        }
+    }
+
+    public function removeFile()
+    {
+        $Contracts = Contracts::find($this->ContractId);
+
+        if ($Contracts) {
+            // Delete associated file using Storage facade
+            if ($Contracts->file && Storage::disk('public')->exists($Contracts->file)) {
+                Storage::disk('public')->delete($Contracts->file);
+            }
+            
+            // Update contract to remove file reference
+            $Contracts->update(['file' => null]);
+            
+            // Update local property
+            $this->Contract = $Contracts;
+            
+            $this->dispatchBrowserEvent('success', [
+                'message' => 'تم حذف الملف بنجاح',
+                'title' => 'حذف الملف'
+            ]);
         } else {
-            $file = $this->Contract->file;
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'العقد غير موجود',
+                'title' => 'خطأ'
+            ]);
         }
-        $Contracts->update([
-            'user_id' => $this->user_id,
-            'property_folder_id' => $this->property_folder_id,
-            'document_contract_number' => $this->document_contract_number,
-            'start_date' => $this->start_date,
-            'approval_date' => $this->approval_date,
-            'end_date' => $this->end_date,
-            'tenant_name' => $this->tenant_name,
-            'annual_rent_amount' => str_replace(',', '', $this->annual_rent_amount),
-            'lease_duration' => $this->lease_duration,
-            'usage_type' => $this->usage_type,
-            'notes' => $this->notes,
-            'file' => $file
-        ]);
-        // Clean up temporary public preview file
-        if ($this->filePreviewPath) {
-            Storage::disk('public')->delete($this->filePreviewPath);
-            $this->filePreviewPath = null;
-        }
-        $this->reset();
-        $this->dispatchBrowserEvent('success', [
-            'message' => 'تم التعديل بنجاح',
-            'title' => 'تعديل'
-        ]);
     }
 
     public function destroy()
@@ -326,17 +407,21 @@ class Contract extends Component
         $Contracts = Contracts::find($this->ContractId);
 
         if ($Contracts) {
-            if ($Contracts->file) {
-                $filePath = 'storage/' . $Contracts->file;
-                if (\File::exists($filePath)) {
-                    \File::delete($filePath);
-                }
+            // Delete associated file using Storage facade
+            if ($Contracts->file && Storage::disk('public')->exists($Contracts->file)) {
+                Storage::disk('public')->delete($Contracts->file);
             }
+            
             $Contracts->delete();
             $this->reset();
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم الحذف بنجاح',
                 'title' => 'حذف'
+            ]);
+        } else {
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'العقد غير موجود',
+                'title' => 'خطأ'
             ]);
         }
     }

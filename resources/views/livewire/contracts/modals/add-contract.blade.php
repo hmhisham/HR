@@ -162,6 +162,8 @@
                 </div>
               </div>
             </div>
+
+            
             <div class="col-lg-5 d-flex flex-column">
               <div class="border-0 shadow-sm card flex-grow-1">
                 <div class="px-3 py-2 border-0 card-header bg-light">
@@ -391,7 +393,7 @@
  .usage-type-option.hidden {
      display: none;
  }
- 
+
 
 /* Dark mode support */
 [data-bs-theme="dark"] .usage-type-select {
@@ -425,7 +427,7 @@
      background-color: #444564;
      color: #fff;
  }
- 
+
 
 /* Error state */
 .usage-type-select.is-invalid {
@@ -508,7 +510,7 @@ function initUsageTypeField() {
     let isOpen = false;
     let selectedValue = '';
     let selectedText = '';
-    
+
 
     // Toggle dropdown
     function toggleDropdown() {
@@ -535,7 +537,7 @@ function initUsageTypeField() {
     function filterOptions(searchTerm) {
         const options = optionsContainer.querySelectorAll('.usage-type-option');
         const term = searchTerm.toLowerCase().trim();
-        
+
         options.forEach(option => {
             const text = option.textContent.toLowerCase();
             if (text.includes(term)) {
