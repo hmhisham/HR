@@ -210,7 +210,7 @@
                       <div class="mt-2 d-flex justify-content-between align-items-center">
                         <small class="text-muted">
                           <i class="mdi mdi-file-outline me-1"></i>
-                          {{ $file->getClientOriginalName() }}
+                          {{ !is_string($file) ? $file->getClientOriginalName() : 'ملف محدد' }}
                         </small>
                         <button type="button" wire:click="$set('file', null)" class="btn btn-sm btn-outline-danger" title="إلغاء الملف الجديد">
                           <i class="mdi mdi-close"></i>
