@@ -37,19 +37,21 @@
 
                     <!-- ملف PDF -->
                     <div class="col-md-4">
-                      <div class="form-floating form-floating-outline">
-                        <input type="file" class="form-control" accept="application/pdf" wire:model="pdf_file">
-                        <label>ملف PDF</label>
-                        @error('pdf_file')<span class="text-danger small">{{ $message }}</span>@enderror
-                      </div>
-                      @if($filePreviewPath)
-                        <div class="mt-2">
-                          <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank" class="btn btn-sm btn-outline-secondary">
-                            معاينة مؤقتة
-                          </a>
-                          <button type="button" class="btn btn-sm btn-outline-danger" wire:click="clearTempPdf">حذف المعاينة</button>
+                      <label class="form-label">ملف PDF</label>
+                      <div class="d-flex align-items-center flex-nowrap">
+                        <input type="file" class="form-control flex-grow-1" accept="application/pdf" wire:model="pdf_file" style="min-width:0">
+                        <div class="ms-2 btn-group btn-group-sm" role="group" aria-label="أدوات ملف PDF">
+                          @if($filePreviewPath)
+                            <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank" class="btn btn-outline-secondary" title="معاينة مؤقتة">
+                              <i class="mdi mdi-eye-outline"></i> معاينة مؤقتة
+                            </a>
+                            <button type="button" class="btn btn-outline-danger" wire:click="clearTempPdf" title="حذف المعاينة">
+                              <i class="mdi mdi-close-circle-outline"></i> حذف المعاينة
+                            </button>
+                          @endif
                         </div>
-                      @endif
+                      </div>
+                      @error('pdf_file')<span class="text-danger small">{{ $message }}</span>@enderror
                     </div>
 
                     <!-- الملاحظات -->
@@ -75,4 +77,3 @@
     </div>
   </div>
 </div>
-
