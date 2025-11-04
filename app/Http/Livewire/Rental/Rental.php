@@ -22,6 +22,7 @@ class Rental extends Component
     public $user_id, $tenant_name, $date, $amount, $pdf_file, $notes;
     public $tenants = [];
     public $filePreviewPath = null;
+    public $remove_file = false;
 
     protected $listeners = [
         'SelectTenantName',
@@ -119,6 +120,7 @@ class Rental extends Component
     {
         $this->resetValidation();
         $this->reset();
+        $this->remove_file = false;
         $this->tenants = Tenants::all();
         $this->dispatchBrowserEvent('flatpickr');
     }
@@ -207,6 +209,7 @@ class Rental extends Component
         $this->amount = number_format($this->Rental->amount);
         $this->pdf_file = $this->Rental->pdf_file;
         $this->notes = $this->Rental->notes;
+        $this->remove_file = false;
         // إعادة تهيئة Flatpickr عند فتح نافذة التعديل
         $this->dispatchBrowserEvent('flatpickr');
     }
@@ -253,6 +256,11 @@ class Rental extends Component
                 $file = $this->pdf_file->store('uploads/rentals', 'public');
             }
 
+            // Explicitly remove existing file if requested and no new file uploaded
+            if ($this->remove_file && !($this->pdf_file instanceof \Livewire\TemporaryUploadedFile)) {
+                $file = null;
+            }
+
             $Rental->update([
                 'user_id' => Auth::user()->id,
                 'tenant_name' => $this->tenant_name,
@@ -263,7 +271,7 @@ class Rental extends Component
             ]);
 
             // Only delete old file after successful database update
-            if ($this->pdf_file instanceof \Livewire\TemporaryUploadedFile && $oldFile && $oldFile !== $file) {
+            if ($oldFile && $oldFile !== $file) {
                 if (Storage::disk('public')->exists($oldFile)) {
                     Storage::disk('public')->delete($oldFile);
                 }

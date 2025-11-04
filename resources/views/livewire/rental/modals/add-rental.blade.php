@@ -16,7 +16,7 @@
               <div class="border-0 shadow-sm card flex-grow-1">
                 <div class="p-3 card-body d-flex flex-column">
                   <div class="row g-3 flex-grow-1">
-                    
+
                     <!-- اسم المستأجر -->
                     <div class="col-md-6">
                       <div class="form-floating form-floating-outline">
@@ -42,7 +42,7 @@
                     <!-- التاريخ -->
                     <div class="col-md-6">
                       <div class="form-floating form-floating-outline">
-                        <input wire:model.defer='date' type="date" id="addRentalDate" placeholder="التاريخ" class="form-control @error('date') is-invalid is-filled @enderror" />
+                        <input wire:model.defer='date' type="text" id="addRentalDate" placeholder="التاريخ" class="form-control flatpickr @error('date') is-invalid is-filled @enderror" />
                         <label for="addRentalDate">التاريخ</label>
                       </div>
                       @error('date')
@@ -70,13 +70,14 @@
                       @error('pdf_file')
                       <small class='text-danger inputerror'>{{ $message }}</small>
                       @enderror
-                      
-                      <!-- File Preview -->
+
+                      <!-- معاينة الملف المؤقت -->
                       @if($filePreviewPath)
                       <div class="mt-2">
                         <small class="text-success">
                           <i class="mdi mdi-file-pdf-box"></i>
-                          تم اختيار الملف بنجاح
+                          تم اختيار ملف جديد:
+                          <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank" class="text-primary">عرض المعاينة</a>
                         </small>
                       </div>
                       @endif
@@ -123,13 +124,13 @@ document.addEventListener('DOMContentLoaded', function() {
             placeholder: 'اختيار اسم المستأجر',
             allowClear: true
         });
-        
+
         // Handle Select2 change event
         $('#addRentalTenantName').on('change', function (e) {
             @this.call('SelectTenantName', $(this).val());
         });
     });
-    
+
     // Clean up Select2 when modal is hidden
     $('#addRentalModal').on('hidden.bs.modal', function () {
         $('#addRentalTenantName').select2('destroy');

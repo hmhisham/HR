@@ -41,6 +41,34 @@
 
 @section('page-script')
 <script>
+  // Init Flatpickr in Arabic for date inputs
+  function initFlatpickr() {
+    try {
+      const commonOptions = {
+        dateFormat: 'Y-m-d',
+        locale: 'ar',
+        disableMobile: true,
+        allowInput: true
+      };
+      if (window.flatpickr) {
+        // Add modal
+        const addEl = document.getElementById('addRentalDate');
+        if (addEl) {
+          if (addEl._flatpickr) addEl._flatpickr.destroy();
+          window.flatpickr(addEl, commonOptions);
+        }
+        // Edit modal
+        const editEl = document.getElementById('editRentalDate');
+        if (editEl) {
+          if (editEl._flatpickr) editEl._flatpickr.destroy();
+          window.flatpickr(editEl, commonOptions);
+        }
+      }
+    } catch (e) {
+      console.error('Flatpickr init error', e);
+    }
+  }
+
   // Helper to init select2 with Livewire integration
   function initSelect2(selector, eventName, parentSelector) {
     try {
@@ -68,12 +96,14 @@
 
   // Initial init
   reinitAllSelect2();
+  initFlatpickr();
 
   // Re-init after Livewire updates
   if (window.Livewire) {
     Livewire.hook('message.processed', (message, component) => {
       setTimeout(() => {
         reinitAllSelect2();
+        initFlatpickr();
       }, 100);
     });
   }
@@ -82,12 +112,17 @@
   $('#addRentalModal').on('shown.bs.modal', function () {
     setTimeout(() => {
       initSelect2('#addRentalTenantName', 'SelectTenantName', '#addRentalModal');
+      initFlatpickr();
     }, 100);
   });
   $('#editRentalModal').on('shown.bs.modal', function () {
     setTimeout(() => {
       initSelect2('#editRentalTenantName', 'SelectTenantName', '#editRentalModal');
+      initFlatpickr();
     }, 100);
   });
+
+  // Re-init when Livewire triggers flatpickr event
+  window.addEventListener('flatpickr', initFlatpickr);
 </script>
 @endsection
