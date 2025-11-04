@@ -140,8 +140,23 @@ class Rental extends Component
     public function AddRentalModalShow()
     {
         $this->resetValidation();
-        $this->reset();
+        // لا تُعد ضبط رقم الأضبارة للحفاظ على السياق
+        $this->reset([
+            'user_id',
+            'tenant_name',
+            'date',
+            'amount',
+            'pdf_file',
+            'notes',
+            'filePreviewPath',
+            'remove_file',
+            'Rental',
+            'RentalId',
+            'RentalSearch',
+            'search',
+        ]);
         $this->remove_file = false;
+        // إعادة تحميل قائمة المستأجرين فقط
         $this->tenants = Tenants::all();
         $this->dispatchBrowserEvent('flatpickr');
     }
@@ -149,6 +164,14 @@ class Rental extends Component
     public function store()
     {
         $this->resetValidation();
+        // تأكيد وجود رقم الأضبارة لضمان ربط السجل بشكل صحيح
+        if (empty($this->property_folder_id)) {
+            $this->dispatchBrowserEvent('error', [
+                'message' => 'يرجى فتح صفحة محضر التأجير من داخل اضبارة العقار أو تحديد اضبارة العقار أولاً.',
+                'title' => 'فشل الإضافة'
+            ]);
+            return;
+        }
         $this->validate([
             'tenant_name' => 'required',
             'date' => 'required|date',
@@ -189,8 +212,21 @@ class Rental extends Component
                 Storage::disk('public')->delete($this->filePreviewPath);
                 $this->filePreviewPath = null;
             }
-            
-            $this->reset();
+            // لا تُعد ضبط رقم الأضبارة للحفاظ على التصفية والسياق
+            $this->reset([
+                'user_id',
+                'tenant_name',
+                'date',
+                'amount',
+                'pdf_file',
+                'notes',
+                'filePreviewPath',
+                'remove_file',
+                'Rental',
+                'RentalId',
+                'RentalSearch',
+                'search',
+            ]);
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم الإضافة بنجاح',
                 'title' => 'إضافة'
@@ -304,8 +340,21 @@ class Rental extends Component
                 Storage::disk('public')->delete($this->filePreviewPath);
                 $this->filePreviewPath = null;
             }
-            
-            $this->reset();
+            // لا تُعد ضبط رقم الأضبارة للحفاظ على التصفية والسياق
+            $this->reset([
+                'user_id',
+                'tenant_name',
+                'date',
+                'amount',
+                'pdf_file',
+                'notes',
+                'filePreviewPath',
+                'remove_file',
+                'Rental',
+                'RentalId',
+                'RentalSearch',
+                'search',
+            ]);
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم التعديل بنجاح',
                 'title' => 'تعديل'
@@ -350,8 +399,21 @@ class Rental extends Component
             }
             
             $Rental->delete();
-            
-            $this->reset();
+            // لا تُعد ضبط رقم الأضبارة للحفاظ على التصفية والسياق
+            $this->reset([
+                'user_id',
+                'tenant_name',
+                'date',
+                'amount',
+                'pdf_file',
+                'notes',
+                'filePreviewPath',
+                'remove_file',
+                'Rental',
+                'RentalId',
+                'RentalSearch',
+                'search',
+            ]);
             $this->dispatchBrowserEvent('success', [
                 'message' => 'تم الحذف بنجاح',
                 'title' => 'حذف'
