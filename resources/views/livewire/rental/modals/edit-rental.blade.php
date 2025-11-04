@@ -1,7 +1,7 @@
 <!-- Edit Rental Modal -->
 <div wire:ignore.self class="modal fade" id="editRentalModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content h-100">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="border-0 shadow-lg modal-content h-100 rounded-3">
       <div class="px-4 py-3 modal-header bg-light">
         <h5 class="modal-title d-flex align-items-center">
           <i class="mdi mdi-file-document-edit-outline text-primary me-2"></i>
@@ -14,13 +14,13 @@
           <div class="row g-3 flex-grow-1">
             <div class="col-12 d-flex flex-column">
               <div class="border-0 shadow-sm card flex-grow-1">
-                <div class="p-3 card-body d-flex flex-column">
+                <div class="p-4 card-body d-flex flex-column">
                   <div class="row g-3 flex-grow-1">
-                    
+
                     <!-- اسم المستأجر -->
                     <div class="col-md-6">
                       <div class="form-floating form-floating-outline">
-                        <select wire:model.defer="tenant_name" id="editRentalTenantName" class="form-select select2 @error('tenant_name') is-invalid is-filled @enderror" data-placeholder="اختيار اسم المستأجر" data-allow-clear="true" data-dropdown-parent="#editRentalModal">
+                        <select wire:ignore wire:model.defer="tenant_name" id="editRentalTenantName" class="form-select select2 @error('tenant_name') is-invalid is-filled @enderror" data-placeholder="اختيار اسم المستأجر" data-allow-clear="true" data-dropdownParent="#editRentalModal">
                           <option value="">اختيار اسم المستأجر</option>
                           @if (isset($tenants) && count($tenants) > 0)
                           @foreach ($tenants as $tenant)
@@ -70,34 +70,34 @@
                       @error('pdf_file')
                       <small class='text-danger inputerror'>{{ $message }}</small>
                       @enderror
-                      
+
                       <!-- الملف الحالي + زر حذف ضمن نفس الصف -->
                       @if($Rental && $Rental->pdf_file && !($pdf_file instanceof \Livewire\TemporaryUploadedFile))
-                      <div class="mt-2 d-flex align-items-center justify-content-between">
+                      <div class="mt-3 d-flex align-items-center justify-content-between">
                         <small class="text-info d-flex align-items-center">
                           <i class="mdi mdi-file-pdf-box me-1"></i>
                           <span>الملف الحالي:&nbsp;</span>
                           <a href="{{ asset('storage/' . $Rental->pdf_file) }}" target="_blank" class="text-primary">عرض الملف</a>
                         </small>
-                        <button type="button" class="btn btn-outline-danger btn-sm d-flex align-items-center" wire:click="$set('remove_file', !remove_file)">
+                        <span class="badge {{ $remove_file ? 'bg-danger' : 'bg-secondary' }} d-flex align-items-center" style="cursor: pointer;" wire:click="$set('remove_file', !remove_file)">
                           <i class="mdi mdi-trash-can-outline me-1"></i>
                           <span>{{ $remove_file ? 'تم اختيار حذف الملف الحالي' : 'حذف الملف الحالي' }}</span>
-                        </button>
+                        </span>
                       </div>
                       @endif
-                      
+
                       <!-- معاينة الملف المؤقت + زر إزالة ضمن نفس الصف -->
                       @if($filePreviewPath)
-                      <div class="mt-2 d-flex align-items-center justify-content-between">
+                      <div class="mt-3 d-flex align-items-center justify-content-between">
                         <small class="text-success d-flex align-items-center">
                           <i class="mdi mdi-file-pdf-box me-1"></i>
                           <span>تم اختيار ملف جديد:&nbsp;</span>
                           <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank" class="text-primary">عرض المعاينة</a>
                         </small>
-                        <button type="button" class="btn btn-outline-danger btn-sm d-flex align-items-center" wire:click="clearTempPdf">
+                        <span class="badge bg-danger d-flex align-items-center" style="cursor: pointer;" wire:click="clearTempPdf">
                           <i class="mdi mdi-close-circle-outline me-1"></i>
                           إزالة الملف المؤقت
-                        </button>
+                        </span>
                       </div>
                       @endif
 
@@ -151,15 +151,18 @@ document.addEventListener('DOMContentLoaded', function() {
         $('#editRentalTenantName').select2({
             dropdownParent: $('#editRentalModal'),
             placeholder: 'اختيار اسم المستأجر',
-            allowClear: true
+            allowClear: true,
+            minimumResultsForSearch: 0,
+            width: '100%',
+            dir: 'rtl'
         });
-        
+
         // Handle Select2 change event
         $('#editRentalTenantName').on('change', function (e) {
             @this.call('SelectTenantName', $(this).val());
         });
     });
-    
+
     // Clean up Select2 when modal is hidden
     $('#editRentalModal').on('hidden.bs.modal', function () {
         $('#editRentalTenantName').select2('destroy');

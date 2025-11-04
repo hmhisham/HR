@@ -76,7 +76,9 @@
       const options = {
         dropdownParent: $(parentSelector),
         allowClear: true,
-        width: '100%'
+        width: '100%',
+        minimumResultsForSearch: 0,
+        dir: 'rtl'
       };
       $el.select2(options).on('change', function (e) {
         const value = e.target.value || null;

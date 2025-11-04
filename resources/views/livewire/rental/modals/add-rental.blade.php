@@ -1,7 +1,7 @@
 <!-- Add Rental Modal -->
 <div wire:ignore.self class="modal fade" id="addRentalModal" tabindex="-1" aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content h-100">
+   <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content h-100 rounded-3 border-0 shadow-lg">
       <div class="px-4 py-3 modal-header bg-light">
         <h5 class="modal-title d-flex align-items-center">
           <i class="mdi mdi-plus-circle-outline text-primary me-2"></i>
@@ -14,13 +14,13 @@
           <div class="row g-3 flex-grow-1">
             <div class="col-12 d-flex flex-column">
               <div class="border-0 shadow-sm card flex-grow-1">
-                <div class="p-3 card-body d-flex flex-column">
+                <div class="p-4 card-body d-flex flex-column">
                   <div class="row g-3 flex-grow-1">
 
                     <!-- اسم المستأجر -->
                     <div class="col-md-6">
                       <div class="form-floating form-floating-outline">
-                        <select wire:model.defer="tenant_name" id="addRentalTenantName" class="form-select select2 @error('tenant_name') is-invalid is-filled @enderror" data-placeholder="اختيار اسم المستأجر" data-allow-clear="true" data-dropdown-parent="#addRentalModal">
+                        <select wire:ignore wire:model.defer="tenant_name" id="addRentalTenantName" class="form-select select2 @error('tenant_name') is-invalid is-filled @enderror" data-placeholder="اختيار اسم المستأجر" data-allow-clear="true" data-dropdown-parent="#addRentalModal">
                           <option value="">اختيار اسم المستأجر</option>
                           @if (isset($tenants) && count($tenants) > 0)
                           @foreach ($tenants as $tenant)
@@ -73,16 +73,16 @@
 
                       <!-- معاينة الملف المؤقت + زر إزالة ضمن نفس الصف -->
                       @if($filePreviewPath)
-                      <div class="mt-2 d-flex align-items-center justify-content-between">
+                      <div class="mt-3 d-flex align-items-center justify-content-between">
                         <small class="text-success d-flex align-items-center">
                           <i class="mdi mdi-file-pdf-box me-1"></i>
                           <span>تم اختيار ملف جديد:&nbsp;</span>
                           <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank" class="text-primary">عرض المعاينة</a>
                         </small>
-                        <button type="button" class="btn btn-outline-danger btn-sm d-flex align-items-center" wire:click="clearTempPdf">
+                        <span class="badge bg-danger d-flex align-items-center" style="cursor: pointer;" wire:click="clearTempPdf">
                           <i class="mdi mdi-close-circle-outline me-1"></i>
                           إزالة الملف المؤقت
-                        </button>
+                        </span>
                       </div>
                       @endif
                     </div>
@@ -122,11 +122,14 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize Select2 when modal is shown
-    $('#addRentalModal').on('shown.bs.modal', function () {
+        $('#addRentalModal').on('shown.bs.modal', function () {
         $('#addRentalTenantName').select2({
             dropdownParent: $('#addRentalModal'),
             placeholder: 'اختيار اسم المستأجر',
-            allowClear: true
+            allowClear: true,
+            minimumResultsForSearch: 0,
+            width: '100%',
+            dir: 'rtl'
         });
 
         // Handle Select2 change event
