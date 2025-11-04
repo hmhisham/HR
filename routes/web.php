@@ -35,6 +35,7 @@ use App\Http\Controllers\Tracking\TrackingController;
 use App\Http\Controllers\Usersapp\UsersappController;
 use App\Http\Controllers\Childrens\ChildrensController;
 use App\Http\Controllers\Contracts\ContractsController;
+use App\Http\Controllers\RentalController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Districts\DistrictsController;
 use App\Http\Controllers\JobTitles\JobTitlesController;
@@ -222,6 +223,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::GET('Propertyfolder', [PropertyfolderController::class, 'index'])->name('Propertyfolder.index');
     Route::GET('Contracts/{property_folder_id?}', [ContractsController::class, 'index'])->name('Contracts.index');
+    Route::GET('Rental', [RentalController::class, 'index'])->name('Rental.index');
     //===============الاملاك والاراضي==================
 Route::  RESOURCE(name: 'Tenants', controller: TenantsController::class);
 

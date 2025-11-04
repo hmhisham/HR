@@ -123,7 +123,7 @@
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="#" wire:click="GetPropertyfolde({{ $Propertyfolde->id }})" data-bs-toggle="modal" data-bs-target="#removepropertyfoldeModal">
+<a class="dropdown-item {{ $Propertyfolde->active ? 'disabled' : '' }}" href="{{ route('Rental.index', ['property_folder_id' => $Propertyfolde->id]) }}">
                       <i class="tf-icons mdi mdi-file-document-edit me-1"></i>
                       محضر تاجير
                     </a>
