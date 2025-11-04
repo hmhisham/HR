@@ -71,14 +71,18 @@
                       <small class='text-danger inputerror'>{{ $message }}</small>
                       @enderror
 
-                      <!-- معاينة الملف المؤقت -->
+                      <!-- معاينة الملف المؤقت + زر إزالة ضمن نفس الصف -->
                       @if($filePreviewPath)
-                      <div class="mt-2">
-                        <small class="text-success">
-                          <i class="mdi mdi-file-pdf-box"></i>
-                          تم اختيار ملف جديد:
+                      <div class="mt-2 d-flex align-items-center justify-content-between">
+                        <small class="text-success d-flex align-items-center">
+                          <i class="mdi mdi-file-pdf-box me-1"></i>
+                          <span>تم اختيار ملف جديد:&nbsp;</span>
                           <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank" class="text-primary">عرض المعاينة</a>
                         </small>
+                        <button type="button" class="btn btn-outline-danger btn-sm d-flex align-items-center" wire:click="clearTempPdf">
+                          <i class="mdi mdi-close-circle-outline me-1"></i>
+                          إزالة الملف المؤقت
+                        </button>
                       </div>
                       @endif
                     </div>

@@ -58,6 +58,18 @@ class Rental extends Component
         }
     }
 
+    public function clearTempPdf()
+    {
+        // Clear validation state for pdf_file
+        $this->resetValidation('pdf_file');
+        // Delete temporary preview file if exists
+        if ($this->filePreviewPath && \Illuminate\Support\Facades\Storage::disk('public')->exists($this->filePreviewPath)) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($this->filePreviewPath);
+        }
+        $this->filePreviewPath = null;
+        $this->pdf_file = null;
+    }
+
     public function updatingRentalSearch()
     {
         $this->resetPage();

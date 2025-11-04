@@ -71,39 +71,43 @@
                       <small class='text-danger inputerror'>{{ $message }}</small>
                       @enderror
                       
-                      <!-- الملف الحالي -->
+                      <!-- الملف الحالي + زر حذف ضمن نفس الصف -->
                       @if($Rental && $Rental->pdf_file && !($pdf_file instanceof \Livewire\TemporaryUploadedFile))
-                      <div class="mt-2">
-                        <small class="text-info">
-                          <i class="mdi mdi-file-pdf-box"></i>
-                          الملف الحالي: 
+                      <div class="mt-2 d-flex align-items-center justify-content-between">
+                        <small class="text-info d-flex align-items-center">
+                          <i class="mdi mdi-file-pdf-box me-1"></i>
+                          <span>الملف الحالي:&nbsp;</span>
                           <a href="{{ asset('storage/' . $Rental->pdf_file) }}" target="_blank" class="text-primary">عرض الملف</a>
                         </small>
+                        <button type="button" class="btn btn-outline-danger btn-sm d-flex align-items-center" wire:click="$set('remove_file', !remove_file)">
+                          <i class="mdi mdi-trash-can-outline me-1"></i>
+                          <span>{{ $remove_file ? 'تم اختيار حذف الملف الحالي' : 'حذف الملف الحالي' }}</span>
+                        </button>
                       </div>
                       @endif
                       
-                      <!-- معاينة الملف المؤقت -->
+                      <!-- معاينة الملف المؤقت + زر إزالة ضمن نفس الصف -->
                       @if($filePreviewPath)
-                      <div class="mt-2">
-                        <small class="text-success">
-                          <i class="mdi mdi-file-pdf-box"></i>
-                          تم اختيار ملف جديد: 
+                      <div class="mt-2 d-flex align-items-center justify-content-between">
+                        <small class="text-success d-flex align-items-center">
+                          <i class="mdi mdi-file-pdf-box me-1"></i>
+                          <span>تم اختيار ملف جديد:&nbsp;</span>
                           <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank" class="text-primary">عرض المعاينة</a>
                         </small>
+                        <button type="button" class="btn btn-outline-danger btn-sm d-flex align-items-center" wire:click="clearTempPdf">
+                          <i class="mdi mdi-close-circle-outline me-1"></i>
+                          إزالة الملف المؤقت
+                        </button>
                       </div>
                       @endif
 
-                      <!-- خيار حذف الملف الحالي -->
-                      @if($Rental && $Rental->pdf_file)
-                      <div class="mt-2 form-check">
-                        <input class="form-check-input" type="checkbox" id="removeCurrentPdf" wire:model.defer="remove_file">
-                        <label class="form-check-label" for="removeCurrentPdf">
-                          حذف الملف الحالي
-                        </label>
-                        <div class="small text-warning mt-1" style="display: {{ $remove_file ? 'block' : 'none' }};">
-                          <i class="mdi mdi-alert-outline"></i>
-                          سيتم حذف الملف الحالي عند الحفظ.
-                        </div>
+                      <!-- إشعار الحذف عند الاختيار -->
+                      @if($Rental && $Rental->pdf_file && $remove_file)
+                      <div class="mt-2">
+                        <span class="badge bg-warning text-dark d-flex align-items-center">
+                          <i class="mdi mdi-alert-outline me-1"></i>
+                          سيتم حذف الملف عند الحفظ
+                        </span>
                       </div>
                       @endif
                     </div>
