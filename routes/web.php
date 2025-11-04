@@ -57,6 +57,7 @@ use App\Http\Controllers\Certificates\CertificatesController;
 use App\Http\Controllers\Governorates\GovernoratesController;
 use App\Http\Controllers\Idepartments\IdepartmentsController;
 use App\Http\Controllers\Propertypayd\PropertypaydController;
+use App\Http\Controllers\ValuationController;
 use App\Http\Controllers\RealProperty\RealPropertyController;
 use App\Http\Controllers\Typeholidays\TypeholidaysController;
 use App\Http\Controllers\Propertytypes\PropertytypesController;
@@ -224,6 +225,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::GET('Propertyfolder', [PropertyfolderController::class, 'index'])->name('Propertyfolder.index');
     Route::GET('Contracts/{property_folder_id?}', [ContractsController::class, 'index'])->name('Contracts.index');
     Route::GET('Rental/{property_folder_id?}', [RentalController::class, 'index'])->name('Rental.index');
+    Route::GET('Valuation/{property_folder_id?}', [ValuationController::class, 'index'])->name('Valuation.index');
     //===============الاملاك والاراضي==================
     Route::RESOURCE(name: 'Tenants', controller: TenantsController::class);
 
