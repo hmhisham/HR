@@ -20,18 +20,20 @@
                     <!-- اسم المستأجر -->
                     <div class="col-md-6">
                       <div class="form-floating form-floating-outline">
-                        <select wire:ignore wire:model.defer="tenant_name" id="editRentalTenantName" class="form-select select2 @error('tenant_name') is-invalid is-filled @enderror" data-placeholder="اختيار اسم المستأجر" data-allow-clear="true" data-dropdownParent="#editRentalModal">
-                          <option value="">اختيار اسم المستأجر</option>
-                          @if (isset($tenants) && count($tenants) > 0)
-                          @foreach ($tenants as $tenant)
-                          <option value="{{ $tenant->id }}" {{ $tenant_name == $tenant->id ? 'selected' : '' }}>
-                            {{ $tenant->name }}
-                          </option>
-                          @endforeach
-                          @else
-                          <option value="" disabled>لا توجد بيانات متاحة</option>
-                          @endif
-                        </select>
+                        <div wire:ignore>
+                          <select wire:model.defer="tenant_name" id="editRentalTenantName" class="form-select select2 @error('tenant_name') is-invalid is-filled @enderror" data-placeholder="اختيار اسم المستأجر" data-allow-clear="true" data-dropdownParent="#editRentalModal">
+                            <option value="">اختيار اسم المستأجر</option>
+                            @if (isset($tenants) && count($tenants) > 0)
+                            @foreach ($tenants as $tenant)
+                            <option value="{{ $tenant->id }}" {{ $tenant_name == $tenant->id ? 'selected' : '' }}>
+                              {{ $tenant->name }}
+                            </option>
+                            @endforeach
+                            @else
+                            <option value="" disabled>لا توجد بيانات متاحة</option>
+                            @endif
+                          </select>
+                        </div>
                         <label for="editRentalTenantName">اسم المستأجر</label>
                       </div>
                       @error('tenant_name')

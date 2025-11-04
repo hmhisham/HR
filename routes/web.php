@@ -223,9 +223,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::GET('Propertyfolder', [PropertyfolderController::class, 'index'])->name('Propertyfolder.index');
     Route::GET('Contracts/{property_folder_id?}', [ContractsController::class, 'index'])->name('Contracts.index');
-    Route::GET('Rental', [RentalController::class, 'index'])->name('Rental.index');
+    Route::GET('Rental/{property_folder_id?}', [RentalController::class, 'index'])->name('Rental.index');
     //===============الاملاك والاراضي==================
-Route::  RESOURCE(name: 'Tenants', controller: TenantsController::class);
+    Route::RESOURCE(name: 'Tenants', controller: TenantsController::class);
 
     //===============المالية==================
 

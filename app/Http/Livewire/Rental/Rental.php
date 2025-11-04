@@ -23,6 +23,7 @@ class Rental extends Component
     public $tenants = [];
     public $filePreviewPath = null;
     public $remove_file = false;
+    public $property_folder_id = null;
 
     protected $listeners = [
         'SelectTenantName',
@@ -38,10 +39,7 @@ class Rental extends Component
         'notes' => 'nullable|string|max:1000'
     ];
 
-    public function mount()
-    {
-        $this->tenants = Tenants::all();
-    }
+    
 
     public function SelectTenantName($value)
     {
@@ -83,6 +81,11 @@ class Rental extends Component
     public function render()
     {
         $Rentals = RentalModel::with('tenant');
+
+        // تصفية حسب رقم الأضبارة إن وجد
+        if (!empty($this->property_folder_id)) {
+            $Rentals->where('property_folder_id', $this->property_folder_id);
+        }
 
         // تطبيق البحث العام فقط إذا كان هناك نص للبحث
         if (!empty($this->RentalSearch)) {
@@ -128,6 +131,12 @@ class Rental extends Component
         ]);
     }
 
+    public function mount($property_folder_id = null)
+    {
+        $this->tenants = Tenants::all();
+        $this->property_folder_id = $property_folder_id;
+    }
+
     public function AddRentalModalShow()
     {
         $this->resetValidation();
@@ -167,6 +176,7 @@ class Rental extends Component
 
             RentalModel::create([
                 'user_id' => Auth::user()->id,
+                'property_folder_id' => $this->property_folder_id,
                 'tenant_name' => $this->tenant_name,
                 'date' => $this->date,
                 'amount' => str_replace(',', '', $this->amount),

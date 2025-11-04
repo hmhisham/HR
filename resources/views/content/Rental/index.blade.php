@@ -21,7 +21,7 @@
 @endsection
 
 @section('content')
-  @livewire('rental.rental')
+  @livewire('rental.rental', ['property_folder_id' => $property_folder_id ?? null])
 @endsection
 
 @section('vendor-script')

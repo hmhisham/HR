@@ -11,9 +11,11 @@ class RentalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($property_folder_id = null)
     {
-        return view('content.Rental.index');
+        return view('content.Rental.index', [
+            'property_folder_id' => $property_folder_id
+        ]);
     }
 
     /**
