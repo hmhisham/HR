@@ -1,7 +1,7 @@
 <!-- Add Valuation Modal -->
 <div wire:ignore.self class="modal fade" id="addValuationModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content h-100 rounded-3 border-0 shadow-lg">
+    <div class="border-0 shadow-lg modal-content h-100 rounded-3">
       <div class="px-4 py-3 modal-header bg-light">
         <h5 class="modal-title d-flex align-items-center">
           <i class="mdi mdi-plus-circle-outline text-primary me-2"></i>
@@ -11,14 +11,14 @@
       </div>
       <div class="p-4 modal-body d-flex flex-column">
         <form id="addValuationModalForm" autocomplete="off" class="d-flex flex-column flex-grow-1">
-          <div class="row g-3 flex-grow-1">
+          <div class="row g-2 flex-grow-1">
             <div class="col-12 d-flex flex-column">
               <div class="border-0 shadow-sm card flex-grow-1">
                 <div class="p-4 card-body d-flex flex-column">
-                  <div class="row g-3 flex-grow-1">
+                  <div class="row g-2 flex-grow-1">
 
                     <!-- التاريخ -->
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="form-floating form-floating-outline">
                         <input id="addValuationDate" type="text" class="form-control" placeholder="التاريخ" wire:model.defer="date">
                         <label for="addValuationDate">التاريخ</label>
@@ -27,7 +27,7 @@
                     </div>
 
                     <!-- المبلغ -->
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="form-floating form-floating-outline">
                         <input type="text" class="form-control" placeholder="المبلغ" wire:model.defer="amount">
                         <label>المبلغ</label>
@@ -37,8 +37,8 @@
 
                     <!-- ملف PDF -->
                     <div class="col-12">
-                      <label class="form-label">ملف PDF</label>
-                      <div class="input-group input-group-lg flex-nowrap">
+                      <div class="flex-nowrap input-group input-group-lg">
+                        <span class="input-group-text">ملف PDF</span>
                         <input type="file" class="form-control" accept="application/pdf" wire:model="pdf_file" style="min-width:0">
                         @if($filePreviewPath)
                           <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank" class="btn btn-outline-secondary btn-lg" title="معاينة مؤقتة">

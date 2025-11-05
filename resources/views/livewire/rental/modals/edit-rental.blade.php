@@ -11,14 +11,14 @@
             </div>
             <div class="p-4 modal-body d-flex flex-column">
                 <form id="editRentalModalForm" autocomplete="off" class="d-flex flex-column flex-grow-1">
-                    <div class="row g-3 flex-grow-1">
+                    <div class="row g-2 flex-grow-1">
                         <div class="col-12 d-flex flex-column">
                             <div class="border-0 shadow-sm card flex-grow-1">
                                 <div class="p-4 card-body d-flex flex-column">
-                                    <div class="row g-3 flex-grow-1">
+                                    <div class="row g-2 flex-grow-1">
 
                                         <!-- اسم المستأجر -->
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-floating form-floating-outline">
                                                 <div wire:ignore>
                                                     <select wire:model.defer="tenant_name" id="editRentalTenantName"
@@ -47,7 +47,7 @@
                                         </div>
 
                                         <!-- التاريخ -->
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-floating form-floating-outline">
                                                 <input wire:model.defer='date' type="text" id="editRentalDate"
                                                     placeholder="التاريخ"
@@ -60,7 +60,7 @@
                                         </div>
 
                                         <!-- المبلغ -->
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-floating form-floating-outline">
                                                 <input wire:model.defer='amount' type="number" step="0.01"
                                                     id="editRentalAmount" placeholder="المبلغ"
@@ -74,8 +74,8 @@
 
                                         <!-- ملف PDF -->
                                         <div class="col-12">
-                                            <label class="form-label" for="editRentalPdfFile">ملف PDF</label>
-                                            <div class="input-group input-group-lg flex-nowrap">
+                                            <div class="flex-nowrap input-group input-group-lg">
+                                                <span class="input-group-text">ملف PDF</span>
                                                 <input wire:model.defer='pdf_file' type="file" accept=".pdf"
                                                     id="editRentalPdfFile"
                                                     class="form-control @error('pdf_file') is-invalid is-filled @enderror" />

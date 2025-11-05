@@ -11,14 +11,14 @@
             </div>
             <div class="p-4 modal-body d-flex flex-column">
                 <form id="editValuationModalForm" autocomplete="off" class="d-flex flex-column flex-grow-1">
-                    <div class="row g-3 flex-grow-1">
+                    <div class="row g-2 flex-grow-1">
                         <div class="col-12 d-flex flex-column">
                             <div class="border-0 shadow-sm card flex-grow-1">
                                 <div class="p-4 card-body d-flex flex-column">
-                                    <div class="row g-3 flex-grow-1">
+                                    <div class="row g-2 flex-grow-1">
 
                                         <!-- التاريخ -->
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-floating form-floating-outline">
                                                 <input id="editValuationDate" type="text" class="form-control"
                                                     placeholder="التاريخ" wire:model.defer="date">
@@ -30,7 +30,7 @@
                                         </div>
 
                                         <!-- المبلغ -->
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-floating form-floating-outline">
                                                 <input type="text" class="form-control" placeholder="المبلغ"
                                                     wire:model.defer="amount">
@@ -43,8 +43,8 @@
 
                                         <!-- ملف PDF -->
                                         <div class="col-12">
-                                            {{-- <label class="form-label">ملف PDF</label> --}}
-                                            <div class="input-group input-group-lg flex-nowrap">
+                                            <div class="flex-nowrap input-group input-group-lg">
+                                                <span class="input-group-text">ملف PDF</span>
                                                 <input type="file" class="form-control" accept="application/pdf"
                                                     wire:model="pdf_file" style="min-width:0">
                                                 @if ($pdf_file)
