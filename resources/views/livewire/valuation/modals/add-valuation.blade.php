@@ -36,20 +36,18 @@
                     </div>
 
                     <!-- ملف PDF -->
-                    <div class="col-md-4">
+                    <div class="col-12">
                       <label class="form-label">ملف PDF</label>
-                      <div class="d-flex align-items-center flex-nowrap">
-                        <input type="file" class="form-control flex-grow-1" accept="application/pdf" wire:model="pdf_file" style="min-width:0">
-                        <div class="ms-2 btn-group btn-group-sm" role="group" aria-label="أدوات ملف PDF">
-                          @if($filePreviewPath)
-                            <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank" class="btn btn-outline-secondary" title="معاينة مؤقتة">
-                              <i class="mdi mdi-eye-outline"></i> معاينة مؤقتة
-                            </a>
-                            <button type="button" class="btn btn-outline-danger" wire:click="clearTempPdf" title="حذف المعاينة">
-                              <i class="mdi mdi-close-circle-outline"></i> حذف المعاينة
-                            </button>
-                          @endif
-                        </div>
+                      <div class="input-group input-group-lg flex-nowrap">
+                        <input type="file" class="form-control" accept="application/pdf" wire:model="pdf_file" style="min-width:0">
+                        @if($filePreviewPath)
+                          <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank" class="btn btn-outline-secondary btn-lg" title="معاينة مؤقتة">
+                            <i class="mdi mdi-eye-outline"></i>
+                          </a>
+                          <button type="button" class="btn btn-outline-danger btn-lg" wire:click="clearTempPdf" title="حذف المعاينة">
+                            <i class="mdi mdi-close-circle-outline"></i> حذف المعاينة
+                          </button>
+                        @endif
                       </div>
                       @error('pdf_file')<span class="text-danger small">{{ $message }}</span>@enderror
                     </div>

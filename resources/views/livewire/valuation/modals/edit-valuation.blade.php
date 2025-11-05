@@ -42,29 +42,29 @@
                                         </div>
 
                                         <!-- ملف PDF -->
-                                        <div class="col-md-4">
+                                        <div class="col-12">
                                             {{-- <label class="form-label">ملف PDF</label> --}}
-                                            <div class="flex-nowrap input-group">
+                                            <div class="input-group input-group-lg flex-nowrap">
                                                 <input type="file" class="form-control" accept="application/pdf"
                                                     wire:model="pdf_file" style="min-width:0">
                                                 @if ($pdf_file)
                                                     <a href="{{ asset('storage/' . $pdf_file) }}" target="_blank"
-                                                        class="btn btn-outline-primary" title="عرض الملف الحالي">
+                                                        class="btn btn-outline-primary btn-lg" title="عرض الملف الحالي">
                                                         <i class="mdi mdi-file-pdf-box"></i>
                                                     </a>
                                                 @endif
                                                 @if ($filePreviewPath)
                                                     <a href="{{ asset('storage/' . $filePreviewPath) }}" target="_blank"
-                                                        class="btn btn-outline-secondary" title="معاينة مؤقتة">
+                                                        class="btn btn-outline-secondary btn-lg" title="معاينة مؤقتة">
                                                         <i class="mdi mdi-eye-outline"></i>
                                                     </a>
-                                                    <button type="button" class="btn btn-outline-danger"
+                                                    <button type="button" class="btn btn-outline-danger btn-lg"
                                                         wire:click="clearTempPdf" title="حذف المعاينة">
                                                         <i class="mdi mdi-close-circle-outline"></i> حذف المعاينة
                                                     </button>
                                                 @endif
                                                 <button type="button"
-                                                    class="btn {{ $remove_file ? 'btn-danger' : 'btn-outline-danger' }}"
+                                                    class="btn btn-lg {{ $remove_file ? 'btn-danger' : 'btn-outline-danger' }}"
                                                     wire:click="$set('remove_file', ! $remove_file)"
                                                     title="حذف الملف الحالي">
                                                     <i class="mdi mdi-delete-outline"></i>
